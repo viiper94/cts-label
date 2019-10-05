@@ -7,17 +7,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace PHPUnit\Framework\MockObject\Matcher;
+namespace PHPUnit\Framework\MockObject\Rule;
 
 use PHPUnit\Framework\Constraint\Constraint;
+use PHPUnit\Framework\InvalidArgumentException;
 use PHPUnit\Framework\MockObject\Invocation as BaseInvocation;
 use PHPUnit\Framework\MockObject\MethodNameConstraint;
-use PHPUnit\Util\InvalidArgumentHelper;
 
 /**
  * @internal This class is not covered by the backward compatibility promise for PHPUnit
  */
-final class MethodName extends StatelessInvocation
+final class MethodName
 {
     /**
      * @var Constraint
@@ -34,7 +34,7 @@ final class MethodName extends StatelessInvocation
     {
         if (!$constraint instanceof Constraint) {
             if (!\is_string($constraint)) {
-                throw InvalidArgumentHelper::factory(1, 'string');
+                throw InvalidArgumentException::create(1, 'string');
             }
 
             $constraint = new MethodNameConstraint($constraint);

@@ -1,0 +1,169 @@
+*{
+	margin: 0;
+	padding: 0;
+	line-height: 0.95em;
+	font-family: Arial;
+}
+body{
+	background: url(http://www.cts-label.com/mail/Fon_pisem.jpg);
+}
+.wrapper{
+	width: 705px; 
+	margin: 0 auto;
+	margin-top: 8px;
+	padding: 10px 15px 0px 15px;
+	background-color: #fff;
+}
+header{
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 20px;
+	border-bottom: solid 1px black;
+}
+.header_img{
+	margin: 0 auto;
+	width: 690px;
+	margin-top: 8px;
+	margin-bottom: 45px;
+}
+.ctschool{
+	position: relative;
+	overflow: hidden;	
+	display: inline-block;
+	width: 176px;
+	height: 93px;
+}
+.ctslabel{
+	position: relative;
+	overflow: hidden;	
+	display: inline-block;
+	width: 160px;
+	height: 93px;
+}
+.sergiomega{
+	position: relative;
+	overflow: hidden;	
+	display: inline-block;
+	width: 76px;
+	height: 93px;
+}
+.ctstudio{
+	position: relative;
+	overflow: hidden;	
+	display: inline-block;
+	width: 263px;
+	height: 93px;
+}
+.header_img-ctschool{
+	position: absolute;
+	top: -12px;
+	left: 0px;
+}
+.header_img-ctslabel{
+	position: absolute;
+	top: -12px;
+	left: -176px;
+}
+.header_img-sergiomega{
+	position: absolute;
+	top: -12px;
+	left: -336px;
+}
+.header_img-ctstudio{
+	position: absolute;
+	top: -12px;
+	left: -412px;
+}
+header span{
+	font-size: 18px;
+}
+.main_content{
+	padding-top: 20px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+.main_content a{
+	display: block;
+	color: red;
+	font-size: 11px;
+	line-height: 1.7;
+}
+.archive{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+footer{
+	width: 495px;
+	margin: 0 auto;
+	padding-top: 15px;
+}
+footer a{
+	color: red;
+	font-size: 11px;
+}
+a:hover{
+	color: #000;
+}
+.top_footer{
+	font-size: 12px;
+	text-align: center;
+	padding-bottom: 10px;
+}
+.top_footer p{
+	line-height: 1.3;
+}
+.links{
+	margin: 10px 0px 10px 0px;
+}
+.bottom_footer{
+	text-align: center;
+	padding-bottom: 10px;
+}
+.bottom_footer span{
+	display: block;
+	font-weight: normal;
+	font-size: 16px;
+}
+.bottom_footer div{
+	position: relative;
+	display: inline-block;
+	width: 41px;
+	height: 41px;
+	overflow: hidden;
+}
+.twitter img{
+	position: absolute;
+	left: -47px;
+}
+.myspace img{
+	position: absolute;
+	left: -94px;
+}
+.youtube img{
+	position: absolute;
+	left: -141px;
+}
+.vk img{
+	position: absolute;
+	left: -188px;
+}
+.soundcloud img{
+	position: absolute;
+	left: -235px;
+}
+.rss img{
+	position: absolute;
+	left: -282px;
+}
+.beatport img{
+	position: absolute;
+	left: -329px;
+}
+.resident img{
+	position: absolute;
+	left: -376px;
+}
+.subscribe img{
+	position: absolute;
+	left: -423px;
+}

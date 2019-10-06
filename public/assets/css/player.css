@@ -1,0 +1,59 @@
+.track{
+    padding: 20px 0;
+    border-bottom: solid black 2px;
+}
+.bar{
+    display: flex;
+    background-color: #c7c7c7;
+    border-radius: 7px;
+    overflow: hidden;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.play-pause{
+    display: inline-block;
+    width: 32px;
+    line-height: 32px;
+    align-self: center;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    color: black;
+}
+.waveform{
+    flex: 1;
+    display: inline-block;
+    position: relative;
+}
+.waveform > wave > wave{
+    background-color: rgba(0,0,0,.3);
+    border-right: none;
+}
+.info{
+    display: flex;
+    margin-bottom: 5px;
+}
+.title{
+    flex: 1;
+}
+.time{
+    width: 67px;
+    font-size: 11px;
+}
+.time div{
+    display: inline-block;
+}
+.volume-bar{
+    position: relative;
+    overflow: hidden;
+    background-color: #eee;
+    width: 100px;
+    height: 10px;
+    cursor: pointer;
+}
+.volume-bar-value{
+    background-color: rgb(51, 153, 153);
+    width: 100%;
+    height: 100%;
+}

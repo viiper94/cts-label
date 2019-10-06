@@ -1,0 +1,49 @@
+@-webkit-keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}
+.b-marquee-line__flow {
+  background: #f0f0f0;
+  font-size: 0;
+  line-height: 0;
+  height: 169px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.b-marquee-line__flow-in {
+  display: block;
+  height: 169px;
+}
+.cssanimations .b-marquee-line__flow-in {
+  width: 200%;
+  position: absolute;
+  overflow: hidden;
+  -webkit-animation: marquee 40s linear infinite;
+  animation: marquee 40s linear infinite;
+}
+.b-marquee-line__flow-block {
+  white-space: nowrap;
+}
+.no-cssanimations .b-marquee-line__flow-block:last-child {
+  display: none;
+}
+.cssanimations .b-marquee-line__flow-block {
+  white-space: nowrap;
+  width: 50%;
+}
+.b-marquee-line__flow-item {
+  height: 169px;
+}

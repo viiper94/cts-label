@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/migrate', function () {
-
-    return \App\News::artists();
-});
+Auth::routes();
+Route::get('/', 'ReleasesController@index');
+Route::get('/releases/{id}', 'ReleasesController@show');
+Route::get('/artists', 'ArtistsController@index');
+Route::get('/reviews', 'ReviewsController@index');
+Route::get('/about.html', 'AppController@contact');
+Route::get('/studio.html', 'AppController@studio');
+Route::get('/ctschool.html', 'AppController@ctschool');

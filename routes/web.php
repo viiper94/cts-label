@@ -17,5 +17,5 @@ Route::get('/', function () {
 
 Route::get('/migrate', function () {
 
-    return \App\News::releases();
+    return \App\News::artists();
 });

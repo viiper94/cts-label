@@ -49,26 +49,22 @@ class News extends Model{
     }
 
     public static function artists(){
-        $release_list = News::where('category', 'releases')->get();
+        $artist_list = News::where('category', 'artists')->get();
 
-        foreach($release_list as $item){
-            $release = new Release();
-            $release->id = $item->id;
-            $release->sort_id = $item->sort_id;
-            $release->title = $item->title;
-            $release->release_number = $item->title_ru;
-            $release->release_date = date('Y-m-d', strtotime($item->description_ru));
-            $release->beatport = $item->beatport;
-            $release->youtube = $item->listen;
-            $release->description_en = $item->content;
-            $release->description_ru = $item->data;
-            $release->description_ua = $item->data_ua;
-            $release->tracklist = $item->content_ru;
-            $release->image = preg_replace('%\.\/\.\.\/images\/%', '', $item->picture);
-            $release->created_at = $item->updated;
-            $release->updated_at = $item->updated;
+        foreach($artist_list as $item){
+            $artist = new Artist();
+            $artist->id = $item->id;
+            $artist->sort_id = $item->sort_id;
+            $artist->name = !preg_match('/[°‹±ЃЎµ]/u', $item->title) ? $item->title : mb_convert_encoding($item->title, 'Windows-1251');
+            $artist->description = $item->content;
+            $description_ru = preg_match('/(пїЅ)/u', $item->content_ru) ? '' : $item->content_ru;
+            $artist->description_ru = !preg_match('/[°‹±ЃЎµ]/u', $description_ru) ? $description_ru : mb_convert_encoding($description_ru, 'Windows-1251');
+            $artist->link = $item->description_ru;
+            $artist->image = preg_replace('%\.\/\.\.\/images\/%', '', $item->picture);
+            $artist->created_at = $item->updated;
+            $artist->updated_at = $item->updated;
 
-            $release->save();
+            $artist->save();
         }
 
         return 'Done!';

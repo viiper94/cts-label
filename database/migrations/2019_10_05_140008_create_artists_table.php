@@ -17,7 +17,9 @@ class CreateArtistsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('sort_id');
             $table->boolean('visible')->default(1);
-            $table->boolean('visible')->default(1);
+            $table->string('image')->nullable();
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

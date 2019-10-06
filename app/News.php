@@ -70,4 +70,22 @@ class News extends Model{
         return 'Done!';
     }
 
+    public static function feedback(){
+        $new_list = Feebdack1::all();
+
+        foreach($new_list as $item){
+            $new = new Feedback();
+            $new->id = $item->id;
+            $new->sort_id = $item->sort_id;
+            $new->release_id = $item->release_id;
+            $new->feedback_title = $item->feedback_title;
+            $new->archive_name = $item->archive_name;
+            $new->tracks = $item->tracks;
+
+            $new->save();
+        }
+
+        return 'Done!';
+    }
+
 }

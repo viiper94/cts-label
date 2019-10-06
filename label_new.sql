@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Час створення: Жов 06 2019 р., 10:40
--- Версія сервера: 10.1.36-MariaDB
--- Версія PHP: 7.2.10
+-- Час створення: Жов 06 2019 р., 22:50
+-- Версія сервера: 10.1.34-MariaDB
+-- Версія PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -248,7 +248,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2019_10_06_072327_add_description_ru_to_artists_table', 4),
 (16, '2019_10_06_075204_create_reviews_table', 5),
 (17, '2019_10_06_082107_create_subscribers_table', 6),
-(19, '2019_10_06_082344_create_feedback_table', 7);
+(19, '2019_10_06_082344_create_feedback_table', 7),
+(20, '2019_10_06_192409_add_admin_to_users', 8);
 
 -- --------------------------------------------------------
 
@@ -1963,7 +1964,8 @@ CREATE TABLE `users` (
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -2051,7 +2053,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT для таблиці `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT для таблиці `releases`

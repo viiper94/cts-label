@@ -10,8 +10,14 @@
     <link href="/assets/css/cts1.css" rel="stylesheet" />
 </head>
 <body>
+    <div id="fb-root"></div>
     @include('layout.header')
-    @yield('content')
+    <section class = "main-content">
+        <div class = "container">
+        @yield('content')
+        @include('layout.aside')
+        </div>
+    </section>
     @include('layout.footer')
     @include('layout.scripts')
 </body>

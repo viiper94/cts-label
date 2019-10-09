@@ -1,1 +1,21 @@
-<?php
+@extends('layout.layout')
+
+@section('content')
+    <div class="col-md-9 col-sm-8 content">
+        <div class="row" style="margin-top: -4px;">
+        @foreach($releases as $release)
+                <div class="col-sm-4 col-xs-6 release-brief">
+                    <a href="{{ route('release', $release->id) }}">
+                        <img src="/images/{{ str_replace('_s', '_f', $release->image)  }}" alt="{{ $release->title }}" class="img-responsive"/>
+                        <div class="item-overlay">
+                            <div class="item-data">
+                                <div>{{  $release->title  }}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+        {{ $releases->links('layout.pagination') }}
+    </div>
+@endsection

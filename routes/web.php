@@ -12,10 +12,11 @@
 */
 
 Auth::routes();
-Route::get('/', 'ReleasesController@index');
-Route::get('/releases/{id}', 'ReleasesController@show');
-Route::get('/artists', 'ArtistsController@index');
-Route::get('/reviews', 'ReviewsController@index');
-Route::get('/about.html', 'AppController@contact');
-Route::get('/studio.html', 'AppController@studio');
-Route::get('/ctschool.html', 'AppController@ctschool');
+Route::get('/', 'ReleasesController@index')->name('home');
+Route::get('/search', 'ReleasesController@index')->name('search');
+Route::get('/releases/{id}', 'ReleasesController@show')->name('release');
+Route::get('/artists', 'ArtistsController@index')->name('artists');
+Route::get('/reviews', 'ReviewsController@index')->name('reviews');
+Route::get('/about.html', 'AppController@contact')->name('about');
+Route::get('/studio.html', 'AppController@studio')->name('studio');
+Route::get('/ctschool.html', 'AppController@ctschool')->name('ctschool');

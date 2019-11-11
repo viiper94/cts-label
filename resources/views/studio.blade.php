@@ -29,9 +29,9 @@
                     <img src="/assets/img/cts-studio-y.png" alt="CTStudio">
                     <div class="pull-right">
                         <div class="text-right switch-btns" style="padding-right:18px;">
-                            <a class="switch-btn pull-right active" data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.en')</a>
-                            <a class="switch-btn pull-right" data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ru')</a>
-                            <a class="switch-btn pull-right" data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ua')</a>
+                            <a class="switch-btn pull-right @if($_COOKIE['lang'] === 'en') active @endif" data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.en')</a>
+                            <a class="switch-btn pull-right @if($_COOKIE['lang'] === 'ru') active @endif" data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ru')</a>
+                            <a class="switch-btn pull-right @if($_COOKIE['lang'] === 'ua') active @endif" data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ua')</a>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,10 @@ class AppController extends Controller{
     }
 
     public function studio(){
-        return view('studio');
+        return view('studio',[
+            'services' => [],
+            'subject' => [],
+        ]);
     }
 
 }

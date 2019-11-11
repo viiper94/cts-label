@@ -11,7 +11,7 @@ class AppController extends Controller{
     }
 
     public function ctschool(){
-        return view('ctschool');
+        return view('school');
     }
 
     public function studio(){

@@ -8,15 +8,13 @@
     <title>Document</title>
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/assets/css/cts1.css" rel="stylesheet" />
+    @yield('assets')
 </head>
 <body>
     <div id="fb-root"></div>
     @include('layout.header')
     <section class = "main-content">
-        <div class = "container">
         @yield('content')
-        @include('layout.aside')
-        </div>
     </section>
     @include('layout.footer')
     @include('layout.scripts')

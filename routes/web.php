@@ -11,12 +11,14 @@
 |
 */
 
-Auth::routes();
-Route::get('/', 'ReleasesController@index')->name('home');
-Route::get('/search', 'ReleasesController@index')->name('search');
-Route::get('/releases/{id}', 'ReleasesController@show')->name('release');
-Route::get('/artists', 'ArtistsController@index')->name('artists');
-Route::get('/reviews', 'ReviewsController@index')->name('reviews');
-Route::get('/about.html', 'AppController@about')->name('about');
-Route::get('/studio.html', 'AppController@studio')->name('studio');
-Route::get('/ctschool.html', 'AppController@ctschool')->name('ctschool');
+Route::group(['middleware' => 'i18n'], function(){
+    Auth::routes();
+    Route::get('/', 'ReleasesController@index')->name('home');
+    Route::get('/search', 'ReleasesController@index')->name('search');
+    Route::get('/releases/{id}', 'ReleasesController@show')->name('release');
+    Route::get('/artists', 'ArtistsController@index')->name('artists');
+    Route::get('/reviews', 'ReviewsController@index')->name('reviews');
+    Route::get('/about.html', 'AppController@about')->name('about');
+    Route::get('/studio.html', 'AppController@studio')->name('studio');
+    Route::get('/ctschool.html', 'AppController@ctschool')->name('ctschool');
+});

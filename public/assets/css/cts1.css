@@ -212,6 +212,7 @@ header {padding-top: 10px !important}
 a {color: #e9a222;}
 a:hover {color: #e9a222;}
 
+.uppercase{text-transform: uppercase;}
 
 /* navbar */
 .black {background: #000}
@@ -310,7 +311,9 @@ footer h3{ font-size: 15px}
 .release-tracklist {min-height: 307px;}
 .release-search {color:#89898b;padding:0px 20px; font-style: italic}
 .release-buttons { margin: 50px 0px;}
-.switch-btn {width:45px; height: 30px; text-align: center; color:#4c4c4d; border:1px solid #4c4c4d; background: none; margin-bottom: 20px;}
+.switch-btn {width:45px; height: 30px; text-align: center; color:#4c4c4d; border:1px solid #4c4c4d; background: none;
+    margin-bottom: 20px; line-height: 30px;}
+.switch-btn:hover, .switch-btn:focus{text-decoration: none; color: #4c4c4d;}
 .switch-btns {padding-top: 20px;}
 .switch-btns :focus{outline:none;}
 .switch-btns .active {border:1px solid #e8a324 !important; color: #ffffff !important; }

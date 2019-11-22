@@ -2,6 +2,30 @@
 
 All notable changes to `ignition` will be documented in this file
 
+## 1.12.0 - 2019-11-14
+
+- Add exception to html (#206)
+- Add a clear exception when passing no parameters to ddd (#205)
+- Ignore JS tests (#215)
+- Fix share report route bug
+
+## 1.11.2 - 2019-10-13
+
+- simplify default Laravel installation (#198)
+
+## 1.11.1 - 2019-10-08
+
+- add conditional line number (#182)
+
+## 1.11.0 - 2019-10-08
+
+- add better error messages for missing validation rules (#125)
+
+## 1.10.0 - 2019-10-07
+
+- Add `ignition:make-solution` command
+- Add default for query binding option (Fixes #183)
+
 ## 1.9.2 - 2019-10-04
 
 - Fix service provider registration (Fixes #177)

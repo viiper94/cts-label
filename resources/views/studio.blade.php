@@ -6,6 +6,26 @@
     <script type="text/javascript" src="/assets/js/modernizr.js"></script>
 @endsection
 
+@section('title')
+    CTS Studio - студия звукозаписи независимого рекорд-лейбла CTS Records
+@endsection
+
+@section('keywords')
+    CTS, Studio, студия, ремиксы, мастеринг, аранжировка, вокал, сведение, школа, диджеинг, продюсеринг, запись,
+    услуги звукозаписи, CTS, CTS studio Kiev, CTS studio Kyiv, studio CTS, CTS студия, CTS студія, услуги студии
+    звукозаписи Киев, студия звукозаписи Киев, профессиональная студия в Киеве, профессиональная студия Киев, послуги
+    студії звукозапису Київ, студія звукозапису Київ, професіональна студія в Києві, професіональна студія Київ, pdtltyyz,
+    зведення, зведення музикальних композицій, зведення та мастеринг, зведення та мастеринг електронної музики,
+    мастеринг, мастеринг Київ, якісне зведення Київ, зведення музикальних композицій у Києві, cstltybt, сведение,
+    vdcnthbyu, мастеринг, сведение и мастеринг, сведение и мастеринг єлектронной музыки, профессиональное сведение,
+    профессиональный мастеринг, качественное сведение и мастеринг в Киеве, mixing, mastering, mixing and mastering,
+    professional mixing and mastering, quality mixing and mastering in Kiev
+@endsection
+
+@section('description')
+    CTS Studio - студия звукозаписи независимого рекорд-лейбла CTS Records
+@endsection
+
 @section('content')
     <script type="application/ld+json">
     {
@@ -29,9 +49,9 @@
                     <img src="/assets/img/cts-studio-y.png" alt="CTStudio">
                     <div class="pull-right">
                         <div class="text-right switch-btns" style="padding-right:18px;">
-                            <a class="switch-btn pull-right @if($_COOKIE['lang'] === 'en') active @endif" data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.en')</a>
-                            <a class="switch-btn pull-right @if($_COOKIE['lang'] === 'ru' || $_COOKIE['lang'] === 'ua') active @endif" data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ru')</a>
-                            {{--<a class="switch-btn pull-right @if($_COOKIE['lang'] === 'ua') active @endif" data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ua')</a>--}}
+                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif" data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.en')</a>
+                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && ($_COOKIE['lang'] === 'ru' || $_COOKIE['lang'] === 'ua')) active @endif" data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ru')</a>
+                            {{--<a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua') active @endif" data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ua')</a>--}}
                         </div>
                     </div>
                 </div>

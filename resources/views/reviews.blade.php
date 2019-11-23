@@ -1,5 +1,7 @@
 @extends('layout.layout')
 
+@section('title', 'Reviews')
+
 @section('content')
     <div class = "container">
         <div class="col-md-9 col-sm-8 content inner">

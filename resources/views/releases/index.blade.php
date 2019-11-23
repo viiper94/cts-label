@@ -1,5 +1,7 @@
 @extends('layout.layout')
 
+@section('title', 'CTS Records - New Electronic Music')
+
 @section('content')
     <div class = "container">
         <div class="col-md-9 col-sm-8 content">

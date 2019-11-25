@@ -2,14 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('register') }}" method="post" class="col-md-7 col-xs-12">
-            <div class="form-group">
-                <label for="name">@lang('user.name')</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
-                @if($errors->has('name'))
-                    <p class="help-block">{{ $errors->first('name') }}</p>
-                @endif
-            </div>
+        <form action="{{ route('login') }}" method="post" class="col-md-7 col-xs-12">
             <div class="form-group">
                 <label for="email">@lang('user.email')</label>
                 <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
@@ -25,13 +18,19 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="password_confirmation">@lang('auth.password_confirmation')</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> @lang('auth.remember_me')
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 @csrf
                 <button type="submit" class="btn btn-default">@lang('auth.submit')</button>
-                <p class="center col s12">@lang('user.already_have_account') <a href="{{ route('login') }}">@lang('user.login')</a></p>
+                <a class="col s12 center" href="{{ route('password.request') }}">@lang('user.forgot_password')</a>
+                <p class="center col s12">@lang('user.dont_have_account')
+                    <a href="{{ route('register') }}">@lang('user.register')</a>
+                </p>
             </div>
         </form>
         <div class="social-login col-xs-12 col-md-5">

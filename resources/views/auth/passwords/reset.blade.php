@@ -2,14 +2,10 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('register') }}" method="post" class="col-md-7 col-xs-12">
-            <div class="form-group">
-                <label for="name">@lang('user.name')</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
-                @if($errors->has('name'))
-                    <p class="help-block">{{ $errors->first('name') }}</p>
-                @endif
-            </div>
+        <form action="{{ route('password.request') }}" method="post" class="col-md-offset-3 col-md-6 col-xs-12">
+            @if (session('status'))
+                <h6 class="center">{{ session('status') }}</h6>
+            @endif
             <div class="form-group">
                 <label for="email">@lang('user.email')</label>
                 <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
@@ -25,17 +21,13 @@
                 @endif
             </div>
             <div class="form-group">
-                <label for="password_confirmation">@lang('auth.password_confirmation')</label>
+                <label for="password_confirmation">@lang('user.password_confirmation')</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
             </div>
             <div class="form-group">
                 @csrf
                 <button type="submit" class="btn btn-default">@lang('auth.submit')</button>
-                <p class="center col s12">@lang('user.already_have_account') <a href="{{ route('login') }}">@lang('user.login')</a></p>
             </div>
         </form>
-        <div class="social-login col-xs-12 col-md-5">
-            @include('auth.social')
-        </div>
     </div>
 @endsection

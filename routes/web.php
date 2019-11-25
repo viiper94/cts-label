@@ -12,7 +12,14 @@
 */
 
 Route::group(['middleware' => 'i18n'], function(){
+
     Auth::routes();
+    Route::get('auth/facebook', 'Auth\LoginController@redirectToFacebook')->name('auth.facebook');
+    Route::get('auth/google', 'Auth\LoginController@redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/handle', 'Auth\LoginController@handleGoogleCallback');
+
+    Route::get('/profile', 'ProfileController@index')->name('profile');
+
     Route::get('/', 'ReleasesController@index')->name('home');
     Route::get('/search', 'ReleasesController@index')->name('search');
     Route::get('/releases/{id}', 'ReleasesController@show')->name('release');
@@ -21,4 +28,5 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/about.html', 'AppController@about')->name('about');
     Route::get('/studio.html', 'AppController@studio')->name('studio');
     Route::get('/ctschool.html', 'AppController@ctschool')->name('ctschool');
+
 });

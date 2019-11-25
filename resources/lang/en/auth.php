@@ -13,7 +13,10 @@ return [
     |
     */
 
+    'password_confirmation' => 'Password Confirmation',
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'remember_me' => 'Remember Me',
+    'submit' => 'Submit'
 ];

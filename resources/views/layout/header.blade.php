@@ -40,7 +40,7 @@
                                     <li @if(\Route::is('about'))class="active" @endif id="about-menu"><a href="{{ route('about') }}">@lang('navbar.about')</a></li>
                                     <li @if(\Route::is('artists'))class="active" @endif><a href="{{ route('artists') }}">@lang('navbar.artists')</a></li>
                                     <li @if(\Route::is('studio'))class="active" @endif><a href="{{ route('studio') }}">@lang('navbar.studio')</a></li>
-                                    <li @if(\Route::is('ctschool'))class="active" @endif><a href="{{ route('ctschool') }}">@lang('navbar.ctschool')</a></li>
+                                    <li @if(\Route::is('school'))class="active" @endif><a href="{{ route('school') }}">@lang('navbar.school')</a></li>
                                     <li @if(\Route::is('reviews'))class="active" @endif><a href="{{ route('reviews') }}">@lang('navbar.reviews')</a></li>
                                     <li id="demo-menu"><a href="{{ route('about') }}#demo">@lang('navbar.demo')</a></li>
                                     <li id="contacts-menu"><a href="{{ route('about') }}#contacts">@lang('navbar.contact')</a></li>

@@ -6,7 +6,7 @@ return [
     'about' => 'About',
     'artists' => 'Artists',
     'studio' => 'Studio',
-    'ctschool' => 'CTSchool',
+    'school' => 'CTSchool',
     'reviews' => 'Reviews',
     'demo' => 'Demo',
     'contact' => 'Contact',

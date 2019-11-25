@@ -6,6 +6,7 @@ return [
     'password' => 'Password',
 
     'login' => 'Login',
+    'logout' => 'Logout',
     'register' => 'Register',
     'forgot_password' => 'Forgot your password?',
     'dont_have_account' => 'Don\'t have an account?',

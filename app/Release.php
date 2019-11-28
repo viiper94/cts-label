@@ -17,4 +17,8 @@ class Release extends Model{
         'visible' => 'boolean'
     ];
 
+    public function related(){
+        return $this->belongsToMany('App\Release', 'related_releases', 'release_id', 'related_id');
+    }
+
 }

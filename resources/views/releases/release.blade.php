@@ -74,22 +74,22 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                @if($related)
-                <div class="col-xs-12 release-related">
-                    <span>@lang('releases.related_releases')</span>
-                    @foreach($related as $item)
-                        <div class="col-md-4 col-sm-6 col-xs-6 release-brief release-brief-related">
-                            <a href="{{ route('release', $item->id) }}">
-                                <img src="/images/{{ str_replace('_s', '_f', $item->image) }}" alt="{{ $item->title }}" class="img-responsive"/>
-                                <div class="item-overlay">
-                                    <div class="item-data">
-                                        <div>{{ $item->title }}</div>
+                @if(count($release->related) > 0)
+                    <div class="col-xs-12 release-related">
+                        <span>@lang('releases.related_releases')</span>
+                        @foreach($release->related as $item)
+                            <div class="col-md-4 col-sm-6 col-xs-6 release-brief release-brief-related">
+                                <a href="{{ route('release', $item->id) }}">
+                                    <img src="/images/{{ str_replace('_s', '_f', $item->image) }}" alt="{{ $item->title }}" class="img-responsive"/>
+                                    <div class="item-overlay">
+                                        <div class="item-data">
+                                            <div>{{ $item->title }}</div>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
                 @endif
             </div>
             <div class="clearfix"></div>

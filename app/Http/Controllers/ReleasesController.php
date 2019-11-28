@@ -18,7 +18,7 @@ class ReleasesController extends Controller{
     }
 
     public function show(Request $request, $id){
-        $release = Release::findOrFail($id);
+        $release = Release::with('related')->findOrFail($id);
         return view('releases.release', [
             'release' => $release,
             'prev' => Release::where([

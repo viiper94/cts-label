@@ -13,7 +13,7 @@
                         <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
                         Отсортировать
                     </button>
-                    <a href='{{ route('releases_admin') }}/add' target='_blank' class='btn btn-success'>
+                    <a href='{{ route('releases_admin') }}/add' class='btn btn-success'>
                         <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
                         Новый релиз
                     </a>
@@ -29,7 +29,7 @@
                         <div class='item'>
                             <div class='item-cover col-xs-2'>
                                 <a href='{{ route('releases_admin') }}/edit/{{ $release->id }}'
-                                   style="background-image: url(/images/releases/{{ $release->image }})"></a>
+                                   style="background-image: url(/images/releases/{{ $release->image ?? 'default.png' }})"></a>
                             </div>
                             <div class='item-info col-md-5 col-xs-7 flex-column'>
                                 <h5>{{ $release->title }}</h5>

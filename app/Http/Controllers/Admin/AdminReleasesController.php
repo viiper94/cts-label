@@ -24,11 +24,11 @@ class AdminReleasesController extends Controller{
         if($request->post() && $id){
             $this->validate($request, [
                 'title' => 'required|string',
-                'release_number' => 'string',
-                'release_date' => 'date_format:j F Y',
+                'release_number' => 'string|nullable',
+                'release_date' => 'date_format:d F Y|nullable',
                 'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png',
-                'beatport' => 'url',
-                'youtube' => 'url',
+                'beatport' => 'url|nullable',
+                'youtube' => 'url|nullable',
                 'related' => 'array',
             ]);
             $release = Release::with('related')->find($id);
@@ -45,6 +45,7 @@ class AdminReleasesController extends Controller{
                 $release->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
                 $image->move(public_path('images/releases'), $release->image);
             }
+            if($request->post('related')) $release->renewRelatedReleases($request->post('related'));
             return $release->save() ?
                 redirect()->route('releases_admin')->with(['success' => 'Релиз успешно отредактирован!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
@@ -56,17 +57,17 @@ class AdminReleasesController extends Controller{
     }
 
     public function add(Request $request){
+        $release = new Release();
         if($request->post()){
             $this->validate($request, [
                 'title' => 'required|string',
-                'release_number' => 'string',
-                'release_date' => 'date_format:j F Y',
+                'release_number' => 'string|nullable',
+                'release_date' => 'date_format:d F Y|nullable',
                 'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png',
-                'beatport' => 'url',
-                'youtube' => 'url',
+                'beatport' => 'url|nullable',
+                'youtube' => 'url|nullable',
                 'related' => 'array',
             ]);
-            $release = new Release();
             $release->fill($request->post());
             $release->release_date = date('Y-m-d', strtotime($release->release_date));
             $release->sort_id =  intval(Release::getLatestSortId()) + 1;
@@ -76,13 +77,14 @@ class AdminReleasesController extends Controller{
                 $release->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
                 $image->move(public_path('images/releases'), $release->image);
             }
+            if($request->post('related')) $release->renewRelatedReleases($request->post('related'));
             return $release->save() ?
                 redirect()->route('releases_admin')->with(['success' => 'Релиз успешно добавлен!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }
         return view('admin.releases.edit', [
             'release_list' => Release::orderBy('sort_id', 'desc')->get(),
-            'release' => Release::with('related')->findOrFail($id)
+            'release' => $release
         ]);
     }
 
@@ -148,6 +150,17 @@ class AdminReleasesController extends Controller{
         }else{
             abort(404);
             return false;
+        }
+    }
+
+    public function delete(Request $request, $id){
+        if($id){
+            $release = Release::find($id);
+            return $release->delete() ?
+                redirect()->back()->with(['success' => 'Релиз успешно удалён!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }else{
+            return abort(404);
         }
     }
 

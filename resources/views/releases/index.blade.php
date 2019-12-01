@@ -9,7 +9,7 @@
             @foreach($releases as $release)
                     <div class="col-sm-4 col-xs-6 release-brief">
                         <a href="{{ route('release', $release->id) }}">
-                            <img src="/images/{{ str_replace('_s', '_f', $release->image) }}" alt="{{ $release->title }}" class="img-responsive"/>
+                            <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="img-responsive"/>
                             <div class="item-overlay">
                                 <div class="item-data">
                                     <div>{{  $release->title  }}</div>

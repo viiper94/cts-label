@@ -11,7 +11,7 @@
                 <div class="col-sm-3 col-xs-6 artist-brief">
                     <div class="row">
                         <a href="{{ $artist->link ?? '#' }}" @unless($artist->link) target="_blank" @endif>
-                            <img src="/images/{{ str_replace('_s', '_f', $artist->image) }}" alt="{{ $artist->name }}"
+                            <img src="/images/artists/{{ $artist->image }}" alt="{{ $artist->name }}"
                                  class="img-responsive" width="100%" height="100%">
                             <div class="artists-title">{{ $artist->name }}</div>
                         </a>

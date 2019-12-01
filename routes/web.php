@@ -27,6 +27,37 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/reviews', 'ReviewsController@index')->name('reviews');
     Route::get('/about.html', 'AppController@about')->name('about');
     Route::get('/studio.html', 'AppController@studio')->name('studio');
-    Route::get('/ctschool.html', 'AppController@ctschool')->name('ctschool');
+    Route::get('/ctschool.html', 'AppController@ctschool')->name('school');
+
+    Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function () {
+
+        Route::any('/cts-admin/{controller}/{action}/{id?}', function($controller, $action, $id = null){
+            $app = app();
+            try{
+                $controller_name = explode('_', $controller);
+                $fixed_name = array();
+                foreach($controller_name as $name){
+                    $fixed_name[] = ucfirst($name);
+                }
+                $controller = implode('', $fixed_name);
+
+                $controller = $app->make('\App\Http\Controllers\Admin\Admin'.ucfirst($controller).'Controller');
+                if(!method_exists($controller, $action)) throw new ReflectionException();;
+                return $controller->callAction($action, $parameters = array(Request::instance(), $id));
+            }catch(ReflectionException $e){
+                abort(404);
+            }
+        });
+
+        Route::get('/cts-admin', 'AdminController@index')->name('admin');
+        Route::get('/cts-admin/releases', 'AdminReleasesController@index')->name('releases_admin');
+        Route::get('/cts-admin/artists', 'AdminArtistsController@index')->name('artists_admin');
+        Route::get('/cts-admin/reviews', 'AdminReviewsController@index')->name('reviews_admin');
+        Route::get('/cts-admin/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
+        Route::get('/cts-admin/school', 'AdminSchoolController@index')->name('school_admin');
+        Route::get('/cts-admin/studio', 'AdminStudioController@index')->name('studio_admin');
+        Route::get('/cts-admin/users', 'AdminUsersController@users')->name('users_admin');
+
+    });
 
 });

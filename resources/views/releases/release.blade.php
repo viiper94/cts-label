@@ -30,7 +30,7 @@
                 <div class="clearfix"></div>
                 <div class="col-xs-12 col-md-7">
                     <figure>
-                        <img src="/images/{{ str_replace('_s', '_f', $release->image) }}" alt="{{ $release->title }}" class="release-image img-responsive"/>
+                        <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="release-image img-responsive"/>
                     </figure>
                     <div class="release-buttons">
                         <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank" class="share share-play @if(!$release->youtube) btn-disabled @endif"></a>
@@ -80,7 +80,7 @@
                         @foreach($release->related as $item)
                             <div class="col-md-4 col-sm-6 col-xs-6 release-brief release-brief-related">
                                 <a href="{{ route('release', $item->id) }}">
-                                    <img src="/images/{{ str_replace('_s', '_f', $item->image) }}" alt="{{ $item->title }}" class="img-responsive"/>
+                                    <img src="/images/releases/{{ $item->image }}" alt="{{ $item->title }}" class="img-responsive"/>
                                     <div class="item-overlay">
                                         <div class="item-data">
                                             <div>{{ $item->title }}</div>

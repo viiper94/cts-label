@@ -38,4 +38,12 @@ class Release extends Model{
         return $release['sort_id'];
     }
 
+    public function renewRelatedReleases(Array $ids){
+        $this->related()->detach();
+        foreach($ids as $id){
+            $this->related()->attach($id);
+        }
+        return true;
+    }
+
 }

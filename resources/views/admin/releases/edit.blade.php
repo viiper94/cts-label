@@ -24,7 +24,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-md-5 col-xs-12 release-image">
-                <img src="/images/releases/{{ $release->image }}" id="preview">
+                <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview">
                 <input type="file" name="image" id="uploader" accept="image/jpeg, image/png">
                 @if($errors->has('image'))
                     <p class="help-block">{{ $errors->first('image') }}</p>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label>Дата</label><br>
-                    <input type="text" class="form-control form-control__dark" name="release_date" id="release_date" value="{{ $release->release_date->format('j F Y') }}">
+                    <input type="text" class="form-control form-control__dark" name="release_date" id="release_date" value="{{ !$release->release_date ? '' : $release->release_date->format('d F Y') }}">
                     @if($errors->has('release_date'))
                         <p class="help-block">{{ $errors->first('release_date') }}</p>
                     @endif

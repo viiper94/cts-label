@@ -1,0 +1,160 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800&subset=latin,cyrillic-ext);
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    background: #080808;
+    color: #9d9d9d;
+}
+
+/* Helpers */
+.flex{
+    display: flex;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+.is-sticky button{
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,0.6);
+}
+
+/* Shared styles */
+.btn{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.btn-default.btn-default__dark, .form-control.form-control__dark, .input-group-addon{
+    color: #ccc;
+    background-color: #444;
+    border-color: #505050;
+}
+.btn-default.btn-default__dark:hover{
+    background-color: #3c3b3b;
+    border-color: #464646;
+}
+.btn-default.btn-default__dark:active:hover{
+    color: #ccc;
+}
+.top-container{
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+@media (max-width: 991px){
+    .top-container{
+        flex-direction: column;
+    }
+    .top-container .pagination{
+        margin: 10px 0;
+    }
+}
+
+/* Admin Pagination */
+.pagination{
+    margin: 0;
+}
+.pagination__dark .pagination>li>a,
+.pagination__dark .pagination>li>span,
+.pagination__dark .pagination>.disabled>a,
+.pagination__dark .pagination>.disabled>a:focus,
+.pagination__dark .pagination>.disabled>a:hover,
+.pagination__dark .pagination>.disabled>span,
+.pagination__dark .pagination>.disabled>span:focus,
+.pagination__dark .pagination>.disabled>span:hover{
+    background-color: #444;
+    border: 1px solid #505050;
+}
+.pagination__dark .pagination>li>a,
+.pagination__dark .pagination>li>span{
+    color: #ccc;
+}
+.pagination__dark .pagination>li:hover>a,
+.pagination__dark .pagination>li:hover>span,
+.pagination__dark .pagination>.active>a,
+.pagination__dark .pagination>.active>a:focus,
+.pagination__dark .pagination>.active>a:hover,
+.pagination__dark .pagination>.active>span,
+.pagination__dark .pagination>.active>span:focus,
+.pagination__dark .pagination>.active>span:hover{
+    color: #ccc;
+    background-color: #343434;
+    border-color: #414141;
+}
+
+/* Items styles */
+.item{
+    height: 150px;
+    margin: 15px;
+    background: #222;
+    border-radius: 4px;
+    border: 1px solid #505050;
+    overflow: hidden;
+}
+.item div{
+    height: 100%;
+}
+.item-cover{
+    padding: 0;
+}
+.item-cover a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+.item-info{
+    justify-content: center;
+}
+.item-info h5{
+    height: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.item-action, .item-sort{
+    justify-content: space-around;
+}
+.item-action{
+    padding: 10px 0;
+}
+.item-sort{
+    padding: 10px 15px;
+}
+.item-sort .form-control{
+    padding: 6px 6px;
+}
+
+/* Release */
+.release-image{
+    margin: 15px 0;
+    height: 400px;
+}
+#preview{
+    max-height: 90%;
+}
+.related{
+    display: block;
+    white-space: nowrap;
+}
+.related label{
+    margin-left: 15px;;
+}
+.related input{
+    margin: 5px;
+}
+.page-link, .page-link:hover, .page-link:focus{
+    color: #efb11a;
+}
+.page-link:hover + label{
+    color: #e9a222;
+}
+.checked-releases{
+    margin-bottom: 10px;
+}

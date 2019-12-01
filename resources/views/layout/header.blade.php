@@ -4,7 +4,7 @@
             <div class="row">
                 <a href="{{ route('home') }}"><img src="/assets/img/logo.png" class="logo" alt="Creative Technology Studio"/></a>
                     @guest
-                        <a href="{{ route('register') }}" class="pull-right">@lang('user.register')</a>
+                        <a href="{{ route('register') }}" class="pull-right">@lang('user.register')&nbsp;</a>
                         <a href="{{ route('login') }}" class="pull-right">@lang('user.login')&nbsp;</a>
                     @else
                         <a href="{{ route('logout') }}" class="pull-right"
@@ -13,6 +13,7 @@
                             @csrf
                         </form>
                         <a href="{{ route('profile') }}" class="pull-right">{{ Auth::user()->name }}&nbsp;</a>
+                        @can('admin') <a href="{{ route('releases_admin') }}" class="pull-right">@lang('navbar.admin')&nbsp;</a> @endcan
                     @endguest
             </div>
         </div>

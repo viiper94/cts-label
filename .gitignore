@@ -9,4 +9,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
-/public/images/*
+/public/images/artists/*
+!/public/images/artists/default.png
+/public/images/releases/*
+!/public/images/releases/default.png

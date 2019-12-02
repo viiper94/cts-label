@@ -18,12 +18,19 @@
                         <a @if($next)href="{{ route('release', $next->id) }}" @endif class="next-btn search-btns @if(!$next)btn-disabled @endif">&nbsp;</a>
                     </div>
                     <div class="text-right switch-btns">
-                        <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif" data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.en')</a>
-                        @if($release->description_ru)
-                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru') active @endif" data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ru')</a>
-                        @endif
-                        @if($release->description_ua)
-                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua') active @endif" data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ua')</a>
+                        @if($release->detectActiveDescriptionLang(true) > 1)
+                            @if($release->getUsefulText($release->description_en))
+                                <a class="switch-btn pull-right @if($release->detectActiveDescriptionLang() === 'en') active @endif"
+                                    data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.en')</a>
+                            @endif
+                            @if($release->getUsefulText($release->description_ru))
+                                <a class="switch-btn pull-right @if($release->detectActiveDescriptionLang() === 'ru') active @endif"
+                                   data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ru')</a>
+                            @endif
+                            @if($release->getUsefulText($release->description_ua))
+                                <a class="switch-btn pull-right @if($release->detectActiveDescriptionLang() === 'ua') active @endif"
+                                   data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ua')</a>
+                            @endif
                         @endif
                     </div>
                 </div>
@@ -58,7 +65,7 @@
                 </div>
                 <div class="release-content col-xs-12 col-md-5">
                     <div class="content-ru">
-                        {!! $release['description_'.\Illuminate\Support\Facades\App::getLocale()] !!}
+                        {!! $release['description_'.$release->detectActiveDescriptionLang()] !!}
                     </div>
                 </div>
                 <div class="clearfix"></div>

@@ -97,3 +97,18 @@
         @include('layout.aside')
     </div>
 @endsection
+
+@section('scripts')
+    <script src="/assets/js/readmore.js"></script>
+    <script>
+        $('.inner-tracklist').readmore({
+            collapsedHeight: 276,
+            embedCSS: false
+        });
+
+        $('.content-en, .content-ru, .content-ua').readmore({
+            collapsedHeight: 849,
+            embedCSS: false
+        });
+    </script>
+@endsection

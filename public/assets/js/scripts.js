@@ -69,7 +69,7 @@ $(document).ready(function(){
 
         }
     });
-	
+
 	$('.share-share').on( "mouseout", function(){
 		var timer = setTimeout(function(){
 			if(!$('.share-share').is(':hover') && !$('.share-share').hasClass('collapsed')){
@@ -80,7 +80,7 @@ $(document).ready(function(){
 			clearTimeout(timer);
 		});
 	});
-	
+
 });
 
 function shareSocial(social) {

@@ -7,6 +7,7 @@ use App\Release;
 use Faker\Provider\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class AdminReleasesController extends Controller{
 
@@ -161,6 +162,32 @@ class AdminReleasesController extends Controller{
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }else{
             return abort(404);
+        }
+    }
+
+    public function translate(Request $request){
+        if($request->ajax() && $request->post('query')){
+            $query = strip_tags($request->post('query'));
+            $query = str_replace('&nbsp;', ' ', $query);
+            $query = str_replace('\n', ' \n ', $query);
+            $query = trim($query);
+            if(strlen($query) > 0){
+                $tr = new GoogleTranslate();
+                $tr->setSource('en');
+                $tr->setTarget($request->post('target'));
+                try{
+                    $response['data'] = $tr->translate($query);
+                    $response['status'] = 'ok';
+                }catch(\ErrorException $e){
+                    $response['status'] = $e;
+                }
+            }else{
+                $response['status'] = 'nothing to translate';
+            }
+            return response()->json($response);
+        }else{
+            abort(404);
+            return false;
         }
     }
 

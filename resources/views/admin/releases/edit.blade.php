@@ -79,11 +79,17 @@
                 </div>
                 <div class="description form-group">
                     <label class="en">Описание (рус.)</label>
+                    <a class="translate_description" data-to-lang="ru">
+                        <span class="glyphicon glyphicon-text-height"></span> Перевести на русский
+                    </a>
                     <textarea name="description_ru" id="description_ru">{!! $release->description_ru !!}</textarea>
                 </div>
                 <div class="description form-group">
                     <label class="en">Описание (укр.)</label>
-                    <textarea name="description_ua" id="description_ua">{!! $release->description_ua !!}</textarea>
+                    <a class="translate_description" data-to-lang="uk">
+                        <span class="glyphicon glyphicon-text-height"></span> Перевести на украинский
+                    </a>
+                    <textarea name="description_ua" id="description_uk">{!! $release->description_ua !!}</textarea>
                 </div>
                 <div class="description form-group">
                     <label class="en">Треклист</label>
@@ -125,7 +131,7 @@
         CKEDITOR.replace('description_ru');
     </script>
     <script type="text/javascript">
-        CKEDITOR.replace('description_ua');
+        CKEDITOR.replace('description_uk');
     </script>
     <script type="text/javascript">
         CKEDITOR.replace('tracklist');

@@ -89,6 +89,31 @@ $(document).ready(function(){
         }
     });
 
+    $('.translate_description').click(function(){
+        let target = $(this).data('to-lang');
+        let query = CKEDITOR.instances.description_en.getData().trim();
+        if(query.length > 0){
+            $.ajax({
+                type : 'POST',
+                data : {
+                    _token : $('meta[name=csrf-token]').attr("content"),
+                    query: query,
+                    target : target
+                },
+                cache: false,
+                dataType : 'json',
+                url : '/cts-admin/releases/translate',
+                success : function(response){
+                    if(response.status === 'ok'){
+                        CKEDITOR.instances['description_'+target].setData(response.data);
+                    }else{
+                        console.log(response.status);
+                    }
+                }
+            });
+        }
+    });
+
 });
 
 function readURL(input, selector){

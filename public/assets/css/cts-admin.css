@@ -139,6 +139,9 @@ body{
 #preview{
     max-height: 90%;
 }
+.translate_description{
+    cursor: pointer;
+}
 .related{
     display: block;
     white-space: nowrap;
@@ -149,7 +152,12 @@ body{
 .related input{
     margin: 5px;
 }
-.page-link, .page-link:hover, .page-link:focus{
+.page-link,
+.page-link:hover,
+.page-link:focus,
+.translate_description,
+.translate_description:hover,
+.translate_description:focus{
     color: #efb11a;
 }
 .page-link:hover + label{

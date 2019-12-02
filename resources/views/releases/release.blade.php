@@ -57,20 +57,8 @@
                     </div>
                 </div>
                 <div class="release-content col-xs-12 col-md-5">
-                    <div id="en">
-                        <div class="content-ru">
-                            {!! $release->description_en !!}
-                        </div>
-                    </div>
-                    <div id="ru" style="display:none">
-                        <div class="content-en">
-                            {!! $release->description_ru !!}
-                        </div>
-                    </div>
-                    <div id="ua" style="display:none">
-                        <div class="content-ua">
-                            {!! $release->description_ua !!}
-                        </div>
+                    <div class="content-ru">
+                        {!! $release['description_'.\Illuminate\Support\Facades\App::getLocale()] !!}
                     </div>
                 </div>
                 <div class="clearfix"></div>

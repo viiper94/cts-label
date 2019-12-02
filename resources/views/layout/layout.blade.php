@@ -20,5 +20,6 @@
     </section>
     @include('layout.footer')
     @include('layout.scripts')
+    @yield('scripts')
 </body>
 </html>

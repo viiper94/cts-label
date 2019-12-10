@@ -131,6 +131,25 @@ body{
     padding: 6px 6px;
 }
 
+.items-container{
+    display: flex;
+    max-width: 100%;
+    overflow-x: scroll;
+}
+.item-horizontal-list{
+    margin: 5px;
+}
+.item-horizontal-list:hover{
+    outline: 3px solid #444;
+}
+.item-horizontal-list a{
+    display: block;
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+}
+
 /* Release */
 .release-image{
     margin: 15px 0;
@@ -159,9 +178,15 @@ body{
 .translate_description:focus{
     color: #efb11a;
 }
-.page-link:hover + label{
-    color: #e9a222;
+
+/* Scrollbar */
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
 }
-.checked-releases{
-    margin-bottom: 10px;
+*::-webkit-scrollbar-track {
+    background-color: #3a3a3a;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #7b7b7b;
 }

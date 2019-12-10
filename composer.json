@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
+        "doctrine/dbal": "~2.3",
         "stichoza/google-translate-php": "^4.0"
     },
     "require-dev": {

@@ -68,6 +68,7 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="clearfix"></div>
             </div>
             <div class="top-container flex">
                 <div class="releases-actions">

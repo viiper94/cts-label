@@ -1,8 +1,8 @@
 @extends('admin.layout.layout')
 
-@section('scripts')
-    <script src="/assets/js/ckeditor/ckeditor.js"></script>
-@endsection
+{{--@section('scripts')--}}
+{{--    <script src="/assets/js/ckeditor/ckeditor.js"></script>--}}
+{{--@endsection--}}
 
 @section('admin-content')
     <div class="container">
@@ -37,26 +37,26 @@
                     </label>
                 </div>
             </div>
-            <div class="col-xs-12">
-                <div class="description form-group">
-                    <label class="en">Описание (англ.)</label>
-                    <textarea name="description_en" id="description_en">{!! $artist->description_en !!}</textarea>
-                </div>
-                <div class="description form-group">
-                    <label class="en">Описание (рус.)</label>
-                    <a class="translate_description" data-to-lang="ru">
-                        <span class="glyphicon glyphicon-text-height"></span> Перевести на русский
-                    </a>
-                    <textarea name="description_ru" id="description_ru">{!! $artist->description_ru !!}</textarea>
-                </div>
-                <div class="description form-group">
-                    <label class="en">Описание (укр.)</label>
-                    <a class="translate_description" data-to-lang="uk">
-                        <span class="glyphicon glyphicon-text-height"></span> Перевести на украинский
-                    </a>
-                    <textarea name="description_ua" id="description_uk">{!! $artist->description_ua !!}</textarea>
-                </div>
-            </div>
+{{--            <div class="col-xs-12">--}}
+{{--                <div class="description form-group">--}}
+{{--                    <label class="en">Описание (англ.)</label>--}}
+{{--                    <textarea name="description_en" id="description_en">{!! $artist->description_en !!}</textarea>--}}
+{{--                </div>--}}
+{{--                <div class="description form-group">--}}
+{{--                    <label class="en">Описание (рус.)</label>--}}
+{{--                    <a class="translate_description" data-to-lang="ru">--}}
+{{--                        <span class="glyphicon glyphicon-text-height"></span> Перевести на русский--}}
+{{--                    </a>--}}
+{{--                    <textarea name="description_ru" id="description_ru">{!! $artist->description_ru !!}</textarea>--}}
+{{--                </div>--}}
+{{--                <div class="description form-group">--}}
+{{--                    <label class="en">Описание (укр.)</label>--}}
+{{--                    <a class="translate_description" data-to-lang="uk">--}}
+{{--                        <span class="glyphicon glyphicon-text-height"></span> Перевести на украинский--}}
+{{--                    </a>--}}
+{{--                    <textarea name="description_ua" id="description_uk">{!! $artist->description_ua !!}</textarea>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="clearfix"></div>
             <button type='submit' class='btn btn-primary' name='edit_artist'>
                 <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
@@ -64,13 +64,13 @@
             </button>
         </form>
     </div>
-    <script type="text/javascript">
-        CKEDITOR.replace('description_en');
-    </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('description_ru');
-    </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('description_uk');
-    </script>
+{{--    <script type="text/javascript">--}}
+{{--        CKEDITOR.replace('description_en');--}}
+{{--    </script>--}}
+{{--    <script type="text/javascript">--}}
+{{--        CKEDITOR.replace('description_ru');--}}
+{{--    </script>--}}
+{{--    <script type="text/javascript">--}}
+{{--        CKEDITOR.replace('description_uk');--}}
+{{--    </script>--}}
 @endsection

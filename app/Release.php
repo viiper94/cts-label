@@ -38,8 +38,9 @@ class Release extends Model{
         return $release['sort_id'];
     }
 
-    public function renewRelatedReleases(Array $ids){
+    public function renewRelatedReleases($ids){
         $this->related()->detach();
+        if($ids === null) return true;
         foreach($ids as $id){
             $this->related()->attach($id);
         }

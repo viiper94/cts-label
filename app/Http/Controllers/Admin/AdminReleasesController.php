@@ -46,7 +46,7 @@ class AdminReleasesController extends Controller{
                 $release->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
                 $image->move(public_path('images/releases'), $release->image);
             }
-            if($request->post('related')) $release->renewRelatedReleases($request->post('related'));
+            $release->renewRelatedReleases($request->post('related'));
             return $release->save() ?
                 redirect()->route('releases_admin')->with(['success' => 'Релиз успешно отредактирован!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);

@@ -46,4 +46,47 @@ class AdminArtistsController extends Controller{
         ]);
     }
 
+    public function add(Request $request){
+        $artist = new Artist();
+        if($request->post()){
+            $this->validate($request, [
+                'name' => 'required|string',
+                'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png',
+                'link' => 'url|nullable'
+            ]);
+            $artist->fill($request->post());
+            $artist->visible =  $request->input('visible') == 'on';
+            $artist->sort_id =  intval(Artist::getLatestSortId()) + 1;
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $artist->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
+                $image->move(public_path('images/artists'), $artist->image);
+            }
+            return $artist->save() ?
+                redirect()->route('artists_admin')->with(['success' => 'Артист успешно добавлен!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }
+        return view('admin.artists.edit', [
+            'artist' => $artist
+        ]);
+    }
+
+    public function delete(Request $request, $id){
+        if($id){
+            $artist = Artist::find($id);
+            if($artist->image){
+                // delete image
+                $path = public_path('images/artists/').$artist->image;
+                if(file_exists($path) && is_file($path)){
+                    unlink($path);
+                }
+            }
+            return $artist->delete() ?
+                redirect()->back()->with(['success' => 'Артист успешно удалён!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }else{
+            return abort(404);
+        }
+    }
+
 }

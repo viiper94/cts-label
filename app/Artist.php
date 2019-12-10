@@ -15,4 +15,9 @@ class Artist extends Model{
         'search-by'
     ];
 
+    public static function getLatestSortId(){
+        $artist = Artist::select('sort_id')->orderBy('sort_id', 'desc')->first()->toArray();
+        return $artist['sort_id'];
+    }
+
 }

@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Release;
-use Faker\Provider\File;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class AdminReleasesController extends Controller{

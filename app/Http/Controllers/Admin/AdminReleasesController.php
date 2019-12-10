@@ -156,6 +156,14 @@ class AdminReleasesController extends Controller{
     public function delete(Request $request, $id){
         if($id){
             $release = Release::find($id);
+            $release->related()->detach();
+            if($release->image){
+                // delete image
+                $path = public_path('images/releases/').$release->image;
+                if(file_exists($path) && is_file($path)){
+                    unlink($path);
+                }
+            }
             return $release->delete() ?
                 redirect()->back()->with(['success' => 'Релиз успешно удалён!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);

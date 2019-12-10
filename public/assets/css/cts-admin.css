@@ -134,10 +134,9 @@ body{
 /* Release */
 .release-image{
     margin: 15px 0;
-    height: 400px;
 }
 #preview{
-    max-height: 90%;
+    max-width: 100%;
 }
 .translate_description{
     cursor: pointer;

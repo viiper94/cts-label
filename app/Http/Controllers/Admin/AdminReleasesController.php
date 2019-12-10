@@ -38,8 +38,9 @@ class AdminReleasesController extends Controller{
             $release->visible =  $request->input('visible') == 'on';
             if($request->hasFile('image')){
                 // delete old image
-                if(file_exists(public_path('images/releases').'/'.$release->image)){
-                    Storage::delete(public_path('images/releases').'/'.$release->image);
+                $path = public_path('images/releases/').$release->image;
+                if(file_exists($path) && is_file($path)){
+                    unlink($path);
                 }
                 // upload new image
                 $image = $request->file('image');

@@ -47,7 +47,7 @@
                                         <span class='glyphicon glyphicon-arrow-down'></span>
                                     </a>
                                 </div>
-                                <input type='number' id='field' class='form-control form-control__dark' name='sort[{{ $review->id }}]' value='{{ $review->sort_id }}' size=5>
+                                <input type='number' class='form-control form-control__dark' name='sort[{{ $review->id }}]' value='{{ $review->sort_id }}' size=5>
                             </div>
                             <div class="clearfix"></div>
                         </div>

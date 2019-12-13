@@ -55,7 +55,7 @@
                                     <span class='glyphicon glyphicon-arrow-up'></span>
                                     <span class="hidden-xs">Выше</span>
                                 </a>
-                                <input type='number' id='field' class='form-control form-control__dark' name='sort[{{ $artist->id }}]' value='{{ $artist->sort_id }}' size=5>
+                                <input type='number' class='form-control form-control__dark' name='sort[{{ $artist->id }}]' value='{{ $artist->sort_id }}' size=5>
                                 <a class='btn btn-default btn-default__dark' href='{{ route('artists_admin') }}/sortdown/{{ $artist->id }}'>
                                     <span class='glyphicon glyphicon-arrow-down'></span>
                                     <span class="hidden-xs">Ниже</span>

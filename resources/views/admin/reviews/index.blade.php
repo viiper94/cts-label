@@ -25,7 +25,7 @@
             <div class="clearfix"></div>
             <div class='items'>
                 @foreach($reviews as $review)
-                    <div class="col-xs-12 col-md-4">
+                    <div class="col-xs-12 col-sm-6 col-lg-4">
                         <div class='item item__review flex'>
                             <h4>{{ $review->track }}</h4>
                             <div class='item-action col-xs-6 flex-column'>

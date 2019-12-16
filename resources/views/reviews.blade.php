@@ -11,22 +11,23 @@
                     <div class="col-xs-12 review-brief">
                         <div class="row">
                             <h2>{{ $review->track }}</h2>
-                            @if(!$review->data) @dd($review->id) @endif
-                            @foreach($review->data['reviews'] as $item)
-                                @if($item['author'] && $item['review'])
-                                    <h3>{{ $item['author'] }}</h3>
-                                    @if($item['location'])
-                                        <div class="location">({{ $item['location'] }})</div>
+                            @if($review->data['reviews'])
+                                @foreach($review->data['reviews'] as $item)
+                                    @if($item['author'] && $item['review'])
+                                        <h3>{{ $item['author'] }}</h3>
+                                        @if($item['location'])
+                                            <div class="location">({{ $item['location'] }})</div>
+                                        @endif
+                                        <div class="col-sm-6"><div class="row">{{ $item['review'] }}</div></div>
+                                        <div class="col-sm-5 col-sm-offset-1">
+                                            @for($i = 0; $i < $item['score']; $i++)
+                                                <img src="/assets/img/star.png" width="16" height="13" class="pull-left"/>
+                                            @endfor
+                                        </div>
+                                        <div class="clearfix"></div>
                                     @endif
-                                    <div class="col-sm-6"><div class="row">{{ $item['review'] }}</div></div>
-                                    <div class="col-sm-5 col-sm-offset-1">
-                                        @for($i = 0; $i < $item['score']; $i++)
-                                            <img src="/assets/img/star.png" width="16" height="13" class="pull-left"/>
-                                        @endfor
-                                    </div>
-                                    <div class="clearfix"></div>
-                                @endif
-                            @endforeach
+                                @endforeach
+                            @endif
                             @if($review->data['additional'])
                                 <div class="also-supported">@lang('reviews.also_supported')</div>
                                 @foreach($review->data['additional'] as $key => $supported)

@@ -10,4 +10,17 @@ class Review extends Model{
         'data' => 'array'
     ];
 
+    public $defaultReview = [
+        'reviews' => [0 => [
+            'author' => '',
+            'location' => '',
+            'review' => '',
+            'score' => 5,
+        ]],
+        'additional' => [0 => [
+            'author' => '',
+            'location' => '',
+        ]],
+    ];
+
 }

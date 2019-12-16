@@ -15,7 +15,9 @@
                             @foreach($review->data['reviews'] as $item)
                                 @if($item['author'] && $item['review'])
                                     <h3>{{ $item['author'] }}</h3>
-                                    <div class="location">({{ $item['location'] }})</div>
+                                    @if($item['location'])
+                                        <div class="location">({{ $item['location'] }})</div>
+                                    @endif
                                     <div class="col-sm-6"><div class="row">{{ $item['review'] }}</div></div>
                                     <div class="col-sm-5 col-sm-offset-1">
                                         @for($i = 0; $i < $item['score']; $i++)

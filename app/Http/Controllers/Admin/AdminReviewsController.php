@@ -21,8 +21,8 @@ class AdminReviewsController extends Controller{
         if($request->post()){
             $this->validate($request, [
                 'track' => 'required|string',
-                'reviews' => 'required_without:additional|array',
-                'additional' => 'required_without:reviews|array',
+                'review' => 'required_without:additional|array',
+                'additional' => 'required_without:review|array',
             ]);
             $review->track = $request->input('track');
             $review->data = [
@@ -34,6 +34,31 @@ class AdminReviewsController extends Controller{
                 redirect()->route('reviews_admin')->with(['success' => 'Ревью успешно отредактировано!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }
+        return view('admin.reviews.edit', [
+            'review' => $review
+        ]);
+    }
+
+    public function add(Request $request){
+        $review = new Review();
+        if($request->post()){
+            $this->validate($request, [
+                'track' => 'required|string',
+                'review' => 'required_without:additional|array',
+                'additional' => 'required_without:review|array',
+            ]);
+            $review->sort_id = intval(Review::getLatestSortId()) + 1;
+            $review->track = $request->input('track');
+            $review->data = [
+                'reviews' => $request->input('review'),
+                'additional' => $request->input('additional')
+            ];
+            $review->visible = $request->input('visible') == 'on';
+            return $review->save() ?
+                redirect()->route('reviews_admin')->with(['success' => 'Ревью успешно добавлен!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }
+        $review->data = $review->defaultReview;
         return view('admin.reviews.edit', [
             'review' => $review
         ]);

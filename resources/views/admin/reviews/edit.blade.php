@@ -29,56 +29,60 @@
                 </div>
                 <div id="reviews">
                     <h5>Review:</h5>
-                    @foreach($review->data['reviews'] as $key => $item)
-                        @if($loop->last)
-                            @php $index = $key @endphp
-                        @endif
-                        <div class="review" id="review-{{ $key }}">
-                            <a class="delete-review-btn btn"><span class="glyphicon glyphicon-remove"></span></a>
-                            <div class="form-group">
-                                <label>Автор:</label>
-                                <input type="text" class="form-control form-control__dark" name="review[{{ $key }}][author]" value="{{ $item['author'] }}" required>
+                    @if($review->data['reviews'])
+                        @foreach($review->data['reviews'] as $key => $item)
+                            @if($loop->last)
+                                @php $r_index = $key @endphp
+                            @endif
+                            <div class="review" id="review-{{ $key }}">
+                                <a class="delete-review-btn btn"><span class="glyphicon glyphicon-remove"></span></a>
+                                <div class="form-group">
+                                    <label>Автор:</label>
+                                    <input type="text" class="form-control form-control__dark" name="review[{{ $key }}][author]" value="{{ $item['author'] }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Локация:</label>
+                                    <input type="text" class="form-control form-control__dark" name="review[{{ $key }}][location]" value="{{ $item['location'] }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Ревью:</label>
+                                    <textarea class="form-control form-control__dark" name="review[{{ $key }}][review]" required>{{ $item['review'] }}</textarea>
+                                </div>
+                                <div class="scores">
+                                    <label>Оценка:</label>
+                                    @for($i = 1; $i <= 5; $i-=-1)
+                                        <label>
+                                            <input type="radio" name="review[{{ $key }}][score]" value="{{ $i }}" @if($item['score'] == $i) checked @endif><span>{{ $i }}</span>
+                                        </label>
+                                    @endfor
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Локация:</label>
-                                <input type="text" class="form-control form-control__dark" name="review[{{ $key }}][location]" value="{{ $item['location'] }}">
-                            </div>
-                            <div class="form-group">
-                                <label>Ревью:</label>
-                                <textarea class="form-control form-control__dark" name="review[{{ $key }}][review]" required>{{ $item['review'] }}</textarea>
-                            </div>
-                            <div class="scores">
-                                <label>Оценка:</label>
-                                @for($i = 1; $i <= 5; $i-=-1)
-                                    <label>
-                                        <input type="radio" name="review[{{ $key }}][score]" value="{{ $i }}" @if($item['score'] == $i) checked @endif><span>{{ $i }}</span>
-                                    </label>
-                                @endfor
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
-                <a class="add-review-btn btn btn-info" data-index="{{ $index }}" data-target="reviews"><span class="glyphicon glyphicon-plus"></span> Добавить</a>
+                <a class="add-review-btn btn btn-info" data-index="{{ $r_index ?? 0 }}" data-target="reviews"><span class="glyphicon glyphicon-plus"></span> Добавить</a>
                 <div id="additional">
                     <h5>Also supported:</h5>
-                    @foreach($review->data['additional'] as $key => $item)
-                        @if($loop->last)
-                            @php $index = $key @endphp
-                        @endif
-                        <div class="review" id="additional-{{ $key }}>">
-                            <a class="delete-review-btn btn"><span class="glyphicon glyphicon-remove"></span></a>
-                            <div class="form-group">
-                                <label>Автор:</label>
-                                <input class="form-control form-control__dark" type="text" name="additional[{{ $key }}][author]" value="{{ $item['author'] }}" required>
+                    @if($review->data['additional'])
+                        @foreach($review->data['additional'] as $key => $item)
+                            @if($loop->last)
+                                @php $a_index = $key @endphp
+                            @endif
+                            <div class="review" id="additional-{{ $key }}>">
+                                <a class="delete-review-btn btn"><span class="glyphicon glyphicon-remove"></span></a>
+                                <div class="form-group">
+                                    <label>Автор:</label>
+                                    <input class="form-control form-control__dark" type="text" name="additional[{{ $key }}][author]" value="{{ $item['author'] }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Локация:</label>
+                                    <input class="form-control form-control__dark" type="text" name="additional[{{ $key }}][location]" value="{{ $item['location'] }}">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Локация:</label>
-                                <input class="form-control form-control__dark" type="text" name="additional[{{ $key }}][location]" value="{{ $item['location'] }}">
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
-                <a class="add-review-btn btn btn-info" data-index="{{ $index }}" data-target="additional"><span class="glyphicon glyphicon-plus"></span> Добавить</a>
+                <a class="add-review-btn btn btn-info" data-index="{{ $a_index ?? 0 }}" data-target="additional"><span class="glyphicon glyphicon-plus"></span> Добавить</a>
                 <button class="add-btn btn btn-primary" style="margin-right: 5px;" type="submit"><span class="glyphicon glyphicon-pencil"></span> Сохранить</button>
             </div>
 

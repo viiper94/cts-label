@@ -114,12 +114,52 @@ $(document).ready(function(){
         }
     });
 
+    $('#search-reviewer').keyup(function(){
+        let query = $(this).val().trim();
+        if(query.length > 2){
+            $.ajax({
+                type : 'POST',
+                data : {
+                    _token : $('meta[name=csrf-token]').attr("content"),
+                    query : query
+                },
+                cache: false,
+                dataType : 'json',
+                url : '/cts-admin/reviews/searchreviewer',
+                success : function(response){
+                    $('.founded').html('');
+                    if(response.status === 'ok'){
+                        let span = '';
+                        $.each(response.data, function(key, item){
+                            span += '<p><b>'+item.author+'</b> - '+item.location+'</p>';
+                        });
+                        $('.founded').append(span);
+                    } else {
+                        $('.founded').append('<span>Нет результатов</span>');
+                    }
+                }
+            });
+        }
+    });
+
+    $(document).on('click','.delete-review-btn', function(){
+        if(confirm('Удалить?')){
+            $(this).parent().remove();
+        }
+    });
+    $('.add-review-btn').click(function(){
+        let index = $(this).data('index')+1;
+        $(this).data('index', index);
+        let template = $('#'+$(this).data('target')+'_template').html().replace(/%i%/g, index);
+        $('#'+$(this).data('target')).append(template);
+    });
+
 });
 
 function readURL(input, selector){
     if(selector === undefined) selector = '#preview';
     if (input.files && input.files[0]){
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function (e) {
             $(selector).attr('src', e.target.result);
         };

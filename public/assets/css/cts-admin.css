@@ -11,8 +11,14 @@ body{
     background: #080808;
     color: #9d9d9d;
 }
+textarea{
+    resize: vertical;
+}
 
 /* Helpers */
+.inline{
+    display: inline-block;
+}
 .flex{
     display: flex;
 }
@@ -109,13 +115,6 @@ body{
     background-size: cover;
     background-position: center;
 }
-.item__review{
-    flex-wrap: wrap;
-}
-.item.item__review h4{
-    width: 100%;
-    text-align: center;
-}
 .item-info{
     justify-content: center;
 }
@@ -137,14 +136,6 @@ body{
 .item-sort .form-control{
     padding: 6px 6px;
 }
-.item__review .item-sort{
-    align-items: center;
-}
-.item__review .item-sort .arrows{
-    justify-content: space-around;
-    align-self: stretch;
-    margin-right: 15px;
-}
 
 .items-container{
     display: flex;
@@ -154,8 +145,8 @@ body{
 .item-horizontal-list{
     margin: 5px;
 }
-.item-horizontal-list:hover{
-    outline: 3px solid #444;
+.item-horizontal-list:hover a{
+    box-shadow: 0 0 4px 3px #444;
 }
 .item-horizontal-list a{
     display: block;
@@ -163,6 +154,7 @@ body{
     height: 150px;
     background-size: cover;
     background-position: center;
+    border-radius: 4px;
 }
 
 /* Release */
@@ -192,6 +184,53 @@ body{
 .translate_description:hover,
 .translate_description:focus{
     color: #efb11a;
+}
+
+/* Reviews */
+.item__review{
+    flex-wrap: wrap;
+}
+.item.item__review h4{
+    width: 100%;
+    text-align: center;
+}
+.item__review .item-sort{
+    align-items: center;
+}
+.item__review .item-sort .arrows{
+    justify-content: space-around;
+    align-self: stretch;
+    margin-right: 15px;
+}
+
+.review{
+    position: relative;
+    border: 1px solid #444;
+    border-radius: 4px;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #2a2a2a;
+}
+.delete-review-btn, .delete-review-btn:focus{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 3px 8px;
+    color: #d80000;
+}
+.delete-review-btn:hover{
+    background-color: #d80000;
+    color: #fff;
+}
+.scores{
+    display: flex;
+}
+.scores label{
+    display: flex;
+    margin: 0 5px;
+}
+.scores label span{
+    margin-left: 2px;
 }
 
 /* Scrollbar */

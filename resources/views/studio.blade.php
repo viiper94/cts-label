@@ -114,18 +114,16 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-
-
                     <h2 class="text-center sh uppercase" id="services">@lang('studio.services')</h2>
                     <div class="service-images ">
-                        @for($i = 1; $i <= 8; $i++)
-                            <div class="col-md-3 col-sm-4 text-center scale{{ $i }}">
-                                <a href="mailto:info@cts-label.com?body=My name:%0AMy phone number:%0A&Subject=Услуги CTStudio @if(!empty($subject[$i])) - {{ $subject[$i] }} @endif">
-                                    <img src="/assets/img/s{{ \Illuminate\Support\Facades\App::getLocale() }}{{ $i }}.jpg"
-                                        class="service-image" @if(!empty($services[2*$i])) alt="{{ $services[2*$i] }}" @endif>
+                        @foreach($services as $service)
+                            <div class="col-md-3 col-sm-4 text-center scale{{ $loop->iteration }}">
+                                <a href="mailto:info@cts-label.com?body=@lang('mail.my_name')%0A @lang('mail.my_phone')%0A&Subject=@lang('studio.services') - {{ $service->name }}">
+                                    <img src="/images/studio/services/{{ $service->image }}"
+                                         class="service-image" @if($service->alt) alt="{{ $service->alt }}" @endif>
                                 </a>
                             </div>
-                        @endfor
+                        @endforeach
                         <div class="clearfix"></div>
                     </div>
                     <ul class="list-inline slist slist-en">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\School;
+use App\StudioService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -22,9 +23,8 @@ class AppController extends Controller{
     }
 
     public function studio(){
-        return view('studio',[
-            'services' => [],
-            'subject' => [],
+        return view('studio', [
+            'services' => StudioService::where(['visible' => 1, 'lang' => App::getLocale()])->get()
         ]);
     }
 

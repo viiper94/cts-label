@@ -13,3 +13,9 @@ yarn-error.log
 !/public/images/artists/default.png
 /public/images/releases/*
 !/public/images/releases/default.png
+/public/images/studio/services/*
+!/public/images/studio/services/default.png
+/public/images/school/services/*
+!/public/images/school/services/default.png
+/public/images/school/teachers/*
+!/public/images/school/teachers/default.png

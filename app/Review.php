@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Review extends Model{
+class Review extends SharedModel{
 
     protected $casts = [
         'data' => 'array'
@@ -26,10 +24,5 @@ class Review extends Model{
             'location' => '',
         ]],
     ];
-
-    public static function getLatestSortId(){
-        $review = Review::select('sort_id')->orderBy('sort_id', 'desc')->first()->toArray();
-        return $review['sort_id'];
-    }
 
 }

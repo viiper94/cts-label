@@ -55,8 +55,8 @@ class AdminArtistsController extends Controller{
                 'link' => 'url|nullable'
             ]);
             $artist->fill($request->post());
-            $artist->visible =  $request->input('visible') == 'on';
-            $artist->sort_id =  intval(Artist::getLatestSortId()) + 1;
+            $artist->visible = $request->input('visible') == 'on';
+            $artist->sort_id = intval($artist->getLatestSortId(Artist::class)) + 1;
             if($request->hasFile('image')){
                 $image = $request->file('image');
                 $artist->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();

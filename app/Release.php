@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Release extends Model{
+class Release extends SharedModel{
 
     protected $dates = [
         'created_at',
@@ -31,11 +29,6 @@ class Release extends Model{
 
     public function related(){
         return $this->belongsToMany('App\Release', 'related_releases', 'release_id', 'related_id');
-    }
-
-    public static function getLatestSortId(){
-        $release = Release::select('sort_id')->orderBy('sort_id', 'desc')->first()->toArray();
-        return $release['sort_id'];
     }
 
     public function renewRelatedReleases($ids){

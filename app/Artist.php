@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Artist extends Model{
+class Artist extends SharedModel{
 
     protected $guarded = [
         'id',
@@ -14,10 +12,5 @@ class Artist extends Model{
         'edit_artist',
         'search-by'
     ];
-
-    public static function getLatestSortId(){
-        $artist = Artist::select('sort_id')->orderBy('sort_id', 'desc')->first()->toArray();
-        return $artist['sort_id'];
-    }
 
 }

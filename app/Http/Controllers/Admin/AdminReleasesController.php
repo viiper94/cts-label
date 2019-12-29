@@ -70,7 +70,7 @@ class AdminReleasesController extends Controller{
             ]);
             $release->fill($request->post());
             $release->release_date = date('Y-m-d', strtotime($release->release_date));
-            $release->sort_id =  intval(Release::getLatestSortId()) + 1;
+            $release->sort_id =  intval($release->getLatestSortId(Release::class)) + 1;
             $release->visible =  $request->input('visible') == 'on';
             if($request->hasFile('image')){
                 $image = $request->file('image');

@@ -47,7 +47,7 @@ class AdminReviewsController extends Controller{
                 'review' => 'required_without:additional|array',
                 'additional' => 'required_without:review|array',
             ]);
-            $review->sort_id = intval(Review::getLatestSortId()) + 1;
+            $review->sort_id = intval($review->getLatestSortId(Review::class)) + 1;
             $review->track = $request->input('track');
             $review->data = [
                 'reviews' => $request->input('review'),

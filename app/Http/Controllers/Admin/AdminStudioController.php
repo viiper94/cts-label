@@ -42,4 +42,36 @@ class AdminStudioController extends Controller{
         ]);
     }
 
+    public function edit(Request $request, $id){
+        if($request->post() && $id){
+            $this->validate($request, [
+                'name' => 'string|required',
+                'service_alt' => 'string|nullable',
+                'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png'
+            ]);
+            $service = StudioService::findOrFail($id);
+            $service->fill($request->post());
+            $service->category = 'services';
+            $service->visible = $request->input('visible') == 'on';
+            if($request->hasFile('image')){
+                // delete old image
+                $path = public_path('images/studio/services/').$service->image;
+                if(file_exists($path) && is_file($path)){
+                    unlink($path);
+                }
+                // upload new image
+                $image = $request->file('image');
+                $service->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
+                $image->move(public_path('images/studio/services'), $service->image);
+            }
+            return $service->save() ?
+                redirect()->route('studio_admin')->with(['success' => 'Услуга успешно отредактирована!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }else{
+            return view('admin.studio.edit', [
+                'service' => StudioService::findOrFail($id)
+            ]);
+        }
+    }
+
 }

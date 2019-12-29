@@ -16,9 +16,9 @@
                 <div class="form-group">
                     <label>Язык</label><br>
                     <select class="form-control form-control__dark" name="lang" required>
-                        <option selected value="en">English</option>
-                        <option value="ru">Русский</option>
-                        <option value="ua">Українська</option>
+                        <option @if($service->lang === 'en') selected @endif value="en">English</option>
+                        <option @if($service->lang === 'ru') selected @endif value="ru">Русский</option>
+                        <option @if($service->lang === 'ua') selected @endif value="ua">Українська</option>
                     </select>
                     @if($errors->has('lang'))
                         <p class="help-block">{{ $errors->first('lang') }}</p>

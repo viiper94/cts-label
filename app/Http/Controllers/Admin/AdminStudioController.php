@@ -104,8 +104,8 @@ class AdminStudioController extends Controller{
     public function sort(Request $request, $id, $direction){
         if(isset($id)){
             $service = StudioService::find($id);
-            if($direction === 'up') $next_service = StudioService::where('sort_id', '>', $service->sort_id)->orderBy('sort_id', 'asc')->first();
-            else $next_service = StudioService::where('sort_id', '<', $service->sort_id)->orderBy('sort_id', 'desc')->first();
+            if($direction === 'up') $next_service = StudioService::where('sort_id', '>', $service->sort_id)->where('lang', $service->lang)->orderBy('sort_id', 'asc')->first();
+            else $next_service = StudioService::where('sort_id', '<', $service->sort_id)->where('lang', $service->lang)->orderBy('sort_id', 'desc')->first();
             if(!$next_service) return redirect()->back();
             return $service->swapSort($service, $next_service)  ?
                 redirect()->back()->with(['success' => 'Услуга успешно отредактирована!']) :

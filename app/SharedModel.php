@@ -15,4 +15,11 @@ class SharedModel extends Model{
         return false;
     }
 
+    public function swapSort($item, $slave_item){
+        $tmp = $item->sort_id;
+        $item->sort_id = $slave_item->sort_id;
+        $slave_item->sort_id = $tmp;
+        return $item->save() && $slave_item->save();
+    }
+
 }

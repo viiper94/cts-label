@@ -84,37 +84,18 @@ class AdminReviewsController extends Controller{
         return redirect()->back()->with(['success' => 'Ревью успешно отсортированы!']);
     }
 
-    public function sortup(Request $request, $id){
+    public function sort(Request $request, $id, $direction){
         if(isset($id)){
             $review = Review::find($id);
-            $up_review = Review::where('sort_id', '>', $review->sort_id)->orderBy('sort_id', 'asc')->first();
-            if(!$up_review) return redirect()->back();
-            return $this->swapSort($review, $up_review)  ?
+            if($direction === 'up') $next_review = Review::where('sort_id', '>', $review->sort_id)->orderBy('sort_id', 'asc')->first();
+            else $next_review = Review::where('sort_id', '<', $review->sort_id)->orderBy('sort_id', 'desc')->first();
+            if(!$next_review) return redirect()->back();
+            return $review->swapSort($review, $next_review)  ?
                 redirect()->back()->with(['success' => 'Ревью успешно отредактировано!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }else{
             return abort(404);
         }
-    }
-
-    public function sortdown(Request $request, $id){
-        if(isset($id)){
-            $review = Review::find($id);
-            $down_review = Review::where('sort_id', '<', $review->sort_id)->orderBy('sort_id', 'desc')->first();
-            if(!$down_review) return redirect()->back();
-            return $this->swapSort($review, $down_review) ?
-                redirect()->back()->with(['success' => 'Ревью успешно отредактировано!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
-        }
-    }
-
-    private function swapSort($review, $slave_review){
-        $tmp = $review->sort_id;
-        $review->sort_id = $slave_review->sort_id;
-        $slave_review->sort_id = $tmp;
-        return $review->save() && $slave_review->save();
     }
 
     public function searchReviewer(Request $request){

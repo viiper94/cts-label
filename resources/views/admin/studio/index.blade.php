@@ -42,12 +42,12 @@
                                 </a>
                             </div>
                             <div class='item-sort col-xs-2 flex-column'>
-                                <a class='btn btn-default btn-default__dark' href='{{ route('studio_admin') }}/sortup/{{ $service->id }}'>
+                                <a class='btn btn-default btn-default__dark' href='{{ route('studio_admin') }}/sort/{{ $service->id }}/up'>
                                     <span class='glyphicon glyphicon-arrow-up'></span>
                                     <span class="hidden-xs">Выше</span>
                                 </a>
                                 <input type='number' class='form-control form-control__dark' name='sort[{{ $service->id }}]' value='{{ $service->sort_id }}' size=5>
-                                <a class='btn btn-default btn-default__dark' href='{{ route('studio_admin') }}/sortdown/{{ $service->id }}'>
+                                <a class='btn btn-default btn-default__dark' href='{{ route('studio_admin') }}/sort/{{ $service->id }}/down'>
                                     <span class='glyphicon glyphicon-arrow-down'></span>
                                     <span class="hidden-xs">Ниже</span>
                                 </a>

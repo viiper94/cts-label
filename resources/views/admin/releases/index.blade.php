@@ -54,12 +54,12 @@
                                 </a>
                             </div>
                             <div class='item-sort col-xs-2 flex-column'>
-                                <a class='btn btn-default btn-default__dark' href='{{ route('releases_admin') }}/sortup/{{ $release->id }}'>
+                                <a class='btn btn-default btn-default__dark' href='{{ route('releases_admin') }}/sort/{{ $release->id }}/up'>
                                     <span class='glyphicon glyphicon-arrow-up'></span>
                                     <span class="hidden-xs">Выше</span>
                                 </a>
                                 <input type='number' class='form-control form-control__dark' name='sort[{{ $release->id }}]' value='{{ $release->sort_id }}' size=5>
-                                <a class='btn btn-default btn-default__dark' href='{{ route('releases_admin') }}/sortdown/{{ $release->id }}'>
+                                <a class='btn btn-default btn-default__dark' href='{{ route('releases_admin') }}/sort/{{ $release->id }}/down'>
                                     <span class='glyphicon glyphicon-arrow-down'></span>
                                     <span class="hidden-xs">Ниже</span>
                                 </a>

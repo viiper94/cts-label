@@ -98,37 +98,18 @@ class AdminArtistsController extends Controller{
         return redirect()->back()->with(['success' => 'Артисты успешно отсортированы!']);
     }
 
-    public function sortup(Request $request, $id){
+    public function sort(Request $request, $id, $direction){
         if(isset($id)){
             $artist = Artist::find($id);
-            $up_artist = Artist::where('sort_id', '>', $artist->sort_id)->orderBy('sort_id', 'asc')->first();
-            if(!$up_artist) return redirect()->back();
-            return $this->swapSort($artist, $up_artist)  ?
+            if($direction === 'up') $next_artist = Artist::where('sort_id', '>', $artist->sort_id)->orderBy('sort_id', 'asc')->first();
+            else $next_artist = Artist::where('sort_id', '<', $artist->sort_id)->orderBy('sort_id', 'desc')->first();
+            if(!$next_artist) return redirect()->back();
+            return $artist->swapSort($artist, $next_artist)  ?
                 redirect()->back()->with(['success' => 'Артист успешно отредактирован!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }else{
             return abort(404);
         }
-    }
-
-    public function sortdown(Request $request, $id){
-        if(isset($id)){
-            $artist = Artist::find($id);
-            $down_artist = Artist::where('sort_id', '<', $artist->sort_id)->orderBy('sort_id', 'desc')->first();
-            if(!$down_artist) return redirect()->back();
-            return $this->swapSort($artist, $down_artist) ?
-                redirect()->back()->with(['success' => 'Артист успешно отредактирован!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
-        }
-    }
-
-    private function swapSort($artist, $slave_artist){
-        $tmp = $artist->sort_id;
-        $artist->sort_id = $slave_artist->sort_id;
-        $slave_artist->sort_id = $tmp;
-        return $artist->save() && $slave_artist->save();
     }
 
 }

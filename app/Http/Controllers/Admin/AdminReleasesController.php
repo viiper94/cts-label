@@ -97,37 +97,18 @@ class AdminReleasesController extends Controller{
         return redirect()->back()->with(['success' => 'Релизы успешно отсортированы!']);
     }
 
-    public function sortup(Request $request, $id){
+    public function sort(Request $request, $id, $direction){
         if(isset($id)){
             $release = Release::find($id);
-            $up_release = Release::where('sort_id', '>', $release->sort_id)->orderBy('sort_id', 'asc')->first();
-            if(!$up_release) return redirect()->back();
-            return $this->swapSort($release, $up_release)  ?
+            if($direction === 'up') $next_release = Release::where('sort_id', '>', $release->sort_id)->orderBy('sort_id', 'asc')->first();
+            else $next_release = Release::where('sort_id', '<', $release->sort_id)->orderBy('sort_id', 'desc')->first();
+            if(!$next_release) return redirect()->back();
+            return $release->swapSort($release, $next_release)  ?
                 redirect()->back()->with(['success' => 'Релиз успешно отредактирован!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }else{
             return abort(404);
         }
-    }
-
-    public function sortdown(Request $request, $id){
-        if(isset($id)){
-            $release = Release::find($id);
-            $down_release = Release::where('sort_id', '<', $release->sort_id)->orderBy('sort_id', 'desc')->first();
-            if(!$down_release) return redirect()->back();
-            return $this->swapSort($release, $down_release) ?
-                redirect()->back()->with(['success' => 'Релиз успешно отредактирован!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
-        }
-    }
-
-    private function swapSort($release, $slave_release){
-        $tmp = $release->sort_id;
-        $release->sort_id = $slave_release->sort_id;
-        $slave_release->sort_id = $tmp;
-        return $release->save() && $slave_release->save();
     }
 
     public function searchRelated(Request $request){

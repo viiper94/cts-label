@@ -40,10 +40,10 @@
                             </div>
                             <div class='item-sort col-xs-6 flex'>
                                 <div class="arrows flex-column">
-                                    <a class='btn btn-default btn-default__dark' href='{{ route('reviews_admin') }}/sortup/{{ $review->id }}'>
+                                    <a class='btn btn-default btn-default__dark' href='{{ route('reviews_admin') }}/sort/{{ $review->id }}/up'>
                                         <span class='glyphicon glyphicon-arrow-up'></span>
                                     </a>
-                                    <a class='btn btn-default btn-default__dark' href='{{ route('reviews_admin') }}/sortdown/{{ $review->id }}'>
+                                    <a class='btn btn-default btn-default__dark' href='{{ route('reviews_admin') }}/sort/{{ $review->id }}/down'>
                                         <span class='glyphicon glyphicon-arrow-down'></span>
                                     </a>
                                 </div>

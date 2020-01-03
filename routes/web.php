@@ -31,7 +31,7 @@ Route::group(['middleware' => 'i18n'], function(){
 
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function () {
 
-        Route::any('/cts-admin/{controller}/{action}/{id?}', function($controller, $action, $id = null){
+        Route::any('/cts-admin/{controller}/{action}/{id?}/{param?}', function($controller, $action, $id = null, $param = null){
             $app = app();
             try{
                 $controller_name = explode('_', $controller);
@@ -43,7 +43,7 @@ Route::group(['middleware' => 'i18n'], function(){
 
                 $controller = $app->make('\App\Http\Controllers\Admin\Admin'.ucfirst($controller).'Controller');
                 if(!method_exists($controller, $action)) throw new ReflectionException();;
-                return $controller->callAction($action, $parameters = array(Request::instance(), $id));
+                return $controller->callAction($action, $parameters = array(Request::instance(), $id, $param));
             }catch(ReflectionException $e){
                 abort(404);
             }

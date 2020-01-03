@@ -29,6 +29,10 @@ textarea{
 .is-sticky button{
     box-shadow: 0 1px 6px 0 rgba(0,0,0,0.6);
 }
+.text-ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /* Shared styles */
 .btn{
@@ -47,10 +51,22 @@ textarea{
 .btn-default.btn-default__dark:active:hover{
     color: #ccc;
 }
+table.table__dark,
+.table.table__dark>tbody>tr>td,
+.table.table__dark>tbody>tr>th,
+.table.table__dark>tfoot>tr>td,
+.table.table__dark>tfoot>tr>th,
+.table.table__dark>thead>tr>td,
+.table.table__dark>thead>tr>th{
+    border-top-color: #2a2a2a;
+}
+.table-hover.table__dark>tbody>tr:hover{
+    background-color: #2a2a2a;
+}
 .top-container{
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
+    padding: 0 15px;
 }
 @media (max-width: 991px){
     .top-container{
@@ -96,7 +112,7 @@ textarea{
 /* Items styles */
 .item{
     height: 150px;
-    margin: 15px;
+    margin: 15px 0;
     background: #222;
     border-radius: 4px;
     border: 1px solid #505050;
@@ -231,6 +247,18 @@ textarea{
 }
 .scores label span{
     margin-left: 2px;
+}
+
+/* Studio services */
+.table-responsive{
+    padding: 15px;
+}
+table img{
+    height: 35px;
+}
+table .sort-input{
+    width: 100px;
+    margin: 0 4px;
 }
 
 /* Scrollbar */

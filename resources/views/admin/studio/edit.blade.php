@@ -32,7 +32,7 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label>Alt'ы для изображения</label><br>
+                    <label>Ключевые слова</label><br>
                     <textarea name="service_alt" id="service_alt" cols="30" rows="7" class="form-control form-control__dark">{{ $service->service_alt }}</textarea>
                     @if($errors->has('service_alt'))
                         <p class="help-block">{{ $errors->first('service_alt') }}</p>

@@ -74,4 +74,31 @@ class AdminStudioController extends Controller{
         }
     }
 
+    public function delete(Request $request, $id){
+        if($id){
+            $service = StudioService::find($id);
+            if($service->image){
+                // delete image
+                $path = public_path('images/studio/services/').$service->image;
+                if(file_exists($path) && is_file($path)){
+                    unlink($path);
+                }
+            }
+            return $service->delete() ?
+                redirect()->back()->with(['success' => 'Услуга успешно удалена!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }else{
+            return abort(404);
+        }
+    }
+
+    public function resort(Request $request){
+        foreach($request->post('sort') as $id => $sort){
+            $service = StudioService::find($id);
+            $service->sort_id = $sort;
+            $service->save();
+        }
+        return redirect()->back()->with(['success' => 'Услуги успешно отсортированы!']);
+    }
+
 }

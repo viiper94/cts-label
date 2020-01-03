@@ -15,16 +15,15 @@ class Release extends SharedModel{
         'visible' => 'boolean'
     ];
 
-    protected $guarded = [
-        'id',
-        'sort_id',
-        'image',
-        'release_date',
-        'visible',
-
-        'edit_release',
-        'search-by',
-        'related'
+    protected $fillable = [
+        'title',
+        'release_number',
+        'beatport',
+        'youtube',
+        'description_en',
+        'description_ru',
+        'description_ua',
+        'tracklist',
     ];
 
     public function related(){

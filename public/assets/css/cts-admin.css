@@ -261,6 +261,29 @@ table .sort-input{
     margin: 0 4px;
 }
 
+/* School */
+.nav.nav-tabs__dark{
+    border-bottom-color: #2a2a2a;
+}
+.nav-tabs.nav-tabs__dark>li.active>a,
+.nav-tabs.nav-tabs__dark>li.active>a:focus,
+.nav-tabs.nav-tabs__dark>li.active>a:hover{
+    color: #EEEEEE;
+    background-color: #2a2a2a;
+    border: 1px solid #2a2a2a;
+    border-bottom-color: transparent;
+}
+.nav-tabs.nav-tabs__dark>li>a:hover{
+    border-color: #2a2a2a;
+}
+.nav.nav-tabs__dark>li>a:focus,
+.nav.nav-tabs__dark>li>a:hover{
+    background-color: #2a2a2a;
+}
+.nav.nav-tabs__dark>li>a{
+    color: #9d9d9d;
+}
+
 /* Scrollbar */
 *::-webkit-scrollbar {
     width: 5px;

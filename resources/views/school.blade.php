@@ -148,78 +148,20 @@
                 <h2 class="text-center sh" id="teachers">@lang('school.teachers')</h2>
                 <div class="teachers">
                     <div class="row">
-                        <div class="col-md-4 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[0]->image }}">
-                            <b>{{ $teachers[0]->name }}</b>
-                            <div class="binfo">{!! $teachers[0]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[0]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="col-md-4 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[1]->image }}">
-                            <b>{{ $teachers[1]->name }}</b>
-                            <div class="binfo">{!! $teachers[1]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[1]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="clearfix visible-sm"></div>
-                        <div class="col-md-4 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[2]->image }}">
-                            <b>{{ $teachers[2]->name }}</b>
-                            <div class="binfo">{!! $teachers[2]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[2]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="clearfix visible-md visible-lg hidden-sm hidden-xs"></div>
-                        <div class="col-md-4  col-md-offset-2 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[3]->image }}">
-                            <b>{{ $teachers[3]->name }}</b>
-                            <div class="binfo">{!! $teachers[3]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[3]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="col-md-4 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[4]->image }}">
-                            <b>{{ $teachers[4]->name }}</b>
-                            <div class="binfo">{!! $teachers[4]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[4]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="col-md-4  col-md-offset-4 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[5]->image }}">
-                            <b>{{ $teachers[5]->name }}</b>
-                            <div class="binfo">{!! $teachers[5]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[5]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="clearfix visible-md visible-sm visible-lg hidden-xs"></div>
-                        <div class="col-md-4 col-md-offset-2 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[6]->image }}">
-                            <b>{{ $teachers[6]->name }}</b>
-                            <div class="binfo">{!! $teachers[6]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[6]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="col-md-4  col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[7]->image }}">
-                            <b>{{ $teachers[7]->name }}</b>
-                            <div class="binfo">{!! $teachers[7]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[7]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="clearfix visible-md visible-lg visible-sm hidden-xs"></div>
-                        <div class="col-md-4 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[8]->image }}">
-                            <b>{{ $teachers[8]->name }}</b>
-                            <div class="binfo">{!! $teachers[8]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[8]->teacher_hinfo !!}</div>
-                        </div>
-
-                        <div class="col-md-4 col-xs-12 col-sm-6 teacher">
-                            <img src="/assets/img/{{ $teachers[9]->image }}">
-                            <b>{{ $teachers[9]->name }}</b>
-                            <div class="binfo">{!! $teachers[9]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[9]->teacher_hinfo !!}</div>
-                        </div>
-                        <div class="clearfix  visible-sm "></div>
-                        <div class="col-md-4 col-xs-12 col-sm-6  teacher">
-                            <img src="/assets/img/{{ $teachers[10]->image }}">
-                            <b>{{ $teachers[10]->name }}</b>
-                            <div class="binfo">{!! $teachers[10]->teacher_binfo !!}</div>
-                            <div class="hinfo">{!! $teachers[10]->teacher_hinfo !!}</div>
-                        </div>
+                        @foreach($teachers as $teacher)
+                            <div class="col-md-4 @if($loop->iteration === 4 || $loop->iteration === 7) col-md-offset-2 @endif @if($loop->iteration === 6) col-md-offset-4 @endif col-sm-6 col-xs-12 teacher">
+                                <img src="/images/school/teachers/{{ $teacher->image }}">
+                                <b>{{ $teacher->name }}</b>
+                                <div class="binfo">{!! $teacher->teacher_binfo !!}</div>
+                                <div class="hinfo">{!! $teacher->teacher_hinfo !!}</div>
+                            </div>
+                            @if($loop->iteration === 3 || $loop->iteration === 8)
+                                <div class="clearfix visible-md visible-lg hidden-sm hidden-xs"></div>
+                            @endif
+                            @if($loop->iteration % 2 === 0)
+                                <div class="clearfix visible-sm"></div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <h2 class="text-center sh" id="about">@lang('school.about_courses')</h2>
@@ -282,7 +224,7 @@
                     @foreach($courses as $course)
                         <div class="col-md-3 col-sm-6 text-center">
                             <a href="mailto:info@cts-label.com?@lang('school.mail_body'). {{ $course->name ?? "" }}">
-                                <img src="/assets/img/{{ $course->image }}"
+                                <img src="/images/school/courses/{{ $course->image }}"
                                      class="service-image" @if($course->course_alt) alt="{{ $course->course_alt }}"@endif>
                             </a>
                         </div>

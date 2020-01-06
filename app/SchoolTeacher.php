@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SchoolTeacher extends Model{
+class SchoolTeacher extends School{
 
-    protected $table = 'school';
-    protected $casts = [
-        'visible' => 'boolean'
+    protected $fillable = [
+        'name',
+        'lang',
+        'teacher_hinfo',
+        'teacher_binfo',
     ];
 
 }

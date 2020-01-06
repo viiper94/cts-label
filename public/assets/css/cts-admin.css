@@ -283,6 +283,9 @@ table .sort-input{
 .nav.nav-tabs__dark>li>a{
     color: #9d9d9d;
 }
+.teacher-img{
+    border-radius: 50%;
+}
 
 /* Scrollbar */
 *::-webkit-scrollbar {

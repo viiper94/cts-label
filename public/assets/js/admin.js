@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     $('.deselect-btn').click(function(e){
         e.preventDefault();
-        $('.related-all-releases label input').attr('checked', false);
+        $('.related label input').attr('checked', false);
     });
 
     $('#uploader').change(function(){
@@ -142,6 +142,14 @@ $(document).ready(function(){
         }
     });
 
+    $(document).on('change', 'input[name*=tracks]', function(){
+        let id = $(this).data('id');
+        let title = $(this)[0].value;
+        title = title.substr(12).replace('.mp3', '');
+        let target = $('#feedback-'+id).find('input[name*=title]');
+        if($(target).val() === '') $(target).val(title)
+    });
+
     $(document).on('click','.delete-review-btn', function(){
         if(confirm('Удалить?')){
             $(this).parent().remove();
@@ -153,6 +161,16 @@ $(document).ready(function(){
         let template = $('#'+$(this).data('target')+'_template').html().replace(/%i%/g, index);
         $('#'+$(this).data('target')).append(template);
     });
+
+
+    let clipboard = new ClipboardJS('.copy-link');
+    clipboard.on('success', function(e) {
+        $(e.trigger).html('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\n' +
+            '                                <span class="hidden-xs hidden-sm">Скопировано!</span>');
+
+        e.clearSelection();
+    });
+
 
 });
 

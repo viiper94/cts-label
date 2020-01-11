@@ -287,6 +287,13 @@ table .sort-input{
     border-radius: 50%;
 }
 
+/* Feedback */
+.related-all-feedback{
+    max-height: 300px;
+    overflow-y: scroll;
+    background-color: #2a2a2a;
+}
+
 /* Scrollbar */
 *::-webkit-scrollbar {
     width: 5px;

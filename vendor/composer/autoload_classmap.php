@@ -12,6 +12,7 @@ return array(
     'App\\Feedback' => $baseDir . '/app/Feedback.php',
     'App\\Http\\Controllers\\Admin\\AdminArtistsController' => $baseDir . '/app/Http/Controllers/Admin/AdminArtistsController.php',
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
+    'App\\Http\\Controllers\\Admin\\AdminFeedbackController' => $baseDir . '/app/Http/Controllers/Admin/AdminFeedbackController.php',
     'App\\Http\\Controllers\\Admin\\AdminReleasesController' => $baseDir . '/app/Http/Controllers/Admin/AdminReleasesController.php',
     'App\\Http\\Controllers\\Admin\\AdminReviewsController' => $baseDir . '/app/Http/Controllers/Admin/AdminReviewsController.php',
     'App\\Http\\Controllers\\Admin\\AdminSchoolController' => $baseDir . '/app/Http/Controllers/Admin/AdminSchoolController.php',

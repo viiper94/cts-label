@@ -30,6 +30,10 @@ class Release extends SharedModel{
         return $this->belongsToMany('App\Release', 'related_releases', 'release_id', 'related_id');
     }
 
+    public function feedback(){
+        return $this->hasOne('App\Feedback');
+    }
+
     public function renewRelatedReleases($ids){
         $this->related()->detach();
         if($ids === null) return true;

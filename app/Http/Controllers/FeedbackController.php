@@ -13,4 +13,10 @@ class FeedbackController extends Controller{
         ]);
     }
 
+    public function end($release_id){
+        return view('feedback.end', [
+            'release' => Release::with('feedback')->findOrFail($release_id)
+        ]);
+    }
+
 }

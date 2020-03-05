@@ -16,21 +16,21 @@ class AdminFeedbackController extends Controller{
     }
 
     public function edit(Request $request, $id){
+        $release = Release::with('feedback.related')->find($id);
         if($request->post() && $id){
             $this->validate($request, [
                 'feedback_title' => 'string|required',
                 'tracks' => 'array|required'
             ]);
-            $feedback = Feedback::where('release_id', $id)->firstOrFail();
-            $feedback->fill($request->post());
-            $feedback->visible = $request->input('visible') == 'on';
-            $feedback->tracks = $feedback->saveTracks($request);
-            $feedback->archive_name = $feedback->archiveTracks($request);
-            return $feedback->save() ?
+            $release->feedback->feedback_title = $request->input('feedback_title');
+            $release->feedback->visible = $request->input('visible') == 'on';
+            $release->feedback->tracks = $release->feedback->saveTracks($request);
+            $release->feedback->archive_name = $release->feedback->archiveTracks($request);
+            $release->feedback->renewRelatedFeedback($request->post('related'));
+            return $release->feedback->save() ?
                 redirect()->route('feedback_admin')->with(['success' => 'Фидбэк успешно отредактирован!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }
-        $release = Release::with('feedback')->find($id);
         return view('admin.feedback.edit', [
             'release' => $release,
             'feedback_list' => Feedback::orderBy('id', 'desc')->get()
@@ -47,7 +47,7 @@ class AdminFeedbackController extends Controller{
                 'feedback_title' => 'string|required',
                 'tracks' => 'array|required'
             ]);
-            $release->feedback->fill($request->post());
+            $release->feedback->feedback_title = $request->input('feedback_title');
             $release->feedback->sort_id = $release->feedback->getLatestSortId(Feedback::class);
             $release->feedback->visible = $request->input('visible') == 'on';
             $release->feedback->tracks = $release->feedback->saveTracks($request);
@@ -66,6 +66,7 @@ class AdminFeedbackController extends Controller{
     public function delete(Request $request, $id){
         if($id){
             $feedback = Feedback::where('release_id', $id)->firstOrFail();
+            $feedback->related()->detach();
             if($feedback->tracks){
                 // delete audio files
                 $path = public_path('audio/feedback/'.$feedback->release_id);

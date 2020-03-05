@@ -10,12 +10,7 @@ class Feedback extends SharedModel{
     protected $table = 'feedback';
     protected $casts = [
         'tracks' => 'array',
-        'also_available' => 'array',
         'visible' => 'boolean'
-    ];
-    protected $fillable = [
-        'also_available',
-        'feedback_title',
     ];
     public $file_path = 'audio/feedback';
 
@@ -27,12 +22,25 @@ class Feedback extends SharedModel{
         return $this->hasMany('App\FeedbackResult');
     }
 
+    public function related(){
+        return $this->belongsToMany('App\Feedback', 'related_feedback', 'feedback_rid', 'related_rid', 'release_id', 'release_id');
+    }
+
     public function LQDir(){
         return is_dir(public_path('/audio/feedback/'.$this->release->id.'/96/')) ? '96' : '320';
     }
 
     public function HQDir(){
         return is_dir(public_path('/audio/feedback/'.$this->release->id.'/320/')) ? '320' : '96';
+    }
+
+    public function renewRelatedFeedback($ids){
+        $this->related()->detach();
+        if($ids === null) return true;
+        foreach($ids as $id){
+            $this->related()->attach($id);
+        }
+        return true;
     }
 
     public function saveTracks(Request $request){

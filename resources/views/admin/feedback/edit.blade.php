@@ -36,7 +36,7 @@
                     @foreach($feedback_list as $item)
                         <div class="related">
                             <label style="margin-left: 0;">
-                                <input type="checkbox" name="also_available[]" value="{{ $item->release->id }}" @if($release->feedback->also_available && in_array($item->release->id, $release->feedback->also_available)) checked @endif>{{ $item->feedback_title }}
+                                <input type="checkbox" name="related[]" value="{{ $item->release_id }}" @if($release->feedback->related->contains($item)) checked @endif>{{ $item->feedback_title }}
                             </label>
                         </div>
                     @endforeach

@@ -2,6 +2,9 @@
 
 @section('content')
 
+{{--    @if($errors->any())--}}
+{{--        @dump($errors)--}}
+{{--    @endif--}}
     <section>
         <div class="cover">
             <a href="{{ route('release', $release->id) }}" target="_blank">
@@ -25,6 +28,7 @@
     </section>
     <div class="main_content">
         <form class="form-horizontal" id="feedback-form" method="POST">
+            @csrf
             <div class="info_inputs">
                 <span>Feedback Form</span>
                 <input type="text" class="form-control" id="name" name="name" required placeholder="Your Name">
@@ -52,7 +56,7 @@
                     </div>
                     <div class="rate_radio">
                         @for($i = 1; $i <= 10; $i++)
-                            <input type="radio" id="{{ $key.'_'.$i }}" name="rate[{{ $key }}]" value="{{ $i }}" required>
+                            <input type="radio" id="{{ $key.'_'.$i }}" name="rates[{{ $track['title'] }}]" value="{{ $i }}" required>
                         @endfor
                     </div>
                     <div class="rate_labels">

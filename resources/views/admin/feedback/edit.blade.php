@@ -15,19 +15,19 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-md-5 col-xs-12 release-image">
-                <img src="/images/releases/{{ $feedback->release->image ?? 'default.png' }}" id="preview">
+                <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview">
             </div>
             <div class="col-md-7 col-xs-12">
                 <div class="form-group">
                     <label>Название</label><br>
-                    <input type="text" class="form-control form-control__dark" name="feedback_title" value="{{ $feedback->feedback_title }}" required>
+                    <input type="text" class="form-control form-control__dark" name="feedback_title" value="{{ $release->feedback->feedback_title }}" required>
                     @if($errors->has('feedback_title'))
                         <p class="help-block">{{ $errors->first('feedback_title') }}</p>
                     @endif
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="visible" {{ !$feedback->visible ? : 'checked' }}> Опубликовано
+                        <input type="checkbox" name="visible" {{ !$release->feedback->visible ? : 'checked' }}> Опубликовано
                     </label>
                 </div>
                 <div class="related-all-feedback">
@@ -36,14 +36,14 @@
                     @foreach($feedback_list as $item)
                         <div class="related">
                             <label style="margin-left: 0;">
-                                <input type="checkbox" name="also_available[]" value="{{ $item->release->id }}" @if(in_array($item->release->id, $feedback->also_available)) checked @endif>{{ $item->feedback_title }}
+                                <input type="checkbox" name="also_available[]" value="{{ $item->release->id }}" @if($release->feedback->also_available && in_array($item->release->id, $release->feedback->also_available)) checked @endif>{{ $item->feedback_title }}
                             </label>
                         </div>
                     @endforeach
                 </div>
-                @if($feedback->archive_name && file_exists(public_path('audio/feedback/').$feedback->release->id.'/'.$feedback->archive_name))
+                @if($release->feedback->archive_name && file_exists(public_path('audio/feedback/').$release->feedback->release->id.'/'.$release->feedback->archive_name))
                     <h4>
-                        <a href="/audio/feedback/{{ $feedback->release->id }}/{{ $feedback->archive_name }}">
+                        <a href="/audio/feedback/{{ $release->feedback->release->id }}/{{ $release->feedback->archive_name }}">
                             Скачать архив
                         </a>
                     </h4>
@@ -51,7 +51,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-xs-12" id="reviews">
-                @foreach($feedback->tracks as $key => $track)
+                @foreach($release->feedback->tracks as $key => $track)
                     @if($loop->last)
                         @php $f_index = $key @endphp
                     @endif
@@ -62,14 +62,17 @@
                             <input type="text" class="form-control form-control__dark" name="tracks[{{ $key }}][title]" value="{{ $track['title'] }}" required>
                         </div>
                         <div class="form-group col-xs-6">
-                            <label>Файл в низком качестве</label><br>
-                            <input type="file" style="font-size: 13px;" name="tracks[{{ $key }}][96]" data-id="{{ $key }}" accept=".mp3">
-                        </div>
-                        <div class="form-group col-xs-6">
                             <label>Файл в высоком качестве</label><br>
                             <input type="file" style="font-size: 13px;" name="tracks[{{ $key }}][320]" data-id="{{ $key }}" accept=".mp3">
                         </div>
-                        <audio src="/audio/feedback/{{ $feedback->release->id }}/{{ $feedback->LQDir() }}/{{ $track[$feedback->LQDir()] }}" controls style="width: 100%;"></audio>
+                        <div class="form-group col-xs-6">
+                            <label>Файл в низком качестве</label><br>
+                            <input type="file" style="font-size: 13px;" name="tracks[{{ $key }}][96]" data-id="{{ $key }}" accept=".mp3">
+                        </div>
+                        @if(key_exists(96, $track) && $track[96] !== '' || key_exists(320, $track) && $track[320] !== '')
+                            <audio src="/audio/feedback/{{ $release->id }}/{{ $release->feedback->LQDir() }}/{{ $track[$release->feedback->LQDir()] }}" controls style="width: 100%;"></audio>
+                        @endif
+                        <div class="clearfix"></div>
                     </div>
                 @endforeach
             </div>
@@ -88,12 +91,12 @@
                 <input type="text" class="form-control form-control__dark" name="tracks[%i%][title]" required>
             </div>
             <div class="form-group col-xs-6">
-                <label>Файл в низком качестве</label><br>
-                <input type="file" style="font-size: 13px;" name="tracks[%i%][96]" data-id="%i%" accept=".mp3">
-            </div>
-            <div class="form-group col-xs-6">
                 <label>Файл в высоком качестве</label><br>
                 <input type="file" style="font-size: 13px;" name="tracks[%i%][320]" data-id="%i%" accept=".mp3">
+            </div>
+            <div class="form-group col-xs-6">
+                <label>Файл в низком качестве</label><br>
+                <input type="file" style="font-size: 13px;" name="tracks[%i%][96]" data-id="%i%" accept=".mp3">
             </div>
             <div class="clearfix"></div>
         </div>

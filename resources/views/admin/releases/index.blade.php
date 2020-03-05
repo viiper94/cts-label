@@ -48,10 +48,17 @@
                                     <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
                                     <span class="hidden-xs hidden-sm">Удалить</span>
                                 </a>
-                                <a class='btn btn-info' href='{{ route('feedback_admin') }}/edit/{{ $release->id }}'>
-                                    <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
-                                    <span class="hidden-xs hidden-sm">Feedback</span>
-                                </a>
+                                @if(!is_null($release->feedback))
+                                    <a class='btn btn-info' href='{{ route('feedback_admin') }}/edit/{{ $release->id }}'>
+                                        <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+                                        <span class="hidden-xs hidden-sm">Edit Feedback</span>
+                                    </a>
+                                @else
+                                    <a class='btn btn-info' href='{{ route('feedback_admin') }}/add/{{ $release->id }}'>
+                                        <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+                                        <span class="hidden-xs hidden-sm">New Feedback</span>
+                                    </a>
+                                @endif
                             </div>
                             <div class='item-sort col-xs-2 flex-column'>
                                 <a class='btn btn-default btn-default__dark' href='{{ route('releases_admin') }}/sort/{{ $release->id }}/up'>

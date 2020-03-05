@@ -2,11 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use ZipArchive;
 
-class Feedback extends Model{
+class Feedback extends SharedModel{
 
     protected $table = 'feedback';
     protected $casts = [
@@ -37,7 +36,7 @@ class Feedback extends Model{
     }
 
     public function saveTracks(Request $request){
-        $path = public_path($this->file_path).'/'.$this->release->id;
+        $path = public_path($this->file_path).'/'.$this->release_id;
         $tracks = array();
         foreach($request->post('tracks') as $key => $track){
             $tracks[$key]['title'] = $track['title'];
@@ -49,7 +48,7 @@ class Feedback extends Model{
                 foreach($file as $bitrate => $item){
                     if ($item->isValid()) {
                         // deleting old file
-                        if(isset($this->tracks[$key][$bitrate]) && file_exists($path.'/'.$bitrate.'/'.$this->tracks[$key][$bitrate])){
+                        if(isset($this->tracks[$key][$bitrate]) && is_file($path.'/'.$bitrate.'/'.$this->tracks[$key][$bitrate])){
                             unlink($path.'/'.$bitrate.'/'.$this->tracks[$key][$bitrate]);
                         }
                         // save new file
@@ -61,10 +60,10 @@ class Feedback extends Model{
         }
         foreach($this->tracks as $key => $track){
             if(!isset($request->post('tracks')[$key])){
-                if(isset($this->tracks[$key][96]) && file_exists($path.'/96/'.$this->tracks[$key][96])){
+                if(isset($this->tracks[$key][96]) && is_file($path.'/96/'.$this->tracks[$key][96])){
                     unlink($path.'/96/'.$this->tracks[$key][96]);
                 }
-                if(isset($this->tracks[$key][320]) && file_exists($path.'/320/'.$this->tracks[$key][320])){
+                if(isset($this->tracks[$key][320]) && is_file($path.'/320/'.$this->tracks[$key][320])){
                     unlink($path.'/320/'.$this->tracks[$key][320]);
                 }
             }
@@ -74,14 +73,14 @@ class Feedback extends Model{
 
     public function archiveTracks(){
         $old = public_path('audio/feedback/'.$this->release->id.'/').$this->archive_name;
-        if(file_exists($old)){
+        if(is_file($old)){
             unlink($old);
         }
 
         $zip = new ZipArchive();
         $filename = htmlentities(str_replace(' ', '_', trim($this->feedback_title))).'.zip';
 
-        if($zip->open(public_path('/audio/feedback/'.$this->release->id.'/'.$this->archive_name), ZipArchive::CREATE) !== true){
+        if($zip->open(public_path('/audio/feedback/'.$this->release->id.'/'.$filename), ZipArchive::CREATE) !== true){
             return false;
         }
 
@@ -90,7 +89,6 @@ class Feedback extends Model{
             $zip->addFile(public_path('audio/feedback/'.$this->release->id.'/'.$this->HQDir()).'/'.$track[$this->HQDir()],
                 htmlentities(trim($this->feedback_title)).'/'.$track[$this->HQDir()]);
         }
-
         $zip->close();
         return $filename;
     }

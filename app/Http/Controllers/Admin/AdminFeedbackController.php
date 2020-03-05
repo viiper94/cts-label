@@ -63,4 +63,22 @@ class AdminFeedbackController extends Controller{
         ]);
     }
 
+    public function delete(Request $request, $id){
+        if($id){
+            $feedback = Feedback::where('release_id', $id)->firstOrFail();
+            if($feedback->tracks){
+                // delete audio files
+                $path = public_path('audio/feedback/'.$feedback->release_id);
+                if(is_dir($path)){
+                    $this->rrmdir($path);
+                }
+            }
+            return $feedback->delete() ?
+                redirect()->back()->with(['success' => 'Фидбэк успешно удалён!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }else{
+            return abort(404);
+        }
+    }
+
 }

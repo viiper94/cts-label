@@ -27,7 +27,7 @@
                         </div>
                         <div class='item-info col-md-6 col-xs-8 flex-column' style="align-items: start">
                             <h4>
-                                {{ $feedback->release->title }}
+                                {{ $feedback->feedback_title }}
                                 <a href="{{ route('release', $feedback->release->id) }}" style="color: inherit" target='_blank'>
                                     <span class='glyphicon glyphicon-paperclip' aria-hidden='true'></span>
                                 </a>

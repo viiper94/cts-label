@@ -15,6 +15,7 @@ $(document).ready(function(){
     $('#uploader').change(function(){
         readURL(this, '#preview');
     });
+    $('.collapse').collapse();
 
     $(document).on('keyup', '#search-related', function(){
         let query = $(this).val();

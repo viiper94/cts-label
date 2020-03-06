@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Feedback;
+use App\FeedbackResult;
 use App\Http\Controllers\Controller;
 use App\Release;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class AdminFeedbackController extends Controller{
     }
 
     public function edit(Request $request, $id){
-        $release = Release::with('feedback.related')->find($id);
+        $release = Release::with('feedback.related', 'feedback.results')->find($id);
         if($request->post() && $id){
             $this->validate($request, [
                 'feedback_title' => 'string|required',
@@ -76,6 +77,16 @@ class AdminFeedbackController extends Controller{
             }
             return $feedback->delete() ?
                 redirect()->back()->with(['success' => 'Фидбэк успешно удалён!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }else{
+            return abort(404);
+        }
+    }
+
+    public function removeResult(Request $request, $id){
+        if($id){
+            return FeedbackResult::find($id)->delete() ?
+                redirect()->back()->with(['success' => 'Успешно удалёно!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }else{
             return abort(404);

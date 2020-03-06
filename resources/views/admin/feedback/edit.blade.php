@@ -36,7 +36,8 @@
                     @foreach($feedback_list as $item)
                         <div class="related">
                             <label style="margin-left: 0;">
-                                <input type="checkbox" name="related[]" value="{{ $item->release_id }}" @if($release->feedback->related->contains($item)) checked @endif>{{ $item->feedback_title }}
+                                <input type="checkbox" name="related[]" value="{{ $item->release_id }}"
+                                       @if($release->feedback->related->contains($item)) checked @endif>{{ $item->feedback_title }}
                             </label>
                         </div>
                     @endforeach
@@ -81,6 +82,40 @@
             </div>
             <div class="clearfix"></div>
         </form>
+
+        @if($release->feedback->results->count() > 0)
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                @foreach($release->feedback->results as $key => $result)
+                    <div class="panel panel__dark panel-default panel-default__dark">
+                        <a class="delete-feedback-result-btn btn" href="/cts-admin/feedback/removeResult/{{ $result->id }}"
+                            onclick="return confirm('Вы уверены, что хотите удалить?')">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                        <div class="panel-heading panel-heading__dark" role="tab" id="heading_{{ $key }}">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_{{ $key }}" aria-expanded="false" aria-controls="collapse_{{ $key }}">
+                                    Фидбэк от {{ $result->name }} ({{ $result->created_at }})
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse_{{ $key }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_{{ $key }}">
+                            <div class="panel-body panel-body__dark">
+                                 E-mail: <b>{{ $result->email }}</b><br><br>
+                                <b>Оценки</b>:<br>
+                                @foreach($result->rates as $track => $score)
+                                    <b>{{ $score }}</b>: "{{ $track }}"<br>
+                                @endforeach
+                                <br>
+                                @if($result->best_track)
+                                    Best track: <b>{{ $result->best_track }}</b><br>
+                                @endif
+                                Коммент: <b>{!! nl2br(e($result->comment)) !!}</b>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </div>
 
     <script type="text/html" id="reviews_template">

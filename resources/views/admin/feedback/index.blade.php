@@ -28,6 +28,9 @@
                         <div class='item-info col-md-6 col-xs-8 flex-column' style="align-items: start">
                             <h4>
                                 {{ $feedback->feedback_title }}
+                                @if($feedback->results->count() > 0)
+                                    <span class="label label-success">{{ $feedback->results->count() }}</span>
+                                @endif
                                 <a href="{{ route('release', $feedback->release->id) }}" style="color: inherit" target='_blank'>
                                     <span class='glyphicon glyphicon-paperclip' aria-hidden='true'></span>
                                 </a>
@@ -35,7 +38,7 @@
                             <span>
                                 <a href='{{ route('feedback', $feedback->release->id) }}' target='_blank' class='btn btn-default btn-default__dark'>
                                     <span class='glyphicon glyphicon-share' aria-hidden='true'></span>
-                                    Ссылка на фидбэк
+                                    Смотреть страницу фидбэка
                                 </a>
                             </span>
                         </div>

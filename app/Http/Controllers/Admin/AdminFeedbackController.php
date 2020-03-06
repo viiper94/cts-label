@@ -11,7 +11,7 @@ class AdminFeedbackController extends Controller{
 
     public function index(Request $request){
         return view('admin.feedback.index', [
-            'feedback_list' => Feedback::with('release')->orderBy('id', 'desc')->paginate(10)
+            'feedback_list' => Feedback::with('release', 'results')->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 

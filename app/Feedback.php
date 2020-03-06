@@ -19,7 +19,7 @@ class Feedback extends SharedModel{
     }
 
     public function results(){
-        return $this->hasMany('App\FeedbackResult');
+        return $this->hasMany('App\FeedbackResult', 'feedback_rid', 'release_id');
     }
 
     public function related(){

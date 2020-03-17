@@ -470,6 +470,7 @@ class ComposerStaticInit603a0782a529bf681770707b42867a27
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Feedback' => __DIR__ . '/../..' . '/app/Feedback.php',
+        'App\\FeedbackResult' => __DIR__ . '/../..' . '/app/FeedbackResult.php',
         'App\\Http\\Controllers\\Admin\\AdminArtistsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminArtistsController.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\AdminFeedbackController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminFeedbackController.php',

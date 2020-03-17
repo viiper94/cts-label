@@ -10,6 +10,7 @@ return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Feedback' => $baseDir . '/app/Feedback.php',
+    'App\\FeedbackResult' => $baseDir . '/app/FeedbackResult.php',
     'App\\Http\\Controllers\\Admin\\AdminArtistsController' => $baseDir . '/app/Http/Controllers/Admin/AdminArtistsController.php',
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
     'App\\Http\\Controllers\\Admin\\AdminFeedbackController' => $baseDir . '/app/Http/Controllers/Admin/AdminFeedbackController.php',

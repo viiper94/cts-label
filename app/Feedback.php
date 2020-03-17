@@ -23,7 +23,7 @@ class Feedback extends SharedModel{
     }
 
     public function related(){
-        return $this->belongsToMany('App\Feedback', 'related_feedback', 'feedback_rid', 'related_rid', 'release_id', 'release_id');
+        return $this->belongsToMany('App\Feedback', 'related_feedback', 'feedback_id', 'related_id');
     }
 
     public function LQDir(){

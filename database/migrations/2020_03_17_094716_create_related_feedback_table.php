@@ -14,8 +14,8 @@ class CreateRelatedFeedbackTable extends Migration
     public function up()
     {
         Schema::create('related_feedback', function (Blueprint $table) {
-            $table->integer('feedback_rid');
-            $table->integer('related_rid');
+            $table->integer('feedback_id');
+            $table->integer('related_id');
             $table->timestamps();
         });
     }

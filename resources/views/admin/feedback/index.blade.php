@@ -63,10 +63,6 @@
             <div class="clearfix"></div>
         </div>
         <div class="top-container flex">
-            <a href='{{ route('feedback_admin') }}/add' class='btn btn-success'>
-                <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
-                Кастомная страница фидбэка
-            </a>
             <div class="pagination-container pagination__dark">
                 {{ $feedback_list->appends(['q' => Request::input('q')])->links() }}
             </div>

@@ -32,10 +32,10 @@
         <span style="font-size: 18px;">Thank You!<br>Now You can find download links below!</span>
     </section>
     <div class="main_content">
-        @foreach($release->feedback->tracks as $track)
-            <a href="/audio/feedback/{{ $release->id }}/320/{{ $track[320] }}" target="_blank">{{ $track['title'] }}</a>
+        @foreach($feedback->tracks as $track)
+            <a href="/audio/feedback/{{ $feedback->slug }}/320/{{ $track[320] }}" target="_blank">{{ $track['title'] }}</a>
         @endforeach
-        <a class="archive" href="/audio/feedback/{{ $release->id }}/{{ $release->feedback->archive_name }}" target="_blank">Download whole release by one archive </a>
+        <a class="archive" href="/audio/feedback/{{ $feedback->slug }}/{{ $feedback->archive_name }}" target="_blank">Download whole release by one archive </a>
     </div>
 
 @endsection

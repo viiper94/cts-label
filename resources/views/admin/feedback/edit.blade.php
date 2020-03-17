@@ -1,6 +1,9 @@
 @extends('admin.layout.layout')
 
 @section('admin-content')
+    @if($errors->any())
+        @dd($errors->first())
+    @endif
     <div class="container">
         @include('admin.layout.alert')
         <form enctype="multipart/form-data" method="post">
@@ -15,19 +18,25 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-md-5 col-xs-12 release-image">
-                <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview">
+                <label>Обложка</label><br>
+                @if(!$feedback->release)
+                    <img src="/images/feedback/{{ $feedback->image ?? 'default.png' }}" id="preview">
+                    <input type="file"  name="image" value="{{ $feedback->image }}" accept="image/*">
+                @else
+                    <img src="/images/releases/{{ $feedback->release->image ?? 'default.png' }}" id="preview">
+                @endif
             </div>
             <div class="col-md-7 col-xs-12">
                 <div class="form-group">
                     <label>Название</label><br>
-                    <input type="text" class="form-control form-control__dark" name="feedback_title" value="{{ $release->feedback->feedback_title }}" required>
+                    <input type="text" class="form-control form-control__dark" name="feedback_title" value="{{ $feedback->feedback_title }}" required>
                     @if($errors->has('feedback_title'))
                         <p class="help-block">{{ $errors->first('feedback_title') }}</p>
                     @endif
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="visible" {{ !$release->feedback->visible ? : 'checked' }}> Опубликовано
+                        <input type="checkbox" name="visible" {{ !$feedback->visible ? : 'checked' }}> Опубликовано
                     </label>
                 </div>
                 <div class="related-all-feedback">
@@ -36,15 +45,16 @@
                     @foreach($feedback_list as $item)
                         <div class="related">
                             <label style="margin-left: 0;">
-                                <input type="checkbox" name="related[]" value="{{ $item->release_id }}"
-                                       @if($release->feedback->related->contains($item)) checked @endif>{{ $item->feedback_title }}
+                                <input type="checkbox" name="related[]" value="{{ $item->id }}"
+                                       @if($feedback->related->contains($item)) checked @endif>{{ $item->feedback_title }}
                             </label>
                         </div>
                     @endforeach
                 </div>
-                @if($release->feedback->archive_name && file_exists(public_path('audio/feedback/').$release->feedback->release->id.'/'.$release->feedback->archive_name))
+                @if($feedback->archive_name && file_exists(public_path('audio/feedback/').$feedback->slug.'/'.$feedback->archive_name))
                     <h4>
-                        <a href="/audio/feedback/{{ $release->feedback->release->id }}/{{ $release->feedback->archive_name }}">
+                        <a href="/audio/feedback/{{ $feedback->slug }}/{{ $feedback->archive_name }}" class="btn btn-success">
+                            <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span>
                             Скачать архив
                         </a>
                     </h4>
@@ -52,7 +62,7 @@
             </div>
             <div class="clearfix"></div>
             <div class="col-xs-12" id="reviews">
-                @foreach($release->feedback->tracks as $key => $track)
+                @foreach($feedback->tracks as $key => $track)
                     @if($loop->last)
                         @php $f_index = $key @endphp
                     @endif
@@ -71,7 +81,7 @@
                             <input type="file" style="font-size: 13px;" name="tracks[{{ $key }}][96]" data-id="{{ $key }}" accept=".mp3">
                         </div>
                         @if(key_exists(96, $track) && $track[96] !== '' || key_exists(320, $track) && $track[320] !== '')
-                            <audio src="/audio/feedback/{{ $release->id }}/{{ $release->feedback->LQDir() }}/{{ $track[$release->feedback->LQDir()] }}" controls style="width: 100%;"></audio>
+                            <audio src="/audio/feedback/{{ $feedback->slug }}/{{ $feedback->LQDir() }}/{{ $track[$feedback->LQDir()] }}" controls style="width: 100%;"></audio>
                         @endif
                         <div class="clearfix"></div>
                     </div>
@@ -83,9 +93,9 @@
             <div class="clearfix"></div>
         </form>
 
-        @if($release->feedback->results->count() > 0)
+        @if($feedback->results->count() > 0)
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                @foreach($release->feedback->results as $key => $result)
+                @foreach($feedback->results as $key => $result)
                     <div class="panel panel__dark panel-default panel-default__dark">
                         <a class="delete-feedback-result-btn btn" href="/cts-admin/feedback/removeResult/{{ $result->id }}"
                             onclick="return confirm('Вы уверены, что хотите удалить?')">

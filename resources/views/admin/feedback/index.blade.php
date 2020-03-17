@@ -22,8 +22,14 @@
                 <div class="col-xs-12 col-md-6">
                     <div class='item'>
                         <div class='item-cover col-xs-2'>
-                            <a href="{{ route('feedback_admin') }}/edit/{{ $feedback->release->id }}"
-                               style="background-image: url(/images/releases/{{ $feedback->release->image ?? 'default.png' }})"></a>
+                            <a href="{{ route('feedback_admin') }}/edit/{{ $feedback->slug }}"
+                                @if($feedback->release)
+                                    style="background-image: url(/images/releases/{{ $feedback->release->image ?? 'default.png' }})"
+                                @else
+                                    style="background-image: url(/images/feedback/{{ $feedback->image ?? 'default.png' }})"
+                                @endif>
+
+                            </a>
                         </div>
                         <div class='item-info col-md-6 col-xs-8 flex-column' style="align-items: start">
                             <h4>
@@ -31,27 +37,29 @@
                                 @if($feedback->results->count() > 0)
                                     <span class="label label-success">{{ $feedback->results->count() }}</span>
                                 @endif
-                                <a href="{{ route('release', $feedback->release->id) }}" style="color: inherit" target='_blank'>
-                                    <span class='glyphicon glyphicon-paperclip' aria-hidden='true'></span>
-                                </a>
+                                @if($feedback->release)
+                                    <a href="{{ route('release', $feedback->release_id) }}" style="color: inherit" target='_blank'>
+                                        <span class='glyphicon glyphicon-paperclip' aria-hidden='true'></span>
+                                    </a>
+                                @endif
                             </h4>
                             <span>
-                                <a href='{{ route('feedback', $feedback->release->id) }}' target='_blank' class='btn btn-default btn-default__dark'>
+                                <a href='{{ route('feedback', $feedback->slug) }}' target='_blank' class='btn btn-default btn-default__dark'>
                                     <span class='glyphicon glyphicon-share' aria-hidden='true'></span>
                                     Смотреть страницу фидбэка
                                 </a>
                             </span>
                         </div>
                         <div class='item-sort col-md-4 col-xs-2 flex-column'>
-                            <a class='btn btn-success' href='{{ route('feedback_admin') }}/edit/{{ $feedback->release->id }}'>
+                            <a class='btn btn-success' href='{{ route('feedback_admin') }}/edit/{{ $feedback->slug }}'>
                                 <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
                                 <span class="hidden-xs hidden-sm">Редактировать</span>
                             </a>
-                            <a class='btn btn-danger' href='{{ route('feedback_admin') }}/delete/{{ $feedback->release->id }}' onclick='return confirm("Удалить?")'>
+                            <a class='btn btn-danger' href='{{ route('feedback_admin') }}/delete/{{ $feedback->slug }}' onclick='return confirm("Удалить?")'>
                                 <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
                                 <span class="hidden-xs hidden-sm">Удалить</span>
                             </a>
-                            <a class='btn btn-info copy-link' data-clipboard-text="{{ route('feedback', $feedback->release->id) }}">
+                            <a class='btn btn-info copy-link' data-clipboard-text="{{ route('feedback', $feedback->slug) }}">
                                 <span class='glyphicon glyphicon-link' aria-hidden='true'></span>
                                 <span class="hidden-xs hidden-sm">Скопировать ссылку</span>
                             </a>

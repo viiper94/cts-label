@@ -28,8 +28,8 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/about.html', 'AppController@about')->name('about');
     Route::get('/studio.html', 'AppController@studio')->name('studio');
     Route::get('/ctschool.html', 'AppController@ctschool')->name('school');
-    Route::any('/feedback/{release_id}', 'FeedbackController@show')->name('feedback');
-    Route::get('/feedback/{release_id}/end', 'FeedbackController@end')->name('feedback.end');
+    Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');
+    Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
 
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function () {
 

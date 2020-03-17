@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback;
 use App\FeedbackResult;
 use App\Release;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller{
 
-    public function show(Request $request, $release_id){
-        $release = Release::with('feedback.related')->findOrFail($release_id);
-        if($request->post() && $release_id){
+    public function show(Request $request, $slug){
+        $feedback = Feedback::with('related', 'release')->where('slug', $slug)->firstOrFail();
+        if($request->post() && $slug){
             $this->validate($request, [
                 'name' => 'required|string',
                 'email' => 'required|email',
@@ -19,21 +20,21 @@ class FeedbackController extends Controller{
             ]);
             $result = new FeedbackResult();
             $result->fill($request->post());
-            $result->feedback_rid = $release_id;
-            $result->sendFeedback($release->feedback);
+            $result->feedback_id = $feedback->id;
+            $result->sendFeedback($feedback);
             return $result->save() ?
-                redirect()->route('feedback.end', $release_id) :
+                redirect()->route('feedback.end', $slug) :
                 redirect()->back()->withErrors(['!!!']);
 
         }
         return view('feedback.show', [
-            'release' => $release
+            'feedback' => $feedback
         ]);
     }
 
-    public function end($release_id){
+    public function end($slug){
         return view('feedback.end', [
-            'release' => Release::with('feedback')->findOrFail($release_id)
+            'feedback' => Feedback::with('release')->where('slug', $slug)->firstOrFail()
         ]);
     }
 

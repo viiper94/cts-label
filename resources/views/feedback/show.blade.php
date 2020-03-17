@@ -7,9 +7,13 @@
 {{--    @endif--}}
     <section>
         <div class="cover">
-            <a href="{{ route('release', $release->id) }}" target="_blank">
-                <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" style="max-width: 250px;">
-            </a>
+            @if($feedback->release)
+                <a href="{{ route('release', $feedback->release->id) }}" target="_blank">
+                    <img src="/images/releases/{{ $feedback->release->image }}" alt="{{ $feedback->release->title }}" style="max-width: 250px;">
+                </a>
+            @else
+                <img src="/images/feedback/{{ $feedback->image }}" alt="{{ $feedback->feedback_title }}" style="max-width: 250px;">
+            @endif
         </div>
         <div class="header_text_en">
             <span>Please let us know what you think by filling out this feedback form! After filling out our feedback
@@ -21,8 +25,8 @@
         </div>
         <div class="also_avaliable">
             <span>Also avaliable:</span>
-            @foreach($release->feedback->related as $track)
-                <a href="{{ route('feedback', $track->release_id) }}" target="_blank">{{ $track->feedback_title }}</a>
+            @foreach($feedback->related as $track)
+                <a href="{{ route('feedback', $track->slug) }}" target="_blank">{{ $track->feedback_title }}</a>
             @endforeach
         </div>
     </section>
@@ -36,7 +40,7 @@
             </div>
 
             <!-- ----------- Tracks ------------- -->
-            @foreach($release->feedback->tracks as $key => $track)
+            @foreach($feedback->tracks as $key => $track)
 
                 <div class="track" data-id="{{ $key }}">
                     <div class="info">
@@ -67,11 +71,11 @@
                 </div>
             @endforeach
 
-            @if(count($release->feedback->tracks) > 1)
+            @if(count($feedback->tracks) > 1)
             <!-- ----------- Best track ------------- -->
             <div class="best_track">
                 <span>Best Track/Remix:</span>
-                @foreach($release->feedback->tracks as $track)
+                @foreach($feedback->tracks as $track)
                     <label>
                         <input type="radio" name="best_track" value="{{ $track['title'] }}" required>&nbsp
                         {{ $track['title'] }}
@@ -91,7 +95,7 @@
 
     <script>
         let players = [];
-        @foreach($release->feedback->tracks as $key => $track)
+        @foreach($feedback->tracks as $key => $track)
 
             let wavesurfer_{{ $key }} = WaveSurfer.create({
                 container: '#waveform_{{ $key }}',
@@ -114,7 +118,7 @@
                 ]*/
             });
             players.push(wavesurfer_{{ $key }});
-            wavesurfer_{{ $key }}.load('/audio/feedback/{{ $release->id }}/320/{{ $track[320] }}');
+            wavesurfer_{{ $key }}.load('/audio/feedback/{{ $feedback->slug }}/320/{{ $track[320] }}');
             wavesurfer_{{ $key }}.on('ready', function(){
 
                 $('.track[data-id={{ $key }}] .bar').css({

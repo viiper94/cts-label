@@ -49,7 +49,7 @@
                                     <span class="hidden-xs hidden-sm">Удалить</span>
                                 </a>
                                 @if(!is_null($release->feedback))
-                                    <a class='btn btn-info' href='{{ route('feedback_admin') }}/edit/{{ $release->id }}'>
+                                    <a class='btn btn-info' href='{{ route('feedback_admin') }}/edit/{{ $release->feedback->slug }}'>
                                         <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
                                         <span class="hidden-xs hidden-sm">Edit Feedback</span>
                                     </a>

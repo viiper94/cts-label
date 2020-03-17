@@ -19,7 +19,7 @@ class Feedback extends SharedModel{
     }
 
     public function results(){
-        return $this->hasMany('App\FeedbackResult', 'feedback_rid', 'release_id');
+        return $this->hasMany('App\FeedbackResult', 'feedback_id');
     }
 
     public function related(){
@@ -27,11 +27,11 @@ class Feedback extends SharedModel{
     }
 
     public function LQDir(){
-        return is_dir(public_path('/audio/feedback/'.$this->release->id.'/96/')) ? '96' : '320';
+        return is_dir(public_path('/audio/feedback/'.$this->id.'/96/')) ? '96' : '320';
     }
 
     public function HQDir(){
-        return is_dir(public_path('/audio/feedback/'.$this->release->id.'/320/')) ? '320' : '96';
+        return is_dir(public_path('/audio/feedback/'.$this->id.'/320/')) ? '320' : '96';
     }
 
     public function renewRelatedFeedback($ids){
@@ -44,7 +44,7 @@ class Feedback extends SharedModel{
     }
 
     public function saveTracks(Request $request){
-        $path = public_path($this->file_path).'/'.$this->release_id;
+        $path = public_path($this->file_path).'/'.$this->slug;
         $tracks = array();
         foreach($request->post('tracks') as $key => $track){
             $tracks[$key]['title'] = $track['title'];
@@ -60,7 +60,7 @@ class Feedback extends SharedModel{
                             unlink($path.'/'.$bitrate.'/'.$this->tracks[$key][$bitrate]);
                         }
                         // save new file
-                        $item->move(public_path('audio/feedback/'.$this->release->id.'/'.$bitrate), $item->getClientOriginalName());
+                        $item->move(public_path('audio/feedback/'.$this->slug.'/'.$bitrate), $item->getClientOriginalName());
                         $tracks[$key][$bitrate] = $item->getClientOriginalName();
                     }
                 }
@@ -80,7 +80,7 @@ class Feedback extends SharedModel{
     }
 
     public function archiveTracks(){
-        $old = public_path('audio/feedback/'.$this->release->id.'/').$this->archive_name;
+        $old = public_path('audio/feedback/'.$this->slug.'/').$this->archive_name;
         if(is_file($old)){
             unlink($old);
         }
@@ -88,13 +88,13 @@ class Feedback extends SharedModel{
         $zip = new ZipArchive();
         $filename = htmlentities(str_replace(' ', '_', trim($this->feedback_title))).'.zip';
 
-        if($zip->open(public_path('/audio/feedback/'.$this->release->id.'/'.$filename), ZipArchive::CREATE) !== true){
+        if($zip->open(public_path('/audio/feedback/'.$this->slug.'/'.$filename), ZipArchive::CREATE) !== true){
             return false;
         }
 
         $zip->addEmptyDir(htmlentities(trim($this->feedback_title)));
         foreach($this->tracks as $track){
-            $zip->addFile(public_path('audio/feedback/'.$this->release->id.'/'.$this->HQDir()).'/'.$track[$this->HQDir()],
+            $zip->addFile(public_path('audio/feedback/'.$this->slug.'/'.$this->HQDir()).'/'.$track[$this->HQDir()],
                 htmlentities(trim($this->feedback_title)).'/'.$track[$this->HQDir()]);
         }
         $zip->close();

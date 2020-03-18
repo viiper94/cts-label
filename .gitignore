@@ -13,9 +13,11 @@ yarn-error.log
 /public/images/artists/*
 !/public/images/artists/default.png
 /public/images/releases/*
-/public/images/feedback/*
 !/public/images/releases/default.png
+/public/images/feedback/*
 !/public/images/feedback/default.png
+/public/images/users/*
+!/public/images/users/default.png
 /public/images/studio/services/*
 !/public/images/studio/services/default.png
 /public/images/school/courses/*

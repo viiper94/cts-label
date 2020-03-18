@@ -36,4 +36,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public $statusCodes = [
+        0 => [
+            'name' => 'Пользователь',
+            'labelClass' => 'label-default'
+        ],
+        1 => [
+            'name' => 'Студент',
+            'labelClass' => 'label-info'
+        ],
+        2 => [
+            'name' => 'Выпускник',
+            'labelClass' => 'label-success'
+        ],
+    ];
+
+    public function cv(){
+        return $this->hasOne('App\Cv');
+    }
+
+    public function getStatus(){
+        if($this->is_admin) return ['name' => 'Aдминистратор', 'labelClass' => 'label-danger'];
+        return key_exists($this->status, $this->statusCodes) ? $this->statusCodes[$this->status] : $this->statusCodes[0];
+    }
+
 }

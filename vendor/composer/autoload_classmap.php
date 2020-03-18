@@ -18,6 +18,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\AdminReviewsController' => $baseDir . '/app/Http/Controllers/Admin/AdminReviewsController.php',
     'App\\Http\\Controllers\\Admin\\AdminSchoolController' => $baseDir . '/app/Http/Controllers/Admin/AdminSchoolController.php',
     'App\\Http\\Controllers\\Admin\\AdminStudioController' => $baseDir . '/app/Http/Controllers/Admin/AdminStudioController.php',
+    'App\\Http\\Controllers\\Admin\\AdminUsersController' => $baseDir . '/app/Http/Controllers/Admin/AdminUsersController.php',
     'App\\Http\\Controllers\\AppController' => $baseDir . '/app/Http/Controllers/AppController.php',
     'App\\Http\\Controllers\\ArtistsController' => $baseDir . '/app/Http/Controllers/ArtistsController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',

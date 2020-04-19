@@ -116,11 +116,11 @@ class AdminReleasesController extends Controller{
         if($request->ajax() && $request->input('query')){
             $result = Release::select('id', 'title')->where($request->post('searchBy'), 'like', '%'.$request->post('query').'%')
                 ->orderBy('sort_id', 'desc')->get();
-            $parent = Release::with('related')->find($request->post('id'));
+            $parent = $request->post('id') ? Release::with('related')->find($request->post('id')) : null;
             $response = array();
             foreach($result as $release){
                 $checked = false;
-                if($parent->related->contains($release)) $checked = true;
+                if($parent && $parent->related->contains($release)) $checked = true;
                 $release = $release->toArray();
                 $release['checked'] = $checked;
                 $response[] = $release;

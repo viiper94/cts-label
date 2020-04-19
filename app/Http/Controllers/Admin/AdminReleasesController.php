@@ -45,7 +45,6 @@ class AdminReleasesController extends Controller{
                 $release->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
                 $image->move(public_path('images/releases'), $release->image);
             }
-            $release->renewRelatedReleases($request->post('related'));
             return $release->save() ?
                 redirect()->route('releases_admin')->with(['success' => 'Релиз успешно отредактирован!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
@@ -77,10 +76,12 @@ class AdminReleasesController extends Controller{
                 $release->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
                 $image->move(public_path('images/releases'), $release->image);
             }
-            if($request->post('related')) $release->renewRelatedReleases($request->post('related'));
-            return $release->save() ?
-                redirect()->route('releases_admin')->with(['success' => 'Релиз успешно добавлен!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
+            if($release->save()){
+                $release->renewRelatedReleases($request->post('related'));
+                return redirect()->route('releases_admin')->with(['success' => 'Релиз успешно добавлен!']);
+            }else{
+                return redirect()->back()->withErrors(['Возникла ошибка =(']);
+            }
         }
         return view('admin.releases.edit', [
             'release_list' => Release::orderBy('sort_id', 'desc')->get(),

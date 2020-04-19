@@ -32,7 +32,7 @@ class AdminReleasesController extends Controller{
             ]);
             $release = Release::with('related')->find($id);
             $release->fill($request->post());
-            $release->release_date = date('Y-m-d', strtotime($release->release_date));
+            $release->release_date = date('Y-m-d', strtotime($request->input('release_date')));
             $release->visible =  $request->input('visible') == 'on';
             if($request->hasFile('image')){
                 // delete old image
@@ -69,7 +69,7 @@ class AdminReleasesController extends Controller{
                 'related' => 'array',
             ]);
             $release->fill($request->post());
-            $release->release_date = date('Y-m-d', strtotime($release->release_date));
+            $release->release_date = date('Y-m-d', strtotime($request->input('release_date')));
             $release->sort_id =  intval($release->getLatestSortId(Release::class)) + 1;
             $release->visible =  $request->input('visible') == 'on';
             if($request->hasFile('image')){

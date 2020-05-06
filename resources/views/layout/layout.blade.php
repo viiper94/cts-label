@@ -11,6 +11,7 @@
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/cts1.css" rel="stylesheet">
     @yield('assets')
+    @include('layout.scripts')
 </head>
 <body>
     <div id="fb-root"></div>
@@ -19,7 +20,5 @@
         @yield('content')
     </section>
     @include('layout.footer')
-    @include('layout.scripts')
-    @yield('scripts')
 </body>
 </html>

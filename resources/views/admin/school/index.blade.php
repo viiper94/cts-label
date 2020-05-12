@@ -84,10 +84,6 @@
                                 <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
                                 Отсортировать
                             </button>
-                            <a href='{{ route('school_admin') }}/addcourse' class='btn btn-success'>
-                                <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
-                                Добавить услугу
-                            </a>
                         </div>
                     </div>
                     <div class="table-responsive">

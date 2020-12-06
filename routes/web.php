@@ -30,6 +30,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/ctschool.html', 'AppController@ctschool')->name('school');
     Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
+    Route::any('/anketa', 'Controller@cv')->name('cv');
 
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function () {
 
@@ -59,6 +60,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/cts-admin/school', 'AdminSchoolController@index')->name('school_admin');
         Route::get('/cts-admin/studio', 'AdminStudioController@index')->name('studio_admin');
         Route::get('/cts-admin/users', 'AdminUsersController@index')->name('users_admin');
+        Route::get('/cts-admin/cv', 'AdminCvController@index')->name('cv_admin');
 
     });
 

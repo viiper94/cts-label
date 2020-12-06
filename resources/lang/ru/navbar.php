@@ -12,8 +12,8 @@ return [
     'demo' => 'Demo',
     'contact' => 'Contact',
     'feedback' => 'Feedback',
-    'users' => 'Users',
-    'admin' => 'Admin Panel',
-    'cv' => 'CVs',
+    'users' => 'Пользователи',
+    'admin' => 'Админка',
+    'cv' => 'Анкеты',
 
 ];

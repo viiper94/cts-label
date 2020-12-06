@@ -81,6 +81,14 @@ $(document).ready(function(){
 		});
 	});
 
+	$('.social-checkbox').click(function(){
+	    if($(this).prop('checked') === false){
+            $('input[name='+$(this).data('target')+']').hide();
+        }else{
+            $('input[name='+$(this).data('target')+']').show();
+        }
+    });
+
 });
 
 function shareSocial(social) {

@@ -21,6 +21,14 @@
                     <li @if(\Route::is('reviews_admin'))class="active" @endif><a href="{{ route('reviews_admin') }}">@lang('navbar.reviews')</a></li>
                     <li @if(\Route::is('feedback_admin'))class="active" @endif><a href="{{ route('feedback_admin') }}">@lang('navbar.feedback')</a></li>
                     <li @if(\Route::is('users_admin'))class="active" @endif><a href="{{ route('users_admin') }}">@lang('navbar.users')</a></li>
+                    <li @if(\Route::is('cv_admin'))class="active" @endif>
+                        <a href="{{ route('cv_admin') }}">
+                            @lang('navbar.cv')
+                            @if($cv_count >= 0)
+                                <span class="label label-success">{{ $cv_count }}</span>
+                            @endif
+                        </a>
+                    </li>
                     <li><a href="{{ route('home') }}">Вернуться на сайт</a></li>
                 </ul>
             </div>

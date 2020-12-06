@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Mods;
 use Closure;
 use Gate;
 use App;
+use Illuminate\Support\Facades\View;
 
 class Admin
 {
@@ -19,6 +19,9 @@ class Admin
     public function handle($request, Closure $next){
         if(Gate::denies('admin')) abort(403);
         App::setLocale('ru');
+
+        $cv = App\Cv::where('status', 0)->count();
+        View::share('cv_count', $cv);
 
         return $next($request);
     }

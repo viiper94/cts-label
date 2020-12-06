@@ -4,6 +4,7 @@
 
 @section('content')
     <div class = "container">
+        @include('admin.layout.alert')
         <div class="col-md-9 col-sm-8 content">
             <div class="row" style="margin-top: -4px;">
             @foreach($releases as $release)

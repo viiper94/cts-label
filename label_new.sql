@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Час створення: Січ 06 2020 р., 11:27
+-- Час створення: Гру 06 2020 р., 13:04
 -- Версія сервера: 10.4.11-MariaDB
--- Версія PHP: 7.4.1
+-- Версія PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -181,6 +181,49 @@ INSERT INTO `artists` (`id`, `sort_id`, `visible`, `image`, `name`, `link`, `des
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `cv`
+--
+
+CREATE TABLE `cv` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birth_date` date NOT NULL,
+  `dj_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vk` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `soundcloud` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `other_social` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `education` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sound_engineer_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sound_producer_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dj_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `music_genres` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `additional_info` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `learned_about_ctschool` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `what_to_learn` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `purpose_of_learning` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `closed_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `course` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп даних таблиці `cv`
+--
+
+INSERT INTO `cv` (`id`, `user_id`, `status`, `name`, `email`, `birth_date`, `dj_name`, `vk`, `facebook`, `soundcloud`, `other_social`, `phone_number`, `address`, `education`, `job`, `sound_engineer_skills`, `sound_producer_skills`, `dj_skills`, `music_genres`, `additional_info`, `learned_about_ctschool`, `what_to_learn`, `purpose_of_learning`, `closed_at`, `created_at`, `updated_at`, `course`) VALUES
+(12, 3, 0, 'Євгеній Зайчук', 'viiper94@gmail.com', '2020-03-24', NULL, NULL, NULL, NULL, NULL, '0984002897', 'вул. Милославська, 33, кв. 83', 'Магистр пинания', 'PMHub', NULL, NULL, NULL, 'Митол!', NULL, 'знаю', NULL, NULL, NULL, '2020-03-25 07:05:53', '2020-03-25 07:05:53', 'Sound Engineer full course');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `failed_jobs`
 --
 
@@ -202,26 +245,34 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `feedback` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sort_id` int(11) DEFAULT NULL,
-  `release_id` int(11) NOT NULL,
+  `release_id` int(11) DEFAULT NULL,
   `feedback_title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `archive_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tracks` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Дамп даних таблиці `feedback`
+-- Структура таблиці `feedback_results`
 --
 
-INSERT INTO `feedback` (`id`, `sort_id`, `release_id`, `feedback_title`, `archive_name`, `tracks`, `visible`, `created_at`, `updated_at`) VALUES
-(1, 1, 1836, 'Vitalii Sky - Vinyl Memories', 'Vitalii_Sky_-_Vinyl_Memories.zip', 'a:2:{i:0;a:2:{s:9:\"file_name\";s:32:\"Vitalii Sky - Vinyl Memories.mp3\";s:5:\"title\";s:28:\"Vitalii Sky - Vinyl Memories\";}i:1;a:2:{s:9:\"file_name\";s:30:\"Vitalii Sky - White Nights.mp3\";s:5:\"title\";s:26:\"Vitalii Sky - White Nights\";}}', 1, '2019-10-06 05:34:29', '2019-10-06 05:34:29'),
-(2, 5, 1842, 'David Mayboroda - Again', 'David_Mayboroda_-_Again.zip', 'a:3:{i:0;a:2:{s:9:\"file_name\";s:42:\"David Mayboroda - Again (Original Mix).mp3\";s:5:\"title\";s:38:\"David Mayboroda - Again (Original Mix)\";}i:1;a:2:{s:9:\"file_name\";s:42:\"David Mayboroda - Again (Extended Mix).mp3\";s:5:\"title\";s:38:\"David Mayboroda - Again (Extended Mix)\";}i:2;a:2:{s:9:\"file_name\";s:46:\"David Mayboroda - Again (Deepstereo remix).mp3\";s:5:\"title\";s:42:\"David Mayboroda - Again (Deepstereo remix)\";}}', 1, '2019-10-06 05:34:29', '2019-10-06 05:34:29'),
-(3, 4, 1840, 'R-Mix - Reflection', 'R-Mix_-_Reflection.zip', 'a:1:{i:0;a:2:{s:9:\"file_name\";s:22:\"R-Mix - Reflection.mp3\";s:5:\"title\";s:18:\"R-Mix - Reflection\";}}', 1, '2019-10-06 05:34:29', '2019-10-06 05:34:29'),
-(4, 3, 1839, 'interaCTS vol.1', 'interaCTS_vol.1.zip', 'a:2:{i:0;a:2:{s:9:\"file_name\";s:21:\"Pruha - Cybercube.mp3\";s:5:\"title\";s:17:\"Pruha - Cybercube\";}i:1;a:2:{s:9:\"file_name\";s:39:\"Solo Mind - The Train Will Not Stop.mp3\";s:5:\"title\";s:35:\"Solo Mind - The Train Will Not Stop\";}}', 1, '2019-10-06 05:34:29', '2019-10-06 05:34:29'),
-(5, 2, 1837, 'UUOO - Stay Down EP', 'UUOO_-_Stay_Down_EP.zip', 'a:2:{i:0;a:2:{s:9:\"file_name\";s:13:\"UUOO - Ja.mp3\";s:5:\"title\";s:9:\"UUOO - Ja\";}i:1;a:2:{s:9:\"file_name\";s:20:\"UUOO - Stay Down.mp3\";s:5:\"title\";s:16:\"UUOO - Stay Down\";}}', 1, '2019-10-06 05:34:29', '2019-10-06 05:34:29'),
-(6, 6, 1843, 'Gaty Lopez - Show Me', 'Gaty_Lopez_-_Show_Me.zip', 'a:3:{i:0;a:2:{s:9:\"file_name\";s:39:\"Gaty Lopez - Show Me (Original Mix).mp3\";s:5:\"title\";s:35:\"Gaty Lopez - Show Me (Original Mix)\";}i:1;a:2:{s:9:\"file_name\";s:44:\"Gaty Lopez - Show Me (Sergio Mega Remix).mp3\";s:5:\"title\";s:40:\"Gaty Lopez - Show Me (Sergio Mega Remix)\";}i:2;a:2:{s:9:\"file_name\";s:43:\"Gaty Lopez - Show Me (Monovakzin Remix).mp3\";s:5:\"title\";s:39:\"Gaty Lopez - Show Me (Monovakzin Remix)\";}}', 1, '2019-10-06 05:34:29', '2019-10-06 05:34:29');
+CREATE TABLE `feedback_results` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `feedback_id` int(11) NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rates` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `best_track` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -256,7 +307,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2019_11_28_184908_create_related_releases_table', 10),
 (32, '2019_12_10_094038_edit_description_at_artists', 11),
 (35, '2019_12_29_100222_create_studio_table', 12),
-(39, '2020_01_04_111632_rename_sort_to_sort_id_at_school', 13);
+(39, '2020_01_04_111632_rename_sort_to_sort_id_at_school', 13),
+(40, '2020_03_05_190551_create_feedback_results_table', 14),
+(44, '2020_03_17_094716_create_related_feedback_table', 15),
+(45, '2020_03_17_134217_update_feedback_table', 15),
+(47, '2020_03_17_143913_update_feedback_results_table', 16),
+(50, '2020_03_18_121746_create_cv_table', 17),
+(51, '2020_03_18_124229_update_users_table', 18),
+(52, '2020_03_20_083237_add_course_to_cv', 19);
 
 -- --------------------------------------------------------
 
@@ -268,6 +326,19 @@ CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `related_feedback`
+--
+
+CREATE TABLE `related_feedback` (
+  `feedback_id` int(11) NOT NULL,
+  `related_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -1343,7 +1414,9 @@ INSERT INTO `related_releases` (`release_id`, `related_id`) VALUES
 (1847, 1720),
 (1847, 1816),
 (1848, 1848),
-(1848, 1612);
+(1848, 1612),
+(1855, 1855),
+(1855, 1828);
 
 -- --------------------------------------------------------
 
@@ -1733,7 +1806,8 @@ INSERT INTO `releases` (`id`, `sort_id`, `title`, `release_number`, `release_dat
 (1844, 356, 'Ki Yera - Acid Pace', 'CTS 356193', '2019-04-05', 'ecdc93a78dde9f4d8613f96d50505264.jpg', 'https://www.beatport.com/release/acid-pace/2556960', 'https://youtu.be/e0-oeEBruvE', '<div style=\"text-align: justify;\">We are wellcome Ukrainian new talent Ki Yera on CTS with her brand new track Acid Pace. Release is coming with Remixes influenced with different shades of underground house and techno sound based on original Ki Yera&#39;s acid bassline. Pruha, RAFO, Vitalii SkY and Monovakzin put their hands on this tune to complete the release.</div>\r\n', '<div style=\"text-align: justify;\">Мы рады приветствовать новый украинский талант&nbsp;Ki Yera на CTS с ее новым треком Acid Pace. В релиз вошли ремиксы, выполненные с влиянием&nbsp;различных оттенков андерграундного house и techno саунда. Все ремиксы&nbsp;базируются&nbsp;на оригинальной acid bass line Ki Yera. Ремиксы от Pruha, RAFO, Vitalii SkY и Monovakzin делают этот&nbsp;ЕР многогранным, завершаю релиз.</div>\r\n', '<div style=\"text-align: justify;\">Ми вітаємо новий український талант Ki Yera на CTS з її новим треком Acid Pace. Реліз укомплектований&nbsp;реміксами, що виконані&nbsp;під впливом різних відтінків андерграундного house і techno-саунду&nbsp;на основі оригінальної acid bass line Кі Yera. Ремікси від Pruha, RAFO, Vitalii SkY і Monovakzin роблять цей ЕР багатогранним, завершуючи реліз.</div>\r\n', '<a href=\"https://youtu.be/e0-oeEBruvE\">Ki Yera - Acid Pace (Original Mix)</a><br />\r\nKi Yera - Acid Pace (Monovakzin Remix)<br />\r\nKi Yera - Acid Pace (Pruha Remix)<br />\r\nKi Yera - Acid Pace (RAFO Remix)<br />\r\nKi Yera - Acid Pace (Vitalii SkY Remix)', 1, '2019-04-22 14:15:38', '2019-12-01 09:22:28'),
 (1846, 357, 'Monovakzin - Affinity Diagram', 'CTS 357193', '2019-05-17', '4c8f96cfec91c2d37c374c77f18afe0a.jpg', '', '', '<div style=\"text-align: justify;\">Monovakzin deliverhis own view to modern disco sound with his Affinity Diagram EP. Vintage synth parts are supplemented with tight powerful groove which is made in a recognizable characteristic manner, but individually for each track. Hot Three!!!</div>\r\n', '<div style=\"text-align: justify;\">В новом Affinity Diagram EP для CTS Monovakzin представил свой взгляд на современный диско саунд. Партии винтажных синтезаторов дополняются плотным мощным грувом, выполненном в узнаваемой характерной манере, но индивидуально для каждого трека. Горячая тройка !!!</div>\r\n', '<div style=\"text-align: justify;\">У новому Affinity Diagram EP для CTS Monovakzin представив свій погляд на сучасний диско саунд. Партії вантажних синтезаторів доповнюються щільним потужним грувом, який виконано у впізнаваній характерній манері, але індивідуально для кожного треку. Гаряча трійка !!!</div>\r\n', 'Monovakzin - Affinity Diagram<br />\r\nMonovakzin - Arterial Road<br />\r\nMonovakzin - Pasteboard', 1, '2019-05-06 18:06:40', '2020-01-03 07:40:24'),
 (1847, 358, 'Rayzers - Acid EP', 'CTS 358193', '2019-06-21', '3f74e65c2ca3cc08731089f5a3a834e5.jpg', 'https://www.beatport.com/release/acid/2632082', '', '<div style=\"text-align: justify;\">Rayzers deliver two strong powerful techno tracks in his debut Acid EP on CTS. Ilex is dark and have expressive groove as well as perceptible house music connections in contradistinction to stright tight headline track of the EP which is dedicated to acid sound and have a melodic hook in the break. Booom...&nbsp;</div>\r\n', '<div style=\"text-align: justify;\">Rayzers deliver two strong powerful techno tracks in his debut Acid EP on CTS. Ilex is dark and have expressive groove as well as perceptible house music connections in contradistinction to stright tight headline track of the EP which is dedicated to acid sound and have a melodic hook in the break. Booom...&nbsp;</div>\r\n', '<div style=\"text-align: justify;\">Rayzers deliver two strong powerful techno tracks in his debut Acid EP on CTS. Ilex is dark and have expressive groove as well as perceptible house music connections in contradistinction to stright tight headline track of the EP which is dedicated to acid sound and have a melodic hook in the break. Booom...</div>\r\n', 'Rayzers - Acid<br />\r\nRayzers - Ilex', 1, '2019-07-06 12:08:03', '2020-01-03 07:40:26'),
-(1848, 359, 'Sergio Mega - Back 2 The Future', 'CTS 359193', '2019-06-26', '730562200cdc713119107e41e2786132.jpg', 'https://www.beatport.com/release/back-2-the-future/2667913', 'https://youtu.be/yavHaTkxaxo', '<div style=\"text-align:justify\">Back 2 The Future by Sergio Mega - headline track of the artist album is coming out on CTS. Modern disco sound of the track built on analog synth parts is spiced with sequenced bassline and expressive tom drumfills. Optimistic mood of the tune reinforced with music video. Derisive and sometime absurdistic stile of the video where 3D graphics neighbouring with 8 bit animation allows&nbsp;to show ironic view to some important issues and modern accents of new cosmic era.<br />\r\nRemix by Monovakzin is coming with original mix. Groovy bit dirty vibes and dreamy disco timbres polette of the remix are fills up and completes the EP.</div>', '<div style=\"text-align:justify\">Back 2 The Future от Sergio Mega - заглавный трека одноименного альбома артиста выходит на CTS.&nbsp;Современный диско-саунд трека построенный на партиях аналоговых синтезаторов, приправлен секвенциями баслайна и ярко выраженными диско-ударными.&nbsp;Оптимистичное настроение композиции подкреплено музыкальным видеоклипом. Насмешливый, иногда абсурдистский стиль видео,&nbsp;в котором трехмерная графика соседствует с 8-битной анимацией,&nbsp;позволил продемонстрировать иронический взгляд на некоторые важные темы и современные акценты новой космической эры. Релиз включает ремикс от Monovakzin. Немного dirty грув и палитра дрими-диско тембров ремикса наполняют и завершают ЕР.</div>', '<div style=\"text-align:justify\">Back 2 The Future від Sergio Mega - титульний трек однойменного альбому артиста виходить на CTS.&nbsp;Сучасний disco-саунд треку побудований на партіях аналогових синтезаторів, приправлений&nbsp;секвенціями баслайна і яскраво вираженими disco-ударними. Оптимістичний настрій композиції підкріплено музичним&nbsp;відеокліпом.&nbsp;<br />\r\nНасмішливий, іноді абсурдистський стиль відео, в якому 3D графіка сусідить з 8-бітною анімацією,&nbsp;дозволив продемонструвати іронічний погляд на деякі важливі теми і сучасні акценти нової космічної ери. Реліз включає ремікс від Monovakzin.&nbsp;Трохи dirty грув і палітра Дрім-диско тембрів реміксу наповнюють і завершують ЕР.</div>', '<p><a href=\"https://youtu.be/yavHaTkxaxo\">Sergio Mega -&nbsp;Back 2 The Future (Original Mix)</a><br />\r\nSergio Mega -&nbsp;Back 2 The Future (Monovakzin Remix)</p>', 1, '2019-07-26 09:57:16', '2020-01-03 07:40:26');
+(1848, 359, 'Sergio Mega - Back 2 The Future', 'CTS 359193', '2019-06-26', '730562200cdc713119107e41e2786132.jpg', 'https://www.beatport.com/release/back-2-the-future/2667913', 'https://youtu.be/yavHaTkxaxo', '<div style=\"text-align:justify\">Back 2 The Future by Sergio Mega - headline track of the artist album is coming out on CTS. Modern disco sound of the track built on analog synth parts is spiced with sequenced bassline and expressive tom drumfills. Optimistic mood of the tune reinforced with music video. Derisive and sometime absurdistic stile of the video where 3D graphics neighbouring with 8 bit animation allows&nbsp;to show ironic view to some important issues and modern accents of new cosmic era.<br />\r\nRemix by Monovakzin is coming with original mix. Groovy bit dirty vibes and dreamy disco timbres polette of the remix are fills up and completes the EP.</div>', '<div style=\"text-align:justify\">Back 2 The Future от Sergio Mega - заглавный трека одноименного альбома артиста выходит на CTS.&nbsp;Современный диско-саунд трека построенный на партиях аналоговых синтезаторов, приправлен секвенциями баслайна и ярко выраженными диско-ударными.&nbsp;Оптимистичное настроение композиции подкреплено музыкальным видеоклипом. Насмешливый, иногда абсурдистский стиль видео,&nbsp;в котором трехмерная графика соседствует с 8-битной анимацией,&nbsp;позволил продемонстрировать иронический взгляд на некоторые важные темы и современные акценты новой космической эры. Релиз включает ремикс от Monovakzin. Немного dirty грув и палитра дрими-диско тембров ремикса наполняют и завершают ЕР.</div>', '<div style=\"text-align:justify\">Back 2 The Future від Sergio Mega - титульний трек однойменного альбому артиста виходить на CTS.&nbsp;Сучасний disco-саунд треку побудований на партіях аналогових синтезаторів, приправлений&nbsp;секвенціями баслайна і яскраво вираженими disco-ударними. Оптимістичний настрій композиції підкріплено музичним&nbsp;відеокліпом.&nbsp;<br />\r\nНасмішливий, іноді абсурдистський стиль відео, в якому 3D графіка сусідить з 8-бітною анімацією,&nbsp;дозволив продемонструвати іронічний погляд на деякі важливі теми і сучасні акценти нової космічної ери. Реліз включає ремікс від Monovakzin.&nbsp;Трохи dirty грув і палітра Дрім-диско тембрів реміксу наповнюють і завершують ЕР.</div>', '<p><a href=\"https://youtu.be/yavHaTkxaxo\">Sergio Mega -&nbsp;Back 2 The Future (Original Mix)</a><br />\r\nSergio Mega -&nbsp;Back 2 The Future (Monovakzin Remix)</p>', 1, '2019-07-26 09:57:16', '2020-01-03 07:40:26'),
+(1855, 360, 'Pruha - Ancestral Spirits', 'CTS 360203', '2020-03-25', '95a5a4ccd1a0e49556696c382df09e84.jpg', 'https://www.beatport.com/artist/pruha/672683', NULL, '<p>Pruha deliver tight techno groove with brand new &quot;Ancestral Spirits&quot; EP. Three main room techno tunes are neatly polished for hot underground dancefloor. &quot;High Tide&quot; is an album introduction which is gradually coming up to straight strong groove of &quot;Rewind&quot;. The EP completes with deep and dark vibes of &quot;Ancestral Spirits&quot; - headline track of the release which sounds also tight and strong.</p>', '<p>пишу па русски</p>', '<p>українською</p>', '<p>Pruha - High Tide<br />\r\nPruha - Rewind<br />\r\nPruha - Ancestral Spirits</p>', 1, '2020-04-19 06:01:22', '2020-12-04 18:16:40');
 
 -- --------------------------------------------------------
 
@@ -2084,16 +2158,17 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `is_admin` tinyint(1) NOT NULL DEFAULT 0
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп даних таблиці `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `is_admin`) VALUES
-(2, 'Євгеній Зайчук', 'viiper94@gmail.com', NULL, '$2y$10$O0fSLYoTnmrLw6IYEmZ7XO3v0kbWW1mXuRoTrmVCJXBxGmqv7HBmq', 'aOFoIvG1kWPt4z5lgug64FC3nxWXwswIrDW6BOOIVbKdqL6hk3MLD3eYN7kh', '2019-11-25 07:45:13', '2019-11-25 07:45:13', 0),
-(3, 'CTS Admin', 'info@cts-studio.com', NULL, '$2y$10$NOtfHGor50n2Qtce3Q8rAuqlotBQ54hxo5Y.tdJK7u94AU0muWBqm', 'e77S6XzBIwATwyZur9YGaPPCWjWZjrHRr9KaFVWuIGNGlrxWnXPdjMlwyelG', '2019-11-25 15:54:38', '2019-11-25 15:54:38', 1);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `is_admin`, `image`, `status`) VALUES
+(3, 'CTS Admin', 'info@cts-studio.com', NULL, '$2y$10$NOtfHGor50n2Qtce3Q8rAuqlotBQ54hxo5Y.tdJK7u94AU0muWBqm', 'e77S6XzBIwATwyZur9YGaPPCWjWZjrHRr9KaFVWuIGNGlrxWnXPdjMlwyelG', '2019-11-25 15:54:38', '2019-11-25 15:54:38', 1, 'admin.jpg', 0);
 
 --
 -- Індекси збережених таблиць
@@ -2106,6 +2181,12 @@ ALTER TABLE `artists`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Індекси таблиці `cv`
+--
+ALTER TABLE `cv`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Індекси таблиці `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -2115,6 +2196,12 @@ ALTER TABLE `failed_jobs`
 -- Індекси таблиці `feedback`
 --
 ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `feedback_results`
+--
+ALTER TABLE `feedback_results`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2177,6 +2264,12 @@ ALTER TABLE `artists`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1849;
 
 --
+-- AUTO_INCREMENT для таблиці `cv`
+--
+ALTER TABLE `cv`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT для таблиці `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -2186,19 +2279,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблиці `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT для таблиці `feedback_results`
+--
+ALTER TABLE `feedback_results`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблиці `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT для таблиці `releases`
 --
 ALTER TABLE `releases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1855;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1858;
 
 --
 -- AUTO_INCREMENT для таблиці `reviews`

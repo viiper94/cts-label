@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Gate;
 use App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class Admin
@@ -17,6 +18,7 @@ class Admin
      * @return mixed
      */
     public function handle($request, Closure $next){
+        if(Auth::guest()) return redirect('login');
         if(Gate::denies('admin')) abort(403);
         App::setLocale('ru');
 

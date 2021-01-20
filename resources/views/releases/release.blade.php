@@ -47,7 +47,6 @@
                         <div id="share-share" class="share share-share" style="position: relative;" data-toggle="collapse" data-target="#collapsed-social">
                             <div id="collapsed-social" class="collapse">
                                 <a href="javascript:void(0)" onclick="shareSocial('vk')" class="collapsed-share share-vk"></a>
-                                <a href="javascript:void(0)" onclick="shareSocial('google')" class="collapsed-share share-google-plus"></a>
                                 <a href="javascript:void(0)" onclick="shareSocial('lj')" class="collapsed-share share-lj"></a>
                                 <a href="javascript:void(0)" onclick="shareSocial('pin')" class="collapsed-share share-pin"></a>
                                 <a href="javascript:void(0)" onclick="shareSocial('mail')" class="collapsed-share share-mail"></a>

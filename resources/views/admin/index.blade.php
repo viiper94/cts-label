@@ -20,7 +20,6 @@
             </div>
         </div>
 
-
         {{-- Artists --}}
         <div class="artists">
             <h4>Последние артисты:</h4>
@@ -34,6 +33,29 @@
                            title="{{ $artist->name }}"></a>
                     </div>
                 @endforeach
+            </div>
+        </div>
+
+        {{-- Feedbacks --}}
+        <div class="artists">
+            <h4>Последние фидбэки:</h4>
+            <a href="{{ route('feedback_admin') }}" class="btn btn-info"><span class='glyphicon glyphicon-list'></span> Все фидбэки</a>
+            <a href='{{ route('feedback_admin') }}/add' class='btn btn-success'><span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+                Кастомная страница фидбэка
+            </a>
+            <div class="items-container">
+                @if(count($feedback) > 0)
+                    @foreach($feedback as $item)
+                        <div class='item-horizontal-list'>
+                            <a href='{{ route('artists_admin') }}/edit/{{ $item->id }}'
+                               style="background-image: url(/images/{{ $item->release ? 'releases/'.($item->release->image ?? 'default.png') : 'feedback/'.($item->image ?? 'default.png') }})"
+                               title="{{ $item->feedback_title }}"></a>
+                        </div>
+                    @endforeach
+                @else
+                    <h5>Еще нет фидбэков</h5>
+                @endif
+
             </div>
         </div>
 

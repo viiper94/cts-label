@@ -1,6 +1,6 @@
 <div class="widget">
     <h3><a href="https://www.facebook.com/CTS.Records/?fref=ts">FACEBOOK</a></h3>
     <div class="widget-content">
-        <div class="fb-page" data-href="https://www.facebook.com/CTS.Records/?fref=ts" data-tabs="timeline,events,messages" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="{{ env('FACEBOOK_HEIGHT') or 'auto' }}"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/CTS.Records/?fref=ts"><a href="https://www.facebook.com/CTS.Records/?fref=ts">CTS Records</a></blockquote></div></div>
+        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCTS.Records%2F&tabs=timeline&width=300&height={{ env('FACEBOOK_HEIGHT') ?? 'auto' }}&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=1586615888304509" width="340" height="{{ env('FACEBOOK_HEIGHT') ?? 'auto' }}" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
     </div>
 </div>

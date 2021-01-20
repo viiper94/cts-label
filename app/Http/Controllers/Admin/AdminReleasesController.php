@@ -156,7 +156,7 @@ class AdminReleasesController extends Controller{
 
     public function translate(Request $request){
         if($request->ajax() && $request->post('query')){
-            $query = strip_tags($request->post('query'));
+            $query = html_entity_decode($request->post('query'));
             $query = str_replace('&nbsp;', ' ', $query);
             $query = str_replace('\n', ' \n ', $query);
             $query = trim($query);

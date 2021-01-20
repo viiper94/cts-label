@@ -91,6 +91,7 @@ $(document).ready(function(){
     });
 
     $('.translate_description').click(function(){
+        let button = this;
         let target = $(this).data('to-lang');
         let query = CKEDITOR.instances.description_en.getData().trim();
         if(query.length > 0){
@@ -107,8 +108,9 @@ $(document).ready(function(){
                 success : function(response){
                     if(response.status === 'ok'){
                         CKEDITOR.instances['description_'+target].setData(response.data);
+                        $(button).after('<span class="text-success">Успех</span>');
                     }else{
-                        console.log(response.status);
+                        $(button).after('<span class="text-danger">Ошибка</span>');
                     }
                 }
             });

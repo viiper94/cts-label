@@ -73,8 +73,18 @@
                     <img src="/assets/img/ctschool-y.png" alt="CTSchool">
                     <div class="pull-right">
                         <div class="text-right switch-btns" style="padding-right:18px;">
-                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif" data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.en')</a>
-                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && ($_COOKIE['lang'] === 'ru' || $_COOKIE['lang'] === 'ua')) active @endif" data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ru')</a>
+                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif"
+                               data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                                @lang('shared.en')
+                            </a>
+                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru') active @endif"
+                               data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                                @lang('shared.ru')
+                            </a>
+                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua') active @endif"
+                               data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                                @lang('shared.ua')
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-5 col-sm-6 pull-right">
@@ -86,7 +96,7 @@
         <div class="row">
             <div class="school-menu school-land">
                 <div class="container">
-                    <ul class="nav-justified list-unstyled s-menu clearfix">
+                    <ul class="list-unstyled s-menu">
                         <li><a href="#about">@lang('school.about_courses')</a></li>
                         <li><a href="#equipment">@lang('school.equipment')</a></li>
                         <li><a href="#teachers">@lang('school.teachers')</a></li>
@@ -99,7 +109,7 @@
         <div class="clearfix"></div>
         <div class="container">
             <h2 class="sh text-center" id="courses">@lang('school.courses')</h2>
-            <div class="сol-xs-12 course-buttons ">
+            <div class="сol-xs-12 course-buttons text-center">
                 <div class="course-button l1 hover_one">@lang('school.sound_producer')</div>
                 <div class="course-button l2 hover_two">@lang('school.sound_engineer')</div>
                 <div class="course-button l2 hover_three">@lang('school.foh_engineer')</div>
@@ -149,7 +159,8 @@
                 <div class="teachers">
                     <div class="row">
                         @foreach($teachers as $teacher)
-                            <div class="col-md-4 @if($loop->iteration === 4 || $loop->iteration === 7) col-md-offset-2 @endif @if($loop->iteration === 6) col-md-offset-4 @endif col-sm-6 col-xs-12 teacher">
+                            <div class="col-md-4 @if($loop->iteration === 4 || $loop->iteration === 7) col-md-offset-2 @endif
+                                @if($loop->iteration === 6) col-md-offset-4 @endif col-sm-6 col-xs-12 teacher">
                                 <img src="/images/school/teachers/{{ $teacher->image }}">
                                 <b>{{ $teacher->name }}</b>
                                 <div class="binfo">{!! $teacher->teacher_binfo !!}</div>

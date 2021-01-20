@@ -29,7 +29,6 @@
     .cts-studio {background-position: top right}
 	.school-page h1{text-align: center !important;}
 
-	.l2 {padding-top:15px !important}
 	.s-logo {text-align:center !important;}
 	.s-logo img {text-align:center !important;}
 	.course-buttons {max-width: 300px; margin: 0 auto;}
@@ -107,11 +106,7 @@
 	.release-buttons {margin: 30px 65px !important;}
 
 	/* studio page */
-	.school-menu li{margin: 0 11px; text-align: center;}
 	.nav-justified>li {display: inline-block; width: 20%;}
-	.studio-menu li:nth-child(3){width: 26%;}
-	.studio-menu li:nth-child(3) a {margin-left: 0 !important;}
-	.studio-menu li:last-child a {margin-right: 40px;}
 	.studio-images {text-align: center;}
 	.studio-images img{float: none !important;}
 
@@ -119,14 +114,9 @@
 	.text-paragraph{width: 485px;}
 	.course-img2{width: 248px;}
 	.course-img3{width: 49% !important; display: inline-block;}
-	.school-land li{width: 17%}
 	.school-land li a{font-size: 14px;}
-	.school-land li:nth-child(1){width: 10%}
-	.school-land li:nth-child(4){width: 24%}
-	.school-land li:nth-child(5){width: 11%}
 	.school-images {text-align: center;}
 	.school-images img{float: none !important;}
-	.course-buttons{margin-left: 88px;}
 	.course-button{width: 180px;}
 
 }
@@ -189,11 +179,6 @@
 	.slist-en li {width: 33%;}
 
     /* school page */
-    .school-menu li:nth-child(2) {padding-left: 40px;}
-    .school-menu li:nth-child(3) {padding-left: 0px;}
-    .school-menu li:nth-child(4) {padding-left: 0px;}
-    .school-menu li:nth-child(5) {text-align: right; padding-right: 20px;}
-
     .hrdw {padding-left: 30px; font-size: 12px;}
 	.text-paragraph{width: 920px}
 	.course-center-text > p{margin-bottom: 58px;}
@@ -382,9 +367,6 @@ footer h3{ font-size: 15px}
 .sh {font-size:22px;color:#E8A324; font-weight: bold; margin-bottom: 40px; padding-top: 45px;}
 .grey-text {color:#BFBEBE;}
 #services,#contacts,#contacts_ru,#demo  {padding-top: 100px}
-.studio-menu li:last-child a {margin-right: 60px; margin-bottom: -9px;}
-.studio-menu li:last-child {text-align: right;}
-.studio-menu li:nth-child(3) a {margin-left: 80px;}
 #equipment_ru{padding-top: 60px;}
 
 .service-image {margin-bottom: 30px;}
@@ -410,7 +392,7 @@ footer h3{ font-size: 15px}
 #teachers {margin-top: 72px;}
 #about {margin-top:50px;}
 #prices {margin-top: 90px;}
-.course-button {cursor:pointer;box-sizing:border-box;height:50px;border:4px solid #e8a324; color:#fff; text-align: center; font-size: 13px; font-weight: 600; min-width:170px;max-width: 180px; text-transform: uppercase; float:left}
+.course-button {cursor:pointer; height:50px; border:4px solid #e8a324; color:#fff; font-size: 13px; font-weight: 600; min-width:170px; max-width: 180px; text-transform: uppercase;}
 .course-button:last-child {margin-right: 0px; min-width: 175px;}
 .course-img{position: relative;}
 .img-overlay{width: 100%; height: 40px; font-size: 12px; padding-top: 5px; padding-left: 5px; position: absolute; bottom: 0px; background-color: rgba(37,37,37,0.75); color: #a9a8a8;}

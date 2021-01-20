@@ -49,9 +49,18 @@
                     <img src="/assets/img/cts-studio-y.png" alt="CTStudio">
                     <div class="pull-right">
                         <div class="text-right switch-btns" style="padding-right:18px;">
-                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif" data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.en')</a>
-                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && ($_COOKIE['lang'] === 'ru' || $_COOKIE['lang'] === 'ua')) active @endif" data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ru')</a>
-                            {{--<a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua') active @endif" data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">@lang('shared.ua')</a>--}}
+                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif"
+                               data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                                @lang('shared.en')
+                            </a>
+                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru') active @endif"
+                               data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                                @lang('shared.ru')
+                            </a>
+                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua') active @endif"
+                               data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                                @lang('shared.ua')
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -61,7 +70,7 @@
             <div class="row">
                 <div class="school-menu studio-land">
                     <div class="container">
-                        <ul class="nav-justified list-unstyled s-menu studio-menu">
+                        <ul class="list-unstyled s-menu studio-menu">
                             <li><a href="#equipment">@lang('studio.equipment')</a></li>
                             <li><a href="#services">@lang('studio.services')</a></li>
                             <li><a href="#projects">@lang('studio.projects')</a></li>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Час створення: Гру 06 2020 р., 13:04
--- Версія сервера: 10.4.11-MariaDB
--- Версія PHP: 7.4.3
+-- Хост: localhost:3306
+-- Час створення: Лют 03 2021 р., 11:45
+-- Версія сервера: 10.3.27-MariaDB-cll-lve
+-- Версія PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -213,13 +213,6 @@ CREATE TABLE `cv` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `course` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп даних таблиці `cv`
---
-
-INSERT INTO `cv` (`id`, `user_id`, `status`, `name`, `email`, `birth_date`, `dj_name`, `vk`, `facebook`, `soundcloud`, `other_social`, `phone_number`, `address`, `education`, `job`, `sound_engineer_skills`, `sound_producer_skills`, `dj_skills`, `music_genres`, `additional_info`, `learned_about_ctschool`, `what_to_learn`, `purpose_of_learning`, `closed_at`, `created_at`, `updated_at`, `course`) VALUES
-(12, 3, 0, 'Євгеній Зайчук', 'viiper94@gmail.com', '2020-03-24', NULL, NULL, NULL, NULL, NULL, '0984002897', 'вул. Милославська, 33, кв. 83', 'Магистр пинания', 'PMHub', NULL, NULL, NULL, 'Митол!', NULL, 'знаю', NULL, NULL, NULL, '2020-03-25 07:05:53', '2020-03-25 07:05:53', 'Sound Engineer full course');
 
 -- --------------------------------------------------------
 
@@ -1416,7 +1409,10 @@ INSERT INTO `related_releases` (`release_id`, `related_id`) VALUES
 (1848, 1848),
 (1848, 1612),
 (1855, 1855),
-(1855, 1828);
+(1855, 1828),
+(1858, 1816),
+(1858, 1580),
+(1858, 1720);
 
 -- --------------------------------------------------------
 
@@ -1807,7 +1803,8 @@ INSERT INTO `releases` (`id`, `sort_id`, `title`, `release_number`, `release_dat
 (1846, 357, 'Monovakzin - Affinity Diagram', 'CTS 357193', '2019-05-17', '4c8f96cfec91c2d37c374c77f18afe0a.jpg', '', '', '<div style=\"text-align: justify;\">Monovakzin deliverhis own view to modern disco sound with his Affinity Diagram EP. Vintage synth parts are supplemented with tight powerful groove which is made in a recognizable characteristic manner, but individually for each track. Hot Three!!!</div>\r\n', '<div style=\"text-align: justify;\">В новом Affinity Diagram EP для CTS Monovakzin представил свой взгляд на современный диско саунд. Партии винтажных синтезаторов дополняются плотным мощным грувом, выполненном в узнаваемой характерной манере, но индивидуально для каждого трека. Горячая тройка !!!</div>\r\n', '<div style=\"text-align: justify;\">У новому Affinity Diagram EP для CTS Monovakzin представив свій погляд на сучасний диско саунд. Партії вантажних синтезаторів доповнюються щільним потужним грувом, який виконано у впізнаваній характерній манері, але індивідуально для кожного треку. Гаряча трійка !!!</div>\r\n', 'Monovakzin - Affinity Diagram<br />\r\nMonovakzin - Arterial Road<br />\r\nMonovakzin - Pasteboard', 1, '2019-05-06 18:06:40', '2020-01-03 07:40:24'),
 (1847, 358, 'Rayzers - Acid EP', 'CTS 358193', '2019-06-21', '3f74e65c2ca3cc08731089f5a3a834e5.jpg', 'https://www.beatport.com/release/acid/2632082', '', '<div style=\"text-align: justify;\">Rayzers deliver two strong powerful techno tracks in his debut Acid EP on CTS. Ilex is dark and have expressive groove as well as perceptible house music connections in contradistinction to stright tight headline track of the EP which is dedicated to acid sound and have a melodic hook in the break. Booom...&nbsp;</div>\r\n', '<div style=\"text-align: justify;\">Rayzers deliver two strong powerful techno tracks in his debut Acid EP on CTS. Ilex is dark and have expressive groove as well as perceptible house music connections in contradistinction to stright tight headline track of the EP which is dedicated to acid sound and have a melodic hook in the break. Booom...&nbsp;</div>\r\n', '<div style=\"text-align: justify;\">Rayzers deliver two strong powerful techno tracks in his debut Acid EP on CTS. Ilex is dark and have expressive groove as well as perceptible house music connections in contradistinction to stright tight headline track of the EP which is dedicated to acid sound and have a melodic hook in the break. Booom...</div>\r\n', 'Rayzers - Acid<br />\r\nRayzers - Ilex', 1, '2019-07-06 12:08:03', '2020-01-03 07:40:26'),
 (1848, 359, 'Sergio Mega - Back 2 The Future', 'CTS 359193', '2019-06-26', '730562200cdc713119107e41e2786132.jpg', 'https://www.beatport.com/release/back-2-the-future/2667913', 'https://youtu.be/yavHaTkxaxo', '<div style=\"text-align:justify\">Back 2 The Future by Sergio Mega - headline track of the artist album is coming out on CTS. Modern disco sound of the track built on analog synth parts is spiced with sequenced bassline and expressive tom drumfills. Optimistic mood of the tune reinforced with music video. Derisive and sometime absurdistic stile of the video where 3D graphics neighbouring with 8 bit animation allows&nbsp;to show ironic view to some important issues and modern accents of new cosmic era.<br />\r\nRemix by Monovakzin is coming with original mix. Groovy bit dirty vibes and dreamy disco timbres polette of the remix are fills up and completes the EP.</div>', '<div style=\"text-align:justify\">Back 2 The Future от Sergio Mega - заглавный трека одноименного альбома артиста выходит на CTS.&nbsp;Современный диско-саунд трека построенный на партиях аналоговых синтезаторов, приправлен секвенциями баслайна и ярко выраженными диско-ударными.&nbsp;Оптимистичное настроение композиции подкреплено музыкальным видеоклипом. Насмешливый, иногда абсурдистский стиль видео,&nbsp;в котором трехмерная графика соседствует с 8-битной анимацией,&nbsp;позволил продемонстрировать иронический взгляд на некоторые важные темы и современные акценты новой космической эры. Релиз включает ремикс от Monovakzin. Немного dirty грув и палитра дрими-диско тембров ремикса наполняют и завершают ЕР.</div>', '<div style=\"text-align:justify\">Back 2 The Future від Sergio Mega - титульний трек однойменного альбому артиста виходить на CTS.&nbsp;Сучасний disco-саунд треку побудований на партіях аналогових синтезаторів, приправлений&nbsp;секвенціями баслайна і яскраво вираженими disco-ударними. Оптимістичний настрій композиції підкріплено музичним&nbsp;відеокліпом.&nbsp;<br />\r\nНасмішливий, іноді абсурдистський стиль відео, в якому 3D графіка сусідить з 8-бітною анімацією,&nbsp;дозволив продемонструвати іронічний погляд на деякі важливі теми і сучасні акценти нової космічної ери. Реліз включає ремікс від Monovakzin.&nbsp;Трохи dirty грув і палітра Дрім-диско тембрів реміксу наповнюють і завершують ЕР.</div>', '<p><a href=\"https://youtu.be/yavHaTkxaxo\">Sergio Mega -&nbsp;Back 2 The Future (Original Mix)</a><br />\r\nSergio Mega -&nbsp;Back 2 The Future (Monovakzin Remix)</p>', 1, '2019-07-26 09:57:16', '2020-01-03 07:40:26'),
-(1855, 360, 'Pruha - Ancestral Spirits', 'CTS 360203', '2020-03-25', '95a5a4ccd1a0e49556696c382df09e84.jpg', 'https://www.beatport.com/artist/pruha/672683', NULL, '<p>Pruha deliver tight techno groove with brand new &quot;Ancestral Spirits&quot; EP. Three main room techno tunes are neatly polished for hot underground dancefloor. &quot;High Tide&quot; is an album introduction which is gradually coming up to straight strong groove of &quot;Rewind&quot;. The EP completes with deep and dark vibes of &quot;Ancestral Spirits&quot; - headline track of the release which sounds also tight and strong.</p>', '<p>пишу па русски</p>', '<p>українською</p>', '<p>Pruha - High Tide<br />\r\nPruha - Rewind<br />\r\nPruha - Ancestral Spirits</p>', 1, '2020-04-19 06:01:22', '2020-12-04 18:16:40');
+(1855, 360, 'Pruha - Ancestral Spirits', 'CTS 360203', '2020-03-25', '95a5a4ccd1a0e49556696c382df09e84.jpg', 'https://www.beatport.com/artist/pruha/672683', NULL, '<p>Pruha deliver tight techno groove with brand new &quot;Ancestral Spirits&quot; EP. Three main room techno tunes are neatly polished for hot underground dancefloor. &quot;High Tide&quot; is an album introduction which is gradually coming up to straight strong groove of &quot;Rewind&quot;. The EP completes with deep and dark vibes of &quot;Ancestral Spirits&quot; - headline track of the release which sounds also tight and strong.</p>', NULL, NULL, '<p>Pruha - High Tide<br />\r\nPruha - Rewind<br />\r\nPruha - Ancestral Spirits</p>', 1, '2020-04-19 06:01:22', '2020-12-06 12:10:17'),
+(1858, 361, 'Skylined - Visual Snow EP', 'CTS 361203', '2020-12-25', '10ca4d7f03c032861a87d7ce0fe0495f.jpg', 'https://www.beatport.com/release/visual-snow/3220753', NULL, '<p>Skylined debuts on CTS with three hypnotic techno tunes. Influenced with Detroit old school traditions artist deliver monotonic melodic sound with acid and ambient touch in his Visual Snow EP.</p>', '<p>Skylined дебютирует на CTS с тремя гипнотическими техно-мелодиями. Вдохновленный традициями старой школы Детройта, артист в своем Visual Snow EP создал монотонное мелодичное звучание с кислотными и эмбиентными нотками.</p>', NULL, '<p>Visual Snow<br />\r\nInnovation Injustice<br />\r\nThe Stars Are A Look Back In Time</p>', 1, '2020-12-06 12:08:08', '2021-02-03 07:09:55');
 
 -- --------------------------------------------------------
 
@@ -2079,7 +2076,30 @@ INSERT INTO `school` (`id`, `sort_id`, `category`, `lang`, `name`, `teacher_binf
 (43, 4, 'courses', 'en', 'Basic of the music theory and harmony', NULL, NULL, '458690957bda1ce9f05e028d80485ab4.png', 'Основы теории музыки и гармонии, базовый курс, курсы теории музыки, курсы гармонии, уроки сольфеджио', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
 (44, 3, 'courses', 'en', 'Vocal basic course', NULL, NULL, '01c611da37fdfd1fb60c43a90b91fa66.png', 'Вокальное мастерство, базовый курс, курсы вокала, тренер по вокалу, вокальне мистецтво, вокальное искуство', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
 (45, 2, 'courses', 'en', 'Marketing & management', NULL, NULL, '104d40339277052cad18b57ce611b4f6.png', 'Маркетинг и менеджмент в музыкальной сфере и шоу-бизнесе', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
-(46, 1, 'courses', 'en', 'Individual sessions', NULL, NULL, '91284492797bd112b7b09b4fc71389f5.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1);
+(46, 1, 'courses', 'en', 'Individual sessions', NULL, NULL, '91284492797bd112b7b09b4fc71389f5.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
+(48, 0, 'courses', 'ua', 'DJ базовий курс', NULL, NULL, '11e25b77628915256417dc770e55c95d.png', 'DJ базовый курс, стать dj, dj studio, написання музики, навчання створенню електронної музики, навчання майстерності діджея', '2021-02-03 05:48:38', '2021-02-03 05:48:38', 1),
+(49, 0, 'courses', 'ua', 'Індивідуальні заняття Online', NULL, NULL, '8bf875cfa9a7ece6fb4d04be03473fe4.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2021-02-03 05:54:13', '2021-02-03 05:54:13', 1),
+(50, 0, 'courses', 'ua', 'DJ & Саунд Продюсер повний курс', NULL, NULL, 'f9cb7ee802cb085b77d9a720d072bd89.png', 'DJ и саунд продюсер, курс, створення електронної музики, навчання з написання музики в Києві', '2021-02-03 05:55:09', '2021-02-03 05:55:09', 1),
+(51, 0, 'courses', 'ua', 'Саунд продюсер базовий курс', NULL, NULL, '0201fc74154fb5f7eeb7b5034098b713.png', 'Саундпродюсер, базовый курс, production школа, школа написання електронної музики', '2021-02-03 05:55:50', '2021-02-03 05:55:50', 1),
+(52, 0, 'courses', 'ua', 'Концертна звукорежисура', NULL, NULL, '2d058e56bd5bfc3c18ff849a91ec0885.png', 'Концертная звукорежиссура, навчання звукорежисурі, курси звукорежисерів, курси аранжувальників, приватні уроки звукорежисури, школа звукорежисерів, школа аранжувальників, приватні уроки звукорежисури', '2021-02-03 05:56:57', '2021-02-03 05:56:57', 1),
+(53, 0, 'courses', 'ua', 'Звукорежисер аранжувальник базовий курс', NULL, NULL, 'c4e37e540dfc0063d9dbd2046999e6d9.png', 'Звукорежиссер, аранжировщик, базовый курс, аранжувальник, навчання звукорежисурі, курси звукорежисерів, курси аранжувальників, приватні уроки звукорежисури, школа звукорежисерів, школа аранжувальників, приватні уроки звукорежисури', '2021-02-03 05:57:33', '2021-02-03 05:57:33', 1),
+(54, 0, 'courses', 'ua', 'Звукорежисер аранжувальник повний курс', NULL, NULL, '8508ba198c499aca1b8c97eef38636f9.png', 'Звукорежиссер, аранжировщик, полный курс, аранжувальник, навчання звукорежисурі, курси звукорежисерів, курси аранжувальників, приватні уроки звукорежисури, школа звукорежисерів, школа аранжувальників, приватні уроки звукорежисури', '2021-02-03 05:58:01', '2021-02-03 05:58:01', 1),
+(55, 0, 'courses', 'ua', 'Саунд продюсер повний курс', NULL, NULL, 'b219bd8276765ddea70f87c46965e2a3.png', 'Саундпродюсер, полный курс, production школа, школа написання електронної музики', '2021-02-03 05:58:46', '2021-02-03 05:58:46', 1),
+(56, 0, 'courses', 'ua', 'Основи теорії музики та гармонії базовий курс', NULL, NULL, '913b7eda350452754d5a964965636b26.png', 'Основы теории музыки и гармонии, базовый курс, курсы теории музыки, курсы гармонии, уроки сольфеджио', '2021-02-03 05:59:27', '2021-02-03 05:59:27', 1),
+(57, 0, 'courses', 'ua', 'Вокальна майстерність базовий курс', NULL, NULL, '9c6c0c2409919dca690261737afa4e7e.png', 'Вокальное мастерство, базовый курс, курсы вокала, тренер по вокалу, вокальне мистецтво, вокальное искуство', '2021-02-03 06:00:10', '2021-02-03 06:00:10', 1),
+(58, 0, 'courses', 'ua', 'Маркетинг та менеджмент', NULL, NULL, 'cdae2fa31fb12238a87de3c3dee67bf4.png', 'Маркетинг и менеджмент в музыкальной сфере и шоу-бизнесе', '2021-02-03 06:00:39', '2021-02-03 06:00:39', 1),
+(59, 0, 'courses', 'ua', 'Індивідуальні заняття', NULL, NULL, '375d8a83377cbbe855b9b190a6a98900.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2021-02-03 06:01:10', '2021-02-03 06:01:10', 1),
+(60, 11, 'teachers', 'ua', 'Іван Шаповалов', '<p>Звукорежисура, Зведення, Мастеринг<br />\r\nSTUDIO ONE, CUBASE.<br />\r\nТеорія, практичні заняття<br />\r\nПсихоакустика &ndash; майстер клас</p>', '<p>звукорежисер і співвласник продакшн студії, учасник групи That Black, досвід роботи на сцені, в кіно, на ТV</p>', '8537dde1c6b18a34a01fff8da52802a5.png', NULL, '2019-11-21 22:00:00', '2021-02-03 06:13:22', 1),
+(61, 10, 'teachers', 'ua', 'Sergio Mega', '<p>Аранжування<br />\r\nЗведення, Мастеринг <br />\r\nLOGIC, PRO TOOLS, Reason<br />\r\nТеорія, практичні заняття</p>', '<p>DJ, музикант, продюсер. PhD, викладач кафедри звукорежисури НАКККіМ. Засновник лейблу та студії звукозапису CTS Records</p>', '4869e5974ebcb528418d0786c3f097c3.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
+(62, 9, 'teachers', 'ua', 'Лілія Лазарєва', '<p>Авторське право <br />\r\nв музичній сфері<br />\r\nМаркетинг і Промоушн</p>', '<p>Директор лейблу CTS Records, спеціаліст в галузі авторського права і маркетингу</p>', '7f6f5ed16f468081cc5ece1a29466538.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
+(63, 8, 'teachers', 'ua', 'Mishukoff', '<p>Майстерність ДіДжея <br />\r\nМайстер класс Pioneer/Technics</p>', '<p>DJ, продюсер - один з перших, що почали розвивати клубну культуру в Україні</p>', 'ad520edb901f5ae65211987968a6ce3a.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
+(64, 7, 'teachers', 'ua', 'DJ Ekspert', '<p>Майстерність ДіДжея<br />\r\nМайстер клас по SCRETCH<br />\r\nта ABLETON LIVE</p>', '<p>DJ і продюсер проекту Awesomatic. Досвід роботи на сцені в складі груп Green Grey, Alyona Alyona, Gorchitza</p>', '0c27415828a75644d8c3d45134c88535.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
+(65, 6, 'teachers', 'ua', 'Олександра Семергей', '<p>Теорія Музики і Гармонія<br />\r\nВокальна Майстерність</p>', '<p>солістка хору Києво-Печерської Лаври, великий досвід викладацької роботи в т.ч. вокал і теорія музики в КНУ ім.Шевченка</p>', 'd60f6893c7425e6934855c16e946ca18.png', NULL, '2019-11-21 22:00:00', '2020-01-05 08:26:22', 1),
+(66, 5, 'teachers', 'ua', 'Володимир Черня', '<p>Сценічна Звукорежисура<br />\r\nЗвукорежисура TV <br />\r\nПрактичні заняття</p>', '<p>Звукорежисер театру і TV, технічний директор фестивалю DOCUDAYS</p>', '142c82e04825ac3492754ecbb32680e4.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
+(67, 4, 'teachers', 'ua', 'Мирослав Кувалдін', '<p>Сонграйтинг <br />\r\nМайстер Клас</p>', '<p>Музикант, телеведучий, фронтмен групи The Вйо</p>', '03b99602f17511db8b028e1d704b524e.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
+(68, 3, 'teachers', 'ua', 'Yoshi', '<p>Майстерність ДіДжея <br />\r\nМайстер клас Pioneer/Technics</p>', '<p>DJ, один з найбільш авторитетних DJ в українській танцювальній культурі</p>', 'c00c4532828d3211eabf7a3bd8b3012e.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
+(69, 2, 'teachers', 'ua', 'Niels Von Geyer', '<p>Майстерність ДіДжея <br />\r\nМайстер клас на DENON DJ</p>', '<p>DJ, продюсер, TV і радіо ведучий. Резидент лейблу Ministry of Sound (Berlin)</p>', 'ec561f1932f2e954e8a6e86d1a71260b.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
+(70, 1, 'teachers', 'ua', 'Роман Резніченко', '<p>Аранжування в LOGIC та STUDIUO ONE<br />\r\nв стилях Drum-N-Bass, Dubstep, Hip-Hop</p>', '<p>Власник продакшн-студії.<br />\r\nСаунд-продюсер проектів Bulbajar, Monovakzin, Kalimakosh і WooYko. Опыт роботи з мультимедіа на великих майданчиках.</p>', '2e88ed2ec975e773b7b7b9968a3437ed.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1);
 
 -- --------------------------------------------------------
 
@@ -2297,7 +2317,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблиці `releases`
 --
 ALTER TABLE `releases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1858;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1859;
 
 --
 -- AUTO_INCREMENT для таблиці `reviews`
@@ -2309,7 +2329,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT для таблиці `school`
 --
 ALTER TABLE `school`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT для таблиці `studio`

@@ -2316,6 +2316,7 @@ return array(
     'Illuminate\\View\\FileViewFinder' => $vendorDir . '/laravel/framework/src/Illuminate/View/FileViewFinder.php',
     'Illuminate\\View\\Middleware\\ShareErrorsFromSession' => $vendorDir . '/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php',
     'Illuminate\\View\\View' => $vendorDir . '/laravel/framework/src/Illuminate/View/View.php',
+    'Illuminate\\View\\ViewException' => $vendorDir . '/laravel/framework/src/Illuminate/View/ViewException.php',
     'Illuminate\\View\\ViewFinderInterface' => $vendorDir . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
     'Illuminate\\View\\ViewName' => $vendorDir . '/laravel/framework/src/Illuminate/View/ViewName.php',
     'Illuminate\\View\\ViewServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',

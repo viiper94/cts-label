@@ -14,7 +14,8 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "phpoffice/phpword": "^0.17.0",
-        "stichoza/google-translate-php": "^4.0"
+        "stichoza/google-translate-php": "^4.0",
+      "ext-zip": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

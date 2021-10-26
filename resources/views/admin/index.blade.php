@@ -47,7 +47,7 @@
                 @if(count($feedback) > 0)
                     @foreach($feedback as $item)
                         <div class='item-horizontal-list'>
-                            <a href='{{ route('artists_admin') }}/edit/{{ $item->id }}'
+                            <a href='{{ route('feedback_admin') }}/edit/{{ $item->slug }}'
                                style="background-image: url(/images/{{ $item->release ? 'releases/'.($item->release->image ?? 'default.png') : 'feedback/'.($item->image ?? 'default.png') }})"
                                title="{{ $item->feedback_title }}"></a>
                         </div>

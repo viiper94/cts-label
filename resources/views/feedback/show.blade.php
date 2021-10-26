@@ -23,12 +23,14 @@
             <span>Пожалуйста оцените треки и оставьте свой коментарий в нижеприведенной форме! После заполнения формы и
                 отправки Вашей рецензии, нажатием кнопки "Send Feedback", download линки будут доступны на следующей странице.</span>
         </div>
-        <div class="also_avaliable">
-            <span>Also avaliable:</span>
-            @foreach($feedback->related as $track)
-                <a href="{{ route('feedback', $track->slug) }}" target="_blank">{{ $track->feedback_title }}</a>
-            @endforeach
-        </div>
+        @if(count($feedback->related) > 0)
+            <div class="also_avaliable">
+                <span>Also avaliable:</span>
+                @foreach($feedback->related as $track)
+                    <a href="{{ route('feedback', $track->slug) }}" target="_blank">{{ $track->feedback_title }}</a>
+                @endforeach
+            </div>
+        @endif
     </section>
     <div class="main_content">
         <form class="form-horizontal" id="feedback-form" method="POST">

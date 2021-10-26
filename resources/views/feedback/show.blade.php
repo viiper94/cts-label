@@ -118,7 +118,7 @@
                 ]*/
             });
             players.push(wavesurfer_{{ $key }});
-            wavesurfer_{{ $key }}.load('/audio/feedback/{{ $feedback->slug }}/320/{{ $track[320] }}');
+            wavesurfer_{{ $key }}.load('/audio/feedback/{{ $feedback->slug }}/320/{!! $track[320] !!}');
             wavesurfer_{{ $key }}.on('ready', function(){
 
                 $('.track[data-id={{ $key }}] .bar').css({

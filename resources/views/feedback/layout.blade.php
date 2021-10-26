@@ -25,22 +25,22 @@
             <div class="header_img">
                 <div class="ctschool">
                     <a target="_blank" href="http://www.cts-label.com/ctschool.html" title="CTSchool - школа DJ & саунд продакшн">
-                        <img class="header_img-ctschool" src="http://www.cts-label.com/mail/logo_rassilka2.jpg" alt="CTSchool">
+                        <img class="header_img-ctschool" src="/assets/img/logo_rassilka2.jpg" alt="CTSchool">
                     </a>
                 </div>
                 <div class="ctslabel">
                     <a target="_blank" href="http://www.cts-label.com/" title="CTS Records - official label website">
-                        <img class="header_img-ctslabel" src="http://www.cts-label.com/mail/logo_rassilka2.jpg" alt="CTS Label">
+                        <img class="header_img-ctslabel" src="/assets/img/logo_rassilka2.jpg" alt="CTS Label">
                     </a>
                 </div>
                 <div class="sergiomega">
                     <a target="_blank" href="http://www.sergiomega.com/" title="Sergio Mega - official website">
-                        <img class="header_img-sergiomega" src="http://www.cts-label.com/mail/logo_rassilka2.jpg" alt="Sergio Mega">
+                        <img class="header_img-sergiomega" src="/assets/img/logo_rassilka2.jpg" alt="Sergio Mega">
                     </a>
                 </div>
                 <div class="ctstudio">
                     <a target="_blank" href="http://www.cts-studio.com/"  title="CTS Records - official portal">
-                        <img class="header_img-ctstudio" src="http://www.cts-label.com/mail/logo_rassilka2.jpg" alt="CTS Studio">
+                        <img class="header_img-ctstudio" src="/assets/img/logo_rassilka2.jpg" alt="CTS Studio">
                     </a>
                 </div>
             </div>
@@ -63,52 +63,52 @@
                 <span>Follow CTS Records</span>
                 <div class="facebook">
                     <a href="https://www.facebook.com/CTS.Records" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="twitter">
                     <a href="https://twitter.com/cts_records" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="myspace">
                     <a href="https://myspace.com/cts_records" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="youtube">
                     <a href="https://www.youtube.com/user/CTSStudioUA" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="vk">
                     <a href="https://vk.com/club9616527" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="soundcloud">
                     <a href="https://soundcloud.com/cts-records" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="rss">
                     <a href="http://www.cts-label.com/rss.php" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="beatport">
                     <a href="https://pro.beatport.com/label/cts-creative-technologies-studio/4470" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="resident">
                     <a href="http://www.residentadvisor.net/record-label.aspx?id=2317" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
                 <div class="subscribe">
                     <a href="http://cts-label.com/subscribe/" target="_blank">
-                        <img src="http://www.cts-label.com/mail/followus_letter_AUG_2011.gif">
+                        <img src="/assets/img/followus_letter_AUG_2011.gif">
                     </a>
                 </div>
             </div>

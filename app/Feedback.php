@@ -86,7 +86,7 @@ class Feedback extends SharedModel{
         }
 
         $zip = new ZipArchive();
-        $filename = htmlentities(str_replace(' ', '_', trim($this->feedback_title))).'.zip';
+        $filename = $this->slug.'.zip';
 
         if($zip->open(public_path('/audio/feedback/'.$this->slug.'/'.$filename), ZipArchive::CREATE) !== true){
             return false;

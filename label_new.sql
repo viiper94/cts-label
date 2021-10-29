@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Час створення: Жов 26 2021 р., 09:25
+-- Час створення: Жов 29 2021 р., 11:23
 -- Версія сервера: 10.3.31-MariaDB-cll-lve
 -- Версія PHP: 7.3.30
 
@@ -177,7 +177,9 @@ INSERT INTO `artists` (`id`, `sort_id`, `visible`, `image`, `name`, `link`, `des
 (1838, 120, 1, '4d546226df83c9044dee0b1719d71cfa.jpg', 'UUOO', 'https://www.facebook.com/UUOOofficial/', '', '', NULL, '2018-08-31 16:00:51', '2020-01-03 07:43:39'),
 (1841, 121, 1, '59aa50cdeade2fdcdfc46b46b205268f.jpg', 'R-Mix', 'https://www.facebook.com/Rmixmusicproduction', '', '', NULL, '2018-11-02 16:20:44', '2020-01-03 07:43:41'),
 (1845, 122, 1, '49632b4157fa15dc8b772d7a9cd2c270.jpg', 'Ki Yera', 'https://www.facebook.com/ki.yera.official/', NULL, NULL, NULL, '2019-04-03 19:13:10', '2020-01-03 07:53:24'),
-(1849, 123, 1, '6cd1195e1662905b526103102996f798.jpg', 'Daniel-X', 'https://www.facebook.com/DannyVlasov', NULL, NULL, NULL, '2021-03-02 14:07:39', '2021-03-02 14:23:34');
+(1849, 123, 1, '6cd1195e1662905b526103102996f798.jpg', 'Daniel-X', 'https://www.facebook.com/DannyVlasov', NULL, NULL, NULL, '2021-03-02 14:07:39', '2021-03-02 14:23:34'),
+(1851, 124, 1, 'de3026f0b3a17488e968993779910637.jpg', 'DJ Jivan', 'https://www.facebook.com/jivanswami', NULL, NULL, NULL, '2021-10-26 14:23:05', '2021-10-26 14:23:05'),
+(1852, 125, 1, '6069ce1d432a6d689d2b7092b4c442d5.jpg', 'Cream Croc', 'https://www.facebook.com/CreamCroc', NULL, NULL, NULL, '2021-10-26 14:28:08', '2021-10-26 14:28:08');
 
 -- --------------------------------------------------------
 
@@ -250,6 +252,18 @@ CREATE TABLE `feedback` (
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп даних таблиці `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `sort_id`, `release_id`, `feedback_title`, `archive_name`, `tracks`, `visible`, `created_at`, `updated_at`, `slug`, `image`) VALUES
+(17, 0, 1860, 'Cream Croc & DJ Jivan - Deep Forest', 'cream-croc-dj-jivan-deep-forest.zip', '[{\"title\":\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\",\"96\":\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)96.mp3\",\"320\":\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)320.mp3\"},{\"title\":\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\",\"96\":\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)96.mp3\",\"320\":\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)320.mp3\"}]', 1, '2021-10-26 04:14:03', '2021-10-26 04:42:59', 'cream-croc-dj-jivan-deep-forest', NULL),
+(18, 0, 1843, 'Gaty Lopez - Show Me', 'gaty-lopez-show-me.zip', '[{\"title\":\"Gaty Lopez - Show Me (Original Mix)\",\"96\":\"Original.mp3\",\"320\":\"Gaty Lopez - Show Me (Original Mix).mp3\"},{\"title\":\"Gaty Lopez - Show Me (Monovakzin Remix)\",\"96\":\"Monovakzin.mp3\",\"320\":\"Gaty Lopez - Show Me (Monovakzin Remix).mp3\"},{\"title\":\"Gaty Lopez - Show Me (Sergio Mega Remix)\",\"96\":\"Sergio.mp3\",\"320\":\"Gaty Lopez - Show Me (Sergio Mega Remix).mp3\"}]', 1, '2021-10-26 12:41:44', '2021-10-29 04:45:30', 'gaty-lopez-show-me', NULL),
+(19, 0, 1848, 'Sergio Mega - Back 2 The Future', 'sergio-mega-back-2-the-future.zip', '[{\"title\":\"Sergio Mega - Back 2 The Future\",\"96\":\"96_Back_2_The_Future.mp3\",\"320\":\"Sergio Mega - Back 2 The Future.mp3\"},{\"title\":\"Sergio Mega - Back 2 The Future (Monovakzin Remix)\",\"96\":\"96_Back_2_The_Future_(Monovakzin_Remix).mp3\",\"320\":\"Sergio Mega - Back 2 The Future (Monovakzin Remix).mp3\"}]', 1, '2021-10-29 04:45:05', '2021-10-29 04:45:22', 'sergio-mega-back-2-the-future', NULL),
+(20, 0, 1859, 'Vitalii Sky - Follow Me EP', 'vitalii-sky-follow-me-ep.zip', '[{\"title\":\"Vitalii Sky - Elevator Number 7\",\"96\":\"Vitalii Sky - Elevator Number 7.mp3\",\"320\":\"Vitalii Sky - Elevator Number 7.mp3\"},{\"title\":\"Vitalii Sky - Follow Me\",\"320\":\"Vitalii Sky - Follow Me.mp3\",\"96\":\"Vitalii Sky - Follow Me.mp3\"},{\"title\":\"Vitalii Sky - Keep The Pace\",\"320\":\"Vitalii Sky - Keep The Pace.mp3\",\"96\":\"Vitalii Sky - Keep The Pace.mp3\"}]', 1, '2021-10-29 04:48:45', '2021-10-29 04:48:45', 'vitalii-sky-follow-me-ep', NULL),
+(21, 0, 1858, 'Skylined - Visual Snow EP', 'skylined-visual-snow-ep.zip', '[{\"title\":\"Vitalii Sky - Elevator Number 7\",\"96\":\"Skylined - Innovation Injustice.mp3\",\"320\":\"Skylined - Innovation Injustice.mp3\"},{\"title\":\"Skylined - The Stars Are A Look Back In Time\",\"320\":\"Skylined - The Stars Are A Look Back In Time.mp3\",\"96\":\"Skylined - The Stars Are A Look Back In Time.mp3\"},{\"title\":\"Skylined - Visual Snow\",\"320\":\"Skylined - Visual Snow.mp3\",\"96\":\"Skylined - Visual Snow.mp3\"}]', 1, '2021-10-29 04:56:45', '2021-10-29 04:56:45', 'skylined-visual-snow-ep', NULL),
+(22, 0, 1855, 'Pruha - Ancestral Spirits', 'pruha-ancestral-spirits.zip', '[{\"title\":\"Pruha - Ancestral Spirits\",\"96\":\"Pruha - Ancestral Spirits.mp3\",\"320\":\"Pruha - Ancestral Spirits.mp3\"},{\"title\":\"Pruha - High Tide\",\"320\":\"Pruha - High Tide.mp3\",\"96\":\"Pruha - High Tide.mp3\"},{\"title\":\"Pruha - Rewind\",\"320\":\"Pruha - Rewind.mp3\",\"96\":\"Pruha - Rewind.mp3\"}]', 1, '2021-10-29 05:00:14', '2021-10-29 05:00:14', 'pruha-ancestral-spirits', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -267,6 +281,14 @@ CREATE TABLE `feedback_results` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп даних таблиці `feedback_results`
+--
+
+INSERT INTO `feedback_results` (`id`, `feedback_id`, `name`, `email`, `rates`, `best_track`, `comment`, `created_at`, `updated_at`) VALUES
+(3, 17, 'Konstantin', 'Konstantin.education@gmail.com', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"9\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"8\"}', 'Cream Croc & DJ Jivan - Deep Forest (Original Mix)', 'Не мой жанр, но мне очень понравилось, как поработали со звуком, картинка затянула.\r\nХорошая работа!', '2021-10-26 16:31:07', '2021-10-26 16:31:07'),
+(4, 17, 'Yakiv', 'yasha_2006@ukr.net', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"9\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"10\"}', 'Cream Croc & DJ Jivan - Deep Forest (Video Edit)', 'Not bad at all. Although I expected something more after the pit, maybe more active phase. I\'ll wait for new works.', '2021-10-27 18:48:02', '2021-10-27 18:48:02');
 
 -- --------------------------------------------------------
 
@@ -334,6 +356,16 @@ CREATE TABLE `related_feedback` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп даних таблиці `related_feedback`
+--
+
+INSERT INTO `related_feedback` (`feedback_id`, `related_id`, `created_at`, `updated_at`) VALUES
+(17, 19, NULL, NULL),
+(17, 18, NULL, NULL),
+(18, 19, NULL, NULL),
+(18, 17, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1813,7 +1845,7 @@ INSERT INTO `releases` (`id`, `sort_id`, `title`, `release_number`, `release_dat
 (1855, 360, 'Pruha - Ancestral Spirits', 'CTS 360203', '2020-03-25', '95a5a4ccd1a0e49556696c382df09e84.jpg', 'https://www.beatport.com/artist/pruha/672683', NULL, '<p>Pruha deliver tight techno groove with brand new &quot;Ancestral Spirits&quot; EP. Three main room techno tunes are neatly polished for hot underground dancefloor. &quot;High Tide&quot; is an album introduction which is gradually coming up to straight strong groove of &quot;Rewind&quot;. The EP completes with deep and dark vibes of &quot;Ancestral Spirits&quot; - headline track of the release which sounds also tight and strong.</p>', NULL, NULL, '<p>Pruha - High Tide<br />\r\nPruha - Rewind<br />\r\nPruha - Ancestral Spirits</p>', 1, '2020-04-19 06:01:22', '2020-12-06 12:10:17'),
 (1858, 361, 'Skylined - Visual Snow EP', 'CTS 361203', '2020-12-25', 'f04642627ad420d103d6a745ca555e93.jpg', 'https://www.beatport.com/release/visual-snow/3220753', NULL, '<p>Skylined debuts on CTS with three hypnotic techno tunes. Influenced with Detroit old school traditions artist deliver monotonic melodic sound with acid and ambient touch in his Visual Snow EP.</p>', '<p>Skylined дебютирует на CTS с тремя гипнотическими техно-мелодиями. Вдохновленный традициями старой школы Детройта, артист в своем Visual Snow EP создал монотонное мелодичное звучание с кислотными и эмбиентными нотками.</p>', '<p>Skylined дебютує&nbsp;на CTS з трьома гіпнотичними техно-треками. Під впливом традицій старої школи Детройту артист передає монотонний мелодійний звук з acid та атмосферним дотиком у своєму&nbsp;Visual Snow EP.</p>', '<p>Visual Snow<br />\r\nInnovation Injustice<br />\r\nThe Stars Are A Look Back In Time</p>', 1, '2020-12-06 12:08:08', '2021-03-08 16:28:21'),
 (1859, 362, 'Vitalii Sky - Follow Me EP', 'CTS 362203', '2021-03-17', '1b109280902120b48eb9f117af69941c.jpg', 'https://www.beatport.com/release/follow-me/3314798', NULL, '<p style=\"text-align:justify\">Vitalii Sky deliver three brand new trippy tech-house &amp; deep techno tunes with old school style&nbsp;voxes and some rhythmic latin touch in his Follow Me EP. Each track complements the integrity of the release as part of the whole puzzle. Groovy, punchy and deep - three in one... Enjoy</p>', '<p style=\"text-align:justify\">Vitalii Sky представил три совершенно новых триповых tech-house и deep techno трека&nbsp;с old school вокалами и некоторым&nbsp;влиянием латинских&nbsp;ритмов&nbsp;в своем Follow Me EP. Каждый трек дополняет целостность релиза как часть единого&nbsp;пазла. Груви, панчи и дип - три в одном ... Enjoy</p>', '<p style=\"text-align:justify\">Vitalii Sky представив&nbsp;три нових&nbsp;тріппі tech-house та deep techno треки&nbsp;з old school style вокалами та деяким впливом&nbsp;латиноамериканських ритмів&nbsp;в своєму Follow Me EP. Кожен трек доповнює цілісність релізу як частина загального пазлу. Груві, панчі та діп&nbsp;- три в одному ... Насолоджуйтесь</p>', '<p>Vitalii Sky - Elevator Number 7</p>\r\n\r\n<p>Vitalii Sky - Follow Me</p>\r\n\r\n<p>Vitalii Sky - Keep The Pace</p>', 1, '2021-03-08 16:15:19', '2021-04-13 06:18:32'),
-(1860, 363, 'Cream Croc & DJ Jivan - Deep Forest', 'CTS 363213', '2021-10-22', 'bd849d53fbeb85c03e912d7a0d11b268.jpg', NULL, NULL, '<p style=\"text-align:justify\">Cream Croc duo teamed up with DJ Jivan put their hands on synths and authentic acoustic instruments to create monotonic deep tune named Deep Forest. Meditative atmosphere of the track built on Australian native didgeridoo woodwind instrument part played by DJ Jivan disposes to relax and takes you into a transcendental musical trip... Enjoy!</p>', '<p style=\"text-align:justify\">Дуэт Cream Croc и DJ Jivan взяли в руки свои синтезаторы и аутентичные акустические инструменты, чтобы создать монотонный глубокий тюн&nbsp;под названием Deep Forest. Медитативная атмосфера трека, построенная на партии австралийского духового инструмента диджериду в исполнении DJ Jivan, располагает к расслаблению и уносит в запредельное музыкальное путешествие...&nbsp;Enjoy!<!-- P--></p>', '<p style=\"text-align:justify\">Дует Cream Croc об&#39;єднав зусилля з&nbsp;DJ Jivan, взявши у руки&nbsp;синтезатори та автентичні акустичні інструменти, створили монотонний глибокий тюн під назвою Deep Forest. Медітативна атмосфера треку, побудованого на&nbsp;партії австралійського народного духового інструмента&nbsp;діджеріду у виконанні&nbsp;DJ Jivan, дозволяє розслабитися і перенесе вас у трансцендентну музичну подорож ... Насолоджуйтесь! <!-- P--></p>', '<p>Cream Croc &amp; DJ Jivan - Deep Forest (Original Mix)<br />\r\nCream Croc &amp; DJ Jivan - Deep Forest (Video Edit)</p>', 1, '2021-10-11 16:29:22', '2021-10-25 15:48:38');
+(1860, 363, 'Cream Croc & DJ Jivan - Deep Forest', 'CTS 363213', '2021-10-22', 'bd849d53fbeb85c03e912d7a0d11b268.jpg', 'https://www.beatport.com/release/deep-forest/3553825', 'https://youtu.be/2Npips-bnYk', '<p style=\"text-align:justify\">Cream Croc duo teamed up with DJ Jivan put their hands on synths and authentic acoustic instruments to create monotonic deep tune named Deep Forest. Meditative atmosphere of the track built on Australian native didgeridoo woodwind instrument part played by DJ Jivan disposes to relax and takes you into a transcendental musical trip... Enjoy!</p>', '<p style=\"text-align:justify\">Дуэт Cream Croc и DJ Jivan взяли в руки свои синтезаторы и аутентичные акустические инструменты, чтобы создать монотонный глубокий тюн&nbsp;под названием Deep Forest. Медитативная атмосфера трека, построенная на партии австралийского духового инструмента диджериду в исполнении DJ Jivan, располагает к расслаблению и уносит в запредельное музыкальное путешествие...&nbsp;Enjoy!<!-- P--></p>', '<p style=\"text-align:justify\">Дует Cream Croc об&#39;єднав зусилля з&nbsp;DJ Jivan, взявши у руки&nbsp;синтезатори та автентичні акустичні інструменти, створили монотонний глибокий тюн під назвою Deep Forest. Медітативна атмосфера треку, побудованого на&nbsp;партії австралійського народного духового інструмента&nbsp;діджеріду у виконанні&nbsp;DJ Jivan, дозволяє розслабитися і перенесе вас у трансцендентну музичну подорож ... Насолоджуйтесь! <!-- P--></p>', '<p>Cream Croc &amp; DJ Jivan - Deep Forest (Original Mix)<br />\r\nCream Croc &amp; DJ Jivan - Deep Forest (Video Edit)</p>', 1, '2021-10-11 16:29:22', '2021-10-29 04:38:34');
 
 -- --------------------------------------------------------
 
@@ -2290,7 +2322,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблиці `artists`
 --
 ALTER TABLE `artists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1851;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1853;
 
 --
 -- AUTO_INCREMENT для таблиці `cv`
@@ -2308,13 +2340,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблиці `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT для таблиці `feedback_results`
 --
 ALTER TABLE `feedback_results`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблиці `migrations`

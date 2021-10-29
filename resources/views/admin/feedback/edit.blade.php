@@ -14,6 +14,12 @@
                         <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
                         Сохранить
                     </button>
+                    @if($feedback->release)
+                        <a href='{{ route('release', $feedback->release->id) }}' class='btn btn-success' name='edit_feedback'>
+                            <span class='glyphicon glyphicon-share' aria-hidden='true'></span>
+                            Релиз на сайте
+                        </a>
+                    @endif
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -41,24 +47,19 @@
                 </div>
                 <div class="related-all-feedback">
                     <h4>Also available:</h4>
-                    <button class="btn btn-danger deselect-btn">Deselect All</button>
+                    <button class="btn btn-primary related_last_five">Выбрать последние 5</button>
+                    <button class="btn btn-danger deselect-btn">Снять выбор</button>
                     @foreach($feedback_list as $item)
                         <div class="related">
-                            <label style="margin-left: 0;">
-                                <input type="checkbox" name="related[]" value="{{ $item->id }}"
-                                       @if($feedback->related->contains($item)) checked @endif>{{ $item->feedback_title }}
-                            </label>
+                            @if(!$feedback->release || $item->release_id != $feedback->release->id)
+                                <label style="margin-left: 0;">
+                                    <input type="checkbox" name="related[]" value="{{ $item->id }}"
+                                           @if($feedback->related->contains($item)) checked @endif>{{ $item->feedback_title }}
+                                </label>
+                            @endif
                         </div>
                     @endforeach
                 </div>
-                @if($feedback->archive_name && file_exists(public_path('audio/feedback/').$feedback->slug.'/'.$feedback->archive_name))
-                    <h4>
-                        <a href="/audio/feedback/{{ $feedback->slug }}/{{ $feedback->archive_name }}" class="btn btn-success">
-                            <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span>
-                            Скачать архив
-                        </a>
-                    </h4>
-                @endif
             </div>
             <div class="clearfix"></div>
             <div class="col-xs-12" id="reviews">
@@ -89,6 +90,12 @@
             </div>
             <div class="col-xs-12">
                 <a class="add-review-btn btn btn-info" data-index="{{ $f_index ?? 0 }}" data-target="reviews"><span class="glyphicon glyphicon-plus"></span> Добавить</a>
+                @if($feedback->archive_name && file_exists(public_path('audio/feedback/').$feedback->slug.'/'.$feedback->archive_name))
+                    <a href="/audio/feedback/{{ $feedback->slug }}/{{ $feedback->archive_name }}" class="btn btn-success">
+                        <span class='glyphicon glyphicon-download-alt' aria-hidden='true'></span>
+                        Скачать архив
+                    </a>
+                @endif
             </div>
             <div class="clearfix"></div>
         </form>

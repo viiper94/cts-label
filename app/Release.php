@@ -72,4 +72,12 @@ class Release extends SharedModel{
         }
     }
 
+    public function getTracksCount() {
+        if($this->tracklist){
+            $lines_arr = preg_split('/\r\n|\n|\r/',$this->tracklist);
+            return count($lines_arr);
+        }
+        return 1;
+    }
+
 }

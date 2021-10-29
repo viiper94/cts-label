@@ -15,7 +15,7 @@ class AdminFeedbackController extends Controller{
         $feedback = Feedback::with('release', 'results');
         if($request->input('q')) $feedback->where('feedback_title', 'like', '%'.$request->input('q').'%');
         return view('admin.feedback.index', [
-            'feedback_list' => $feedback->orderBy('id', 'desc')->paginate(10)
+            'feedback_list' => $feedback->orderBy('release_id', 'desc')->paginate(10)
         ]);
     }
 
@@ -48,7 +48,7 @@ class AdminFeedbackController extends Controller{
         }
         return view('admin.feedback.edit', [
             'feedback' => $feedback,
-            'feedback_list' => Feedback::orderBy('id', 'desc')->get()
+            'feedback_list' => Feedback::orderBy('release_id', 'desc')->get()
         ]);
     }
 
@@ -60,7 +60,12 @@ class AdminFeedbackController extends Controller{
             $feedback->release_id = $release->id;
             $feedback->feedback_title = $release->title;
         }
-        $feedback->tracks = [0 => ['title' => '', 96 => '', 320 => '']];
+        $tracks_count = $id ? $feedback->release->getTracksCount() : 1;
+        $a = array();
+        for($i = 0; $i < $tracks_count; $i++){
+            $a[$i] = ['title' => '', 96 => '', 320 => ''];
+        }
+        $feedback->tracks = $a;
         if($request->post()){
             $this->validate($request, [
                 'feedback_title' => 'string|required',
@@ -85,6 +90,7 @@ class AdminFeedbackController extends Controller{
         if($id){
             $feedback->release = $release;
         }
+        $feedback->visible = true;
         return view('admin.feedback.edit', [
             'feedback' => $feedback,
             'feedback_list' => Feedback::orderBy('id', 'desc')->get()

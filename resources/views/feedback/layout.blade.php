@@ -54,7 +54,7 @@
                     CTS Records | Baseyna 3, of. 49 | 01004 | Ukraine, Kyiv<br>
                     Phone / Fax +38 044 496 09 02 |
                     <a href="mailto:info@cts-studio.com">info@cts-studio.com</a> |
-                    <a href="/">www.cts-label.com</a><br>
+                    <a href="/" target="_blank">www.cts-label.com</a><br>
                     Booking contact: Lilia Lazareva |
                     <a href="mailto:lilia@cts-studio.com">lilia@cts-studio.com</a> | Cell +38 098 685 40 33
                 </p>

@@ -25,13 +25,13 @@
                             <td>{{ $cv->created_at->format('j M Y, H:i') }}</td>
                             <td>
                                 <a class='btn btn-success' href='{{ route('cv_admin') }}/edit/{{ $cv->id }}/student'>
-                                    <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
+                                    <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Смотреть анкету
                                     <span class="hidden-xs hidden-sm hidden-lg">Изменить статус</span>
                                 </a>
-                                <a class='btn btn-danger' href='{{ route('cv_admin') }}/delete/{{ $cv->id }}' onclick='return confirm("Удалить анкету?")'>
-                                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
-                                    <span class="hidden-xs hidden-sm hidden-lg">Удалить</span>
-                                </a>
+{{--                                <a class='btn btn-danger' href='{{ route('cv_admin') }}/delete/{{ $cv->id }}' onclick='return confirm("Удалить анкету?")'>--}}
+{{--                                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>--}}
+{{--                                    <span class="hidden-xs hidden-sm hidden-lg">Удалить</span>--}}
+{{--                                </a>--}}
                             </td>
                         </tr>
                     @endforeach

@@ -39,7 +39,7 @@ class Controller extends BaseController{
             $this->validate($request, [
                 'name' => 'required|string|max:190',
                 'email' => 'required|email|max:190',
-                'birth_date' => 'required|date_format:d F Y',
+                'birth_date' => 'required|date_format:Y-m-d',
                 'dj_name' => 'nullable|string|max:190',
                 'vk' => 'nullable|url|max:190',
                 'facebook' => 'nullable|url|max:190',
@@ -61,9 +61,14 @@ class Controller extends BaseController{
             ]);
             $cv = new Cv();
             $cv->fill($request->post());
-            $cv->user_id = Auth::user()->id;
+            $cv->user_id = Auth::check() ? Auth::user()->id : null;
             $cv->birth_date = date('Y-m-d', strtotime($cv->birth_date));
-            return $cv->save() ?
+
+            // replace by native mail function
+            $headers = 'Content-type:text/html; charset=utf-8'.
+                        'From: <'.$cv->email.'>\r\n';
+
+            return $cv->save() && mail("admin@cts.ua", "Новая анкета на обучение от ".$cv->name, "Анкета по адресу https://cts-label.com/cts-admin/cv/edit/".$cv->id."/student","$headers") ?
                 redirect()->route('home')->with(['success' => trans('cv.end_msg')]) :
                 redirect()->back()->withErrors([trans('cv.error_msg')]);
         }

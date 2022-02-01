@@ -6,7 +6,7 @@
         <form action="{{ route('cv_admin') }}/document" method="post">
             @csrf
             <input type="hidden" name="id" value="{{ $cv->id }}">
-            <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Сохранить в документ</button>
+{{--            <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Сохранить в документ</button>--}}
         </form>
         <div class="row">
             <div class="col-xs-12 col-md-6">

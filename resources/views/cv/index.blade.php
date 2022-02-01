@@ -24,7 +24,7 @@
             </div>
             <div class="form-group col-md-6 col-xs-12">
                 <label for="email">2. @lang('user.email')*</label>
-                <input type="email" class="form-control form-control__dark" id="email" name="email" required value="{{ old('email') ?? $user->email }}" maxlength="190">
+                <input type="email" class="form-control form-control__dark" id="email" name="email" required value="{{ old('email') }}" maxlength="190">
                 @if($errors->has('email'))
                     <p class="help-block">{{ $errors->first('email') }}</p>
                 @endif
@@ -191,7 +191,7 @@
     <script>
         $('#birth_date').datepicker({
             uiLibrary: 'bootstrap',
-            format: 'dd mmmm yyyy'
+            format: 'yyyy-mm-dd'
         });
     </script>
 @endsection

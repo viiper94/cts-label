@@ -24,7 +24,7 @@
                     <li @if(\Route::is('cv_admin'))class="active" @endif>
                         <a href="{{ route('cv_admin') }}">
                             @lang('navbar.cv')
-                            @if($cv_count >= 0)
+                            @if($cv_count > 0)
                                 <span class="label label-success">{{ $cv_count }}</span>
                             @endif
                         </a>

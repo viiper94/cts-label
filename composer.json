@@ -1,11 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "viiper94/cts-label",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "description": "CTS-Label web-site",
     "license": "MIT",
     "require": {
         "php": "^7.2|^8.0",
@@ -13,8 +9,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "phpoffice/phpword": "^0.17.0",
-        "stichoza/google-translate-php": "^4.0",
+        "stichoza/google-translate-php": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -25,9 +20,6 @@
         "phpunit/phpunit": "^8.0"
     },
     "config": {
-        "platform": {
-            "php": "7.4.9"
-        },
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true

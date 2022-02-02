@@ -437,10 +437,14 @@ footer h3{ font-size: 15px}
 .page-title h1{margin: 0; font-weight: bold;}
 .anketa .switch-btns{padding-top: 0;}
 .anketa .switch-btns .switch-btn{margin-bottom: 0;}
-.social-input{display: none;}
+.anketa .form-control, .anketa .btn{background-color: #252525; border-radius: 0; border: 1px solid #252525; color: #999;}
+.anketa .form-control:focus, .anketa .btn:hover, .anketa .btn:focus{box-shadow: none; border: 1px solid #e8a324; transition: .3s ease; outline: none;}
+.anketa .gj-datepicker-bootstrap span[role=right-icon].input-group-addon{border-radius: 0;}
+.anketa .btn{border-color: #bbb}
+.anketa .social-input{display: none;}
 @media (max-width: 767px){
-    .page-title{flex-direction: column;}
-    .page-title .switch-btns{padding-top: 15px; width: auto;}
+    .anketa .page-title{flex-direction: column;}
+    .anketa .page-title .switch-btns{padding-top: 15px; width: auto;}
 }
 
 /*social icons */

@@ -216,7 +216,7 @@
                 @endif
             </div>
             <div class="form-group col-xs-12">
-                <button type="submit" class="btn btn-default">@lang('cv.submit')</button>
+                <button type="submit" class="btn btn-lg">@lang('cv.submit')</button>
             </div>
         </form>
     </div>

@@ -225,6 +225,7 @@
         $('#birth_date').datepicker({
             uiLibrary: 'bootstrap',
             weekStartDay: 1,
+            format: 'yyyy-mm-dd',
             selectOtherMonths: false,
             showOtherMonths: false,
             maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())

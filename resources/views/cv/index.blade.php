@@ -224,7 +224,10 @@
     <script>
         $('#birth_date').datepicker({
             uiLibrary: 'bootstrap',
-            format: 'yyyy-mm-dd'
+            weekStartDay: 1,
+            selectOtherMonths: false,
+            showOtherMonths: false,
+            maxDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())
         });
     </script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cv;
 use App\School;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -39,7 +40,7 @@ class Controller extends BaseController{
             $this->validate($request, [
                 'name' => 'required|string|max:190',
                 'email' => 'required|email|max:190',
-                'birth_date' => 'required|date_format:Y-m-d',
+                'birth_date' => 'required|date_format:d/m/Y',
                 'dj_name' => 'nullable|string|max:190',
                 'vk' => 'nullable|url|max:190',
                 'facebook' => 'nullable|url|max:190',
@@ -64,7 +65,7 @@ class Controller extends BaseController{
             $cv = new Cv();
             $cv->fill($request->post());
             $cv->user_id = Auth::check() ? Auth::user()->id : null;
-            $cv->birth_date = date('Y-m-d', strtotime($cv->birth_date));
+            $cv->birth_date = Carbon::parse($request->post('birth_date'))->format('Y-m-d');
 
             // replace by native mail function
             $headers = 'Content-type:text/html; charset=utf-8'.

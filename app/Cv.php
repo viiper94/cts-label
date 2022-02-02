@@ -13,7 +13,6 @@ class Cv extends Model{
     protected $fillable = [
         'name',
         'email',
-        'birth_date',
         'dj_name',
         'vk',
         'facebook',

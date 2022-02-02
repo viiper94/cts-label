@@ -22,23 +22,4 @@ class AdminCvController extends Controller{
         ]);
     }
 
-    public function document(Request $request){
-        $cv = Cv::findOrFail($request->post('id'));
-        $word = new PhpWord();
-
-//        dd($cv->getAttributes());
-        $section = $word->addSection();
-        foreach($cv->getAttributes() as $attribute => $value){
-            $text = $section->addText(
-                trans('cv.'.$attribute) .'
-                '.
-                $value
-            );
-        }
-
-
-        $objWriter = IOFactory::createWriter($word, 'Word2007');
-        return $objWriter->save(public_path('cv/helloWorld.docx'));
-    }
-
 }

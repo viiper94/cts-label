@@ -143,6 +143,20 @@
                 @endif
             </div>
             <div class="form-group col-xs-12">
+                <label for="os">14. @lang('cv.os')</label>
+                <input type="text" class="form-control form-control__dark" id="os" name="os" value="{{ old('os') }}">
+                @if($errors->has('os'))
+                    <p class="help-block">{{ $errors->first('os') }}</p>
+                @endif
+            </div>
+            <div class="form-group col-xs-12">
+                <label for="equipment">15. @lang('cv.equipment')</label>
+                <textarea class="form-control form-control__dark" id="equipment" name="equipment">{{ old('equipment') }}</textarea>
+                @if($errors->has('equipment'))
+                    <p class="help-block">{{ $errors->first('equipment') }}</p>
+                @endif
+            </div>
+            <div class="form-group col-xs-12">
                 <label for="additional_info">14. @lang('cv.additional_info')</label>
                 <textarea class="form-control form-control__dark" name="additional_info" id="additional_info">{{ old('additional_info') }}</textarea>
                 @if($errors->has('additional_info'))

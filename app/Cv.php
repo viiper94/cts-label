@@ -27,6 +27,8 @@ class Cv extends Model{
         'sound_producer_skills',
         'dj_skills',
         'music_genres',
+        'os',
+        'equipment',
         'additional_info',
         'learned_about_ctschool',
         'course',

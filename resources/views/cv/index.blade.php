@@ -11,8 +11,27 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container anketa">
         @include('admin.layout.alert')
+
+        <div class="page-title">
+            <h1>@lang('cv.title')</h1>
+            <div class="switch-btns">
+                <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif"
+                   data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                    @lang('shared.en')
+                </a>
+                <a class="switch-btn pull-right @if((isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru') || !isset($_COOKIE['lang'])) active @endif"
+                   data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                    @lang('shared.ru')
+                </a>
+                <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua') active @endif"
+                   data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                    @lang('shared.ua')
+                </a>
+            </div>
+        </div>
+
         <form method="post">
             @csrf
             <div class="form-group col-md-6 col-xs-12">
@@ -173,7 +192,7 @@
             <div class="form-group col-xs-12">
                 <label for="course">16. @lang('cv.course')*</label>
                 <select class="form-control form-control__dark" id="course" name="course" required>
-                    <option selected disabled>Выберите курс</option>
+                    <option selected disabled>@lang('cv.pick_a_course')</option>
                     @foreach($courses as $course)
                         <option value="{{ $course->name }}" @if(old('course') === $course->name) selected @endif>{{ $course->name }}</option>
                     @endforeach

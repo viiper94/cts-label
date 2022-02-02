@@ -433,7 +433,15 @@ footer h3{ font-size: 15px}
 .location {color:#fff; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
 
 /* anketa */
+.page-title{display: flex; justify-content: space-between; align-items: center; margin: 15px;}
+.page-title h1{margin: 0; font-weight: bold;}
+.anketa .switch-btns{padding-top: 0;}
+.anketa .switch-btns .switch-btn{margin-bottom: 0;}
 .social-input{display: none;}
+@media (max-width: 767px){
+    .page-title{flex-direction: column;}
+    .page-title .switch-btns{padding-top: 15px; width: auto;}
+}
 
 /*social icons */
 .socials {background: url(../img/socials.png) top left no-repeat; width: 33px; height: 33px; display: inline-block; margin:1px;}

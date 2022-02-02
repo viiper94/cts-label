@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cv;
+use App\Mail\CvMail;
 use App\School;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class Controller extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -40,7 +42,7 @@ class Controller extends BaseController{
             $this->validate($request, [
                 'name' => 'required|string|max:190',
                 'email' => 'required|email|max:190',
-                'birth_date' => 'required|date_format:d/m/Y',
+                'birth_date' => 'required|date_format:Y-m-d',
                 'dj_name' => 'nullable|string|max:190',
                 'vk' => 'nullable|url|max:190',
                 'facebook' => 'nullable|url|max:190',
@@ -66,14 +68,12 @@ class Controller extends BaseController{
             $cv->fill($request->post());
             $cv->user_id = Auth::check() ? Auth::user()->id : null;
             $cv->birth_date = Carbon::parse($request->post('birth_date'))->format('Y-m-d');
-
-            // replace by native mail function
-            $headers = 'Content-type:text/html; charset=utf-8'.
-                        'From: <'.$cv->email.'>\r\n';
-
-            return $cv->save() && mail("admin@cts.ua", "Новая анкета на обучение от ".$cv->name, "Анкета по адресу https://cts-label.com/cts-admin/cv/edit/".$cv->id."/student","$headers") ?
-                redirect()->route('home')->with(['success' => trans('cv.end_msg')]) :
-                redirect()->back()->withErrors([trans('cv.error_msg')]);
+            if($cv->save()){
+                Mail::to(env('ADMIN_EMAIL'))->send(new CvMail($cv));
+                return redirect()->route('home')->with(['success' => trans('cv.end_msg')]);
+            }else{
+                return redirect()->back()->withErrors([trans('cv.error_msg')]);
+            }
         }
         return view('cv.index', [
             'user' => Auth::user(),

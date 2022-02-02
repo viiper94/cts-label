@@ -81,7 +81,7 @@
                 <div class="col-xs-12">
                     <input type="text" class="form-control form-control__dark social-input" name="vk" id="vk" value="{{ old('vk') }}" maxlength="190">
                 </div>
-                <div class="col-xs-12">
+                    <div class="col-xs-12">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" class="social-checkbox" data-target="facebook"> @lang('cv.facebook')
@@ -135,28 +135,28 @@
             </div>
             <div class="form-group col-xs-12">
                 <label for="sound_engineer_skills">10. @lang('cv.sound_engineer_skills')</label>
-                <input type="text" class="form-control form-control__dark" id="sound_engineer_skills" name="sound_engineer_skills" value="{{ old('sound_engineer_skills') }}">
+                <textarea class="form-control form-control__dark" id="sound_engineer_skills" name="sound_engineer_skills">{{ old('sound_engineer_skills') }}</textarea>
                 @if($errors->has('sound_engineer_skills'))
                     <p class="help-block">{{ $errors->first('sound_engineer_skills') }}</p>
                 @endif
             </div>
             <div class="form-group col-xs-12">
                 <label for="sound_producer_skills">11. @lang('cv.sound_producer_skills')</label>
-                <input type="text" class="form-control form-control__dark" id="sound_producer_skills" name="sound_producer_skills" value="{{ old('sound_producer_skills') }}">
+                <textarea class="form-control form-control__dark" id="sound_producer_skills" name="sound_producer_skills">{{ old('sound_producer_skills') }}</textarea>
                 @if($errors->has('sound_producer_skills'))
                     <p class="help-block">{{ $errors->first('sound_producer_skills') }}</p>
                 @endif
             </div>
             <div class="form-group col-xs-12">
                 <label for="dj_skills">12. @lang('cv.dj_skills')</label>
-                <input type="text" class="form-control form-control__dark" id="dj_skills" name="dj_skills" value="{{ old('dj_skills') }}">
+                <textarea class="form-control form-control__dark" id="dj_skills" name="dj_skills">{{ old('dj_skills') }}</textarea>
                 @if($errors->has('dj_skills'))
                     <p class="help-block">{{ $errors->first('dj_skills') }}</p>
                 @endif
             </div>
             <div class="form-group col-xs-12">
-                <label for="music_genres">13. @lang('cv.music_genres')*</label>
-                <input type="text" class="form-control form-control__dark" id="music_genres" name="music_genres" required value="{{ old('music_genres') }}">
+                <label for="music_genres">13. @lang('cv.music_genres')</label>
+                <textarea class="form-control form-control__dark" id="music_genres" name="music_genres">{{ old('music_genres') }}</textarea>
                 @if($errors->has('music_genres'))
                     <p class="help-block">{{ $errors->first('music_genres') }}</p>
                 @endif
@@ -176,21 +176,21 @@
                 @endif
             </div>
             <div class="form-group col-xs-12">
-                <label for="additional_info">14. @lang('cv.additional_info')</label>
+                <label for="additional_info">16. @lang('cv.additional_info')</label>
                 <textarea class="form-control form-control__dark" name="additional_info" id="additional_info">{{ old('additional_info') }}</textarea>
                 @if($errors->has('additional_info'))
                     <p class="help-block">{{ $errors->first('additional_info') }}</p>
                 @endif
             </div>
             <div class="form-group col-xs-12">
-                <label for="learned_about_ctschool">15. @lang('cv.learned_about_ctschool')*</label>
-                <input type="text" class="form-control form-control__dark" id="learned_about_ctschool" name="learned_about_ctschool" required value="{{ old('learned_about_ctschool') }}">
+                <label for="learned_about_ctschool">17. @lang('cv.learned_about_ctschool')*</label>
+                <textarea class="form-control form-control__dark" id="learned_about_ctschool" name="learned_about_ctschool" required>{{ old('learned_about_ctschool') }}</textarea>
                 @if($errors->has('learned_about_ctschool'))
                     <p class="help-block">{{ $errors->first('learned_about_ctschool') }}</p>
                 @endif
             </div>
             <div class="form-group col-xs-12">
-                <label for="course">16. @lang('cv.course')*</label>
+                <label for="course">18. @lang('cv.course')*</label>
                 <select class="form-control form-control__dark" id="course" name="course" required>
                     <option selected disabled>@lang('cv.pick_a_course')</option>
                     @foreach($courses as $course)
@@ -202,15 +202,15 @@
                 @endif
             </div>
             <div class="form-group col-xs-12">
-                <label for="what_to_learn">17. @lang('cv.what_to_learn')</label>
-                <input type="text" class="form-control form-control__dark" id="what_to_learn" name="what_to_learn" value="{{ old('what_to_learn') }}">
+                <label for="what_to_learn">19. @lang('cv.what_to_learn')</label>
+                <textarea class="form-control form-control__dark" id="what_to_learn" name="what_to_learn">{{ old('what_to_learn') }}</textarea>
                 @if($errors->has('what_to_learn'))
                     <p class="help-block">{{ $errors->first('what_to_learn') }}</p>
                 @endif
             </div>
             <div class="form-group col-xs-12">
-                <label for="purpose_of_learning">18. @lang('cv.purpose_of_learning')</label>
-                <input type="text" class="form-control form-control__dark" id="purpose_of_learning" name="purpose_of_learning" value="{{ old('purpose_of_learning') }}">
+                <label for="purpose_of_learning">20. @lang('cv.purpose_of_learning')</label>
+                <textarea class="form-control form-control__dark" id="purpose_of_learning" name="purpose_of_learning">{{ old('purpose_of_learning') }}</textarea>
                 @if($errors->has('purpose_of_learning'))
                     <p class="help-block">{{ $errors->first('purpose_of_learning') }}</p>
                 @endif

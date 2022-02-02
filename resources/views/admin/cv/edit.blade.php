@@ -6,7 +6,9 @@
         <form action="{{ route('cv_admin') }}/document" method="post">
             @csrf
             <input type="hidden" name="id" value="{{ $cv->id }}">
-{{--            <button class="btn btn-info" type="submit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Сохранить в документ</button>--}}
+            @if(is_file(public_path('cv/'.$cv->document)))
+                <a href="{{ url('/'). '/cv/'.$cv->document }}" class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Скачать анкету</a>
+            @endif
         </form>
         <div class="row">
             <div class="col-xs-12 col-md-6">

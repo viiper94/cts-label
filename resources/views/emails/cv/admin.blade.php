@@ -21,8 +21,11 @@
 
 ...
 
-@component('mail::button', ['url' => route('cv_admin').'/edit/'.$cv->id.'/student'])
-Смотреть анкету
+Полная анкета доступна по ссылке:<br>
+[{{ route('cv_admin').'/edit/'.$cv->id.'/student' }}]({{ route('cv_admin').'/edit/'.$cv->id.'/student' }})
+
+@component('mail::button', ['url' => url('/'). '/cv/'.$cv->document])
+Скачать анкету
 @endcomponent
 
 @endcomponent

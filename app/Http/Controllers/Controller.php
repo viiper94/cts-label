@@ -69,7 +69,9 @@ class Controller extends BaseController{
             $cv->user_id = Auth::check() ? Auth::user()->id : null;
             $cv->birth_date = Carbon::parse($request->post('birth_date'))->format('Y-m-d');
             if($cv->save()){
+                $cv->document = $cv->createDocument();
                 Mail::to(env('ADMIN_EMAIL'))->send(new CvMail($cv));
+                $cv->update();
                 return redirect()->route('home')->with(['success' => trans('cv.end_msg')]);
             }else{
                 return redirect()->back()->withErrors([trans('cv.error_msg')]);

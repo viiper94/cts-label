@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Час створення: Жов 29 2021 р., 11:23
--- Версія сервера: 10.3.31-MariaDB-cll-lve
--- Версія PHP: 7.3.30
+-- Час створення: Лют 03 2022 р., 10:54
+-- Версія сервера: 10.3.32-MariaDB-cll-lve
+-- Версія PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -179,7 +179,8 @@ INSERT INTO `artists` (`id`, `sort_id`, `visible`, `image`, `name`, `link`, `des
 (1845, 122, 1, '49632b4157fa15dc8b772d7a9cd2c270.jpg', 'Ki Yera', 'https://www.facebook.com/ki.yera.official/', NULL, NULL, NULL, '2019-04-03 19:13:10', '2020-01-03 07:53:24'),
 (1849, 123, 1, '6cd1195e1662905b526103102996f798.jpg', 'Daniel-X', 'https://www.facebook.com/DannyVlasov', NULL, NULL, NULL, '2021-03-02 14:07:39', '2021-03-02 14:23:34'),
 (1851, 124, 1, 'de3026f0b3a17488e968993779910637.jpg', 'DJ Jivan', 'https://www.facebook.com/jivanswami', NULL, NULL, NULL, '2021-10-26 14:23:05', '2021-10-26 14:23:05'),
-(1852, 125, 1, '6069ce1d432a6d689d2b7092b4c442d5.jpg', 'Cream Croc', 'https://www.facebook.com/CreamCroc', NULL, NULL, NULL, '2021-10-26 14:28:08', '2021-10-26 14:28:08');
+(1852, 125, 1, '6069ce1d432a6d689d2b7092b4c442d5.jpg', 'Cream Croc', 'https://www.facebook.com/CreamCroc', NULL, NULL, NULL, '2021-10-26 14:28:08', '2021-10-26 14:28:08'),
+(1853, 126, 1, '31bb09142c4c3c37acc1e006328808c9.jpg', 'Basslucy', 'https://www.facebook.com/basslucy.paydar.7', NULL, NULL, NULL, '2021-11-22 16:02:13', '2021-11-22 16:02:13');
 
 -- --------------------------------------------------------
 
@@ -189,7 +190,7 @@ INSERT INTO `artists` (`id`, `sort_id`, `visible`, `image`, `name`, `link`, `des
 
 CREATE TABLE `cv` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -216,6 +217,13 @@ CREATE TABLE `cv` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `course` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп даних таблиці `cv`
+--
+
+INSERT INTO `cv` (`id`, `user_id`, `status`, `name`, `email`, `birth_date`, `dj_name`, `vk`, `facebook`, `soundcloud`, `other_social`, `phone_number`, `address`, `education`, `job`, `sound_engineer_skills`, `sound_producer_skills`, `dj_skills`, `music_genres`, `additional_info`, `learned_about_ctschool`, `what_to_learn`, `purpose_of_learning`, `closed_at`, `created_at`, `updated_at`, `course`) VALUES
+(19, 3, 0, 'Sergio Mega', 'sergio@cts-studio.com', '1973-04-15', 'Sergio Mega', NULL, 'https://www.facebook.com/sergio.mega.cts/', NULL, NULL, '0677031572', 'Kyiv, Khreschatik 23, 14', '...', 'A&R', '...', '...', '...', 'techno', '......', '......', '.........', '.....', NULL, '2022-02-01 12:48:45', '2022-02-01 12:48:45', 'Individual sessions');
 
 -- --------------------------------------------------------
 
@@ -262,7 +270,10 @@ INSERT INTO `feedback` (`id`, `sort_id`, `release_id`, `feedback_title`, `archiv
 (19, 0, 1848, 'Sergio Mega - Back 2 The Future', 'sergio-mega-back-2-the-future.zip', '[{\"title\":\"Sergio Mega - Back 2 The Future\",\"96\":\"96_Back_2_The_Future.mp3\",\"320\":\"Sergio Mega - Back 2 The Future.mp3\"},{\"title\":\"Sergio Mega - Back 2 The Future (Monovakzin Remix)\",\"96\":\"96_Back_2_The_Future_(Monovakzin_Remix).mp3\",\"320\":\"Sergio Mega - Back 2 The Future (Monovakzin Remix).mp3\"}]', 1, '2021-10-29 04:45:05', '2021-10-29 04:45:22', 'sergio-mega-back-2-the-future', NULL),
 (20, 0, 1859, 'Vitalii Sky - Follow Me EP', 'vitalii-sky-follow-me-ep.zip', '[{\"title\":\"Vitalii Sky - Elevator Number 7\",\"96\":\"Vitalii Sky - Elevator Number 7.mp3\",\"320\":\"Vitalii Sky - Elevator Number 7.mp3\"},{\"title\":\"Vitalii Sky - Follow Me\",\"320\":\"Vitalii Sky - Follow Me.mp3\",\"96\":\"Vitalii Sky - Follow Me.mp3\"},{\"title\":\"Vitalii Sky - Keep The Pace\",\"320\":\"Vitalii Sky - Keep The Pace.mp3\",\"96\":\"Vitalii Sky - Keep The Pace.mp3\"}]', 1, '2021-10-29 04:48:45', '2021-10-29 04:48:45', 'vitalii-sky-follow-me-ep', NULL),
 (21, 0, 1858, 'Skylined - Visual Snow EP', 'skylined-visual-snow-ep.zip', '[{\"title\":\"Vitalii Sky - Elevator Number 7\",\"96\":\"Skylined - Innovation Injustice.mp3\",\"320\":\"Skylined - Innovation Injustice.mp3\"},{\"title\":\"Skylined - The Stars Are A Look Back In Time\",\"320\":\"Skylined - The Stars Are A Look Back In Time.mp3\",\"96\":\"Skylined - The Stars Are A Look Back In Time.mp3\"},{\"title\":\"Skylined - Visual Snow\",\"320\":\"Skylined - Visual Snow.mp3\",\"96\":\"Skylined - Visual Snow.mp3\"}]', 1, '2021-10-29 04:56:45', '2021-10-29 04:56:45', 'skylined-visual-snow-ep', NULL),
-(22, 0, 1855, 'Pruha - Ancestral Spirits', 'pruha-ancestral-spirits.zip', '[{\"title\":\"Pruha - Ancestral Spirits\",\"96\":\"Pruha - Ancestral Spirits.mp3\",\"320\":\"Pruha - Ancestral Spirits.mp3\"},{\"title\":\"Pruha - High Tide\",\"320\":\"Pruha - High Tide.mp3\",\"96\":\"Pruha - High Tide.mp3\"},{\"title\":\"Pruha - Rewind\",\"320\":\"Pruha - Rewind.mp3\",\"96\":\"Pruha - Rewind.mp3\"}]', 1, '2021-10-29 05:00:14', '2021-10-29 05:00:14', 'pruha-ancestral-spirits', NULL);
+(22, 0, 1855, 'Pruha - Ancestral Spirits', 'pruha-ancestral-spirits.zip', '[{\"title\":\"Pruha - Ancestral Spirits\",\"96\":\"Pruha - Ancestral Spirits.mp3\",\"320\":\"Pruha - Ancestral Spirits.mp3\"},{\"title\":\"Pruha - High Tide\",\"320\":\"Pruha - High Tide.mp3\",\"96\":\"Pruha - High Tide.mp3\"},{\"title\":\"Pruha - Rewind\",\"320\":\"Pruha - Rewind.mp3\",\"96\":\"Pruha - Rewind.mp3\"}]', 1, '2021-10-29 05:00:14', '2021-10-29 05:00:14', 'pruha-ancestral-spirits', NULL),
+(24, 0, 1861, 'Basslucy - Guest', 'basslucy-guest.zip', '[{\"title\":\"Basslucy - Guest\",\"96\":\"Basslucy - Guest.mp3\",\"320\":\"Basslucy - Guest.mp3\"}]', 1, '2021-11-12 19:11:29', '2021-11-12 19:11:29', 'basslucy-guest', NULL),
+(26, 0, 1862, 'Basslucy - Moondancer incl. Sergio Mega Remix', 'basslucy-moondancer-incl-sergio-mega-remix.zip', '[{\"title\":\"Original Mix\",\"96\":\"Basslucy - Moondancer (Original Mix).mp3\",\"320\":\"Basslucy - Moondancer (Original Mix).mp3\"},{\"title\":\"Sergio Mega Remix\",\"96\":\"Basslucy - Moondancer (Sergio Mega Remix).mp3\",\"320\":\"Basslucy - Moondancer (Sergio Mega Remix).mp3\"},{\"title\":\"Cream Croc Remix\",\"96\":\"Basslucy - Moondancer (Cream Croc Remix).mp3\",\"320\":\"Basslucy - Moondancer (Cream Croc Remix).mp3\"},{\"title\":\"Skylined Remix\",\"96\":\"Basslucy - Moondancer (Skylined Remix).mp3\",\"320\":\"Basslucy - Moondancer (Skylined Remix).mp3\"}]', 1, '2022-01-24 14:57:28', '2022-01-24 14:57:28', 'basslucy-moondancer-incl-sergio-mega-remix', NULL),
+(27, 0, NULL, 'Basslucy - Moondancer (Sergio Mega Remix)', 'basslucy-moondancer-sergio-mega-remix.zip', '[{\"title\":\"Basslucy - Moondancer (Sergio Mega Remix)\",\"96\":\"Basslucy - Moondancer (Sergio Mega Remix).mp3\",\"320\":\"Basslucy - Moondancer (Sergio Mega Remix).mp3\"}]', 1, '2022-01-24 18:15:21', '2022-01-24 18:15:21', 'basslucy-moondancer-sergio-mega-remix', '8952119f534f818ae75f50f41b52b18a.jpg');
 
 -- --------------------------------------------------------
 
@@ -288,7 +299,11 @@ CREATE TABLE `feedback_results` (
 
 INSERT INTO `feedback_results` (`id`, `feedback_id`, `name`, `email`, `rates`, `best_track`, `comment`, `created_at`, `updated_at`) VALUES
 (3, 17, 'Konstantin', 'Konstantin.education@gmail.com', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"9\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"8\"}', 'Cream Croc & DJ Jivan - Deep Forest (Original Mix)', 'Не мой жанр, но мне очень понравилось, как поработали со звуком, картинка затянула.\r\nХорошая работа!', '2021-10-26 16:31:07', '2021-10-26 16:31:07'),
-(4, 17, 'Yakiv', 'yasha_2006@ukr.net', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"9\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"10\"}', 'Cream Croc & DJ Jivan - Deep Forest (Video Edit)', 'Not bad at all. Although I expected something more after the pit, maybe more active phase. I\'ll wait for new works.', '2021-10-27 18:48:02', '2021-10-27 18:48:02');
+(4, 17, 'Yakiv', 'yasha_2006@ukr.net', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"9\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"10\"}', 'Cream Croc & DJ Jivan - Deep Forest (Video Edit)', 'Not bad at all. Although I expected something more after the pit, maybe more active phase. I\'ll wait for new works.', '2021-10-27 18:48:02', '2021-10-27 18:48:02'),
+(5, 17, 'Sergio Mega', 'info@sergiomega.com', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"5\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"5\"}', 'Cream Croc & DJ Jivan - Deep Forest (Original Mix)', 'test', '2021-11-01 10:43:30', '2021-11-01 10:43:30'),
+(6, 17, 'Jivam', '5230505@gmail.com', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"9\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"9\"}', 'Cream Croc & DJ Jivan - Deep Forest (Original Mix)', 'Nice track!', '2021-11-08 06:19:43', '2021-11-08 06:19:43'),
+(7, 26, 'Vitalii Sky', 'vitaliisky980@gmail.com', '{\"Original Mix\":\"8\",\"Sergio Mega Remix\":\"10\",\"Cream Croc Remix\":\"3\",\"Skylined Remix\":\"3\"}', 'Sergio Mega Remix', 'Good atmospheric work immerses you in a whirlpool of emotions and peace', '2022-01-27 18:30:32', '2022-01-27 18:30:32'),
+(8, 27, 'GATY LOPEZ', 'info@djgatylopez.com', '{\"Basslucy - Moondancer (Sergio Mega Remix)\":\"7\"}', NULL, 'Great !!!!', '2022-02-03 06:35:57', '2022-02-03 06:35:57');
 
 -- --------------------------------------------------------
 
@@ -365,7 +380,12 @@ INSERT INTO `related_feedback` (`feedback_id`, `related_id`, `created_at`, `upda
 (17, 19, NULL, NULL),
 (17, 18, NULL, NULL),
 (18, 19, NULL, NULL),
-(18, 17, NULL, NULL);
+(18, 17, NULL, NULL),
+(26, 24, NULL, NULL),
+(26, 17, NULL, NULL),
+(26, 21, NULL, NULL),
+(26, 22, NULL, NULL),
+(26, 18, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1451,7 +1471,13 @@ INSERT INTO `related_releases` (`release_id`, `related_id`) VALUES
 (1859, 1824),
 (1860, 1855),
 (1860, 1842),
-(1860, 1720);
+(1860, 1720),
+(1861, 1860),
+(1861, 1859),
+(1861, 1839),
+(1862, 1861),
+(1862, 1858),
+(1862, 1843);
 
 -- --------------------------------------------------------
 
@@ -1845,7 +1871,9 @@ INSERT INTO `releases` (`id`, `sort_id`, `title`, `release_number`, `release_dat
 (1855, 360, 'Pruha - Ancestral Spirits', 'CTS 360203', '2020-03-25', '95a5a4ccd1a0e49556696c382df09e84.jpg', 'https://www.beatport.com/artist/pruha/672683', NULL, '<p>Pruha deliver tight techno groove with brand new &quot;Ancestral Spirits&quot; EP. Three main room techno tunes are neatly polished for hot underground dancefloor. &quot;High Tide&quot; is an album introduction which is gradually coming up to straight strong groove of &quot;Rewind&quot;. The EP completes with deep and dark vibes of &quot;Ancestral Spirits&quot; - headline track of the release which sounds also tight and strong.</p>', NULL, NULL, '<p>Pruha - High Tide<br />\r\nPruha - Rewind<br />\r\nPruha - Ancestral Spirits</p>', 1, '2020-04-19 06:01:22', '2020-12-06 12:10:17'),
 (1858, 361, 'Skylined - Visual Snow EP', 'CTS 361203', '2020-12-25', 'f04642627ad420d103d6a745ca555e93.jpg', 'https://www.beatport.com/release/visual-snow/3220753', NULL, '<p>Skylined debuts on CTS with three hypnotic techno tunes. Influenced with Detroit old school traditions artist deliver monotonic melodic sound with acid and ambient touch in his Visual Snow EP.</p>', '<p>Skylined дебютирует на CTS с тремя гипнотическими техно-мелодиями. Вдохновленный традициями старой школы Детройта, артист в своем Visual Snow EP создал монотонное мелодичное звучание с кислотными и эмбиентными нотками.</p>', '<p>Skylined дебютує&nbsp;на CTS з трьома гіпнотичними техно-треками. Під впливом традицій старої школи Детройту артист передає монотонний мелодійний звук з acid та атмосферним дотиком у своєму&nbsp;Visual Snow EP.</p>', '<p>Visual Snow<br />\r\nInnovation Injustice<br />\r\nThe Stars Are A Look Back In Time</p>', 1, '2020-12-06 12:08:08', '2021-03-08 16:28:21'),
 (1859, 362, 'Vitalii Sky - Follow Me EP', 'CTS 362203', '2021-03-17', '1b109280902120b48eb9f117af69941c.jpg', 'https://www.beatport.com/release/follow-me/3314798', NULL, '<p style=\"text-align:justify\">Vitalii Sky deliver three brand new trippy tech-house &amp; deep techno tunes with old school style&nbsp;voxes and some rhythmic latin touch in his Follow Me EP. Each track complements the integrity of the release as part of the whole puzzle. Groovy, punchy and deep - three in one... Enjoy</p>', '<p style=\"text-align:justify\">Vitalii Sky представил три совершенно новых триповых tech-house и deep techno трека&nbsp;с old school вокалами и некоторым&nbsp;влиянием латинских&nbsp;ритмов&nbsp;в своем Follow Me EP. Каждый трек дополняет целостность релиза как часть единого&nbsp;пазла. Груви, панчи и дип - три в одном ... Enjoy</p>', '<p style=\"text-align:justify\">Vitalii Sky представив&nbsp;три нових&nbsp;тріппі tech-house та deep techno треки&nbsp;з old school style вокалами та деяким впливом&nbsp;латиноамериканських ритмів&nbsp;в своєму Follow Me EP. Кожен трек доповнює цілісність релізу як частина загального пазлу. Груві, панчі та діп&nbsp;- три в одному ... Насолоджуйтесь</p>', '<p>Vitalii Sky - Elevator Number 7</p>\r\n\r\n<p>Vitalii Sky - Follow Me</p>\r\n\r\n<p>Vitalii Sky - Keep The Pace</p>', 1, '2021-03-08 16:15:19', '2021-04-13 06:18:32'),
-(1860, 363, 'Cream Croc & DJ Jivan - Deep Forest', 'CTS 363213', '2021-10-22', 'bd849d53fbeb85c03e912d7a0d11b268.jpg', 'https://www.beatport.com/release/deep-forest/3553825', 'https://youtu.be/2Npips-bnYk', '<p style=\"text-align:justify\">Cream Croc duo teamed up with DJ Jivan put their hands on synths and authentic acoustic instruments to create monotonic deep tune named Deep Forest. Meditative atmosphere of the track built on Australian native didgeridoo woodwind instrument part played by DJ Jivan disposes to relax and takes you into a transcendental musical trip... Enjoy!</p>', '<p style=\"text-align:justify\">Дуэт Cream Croc и DJ Jivan взяли в руки свои синтезаторы и аутентичные акустические инструменты, чтобы создать монотонный глубокий тюн&nbsp;под названием Deep Forest. Медитативная атмосфера трека, построенная на партии австралийского духового инструмента диджериду в исполнении DJ Jivan, располагает к расслаблению и уносит в запредельное музыкальное путешествие...&nbsp;Enjoy!<!-- P--></p>', '<p style=\"text-align:justify\">Дует Cream Croc об&#39;єднав зусилля з&nbsp;DJ Jivan, взявши у руки&nbsp;синтезатори та автентичні акустичні інструменти, створили монотонний глибокий тюн під назвою Deep Forest. Медітативна атмосфера треку, побудованого на&nbsp;партії австралійського народного духового інструмента&nbsp;діджеріду у виконанні&nbsp;DJ Jivan, дозволяє розслабитися і перенесе вас у трансцендентну музичну подорож ... Насолоджуйтесь! <!-- P--></p>', '<p>Cream Croc &amp; DJ Jivan - Deep Forest (Original Mix)<br />\r\nCream Croc &amp; DJ Jivan - Deep Forest (Video Edit)</p>', 1, '2021-10-11 16:29:22', '2021-10-29 04:38:34');
+(1860, 363, 'Cream Croc & DJ Jivan - Deep Forest', 'CTS 363213', '2021-10-22', 'bd849d53fbeb85c03e912d7a0d11b268.jpg', 'https://www.beatport.com/release/deep-forest/3553825', 'https://youtu.be/2Npips-bnYk', '<p style=\"text-align:justify\">Cream Croc duo teamed up with DJ Jivan put their hands on synths and authentic acoustic instruments to create monotonic deep tune named Deep Forest. Meditative atmosphere of the track built on Australian native didgeridoo woodwind instrument part played by DJ Jivan disposes to relax and takes you into a transcendental musical trip... Enjoy!</p>', '<p style=\"text-align:justify\">Дуэт Cream Croc и DJ Jivan взяли в руки свои синтезаторы и аутентичные акустические инструменты, чтобы создать монотонный глубокий тюн&nbsp;под названием Deep Forest. Медитативная атмосфера трека, построенная на партии австралийского духового инструмента диджериду в исполнении DJ Jivan, располагает к расслаблению и уносит в запредельное музыкальное путешествие...&nbsp;Enjoy!<!-- P--></p>', '<p style=\"text-align:justify\">Дует Cream Croc об&#39;єднав зусилля з&nbsp;DJ Jivan, взявши у руки&nbsp;синтезатори та автентичні акустичні інструменти, створили монотонний глибокий тюн під назвою Deep Forest. Медітативна атмосфера треку, побудованого на&nbsp;партії австралійського народного духового інструмента&nbsp;діджеріду у виконанні&nbsp;DJ Jivan, дозволяє розслабитися і перенесе вас у трансцендентну музичну подорож ... Насолоджуйтесь! <!-- P--></p>', '<p>Cream Croc &amp; DJ Jivan - Deep Forest (Original Mix)<br />\r\nCream Croc &amp; DJ Jivan - Deep Forest (Video Edit)</p>', 1, '2021-10-11 16:29:22', '2021-10-29 04:38:34'),
+(1861, 364, 'Basslucy - Guest', 'CTS 364213', '2021-11-19', 'dc09cdb3a91f87749750d60db4c2cff7.jpg', 'https://www.beatport.com/release/guest/3572936', NULL, '<p style=\"text-align:justify\">We are glad to welcome Basslucy - sound producer from Iran on CTS Records with his new hot single Guest! With this punchy tune Basslucy deliver tight and groovy vibes ready for a crowd dancefloor... Enjoy!</p>', '<p style=\"text-align:justify\">Мы рады приветствовать Basslucy - саунд-продюсера из Ирана на CTS Records с его новым горячим синглом Guest! С этой энергичной композициией&nbsp;Basslucy доставил плотные груви ритмы, специально подготовленные для жаркого танцпола... Enjoy!</p>', '<p style=\"text-align:justify\">Ми раді вітати Basslucy - саундпродюсера з Ірану на CTS Records з його новим гарячим синглом Guest! З цією енергійною композицією&nbsp;Basslucy доставив плотні груві ритми, готові до жаркого танцполу... Enjoy!</p>', '<p>Basslucy - Guest</p>', 1, '2021-11-12 18:44:17', '2021-12-02 15:55:06'),
+(1862, 365, 'Basslucy - Moondancer', 'CTS 365213', '2021-12-17', '34d7a01fe1272fad2494abd1786958ae.jpg', NULL, NULL, '<p style=\"text-align:justify\">Another release from Iranian producer Basslucy on CTS. Atmospheric&nbsp;trippy original is supplemented with remixes. Dark techy mix by&nbsp;Sergio Mega, Cream Croc deliver their&nbsp;acid version and also deep dech vibes by Skylined&nbsp;influenced with Detroit techno traditions... Enjoy</p>', '<p style=\"text-align:justify\">Еще один релиз иранского продюсера Basslucy на CTS. Атмосферный триповый оригинал дополнен ремиксами. Дарк-тек микс от Sergio Mega, Cream Croc представили&nbsp;свою acid версию, а также&nbsp;deep tech c влиянием техно-традиций Детройта от Skylined... Enjoy</p>', '<p style=\"text-align:justify\">Ще один випуск іранського продюсера Basslucy на CTS. Атмосферний&nbsp;триповий&nbsp;оригінал доповнено реміксами. Дарк-тек мікс від&nbsp;Sergio Mega, Cream Croc створили acid версію, а також deep tech&nbsp;з впливом детройтських техно-традицій від Skylined&nbsp;... Enjoy</p>', '<p>Basslucy - Moondancer (Original Mix)<br />\r\nBasslucy - Moondancer (Sergio Mega Remix)<br />\r\nBasslucy - Moondancer (Cream Croc Remix)<br />\r\nBasslucy - Moondancer (Skylined Remix)</p>', 1, '2021-12-02 16:22:25', '2021-12-06 17:58:46');
 
 -- --------------------------------------------------------
 
@@ -2095,7 +2123,7 @@ INSERT INTO `school` (`id`, `sort_id`, `category`, `lang`, `name`, `teacher_binf
 (21, 2, 'teachers', 'ru', 'Niels Von Geyer', '<p>Мастерство ДиДжея<br />\r\nMастер класс на DENON DJ</p>', '<p>DJ и продюсер, TV и радио ведущий. Резидент лейбла Ministry of Sound (Berlin)</p>', 'ec561f1932f2e954e8a6e86d1a71260b.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
 (22, 1, 'teachers', 'ru', 'Александр Желтенко', '<p>Аранжировка в Ableton&nbsp;и STUDIUO ONE<br />\r\nв стилях Breaks, Dubstep, Hip-Hop, House</p>', '<p>Мультижанровый электронный музыкант. Саундпродюсер и участник Amarilyo, Osnova, Peter Und Der Wolf.<br />\r\nКонцертный звукорежиссер группы &quot;Вопли Видоплясова&quot;</p>', '7658ce8bcbc25de711a1ec06a88fd248.png', NULL, '2019-11-21 22:00:00', '2021-05-12 16:18:57', 1),
 (23, 11, 'courses', 'ru', 'DJ базовый курс', NULL, NULL, '2753425f85aa72937aa9c47787f4a749.png', 'DJ базовый курс, стать dj, dj studio, написання музики, навчання створенню електронної музики, навчання майстерності діджея', '2019-11-21 22:00:00', '2021-06-04 15:03:31', 1),
-(24, 12, 'courses', 'ru', 'Индивидуальные занятия', NULL, NULL, '21ab9765d40a546857cb2f82b0976bdd.jpg', 'Индивидуальные занятия, написание музыки на компьютере, элктронная музыка, звукрежиссура, електронна музика, приватні уроки з написання музики', '2019-11-21 22:00:00', '2021-06-04 15:03:31', 1),
+(24, 12, 'courses', 'ru', 'Индивидуальные занятия', NULL, NULL, '83521cc0ca015ad7bd2bd5ab1198b437.png', 'Индивидуальные занятия, написание музыки на компьютере, элктронная музыка, звукрежиссура, електронна музика, приватні уроки з написання музики', '2019-11-21 22:00:00', '2022-01-10 13:47:34', 1),
 (25, 10, 'courses', 'ru', 'DJ и саунд продюсер', NULL, NULL, '658a526b07c51955f46676398a5ddbce.png', 'DJ и саунд продюсер, курс, створення електронної музики, навчання з написання музики в Києві', '2019-11-21 22:00:00', '2021-03-02 04:46:24', 1),
 (26, 9, 'courses', 'ru', 'Саундпродюсер, базовый курс', NULL, NULL, '190199994ef058c53f22377deab29b49.png', 'Саундпродюсер, базовый курс, production школа, школа написання електронної музики', '2019-11-21 22:00:00', '2021-03-02 04:46:37', 1),
 (27, 8, 'courses', 'ru', 'Концертная звукорежиссура', NULL, NULL, '44f3b514914d9e46b52693bf57be70fc.png', 'Концертная звукорежиссура, навчання звукорежисурі, курси звукорежисерів, курси аранжувальників, приватні уроки звукорежисури, школа звукорежисерів, школа аранжувальників, приватні уроки звукорежисури', '2019-11-21 22:00:00', '2021-03-02 04:46:57', 1),
@@ -2105,9 +2133,9 @@ INSERT INTO `school` (`id`, `sort_id`, `category`, `lang`, `name`, `teacher_binf
 (31, 4, 'courses', 'ru', 'Основы теории музыки и гармонии', NULL, NULL, '751b6646b97392284ca2ed5332334e69.png', 'Основы теории музыки и гармонии, базовый курс, курсы теории музыки, курсы гармонии, уроки сольфеджио', '2019-11-21 22:00:00', '2021-03-02 04:47:55', 1),
 (32, 3, 'courses', 'ru', 'Вокальное мастерство', NULL, NULL, '83f5e5641c881f41d75becc306412624.png', 'Вокальное мастерство, базовый курс, курсы вокала, тренер по вокалу, вокальне мистецтво, вокальное искуство', '2019-11-21 22:00:00', '2021-06-04 15:15:23', 1),
 (33, 2, 'courses', 'ru', 'Маркетинг и менеджмент', NULL, NULL, '9203b668d8e485568bf6eff91d81fe79.png', 'Маркетинг и менеджмент в музыкальной сфере и шоу-бизнесе', '2019-11-21 22:00:00', '2021-06-04 15:15:23', 1),
-(34, 1, 'courses', 'ru', 'Индивидуальные занятия онлайн', NULL, NULL, '186740692380d803f71bb3fa74485195.jpg', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2019-11-21 22:00:00', '2021-06-04 15:09:58', 1),
+(34, 1, 'courses', 'ru', 'Индивидуальные занятия онлайн', NULL, NULL, 'a8ceb9824b7ea6249e8de356ce1e3c8e.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2019-11-21 22:00:00', '2022-01-10 13:47:53', 1),
 (35, 2, 'courses', 'en', 'DJ basic course', NULL, NULL, 'ccd8c934cba343971fb51a688d2e6ad5.png', 'DJ базовый курс, стать dj, dj studio, написання музики, навчання створенню електронної музики, навчання майстерності діджея', '2019-11-21 22:00:00', '2021-06-04 15:32:23', 1),
-(36, 1, 'courses', 'en', 'Individual Sessions Online', NULL, NULL, 'bc41048ccd2709ff156eb86b3b92f0dd.png', 'Individual private lessons in music production online, computer arrangement, sound engineering, music theory', '2019-11-21 22:00:00', '2021-06-04 15:32:23', 1),
+(36, 1, 'courses', 'en', 'Individual Sessions Online', NULL, NULL, 'f524a0ed6bc29e8a4e854fed083222a5.png', 'Individual private lessons in music production online, computer arrangement, sound engineering, music theory', '2019-11-21 22:00:00', '2022-01-10 13:48:14', 1),
 (37, 10, 'courses', 'en', 'DJ & Sound produces full', NULL, NULL, '1b41dfa5b826f98547191d932603b070.png', 'DJ и саунд продюсер, курс, створення електронної музики, навчання з написання музики в Києві', '2019-11-21 22:00:00', '2020-01-06 08:23:30', 1),
 (38, 6, 'courses', 'en', 'Sound Engineer full course', NULL, NULL, 'aa74df764edd2ab50d28c1a508359f4b.png', 'Звукорежиссер, аранжировщик, полный курс, аранжувальник, навчання звукорежисурі, курси звукорежисерів, курси аранжувальників, приватні уроки звукорежисури, школа звукорежисерів, школа аранжувальників, приватні уроки звукорежисури', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
 (39, 8, 'courses', 'en', 'FOH Engineer', NULL, NULL, 'e9cd7674bde3d39cdaf7474bdc037140.png', 'Концертная звукорежиссура, навчання звукорежисурі, курси звукорежисерів, курси аранжувальників, приватні уроки звукорежисури, школа звукорежисерів, школа аранжувальників, приватні уроки звукорежисури', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
@@ -2117,9 +2145,9 @@ INSERT INTO `school` (`id`, `sort_id`, `category`, `lang`, `name`, `teacher_binf
 (43, 4, 'courses', 'en', 'Basic of the music theory and harmony', NULL, NULL, '458690957bda1ce9f05e028d80485ab4.png', 'Основы теории музыки и гармонии, базовый курс, курсы теории музыки, курсы гармонии, уроки сольфеджио', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
 (44, 3, 'courses', 'en', 'Vocal basic course', NULL, NULL, '01c611da37fdfd1fb60c43a90b91fa66.png', 'Вокальное мастерство, базовый курс, курсы вокала, тренер по вокалу, вокальне мистецтво, вокальное искуство', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
 (45, 2, 'courses', 'en', 'Marketing & management', NULL, NULL, '104d40339277052cad18b57ce611b4f6.png', 'Маркетинг и менеджмент в музыкальной сфере и шоу-бизнесе', '2019-11-21 22:00:00', '2020-01-05 06:55:56', 1),
-(46, 12, 'courses', 'en', 'Individual sessions', NULL, NULL, '79e6da89bc9d364a733cf6568b0b8318.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2019-11-21 22:00:00', '2021-06-04 15:35:06', 1),
+(46, 12, 'courses', 'en', 'Individual sessions', NULL, NULL, '5183c3e32067be7137cc0f47e321fc18.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2019-11-21 22:00:00', '2022-01-10 13:47:10', 1),
 (48, 11, 'courses', 'ua', 'DJ базовий курс', NULL, NULL, '11e25b77628915256417dc770e55c95d.png', 'DJ базовый курс, стать dj, dj studio, написання музики, навчання створенню електронної музики, навчання майстерності діджея', '2021-02-03 05:48:38', '2021-06-04 15:20:38', 1),
-(49, 1, 'courses', 'ua', 'Індивідуальні заняття Online', NULL, NULL, '8d3fa248a8df9bea878e6002b5adf6b4.jpg', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2021-02-03 05:54:13', '2021-06-04 15:38:52', 1),
+(49, 1, 'courses', 'ua', 'Індивідуальні заняття Online', NULL, NULL, '068f87934f27629a67a8ae544055f257.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2021-02-03 05:54:13', '2022-01-10 13:48:45', 1),
 (50, 10, 'courses', 'ua', 'DJ & Саунд Продюсер повний курс', NULL, NULL, 'f9cb7ee802cb085b77d9a720d072bd89.png', 'DJ и саунд продюсер, курс, створення електронної музики, навчання з написання музики в Києві', '2021-02-03 05:55:09', '2021-06-04 15:20:38', 1),
 (51, 9, 'courses', 'ua', 'Саунд продюсер базовий курс', NULL, NULL, '0201fc74154fb5f7eeb7b5034098b713.png', 'Саундпродюсер, базовый курс, production школа, школа написання електронної музики', '2021-02-03 05:55:50', '2021-06-04 15:20:38', 1),
 (52, 8, 'courses', 'ua', 'Концертна звукорежисура', NULL, NULL, '2d058e56bd5bfc3c18ff849a91ec0885.png', 'Концертная звукорежиссура, навчання звукорежисурі, курси звукорежисерів, курси аранжувальників, приватні уроки звукорежисури, школа звукорежисерів, школа аранжувальників, приватні уроки звукорежисури', '2021-02-03 05:56:57', '2021-06-04 15:20:38', 1),
@@ -2129,7 +2157,7 @@ INSERT INTO `school` (`id`, `sort_id`, `category`, `lang`, `name`, `teacher_binf
 (56, 4, 'courses', 'ua', 'Основи теорії музики та гармонії базовий курс', NULL, NULL, '913b7eda350452754d5a964965636b26.png', 'Основы теории музыки и гармонии, базовый курс, курсы теории музыки, курсы гармонии, уроки сольфеджио', '2021-02-03 05:59:27', '2021-06-04 15:20:38', 1),
 (57, 3, 'courses', 'ua', 'Вокальна майстерність базовий курс', NULL, NULL, '9c6c0c2409919dca690261737afa4e7e.png', 'Вокальное мастерство, базовый курс, курсы вокала, тренер по вокалу, вокальне мистецтво, вокальное искуство', '2021-02-03 06:00:10', '2021-06-04 15:20:38', 1),
 (58, 2, 'courses', 'ua', 'Маркетинг та менеджмент', NULL, NULL, 'cdae2fa31fb12238a87de3c3dee67bf4.png', 'Маркетинг и менеджмент в музыкальной сфере и шоу-бизнесе', '2021-02-03 06:00:39', '2021-06-04 15:20:38', 1),
-(59, 12, 'courses', 'ua', 'Індивідуальні заняття', NULL, NULL, 'eb790512cc2f98e494861d7f1165b67d.jpg', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2021-02-03 06:01:10', '2021-06-04 15:20:38', 1),
+(59, 12, 'courses', 'ua', 'Індивідуальні заняття', NULL, NULL, '43d24a8d6fbd2cf02a3c89b85e4e77ca.png', 'Индивидуальные занятия, частные уроки по написанию музыки, електронна музика, навчання роботі в музичних редакторах', '2021-02-03 06:01:10', '2022-01-10 13:48:33', 1),
 (60, 11, 'teachers', 'ua', 'Іван Шаповалов', '<p>Звукорежисура, Зведення, Мастеринг<br />\r\nSTUDIO ONE, CUBASE.<br />\r\nТеорія, практичні заняття<br />\r\nПсихоакустика &ndash; майстер клас</p>', '<p>звукорежисер і співвласник продакшн студії, учасник групи That Black, досвід роботи на сцені, в кіно, на ТV</p>', '8537dde1c6b18a34a01fff8da52802a5.png', NULL, '2019-11-21 22:00:00', '2021-02-03 06:13:22', 1),
 (61, 10, 'teachers', 'ua', 'Sergio Mega', '<p>Аранжування<br />\r\nЗведення, Мастеринг <br />\r\nLOGIC, PRO TOOLS, Reason<br />\r\nТеорія, практичні заняття</p>', '<p>DJ, музикант, продюсер. PhD, викладач кафедри звукорежисури НАКККіМ. Засновник лейблу та студії звукозапису CTS Records</p>', '4869e5974ebcb528418d0786c3f097c3.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
 (62, 9, 'teachers', 'ua', 'Лілія Лазарєва', '<p>Авторське право <br />\r\nв музичній сфері<br />\r\nМаркетинг і Промоушн</p>', '<p>Директор лейблу CTS Records, спеціаліст в галузі авторського права і маркетингу</p>', '7f6f5ed16f468081cc5ece1a29466538.png', NULL, '2019-11-21 22:00:00', '2020-01-06 08:09:50', 1),
@@ -2322,13 +2350,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблиці `artists`
 --
 ALTER TABLE `artists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1853;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1854;
 
 --
 -- AUTO_INCREMENT для таблиці `cv`
 --
 ALTER TABLE `cv`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT для таблиці `failed_jobs`
@@ -2340,13 +2368,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблиці `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблиці `feedback_results`
 --
 ALTER TABLE `feedback_results`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблиці `migrations`
@@ -2358,7 +2386,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблиці `releases`
 --
 ALTER TABLE `releases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1861;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1863;
 
 --
 -- AUTO_INCREMENT для таблиці `reviews`

@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Mail;
 
 class FeedbackResult extends Model{
 
-//    protected $to = 'admin@cts.ua';
-    protected $to = 'viiper94@gmail.com';
+    protected $to = 'admin@cts.ua';
+//    protected $to = 'viiper94@gmail.com';
     protected $fillable = [
         'name',
         'email',

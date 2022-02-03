@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Feedback;
 use App\FeedbackResult;
+use App\Mail\CvMail;
+use App\Mail\FeedbackMail;
 use App\Release;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FeedbackController extends Controller{
 

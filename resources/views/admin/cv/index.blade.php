@@ -18,7 +18,7 @@
                     </tr>
                     @foreach($cv_list as $cv)
                         <tr>
-                            <td><img src="/images/users/{{ $cv->user->image ?? 'default.png' }}"></td>
+                            <td><img src="/images/users/{{ $cv->user && $cv->user->image ?? 'default.png' }}"></td>
                             <td>{{ $cv->name }}</td>
                             <td>{{ $cv->email }}</td>
                             <td><span class="label {{ $cv->getStatus()['labelClass'] }}">{{ $cv->getStatus()['name'] }}</span></td>
@@ -26,7 +26,7 @@
                             <td>
                                 <a class='btn btn-success' href='{{ route('cv_admin') }}/edit/{{ $cv->id }}/student'>
                                     <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Смотреть анкету
-                                    <span class="hidden-xs hidden-sm hidden-lg">Изменить статус</span>
+                                    <span class="hidden-xs hidden-sm hidden-lg">Смотреть анкету</span>
                                 </a>
 {{--                                <a class='btn btn-danger' href='{{ route('cv_admin') }}/delete/{{ $cv->id }}' onclick='return confirm("Удалить анкету?")'>--}}
 {{--                                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>--}}

@@ -22,4 +22,11 @@ class AdminCvController extends Controller{
         ]);
     }
 
+    public function delete(Request $request, $id){
+        $cv = Cv::findOrFail($id);
+        return $cv->delete() ?
+            redirect()->back()->with(['success' => 'Анкета удалена!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
 }

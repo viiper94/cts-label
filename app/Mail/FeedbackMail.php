@@ -32,6 +32,6 @@ class FeedbackMail extends Mailable
     {
         return $this->markdown('emails.feedback.result')
             ->subject('Feedback to release '. $this->feedback->feedback_title)
-            ->from($this->feedback->email);
+            ->from($this->result->email);
     }
 }

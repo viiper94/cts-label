@@ -24,7 +24,7 @@ class FeedbackController extends Controller{
             $result = new FeedbackResult();
             $result->fill($request->post());
             $result->feedback_id = $feedback->id;
-            $result->sendFeedback($feedback);
+            Mail::to(env('ADMIN_EMAIL'))->send(new FeedbackMail($feedback, $result));
             return $result->save() ?
                 redirect()->route('feedback.end', $slug) :
                 redirect()->back()->withErrors(['!!!']);

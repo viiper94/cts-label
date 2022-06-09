@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Час створення: Лют 03 2022 р., 10:54
--- Версія сервера: 10.3.32-MariaDB-cll-lve
--- Версія PHP: 7.3.33
+-- Час створення: Чрв 09 2022 р., 09:55
+-- Версія сервера: 10.3.34-MariaDB-cll-lve
+-- Версія PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -207,7 +207,7 @@ CREATE TABLE `cv` (
   `sound_engineer_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sound_producer_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dj_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `music_genres` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `music_genres` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `additional_info` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `learned_about_ctschool` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `what_to_learn` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -215,15 +215,20 @@ CREATE TABLE `cv` (
   `closed_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `course` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
+  `course` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `os` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `equipment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `document` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп даних таблиці `cv`
 --
 
-INSERT INTO `cv` (`id`, `user_id`, `status`, `name`, `email`, `birth_date`, `dj_name`, `vk`, `facebook`, `soundcloud`, `other_social`, `phone_number`, `address`, `education`, `job`, `sound_engineer_skills`, `sound_producer_skills`, `dj_skills`, `music_genres`, `additional_info`, `learned_about_ctschool`, `what_to_learn`, `purpose_of_learning`, `closed_at`, `created_at`, `updated_at`, `course`) VALUES
-(19, 3, 0, 'Sergio Mega', 'sergio@cts-studio.com', '1973-04-15', 'Sergio Mega', NULL, 'https://www.facebook.com/sergio.mega.cts/', NULL, NULL, '0677031572', 'Kyiv, Khreschatik 23, 14', '...', 'A&R', '...', '...', '...', 'techno', '......', '......', '.........', '.....', NULL, '2022-02-01 12:48:45', '2022-02-01 12:48:45', 'Individual sessions');
+INSERT INTO `cv` (`id`, `user_id`, `status`, `name`, `email`, `birth_date`, `dj_name`, `vk`, `facebook`, `soundcloud`, `other_social`, `phone_number`, `address`, `education`, `job`, `sound_engineer_skills`, `sound_producer_skills`, `dj_skills`, `music_genres`, `additional_info`, `learned_about_ctschool`, `what_to_learn`, `purpose_of_learning`, `closed_at`, `created_at`, `updated_at`, `course`, `os`, `equipment`, `document`) VALUES
+(19, 3, 0, 'Sergio Mega', 'sergio@cts-studio.com', '1973-04-15', 'Sergio Mega', NULL, 'https://www.facebook.com/sergio.mega.cts/', NULL, NULL, '0677031572', 'Kyiv, Khreschatik 23, 14', '...', 'A&R', '...', '...', '...', 'techno', '......', '......', '.........', '.....', NULL, '2022-02-01 12:48:45', '2022-02-01 12:48:45', 'Individual sessions', NULL, NULL, NULL),
+(24, NULL, 0, 'Dante', 'nirvanadante1@gmail.com', '2000-07-02', 'Non', NULL, NULL, NULL, NULL, '1 380 68 064 6585', 'Baseina', 'Non', 'Non', 'Non', NULL, NULL, 'Hip-hop', NULL, 'Xloar to home', NULL, 'Hobby', NULL, '2022-02-10 09:33:19', '2022-02-10 09:33:20', 'Sound producer full course', 'Both', 'Nkn', '202202101133-82c5b4c0ae8ed3db5a560e33b696b2f6.docx'),
+(25, NULL, 0, 'Dante', 'nirvanadante1@gmail.com', '2000-07-02', 'Non', NULL, NULL, NULL, NULL, '1 380 68 064 6585', 'Baseina', 'Non', 'Non', 'Non', NULL, NULL, 'Hip-hop', NULL, 'Xloar to home', NULL, 'Hobby', NULL, '2022-02-10 09:33:20', '2022-02-10 09:33:21', 'Sound producer full course', 'Both', 'Nkn', '202202101133-d8cab315a3017f44eb830e34917ba5af.docx');
 
 -- --------------------------------------------------------
 
@@ -303,7 +308,19 @@ INSERT INTO `feedback_results` (`id`, `feedback_id`, `name`, `email`, `rates`, `
 (5, 17, 'Sergio Mega', 'info@sergiomega.com', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"5\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"5\"}', 'Cream Croc & DJ Jivan - Deep Forest (Original Mix)', 'test', '2021-11-01 10:43:30', '2021-11-01 10:43:30'),
 (6, 17, 'Jivam', '5230505@gmail.com', '{\"Cream Croc & DJ Jivan - Deep Forest (Original Mix)\":\"9\",\"Cream Croc & DJ Jivan - Deep Forest (Video Edit)\":\"9\"}', 'Cream Croc & DJ Jivan - Deep Forest (Original Mix)', 'Nice track!', '2021-11-08 06:19:43', '2021-11-08 06:19:43'),
 (7, 26, 'Vitalii Sky', 'vitaliisky980@gmail.com', '{\"Original Mix\":\"8\",\"Sergio Mega Remix\":\"10\",\"Cream Croc Remix\":\"3\",\"Skylined Remix\":\"3\"}', 'Sergio Mega Remix', 'Good atmospheric work immerses you in a whirlpool of emotions and peace', '2022-01-27 18:30:32', '2022-01-27 18:30:32'),
-(8, 27, 'GATY LOPEZ', 'info@djgatylopez.com', '{\"Basslucy - Moondancer (Sergio Mega Remix)\":\"7\"}', NULL, 'Great !!!!', '2022-02-03 06:35:57', '2022-02-03 06:35:57');
+(8, 27, 'GATY LOPEZ', 'info@djgatylopez.com', '{\"Basslucy - Moondancer (Sergio Mega Remix)\":\"7\"}', NULL, 'Great !!!!', '2022-02-03 06:35:57', '2022-02-03 06:35:57'),
+(9, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 10:38:38', '2022-02-03 10:38:38'),
+(10, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 10:49:39', '2022-02-03 10:49:39'),
+(11, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 10:57:48', '2022-02-03 10:57:48'),
+(12, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 10:58:05', '2022-02-03 10:58:05'),
+(13, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 10:59:45', '2022-02-03 10:59:45'),
+(14, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 11:01:01', '2022-02-03 11:01:01'),
+(15, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 11:01:14', '2022-02-03 11:01:14'),
+(16, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 11:01:23', '2022-02-03 11:01:23'),
+(17, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 11:04:47', '2022-02-03 11:04:47'),
+(18, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 11:06:23', '2022-02-03 11:06:23'),
+(19, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 11:06:50', '2022-02-03 11:06:50'),
+(20, 26, 'TEST', 'viiper94@gmail.com', '{\"Original Mix\":\"10\",\"Sergio Mega Remix\":\"9\",\"Cream Croc Remix\":\"8\",\"Skylined Remix\":\"7\"}', 'Skylined Remix', 'testing feedback emailing', '2022-02-03 11:07:27', '2022-02-03 11:07:27');
 
 -- --------------------------------------------------------
 
@@ -1477,7 +1494,10 @@ INSERT INTO `related_releases` (`release_id`, `related_id`) VALUES
 (1861, 1839),
 (1862, 1861),
 (1862, 1858),
-(1862, 1843);
+(1862, 1843),
+(1863, 1862),
+(1863, 1859),
+(1863, 1844);
 
 -- --------------------------------------------------------
 
@@ -1873,7 +1893,8 @@ INSERT INTO `releases` (`id`, `sort_id`, `title`, `release_number`, `release_dat
 (1859, 362, 'Vitalii Sky - Follow Me EP', 'CTS 362203', '2021-03-17', '1b109280902120b48eb9f117af69941c.jpg', 'https://www.beatport.com/release/follow-me/3314798', NULL, '<p style=\"text-align:justify\">Vitalii Sky deliver three brand new trippy tech-house &amp; deep techno tunes with old school style&nbsp;voxes and some rhythmic latin touch in his Follow Me EP. Each track complements the integrity of the release as part of the whole puzzle. Groovy, punchy and deep - three in one... Enjoy</p>', '<p style=\"text-align:justify\">Vitalii Sky представил три совершенно новых триповых tech-house и deep techno трека&nbsp;с old school вокалами и некоторым&nbsp;влиянием латинских&nbsp;ритмов&nbsp;в своем Follow Me EP. Каждый трек дополняет целостность релиза как часть единого&nbsp;пазла. Груви, панчи и дип - три в одном ... Enjoy</p>', '<p style=\"text-align:justify\">Vitalii Sky представив&nbsp;три нових&nbsp;тріппі tech-house та deep techno треки&nbsp;з old school style вокалами та деяким впливом&nbsp;латиноамериканських ритмів&nbsp;в своєму Follow Me EP. Кожен трек доповнює цілісність релізу як частина загального пазлу. Груві, панчі та діп&nbsp;- три в одному ... Насолоджуйтесь</p>', '<p>Vitalii Sky - Elevator Number 7</p>\r\n\r\n<p>Vitalii Sky - Follow Me</p>\r\n\r\n<p>Vitalii Sky - Keep The Pace</p>', 1, '2021-03-08 16:15:19', '2021-04-13 06:18:32'),
 (1860, 363, 'Cream Croc & DJ Jivan - Deep Forest', 'CTS 363213', '2021-10-22', 'bd849d53fbeb85c03e912d7a0d11b268.jpg', 'https://www.beatport.com/release/deep-forest/3553825', 'https://youtu.be/2Npips-bnYk', '<p style=\"text-align:justify\">Cream Croc duo teamed up with DJ Jivan put their hands on synths and authentic acoustic instruments to create monotonic deep tune named Deep Forest. Meditative atmosphere of the track built on Australian native didgeridoo woodwind instrument part played by DJ Jivan disposes to relax and takes you into a transcendental musical trip... Enjoy!</p>', '<p style=\"text-align:justify\">Дуэт Cream Croc и DJ Jivan взяли в руки свои синтезаторы и аутентичные акустические инструменты, чтобы создать монотонный глубокий тюн&nbsp;под названием Deep Forest. Медитативная атмосфера трека, построенная на партии австралийского духового инструмента диджериду в исполнении DJ Jivan, располагает к расслаблению и уносит в запредельное музыкальное путешествие...&nbsp;Enjoy!<!-- P--></p>', '<p style=\"text-align:justify\">Дует Cream Croc об&#39;єднав зусилля з&nbsp;DJ Jivan, взявши у руки&nbsp;синтезатори та автентичні акустичні інструменти, створили монотонний глибокий тюн під назвою Deep Forest. Медітативна атмосфера треку, побудованого на&nbsp;партії австралійського народного духового інструмента&nbsp;діджеріду у виконанні&nbsp;DJ Jivan, дозволяє розслабитися і перенесе вас у трансцендентну музичну подорож ... Насолоджуйтесь! <!-- P--></p>', '<p>Cream Croc &amp; DJ Jivan - Deep Forest (Original Mix)<br />\r\nCream Croc &amp; DJ Jivan - Deep Forest (Video Edit)</p>', 1, '2021-10-11 16:29:22', '2021-10-29 04:38:34'),
 (1861, 364, 'Basslucy - Guest', 'CTS 364213', '2021-11-19', 'dc09cdb3a91f87749750d60db4c2cff7.jpg', 'https://www.beatport.com/release/guest/3572936', NULL, '<p style=\"text-align:justify\">We are glad to welcome Basslucy - sound producer from Iran on CTS Records with his new hot single Guest! With this punchy tune Basslucy deliver tight and groovy vibes ready for a crowd dancefloor... Enjoy!</p>', '<p style=\"text-align:justify\">Мы рады приветствовать Basslucy - саунд-продюсера из Ирана на CTS Records с его новым горячим синглом Guest! С этой энергичной композициией&nbsp;Basslucy доставил плотные груви ритмы, специально подготовленные для жаркого танцпола... Enjoy!</p>', '<p style=\"text-align:justify\">Ми раді вітати Basslucy - саундпродюсера з Ірану на CTS Records з його новим гарячим синглом Guest! З цією енергійною композицією&nbsp;Basslucy доставив плотні груві ритми, готові до жаркого танцполу... Enjoy!</p>', '<p>Basslucy - Guest</p>', 1, '2021-11-12 18:44:17', '2021-12-02 15:55:06'),
-(1862, 365, 'Basslucy - Moondancer', 'CTS 365213', '2021-12-17', '34d7a01fe1272fad2494abd1786958ae.jpg', NULL, NULL, '<p style=\"text-align:justify\">Another release from Iranian producer Basslucy on CTS. Atmospheric&nbsp;trippy original is supplemented with remixes. Dark techy mix by&nbsp;Sergio Mega, Cream Croc deliver their&nbsp;acid version and also deep dech vibes by Skylined&nbsp;influenced with Detroit techno traditions... Enjoy</p>', '<p style=\"text-align:justify\">Еще один релиз иранского продюсера Basslucy на CTS. Атмосферный триповый оригинал дополнен ремиксами. Дарк-тек микс от Sergio Mega, Cream Croc представили&nbsp;свою acid версию, а также&nbsp;deep tech c влиянием техно-традиций Детройта от Skylined... Enjoy</p>', '<p style=\"text-align:justify\">Ще один випуск іранського продюсера Basslucy на CTS. Атмосферний&nbsp;триповий&nbsp;оригінал доповнено реміксами. Дарк-тек мікс від&nbsp;Sergio Mega, Cream Croc створили acid версію, а також deep tech&nbsp;з впливом детройтських техно-традицій від Skylined&nbsp;... Enjoy</p>', '<p>Basslucy - Moondancer (Original Mix)<br />\r\nBasslucy - Moondancer (Sergio Mega Remix)<br />\r\nBasslucy - Moondancer (Cream Croc Remix)<br />\r\nBasslucy - Moondancer (Skylined Remix)</p>', 1, '2021-12-02 16:22:25', '2021-12-06 17:58:46');
+(1862, 365, 'Basslucy - Moondancer', 'CTS 365213', '2021-12-17', '34d7a01fe1272fad2494abd1786958ae.jpg', NULL, NULL, '<p style=\"text-align:justify\">Another release from Iranian producer Basslucy on CTS. Atmospheric&nbsp;trippy original is supplemented with remixes. Dark techy mix by&nbsp;Sergio Mega, Cream Croc deliver their&nbsp;acid version and also deep dech vibes by Skylined&nbsp;influenced with Detroit techno traditions... Enjoy</p>', '<p style=\"text-align:justify\">Еще один релиз иранского продюсера Basslucy на CTS. Атмосферный триповый оригинал дополнен ремиксами. Дарк-тек микс от Sergio Mega, Cream Croc представили&nbsp;свою acid версию, а также&nbsp;deep tech c влиянием техно-традиций Детройта от Skylined... Enjoy</p>', '<p style=\"text-align:justify\">Ще один випуск іранського продюсера Basslucy на CTS. Атмосферний&nbsp;триповий&nbsp;оригінал доповнено реміксами. Дарк-тек мікс від&nbsp;Sergio Mega, Cream Croc створили acid версію, а також deep tech&nbsp;з впливом детройтських техно-традицій від Skylined&nbsp;... Enjoy</p>', '<p>Basslucy - Moondancer (Original Mix)<br />\r\nBasslucy - Moondancer (Sergio Mega Remix)<br />\r\nBasslucy - Moondancer (Cream Croc Remix)<br />\r\nBasslucy - Moondancer (Skylined Remix)</p>', 1, '2021-12-02 16:22:25', '2021-12-06 17:58:46'),
+(1863, 366, 'Vitalii Sky - We the People', 'CTS 366223', '2022-05-07', '0c0dbf5a2fa43b650d20e1c130705e80.jpeg', 'https://www.beatport.com/release/we-the-people/3733446', NULL, '<p style=\"text-align: justify;\">With this release Ukrainian sound producer Vitalii Sky and we here on Kyiv based record label CTS Records would like to show our solidarity and unity with all Ukrainian people who fight brave to struggle for our liberty and sovereignty now. We stay strong and we&#39;ll never give up - we the people of Ukraine! Slava Ukraini!</p>', '<p style=\"text-align: justify;\">Этим релизом украинский саунд-продюсер Vitalii Sky и мы здесь, на киевском лейбле CTS Records, хотели бы продемонстрировать нашу солидарность и единство со всем украинским народом, который сейчас храбро борется за нашу свободу и суверенитет. Мы остаемся сильными и никогда не сдадимся - мы народ Украины! Слава Україні!</p>', '<p style=\"text-align: justify;\">Цим релізом український саундпродюсер Vitalii Sky і ми тут, на київському лейблі CTS Records, хочемо продемонструвати&nbsp;нашу солідарність і єдність з усім українським народом, який зараз відважно бореться за нашу свободу та суверенітет. Ми залишаємося сильними і ніколи не здамося - ми, народ України! Слава Україні!</p>', '<p>Vitalii Sky - We the People</p>', 1, '2022-05-05 18:34:07', '2022-05-05 18:36:48');
 
 -- --------------------------------------------------------
 
@@ -2356,7 +2377,7 @@ ALTER TABLE `artists`
 -- AUTO_INCREMENT для таблиці `cv`
 --
 ALTER TABLE `cv`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT для таблиці `failed_jobs`
@@ -2374,7 +2395,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT для таблиці `feedback_results`
 --
 ALTER TABLE `feedback_results`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT для таблиці `migrations`
@@ -2386,7 +2407,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблиці `releases`
 --
 ALTER TABLE `releases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1863;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1864;
 
 --
 -- AUTO_INCREMENT для таблиці `reviews`

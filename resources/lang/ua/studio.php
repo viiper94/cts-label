@@ -1,5 +1,7 @@
 <?php
 return [
+    'page_header' => 'CTS Studio - студія звукозапису незалежного рекорд-лейблу CTS Records',
+
     'equipment' => 'Обладнання',
     'services' => 'Послуги студії',
     'projects' => 'Проекти та Артисти',

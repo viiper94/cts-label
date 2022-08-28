@@ -1,5 +1,7 @@
 <?php
 return [
+    'page_header' => 'CTS Studio - студия звукозаписи независимого рекорд-лейбла CTS Records',
+
     'equipment' => 'Оборудование',
     'services' => 'Услуги студии',
     'projects' => 'Проекты и Артисты',
@@ -66,7 +68,7 @@ return [
 								<b>Digidesign M-BOX 2</b><br />
 								<b>RME Fireface 400</b><br />
 								<b>PreSonus Studio 26</b></p>
-							
+
 
                             <p>Синтезаторы:<br />
                                 <b>Moog SUB 37 Tribute Edition</b><br />

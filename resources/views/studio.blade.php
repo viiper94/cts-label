@@ -7,7 +7,7 @@
 @endsection
 
 @section('title')
-    CTS Studio - студия звукозаписи независимого рекорд-лейбла CTS Records
+    @lang('studio.page_header')
 @endsection
 
 @section('keywords')

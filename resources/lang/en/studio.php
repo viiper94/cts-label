@@ -1,5 +1,7 @@
 <?php
 return [
+    'page_header' => 'CTS Studio is a recording studio of independent record label CTS Records',
+
     'equipment' => 'Equipment',
     'services' => 'Services',
     'projects' => 'Projects & Artists',

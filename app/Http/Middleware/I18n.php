@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\App;
 
 class I18n{
 
-    public $defaultLang = 'ru';
+    public $defaultLang = 'ua';
 
     public function handle($request, Closure $next){
         App::setLocale($_COOKIE['lang'] ?? $this->defaultLang);

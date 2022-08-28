@@ -26,6 +26,15 @@
     CTS Studio - студия звукозаписи независимого рекорд-лейбла CTS Records
 @endsection
 
+@section('meta')
+    <meta property="og:title" content="CTS Studio - професійна студія звукозапису незалежного рекорд-лейблу CTS Records в Києві">
+    <meta property="og:description" content="CTS Studio - професійна студія звукозапису незалежного рекорд-лейблу CTS Records в Києві">
+    <meta property="og:image" content="https://www.cts-label.com/assets/img/cts-studio-y.png">
+    <meta property="og:url" content="https://cts-label.com/studio.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CTStudio">
+@endsection
+
 @section('content')
     <script type="application/ld+json">
     {

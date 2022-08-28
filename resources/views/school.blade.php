@@ -48,6 +48,15 @@
     музыкальных редакторах, уроки теории музыки, обучение созданию электронной музыки, обучение protools, обучение reason
 @endsection
 
+@section('meta')
+    <meta property="og:title" content="CTSchool - професійні курси звукорежисерів, аранжувальників, DJ-їв і саунд продюсерів в Києві">
+    <meta property="og:description" content="CTSchool - професійна школа DJ та саунд продюсерів у Києві. Навчання майстерності діджея, сольфеджіо, навчання роботі в музичних редакторах, уроки теорії музики, навчання електронної музики, навчання protools, навчання reason">
+    <meta property="og:image" content="https://cts-label.com/assets/img/ctschool-y.png">
+    <meta property="og:url" content="https://cts-label.com/ctschool.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="CTSchool">
+@endsection
+
 @section('content')
     <script type="application/ld+json">
     {

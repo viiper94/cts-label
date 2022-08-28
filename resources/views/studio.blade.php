@@ -23,7 +23,7 @@
 @endsection
 
 @section('description')
-    CTS Studio - студия звукозаписи независимого рекорд-лейбла CTS Records
+    CTS Studio - студія звукозапису незалежного рекорд-лейблу CTS Records
 @endsection
 
 @section('meta')

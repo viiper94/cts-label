@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
+    @yield('meta')
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <title>@yield('title', "CTS Records")</title>
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">

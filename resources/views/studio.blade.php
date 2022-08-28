@@ -38,13 +38,13 @@
 @section('content')
     <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
+      "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Cтудия звукозаписи CTS Records",
-      "url" : "http://www.cts-label.com/studio.html",
+      "name": "Cтудія звукозапису CTS Records",
+      "url" : "https://www.cts-label.com/studio.html",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Kiev, Ukraine",
+        "addressLocality": "Kyiv, Ukraine",
         "streetAddress": "Бессарабська площа, 4,"
       },
       "email": "info(at)cts-label.com",

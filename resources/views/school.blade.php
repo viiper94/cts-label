@@ -59,13 +59,13 @@
 @section('content')
     <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
+      "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Курсы звукорежиссуры и аранжировки CTSchool",
-      "url" : "http://www.cts-label.com/ctschool.html",
+      "name": "Курси звукорежисури і аранжування CTSchool",
+      "url" : "https://www.cts-label.com/ctschool.html",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Kiev, Ukraine",
+        "addressLocality": "Kyiv, Ukraine",
         "streetAddress": "Бессарабська площа, 4,"
       },
       "email": "info(at)cts-label.com",

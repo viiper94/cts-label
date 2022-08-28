@@ -8,14 +8,14 @@
             <div class="row" style="padding:0 30px 0 0;">
                 <script type="application/ld+json">
                     {
-                      "@context": "http://schema.org",
+                      "@context": "https://schema.org",
                       "@type": "Organization",
                       "name": "CTS Label",
-                      "url" : "http://www.cts-label.com",
-                      "logo": "http://www.cts-label.com/assets/img/logo.png",
+                      "url" : "https://www.cts-label.com",
+                      "logo": "https://www.cts-label.com/assets/img/logo.png",
                       "address": {
                         "@type": "PostalAddress",
-                        "addressLocality": "Kiev, Ukraine",
+                        "addressLocality": "Kyiv, Ukraine",
                         "streetAddress": "Бессарабська площа, 4,"
                       },
                       "email": "info(at)cts-label.com",

@@ -12,6 +12,7 @@ return [
     'demo' => 'Demo',
     'contact' => 'Contact',
     'feedback' => 'Feedback',
+    'emailing' => 'Рассылки',
     'users' => 'Пользователи',
     'admin' => 'Админка',
     'cv' => 'Анкеты',

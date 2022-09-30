@@ -20,6 +20,7 @@
                     <li @if(\Route::is('school_admin'))class="active" @endif><a href="{{ route('school_admin') }}">@lang('navbar.school')</a></li>
                     <li @if(\Route::is('reviews_admin'))class="active" @endif><a href="{{ route('reviews_admin') }}">@lang('navbar.reviews')</a></li>
                     <li @if(\Route::is('feedback_admin'))class="active" @endif><a href="{{ route('feedback_admin') }}">@lang('navbar.feedback')</a></li>
+                    <li @if(\Route::is('emailing_admin'))class="active" @endif><a href="{{ route('emailing_admin') }}">@lang('navbar.emailing')</a></li>
                     <li @if(\Route::is('users_admin'))class="active" @endif><a href="{{ route('users_admin') }}">@lang('navbar.users')</a></li>
                     <li @if(\Route::is('cv_admin'))class="active" @endif>
                         <a href="{{ route('cv_admin') }}">

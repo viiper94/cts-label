@@ -57,6 +57,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/cts-admin/artists', 'AdminArtistsController@index')->name('artists_admin');
         Route::get('/cts-admin/reviews', 'AdminReviewsController@index')->name('reviews_admin');
         Route::get('/cts-admin/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
+        Route::get('/cts-admin/emailing', 'AdminEmailingController@index')->name('emailing_admin');
         Route::get('/cts-admin/school', 'AdminSchoolController@index')->name('school_admin');
         Route::get('/cts-admin/studio', 'AdminStudioController@index')->name('studio_admin');
         Route::get('/cts-admin/users', 'AdminUsersController@index')->name('users_admin');

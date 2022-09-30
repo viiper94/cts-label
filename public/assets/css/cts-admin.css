@@ -325,6 +325,13 @@ table .sort-input{
     border-top: 1px solid #444;
 }
 
+/* Emailing */
+.table-responsive .table.table__dark tr td,
+.table-responsive .table.table__dark tr th{
+    max-width: 200px;
+    vertical-align: middle;
+}
+
 /* Scrollbar */
 *::-webkit-scrollbar {
     width: 5px;

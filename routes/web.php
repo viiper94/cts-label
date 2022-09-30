@@ -31,6 +31,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
     Route::any('/anketa', 'CvController@index')->name('cv');
+    Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
 
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function () {
 

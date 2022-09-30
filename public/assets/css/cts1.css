@@ -447,6 +447,13 @@ footer h3{ font-size: 15px}
     .anketa .page-title .switch-btns{padding-top: 15px; width: auto;}
 }
 
+/* unsubscribe page */
+.unsubscribe form{padding: 5rem}
+.unsubscribe .panel.panel-default{max-width: 500px; margin: auto; background-color: #333; border-color: #404040; border-radius: 0}
+.unsubscribe .panel.panel-default>.panel-heading, .unsubscribe .panel.panel-default>.panel-footer{color: #fff; background-color: #222; border-color: #404040;}
+.unsubscribe .panel.panel-default .btn{background-color: #252525; border-radius: 0; border: 1px solid #404040; color: #999;}
+.unsubscribe .panel.panel-default .btn:hover, .unsubscribe .panel.panel-default .btn:focus{box-shadow: none; border: 1px solid #e8a324; transition: .3s ease; outline: none;}
+
 /*social icons */
 .socials {background: url(../img/socials.png) top left no-repeat; width: 33px; height: 33px; display: inline-block; margin:1px;}
 .socials-beatport {background-position: 0px -33px;}

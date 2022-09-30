@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
                 <label for="from">E-Mail отправителя</label><br>
-                <input type="email" class="form-control form-control__dark" id="from" name="from" value="{{ $channel->from }}" placeholder="info@cts-label.com">
+                <input type="email" class="form-control form-control__dark" id="from" name="from" value="{{ $channel->from }}" placeholder="info@cts-label.com" required>
                 @if($errors->has('from'))
                     <p class="help-block">{{ $errors->first('from') }}</p>
                 @endif

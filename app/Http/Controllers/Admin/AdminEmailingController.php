@@ -27,7 +27,7 @@ class AdminEmailingController extends Controller{
             $this->validate($request, [
                 'title' => 'required|string',
                 'description' => 'nullable|string',
-                'from' => 'nullable|string',
+                'from' => 'required|string',
                 'subject' => 'required|string',
                 'template' => 'nullable|string',
                 'lang' => 'required|string',

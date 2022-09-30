@@ -5,13 +5,27 @@
     <div class="container">
         <form method="post">
             @csrf
-            <div class="form-group">
-                <label for="title">Название канала рассылки</label><br>
-                <input type="text" class="form-control form-control__dark" id="title" name="title" value="{{ $channel->title }}" required>
-                @if($errors->has('title'))
-                    <p class="help-block">{{ $errors->first('title') }}</p>
-                @endif
+            <div class="row">
+                <div class="form-group col-sm-9">
+                    <label for="title">Название канала рассылки</label><br>
+                    <input type="text" class="form-control form-control__dark" id="title" name="title" value="{{ $channel->title }}" required>
+                    @if($errors->has('title'))
+                        <p class="help-block">{{ $errors->first('title') }}</p>
+                    @endif
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="lang">Язык</label><br>
+                    <select class="form-control form-control__dark" id="lang" name="lang">
+                        <option value="en">EN</option>
+                        <option value="ua">UA</option>
+                        <option value="ru">RU</option>
+                    </select>
+                    @if($errors->has('lang'))
+                        <p class="help-block">{{ $errors->first('lang') }}</p>
+                    @endif
+                </div>
             </div>
+
             <div class="form-group">
                 <label for="subject">Тема письма</label><br>
                 <input type="text" class="form-control form-control__dark" id="subject" name="subject" value="{{ $channel->subject }}" required>

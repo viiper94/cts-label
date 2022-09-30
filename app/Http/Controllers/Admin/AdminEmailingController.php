@@ -29,6 +29,8 @@ class AdminEmailingController extends Controller{
                 'description' => 'nullable|string',
                 'from' => 'nullable|string',
                 'subject' => 'required|string',
+                'template' => 'nullable|string',
+                'lang' => 'required|string',
             ]);
             $channel->fill($request->post());
             if($channel->save()){

@@ -6,6 +6,7 @@
             <th>Тема письма</th>
             <th>Отправитель</th>
             <th>Описание</th>
+            <th>Язык</th>
             <th>Подписчиков</th>
             <th>Создано</th>
             <th>
@@ -20,6 +21,7 @@
                 <td>{{ $channel->subject }}</td>
                 <td>{{ $channel->from ?? env('EMAIL_FROM') }}</td>
                 <td>{{ $channel->description }}</td>
+                <td>{{ strtoupper($channel->lang) }}</td>
                 <td>{{ count($channel->subscribers) }}</td>
                 <td>{{ $channel->created_at->isoFormat('LLL') }}</td>
                 <td>

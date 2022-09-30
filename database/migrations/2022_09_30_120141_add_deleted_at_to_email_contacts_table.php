@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDocumentToCvTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddDocumentToCvTable extends Migration
      */
     public function up()
     {
-        Schema::table('cv', function (Blueprint $table) {
-            $table->string('document')->nullable();
+        Schema::table('email_contacts', function (Blueprint $table) {
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddDocumentToCvTable extends Migration
      */
     public function down()
     {
-        Schema::table('cv', function (Blueprint $table) {
-            $table->dropColumn('document');
+        Schema::table('email_contacts', function (Blueprint $table) {
+            $table->dropColumn('deleted_at');
         });
     }
-}
+};

@@ -15,6 +15,10 @@ class AddCourseToCv extends Migration
     {
         Schema::table('cv', function (Blueprint $table) {
             $table->string('course');
+            $table->text('os')->nullable();
+            $table->text('equipment')->nullable();
+            $table->text('music_genres')->nullable()->change();
+            $table->string('document')->nullable();
         });
     }
 
@@ -27,6 +31,10 @@ class AddCourseToCv extends Migration
     {
         Schema::table('cv', function (Blueprint $table) {
             $table->dropColumn('course');
+            $table->dropColumn('os');
+            $table->dropColumn('equipment');
+            $table->text('music_genres')->change();
+            $table->dropColumn('document');
         });
     }
 }

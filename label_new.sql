@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Час створення: Чрв 09 2022 р., 09:55
--- Версія сервера: 10.3.34-MariaDB-cll-lve
--- Версія PHP: 7.4.29
+-- Час створення: Вер 30 2022 р., 15:40
+-- Версія сервера: 10.3.36-MariaDB-cll-lve
+-- Версія PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -233,6 +233,79 @@ INSERT INTO `cv` (`id`, `user_id`, `status`, `name`, `email`, `birth_date`, `dj_
 -- --------------------------------------------------------
 
 --
+-- Структура таблиці `email_channels`
+--
+
+CREATE TABLE `email_channels` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `template` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `from` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lang` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'en'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `email_channels_contacts`
+--
+
+CREATE TABLE `email_channels_contacts` (
+  `i` bigint(20) UNSIGNED NOT NULL,
+  `contact_id` int(11) NOT NULL,
+  `channel_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `email_contacts`
+--
+
+CREATE TABLE `email_contacts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `full_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `position` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `additional` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lang` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'en',
+  `email_channels` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_foa` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `email_queue`
+--
+
+CREATE TABLE `email_queue` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `channel_id` int(11) NOT NULL,
+  `subject` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `from` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `to` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sent` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблиці `failed_jobs`
 --
 
@@ -362,7 +435,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (47, '2020_03_17_143913_update_feedback_results_table', 16),
 (50, '2020_03_18_121746_create_cv_table', 17),
 (51, '2020_03_18_124229_update_users_table', 18),
-(52, '2020_03_20_083237_add_course_to_cv', 19);
+(52, '2020_03_20_083237_add_course_to_cv', 19),
+(53, '2022_09_29_100607_create_email_contacts_table', 20),
+(54, '2022_09_29_101053_create_email_channels_table', 20),
+(55, '2022_09_29_101155_create_email_channels_contacts_table', 20),
+(56, '2022_09_29_101245_create_email_queue_table', 20),
+(57, '2022_09_29_195555_add_subject_to_email_channels_table', 20),
+(58, '2022_09_30_095150_add_columns_to_email_contacts_table', 20),
+(59, '2022_09_30_120141_add_deleted_at_to_email_contacts_table', 20),
+(60, '2022_09_30_150433_add_lang_to_email_channels', 20);
 
 -- --------------------------------------------------------
 
@@ -1893,7 +1974,7 @@ INSERT INTO `releases` (`id`, `sort_id`, `title`, `release_number`, `release_dat
 (1859, 362, 'Vitalii Sky - Follow Me EP', 'CTS 362203', '2021-03-17', '1b109280902120b48eb9f117af69941c.jpg', 'https://www.beatport.com/release/follow-me/3314798', NULL, '<p style=\"text-align:justify\">Vitalii Sky deliver three brand new trippy tech-house &amp; deep techno tunes with old school style&nbsp;voxes and some rhythmic latin touch in his Follow Me EP. Each track complements the integrity of the release as part of the whole puzzle. Groovy, punchy and deep - three in one... Enjoy</p>', '<p style=\"text-align:justify\">Vitalii Sky представил три совершенно новых триповых tech-house и deep techno трека&nbsp;с old school вокалами и некоторым&nbsp;влиянием латинских&nbsp;ритмов&nbsp;в своем Follow Me EP. Каждый трек дополняет целостность релиза как часть единого&nbsp;пазла. Груви, панчи и дип - три в одном ... Enjoy</p>', '<p style=\"text-align:justify\">Vitalii Sky представив&nbsp;три нових&nbsp;тріппі tech-house та deep techno треки&nbsp;з old school style вокалами та деяким впливом&nbsp;латиноамериканських ритмів&nbsp;в своєму Follow Me EP. Кожен трек доповнює цілісність релізу як частина загального пазлу. Груві, панчі та діп&nbsp;- три в одному ... Насолоджуйтесь</p>', '<p>Vitalii Sky - Elevator Number 7</p>\r\n\r\n<p>Vitalii Sky - Follow Me</p>\r\n\r\n<p>Vitalii Sky - Keep The Pace</p>', 1, '2021-03-08 16:15:19', '2021-04-13 06:18:32'),
 (1860, 363, 'Cream Croc & DJ Jivan - Deep Forest', 'CTS 363213', '2021-10-22', 'bd849d53fbeb85c03e912d7a0d11b268.jpg', 'https://www.beatport.com/release/deep-forest/3553825', 'https://youtu.be/2Npips-bnYk', '<p style=\"text-align:justify\">Cream Croc duo teamed up with DJ Jivan put their hands on synths and authentic acoustic instruments to create monotonic deep tune named Deep Forest. Meditative atmosphere of the track built on Australian native didgeridoo woodwind instrument part played by DJ Jivan disposes to relax and takes you into a transcendental musical trip... Enjoy!</p>', '<p style=\"text-align:justify\">Дуэт Cream Croc и DJ Jivan взяли в руки свои синтезаторы и аутентичные акустические инструменты, чтобы создать монотонный глубокий тюн&nbsp;под названием Deep Forest. Медитативная атмосфера трека, построенная на партии австралийского духового инструмента диджериду в исполнении DJ Jivan, располагает к расслаблению и уносит в запредельное музыкальное путешествие...&nbsp;Enjoy!<!-- P--></p>', '<p style=\"text-align:justify\">Дует Cream Croc об&#39;єднав зусилля з&nbsp;DJ Jivan, взявши у руки&nbsp;синтезатори та автентичні акустичні інструменти, створили монотонний глибокий тюн під назвою Deep Forest. Медітативна атмосфера треку, побудованого на&nbsp;партії австралійського народного духового інструмента&nbsp;діджеріду у виконанні&nbsp;DJ Jivan, дозволяє розслабитися і перенесе вас у трансцендентну музичну подорож ... Насолоджуйтесь! <!-- P--></p>', '<p>Cream Croc &amp; DJ Jivan - Deep Forest (Original Mix)<br />\r\nCream Croc &amp; DJ Jivan - Deep Forest (Video Edit)</p>', 1, '2021-10-11 16:29:22', '2021-10-29 04:38:34'),
 (1861, 364, 'Basslucy - Guest', 'CTS 364213', '2021-11-19', 'dc09cdb3a91f87749750d60db4c2cff7.jpg', 'https://www.beatport.com/release/guest/3572936', NULL, '<p style=\"text-align:justify\">We are glad to welcome Basslucy - sound producer from Iran on CTS Records with his new hot single Guest! With this punchy tune Basslucy deliver tight and groovy vibes ready for a crowd dancefloor... Enjoy!</p>', '<p style=\"text-align:justify\">Мы рады приветствовать Basslucy - саунд-продюсера из Ирана на CTS Records с его новым горячим синглом Guest! С этой энергичной композициией&nbsp;Basslucy доставил плотные груви ритмы, специально подготовленные для жаркого танцпола... Enjoy!</p>', '<p style=\"text-align:justify\">Ми раді вітати Basslucy - саундпродюсера з Ірану на CTS Records з його новим гарячим синглом Guest! З цією енергійною композицією&nbsp;Basslucy доставив плотні груві ритми, готові до жаркого танцполу... Enjoy!</p>', '<p>Basslucy - Guest</p>', 1, '2021-11-12 18:44:17', '2021-12-02 15:55:06'),
-(1862, 365, 'Basslucy - Moondancer', 'CTS 365213', '2021-12-17', '34d7a01fe1272fad2494abd1786958ae.jpg', NULL, NULL, '<p style=\"text-align:justify\">Another release from Iranian producer Basslucy on CTS. Atmospheric&nbsp;trippy original is supplemented with remixes. Dark techy mix by&nbsp;Sergio Mega, Cream Croc deliver their&nbsp;acid version and also deep dech vibes by Skylined&nbsp;influenced with Detroit techno traditions... Enjoy</p>', '<p style=\"text-align:justify\">Еще один релиз иранского продюсера Basslucy на CTS. Атмосферный триповый оригинал дополнен ремиксами. Дарк-тек микс от Sergio Mega, Cream Croc представили&nbsp;свою acid версию, а также&nbsp;deep tech c влиянием техно-традиций Детройта от Skylined... Enjoy</p>', '<p style=\"text-align:justify\">Ще один випуск іранського продюсера Basslucy на CTS. Атмосферний&nbsp;триповий&nbsp;оригінал доповнено реміксами. Дарк-тек мікс від&nbsp;Sergio Mega, Cream Croc створили acid версію, а також deep tech&nbsp;з впливом детройтських техно-традицій від Skylined&nbsp;... Enjoy</p>', '<p>Basslucy - Moondancer (Original Mix)<br />\r\nBasslucy - Moondancer (Sergio Mega Remix)<br />\r\nBasslucy - Moondancer (Cream Croc Remix)<br />\r\nBasslucy - Moondancer (Skylined Remix)</p>', 1, '2021-12-02 16:22:25', '2021-12-06 17:58:46'),
+(1862, 365, 'Basslucy - Moondancer', 'CTS 365213', '2021-12-17', '34d7a01fe1272fad2494abd1786958ae.jpg', NULL, NULL, '<p style=\"text-align:justify\">Another release from&nbsp;sound producer Basslucy on CTS. Atmospheric&nbsp;trippy original is supplemented with remixes. Dark techy mix by&nbsp;Sergio Mega, Cream Croc deliver their&nbsp;acid version and also deep dech vibes by Skylined&nbsp;influenced with Detroit techno traditions... Enjoy</p>', '<p style=\"text-align:justify\">Еще один релиз саунд продюсера Basslucy на CTS. Атмосферный триповый оригинал дополнен ремиксами. Дарк-тек микс от Sergio Mega, Cream Croc представили&nbsp;свою acid версию, а также&nbsp;deep tech c влиянием техно-традиций Детройта от Skylined... Enjoy</p>', '<p style=\"text-align:justify\">Ще один випуск саунд продюсера Basslucy на CTS. Атмосферний&nbsp;триповий&nbsp;оригінал доповнено реміксами. Дарк-тек мікс від&nbsp;Sergio Mega, Cream Croc створили acid версію, а також deep tech&nbsp;з впливом детройтських техно-традицій від Skylined&nbsp;... Enjoy</p>', '<p>Basslucy - Moondancer (Original Mix)<br />\r\nBasslucy - Moondancer (Sergio Mega Remix)<br />\r\nBasslucy - Moondancer (Cream Croc Remix)<br />\r\nBasslucy - Moondancer (Skylined Remix)</p>', 1, '2021-12-02 16:22:25', '2022-09-25 16:24:20'),
 (1863, 366, 'Vitalii Sky - We the People', 'CTS 366223', '2022-05-07', '0c0dbf5a2fa43b650d20e1c130705e80.jpeg', 'https://www.beatport.com/release/we-the-people/3733446', NULL, '<p style=\"text-align: justify;\">With this release Ukrainian sound producer Vitalii Sky and we here on Kyiv based record label CTS Records would like to show our solidarity and unity with all Ukrainian people who fight brave to struggle for our liberty and sovereignty now. We stay strong and we&#39;ll never give up - we the people of Ukraine! Slava Ukraini!</p>', '<p style=\"text-align: justify;\">Этим релизом украинский саунд-продюсер Vitalii Sky и мы здесь, на киевском лейбле CTS Records, хотели бы продемонстрировать нашу солидарность и единство со всем украинским народом, который сейчас храбро борется за нашу свободу и суверенитет. Мы остаемся сильными и никогда не сдадимся - мы народ Украины! Слава Україні!</p>', '<p style=\"text-align: justify;\">Цим релізом український саундпродюсер Vitalii Sky і ми тут, на київському лейблі CTS Records, хочемо продемонструвати&nbsp;нашу солідарність і єдність з усім українським народом, який зараз відважно бореться за нашу свободу та суверенітет. Ми залишаємося сильними і ніколи не здамося - ми, народ України! Слава Україні!</p>', '<p>Vitalii Sky - We the People</p>', 1, '2022-05-05 18:34:07', '2022-05-05 18:36:48');
 
 -- --------------------------------------------------------
@@ -2297,6 +2378,30 @@ ALTER TABLE `cv`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Індекси таблиці `email_channels`
+--
+ALTER TABLE `email_channels`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `email_channels_contacts`
+--
+ALTER TABLE `email_channels_contacts`
+  ADD PRIMARY KEY (`i`);
+
+--
+-- Індекси таблиці `email_contacts`
+--
+ALTER TABLE `email_contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `email_queue`
+--
+ALTER TABLE `email_queue`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Індекси таблиці `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -2380,6 +2485,30 @@ ALTER TABLE `cv`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT для таблиці `email_channels`
+--
+ALTER TABLE `email_channels`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблиці `email_channels_contacts`
+--
+ALTER TABLE `email_channels_contacts`
+  MODIFY `i` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблиці `email_contacts`
+--
+ALTER TABLE `email_contacts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблиці `email_queue`
+--
+ALTER TABLE `email_queue`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблиці `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -2401,7 +2530,7 @@ ALTER TABLE `feedback_results`
 -- AUTO_INCREMENT для таблиці `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT для таблиці `releases`

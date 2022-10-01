@@ -8,7 +8,7 @@
         <tbody>
         <tr>
             <th>
-                @if($queue_sent->count() > 0)
+                @if($queue_sent > 0)
                     <form method="post" action="{{ route('emailing_admin') }}/clearQueue">
                         <button class='btn btn-warning' type="submit" onclick="return confirm('Очистить завершенные?')">
                             @csrf

@@ -69,4 +69,27 @@ Route::group(['middleware' => 'i18n'], function(){
 
     });
 
+//    Route::get('/import', function(){
+//        $file_name = 'ADE_2019.csv';
+//        $content = @fopen(resource_path($file_name), "r");
+//        while(($row = fgetcsv($content, 1000, ";", )) !== FALSE){
+//            $site = trim($row[6]);
+//            if(strlen($site) > 0 && stristr($site, 'http') === false) $site = 'http://'.$site;
+//            $contact = \App\EmailingContact::create([
+//                'company' => $row[0],
+//                'email' => $row[1],
+//                'name' => $row[2],
+//                'full_name' => $row[3],
+//                'position' => $row[4],
+//                'company_foa' => $row[5],
+//                'website' => $site,
+//                'country' => $row[7],
+//                'phone' => $row[8],
+//            ]);
+//            $contact->channels()->attach(7);
+//        }
+//        fclose($content);
+//        die();
+//    });
+
 });

@@ -60,16 +60,16 @@
         </tr>
         @foreach($contacts as $contact)
             <tr>
-                <td><b>{{ $contact->name }}</b>@if($contact->full_name)({{ $contact->full_name }})@endif</td>
+                <td><b>{{ $contact->name }}</b>@if($contact->full_name) ({{ $contact->full_name }})@endif</td>
                 <td>{{ $contact->email }}</td>
                 <td>{{ $contact->company }}</td>
                 <td>{{ $contact->company_foa }}</td>
                 <td>{{ $contact->position }}</td>
-                <td>{{ $contact->website }}</td>
+                <td>@if($contact->website)<a href="{{ $contact->website }}" target="_blank">{{ $contact->website }}</a>@endif</td>
                 <td>{{ $contact->phone }}</td>
-                <td>{{ implode(', ', \Illuminate\Support\Arr::pluck($contact->channels->toArray(), 'title')) }}</td>
                 <td>{{ $contact->additional }}</td>
-                <td>{{ $contact->created_at->isoFormat('LLL') }}</td>
+                <td>{{ $contact->created_at->format('d/m/y H:i') }}</td>
+                <td class="text-center">{{ implode(', ', \Illuminate\Support\Arr::pluck($contact->channels->toArray(), 'title')) }}</td>
                 <td>
                     <a class='btn btn-warning' href='{{ route('emailing_admin') }}/editContact/{{ $contact->id }}'>
                         <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>

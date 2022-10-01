@@ -19,7 +19,7 @@
                     </a>
                 </div>
                 <div class="pagination-container pagination__dark">
-                    {{ $artists->appends(['q' => Request::input('q')])->links() }}
+                    {{ $artists->appends(['q' => Request::input('q')])->links('admin.layout.pagination') }}
                 </div>
             </div>
             <div class="clearfix"></div>

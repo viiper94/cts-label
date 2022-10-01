@@ -343,3 +343,14 @@ table .sort-input{
 *::-webkit-scrollbar-thumb {
     background-color: #7b7b7b;
 }
+
+/* Pagination */
+.pagination{
+    margin: 15px 0;
+}
+.pagination.pagination__dark>li>a,
+.pagination.pagination__dark>li>span{
+    color: #eee;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+}

@@ -26,3 +26,4 @@ yarn-error.log
 /public/images/school/teachers/*
 !/public/images/school/teachers/default.png
 /public/cv/*
+/resources/*.csv

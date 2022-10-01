@@ -326,10 +326,18 @@ table .sort-input{
 }
 
 /* Emailing */
-.table-responsive .table.table__dark tr td,
-.table-responsive .table.table__dark tr th{
+.emailing .table-responsive,
+.emailing .table-responsive{
+    padding: 15px 0;
+}
+
+.emailing .table-responsive .table.table__dark tr td,
+.emailing .table-responsive .table.table__dark tr th{
     max-width: 200px;
     vertical-align: middle;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* Scrollbar */
@@ -342,6 +350,20 @@ table .sort-input{
 }
 *::-webkit-scrollbar-thumb {
     background-color: #7b7b7b;
+}
+
+/* Dropdown */
+.dropdown.dropdown__dark .dropdown-menu{
+    background-color: #2a2a2a;
+}
+.dropdown.dropdown__dark .dropdown-menu>li>a:focus,
+.dropdown.dropdown__dark .dropdown-menu>li>a:hover,
+.dropdown.dropdown__dark .dropdown-menu>li>a{
+    color: #eee;
+}
+.dropdown.dropdown__dark .dropdown-menu>li>a:focus,
+.dropdown.dropdown__dark .dropdown-menu>li>a:hover{
+    background-color: #444;
 }
 
 /* Pagination */

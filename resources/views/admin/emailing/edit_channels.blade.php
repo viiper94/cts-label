@@ -47,6 +47,14 @@
                     <p class="help-block">{{ $errors->first('description') }}</p>
                 @endif
             </div>
+            @if(!$channel->id)
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="add_all">
+                        Добавить ВСЕ контакты в канал
+                    </label>
+                </div>
+            @endif
             <button type='submit' class='btn btn-primary' name='edit_release'>
                 <span class='glyphicon glyphicon-check' aria-hidden='true'></span>
                 Сохранить

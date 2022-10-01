@@ -76,7 +76,7 @@ class AdminEmailingController extends Controller{
             ]);
             $channel->fill($request->post());
             if($channel->save()){
-                if(!$id){
+                if(!$id && $request->post('add_all') === 'on'){
                     $contacts = EmailingContact::pluck('id')->toArray();
                     $channel->subscribers()->attach($contacts);
                 }

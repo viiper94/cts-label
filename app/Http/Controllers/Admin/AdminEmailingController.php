@@ -7,17 +7,59 @@ use App\EmailingContact;
 use App\EmailingQueue;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Emailing;
 
 class AdminEmailingController extends Controller{
 
-    public function index(){
+    public function channels(){
         return view('admin.emailing.index', [
-            'channels' => EmailingChannel::with('subscribers')->get(),
-            'contacts' => EmailingContact::with('channels')->get(),
-            'queue' => EmailingQueue::all(),
-            'queue_sent' => EmailingQueue::whereSent('1')->orderBy('sent')->get()
+            'channels' => EmailingChannel::with(['subscribers', 'queue' => function($query){
+                $query->whereSent('0');
+            }])->get(),
+            'contacts_count' => EmailingContact::count(),
+            'queue_count' => EmailingQueue::count(),
+            'queue_sent' => EmailingQueue::whereSent('1')->count(),
+            'view' => 'channels'
+        ]);
+    }
+
+    public function contacts(Request $request){
+        if($request->input('channel')){
+            $channel = EmailingChannel::findOrFail($request->input('channel'));
+            $contacts = $channel->subscribers()->with('channels');
+        }else{
+            $contacts = EmailingContact::with('channels');
+        }
+        if($request->input('q')){
+            $contacts = $contacts->where('name', 'like', '%'.$request->input('q').'%')
+                ->orWhere('full_name', 'like', '%'.$request->input('q').'%')
+                ->orWhere('email', 'like', '%'.$request->input('q').'%')
+                ->orWhere('position', 'like', '%'.$request->input('q').'%')
+                ->orWhere('company', 'like', '%'.$request->input('q').'%');
+        }
+        if($request->input('sort')){
+            $contacts = $contacts->orderBy($request->input('sort'), ($request->input('dir') === 'down') ? 'desc' : 'asc');
+        }
+        return view('admin.emailing.index', [
+            'channels' => EmailingChannel::all(),
+            'contacts_count' => EmailingContact::count(),
+            'contacts' => $contacts->paginate(100),
+            'queue_count' => EmailingQueue::count(),
+            'queue_sent' => EmailingQueue::whereSent('1')->count(),
+            'view' => 'contacts',
+            'sort' => $request->input('sort'),
+            'dir' => $request->input('dir'),
+            'selected_channel' => isset($channel) ? $channel->title : null
+        ]);
+    }
+
+    public function queue(){
+        return view('admin.emailing.index', [
+            'channels' => EmailingChannel::all(),
+            'contacts_count' => EmailingContact::count(),
+            'queue' => EmailingQueue::paginate(100),
+            'queue_count' => EmailingQueue::count(),
+            'queue_sent' => EmailingQueue::whereSent('1')->count(),
+            'view' => 'queue'
         ]);
     }
 
@@ -50,13 +92,13 @@ class AdminEmailingController extends Controller{
 
     public function deleteChannel(Request $request, $id){
         return EmailingChannel::findOrFail($id)->delete() ?
-            redirect()->back()->with(['success' => 'Удалено!']) :
+            redirect()->route('emailing.channels')->with(['success' => 'Удалено!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
     public function deleteContact(Request $request, $id){
         return EmailingContact::findOrFail($id)->delete() ?
-            redirect()->back()->with(['success' => 'Удалено!']) :
+            redirect()->route('emailing.contacts')->with(['success' => 'Удалено!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
@@ -79,7 +121,7 @@ class AdminEmailingController extends Controller{
             $contact->fill($request->post());
             if($contact->save()){
                 $contact->channels()->sync($request->input('channels'));
-                return redirect()->route('emailing_admin')->with(['success' => 'Готово!']);
+                return redirect()->route('emailing.contacts')->with(['success' => 'Готово!']);
             }else{
                 return redirect()->back()->withErrors(['Возникла ошибка =(']);
             }
@@ -111,7 +153,7 @@ class AdminEmailingController extends Controller{
 
     public function clearQueue(){
         return EmailingQueue::whereSent('1')->delete() ?
-            redirect()->back()->with(['success' => 'Очередь очищена!']) :
+            redirect()->route('emailing.queue')->with(['success' => 'Очередь очищена!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

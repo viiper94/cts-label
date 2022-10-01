@@ -15,4 +15,8 @@ class EmailingChannel extends Model{
         return $this->belongsToMany('App\EmailingContact', 'email_channels_contacts', 'channel_id', 'contact_id');
     }
 
+    public function queue(){
+        return $this->hasMany('App\EmailingQueue', 'channel_id', 'id');
+    }
+
 }

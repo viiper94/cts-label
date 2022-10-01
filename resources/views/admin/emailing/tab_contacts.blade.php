@@ -8,16 +8,50 @@
     <table class="items-table table table-hover table__dark">
         <tbody>
         <tr>
-            <th>Имя</th>
-            <th>E-Mail</th>
-            <th>Компания</th>
-            <th>Сфера</th>
-            <th>Должность</th>
-            <th>Сайт</th>
-            <th>Телефон</th>
-            <th>Каналы</th>
-            <th>Доп. информация</th>
-            <th>Добавлен</th>
+            @php $headers = [
+                'name' => 'Имя',
+                'email' => 'E-Mail',
+                'company' => 'Компания',
+                'company_foa' => 'Сфера',
+                'position' => 'Должность',
+                'website' => 'Сайт',
+                'phone' => 'Телефон',
+                'additional' => 'Доп. информация',
+                'created' => 'Добавлен',
+            ];
+            @endphp
+            @foreach($headers as $key => $item)
+                <th>
+                    <a href="{{ route('emailing.contacts', [
+                            'sort' => $key,
+                            'dir' => ($dir === 'up' ? 'down' : 'up'),
+                            'channel' => Request::input('channel')
+                        ]) }}">
+                        {{ $item }}
+                    </a>
+                    @if($sort === $key)
+                        <span @class([
+                            'glyphicon text-warning',
+                            'glyphicon-sort-by-alphabet' => ($dir === 'up'),
+                            'glyphicon-sort-by-alphabet-alt' => ($dir === 'down'),
+                        ])></span>
+                    @endif
+                </th>
+            @endforeach
+            <th style="overflow: visible">
+                <div class="dropdown dropdown__dark">
+                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        @if(Request::input('channel')){{ $selected_channel }}@elseКаналы@endif
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        @foreach($channels as $item)
+                            <li><a href="{{ route('emailing.contacts', ['channel' => $item->id]) }}">{{ $item->title }}</a></li>
+                        @endforeach
+                        <li><a href="{{ route('emailing.contacts') }}">Все каналы</a></li>
+                    </ul>
+                </div>
+            </th>
             <th>
                 <a class='btn btn-info btm-sm' href='{{ route('emailing_admin') }}/editContact'>
                     <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>

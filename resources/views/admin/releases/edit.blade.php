@@ -47,7 +47,8 @@
                 </div>
                 <div class="form-group">
                     <label>Дата</label><br>
-                    <input type="text" class="form-control form-control__dark" name="release_date" id="release_date" value="{{ !$release->release_date ? '' : $release->release_date->format('d F Y') }}">
+                    <input type="text" class="form-control form-control__dark" name="release_date" id="release_date"
+                           value="{{ !$release->release_date ? '' : $release->release_date->format('d F Y') }}" autocomplete="off">
                     @if($errors->has('release_date'))
                         <p class="help-block">{{ $errors->first('release_date') }}</p>
                     @endif

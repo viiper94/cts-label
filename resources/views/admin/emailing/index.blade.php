@@ -6,7 +6,7 @@
 
 @section('admin-content')
 
-    <div class="container-fluid">
+    <div class="container-fluid emailing">
         @include('admin.layout.alert')
         <ul class="nav nav-tabs nav-tabs__dark" role="tablist">
             <li @class(['active' => $view === 'channels'])>

@@ -1,3 +1,9 @@
+{{ $contacts->appends([
+        'q' => Request::input('q'),
+        'sort' => Request::input('sort'),
+        'dir' => Request::input('dir'),
+        'channel' => Request::input('channel'),
+        ])->links('admin.layout.pagination') }}
 <div class="table-responsive">
     <table class="items-table table table-hover table__dark">
         <tbody>
@@ -40,3 +46,10 @@
         </tbody>
     </table>
 </div>
+
+{{ $contacts->appends([
+        'q' => Request::input('q'),
+        'sort' => Request::input('sort'),
+        'dir' => Request::input('dir'),
+        'channel' => Request::input('channel'),
+        ])->links('admin.layout.pagination') }}

@@ -376,3 +376,10 @@ table .sort-input{
     background-color: #2a2a2a;
     border: 1px solid #444;
 }
+
+.pagination.pagination__dark>li>a.pgn-selected,
+.pagination.pagination__dark>li>span.pgn-selected{
+    color: #eee;
+    background-color: #444;
+    border: 1px solid #444;
+}

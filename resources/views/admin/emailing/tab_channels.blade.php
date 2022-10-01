@@ -25,16 +25,26 @@
                 <td>{{ count($channel->subscribers) }}</td>
                 <td>{{ $channel->created_at->isoFormat('LLL') }}</td>
                 <td>
-                    <form action="{{ route('emailing_admin') }}/start" method="post">
-                        @csrf
-                        <a class='btn btn-warning' href='{{ route('emailing_admin') }}/editChannel/{{ $channel->id }}'>
-                            <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
-                        </a>
-                        <input type="hidden" name="id" value="{{ $channel->id }}">
-                        <button class='btn btn-success' onclick='return confirm("Запустить рассылку?")'>
-                            <span class='glyphicon glyphicon-play' aria-hidden='true'></span>
-                        </button>
-                    </form>
+                    <a class='btn btn-warning' href='{{ route('emailing_admin') }}/editChannel/{{ $channel->id }}'>
+                        <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
+                    </a>
+                    @if($channel->queue()->count() > 0)
+                        <form action="{{ route('emailing_admin') }}/stop" method="post" style="display: inline-block;">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $channel->id }}">
+                            <button class='btn btn-danger' onclick='return confirm("Остановить рассылку?")'>
+                                <span class='glyphicon glyphicon-stop' aria-hidden='true'></span>
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('emailing_admin') }}/start" method="post" style="display: inline-block;">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $channel->id }}">
+                            <button class='btn btn-success' onclick='return confirm("Запустить рассылку?")'>
+                                <span class='glyphicon glyphicon-play' aria-hidden='true'></span>
+                            </button>
+                        </form>
+                    @endif
                 </td>
             </tr>
         @endforeach

@@ -132,6 +132,16 @@ class AdminEmailingController extends Controller{
         ]);
     }
 
+    public function stop(Request $request){
+        if($request->post()){
+            $this->validate($request, ['id' => 'required|numeric']);
+            return EmailingQueue::whereSent('0')->where('channel_id', $request->post('id'))->delete() ?
+                redirect()->route('emailing.channels')->with(['success' => 'Рассылка остановлена!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }
+        return abort(403);
+    }
+
     public function start(Request $request){
         if($request->post()){
             $this->validate($request, ['id' => 'required|numeric']);

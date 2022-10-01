@@ -1,5 +1,9 @@
 @extends('admin.layout.layout')
 
+@section('search')
+    @include('admin.layout.search')
+@endsection
+
 @section('admin-content')
 
     <div class="container-fluid">

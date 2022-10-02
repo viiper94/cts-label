@@ -3,4 +3,4 @@
 <script src="/assets/js/clipboard.min.js"></script>
 @yield('scripts')
 <script src='/assets/js/jquery.sticky.js'></script>
-<script src="/assets/js/admin.js?2910"></script>
+<script src="/assets/js/admin.js?0210"></script>

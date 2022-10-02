@@ -8,7 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <title>CTS Records Admin Panel</title>
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/cts-admin.css" rel="stylesheet">
+    <link href="/assets/css/cts-admin.css?0110" rel="stylesheet">
     @yield('assets')
     @include('admin.layout.scripts')
 </head>

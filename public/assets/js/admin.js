@@ -20,6 +20,8 @@ $(document).ready(function(){
         }
     });
 
+    $('.emailing .table-responsive').floatingScroll();
+
     $('#uploader').change(function(){
         readURL(this, '#preview');
     });

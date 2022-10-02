@@ -4,6 +4,14 @@
     @include('admin.layout.search')
 @endsection
 
+@section('scripts')
+    <script src="/assets/js/jquery.floatingscroll.min.js"></script>
+@endsection
+
+@section('assets')
+    <link rel="stylesheet" type="text/css" href="/assets/css/jquery.floatingscroll.css">
+@endsection
+
 @section('admin-content')
 
     <div class="container-fluid emailing">

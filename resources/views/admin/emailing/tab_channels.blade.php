@@ -28,7 +28,7 @@
                     <a class='btn btn-warning' href='{{ route('emailing_admin') }}/editChannel/{{ $channel->id }}'>
                         <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
                     </a>
-                    @if($channel->queue()->count() > 0)
+                    @if($channel->queue->count() > 0)
                         <form action="{{ route('emailing_admin') }}/stop" method="post" style="display: inline-block;">
                             @csrf
                             <input type="hidden" name="id" value="{{ $channel->id }}">

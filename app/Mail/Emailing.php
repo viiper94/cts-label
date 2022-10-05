@@ -14,17 +14,17 @@ class Emailing extends Mailable{
     public function __construct(public $mail){}
 
     public function build(){
-        $data_to_encrypt = [
-            'email' => $this->mail->to,
-            'from' => $this->mail->from,
-            'channel_id' => $this->mail->channel->id
-        ];
-        $hash = Crypt::encryptString(json_encode($data_to_encrypt));
+//        $data_to_encrypt = [
+//            'email' => $this->mail->to,
+//            'from' => $this->mail->from,
+//            'channel_id' => $this->mail->channel->id
+//        ];
+//        $hash = Crypt::encryptString(json_encode($data_to_encrypt));
         return $this->from($this->mail->from, 'CTS Records')
                     ->subject($this->mail->subject)
-                    ->markdown('emails.emailing.ade', [
+                    ->view('emails.emailing.ade', [
                         'name' => $this->mail->name,
-                        'hash' => $hash
+//                        'hash' => $hash
                     ]);
     }
 }

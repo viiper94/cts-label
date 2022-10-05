@@ -60,7 +60,7 @@
         </tr>
         @foreach($contacts as $contact)
             <tr>
-                <td><b>{{ $contact->name }}</b>@if($contact->full_name) ({{ $contact->full_name }})@endif</td>
+                <td><b @if($contact->full_name) title="{{ $contact->full_name }}" @endif>{{ $contact->name }}</b></td>
                 <td>{{ $contact->email }}</td>
                 <td>{{ $contact->company }}</td>
                 <td>{{ $contact->company_foa }}</td>

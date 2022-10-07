@@ -25,14 +25,18 @@
                             <td>{{ $user->created_at->format('j M Y, H:i') }}</td>
                             <td>
                                 @if(!$user->is_admin)
-                                    <a class='btn btn-success' href='{{ route('users_admin') }}/set/{{ $user->id }}/student'>
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                    </form>
+                                    <a class='btn btn-success' href='{{ route('users.index') }}/set/{{ $user->id }}/student'>
                                         <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
                                         <span class="hidden-xs hidden-sm hidden-lg">Назначить студентом</span>
                                     </a>
-                                    <a class='btn btn-danger' href='{{ route('users_admin') }}/delete/{{ $user->id }}' onclick='return confirm("Удалить пользователя и все его данные?")'>
+                                    <button class='btn btn-danger' onclick='return confirm("Удалить пользователя и все его данные?")'>
                                         <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
                                         <span class="hidden-xs hidden-sm hidden-lg">Удалить</span>
-                                    </a>
+                                    </button>
                                 @endif
                             </td>
                         </tr>

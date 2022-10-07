@@ -3,7 +3,7 @@
 @section('admin-content')
 
     <div class="container">
-        <form action="{{ route('cv_admin') }}/document" method="post">
+        <form action="{{ route('cv.index') }}/document" method="post">
             @csrf
             <input type="hidden" name="id" value="{{ $cv->id }}">
             @if(is_file(public_path('cv/'.$cv->document)))

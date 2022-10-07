@@ -17,22 +17,17 @@ class AdminUsersController extends Controller{
         ]);
     }
 
-    public function delete(Request $request, $id){
-        if($id){
-            $user = User::find($id);
-            if($user->image){
-                // delete image
-                $path = public_path('images/users/').$user->image;
-                if(file_exists($path) && is_file($path)){
-                    unlink($path);
-                }
+    public function destroy(User $user){
+        if($user->image){
+            // delete image
+            $path = public_path('images/users/').$user->image;
+            if(file_exists($path) && is_file($path)){
+                unlink($path);
             }
-            return $user->delete() ?
-                redirect()->back()->with(['success' => 'Пользователь успешно удалён!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
         }
+        return $user->delete() ?
+            redirect()->back()->with(['success' => 'Пользователь успешно удалён!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
 }

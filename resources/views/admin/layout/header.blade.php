@@ -15,15 +15,15 @@
             <div class="collapse navbar-collapse navbar-left" id="main-menu-collapse">
                 <ul class="nav navbar-nav">
                     <li @if(\Route::is('releases_admin'))class="active" @endif><a href="{{ route('releases_admin') }}">@lang('navbar.releases')</a></li>
-                    <li @if(\Route::is('artists_admin'))class="active" @endif><a href="{{ route('artists_admin') }}">@lang('navbar.artists')</a></li>
+                    <li @if(\Route::is('artists.*'))class="active" @endif><a href="{{ route('artists.index') }}">@lang('navbar.artists')</a></li>
                     <li @if(\Route::is('studio_admin'))class="active" @endif><a href="{{ route('studio_admin') }}">@lang('navbar.studio')</a></li>
                     <li @if(\Route::is('school_admin'))class="active" @endif><a href="{{ route('school_admin') }}">@lang('navbar.school')</a></li>
                     <li @if(\Route::is('reviews_admin'))class="active" @endif><a href="{{ route('reviews_admin') }}">@lang('navbar.reviews')</a></li>
                     <li @if(\Route::is('feedback_admin'))class="active" @endif><a href="{{ route('feedback_admin') }}">@lang('navbar.feedback')</a></li>
                     <li @if(\Route::is('emailing'))class="active" @endif><a href="{{ route('emailing.channels') }}">@lang('navbar.emailing')</a></li>
-{{--                    <li @if(\Route::is('users_admin'))class="active" @endif><a href="{{ route('users_admin') }}">@lang('navbar.users')</a></li>--}}
-                    <li @if(\Route::is('cv_admin'))class="active" @endif>
-                        <a href="{{ route('cv_admin') }}">
+{{--                    <li @if(\Route::is('users'))class="active" @endif><a href="{{ route('users.index') }}">@lang('navbar.users')</a></li>--}}
+                    <li @if(\Route::is('cv.*'))class="active" @endif>
+                        <a href="{{ route('cv.index') }}">
                             @lang('navbar.cv')
                             @if($cv_count > 0)
                                 <span class="label label-success">{{ $cv_count }}</span>

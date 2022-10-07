@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Cv;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use PhpOffice\PhpWord\IOFactory;
-use PhpOffice\PhpWord\PhpWord;
 
 class AdminCvController extends Controller{
 
@@ -16,14 +13,11 @@ class AdminCvController extends Controller{
         ]);
     }
 
-    public function edit(Request $request, $id){
-        return view('admin.cv.edit', [
-            'cv' => Cv::with('user')->findOrFail($id)
-        ]);
+    public function show(Cv $cv){
+        return view('admin.cv.edit', compact('cv'));
     }
 
-    public function delete(Request $request, $id){
-        $cv = Cv::findOrFail($id);
+    public function destroy(Cv $cv){
         return $cv->delete() ?
             redirect()->back()->with(['success' => 'Анкета удалена!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);

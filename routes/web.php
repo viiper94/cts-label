@@ -11,6 +11,10 @@
 |
 */
 
+use App\Http\Controllers\Admin\AdminArtistsController;
+use App\Http\Controllers\Admin\AdminCvController;
+use App\Http\Controllers\Admin\AdminUsersController;
+
 Route::group(['middleware' => 'i18n'], function(){
 
     Auth::routes();
@@ -30,12 +34,22 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/ctschool.html', 'AppController@ctschool')->name('school');
     Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
-    Route::any('/anketa', 'CvController@index')->name('cv');
+    Route::any('/anketa', 'CvController@index')->name('cv.public');
     Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
 
-    Route::group(['middleware' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function () {
 
-        Route::any('/cts-admin/{controller}/{action}/{id?}/{param?}', function($controller, $action, $id = null, $param = null){
+        Route::get('/', 'AdminController@index')->name('admin');
+
+        Route::resource('/cv', AdminCvController::class);
+
+        Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
+        Route::post('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
+        Route::resource('/artists', AdminArtistsController::class);
+
+        Route::resource('/users', AdminUsersController::class)->only(['index', 'destroy']);
+
+        Route::any('/{controller}/{action}/{id?}/{param?}', function($controller, $action, $id = null, $param = null){
             $app = app();
             try{
                 $controller_name = explode('_', $controller);
@@ -53,43 +67,16 @@ Route::group(['middleware' => 'i18n'], function(){
             }
         });
 
-        Route::get('/cts-admin', 'AdminController@index')->name('admin');
-        Route::get('/cts-admin/releases', 'AdminReleasesController@index')->name('releases_admin');
-        Route::get('/cts-admin/artists', 'AdminArtistsController@index')->name('artists_admin');
-        Route::get('/cts-admin/reviews', 'AdminReviewsController@index')->name('reviews_admin');
-        Route::get('/cts-admin/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
-        Route::get('/cts-admin/emailing', 'AdminEmailingController@channels')->name('emailing_admin');
-        Route::get('/cts-admin/emailing/channels', 'AdminEmailingController@channels')->name('emailing.channels');
-        Route::get('/cts-admin/emailing/contacts', 'AdminEmailingController@contacts')->name('emailing.contacts');
-        Route::get('/cts-admin/emailing/queue', 'AdminEmailingController@queue')->name('emailing.queue');
-        Route::get('/cts-admin/school', 'AdminSchoolController@index')->name('school_admin');
-        Route::get('/cts-admin/studio', 'AdminStudioController@index')->name('studio_admin');
-        Route::get('/cts-admin/users', 'AdminUsersController@index')->name('users_admin');
-        Route::get('/cts-admin/cv', 'AdminCvController@index')->name('cv_admin');
+        Route::get('/releases', 'AdminReleasesController@index')->name('releases_admin');
+        Route::get('/reviews', 'AdminReviewsController@index')->name('reviews_admin');
+        Route::get('/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
+        Route::get('/emailing', 'AdminEmailingController@channels')->name('emailing_admin');
+        Route::get('/emailing/channels', 'AdminEmailingController@channels')->name('emailing.channels');
+        Route::get('/emailing/contacts', 'AdminEmailingController@contacts')->name('emailing.contacts');
+        Route::get('/emailing/queue', 'AdminEmailingController@queue')->name('emailing.queue');
+        Route::get('/school', 'AdminSchoolController@index')->name('school_admin');
+        Route::get('/studio', 'AdminStudioController@index')->name('studio_admin');
 
     });
-
-//    Route::get('/import', function(){
-//        $file_name = 'ADE_2019.csv';
-//        $content = @fopen(resource_path($file_name), "r");
-//        while(($row = fgetcsv($content, 1000, ";", )) !== FALSE){
-//            $site = trim($row[6]);
-//            if(strlen($site) > 0 && stristr($site, 'http') === false) $site = 'http://'.$site;
-//            $contact = \App\EmailingContact::create([
-//                'company' => $row[0],
-//                'email' => $row[1],
-//                'name' => $row[2],
-//                'full_name' => $row[3],
-//                'position' => $row[4],
-//                'company_foa' => $row[5],
-//                'website' => $site,
-//                'country' => $row[7],
-//                'phone' => $row[8],
-//            ]);
-//            $contact->channels()->attach(7);
-//        }
-//        fclose($content);
-//        die();
-//    });
 
 });

@@ -145,7 +145,7 @@ class AdminEmailingController extends Controller{
     public function start(Request $request){
         if($request->post()){
             $this->validate($request, ['id' => 'required|numeric']);
-            $channel = EmailingChannel::findOrFail($request->post('id'));
+            $channel = EmailingChannel::with('subscribers')->findOrFail($request->post('id'));
             foreach($channel->subscribers as $contact){
                 $mail = EmailingQueue::create([
                     'channel_id' => $channel->id,

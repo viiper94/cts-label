@@ -56,7 +56,7 @@ class AdminEmailingController extends Controller{
         return view('admin.emailing.index', [
             'channels' => EmailingChannel::all(),
             'contacts_count' => EmailingContact::count(),
-            'queue' => EmailingQueue::paginate(100),
+            'queue' => EmailingQueue::orderBy('sent')->paginate(100),
             'queue_count' => EmailingQueue::count(),
             'queue_sent' => EmailingQueue::whereSent('1')->count(),
             'view' => 'queue'

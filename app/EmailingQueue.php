@@ -31,7 +31,7 @@ class EmailingQueue extends Model{
     }
 
     public static function send(){
-        $in_queue = EmailingQueue::whereSent('0')->take(5)->get();
+        $in_queue = EmailingQueue::whereSent('0')->take(4)->get();
         foreach($in_queue as $mail){
             $mail->sent = true;
             $mail->save();

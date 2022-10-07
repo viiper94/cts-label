@@ -3,7 +3,19 @@
 //        'sort' => Request::input('sort'),
 //        'dir' => Request::input('dir'),
         ])->links('admin.layout.pagination') }}
+
+
 <div class="table-responsive">
+    @if($queue_count)
+        <div class="progress progress__dark" style="margin-bottom: 0">
+            <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+                 aria-valuenow="{{ floor(($queue_sent / $queue_count) * 100) }}"
+                 aria-valuemin="0" aria-valuemax="100"
+                 style="width: {{ floor(($queue_sent / $queue_count) * 100) }}%">
+                <span class="text-danger"><b>{{ floor(($queue_sent / $queue_count) * 100) }}%</b></span>
+            </div>
+        </div>
+    @endif
     <table class="items-table table table-hover table__dark">
         <tbody>
         <tr>

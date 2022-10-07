@@ -118,7 +118,8 @@ table.table__dark,
     border: 1px solid #505050;
     overflow: hidden;
 }
-.item:not(.item__review) div{
+.item:not(.item__review) div,
+.item:not(.item__review) form{
     height: 100%;
 }
 .item-cover{
@@ -375,6 +376,11 @@ table .sort-input{
     color: #eee;
     background-color: #2a2a2a;
     border: 1px solid #444;
+}
+
+/* Progress */
+.progress__dark{
+    background-color: #444;
 }
 
 .pagination.pagination__dark>li>a.pgn-selected,

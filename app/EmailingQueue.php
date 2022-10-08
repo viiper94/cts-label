@@ -5,6 +5,7 @@ namespace App;
 use App\Mail\Emailing;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class EmailingQueue extends Model{
 
@@ -31,11 +32,24 @@ class EmailingQueue extends Model{
     }
 
     public static function send(){
-        $in_queue = EmailingQueue::whereSent('0')->take(4)->get();
+        $in_queue = EmailingQueue::whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
         foreach($in_queue as $mail){
-            $mail->sent = true;
-            $mail->save();
-            Mail::to($mail->to)->send(new Emailing($mail));
+            try{
+                Mail::to($mail->to)->send(new Emailing($mail));
+                $mail->error_code = null;
+                $mail->error_message = null;
+                $mail->sent = true;
+                $mail->save();
+            }catch(TransportException $e){
+                if($mail->sort === '1'){
+                    $mail->sent = true;
+                }
+                $mail->sort = 1;
+                $mail->error_code = $e->getCode();
+                $mail->error_message = $e->getMessage();
+                $mail->save();
+            }
+
         }
         return true;
     }

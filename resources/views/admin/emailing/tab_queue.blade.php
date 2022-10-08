@@ -35,13 +35,18 @@
             <th>Имя получателя</th>
             <th>Добавлен в очередь</th>
             <th>Отправлено</th>
+            <th>Ошибка</th>
         </tr>
         @foreach($queue as $item)
-            <tr>
+            <tr @class([
+                    'text-danger' => $item->error_code,
+                    'text-success' => !$item->error_code && $item->sent,
+                ])>
                 <td>
                     <span @class([
                         'glyphicon',
-                        'glyphicon-check text-success' => $item->sent,
+                        'glyphicon-remove text-danger' => $item->error_code,
+                        'glyphicon-ok text-success' => !$item->error_code && $item->sent,
                         'glyphicon-time text-info' => !$item->sent
                         ]) aria-hidden='true'></span>
                 </td>
@@ -50,7 +55,8 @@
                 <td><b>{{ $item->to }}</b></td>
                 <td><b>{{ $item->name }}</b></td>
                 <td>{{ $item->created_at->isoFormat('LLL') }}</td>
-                <td>{{ $item->updated_at->isoFormat('LLL') }}</td>
+                <td>{{ $item->sent ? $item->updated_at->isoFormat('LLL') : '–' }}</td>
+                <td title="{{ $item->error_message ?? false }}">{{ $item->error_code ??  '–' }}</td>
             </tr>
         @endforeach
         </tbody>

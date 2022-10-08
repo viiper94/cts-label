@@ -24,9 +24,9 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule){
-        $schedule->call(function(){
-            EmailingQueue::send();
-        })->everyMinute();
+//        $schedule->call(function(){
+//            EmailingQueue::send();
+//        })->everyMinute();
     }
 
     /**

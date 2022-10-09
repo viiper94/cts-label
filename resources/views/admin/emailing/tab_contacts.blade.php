@@ -20,7 +20,8 @@
                     <a href="{{ route('contacts.index', [
                             'sort' => $key,
                             'dir' => ($dir === 'up' ? 'down' : 'up'),
-                            'channel' => Request::input('channel')
+                            'channel' => Request::input('channel'),
+                            'q' => Request::input('q'),
                         ]) }}">
                         {{ $item }}
                     </a>
@@ -76,9 +77,4 @@
     </table>
 </div>
 
-{{ $contacts->appends([
-        'q' => Request::input('q'),
-        'sort' => Request::input('sort'),
-        'dir' => Request::input('dir'),
-        'channel' => Request::input('channel'),
-        ])->links('admin.layout.pagination') }}
+{{ $contacts->appends(Request::input())->links('admin.layout.pagination') }}

@@ -1,10 +1,4 @@
-{{ $queue->appends([
-        'q' => Request::input('q'),
-//        'sort' => Request::input('sort'),
-//        'dir' => Request::input('dir'),
-        ])->links('admin.layout.pagination') }}
-
-
+{{ $queue->appends(Request::input())->links('admin.layout.pagination') }}
 <div class="table-responsive">
     @if($queue_count)
         <div class="progress progress__dark" style="margin-bottom: 0">
@@ -65,8 +59,4 @@
         </tbody>
     </table>
 </div>
-{{ $queue->appends([
-        'q' => Request::input('q'),
-//        'sort' => Request::input('sort'),
-//        'dir' => Request::input('dir'),
-        ])->links('admin.layout.pagination') }}
+{{ $queue->appends(Request::input())->links('admin.layout.pagination') }}

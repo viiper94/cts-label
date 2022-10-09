@@ -3,8 +3,11 @@
 @section('admin-content')
 
     <div class="container">
-        <form method="post">
+        <form method="post" action="{{ $contact->id ? route('contacts.update', $contact->id) : route('contacts.store') }}">
             @csrf
+            @if($contact->id)
+                @method('PUT')
+            @endif
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -96,10 +99,16 @@
                 <span class='glyphicon glyphicon-check' aria-hidden='true'></span>
                 Сохранить
             </button>
-            <a class='btn btn-danger' href='{{ route('emailing_admin') }}/deleteContact/{{ $contact->id }}' onclick='return confirm("Удалить подписчика?")'>
-                <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Удалить подписчика
-            </a>
         </form>
+        @if($contact->id)
+            <form action="{{ route('contacts.destroy', $contact->id) }}" method="post" style="margin-top: 10px">
+                @csrf
+                @method('DELETE')
+                <button class='btn btn-danger' type='submit' onclick='return confirm("Удалить подписчика?")'>
+                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Удалить подписчика
+                </button>
+            </form>
+        @endif
     </div>
 
 @endsection

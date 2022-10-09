@@ -3,8 +3,11 @@
 @section('admin-content')
 
     <div class="container">
-        <form method="post">
+        <form action="{{ $channel->id ? route('channels.update', $channel->id) : route('channels.store') }}" method="post" id="edit-channel-form">
             @csrf
+            @if($channel->id)
+                @method('PUT')
+            @endif
             <div class="row">
                 <div class="form-group col-sm-9">
                     <label for="title">Название канала рассылки</label><br>
@@ -59,10 +62,16 @@
                 <span class='glyphicon glyphicon-check' aria-hidden='true'></span>
                 Сохранить
             </button>
-            <a class='btn btn-danger' href='{{ route('emailing_admin') }}/deleteChannel/{{ $channel->id }}' onclick='return confirm("Удалить канал рассылки?")'>
-                <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Удалить канал
-            </a>
         </form>
+        @if($channel->id)
+            <form action="{{ route('channels.destroy', $channel->id) }}" method="post" style="margin-top: 10px">
+                @csrf
+                @method('DELETE')
+                <button class='btn btn-danger' type='submit' onclick='return confirm("Удалить канал рассылки?")'>
+                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Удалить канал
+                </button>
+            </form>
+        @endif
     </div>
 
 @endsection

@@ -23,9 +23,10 @@
         <tr>
             <th>
                 @if($queue_sent > 0)
-                    <form method="post" action="{{ route('emailing_admin') }}/clearQueue">
+                    <form method="post" action="{{ route('queue.clear') }}">
+                        @csrf
+                        @method('DELETE')
                         <button class='btn btn-warning' type="submit" onclick="return confirm('Очистить завершенные?')">
-                            @csrf
                             <span class='glyphicon glyphicon-erase' aria-hidden='true'></span>
                         </button>
                     </form>

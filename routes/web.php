@@ -13,6 +13,9 @@
 
 use App\Http\Controllers\Admin\AdminArtistsController;
 use App\Http\Controllers\Admin\AdminCvController;
+use App\Http\Controllers\Admin\AdminEmailingChannelsController;
+use App\Http\Controllers\Admin\AdminEmailingContactsController;
+use App\Http\Controllers\Admin\AdminEmailingQueueController;
 use App\Http\Controllers\Admin\AdminUsersController;
 
 Route::group(['middleware' => 'i18n'], function(){
@@ -37,7 +40,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::any('/anketa', 'CvController@index')->name('cv.public');
     Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
 
-    Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function () {
+    Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function(){
 
         Route::get('/', 'AdminController@index')->name('admin');
 
@@ -46,6 +49,19 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
         Route::post('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
         Route::resource('/artists', AdminArtistsController::class);
+
+        Route::group(['prefix' => '/emailing'], function(){
+
+            Route::post('/channels/start', [AdminEmailingChannelsController::class, 'start'])->name('channels.start');
+            Route::post('/channels/stop', [AdminEmailingChannelsController::class, 'stop'])->name('channels.stop');
+            Route::resource('/channels', AdminEmailingChannelsController::class)->except(['show']);
+
+            Route::resource('/contacts', AdminEmailingContactsController::class)->except(['show']);
+
+            Route::get('/queue', [AdminEmailingQueueController::class, 'index'])->name('queue.index');
+            Route::delete('/clear', [AdminEmailingQueueController::class, 'clear'])->name('queue.clear');
+
+        });
 
         Route::resource('/users', AdminUsersController::class)->only(['index', 'destroy']);
 
@@ -70,10 +86,6 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/releases', 'AdminReleasesController@index')->name('releases_admin');
         Route::get('/reviews', 'AdminReviewsController@index')->name('reviews_admin');
         Route::get('/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
-        Route::get('/emailing', 'AdminEmailingController@channels')->name('emailing_admin');
-        Route::get('/emailing/channels', 'AdminEmailingController@channels')->name('emailing.channels');
-        Route::get('/emailing/contacts', 'AdminEmailingController@contacts')->name('emailing.contacts');
-        Route::get('/emailing/queue', 'AdminEmailingController@queue')->name('emailing.queue');
         Route::get('/school', 'AdminSchoolController@index')->name('school_admin');
         Route::get('/studio', 'AdminStudioController@index')->name('studio_admin');
 

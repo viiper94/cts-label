@@ -12,7 +12,7 @@
                 'website' => 'Сайт',
                 'phone' => 'Телефон',
                 'additional' => 'Доп. информация',
-                'created' => 'Добавлен',
+                'created_at' => 'Добавлен',
             ];
             @endphp
             @foreach($headers as $key => $item)

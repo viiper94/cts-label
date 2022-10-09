@@ -25,7 +25,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('auth/google', 'Auth\LoginController@redirectToGoogle')->name('auth.google');
     Route::get('auth/google/handle', 'Auth\LoginController@handleGoogleCallback');
 
-    Route::get('/profile', 'ProfileController@index')->name('profile');
+//    Route::get('/profile', 'ProfileController@index')->name('profile');
 
     Route::get('/', 'ReleasesController@index')->name('home');
     Route::get('/search', 'ReleasesController@index')->name('search');

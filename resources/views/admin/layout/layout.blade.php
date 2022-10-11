@@ -9,7 +9,7 @@
     <title>CTS Records Admin Panel</title>
     <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/jquery.floatingscroll.css">
-    <link href="/assets/css/cts-admin.css?0110" rel="stylesheet">
+    <link href="/assets/css/cts-admin.css?0910" rel="stylesheet">
     @yield('assets')
     @include('admin.layout.scripts')
 </head>

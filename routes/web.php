@@ -46,7 +46,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::resource('/cv', AdminCvController::class);
 
         Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
-        Route::post('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
+        Route::get('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
         Route::resource('/artists', AdminArtistsController::class);
 
         Route::post('/releases/related', [AdminReleasesController::class, 'searchRelated']);
@@ -80,7 +80,7 @@ Route::group(['middleware' => 'i18n'], function(){
                 }
                 $controller = implode('', $fixed_name);
 
-                $controller = $app->make('\App\Http\Controllers\Admin\Admin'.ucfirst($controller).'Controller');
+                $controller = $app->make('\App\Http\Controllers\Admin\Admin' . ucfirst($controller) . 'Controller');
                 if(!method_exists($controller, $action)) throw new ReflectionException();;
                 return $controller->callAction($action, $parameters = array(Request::instance(), $id, $param));
             }catch(ReflectionException $e){

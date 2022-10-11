@@ -14,7 +14,7 @@
             </div>
             <div class="collapse navbar-collapse navbar-left" id="main-menu-collapse">
                 <ul class="nav navbar-nav">
-                    <li @if(\Route::is('releases_admin'))class="active" @endif><a href="{{ route('releases_admin') }}">@lang('navbar.releases')</a></li>
+                    <li @if(\Route::is('releases.*'))class="active" @endif><a href="{{ route('releases.index') }}">@lang('navbar.releases')</a></li>
                     <li @if(\Route::is('artists.*'))class="active" @endif><a href="{{ route('artists.index') }}">@lang('navbar.artists')</a></li>
                     <li @if(\Route::is('studio_admin'))class="active" @endif><a href="{{ route('studio_admin') }}">@lang('navbar.studio')</a></li>
                     <li @if(\Route::is('school_admin'))class="active" @endif><a href="{{ route('school_admin') }}">@lang('navbar.school')</a></li>

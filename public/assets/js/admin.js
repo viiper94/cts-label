@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+    $.ajaxSetup({
+        type : 'POST',
+        cache: false,
+        dataType : 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $("#sticker").sticky({
         topSpacing : 15,
         zIndex : 2,
@@ -33,16 +42,12 @@ $(document).ready(function(){
         if(query.length > 2){
             let searchBy = $('input[name="search-by"]:checked').val();
             $.ajax({
-                type : 'POST',
                 data : {
-                    _token : $('meta[name=csrf-token]').attr("content"),
                     query: query,
                     searchBy : searchBy,
                     id : id
                 },
-                cache: false,
-                dataType : 'json',
-                url : '/cts-admin/releases/searchrelated',
+                url : '/cts-admin/releases/related',
                 success : function(response){
                     let checkedBoxes = $('.checked-releases .related label');
                     // clear checked block from unchecked checkboxes
@@ -106,14 +111,10 @@ $(document).ready(function(){
         let query = CKEDITOR.instances.description_en.getData().trim();
         if(query.length > 0){
             $.ajax({
-                type : 'POST',
                 data : {
-                    _token : $('meta[name=csrf-token]').attr("content"),
                     query: query,
                     target : target
                 },
-                cache: false,
-                dataType : 'json',
                 url : '/cts-admin/releases/translate',
                 success : function(response){
                     if(response.status === 'ok'){
@@ -131,13 +132,9 @@ $(document).ready(function(){
         let query = $(this).val().trim();
         if(query.length > 2){
             $.ajax({
-                type : 'POST',
                 data : {
-                    _token : $('meta[name=csrf-token]').attr("content"),
                     query : query
                 },
-                cache: false,
-                dataType : 'json',
                 url : '/cts-admin/reviews/searchreviewer',
                 success : function(response){
                     $('.founded').html('');

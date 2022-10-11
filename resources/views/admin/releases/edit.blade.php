@@ -12,8 +12,11 @@
 @section('admin-content')
     <div class="container">
         @include('admin.layout.alert')
-        <form enctype="multipart/form-data" method="post">
+        <form enctype="multipart/form-data" method="post" action="{{ $release->id ? route('releases.update', $release->id) : route('releases.store') }}">
             @csrf
+            @if($release->id)
+                @method('PUT')
+            @endif
             <div class="col-xs-12">
                 <div id="sticker">
                     <button type='submit' class='btn btn-primary' name='edit_release'>
@@ -33,14 +36,14 @@
             <div class="col-md-7 col-xs-12">
                 <div class="form-group">
                     <label>Название</label><br>
-                    <input type="text" class="form-control form-control__dark" name="title" value="{{ $release->title }}" required>
+                    <input type="text" class="form-control form-control__dark" name="title" value="{{ old('title') ?? $release->title }}" required>
                     @if($errors->has('title'))
                         <p class="help-block">{{ $errors->first('title') }}</p>
                     @endif
                 </div>
                 <div class="form-group">
                     <label>Номер</label><br>
-                    <input type="text" class="form-control form-control__dark" name="release_number" value="{{ $release->release_number }}">
+                    <input type="text" class="form-control form-control__dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
                     @if($errors->has('release_number'))
                         <p class="help-block">{{ $errors->first('release_number') }}</p>
                     @endif
@@ -48,53 +51,53 @@
                 <div class="form-group">
                     <label>Дата</label><br>
                     <input type="text" class="form-control form-control__dark" name="release_date" id="release_date"
-                           value="{{ !$release->release_date ? '' : $release->release_date->format('d F Y') }}" autocomplete="off">
+                           value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}" autocomplete="off">
                     @if($errors->has('release_date'))
                         <p class="help-block">{{ $errors->first('release_date') }}</p>
                     @endif
                 </div>
                 <div class="form-group">
                     <label>Beatport</label><br>
-                    <input type="text" class="form-control form-control__dark" name="beatport" value="{{ $release->beatport }}">
+                    <input type="text" class="form-control form-control__dark" name="beatport" value="{{ old('beatport') ?? $release->beatport }}">
                     @if($errors->has('beatport'))
                         <p class="help-block">{{ $errors->first('beatport') }}</p>
                     @endif
                 </div>
                 <div class="form-group">
                     <label>Youtube</label><br>
-                    <input type="text" class="form-control form-control__dark" name="youtube" value="{{ $release->youtube }}">
+                    <input type="text" class="form-control form-control__dark" name="youtube" value="{{ old('youtube') ?? $release->youtube }}">
                     @if($errors->has('youtube'))
                         <p class="help-block">{{ $errors->first('youtube') }}</p>
                     @endif
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="visible" {{ !$release->visible ? : 'checked' }}> Опубликовано
+                        <input type="checkbox" name="visible" @checked($release->visible)> Опубликовано
                     </label>
                 </div>
             </div>
             <div class="col-xs-12">
                 <div class="description form-group">
                     <label class="en">Описание (англ.)</label>
-                    <textarea name="description_en" id="description_en">{!! $release->description_en !!}</textarea>
+                    <textarea name="description_en" id="description_en">{!! old('description_en') ?? $release->description_en !!}</textarea>
                 </div>
                 <div class="description form-group">
                     <label class="en">Описание (рус.)</label>
                     <a class="translate_description" data-to-lang="ru">
                         <span class="glyphicon glyphicon-text-height"></span> Перевести на русский
                     </a>
-                    <textarea name="description_ru" id="description_ru">{!! $release->description_ru !!}</textarea>
+                    <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $release->description_ru !!}</textarea>
                 </div>
                 <div class="description form-group">
                     <label class="en">Описание (укр.)</label>
                     <a class="translate_description" data-to-lang="uk">
                         <span class="glyphicon glyphicon-text-height"></span> Перевести на украинский
                     </a>
-                    <textarea name="description_ua" id="description_uk">{!! $release->description_ua !!}</textarea>
+                    <textarea name="description_ua" id="description_uk">{!! old('description_ua') ?? $release->description_ua !!}</textarea>
                 </div>
                 <div class="description form-group">
                     <label class="en">Треклист</label>
-                    <textarea name="tracklist" id="tracklist">{!! $release->tracklist !!}</textarea>
+                    <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 related-all-releases">
@@ -104,7 +107,11 @@
                     <div class="related">
                         <a class="page-link" href="{{ route('release', $item->id) }}" target="_blank">Visit page</a>
                         <label>
-                            <input type="checkbox" name="related[]" value="{{ $item->id }}" @if($release->related->contains($item)) checked @endif/>{{ $item->title }}
+                            <input type="checkbox" name="related[]" value="{{ $item->id }}"
+                                   @checked(
+                                        (old() && is_array(old('related')) && in_array($item->id, old('related'))) ||
+                                        (!old() && $release->related->contains($item)))/>
+                            {{ $item->title }}
                         </label>
                     </div>
                 @endforeach

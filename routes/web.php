@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminCvController;
 use App\Http\Controllers\Admin\AdminEmailingChannelsController;
 use App\Http\Controllers\Admin\AdminEmailingContactsController;
 use App\Http\Controllers\Admin\AdminEmailingQueueController;
+use App\Http\Controllers\Admin\AdminReleasesController;
 use App\Http\Controllers\Admin\AdminUsersController;
 
 Route::group(['middleware' => 'i18n'], function(){
@@ -24,8 +25,6 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('auth/facebook', 'Auth\LoginController@redirectToFacebook')->name('auth.facebook');
     Route::get('auth/google', 'Auth\LoginController@redirectToGoogle')->name('auth.google');
     Route::get('auth/google/handle', 'Auth\LoginController@handleGoogleCallback');
-
-//    Route::get('/profile', 'ProfileController@index')->name('profile');
 
     Route::get('/', 'ReleasesController@index')->name('home');
     Route::get('/search', 'ReleasesController@index')->name('search');
@@ -49,6 +48,12 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
         Route::post('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
         Route::resource('/artists', AdminArtistsController::class);
+
+        Route::post('/releases/related', [AdminReleasesController::class, 'searchRelated']);
+        Route::post('/releases/translate', [AdminReleasesController::class, 'translate']);
+        Route::post('/releases/resort', [AdminReleasesController::class, 'resort'])->name('releases.resort');
+        Route::get('/releases/sort/{release}/{dir}', [AdminReleasesController::class, 'sort'])->name('releases.sort');
+        Route::resource('/releases', AdminReleasesController::class);
 
         Route::group(['prefix' => '/emailing'], function(){
 
@@ -83,7 +88,6 @@ Route::group(['middleware' => 'i18n'], function(){
             }
         });
 
-        Route::get('/releases', 'AdminReleasesController@index')->name('releases_admin');
         Route::get('/reviews', 'AdminReviewsController@index')->name('reviews_admin');
         Route::get('/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
         Route::get('/school', 'AdminSchoolController@index')->name('school_admin');

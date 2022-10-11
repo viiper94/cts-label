@@ -15,7 +15,7 @@ class AdminEmailingContactsController extends Controller{
             $channel = EmailingChannel::findOrFail($request->input('channel'));
             $contacts = $channel->subscribers()->with('channels');
         }else{
-            $contacts = EmailingContact::with('channels');
+            $contacts = EmailingContact::with('channels:title');
         }
         if($request->input('q')){
             $contacts = $contacts->where('name', 'like', '%'.$request->input('q').'%')

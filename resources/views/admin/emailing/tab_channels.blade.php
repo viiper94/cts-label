@@ -22,13 +22,13 @@
                 <td>{{ $channel->from ?? env('EMAIL_FROM') }}</td>
                 <td>{{ $channel->description }}</td>
                 <td>{{ strtoupper($channel->lang) }}</td>
-                <td>{{ count($channel->subscribers) }}</td>
+                <td>{{ $channel->subscribers_count }}</td>
                 <td>{{ $channel->created_at->isoFormat('LLL') }}</td>
                 <td>
                     <a class='btn btn-warning' href='{{ route('channels.edit', $channel->id) }}'>
                         <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
                     </a>
-                    @if($channel->queue->count() > 0)
+                    @if($channel->queue_count > 0)
                         <form action="{{ route('channels.stop') }}" method="post" style="display: inline-block;">
                             @csrf
                             <input type="hidden" name="id" value="{{ $channel->id }}">

@@ -15,7 +15,7 @@ class AdminController extends Controller{
             'releases' => Release::orderBy('sort_id', 'desc')->take(25)->get(),
             'artists' => Artist::orderBy('sort_id', 'desc')->take(25)->get(),
             'reviews' => [],
-            'feedback' => Feedback::orderBy('created_at', 'desc')->take(25)->get(),
+            'feedback' => Feedback::with('release')->orderBy('created_at', 'desc')->take(25)->get(),
             'users' => []
         ]);
     }

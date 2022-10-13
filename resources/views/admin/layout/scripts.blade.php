@@ -4,4 +4,4 @@
 <script src="/assets/js/jquery.floatingscroll.min.js"></script>
 @yield('scripts')
 <script src='/assets/js/jquery.sticky.js'></script>
-<script src="/assets/js/admin.js?0910"></script>
+<script src="/assets/js/admin.js?1110"></script>

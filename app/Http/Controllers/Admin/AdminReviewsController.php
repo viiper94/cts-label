@@ -16,63 +16,55 @@ class AdminReviewsController extends Controller{
         ]);
     }
 
-    public function edit(Request $request, $id){
-        $review = Review::findOrFail($id);
-        if($request->post()){
-            $this->validate($request, [
-                'track' => 'required|string',
-                'review' => 'required_without:additional|array',
-                'additional' => 'required_without:review|array',
-            ]);
-            $review->track = $request->input('track');
-            $review->data = [
-                'reviews' => $request->input('review'),
-                'additional' => $request->input('additional')
-            ];
-            $review->visible = $request->input('visible') == 'on';
-            return $review->save() ?
-                redirect()->route('reviews_admin')->with(['success' => 'Ревью успешно отредактировано!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }
-        return view('admin.reviews.edit', [
-            'review' => $review
-        ]);
-    }
-
-    public function add(Request $request){
+    public function create(){
         $review = new Review();
-        if($request->post()){
-            $this->validate($request, [
-                'track' => 'required|string',
-                'review' => 'required_without:additional|array',
-                'additional' => 'required_without:review|array',
-            ]);
-            $review->sort_id = intval($review->getLatestSortId(Review::class)) + 1;
-            $review->track = $request->input('track');
-            $review->data = [
-                'reviews' => $request->input('review'),
-                'additional' => $request->input('additional')
-            ];
-            $review->visible = $request->input('visible') == 'on';
-            return $review->save() ?
-                redirect()->route('reviews_admin')->with(['success' => 'Ревью успешно добавлен!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }
-        $review->data = $review->defaultReview;
-        return view('admin.reviews.edit', [
-            'review' => $review
-        ]);
+        return view('admin.reviews.edit', compact('review'));
     }
 
-    public function delete(Request $request, $id){
-        if($id){
-            $review = Review::findOrFail($id);
-            return $review->delete() ?
-                redirect()->back()->with(['success' => 'Ревью успешно удалено!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
-        }
+    public function store(Request $request){
+        $this->validate($request, [
+            'track' => 'required|string',
+            'review' => 'required_without:additional|array',
+            'additional' => 'required_without:review|array',
+        ]);
+        $review = new Review();
+        $review->sort_id = intval($review->getLatestSortId(Review::class)) + 1;
+        $review->track = $request->input('track');
+        $review->data = [
+            'reviews' => $request->input('review'),
+            'additional' => $request->input('additional')
+        ];
+        $review->visible = $request->input('visible') == 'on';
+        return $review->save() ?
+            redirect()->route('reviews.index')->with(['success' => 'Ревью успешно добавлено!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
+    public function edit(Review $review){
+        return view('admin.reviews.edit', compact('review'));
+    }
+
+    public function update(Request $request, Review $review){
+        $this->validate($request, [
+            'track' => 'required|string',
+            'review' => 'required_without:additional|array',
+            'additional' => 'required_without:review|array',
+        ]);
+        $review->track = $request->input('track');
+        $review->data = [
+            'reviews' => $request->input('review'),
+            'additional' => $request->input('additional')
+        ];
+        $review->visible = $request->input('visible') == 'on';
+        return $review->save() ?
+            redirect()->route('reviews.index')->with(['success' => 'Ревью успешно отредактировано!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
+    public function destroy(Review $review){
+        return $review->delete() ?
+            redirect()->back()->with(['success' => 'Ревью успешно удалено!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
     public function resort(Request $request){
@@ -98,12 +90,12 @@ class AdminReviewsController extends Controller{
         }
     }
 
-    public function searchReviewer(Request $request){
+    public function search(Request $request){
         if($request->ajax() && $request->post('query')){
             $response = array();
             $reviews = Review::where('data', 'like', '%'.$request->post('query').'%')->get();
             if($reviews){
-                foreach($reviews as $key => $item){
+                foreach($reviews as $item){
                     foreach($item->data['reviews'] as $review){
                         // search where query is like author
                         if(stripos($review['author'], $request->post('query')) !== false){
@@ -132,7 +124,6 @@ class AdminReviewsController extends Controller{
             ]);
         }else{
             abort(404);
-            return false;
         }
     }
 

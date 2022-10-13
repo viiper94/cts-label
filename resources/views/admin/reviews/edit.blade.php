@@ -3,7 +3,10 @@
 @section('admin-content')
     <div class="container">
         @include('admin.layout.alert')
-        <form enctype="multipart/form-data" method="post">
+        <form enctype="multipart/form-data" method="post" action="{{ $review->id ? route('reviews.update', $review->id) : route('reviews.store') }}">
+            @if($review->id)
+                @method('PUT')
+            @endif
             @csrf
             <div class="col-xs-12">
                 <div id="sticker">

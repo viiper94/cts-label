@@ -135,7 +135,7 @@ $(document).ready(function(){
                 data : {
                     query : query
                 },
-                url : '/cts-admin/reviews/searchreviewer',
+                url : '/cts-admin/reviews/search',
                 success : function(response){
                     $('.founded').html('');
                     if(response.status === 'ok'){

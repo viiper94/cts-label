@@ -10,6 +10,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 
+/public/CTS100/*
 /public/audio/feedback/*
 /public/images/artists/*
 !/public/images/artists/default.png

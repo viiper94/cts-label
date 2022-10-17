@@ -76,7 +76,8 @@
                     </label>
                 </div>
             </div>
-            <div class="col-xs-12">
+            <div class="clearfix"></div>
+            <div class="col-xs-12 col-md-6">
                 <div class="description form-group">
                     <label class="en">Описание (англ.)</label>
                     <textarea name="description_en" id="description_en">{!! old('description_en') ?? $release->description_en !!}</textarea>

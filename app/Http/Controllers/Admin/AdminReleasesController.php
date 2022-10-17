@@ -41,7 +41,6 @@ class AdminReleasesController extends Controller{
         $release->fill($request->post());
         $release->release_date = Carbon::parse($request->input('release_date'))->format('Y-m-d');
         $release->sort_id = intval($release->getLatestSortId(Release::class)) + 1;
-        $release->visible = $request->input('visible') == 'on';
         if($request->hasFile('image')){
             $image = $request->file('image');
             $release->image = md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();

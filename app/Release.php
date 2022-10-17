@@ -35,13 +35,8 @@ class Release extends SharedModel{
         return $this->hasOne('App\Feedback');
     }
 
-    public function renewRelatedReleases($ids){
-        $this->related()->detach();
-        if($ids === null) return true;
-        foreach($ids as $id){
-            $this->related()->attach($id);
-        }
-        return true;
+    public function setVisibleAttribute($value){
+        $this->attributes['visible'] = $value === 'on';
     }
 
     public function getUsefulText($text){
@@ -73,7 +68,7 @@ class Release extends SharedModel{
         }
     }
 
-    public function getTracksCount() {
+    public function getTracksCount(){
         if($this->tracklist){
             $lines_arr = preg_split('/\r\n|\n|\r/',$this->tracklist);
             return count($lines_arr);

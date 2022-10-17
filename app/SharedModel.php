@@ -23,7 +23,11 @@ class SharedModel extends Model{
     }
 
     public function setVisibleAttribute($value){
-        $this->attributes['visible'] = $value === 'on';
+        $this->attributes['visible'] = in_array($value, [
+            '1', 1,
+            'true', true,
+            'on', 'yes'
+        ]);
     }
 
 }

@@ -15,7 +15,7 @@ class AdminFeedbackController extends Controller{
         $feedback = Feedback::with('release', 'results');
         if($request->input('q')) $feedback->where('feedback_title', 'like', '%'.$request->input('q').'%');
         return view('admin.feedback.index', [
-            'feedback_list' => $feedback->orderBy('release_id', 'desc')->paginate(10)
+            'feedback_list' => $feedback->latest()->paginate(10)
         ]);
     }
 

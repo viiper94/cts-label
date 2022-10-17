@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ReleasesController extends Controller{
 
     public function index(Request $request){
-        $query = Release::where('visible', 1);
+        $query = Release::whereVisible(1);
         if($request->input('q')){
             $query->where('title', 'like', '%'.$request->input('q').'%');
         }
@@ -21,14 +21,8 @@ class ReleasesController extends Controller{
         $release = Release::with('related')->findOrFail($id);
         return view('releases.release', [
             'release' => $release,
-            'prev' => Release::where([
-                ['visible', '=', 1],
-                ['sort_id', '<', $release->sort_id]
-            ])->orderBy('sort_id', 'desc')->first(),
-            'next' => Release::where([
-                ['visible', '=', 1],
-                ['sort_id', '>', $release->sort_id]
-            ])->first(),
+            'prev' => Release::whereVisible(1)->where('sort_id', '<', $release->sort_id)->orderBy('sort_id', 'desc')->first(),
+            'next' => Release::whereVisible(1)->where('sort_id', '>', $release->sort_id)->orderBy('sort_id', 'asc')->first(),
             'related' => []
         ]);
     }

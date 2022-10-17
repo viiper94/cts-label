@@ -31,18 +31,18 @@
                     <h4>@lang('footer.follow_us')</h4>
                     <div>
                         <a href="https://www.beatport.com/label/cts-creative-technologies-studio/4470" class="socials socials-beatport" target="_blank"></a>
-                        <a href="#" class="socials socials-itunes" target="_blank"></a>
+                        <a class="socials socials-itunes" target="_blank"></a>
                         <a href="https://www.facebook.com/CTS.Records/" class="socials socials-facebook" target="_blank"></a>
                         <a href="https://www.youtube.com/channel/UCudx-EMGd8zRddRAFWl7YHA" class="socials socials-youtube" target="_blank"></a>
                         <a href="https://www.residentadvisor.net/record-label.aspx?id=2317" class="socials socials-ra" target="_blank"></a>
                         <a href="https://new.vk.com/ctschool" class="socials socials-vk" target="_blank"></a>
                         <a href="https://soundcloud.com/cts-records" class="socials socials-soundcloud" target="_blank"></a>
                         <a href="http://www.last.fm/ru/music/CTS+Records" class="socials socials-as" target="_blank"></a>
-                        <a href="/rss.xml" class="socials socials-rss" target="_blank"></a>
+                        <a class="socials socials-rss" target="_blank"></a>
                         <a href="https://twitter.com/CTS_RECORDS" class="socials socials-twitter" target="_blank"></a>
-                        <a href="#" class="socials socials-instagram" target="_blank"></a>
-                        <a href="https://myspace.com/cts_records" class="socials socials-discogs" target="_blank"></a>
-                        <a href="#" class="socials socials-spotify" target="_blank"></a>
+                        <a class="socials socials-instagram" target="_blank"></a>
+                        <a href="https://www.discogs.com/label/74862-CTS-records" class="socials socials-discogs" target="_blank"></a>
+                        <a class="socials socials-spotify" target="_blank"></a>
                         <a href="https://myspace.com/cts_records" class="socials socials-myspace" target="_blank"></a>
                     </div>
                 </div>

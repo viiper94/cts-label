@@ -8,6 +8,11 @@ class Review extends SharedModel{
         'data' => 'array'
     ];
 
+    protected $fillable = [
+        'track',
+        'visible'
+    ];
+
     public function __construct(){
         $this->data = [
             'reviews' => [0 => [

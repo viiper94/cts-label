@@ -10,6 +10,7 @@ class Artist extends SharedModel{
         'description_en',
         'description_ru',
         'description_ua',
+        'visible'
     ];
 
 }

@@ -22,4 +22,8 @@ class SharedModel extends Model{
         return $item->save() && $slave_item->save();
     }
 
+    public function setVisibleAttribute($value){
+        $this->attributes['visible'] = $value === 'on';
+    }
+
 }

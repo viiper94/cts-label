@@ -35,10 +35,6 @@ class Release extends SharedModel{
         return $this->hasOne('App\Feedback');
     }
 
-    public function setVisibleAttribute($value){
-        $this->attributes['visible'] = $value === 'on';
-    }
-
     public function getUsefulText($text){
         return trim(str_replace('&nbsp;', ' ', strip_tags(htmlspecialchars_decode($text))));
     }

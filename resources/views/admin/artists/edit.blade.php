@@ -32,7 +32,8 @@
                 </div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="visible" {{ !$artist->visible ? : 'checked' }}> Опубликовано
+                        <input type="hidden" name="visible" value="0">
+                        <input type="checkbox" name="visible" @checked($artist->visible)> Опубликовано
                     </label>
                 </div>
             </div>

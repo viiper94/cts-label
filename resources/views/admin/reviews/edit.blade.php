@@ -27,6 +27,7 @@
                 </div>
                 <div class="checkbox">
                     <label>
+                        <input type="hidden" name="visible" value="0">
                         <input type="checkbox" name="visible" {{ !$review->visible ? : 'checked' }}> Опубликовано
                     </label>
                 </div>

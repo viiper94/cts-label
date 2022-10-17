@@ -28,13 +28,12 @@ class AdminReviewsController extends Controller{
             'additional' => 'required_without:review|array',
         ]);
         $review = new Review();
+        $review->fill($request->post());
         $review->sort_id = intval($review->getLatestSortId(Review::class)) + 1;
-        $review->track = $request->input('track');
         $review->data = [
             'reviews' => $request->input('review'),
             'additional' => $request->input('additional')
         ];
-        $review->visible = $request->input('visible') == 'on';
         return $review->save() ?
             redirect()->route('reviews.index')->with(['success' => 'Ревью успешно добавлено!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
@@ -50,12 +49,11 @@ class AdminReviewsController extends Controller{
             'review' => 'required_without:additional|array',
             'additional' => 'required_without:review|array',
         ]);
-        $review->track = $request->input('track');
+        $review->fill($request->post());
         $review->data = [
             'reviews' => $request->input('review'),
             'additional' => $request->input('additional')
         ];
-        $review->visible = $request->input('visible') == 'on';
         return $review->save() ?
             redirect()->route('reviews.index')->with(['success' => 'Ревью успешно отредактировано!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);

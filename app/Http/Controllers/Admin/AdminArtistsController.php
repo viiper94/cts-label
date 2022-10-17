@@ -31,7 +31,6 @@ class AdminArtistsController extends Controller{
                 'link' => 'url|nullable'
             ]);
             $artist->fill($request->post());
-            $artist->visible = $request->input('visible') == 'on';
             $artist->sort_id = intval($artist->getLatestSortId(Artist::class)) + 1;
             if($request->hasFile('image')){
                 $image = $request->file('image');
@@ -58,7 +57,6 @@ class AdminArtistsController extends Controller{
             'link' => 'url|nullable'
         ]);
         $artist->fill($request->post());
-        $artist->visible =  $request->input('visible') == 'on';
         if($request->hasFile('image')){
             // delete old image
             $path = public_path('images/artists/').$artist->image;

@@ -72,6 +72,7 @@
                 </div>
                 <div class="checkbox">
                     <label>
+                        <input type="hidden" name="visible" value="0">
                         <input type="checkbox" name="visible" @checked($release->visible)> Опубликовано
                     </label>
                 </div>
@@ -96,11 +97,14 @@
                     </a>
                     <textarea name="description_ua" id="description_uk">{!! old('description_ua') ?? $release->description_ua !!}</textarea>
                 </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
                 <div class="description form-group">
                     <label class="en">Треклист</label>
                     <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>
                 </div>
             </div>
+            <div class="clearfix"></div>
             <div class="col-md-6 col-xs-12 related-all-releases">
                 <h5>Related tracks:</h5>
                 <button class="btn btn-danger deselect-btn">Deselect All</button>

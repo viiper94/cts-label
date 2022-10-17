@@ -12,9 +12,9 @@ class AdminReleasesController extends Controller{
 
     public function index(Request $request){
         $releases = Release::select(['id', 'sort_id', 'title', 'image', 'release_number'])->with('feedback');
-        if($request->input('q')) $releases->where('title', 'like', '%' . $request->input('q') . '%')
-            ->orWhere('tracklist', 'like', '%' . $request->input('q') . '%')
-            ->orWhere('release_number', 'like', '%' . $request->input('q') . '%');
+        if($request->query('q')) $releases->where('title', 'like', '%' . $request->query('q') . '%')
+            ->orWhere('tracklist', 'like', '%' . $request->query('q') . '%')
+            ->orWhere('release_number', 'like', '%' . $request->query('q') . '%');
         return view('admin.releases.index', [
             'releases' => $releases->orderBy('sort_id', 'desc')->paginate(30)
         ]);

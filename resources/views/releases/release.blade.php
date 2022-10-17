@@ -9,7 +9,7 @@
                 <div class="col-xs-12 col-md-7" >
                     <h1 class="release-title">{{ $release->title }}</h1>
                     <div class="release-number"><strong>@lang('releases.release_number') </strong>{{ $release->release_number }}</div>
-                    <div class="release-date"><strong>@lang('releases.release_date') </strong>{{ date('j F Y', $release->release_date->getTimestamp()) }}</div>
+                    <div class="release-date"><strong>@lang('releases.release_date') </strong>{{ $release->release_date->format('j F Y') }}</div>
                 </div>
                 <div class="col-xs-12 col-md-5" >
                     <div class="text-center">

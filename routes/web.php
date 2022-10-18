@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\AdminEmailingContactsController;
 use App\Http\Controllers\Admin\AdminEmailingQueueController;
 use App\Http\Controllers\Admin\AdminReleasesController;
 use App\Http\Controllers\Admin\AdminReviewsController;
+use App\Http\Controllers\Admin\AdminStudioController;
 use App\Http\Controllers\Admin\AdminUsersController;
 
 Route::group(['middleware' => 'i18n'], function(){
@@ -60,6 +61,8 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/reviews/resort', [AdminReviewsController::class, 'resort'])->name('reviews.resort');
         Route::get('/reviews/sort/{review}/{dir}', [AdminReviewsController::class, 'sort'])->name('reviews.sort');
         Route::resource('/reviews', AdminReviewsController::class);
+
+        Route::post('/studio/resort', [AdminStudioController::class, 'resort']);
 
         Route::group(['prefix' => '/emailing'], function(){
 

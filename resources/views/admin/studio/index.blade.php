@@ -2,68 +2,71 @@
 
 @section('admin-content')
 
-    <div class="container-fluid">
+    <div class="container">
         @include('admin.layout.alert')
-        <form name='sort_form' method='POST' action="{{ route('studio_admin') }}/resort">
-            @csrf
-            <div class="top-container flex">
-                <div class="releases-actions">
-                    <button type='submit' class='btn btn-primary' name='resort' onclick='return confirm("Отсортировать?")'>
-                        <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
-                        Отсортировать
-                    </button>
-                    <a href='{{ route('studio_admin') }}/add' class='btn btn-success'>
-                        <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
-                        Добавить услугу
-                    </a>
+
+        @foreach($service_list as $services)
+            <h4>{{ $services[0]->lang }}</h4>
+            <section class="row panel panel__dark service-lang">
+                <div class="panel-body sortable">
+                    @foreach($services as $service)
+                        <img src="/images/studio/services/{{ $service->image }}" alt="{{ $service->service_alt }}"
+                             class="service-img" data-toggle="modal" data-target="#serviceModal" data-id="{{ $service->id }}">
+                    @endforeach
+                </div>
+            </section>
+        @endforeach
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="serviceModal">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content modal-content__dark">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span class="text-secondary" aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Редактирование услуги</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" enctype="multipart/form-data" method="post">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="/images/studio/services/default.png" id="preview">
+                                    <input type="file" name="image" id="uploader" accept="image/jpeg, image/png">
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label>Язык</label><br>
+                                        <select class="form-control form-control__dark" name="lang" required>
+                                            <option value="en">English</option>
+                                            <option value="ru">Русский</option>
+                                            <option value="ua">Українська</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Название услуги</label><br>
+                                        <input type="text" class="form-control form-control__dark" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ключевые слова</label><br>
+                                        <textarea name="service_alt" id="service_alt" rows="3" class="form-control form-control__dark"></textarea>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="hidden" name="visible" value="0">
+                                            <input type="checkbox" name="visible"> Опубликовано
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button type="button" class="btn btn-primary">Сохранить</button>
+                    </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                    <table class="items-table table table-hover table__dark">
-                        <tbody>
-                        @foreach($service_list as $services)
-                            <tr>
-                                <th></th>
-                                <th>Название</th>
-                                <th>Язык</th>
-                                <th>Действия</th>
-                                <th>Сортировка</th>
-                            </tr>
-                                @foreach($services as $service)
-                                <tr>
-                                    <td><img src="/images/studio/services/{{ $service->image }}" alt="{{ $service->service_alt }}"></td>
-                                    <td><h5>{{ $service->name }}</h5></td>
-                                    <td><h5>{{ $service->lang }}</h5></td>
-                                    <td>
-                                        <a class='btn btn-success' href='{{ route('studio_admin') }}/edit/{{ $service->id }}'>
-                                            <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
-                                            <span class="hidden-xs hidden-sm hidden-lg">Редактировать</span>
-                                        </a>
-                                        <a class='btn btn-danger' href='{{ route('studio_admin') }}/delete/{{ $service->id }}' onclick='return confirm("Удалить?")'>
-                                            <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
-                                            <span class="hidden-xs hidden-sm hidden-lg">Удалить</span>
-                                        </a>
-                                    </td>
-                                    <td class="flex">
-                                        <a class='btn btn-default btn-default__dark' href='{{ route('studio_admin') }}/sort/{{ $service->id }}/up'>
-                                            <span class='glyphicon glyphicon-arrow-up'></span>
-                                        </a>
-                                        <input type='number' class='form-control form-control__dark sort-input' name='sort[{{ $service->id }}]' value='{{ $service->sort_id }}'>
-                                        <a class='btn btn-default btn-default__dark' href='{{ route('studio_admin') }}/sort/{{ $service->id }}/down'>
-                                            <span class='glyphicon glyphicon-arrow-down'></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            <tr>
-                                <th colspan="5"></th>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </form>
-    </div>
+        </div>
 
 @endsection
 

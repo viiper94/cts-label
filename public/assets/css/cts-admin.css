@@ -76,6 +76,17 @@ table.table__dark,
         margin: 10px 0;
     }
 }
+.panel.panel__dark{
+    background-color: #333;
+}
+.modal .modal-content.modal-content__dark{
+    background-color: #333;
+    color: #ccc;
+}
+.modal .modal-content.modal-content__dark .modal-footer,
+.modal .modal-content.modal-content__dark .modal-header{
+    border-color: #444;
+}
 
 /* Admin Pagination */
 .pagination{
@@ -260,6 +271,18 @@ table img{
 table .sort-input{
     width: 100px;
     margin: 0 4px;
+}
+
+/* Studio */
+.panel.service-lang img{
+    opacity: 0.7;
+    margin: 15px 48px;
+    cursor: pointer;
+    transition: transform .3s ease;
+}
+.panel.service-lang img:hover{
+    transform: scale(1.1);
+    opacity: 1;
 }
 
 /* School */

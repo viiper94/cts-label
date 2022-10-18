@@ -93,12 +93,14 @@ class AdminStudioController extends Controller{
     }
 
     public function resort(Request $request){
-        foreach($request->post('sort') as $id => $sort){
-            $service = StudioService::find($id);
-            $service->sort_id = $sort;
-            $service->save();
+        if($request->ajax()){
+            dd($request->post('data'));
+            foreach($request->post('data') as $sort => $id){
+                StudioService::find($id)->update(['sort_id' => $sort]);
+            }
+            return response()->json('OK');
         }
-        return redirect()->back()->with(['success' => 'Услуги успешно отсортированы!']);
+        return redirect()->route('studio_admin');
     }
 
     public function sort(Request $request, $id, $direction){

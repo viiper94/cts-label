@@ -181,6 +181,29 @@ $(document).ready(function(){
         e.clearSelection();
     });
 
+    $('.service-lang .sortable').sortable({
+        stop: function(event, ui){
+            let data = {};
+            $.map($(this).find('img'), function(el){
+                data[$(el).index()] = $(el).data('id');
+            });
+            $.ajax({
+                type: 'POST',
+                url: '/cts-admin/studio/resort',
+                data: {
+                    '_token': $('[name=_token]').val(),
+                    'data': data
+                },
+                beforeSend: function(){
+                    $('.service-lang .msg').html('Сортировка...');
+                },
+                success: function(response){
+                    $('.service-lang .msg').html('Пересортировано');
+                },
+            });
+        }
+    });
+
 });
 
 function readURL(input, selector){

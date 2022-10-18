@@ -1,5 +1,13 @@
 @extends('admin.layout.layout')
 
+@section('assets')
+    <link rel="stylesheet" href="/assets/css/jquery.ui.sortable.min.css">
+@endsection
+
+@section('scripts')
+    <script src="/assets/js/jquery.ui.sortable.min.js"></script>
+@endsection
+
 @section('admin-content')
 
     <div class="container">

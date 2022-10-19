@@ -277,8 +277,10 @@ table .sort-input{
 .panel.service-lang img{
     opacity: 0.7;
     margin: 15px 48px;
-    cursor: pointer;
+    cursor: move;
     transition: transform .3s ease;
+    max-width: 186px;
+    max-height: 186px;
 }
 .panel.service-lang img:hover{
     transform: scale(1.1);

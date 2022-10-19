@@ -12,7 +12,7 @@ class AdminStudioController extends Controller{
         $services = StudioService::orderBy('sort_id', 'desc');
         if($request->input('q')) $services->where('name', 'like', '%'.$request->post('q').'%');
         return view('admin.studio.index', [
-            'service_list' => $services->get()->sortBy('lang')->groupBy('lang')
+            'service_list' => $services->get()->sortBy('sort_id')->groupBy('lang')
         ]);
     }
 
@@ -79,27 +79,12 @@ class AdminStudioController extends Controller{
 
     public function resort(Request $request){
         if($request->ajax()){
-            dd($request->post('data'));
             foreach($request->post('data') as $sort => $id){
                 StudioService::find($id)->update(['sort_id' => $sort]);
             }
             return response()->json('OK');
         }
         return redirect()->route('studio_admin');
-    }
-
-    public function sort(Request $request, $id, $direction){
-        if(isset($id)){
-            $service = StudioService::find($id);
-            if($direction === 'up') $next_service = StudioService::where('sort_id', '>', $service->sort_id)->where('lang', $service->lang)->orderBy('sort_id', 'asc')->first();
-            else $next_service = StudioService::where('sort_id', '<', $service->sort_id)->where('lang', $service->lang)->orderBy('sort_id', 'desc')->first();
-            if(!$next_service) return redirect()->back();
-            return $service->swapSort($service, $next_service)  ?
-                redirect()->back()->with(['success' => 'Услуга успешно отредактирована!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
-        }
     }
 
 }

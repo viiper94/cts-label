@@ -24,7 +24,7 @@ class AppController extends Controller{
 
     public function studio(){
         return view('studio', [
-            'services' => StudioService::where(['visible' => 1, 'lang' => App::getLocale()])->get()
+            'services' => StudioService::where(['visible' => 1, 'lang' => App::getLocale()])->orderBy('sort_id')->get()
         ]);
     }
 

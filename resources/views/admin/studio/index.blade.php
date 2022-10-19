@@ -12,30 +12,31 @@
 
     <div class="container">
         @include('admin.layout.alert')
-
+        <div class="releases-actions">
+            <button class='btn btn-success add-service' data-action="{{ route('studio.store') }}">
+                <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+                Новая услуга
+            </button>
+        </div>
         @foreach($service_list as $services)
-            <h4>{{ $services[0]->lang }}</h4>
+            <h4>({{ $services[0]->lang }}) {{ \Illuminate\Support\Facades\Lang::choice('studio.services', 8, locale: $services[0]->lang) }}</h4>
             <section class="row panel panel__dark service-lang">
                 <div class="panel-body sortable">
                     @foreach($services as $service)
-                        <img src="/images/studio/services/{{ $service->image }}" alt="{{ $service->service_alt }}"
-                             class="service-img" data-toggle="modal" data-target="#serviceModal" data-id="{{ $service->id }}">
+                        <img src="/images/studio/services/{{ $service->image }}" alt="{{ $service->service_alt }}" class="service-img"
+                             data-id="{{ $service->id }}" data-lang="{{ $service->lang }}" data-name="{{ $service->name }}"
+                             data-visible="{{ $service->visible }}" data-action="{{ route('studio.update', $service->id) }}">
                     @endforeach
                 </div>
             </section>
         @endforeach
 
-        <div class="modal fade" tabindex="-1" role="dialog" id="serviceModal">
-            <div class="modal-dialog modal-lg" role="document">
+        <div class="modal fade" id="serviceModal">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content modal-content__dark">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span class="text-secondary" aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Редактирование услуги</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('studio.store') }}" enctype="multipart/form-data" method="post" id="modal-form">
+                        <div class="modal-body">
                             @csrf
-                            @method('PUT')
                             <div class="row">
                                 <div class="col-md-5">
                                     <img src="/images/studio/services/default.png" id="preview">
@@ -44,7 +45,7 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label>Язык</label><br>
-                                        <select class="form-control form-control__dark" name="lang" required>
+                                        <select class="form-control form-control__dark" name="lang" id="lang" required>
                                             <option value="en">English</option>
                                             <option value="ru">Русский</option>
                                             <option value="ua">Українська</option>
@@ -61,16 +62,21 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="hidden" name="visible" value="0">
-                                            <input type="checkbox" name="visible"> Опубликовано
+                                            <input type="checkbox" name="visible" id="visible"> Опубликовано
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                     <div class="modal-footer">
+                        <form method="post" id="delete-form" style="display:none;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" form="delete-form" onclick='return confirm("Удалить?")'>Удалить</button>
+                        </form>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                        <button type="button" class="btn btn-primary">Сохранить</button>
+                        <button type="submit" class="btn btn-primary" form="modal-form">Сохранить</button>
                     </div>
                 </div>
             </div>

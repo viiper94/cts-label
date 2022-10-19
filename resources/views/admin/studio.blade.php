@@ -20,7 +20,7 @@
         </div>
         @foreach($service_list as $services)
             <h4>({{ $services[0]->lang }}) {{ \Illuminate\Support\Facades\Lang::choice('studio.services', 8, locale: $services[0]->lang) }}</h4>
-            <section class="row panel panel__dark service-lang">
+            <section class="panel panel__dark service-lang">
                 <div class="panel-body sortable">
                     @foreach($services as $service)
                         <img src="/images/studio/services/{{ $service->image }}" alt="{{ $service->service_alt }}" class="service-img"
@@ -82,8 +82,4 @@
             </div>
         </div>
 
-@endsection
-
-@section('search')
-    @include('admin.layout.search')
 @endsection

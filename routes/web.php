@@ -49,20 +49,21 @@ Route::group(['middleware' => 'i18n'], function(){
 
         Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
         Route::get('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
-        Route::resource('/artists', AdminArtistsController::class);
+        Route::resource('/artists', AdminArtistsController::class)->except(['show']);
 
         Route::post('/releases/related', [AdminReleasesController::class, 'searchRelated']);
         Route::post('/releases/translate', [AdminReleasesController::class, 'translate']);
         Route::post('/releases/resort', [AdminReleasesController::class, 'resort'])->name('releases.resort');
         Route::get('/releases/sort/{release}/{dir}', [AdminReleasesController::class, 'sort'])->name('releases.sort');
-        Route::resource('/releases', AdminReleasesController::class);
+        Route::resource('/releases', AdminReleasesController::class)->except(['show']);
 
         Route::post('/reviews/search', [AdminReviewsController::class, 'search'])->name('reviews.search');
         Route::post('/reviews/resort', [AdminReviewsController::class, 'resort'])->name('reviews.resort');
         Route::get('/reviews/sort/{review}/{dir}', [AdminReviewsController::class, 'sort'])->name('reviews.sort');
-        Route::resource('/reviews', AdminReviewsController::class);
+        Route::resource('/reviews', AdminReviewsController::class)->except(['show']);
 
         Route::post('/studio/resort', [AdminStudioController::class, 'resort']);
+        Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);
 
         Route::group(['prefix' => '/emailing'], function(){
 
@@ -99,7 +100,6 @@ Route::group(['middleware' => 'i18n'], function(){
 
         Route::get('/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
         Route::get('/school', 'AdminSchoolController@index')->name('school_admin');
-        Route::get('/studio', 'AdminStudioController@index')->name('studio_admin');
 
     });
 

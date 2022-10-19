@@ -16,7 +16,7 @@
                 <ul class="nav navbar-nav">
                     <li @if(\Route::is('releases.*'))class="active" @endif><a href="{{ route('releases.index') }}">@lang('navbar.releases')</a></li>
                     <li @if(\Route::is('artists.*'))class="active" @endif><a href="{{ route('artists.index') }}">@lang('navbar.artists')</a></li>
-                    <li @if(\Route::is('studio_admin'))class="active" @endif><a href="{{ route('studio_admin') }}">@lang('navbar.studio')</a></li>
+                    <li @if(\Route::is('studio.*'))class="active" @endif><a href="{{ route('studio.index') }}">@lang('navbar.studio')</a></li>
                     <li @if(\Route::is('school_admin'))class="active" @endif><a href="{{ route('school_admin') }}">@lang('navbar.school')</a></li>
                     <li @if(\Route::is('reviews.*'))class="active" @endif><a href="{{ route('reviews.index') }}">@lang('navbar.reviews')</a></li>
                     <li @if(\Route::is('feedback_admin'))class="active" @endif><a href="{{ route('feedback_admin') }}">@lang('navbar.feedback')</a></li>

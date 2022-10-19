@@ -11,7 +11,9 @@ class StudioService extends SharedModel{
     protected $fillable = [
         'name',
         'service_alt',
-        'lang'
+        'lang',
+        'sort_id',
+        'visible'
     ];
 
 }

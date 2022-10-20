@@ -1,5 +1,6 @@
 <?php
 return [
+    'page_title' => 'CTSchool - професійні курси DJ-їв і саунд продюсерів в Києві',
     'page_header' => 'CTSchool – professional courses for sound engineers,<br> DJs and sound producers in Kyiv',
 
     'courses' => 'Courses',

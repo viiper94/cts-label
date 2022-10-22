@@ -58,7 +58,7 @@ return [
 
                             <p>Мікшер суматор: <b>AMS NEVE 8816</b></p>
 
-                            <p>Контрольні монитори:<br />
+                            <p>Контрольні монітори:<br />
                                 <b>Dynaudio BM 15A</b><br />
                                 <b>Genelec 8040 A</b><br />
                                 <b>Dynaudio DBM 50</b></p>

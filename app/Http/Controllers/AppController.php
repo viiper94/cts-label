@@ -26,8 +26,14 @@ class AppController extends Controller{
         if($request->ajax()){
             return response()->json(['OK']);
         }
+        $services = StudioService::where('visible', 1);
+        if(StudioService::where(['visible' => 1, 'lang' => App::getLocale()])->count() > 0){
+            $services = $services->where('lang', App::getLocale());
+        }else{
+            $services = $services->where('lang', 'en');
+        }
         return view('studio', [
-            'services' => StudioService::where(['visible' => 1, 'lang' => App::getLocale()])->orderBy('sort_id')->get()
+            'services' => $services->orderBy('sort_id')->get()
         ]);
     }
 

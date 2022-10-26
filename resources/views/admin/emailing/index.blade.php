@@ -10,7 +10,7 @@
         @include('admin.layout.alert')
         <ul class="nav nav-tabs nav-tabs__dark" role="tablist">
             <li @class(['active' => $view === 'channels'])>
-                <a href="{{ route('channels.index') }}">
+                <a href="{{ route('emailing.channels.index') }}">
                     Каналы рассылки
                     @if($channels->count() > 0)
                         <span class="label label-warning">{{ $channels->count() }}</span>
@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li @class(['active' => $view === 'contacts'])>
-                <a href="{{ route('contacts.index') }}">
+                <a href="{{ route('emailing.contacts.index') }}">
                     Контакты
                     @if($contacts_count > 0)
                         <span class="label label-warning">{{ $contacts_count }}</span>
@@ -26,7 +26,7 @@
                 </a>
             </li>
             <li @class(['active' => $view === 'queue'])>
-                <a href="{{ route('queue.index') }}" >
+                <a href="{{ route('emailing.queue.index') }}" >
                     Очередь рассылки
                     @if($queue_count > 0)
                         <span @class([

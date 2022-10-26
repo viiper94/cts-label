@@ -17,7 +17,7 @@
             @endphp
             @foreach($headers as $key => $item)
                 <th>
-                    <a href="{{ route('contacts.index', [
+                    <a href="{{ route('emailing.contacts.index', [
                             'sort' => $key,
                             'dir' => ($dir === 'up' ? 'down' : 'up'),
                             'channel' => Request::input('channel'),
@@ -42,14 +42,14 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         @foreach($channels as $item)
-                            <li><a href="{{ route('contacts.index', ['channel' => $item->id]) }}">{{ $item->title }}</a></li>
+                            <li><a href="{{ route('emailing.contacts.index', ['channel' => $item->id]) }}">{{ $item->title }}</a></li>
                         @endforeach
-                        <li><a href="{{ route('contacts.index') }}">Все каналы</a></li>
+                        <li><a href="{{ route('emailing.contacts.index') }}">Все каналы</a></li>
                     </ul>
                 </div>
             </th>
             <th>
-                <a class='btn btn-info btm-sm' href='{{ route('contacts.create') }}'>
+                <a class='btn btn-info btm-sm' href='{{ route('emailing.contacts.create') }}'>
                     <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
                 </a>
             </th>
@@ -67,7 +67,7 @@
                 <td>{{ $contact->created_at->format('d/m/y H:i') }}</td>
                 <td class="text-center">{{ implode(', ', \Illuminate\Support\Arr::pluck($contact->channels->toArray(), 'title')) }}</td>
                 <td>
-                    <a class='btn btn-warning' href='{{ route('contacts.edit', $contact->id) }}'>
+                    <a class='btn btn-warning' href='{{ route('emailing.contacts.edit', $contact->id) }}'>
                         <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
                     </a>
                 </td>

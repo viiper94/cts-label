@@ -10,7 +10,7 @@
             <th>Подписчиков</th>
             <th>Создано</th>
             <th>
-                <a class='btn btn-info btm-sm' href='{{ route('channels.create') }}'>
+                <a class='btn btn-info btm-sm' href='{{ route('emailing.channels.create') }}'>
                     <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
                 </a>
             </th>
@@ -25,11 +25,11 @@
                 <td>{{ $channel->subscribers_count }}</td>
                 <td>{{ $channel->created_at->isoFormat('LLL') }}</td>
                 <td>
-                    <a class='btn btn-warning' href='{{ route('channels.edit', $channel->id) }}'>
+                    <a class='btn btn-warning' href='{{ route('emailing.channels.edit', $channel->id) }}'>
                         <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
                     </a>
                     @if($channel->queue_count > 0)
-                        <form action="{{ route('channels.stop') }}" method="post" style="display: inline-block;">
+                        <form action="{{ route('emailing.channels.stop') }}" method="post" style="display: inline-block;">
                             @csrf
                             <input type="hidden" name="id" value="{{ $channel->id }}">
                             <button class='btn btn-danger' onclick='return confirm("Остановить рассылку?")'>
@@ -37,7 +37,7 @@
                             </button>
                         </form>
                     @else
-                        <form action="{{ route('channels.start') }}" method="post" style="display: inline-block;">
+                        <form action="{{ route('emailing.channels.start') }}" method="post" style="display: inline-block;">
                             @csrf
                             <input type="hidden" name="id" value="{{ $channel->id }}">
                             <button class='btn btn-success' onclick='return confirm("Запустить рассылку?")'>

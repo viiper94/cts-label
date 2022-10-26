@@ -65,7 +65,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/studio/resort', [AdminStudioController::class, 'resort']);
         Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);
 
-        Route::group(['prefix' => '/emailing'], function(){
+        Route::name('emailing.')->prefix('emailing')->group(function(){
 
             Route::post('/channels/start', [AdminEmailingChannelsController::class, 'start'])->name('channels.start');
             Route::post('/channels/stop', [AdminEmailingChannelsController::class, 'stop'])->name('channels.stop');

@@ -6,17 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-    <title>CTS Records Admin Panel</title>
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/assets/css/jquery.floatingscroll.css">
-    <link href="/assets/css/cts-admin.css?0910" rel="stylesheet">
+    <title>@yield('title', "CTS Records Admin Panel")</title>
+    <link type="text/css" rel="stylesheet" href="{{  mix('css/admin.css') }}" media="screen,projection"/>
     @yield('assets')
     @include('admin.layout.scripts')
 </head>
-<body>
-    @include('admin.layout.header')
-    <section class="main-content">
+<body class="d-flex-md">
+    @include('admin.layout.sidebar')
+    <main class="main-content flex-grow-1 position-relative">
         @yield('admin-content')
-    </section>
+    </main>
 </body>
 </html>

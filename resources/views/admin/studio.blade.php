@@ -73,10 +73,10 @@
                         <form method="post" id="delete-form" style="display:none;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" form="delete-form" onclick='return confirm("Удалить?")'>Удалить</button>
+                            <button type="submit" class="btn btn-danger" form="delete-form" onclick='return confirm("Удалить?")'><i class="fa-solid fa-trash"></i> Удалить</button>
                         </form>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                        <button type="submit" class="btn btn-primary" form="modal-form">Сохранить</button>
+                        <button type="submit" class="btn btn-primary" form="modal-form"><i class="fa-solid fa-check"></i> Сохранить</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Закрыть</button>
                     </div>
                 </div>
             </div>

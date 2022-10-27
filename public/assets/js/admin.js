@@ -9,13 +9,6 @@ $(document).ready(function(){
         }
     });
 
-    $("#sticker").sticky({
-        topSpacing : 15,
-        zIndex : 2,
-        widthFromWrapper : false,
-        wrapperClassName : 'is-sticky-btn'
-    });
-
     $('.deselect-btn').click(function(e){
         e.preventDefault();
         $('.related label input').prop('checked', false);
@@ -28,8 +21,6 @@ $(document).ready(function(){
             $($('.related label input')[i]).prop('checked', true);
         }
     });
-
-    $('.emailing .table-responsive').floatingScroll();
 
     $('#uploader').change(function(){
         readURL(this, '#preview');
@@ -170,15 +161,6 @@ $(document).ready(function(){
         $(this).data('index', index);
         let template = $('#'+$(this).data('target')+'_template').html().replace(/%i%/g, index);
         $('#'+$(this).data('target')).append(template);
-    });
-
-
-    let clipboard = new ClipboardJS('.copy-link');
-    clipboard.on('success', function(e) {
-        $(e.trigger).html('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\n' +
-            '                                <span class="hidden-xs hidden-sm">Скопировано!</span>');
-
-        e.clearSelection();
     });
 
     $('.service-lang .sortable').sortable({

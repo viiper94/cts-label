@@ -1,0 +1,27 @@
+@import "variables";
+
+// reset
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    font-family: 'Open Sans', 'Arial', 'sans-serif';
+}
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+// Fonts
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+// Plugins
+@import "~floating-scroll/dist/jquery.floatingscroll.css";
+
+@import "aliases";
+@import "scrollbar";
+@import "admin/common";
+@import "admin/pagination";
+@import "admin/sidebar";
+

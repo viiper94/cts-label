@@ -1,0 +1,24 @@
+body, .modal-body, .table-responsive, select{
+    &::-webkit-scrollbar{
+        -webkit-appearance: none;
+        width: 10px;
+        height: 10px;
+    }
+    &::-webkit-scrollbar-track{
+        background: $background;
+        border-radius: 0;
+    }
+    &::-webkit-scrollbar-thumb{
+        cursor: pointer;
+        border-radius: 5px;
+        background: $background-lighten-1;
+        -webkit-transition: color 0.2s ease;
+        transition: color 0.2s ease;
+        &:window-inactive {
+            background: $background-lighten-1;
+        }
+        &:hover {
+            background: $background-lighten-3;
+        }
+    }
+}

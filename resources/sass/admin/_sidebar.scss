@@ -1,0 +1,32 @@
+// sidebar
+.navbar-toggler{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 21px;
+    font-size: 30px;
+}
+.sidebar.offcanvas-md.offcanvas-start{
+    width: $sidebar-width-lg;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    .nav-link{
+        color: $primary-text;
+        text-decoration: none;
+        &.active{
+            color: $text-on-primary;
+        }
+        i{
+            width: 22px;
+            text-align: center;
+        }
+    }
+    @media (max-width: $md) {
+
+        width: $sidebar-width-xs;
+    }
+}

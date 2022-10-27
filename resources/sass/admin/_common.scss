@@ -1,0 +1,13 @@
+// Common
+body{
+    background-color: $background;
+    color: $primary-text;
+    @media (max-width: $md){
+        padding-top: 62px;
+    }
+}
+main{
+    @media (min-width: $md){
+        margin-left: $sidebar-width-lg;
+    }
+}

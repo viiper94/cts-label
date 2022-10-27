@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive" data-fl-scrolls>
     <table class="items-table table table-hover table__dark">
         <tbody>
         <tr>

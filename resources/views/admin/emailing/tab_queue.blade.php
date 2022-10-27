@@ -1,5 +1,5 @@
 {{ $queue->appends(Request::input())->links('admin.layout.pagination') }}
-<div class="table-responsive">
+<div class="table-responsive" data-fl-scrolls>
     @if($queue_count)
         <div class="progress progress__dark" style="margin-bottom: 0">
             <div @class([

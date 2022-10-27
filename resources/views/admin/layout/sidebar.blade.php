@@ -1,0 +1,50 @@
+<nav>
+    <div class="container-fluid d-flex d-md-none fixed-top bg-dark shadow">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbar" aria-controls="navbar">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="{{ route('releases.index') }}" class="d-flex text-decoration-none p-3 m-auto">
+            <b class="fs-5">CTS Admin Panel</b>
+        </a>
+    </div>
+    <div class="sidebar bg-dark p-3 text-bg-dark offcanvas-md offcanvas-start" tabindex="-1" id="navbar" aria-labelledby="navbarLabel">
+        <a href="{{ route('releases.index') }}" class="d-flex text-decoration-none ps-3">
+            <b class="fs-5">CTS Admin Panel</b>
+        </a>
+        <hr>
+        @include('admin.layout.search')
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="{{ route('releases.index') }}" @class(['nav-link', 'active' => \Route::is('releases.*')])><i class="fa-solid fa-music me-2"></i>Релизы</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('artists.index') }}" @class(['nav-link', 'active' => \Route::is('artists.*')])><i class="fa-solid fa-users me-2"></i>Артисты</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('studio.index') }}" @class(['nav-link', 'active' => \Route::is('studio.*')])><i class="fa-solid fa-microphone me-2"></i>CTStudio</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('school_admin') }}" @class(['nav-link', 'active' => \Route::is('school_admin')])><i class="fa-solid fa-graduation-cap me-2"></i>CTShool</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('reviews.index') }}" @class(['nav-link', 'active' => \Route::is('reviews.*')])><i class="fa-solid fa-star me-2"></i>Ревью</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('feedback_admin') }}" @class(['nav-link', 'active' => \Route::is('feedback_admin')])><i class="fa-solid fa-comments me-2"></i>Фидбеки</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('emailing.channels.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.*')])><i class="fa-solid fa-envelope me-2"></i>Рассылки</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('cv.index') }}" @class(['nav-link', 'active' => \Route::is('cv.*')])>
+                    <i class="fa-solid fa-file-lines me-2"></i>Анкеты
+                    @if($cv_count > 0)
+                        <span class="badge bg-success">{{ $cv_count }}</span>
+                    @endif
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <a href="{{ route('home') }}" class="text-decoration-none fw-bold"><i class="fa-solid fa-house me-2"></i>Вернуться на сайт</a>
+    </div>
+</nav>

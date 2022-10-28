@@ -7,7 +7,7 @@
             <b class="fs-5">CTS Admin Panel</b>
         </a>
     </div>
-    <div class="sidebar bg-dark p-3 text-bg-dark offcanvas-md offcanvas-start" tabindex="-1" id="navbar" aria-labelledby="navbarLabel">
+    <div class="sidebar text-bg-dark p-3 offcanvas-md offcanvas-start" tabindex="-1" id="navbar" aria-labelledby="navbarLabel">
         <a href="{{ route('releases.index') }}" class="d-flex text-decoration-none ps-3">
             <b class="fs-5">CTS Admin Panel</b>
         </a>
@@ -39,7 +39,7 @@
                 <a href="{{ route('cv.index') }}" @class(['nav-link', 'active' => \Route::is('cv.*')])>
                     <i class="fa-solid fa-file-lines me-2"></i>Анкеты
                     @if($cv_count > 0)
-                        <span class="badge bg-success">{{ $cv_count }}</span>
+                        <span class="badge bg-danger">{{ $cv_count }}</span>
                     @endif
                 </a>
             </li>

@@ -1,25 +1,33 @@
 // Pagination
 .pagination-dark{
+    --bs-pagination-border-radius: 0;
     .page-item{
         &, &.active{
             .page-link{
                 background-color: $background-lighten-2;
-                border-color: $background-lighten-2;
+                border: 1px solid transparent;
                 color: $primary-text;
                 &:focus{
                     outline: none;
                     box-shadow: none;
                 }
+                &:hover, &.disabled:hover{
+                    background-color: $primary;
+                    color: $text-on-primary;
+                }
             }
         }
         &.disabled .page-link{
             color: $primary-text-darker;
+            &:hover{
+                background-color: $primary;
+                color: $text-on-primary;
+            }
         }
         &.active{
             .page-link{
-                color: $primary;
                 font-weight: bold;
-                background-color: $background-lighten-3;
+                border: 1px solid $primary;
             }
         }
     }

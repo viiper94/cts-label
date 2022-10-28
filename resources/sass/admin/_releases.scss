@@ -2,7 +2,7 @@
 .admin-releases{
     .card{
         .card-img{
-            width: 180px;
+            width: 150px;
         }
         .card-sort{
             display: flex;
@@ -22,6 +22,12 @@
                 /* Firefox */
                 &{
                     -moz-appearance: textfield;
+                }
+            }
+            a{
+                color: $primary-text-darker;
+                &:hover{
+                    color: $primary;
                 }
             }
         }

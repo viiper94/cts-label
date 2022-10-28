@@ -15,6 +15,7 @@
     @include('admin.layout.sidebar')
     <main class="main-content flex-grow-1 position-relative">
         @yield('admin-content')
+        @include('admin.layout.alert')
     </main>
 </body>
 </html>

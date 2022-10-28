@@ -1,6 +1,6 @@
 @import "variables";
 
-// reset
+// Reset
 *{
     margin: 0;
     padding: 0;
@@ -9,6 +9,7 @@
     font-family: 'Open Sans', 'Arial', 'sans-serif';
 }
 
+// Bootstrap
 @import "~bootstrap/scss/bootstrap.scss";
 
 // Fonts
@@ -19,9 +20,13 @@
 // Plugins
 @import "~floating-scroll/dist/jquery.floatingscroll.css";
 
+// Common
 @import "aliases";
 @import "scrollbar";
+@import "admin/helpers";
 @import "admin/common";
 @import "admin/pagination";
 @import "admin/sidebar";
 
+// Pages
+@import "admin/releases";

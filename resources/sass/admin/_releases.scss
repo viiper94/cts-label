@@ -1,0 +1,29 @@
+// Releases page
+.admin-releases{
+    .card{
+        .card-img{
+            width: 180px;
+        }
+        .card-sort{
+            display: flex;
+            align-items: center;
+            width: 50px;
+            align-self: center;
+            input{
+                max-width: 100%;
+                text-align: center;
+                /* Chrome, Safari, Edge, Opera */
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                /* Firefox */
+                &{
+                    -moz-appearance: textfield;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+// Forms
+.form-control{
+    border-radius: 0;
+    border: 1px solid transparent;
+    &:focus{
+        border: 1px solid $primary;
+        box-shadow: none;
+    }
+    &.form-dark{
+        background-color: $background-lighten-1;
+        color: $primary-text-darker;
+    }
+}

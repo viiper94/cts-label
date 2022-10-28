@@ -1,0 +1,12 @@
+// Buttons
+.btn{
+    --bs-btn-border-radius: 0;
+
+    &.btn-outline{
+        background-color: $background-lighten-1;
+        color: $primary-text-darker;
+        &:hover{
+            border: 1px solid $primary;
+        }
+    }
+}

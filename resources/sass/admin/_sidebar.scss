@@ -14,10 +14,16 @@
     height: 100vh;
     position: fixed;
     top: 0;
+    overflow-y: scroll;
     .nav-link{
         color: $primary-text;
         text-decoration: none;
         &.active{
+            background-color: transparent;
+            border: 2px solid $primary;
+        }
+        &:hover, &.active:hover{
+            background-color: $primary;
             color: $text-on-primary;
         }
         i{
@@ -26,7 +32,6 @@
         }
     }
     @media (max-width: $md) {
-
         width: $sidebar-width-xs;
     }
 }

@@ -11,7 +11,7 @@ use Stichoza\GoogleTranslate\GoogleTranslate;
 class AdminReleasesController extends Controller{
 
     public function index(Request $request){
-        $releases = Release::select(['id', 'sort_id', 'title', 'image', 'release_number'])->with('feedback');
+        $releases = Release::select(['id', 'sort_id', 'title', 'image', 'release_number', 'release_date'])->with('feedback');
         if($request->query('q')) $releases->where('title', 'like', '%' . $request->query('q') . '%')
             ->orWhere('tracklist', 'like', '%' . $request->query('q') . '%')
             ->orWhere('release_number', 'like', '%' . $request->query('q') . '%');

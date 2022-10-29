@@ -21116,6 +21116,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 .btn.btn-outline {
   background-color: #252525;
   color: #bfbebe;
+  border: 1px solid #6c757d;
 }
 .btn.btn-outline:hover {
   border: 1px solid #eab120;
@@ -21141,6 +21142,19 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 .form-control.form-dark {
   background-color: #252525;
   color: #bfbebe;
+}
+
+.form-check-input[type=checkbox] {
+  border-radius: 0;
+  background-color: transparent;
+  border: 1px solid #6c757d;
+}
+.form-check-input[type=checkbox]:focus {
+  box-shadow: none;
+}
+.form-check-input[type=checkbox]:checked {
+  background-color: #eab120;
+  color: #000;
 }
 
 .toast {
@@ -21174,8 +21188,8 @@ body {
   --bs-pagination-border-radius: 0;
 }
 .pagination-dark .page-item .page-link, .pagination-dark .page-item.active .page-link {
-  background-color: #2a2a2a;
-  border: 1px solid transparent;
+  background-color: transparent;
+  border: 1px solid #6c757d;
   color: #eee;
 }
 .pagination-dark .page-item .page-link:focus, .pagination-dark .page-item.active .page-link:focus {
@@ -21184,6 +21198,7 @@ body {
 }
 .pagination-dark .page-item .page-link:hover, .pagination-dark .page-item .page-link.disabled:hover, .pagination-dark .page-item.active .page-link:hover, .pagination-dark .page-item.active .page-link.disabled:hover {
   background-color: #eab120;
+  border-color: #eab120;
   color: #000;
 }
 .pagination-dark .page-item.disabled .page-link {

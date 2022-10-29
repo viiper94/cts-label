@@ -5,6 +5,7 @@
     &.btn-outline{
         background-color: $background-lighten-1;
         color: $primary-text-darker;
+        border: 1px solid $text-muted;
         &:hover{
             border: 1px solid $primary;
         }

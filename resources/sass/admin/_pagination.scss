@@ -4,8 +4,8 @@
     .page-item{
         &, &.active{
             .page-link{
-                background-color: $background-lighten-2;
-                border: 1px solid transparent;
+                background-color: transparent;
+                border: 1px solid $text-muted;
                 color: $primary-text;
                 &:focus{
                     outline: none;
@@ -13,6 +13,7 @@
                 }
                 &:hover, &.disabled:hover{
                     background-color: $primary;
+                    border-color: $primary;
                     color: $text-on-primary;
                 }
             }

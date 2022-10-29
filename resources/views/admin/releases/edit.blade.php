@@ -1,82 +1,74 @@
 @extends('admin.layout.layout')
 
-@section('assets')
-    <link href="/assets/js/gijgo/css/gijgo.min.css" rel="stylesheet">
-@endsection
-
-@section('scripts')
-    <script src="/assets/js/ckeditor/ckeditor.js"></script>
-    <script src="/assets/js/gijgo/js/gijgo.min.js"></script>
+@section('title')
+    {{ $release->title }} | CTS Records Admin Panel
 @endsection
 
 @section('admin-content')
-    <div class="container">
-        @include('admin.layout.alert')
+    <div class="container-fliud">
         <form enctype="multipart/form-data" method="post" action="{{ $release->id ? route('releases.update', $release->id) : route('releases.store') }}">
             @csrf
             @if($release->id)
                 @method('PUT')
             @endif
-            <div class="col-xs-12">
-                <div id="sticker">
-                    <button type='submit' class='btn btn-primary' name='edit_release'>
-                        <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
-                        Сохранить
-                    </button>
-                </div>
+            <div class="sticky-top my-3">
+                <button type="submit" class="btn btn-primary shadow" name="edit_release">
+                    <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
+                </button>
             </div>
-            <div class="clearfix"></div>
-            <div class="col-md-5 col-xs-12 release-image">
-                <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview">
-                <input type="file" name="image" id="uploader" accept="image/jpeg, image/png">
-                @if($errors->has('image'))
-                    <p class="help-block">{{ $errors->first('image') }}</p>
-                @endif
-            </div>
-            <div class="col-md-7 col-xs-12">
-                <div class="form-group">
-                    <label>Название</label><br>
-                    <input type="text" class="form-control form-control__dark" name="title" value="{{ old('title') ?? $release->title }}" required>
-                    @if($errors->has('title'))
-                        <p class="help-block">{{ $errors->first('title') }}</p>
-                    @endif
+            <div class="row">
+                <div class="col-md-5 col-xs-12">
+                    <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="img-fluid">
+                    <input type="file" name="image" id="uploader" accept="image/jpeg, image/png">
+                    @error('image')
+                        <p class="help-block">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="form-group">
-                    <label>Номер</label><br>
-                    <input type="text" class="form-control form-control__dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
-                    @if($errors->has('release_number'))
-                        <p class="help-block">{{ $errors->first('release_number') }}</p>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label>Дата</label><br>
-                    <input type="text" class="form-control form-control__dark" name="release_date" id="release_date"
-                           value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}" autocomplete="off">
-                    @if($errors->has('release_date'))
-                        <p class="help-block">{{ $errors->first('release_date') }}</p>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label>Beatport</label><br>
-                    <input type="text" class="form-control form-control__dark" name="beatport" value="{{ old('beatport') ?? $release->beatport }}">
-                    @if($errors->has('beatport'))
-                        <p class="help-block">{{ $errors->first('beatport') }}</p>
-                    @endif
-                </div>
-                <div class="form-group">
-                    <label>Youtube</label><br>
-                    <input type="text" class="form-control form-control__dark" name="youtube" value="{{ old('youtube') ?? $release->youtube }}">
-                    @if($errors->has('youtube'))
-                        <p class="help-block">{{ $errors->first('youtube') }}</p>
-                    @endif
-                </div>
-                <div class="checkbox">
-                    <label>
+                <div class="col-md-6 col-xs-12">
+                    <div class="form-group mb-3">
+                        <label class="form-label">Название</label><br>
+                        <input type="text" class="form-control form-dark" name="title" value="{{ old('title') ?? $release->title }}" required>
+                        @error('title')
+                            <p class="help-block">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Номер</label><br>
+                        <input type="text" class="form-control form-dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
+                        @error('release_number')
+                            <p class="help-block">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Дата</label><br>
+                        <input type="text" class="form-control form-dark" name="release_date" id="release_date"
+                               value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}" autocomplete="off">
+                        @error('release_date')
+                            <p class="help-block">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Beatport</label><br>
+                        <input type="text" class="form-control form-dark" name="beatport" value="{{ old('beatport') ?? $release->beatport }}">
+                        @error('beatport')
+                            <p class="help-block">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Youtube</label><br>
+                        <input type="text" class="form-control form-dark" name="youtube" value="{{ old('youtube') ?? $release->youtube }}">
+                        @error('youtube')
+                            <p class="help-block">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-check mb-3">
                         <input type="hidden" name="visible" value="0">
-                        <input type="checkbox" name="visible" @checked($release->visible)> Опубликовано
-                    </label>
+                        <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($release->visible)>
+                        <label for="visible" class="form-check-label">Опубликовано</label>
+                    </div>
                 </div>
             </div>
+
             <div class="clearfix"></div>
             <div class="col-xs-12 col-md-6">
                 <div class="description form-group">

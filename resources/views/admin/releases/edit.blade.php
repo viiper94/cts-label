@@ -68,8 +68,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="clearfix"></div>
             <div class="col-xs-12 col-md-6">
                 <div class="description form-group">
                     <label class="en">Описание (англ.)</label>
@@ -124,21 +122,9 @@
         </form>
     </div>
     <script>
-        $('#release_date').datepicker({
-            uiLibrary: 'bootstrap',
-            format: 'dd mmmm yyyy'
-        });
-    </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('description_en');
-    </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('description_ru');
-    </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('description_uk');
-    </script>
-    <script type="text/javascript">
-        CKEDITOR.replace('tracklist');
+        ClassicEditor.create(document.querySelector('#description_en'));
+        ClassicEditor.create(document.querySelector('#description_ru'));
+        ClassicEditor.create(document.querySelector('#description_uk'));
+        ClassicEditor.create(document.querySelector('#tracklist'));
     </script>
 @endsection

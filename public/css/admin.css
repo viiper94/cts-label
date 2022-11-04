@@ -21087,6 +21087,31 @@ readers do not read off random characters that represent icons */
   content: "\f3f6";
 }
 
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+  border-bottom: 1px solid #555;
+}
+
+.ck.ck-toolbar .ck.ck-toolbar__separator {
+  background-color: #555;
+}
+
+:root {
+  --ck-color-base-background: #333;
+  --ck-border-radius: 0;
+  --ck-color-text: #bfbebe;
+  --ck-color-button-default-hover-background: #444;
+  --ck-color-button-default-active-background: #444;
+  --ck-color-toolbar-border: #333;
+  --ck-color-base-border: #333;
+  --ck-color-focus-border: #333;
+  --ck-color-button-on-background: #444;
+  --ck-color-button-on-hover-background: #555;
+  --ck-color-button-on-active-background: #555;
+  --ck-color-button-on-color: #eab120;
+  --ck-focus-outer-shadow: 0 0 0 3px #eab120;
+}
+
 body::-webkit-scrollbar, .modal-body::-webkit-scrollbar, .table-responsive::-webkit-scrollbar, select::-webkit-scrollbar, .sidebar::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 10px;

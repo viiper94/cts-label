@@ -22,7 +22,7 @@ class AdminReleasesController extends Controller{
 
     public function create(){
         return view('admin.releases.edit', [
-            'release_list' => Release::orderBy('sort_id', 'desc')->take(15)->get(),
+            'release_list' => Release::orderBy('sort_id', 'desc')->get(),
             'release' => new Release()
         ]);
     }
@@ -56,7 +56,7 @@ class AdminReleasesController extends Controller{
 
     public function edit($id){
         return view('admin.releases.edit', [
-            'release_list' => Release::orderBy('sort_id', 'desc')->take(15)->get(),
+            'release_list' => Release::orderBy('sort_id', 'desc')->get(),
             'release' => Release::with('related')->findOrFail($id)
         ]);
     }

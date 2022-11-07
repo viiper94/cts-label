@@ -11,8 +11,10 @@
         color: $primary-text-darker;
     }
 }
-.form-check-input[type=checkbox] {
-    border-radius: 0;
+.form-check-input{
+    &[type=checkbox]{
+        border-radius: 0;
+    }
     background-color: transparent;
     border: 1px solid $text-muted;
     &:focus{

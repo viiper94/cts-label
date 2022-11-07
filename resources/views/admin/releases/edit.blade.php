@@ -16,7 +16,7 @@
                     <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
                 </button>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-md-5 col-xs-12">
                     <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="img-fluid">
                     <input type="file" name="image" id="uploader" accept="image/jpeg, image/png">
@@ -24,7 +24,7 @@
                         <p class="help-block">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-md-6 col-xs-12">
+                <div class="col-md-7 col-xs-12">
                     <div class="form-group mb-3">
                         <label class="form-label">Название</label><br>
                         <input type="text" class="form-control form-dark" name="title" value="{{ old('title') ?? $release->title }}" required>
@@ -68,63 +68,81 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="description form-group">
-                    <label class="en">Описание (англ.)</label>
-                    <textarea name="description_en" id="description_en">{!! old('description_en') ?? $release->description_en !!}</textarea>
-                </div>
-                <div class="description form-group">
-                    <label class="en">Описание (рус.)</label>
-                    <a class="translate_description" data-to-lang="ru">
-                        <span class="glyphicon glyphicon-text-height"></span> Перевести на русский
-                    </a>
-                    <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $release->description_ru !!}</textarea>
-                </div>
-                <div class="description form-group">
-                    <label class="en">Описание (укр.)</label>
-                    <a class="translate_description" data-to-lang="uk">
-                        <span class="glyphicon glyphicon-text-height"></span> Перевести на украинский
-                    </a>
-                    <textarea name="description_ua" id="description_uk">{!! old('description_ua') ?? $release->description_ua !!}</textarea>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="description form-group">
-                    <label class="en">Треклист</label>
-                    <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-md-6 col-xs-12 related-all-releases">
-                <h5>Related tracks:</h5>
-                <button class="btn btn-danger deselect-btn">Deselect All</button>
-                @foreach($release_list as $item)
-                    <div class="related">
-                        <a class="page-link" href="{{ route('release', $item->id) }}" target="_blank">Visit page</a>
-                        <label>
-                            <input type="checkbox" name="related[]" value="{{ $item->id }}"
-                                   @checked(
-                                        (old() && is_array(old('related')) && in_array($item->id, old('related'))) ||
-                                        (!old() && $release->related->contains($item)))/>
-                            {{ $item->title }}
-                        </label>
+            <div class="row mb-5">
+                <div class="col-xs-12 col-md-7">
+                    <div class="description form-group mb-3">
+                        <label class="en">Описание (англ.)</label>
+                        <textarea name="description_en" id="description_en">{!! old('description_en') ?? $release->description_en !!}</textarea>
                     </div>
-                @endforeach
+                    <div class="description form-group mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="en">Описание (рус.)</label>
+                            <a class="btn btn-sm btn-outline translate_description" data-to-lang="ru">
+                                <i class="fa-solid fa-language me-2"></i>Перевести на русский
+                            </a>
+                        </div>
+                        <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $release->description_ru !!}</textarea>
+                    </div>
+                    <div class="description form-group mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="en">Описание (укр.)</label>
+                            <a class="btn btn-sm btn-outline translate_description" data-to-lang="uk">
+                                <i class="fa-solid fa-language me-2"></i>Перевести на украинский
+                            </a>
+                        </div>
+                        <textarea name="description_ua" id="description_uk">{!! old('description_ua') ?? $release->description_ua !!}</textarea>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-5">
+                    <div class="description form-group mb-3">
+                        <label class="en">Треклист</label>
+                        <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 col-xs-12 related-release-search ">
-                <h5>Search related tracks:</h5>
-                <input type="text" class="search-form form-control form-control__dark" id='search-related' placeholder="Search release" data-release-id="{{ $release->id }}">
-                <label><input type="radio" name="search-by" value="title" checked>По заголовку</label>
-                <label><input type="radio" name="search-by" value="tracklist">По треклисту</label>
-                <div class="checked-releases"></div>
-                <div class="item-list"></div>
+            <div class="row">
+                <h3>Related tracks:</h3>
+                <div class="col-md-6 col-xs-12 related-all-releases">
+                    <button class="btn btn-danger deselect-btn">Снять вьібор</button>
+                    @foreach($release_list as $item)
+                        <div class="related">
+                            <a class="page-link" href="{{ route('release', $item->id) }}" target="_blank">Visit page</a>
+                            <label>
+                                <input type="checkbox" name="related[]" value="{{ $item->id }}"
+                                    @checked(
+                                         (old() && is_array(old('related')) && in_array($item->id, old('related'))) ||
+                                         (!old() && $release->related->contains($item)))/>
+                                {{ $item->title }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="col-md-6 col-xs-12 related-release-search">
+                    <h5>Search related tracks:</h5>
+                    <input type="text" class="search-form form-control form-control__dark" id='search-related' placeholder="Search release" data-release-id="{{ $release->id }}">
+                    <label><input type="radio" name="search-by" value="title" checked>По заголовку</label>
+                    <label><input type="radio" name="search-by" value="tracklist">По треклисту</label>
+                    <div class="checked-releases"></div>
+                    <div class="item-list"></div>
+                </div>
             </div>
+
         </form>
     </div>
     <script>
-        ClassicEditor.create(document.querySelector('#description_en'));
-        ClassicEditor.create(document.querySelector('#description_ru'));
-        ClassicEditor.create(document.querySelector('#description_uk'));
+        ClassicEditor
+            .create(document.querySelector('#description_en'))
+            .then(newEditor => {
+                enEditor = newEditor;
+            });
+        ClassicEditor.create(document.querySelector('#description_ru'))
+            .then(newEditor => {
+                ruEditor = newEditor;
+            });
+        ClassicEditor.create(document.querySelector('#description_uk'))
+            .then(newEditor => {
+                uaEditor = newEditor;
+            });
         ClassicEditor.create(document.querySelector('#tracklist'));
     </script>
 @endsection

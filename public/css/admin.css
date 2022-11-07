@@ -2239,8 +2239,7 @@ textarea.form-control-lg {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 .form-check-input[type=checkbox] {
   border-radius: 0.25em;
@@ -21144,15 +21143,17 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
   color: #bfbebe;
 }
 
-.form-check-input[type=checkbox] {
-  border-radius: 0;
+.form-check-input {
   background-color: transparent;
   border: 1px solid #6c757d;
 }
-.form-check-input[type=checkbox]:focus {
+.form-check-input[type=checkbox] {
+  border-radius: 0;
+}
+.form-check-input:focus {
   box-shadow: none;
 }
-.form-check-input[type=checkbox]:checked {
+.form-check-input:checked {
   background-color: #eab120;
   color: #000;
 }
@@ -21161,6 +21162,19 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
   --bs-toast-border-radius: 0;
   background-color: #333;
   color: #eee;
+}
+
+.accordion {
+  --bs-accordion-border-radius: 0;
+  --bs-accordion-active-bg: #333;
+  --bs-accordion-bg: #333;
+  --bs-accordion-color: #eee;
+  --bs-accordion-border-color: #555;
+  --bs-accordion-btn-color: #bfbebe;
+  --bs-accordion-btn-focus-box-shadow: none;
+}
+.accordion .accordion-button:not(.collapsed) {
+  box-shadow: none;
 }
 
 .text-bg-dark, .bg-dark {
@@ -21279,5 +21293,16 @@ body {
   color: #bfbebe;
 }
 .admin-releases .card .card-sort a:hover {
+  color: #eab120;
+}
+
+.related-all-releases .related a {
+  color: #bfbebe;
+  text-decoration: none;
+}
+.related-all-releases .related a:hover {
+  color: #eab120;
+}
+.related-all-releases .related .form-check-input:checked + label {
   color: #eab120;
 }

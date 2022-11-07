@@ -5,7 +5,7 @@
 @endsection
 
 @section('admin-content')
-    <div class="container-fliud">
+    <div class="container-fluid">
         <form enctype="multipart/form-data" method="post" action="{{ $release->id ? route('releases.update', $release->id) : route('releases.store') }}">
             @csrf
             @if($release->id)
@@ -19,7 +19,7 @@
             <div class="row mb-5">
                 <div class="col-md-5 col-xs-12">
                     <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="img-fluid">
-                    <input type="file" name="image" id="uploader" accept="image/jpeg, image/png">
+                    <input type="file" name="image" class="form-control form-dark" id="uploader" accept="image/jpeg, image/png">
                     @error('image')
                         <p class="help-block">{{ $message }}</p>
                     @enderror
@@ -100,33 +100,45 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <h3>Related tracks:</h3>
-                <div class="col-md-6 col-xs-12 related-all-releases">
-                    <button class="btn btn-danger deselect-btn">Снять вьібор</button>
-                    @foreach($release_list as $item)
-                        <div class="related">
-                            <a class="page-link" href="{{ route('release', $item->id) }}" target="_blank">Visit page</a>
-                            <label>
-                                <input type="checkbox" name="related[]" value="{{ $item->id }}"
-                                    @checked(
-                                         (old() && is_array(old('related')) && in_array($item->id, old('related'))) ||
-                                         (!old() && $release->related->contains($item)))/>
-                                {{ $item->title }}
-                            </label>
+            <div class="accordion mb-5" id="accordionRelated">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRelated" aria-expanded="true" aria-controls="collapseRelated">
+                            Related tracks:
+                        </button>
+                    </h3>
+                    <div id="collapseRelated" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionRelated">
+                        <div class="accordion-body row g-0">
+                            <div class="col-md-6 col-xs-12 related-all-releases">
+                                <button class="btn btn-sm btn-outline-danger deselect-btn"><i class="fa-solid fa-square-xmark me-2"></i>Снять выбор</button>
+                                @foreach($release_list as $item)
+                                    <div class="related d-flex mb-1 form-check-inline">
+                                        <a class="me-4" href="{{ route('release', $item->id) }}" target="_blank">Релиз на сайте</a>
+                                        <input type="checkbox" name="related[]" class="form-check-input me-2" value="{{ $item->id }}" id="related-{{ $item->id }}"
+                                            @checked(
+                                                 (old() && is_array(old('related')) && in_array($item->id, old('related'))) ||
+                                                 (!old() && $release->related->contains($item)))/>
+                                        <label for="related-{{ $item->id }}" class="form-check-label">{{ $item->title }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="col-md-6 col-xs-12 related-release-search">
+                                <input type="text" class="search-form form-control form-dark" id='search-related' placeholder="Search release" data-release-id="{{ $release->id }}">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="search-by" value="title" id="search-by-title" checked>
+                                    <label class="form-check-label" for="search-by-title">По заголовку</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="search-by" value="tracklist" id="search-by-tracklist">
+                                    <label class="form-check-label" for="search-by-tracklist">По треклисту</label>
+                                </div>
+                                <div class="checked-releases"></div>
+                                <div class="item-list"></div>
+                            </div>
                         </div>
-                    @endforeach
-                </div>
-                <div class="col-md-6 col-xs-12 related-release-search">
-                    <h5>Search related tracks:</h5>
-                    <input type="text" class="search-form form-control form-control__dark" id='search-related' placeholder="Search release" data-release-id="{{ $release->id }}">
-                    <label><input type="radio" name="search-by" value="title" checked>По заголовку</label>
-                    <label><input type="radio" name="search-by" value="tracklist">По треклисту</label>
-                    <div class="checked-releases"></div>
-                    <div class="item-list"></div>
+                    </div>
                 </div>
             </div>
-
         </form>
     </div>
     <script>

@@ -33,3 +33,18 @@
         }
     }
 }
+
+.related-all-releases{
+    .related{
+        a{
+            color: $primary-text-darker;
+            text-decoration: none;
+            &:hover{
+                color: $primary;
+            }
+        }
+        .form-check-input:checked + label{
+            color: $primary;
+        }
+    }
+}

@@ -19,4 +19,6 @@
     --ck-color-button-on-active-background: #555;
     --ck-color-button-on-color: #eab120;
     --ck-focus-outer-shadow: 0 0 0 3px #eab120;
+    --ck-color-split-button-hover-background: #444;
+    --ck-color-split-button-hover-border: #333;
 }

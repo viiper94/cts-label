@@ -128,3 +128,8 @@
         ClassicEditor.create(document.querySelector('#tracklist'));
     </script>
 @endsection
+
+@section('assets')
+    <script src="/js/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/ckeditor.css">
+@endsection

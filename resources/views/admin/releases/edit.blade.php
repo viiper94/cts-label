@@ -21,7 +21,7 @@
                     <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="img-fluid">
                     <input type="file" name="image" class="form-control form-dark" id="uploader" accept="image/jpeg, image/png">
                     @error('image')
-                        <p class="help-block">{{ $message }}</p>
+                        <p class="help-block text-danger">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="col-md col-xs-12">
@@ -34,14 +34,14 @@
                         <label class="form-label">Название</label><br>
                         <input type="text" class="form-control form-dark" name="title" value="{{ old('title') ?? $release->title }}" required>
                         @error('title')
-                            <p class="help-block">{{ $message }}</p>
+                            <p class="help-block text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Номер</label><br>
                         <input type="text" class="form-control form-dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
                         @error('release_number')
-                            <p class="help-block">{{ $message }}</p>
+                            <p class="help-block text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group mb-3">
@@ -49,21 +49,21 @@
                         <input type="hidden" name="release_date" id="release_date"
                                value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}">
                         @error('release_date')
-                            <p class="help-block">{{ $message }}</p>
+                            <p class="help-block text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Beatport</label><br>
                         <input type="text" class="form-control form-dark" name="beatport" value="{{ old('beatport') ?? $release->beatport }}">
                         @error('beatport')
-                            <p class="help-block">{{ $message }}</p>
+                            <p class="help-block text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Youtube</label><br>
                         <input type="text" class="form-control form-dark" name="youtube" value="{{ old('youtube') ?? $release->youtube }}">
                         @error('youtube')
-                            <p class="help-block">{{ $message }}</p>
+                            <p class="help-block text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
@@ -101,8 +101,8 @@
                 </div>
             </div>
             <div class="card text-bg-dark mb-5">
-                    <button class="card-header p-3 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRelated" aria-expanded="false" aria-controls="collapseRelated">
-                        <i class="fa-solid fa-circle-nodes me-2"></i>Related tracks:
+                    <button class="card-header p-3 accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRelated" aria-expanded="false" aria-controls="collapseRelated">
+                        <span class="badge text-bg-primary me-2">{{ count($release->related) }}</span>Related tracks:
                     </button>
                 <div id="collapseRelated" class="collapse">
                     <div class="card-body row g-0">

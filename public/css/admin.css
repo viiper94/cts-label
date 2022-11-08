@@ -21086,6 +21086,37 @@ readers do not read off random characters that represent icons */
   content: "\f3f6";
 }
 
+.litepicker .container__months {
+  border-radius: 0;
+}
+.litepicker .container__months .month-item-header div > .month-item-name,
+.litepicker .container__months .month-item-header div > .month-item-year {
+  background-color: #333;
+  color: #bfbebe;
+}
+.litepicker .container__days .day-item.is-start-date.is-end-date,
+.litepicker .container__days .day-item:hover {
+  border-radius: 0;
+}
+
+:root {
+  --litepicker-container-months-color-bg: #333 !important;
+  --litepicker-container-months-box-shadow-color: rgba(0,0,0,.12) !important;
+  --litepicker-month-header-color: #eab120 !important;
+  --litepicker-button-prev-month-color-hover: #eab120 !important;
+  --litepicker-button-next-month-color-hover: #eab120 !important;
+  --litepicker-day-color: #fff;
+  --litepicker-day-color-hover: #eab120 !important;
+  --litepicker-is-today-color: #eab120 !important;
+  --litepicker-is-in-range-color: #333 !important;
+  --litepicker-is-locked-color: #727272 !important;
+  --litepicker-is-start-color: rgb(47, 47, 47) !important;
+  --litepicker-is-start-color-bg: #eab120 !important;
+  --litepicker-is-end-color: rgb(47, 47, 47) !important;
+  --litepicker-is-end-color-bg: #eab120 !important;
+  --litepicker-button-reset-color-hover: #eab120 !important;
+}
+
 body::-webkit-scrollbar, .modal-body::-webkit-scrollbar, .table-responsive::-webkit-scrollbar, select::-webkit-scrollbar, .sidebar::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 10px;

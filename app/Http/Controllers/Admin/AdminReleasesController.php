@@ -130,9 +130,12 @@ class AdminReleasesController extends Controller{
             $parent = $request->post('id') ? Release::with('related')->find($request->post('id')) : null;
             $response = array();
             foreach($result as $release){
-                $checked = $parent && $parent->related->contains($release);
+                $release['html'] .= view('admin.releases.search_related', [
+                    'item' => $release,
+                    'checked' => $parent && $parent->related->contains($release)
+                ])->render();
                 $release = $release->toArray();
-                $release['checked'] = $checked;
+                $release['checked'] = $parent && $parent->related->contains($release);
                 $response[] = $release;
             }
             return response()->json([

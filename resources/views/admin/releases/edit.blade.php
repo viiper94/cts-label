@@ -41,8 +41,8 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Дата</label><br>
-                        <input type="text" class="form-control form-dark" name="release_date" id="release_date"
-                               value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}" autocomplete="off">
+                        <input type="hidden" name="release_date" id="release_date"
+                               value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}">
                         @error('release_date')
                             <p class="help-block">{{ $message }}</p>
                         @enderror
@@ -142,6 +142,17 @@
         </form>
     </div>
     <script>
+        const picker = new Litepicker({
+            element: document.getElementById('release_date'),
+            inlineMode: true,
+            lang: 'ru-RU',
+            dropdowns: {
+                "minYear": 2000,
+                "maxYear": null,
+                "months": true,
+                "years": true
+            }
+        });
         ClassicEditor
             .create(document.querySelector('#description_en'))
             .then(newEditor => {

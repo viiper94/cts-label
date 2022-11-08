@@ -1,0 +1,34 @@
+// Litepicker
+.litepicker{
+    .container__months{
+        border-radius: 0;
+        .month-item-header div>.month-item-name,
+        .month-item-header div>.month-item-year{
+            background-color: $background-lighten-3;
+            color: $primary-text-darker;
+        }
+    }
+    .container__days{
+        .day-item.is-start-date.is-end-date,
+        .day-item:hover{
+            border-radius: 0;
+        }
+    }
+}
+:root {
+    --litepicker-container-months-color-bg: #333 !important;
+    --litepicker-container-months-box-shadow-color: rgba(0,0,0,.12) !important;
+    --litepicker-month-header-color: #eab120 !important;
+    --litepicker-button-prev-month-color-hover: #eab120 !important;
+    --litepicker-button-next-month-color-hover: #eab120 !important;
+    --litepicker-day-color: #fff;
+    --litepicker-day-color-hover: #eab120 !important;
+    --litepicker-is-today-color: #eab120 !important;
+    --litepicker-is-in-range-color: #333 !important;
+    --litepicker-is-locked-color: #727272 !important;
+    --litepicker-is-start-color: rgb(47, 47, 47) !important;
+    --litepicker-is-start-color-bg: #eab120 !important;
+    --litepicker-is-end-color: rgb(47, 47, 47) !important;
+    --litepicker-is-end-color-bg: #eab120 !important;
+    --litepicker-button-reset-color-hover: #eab120 !important;
+}

@@ -31,7 +31,7 @@ class AdminReleasesController extends Controller{
         $this->validate($request, [
             'title' => 'required|string',
             'release_number' => 'string|nullable',
-            'release_date' => 'date_format:d F Y|nullable',
+            'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
             'beatport' => 'url|nullable',
             'youtube' => 'url|nullable',
@@ -39,7 +39,7 @@ class AdminReleasesController extends Controller{
         ]);
         $release = new Release();
         $release->fill($request->post());
-        $release->release_date = Carbon::parse($request->input('release_date'))->format('Y-m-d');
+        $release->release_date = $request->date('release_date');
         $release->sort_id = intval($release->getLatestSortId(Release::class)) + 1;
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -65,14 +65,14 @@ class AdminReleasesController extends Controller{
         $this->validate($request, [
             'title' => 'required|string',
             'release_number' => 'string|nullable',
-            'release_date' => 'date_format:d F Y|nullable',
+            'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
             'beatport' => 'url|nullable',
             'youtube' => 'url|nullable',
             'related' => 'array',
         ]);
         $release->fill($request->post());
-        $release->release_date = Carbon::parse($request->input('release_date'))->format('Y-m-d');
+        $release->release_date = $request->date('release_date');
         $release->related()->sync($request->post('related'));
         if($request->hasFile('image')){
             // delete old image

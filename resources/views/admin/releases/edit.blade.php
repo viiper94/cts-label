@@ -17,14 +17,19 @@
                 </button>
             </div>
             <div class="row mb-5">
-                <div class="col-md-5 col-xs-12">
+                <div class="col-md-auto col-xs-12">
                     <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="img-fluid">
                     <input type="file" name="image" class="form-control form-dark" id="uploader" accept="image/jpeg, image/png">
                     @error('image')
                         <p class="help-block">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-md-7 col-xs-12">
+                <div class="col-md col-xs-12">
+                    <div class="form-check mb-3">
+                        <input type="hidden" name="visible" value="0">
+                        <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($release->visible)>
+                        <label for="visible" class="form-check-label">Опубликовано</label>
+                    </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Название</label><br>
                         <input type="text" class="form-control form-dark" name="title" value="{{ old('title') ?? $release->title }}" required>
@@ -60,11 +65,6 @@
                         @error('youtube')
                             <p class="help-block">{{ $message }}</p>
                         @enderror
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="hidden" name="visible" value="0">
-                        <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($release->visible)>
-                        <label for="visible" class="form-check-label">Опубликовано</label>
                     </div>
                 </div>
             </div>

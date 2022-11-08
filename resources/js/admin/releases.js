@@ -41,11 +41,11 @@ $(document).ready(function(){
                 },
                 url : '/cts-admin/releases/related',
                 success : function(response){
-                    let checkedBoxes = $('.checked-releases .related label');
+                    let checkedBoxes = $('.checked-releases .related');
                     // clear checked block from unchecked checkboxes
                     if(checkedBoxes.length > 0){
                         $.each(checkedBoxes, function(i, checkbox){
-                            if(!checkbox.children[0].checked){
+                            if(!$(checkbox).find('input')[0].checked){
                                 checkbox.remove();
                             }
                         });
@@ -53,7 +53,8 @@ $(document).ready(function(){
                     // save checked checkboxes
                     if($('.item-list .related').length > 0){
                         $.each($('.item-list .related'), function(j, checkbox){
-                            if(checkbox.children[1].children[0].checked){
+                            if($(checkbox).find('input')[0].checked){
+                                console.log($(checkbox).find('input')[0].checked);
                                 // check if already saved
                                 let exist = false;
                                 $.each($('.checked-releases .related label'), function(i, related){
@@ -72,10 +73,6 @@ $(document).ready(function(){
                     if(response.status === 'ok'){
                         // inserting related releases
                         $.each(response.data, function(i, release){
-                            let div = '<div class="related" style="display: block;">' +
-                                '<a class="page-link" href="http://cts-label.com/releases/'+release.id+'" target="_blank">Visit page</a>' +
-                                '<label style="margin-left: 25px;"><input type="checkbox" '+ (!release.checked ? '' : 'checked') +
-                                ' name="related[]" value = "'+release.id+'" class="new-input"/>'+release.title+'</label></div>';
                             // check if already saved
                             let exist = false;
                             $.each($('.checked-releases .related label'), function(i, related){
@@ -85,16 +82,20 @@ $(document).ready(function(){
                                 }
                             });
                             if(!exist){
-                                $('.item-list').append(div);
+                                $('.item-list').append(release.html);
                             }
                         });
                     } else {
-                        let div = 'No result';
-                        $('.item-list').append(div);
+                        $('.item-list').append('No result');
                     }
                 }
             });
         }
+    });
+
+    $('.deselect-btn').click(function(e){
+        e.preventDefault();
+        $('.related input').prop('checked', false);
     });
 
 });

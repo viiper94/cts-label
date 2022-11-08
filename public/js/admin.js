@@ -3253,10 +3253,23 @@ function withinMaxClamp(min, value, max) {
 /*!**************************************!*\
   !*** ./resources/js/admin/common.js ***!
   \**************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+__webpack_require__(/*! ../functions */ "./resources/js/functions.js");
 $(document).ready(function () {
+  $.ajaxSetup({
+    type: 'POST',
+    cache: false,
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
   $('.alert-toast').toast('show');
+  $('.collapse').collapse('hide');
+  $('#uploader').change(function () {
+    readURL(this, '#preview');
+  });
 });
 
 /***/ }),
@@ -3331,11 +3344,11 @@ $(document).ready(function () {
         },
         url: '/cts-admin/releases/related',
         success: function success(response) {
-          var checkedBoxes = $('.checked-releases .related label');
+          var checkedBoxes = $('.checked-releases .related');
           // clear checked block from unchecked checkboxes
           if (checkedBoxes.length > 0) {
             $.each(checkedBoxes, function (i, checkbox) {
-              if (!checkbox.children[0].checked) {
+              if (!$(checkbox).find('input')[0].checked) {
                 checkbox.remove();
               }
             });
@@ -3343,7 +3356,8 @@ $(document).ready(function () {
           // save checked checkboxes
           if ($('.item-list .related').length > 0) {
             $.each($('.item-list .related'), function (j, checkbox) {
-              if (checkbox.children[1].children[0].checked) {
+              if ($(checkbox).find('input')[0].checked) {
+                console.log($(checkbox).find('input')[0].checked);
                 // check if already saved
                 var exist = false;
                 $.each($('.checked-releases .related label'), function (i, related) {
@@ -3362,7 +3376,6 @@ $(document).ready(function () {
           if (response.status === 'ok') {
             // inserting related releases
             $.each(response.data, function (i, release) {
-              var div = '<div class="related" style="display: block;">' + '<a class="page-link" href="http://cts-label.com/releases/' + release.id + '" target="_blank">Visit page</a>' + '<label style="margin-left: 25px;"><input type="checkbox" ' + (!release.checked ? '' : 'checked') + ' name="related[]" value = "' + release.id + '" class="new-input"/>' + release.title + '</label></div>';
               // check if already saved
               var exist = false;
               $.each($('.checked-releases .related label'), function (i, related) {
@@ -3372,16 +3385,19 @@ $(document).ready(function () {
                 }
               });
               if (!exist) {
-                $('.item-list').append(div);
+                $('.item-list').append(release.html);
               }
             });
           } else {
-            var div = 'No result';
-            $('.item-list').append(div);
+            $('.item-list').append('No result');
           }
         }
       });
     }
+  });
+  $('.deselect-btn').click(function (e) {
+    e.preventDefault();
+    $('.related input').prop('checked', false);
   });
 });
 
@@ -3405,6 +3421,25 @@ window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jqu
 
 
 
+
+/***/ }),
+
+/***/ "./resources/js/functions.js":
+/*!***********************************!*\
+  !*** ./resources/js/functions.js ***!
+  \***********************************/
+/***/ (() => {
+
+function readURL(input, selector) {
+  if (selector === undefined) selector = '#preview';
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $(selector).attr('src', e.target.result);
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 
 /***/ }),
 
@@ -15447,9 +15482,9 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/admin/common.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/admin/feedback.js")))
 /******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/admin/releases.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/admin/common.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/sass/admin.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	

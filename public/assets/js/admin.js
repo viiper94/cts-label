@@ -1,19 +1,5 @@
 $(document).ready(function(){
 
-    $.ajaxSetup({
-        type : 'POST',
-        cache: false,
-        dataType : 'json',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $('.deselect-btn').click(function(e){
-        e.preventDefault();
-        $('.related label input').prop('checked', false);
-    });
-
     $('.related_last_five').click(function(e){
         e.preventDefault();
         $('.related label input').prop('checked', false);
@@ -21,11 +7,6 @@ $(document).ready(function(){
             $($('.related label input')[i]).prop('checked', true);
         }
     });
-
-    $('#uploader').change(function(){
-        readURL(this, '#preview');
-    });
-    $('.collapse').collapse();
 
     $('#search-reviewer').keyup(function(){
         let query = $(this).val().trim();
@@ -119,14 +100,3 @@ $(document).ready(function(){
     });
 
 });
-
-function readURL(input, selector){
-    if(selector === undefined) selector = '#preview';
-    if (input.files && input.files[0]){
-        let reader = new FileReader();
-        reader.onload = function (e) {
-            $(selector).attr('src', e.target.result);
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}

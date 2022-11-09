@@ -3253,9 +3253,8 @@ function withinMaxClamp(min, value, max) {
 /*!**************************************!*\
   !*** ./resources/js/admin/common.js ***!
   \**************************************/
-/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+/***/ (() => {
 
-__webpack_require__(/*! ../functions */ "./resources/js/functions.js");
 $(document).ready(function () {
   $.ajaxSetup({
     type: 'POST',
@@ -3271,6 +3270,16 @@ $(document).ready(function () {
     readURL(this, '#preview');
   });
 });
+function readURL(input, selector) {
+  if (selector === undefined) selector = '#preview';
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $(selector).attr('src', e.target.result);
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 
 /***/ }),
 
@@ -3424,25 +3433,9 @@ window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jqu
 
 
 
-
-/***/ }),
-
-/***/ "./resources/js/functions.js":
-/*!***********************************!*\
-  !*** ./resources/js/functions.js ***!
-  \***********************************/
-/***/ (() => {
-
-function readURL(input, selector) {
-  if (selector === undefined) selector = '#preview';
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      $(selector).attr('src', e.target.result);
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
+__webpack_require__(/*! ./admin/common.js */ "./resources/js/admin/common.js");
+__webpack_require__(/*! ./admin/feedback.js */ "./resources/js/admin/feedback.js");
+__webpack_require__(/*! ./admin/releases.js */ "./resources/js/admin/releases.js");
 
 /***/ }),
 
@@ -15506,9 +15499,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/admin/common.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/admin/feedback.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/admin/releases.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/sass/admin.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	

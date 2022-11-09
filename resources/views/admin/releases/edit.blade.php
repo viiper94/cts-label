@@ -6,15 +6,25 @@
 
 @section('admin-content')
     <div class="container-fluid">
-        <form enctype="multipart/form-data" method="post" action="{{ $release->id ? route('releases.update', $release->id) : route('releases.store') }}">
+        <button type="submit" class="btn btn-primary shadow sticky-top my-3" form="edit_release">
+            <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
+        </button>
+        @if($release->id)
+            <form action="{{ route('releases.destroy', $release->id) }}" method="post" class="d-inline my-3">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-outline-danger" onclick="return confirm('Удалить релиз?')">
+                    <i class="fa-solid fa-trash me-2"></i>Удалить
+                </button>
+            </form>
+        @endif
+        <form enctype="multipart/form-data" method="post" id="edit_release"
+              action="{{ $release->id ? route('releases.update', $release->id) : route('releases.store') }}">
             @csrf
             @if($release->id)
                 @method('PUT')
             @endif
-            <div class="sticky-top my-3">
-                <button type="submit" class="btn btn-primary shadow" name="edit_release">
-                    <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
-                </button>
+            <div class="">
             </div>
             <div class="row mb-5">
                 <div class="col-md-auto col-xs-12">

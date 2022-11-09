@@ -6,9 +6,9 @@
 
 @section('admin-content')
 
-    <div class="container-fluid admin-releases">
+    <div class="container-fluid admin-items admin-releases">
 
-        <form id='sort_form' method='POST' action="{{ route('releases.resort') }}">
+        <form id="sort_form" method="POST" action="{{ route('releases.resort') }}">
             @csrf
         </form>
         <div class="justify-content-between align-items-center d-flex my-3">
@@ -16,7 +16,7 @@
                 <a href="{{ route('releases.create') }}" class="btn btn-primary">
                     <i class="fa-solid fa-plus me-2"></i>Новый релиз
                 </a>
-                <button type="submit" class="btn btn-outline" form="sort_form" onclick='return confirm("Отсортировать?")'>
+                <button type="submit" class="btn btn-outline" form="sort_form" onclick="return confirm('Отсортировать?')">
                     <i class="fa-solid fa-sort me-2"></i>Отсортировать
                 </button>
             </div>
@@ -42,7 +42,7 @@
                                             <small class="text-muted">Дата релиза</small>
                                             <h5 class="card-text">{{ $release->release_date?->isoFormat('LL') }}</h5>
                                         </div>
-                                        <div class="card-sort d-flex flex-column">
+                                        <div class="card-sort">
                                             <a href="{{ route('releases.sort', ['release' => $release->id, 'dir' => 'up']) }}" class="fs-2">
                                                 <i class="fa-solid fa-chevron-up"></i>
                                             </a>

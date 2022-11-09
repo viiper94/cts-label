@@ -1,48 +1,62 @@
 @extends('admin.layout.layout')
 
+@section('title')
+    {{ $artist->name }} | CTS Records Admin Panel
+@endsection
+
 @section('admin-content')
-    <div class="container">
-        @include('admin.layout.alert')
-        <form enctype="multipart/form-data" action="{{ $artist->id ? route('artists.update', $artist->id) : route('artists.store') }}" method="post">
+
+    <div class="container-fluid">
+        <button type="submit" class="btn btn-primary shadow sticky-top my-3" form="edit_form">
+            <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
+        </button>
+        @if($artist->id)
+            <form action="{{ route('artists.destroy', $artist->id) }}" method="post" class="d-inline my-3">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-outline-danger" onclick="return confirm('Удалить артиста?')">
+                    <i class="fa-solid fa-trash me-2"></i>Удалить
+                </button>
+            </form>
+        @endif
+        <form enctype="multipart/form-data" method="post" id="edit_form"
+              action="{{ $artist->id ? route('artists.update', $artist->id) : route('artists.store') }}">
             @if($artist->id)
                 @method('PUT')
             @endif
             @csrf
-            <div class="col-md-5 col-xs-12 release-image">
-                <img src="/images/artists/{{ $artist->image ?? 'default.png' }}" id="preview">
-                <input type="file" name="image" id="uploader" accept="image/jpeg, image/png">
-                @if($errors->has('image'))
-                    <p class="help-block">{{ $errors->first('image') }}</p>
-                @endif
-            </div>
-            <div class="col-md-7 col-xs-12">
-                <div class="form-group">
-                    <label>Имя артиста</label><br>
-                    <input type="text" class="form-control form-control__dark" name="name" value="{{ $artist->name }}" required>
-                    @if($errors->has('name'))
-                        <p class="help-block">{{ $errors->first('name') }}</p>
+            <div class="row mb-3">
+                <div class="col-md-5 col-xs-12">
+                    <img src="/images/artists/{{ $artist->image ?? 'default.png' }}" id="preview" class="w-100">
+                    <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
+                    @if($errors->has('image'))
+                        <p class="help-block text-danger">{{ $errors->first('image') }}</p>
                     @endif
                 </div>
-                <div class="form-group">
-                    <label>Ссылка на соц. сеть</label><br>
-                    <input type="text" class="form-control form-control__dark" name="link" value="{{ $artist->link }}">
-                    @if($errors->has('link'))
-                        <p class="help-block">{{ $errors->first('link') }}</p>
-                    @endif
-                </div>
-                <div class="checkbox">
-                    <label>
+                <div class="col-md-7 col-xs-12">
+                    <div class="form-check mb-3">
                         <input type="hidden" name="visible" value="0">
-                        <input type="checkbox" name="visible" @checked($artist->visible)> Опубликовано
-                    </label>
+                        <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($artist->visible)>
+                        <label for="visible" class="form-check-label">Опубликовано</label>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="name">Имя</label><br>
+                        <input type="text" class="form-control form-control-lg form-dark" name="name" id="name"
+                               value="{{ old('name') ?? $artist->name }}" required>
+                        @error('name')
+                            <p class="help-block text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="link">Ссылка в социальную сеть</label><br>
+                        <input type="url" class="form-control form-control-lg form-dark" name="link" id="link"
+                               value="{{ old('link') ?? $artist->link }}" required>
+                        @error('link')
+                            <p class="help-block text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
-            <button type='submit' class='btn btn-primary' name='edit_artist'>
-                <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
-                Сохранить
-            </button>
         </form>
     </div>
-
 @endsection

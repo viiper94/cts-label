@@ -2,7 +2,7 @@
 
 @section('admin-content')
 
-    <div class="container-fluid admin-items">
+    <div class="container-fluid admin-items admin-artists">
 
         <form method="POST" action="{{ route('artists.resort') }}" id="sort_form">
             @csrf
@@ -25,7 +25,7 @@
                         <div class="card-header">
                             <h5 class="card-title text-nowrap mb-0 text-truncate">{{ $artist->name }}</h5>
                         </div>
-                        <div class="row g-0">
+                        <div class="row flex-grow-1 g-0">
                             <div class="card-img col">
                                 <img src="/images/artists/{{ $artist->image ?? 'default.png' }}" class="img-fluid" alt="{{ $artist->name }}">
                             </div>

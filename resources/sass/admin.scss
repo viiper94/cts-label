@@ -30,6 +30,7 @@
 @import "forms";
 @import "toasts";
 @import "badge";
+@import "modals";
 
 @import "admin/helpers";
 @import "admin/common";
@@ -39,3 +40,4 @@
 // Pages
 @import "admin/releases";
 @import "admin/artists";
+@import "admin/studio";

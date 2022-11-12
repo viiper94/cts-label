@@ -1,0 +1,12 @@
+// Modals
+.modal{
+    .modal-content{
+        background-color: $background-lighten-2;
+        color: $primary-text-darker;
+        border-radius: 0;
+        border: 1px solid $border-color;
+        .modal-footer{
+            border-top: 1px solid $border-color;
+        }
+    }
+}

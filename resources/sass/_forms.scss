@@ -1,5 +1,5 @@
 // Forms
-.form-control{
+.form-control, .form-select{
     border-radius: 0;
     border: 1px solid transparent;
     &:focus{
@@ -16,7 +16,7 @@
         border-radius: 0;
     }
     background-color: transparent;
-    border: 1px solid $text-muted;
+    border: 1px solid $border-color;
     &:focus{
         box-shadow: none;
     }

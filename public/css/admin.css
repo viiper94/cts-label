@@ -69,7 +69,7 @@
   --bs-body-bg: #fff;
   --bs-border-width: 1px;
   --bs-border-style: solid;
-  --bs-border-color: #dee2e6;
+  --bs-border-color: #555;
   --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
   --bs-border-radius: 0.375rem;
   --bs-border-radius-sm: 0.25rem;
@@ -21146,7 +21146,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 .btn.btn-outline {
   background-color: #252525;
   color: #bfbebe;
-  border: 1px solid #6c757d;
+  border: 1px solid #555;
 }
 .btn.btn-outline:hover {
   border: 1px solid #eab120;
@@ -21158,25 +21158,25 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 
 .card {
   --bs-card-border-radius: 0;
-  --bs-card-border-color: rgb(64 64 64);
+  border: 1px solid #555;
 }
 
-.form-control {
+.form-control, .form-select {
   border-radius: 0;
   border: 1px solid transparent;
 }
-.form-control:focus {
+.form-control:focus, .form-select:focus {
   border: 1px solid #eab120;
   box-shadow: none;
 }
-.form-control.form-dark {
+.form-control.form-dark, .form-select.form-dark {
   background-color: #252525;
   color: #bfbebe;
 }
 
 .form-check-input {
   background-color: transparent;
-  border: 1px solid #6c757d;
+  border: 1px solid #555;
 }
 .form-check-input[type=checkbox] {
   border-radius: 0;
@@ -21198,6 +21198,16 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 
 .badge {
   --bs-badge-border-radius: 0 ;
+}
+
+.modal .modal-content {
+  background-color: #2a2a2a;
+  color: #bfbebe;
+  border-radius: 0;
+  border: 1px solid #555;
+}
+.modal .modal-content .modal-footer {
+  border-top: 1px solid #555;
 }
 
 .text-bg-dark, .bg-dark {
@@ -21295,26 +21305,33 @@ body {
   top: 0;
   overflow-y: scroll;
 }
-.sidebar.offcanvas-md.offcanvas-start .nav-link {
+.sidebar.offcanvas-md.offcanvas-start .nav-item .nav-link {
   color: #eee;
   text-decoration: none;
+  border: 2px solid transparent;
 }
-.sidebar.offcanvas-md.offcanvas-start .nav-link.active {
+.sidebar.offcanvas-md.offcanvas-start .nav-item .nav-link.active {
   background-color: transparent;
   border: 2px solid #eab120;
 }
-.sidebar.offcanvas-md.offcanvas-start .nav-link:hover, .sidebar.offcanvas-md.offcanvas-start .nav-link.active:hover {
+.sidebar.offcanvas-md.offcanvas-start .nav-item .nav-link:hover, .sidebar.offcanvas-md.offcanvas-start .nav-item .nav-link.active:hover {
   background-color: #eab120;
   color: #000;
 }
-.sidebar.offcanvas-md.offcanvas-start .nav-link i {
+.sidebar.offcanvas-md.offcanvas-start .nav-item .nav-link i {
   width: 22px;
   text-align: center;
 }
 @media (max-width: 768px) {
-  .sidebar.offcanvas-md.offcanvas-start {
+  .sidebar.offcanvas-md.offcanvas-start .nav-item {
     width: 230px;
   }
+}
+.sidebar.offcanvas-md.offcanvas-start .nav-item ul {
+  margin-left: 1rem;
+  padding: 0;
+  border-left: 1px solid #555;
+  list-style-type: none;
 }
 
 .admin-releases .card .card-img {
@@ -21330,4 +21347,12 @@ body {
 }
 .related .form-check-input:checked + label {
   color: #eab120;
+}
+
+.admin-artists .card-img img {
+  max-height: 235px;
+}
+
+.service-lang {
+  max-width: 917px;
 }

@@ -24,7 +24,13 @@
                 <a href="{{ route('studio.index') }}" @class(['nav-link', 'active' => \Route::is('studio.*')])><i class="fa-solid fa-microphone me-2"></i>CTStudio</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('school_admin') }}" @class(['nav-link', 'active' => \Route::is('school_admin')])><i class="fa-solid fa-graduation-cap me-2"></i>CTShool</a>
+                <a href="{{ route('school_admin') }}" @class(['nav-link', 'active' => \Route::is('school_admin')])><i class="fa-solid fa-building-columns me-2"></i>CTShool</a>
+                <ul>
+                    <li>
+                        <a href="{{ route('school_admin') }}" @class(['nav-link', 'active' => \Route::is('school.*')])><i class="fa-solid fa-graduation-cap me-2"></i>Услуги школы</a>
+                        <a href="{{ route('school_admin') }}" @class(['nav-link', 'active' => \Route::is('school.*')])><i class="fa-solid fa-chalkboard-user me-2"></i>Преподаватели</a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a href="{{ route('reviews.index') }}" @class(['nav-link', 'active' => \Route::is('reviews.*')])><i class="fa-solid fa-star me-2"></i>Ревью</a>
@@ -33,7 +39,14 @@
                 <a href="{{ route('feedback_admin') }}" @class(['nav-link', 'active' => \Route::is('feedback_admin')])><i class="fa-solid fa-comments me-2"></i>Фидбеки</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('emailing.channels.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.*')])><i class="fa-solid fa-envelope me-2"></i>Рассылки</a>
+                <a href="{{ route('emailing.channels.index') }}" class="nav-link"><i class="fa-solid fa-envelope me-2"></i>Рассылки</a>
+                <ul>
+                    <li>
+                        <a href="{{ route('emailing.channels.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.channels.index')])><i class="fa-solid fa-database me-2"></i>Каналы</a>
+                        <a href="{{ route('emailing.contacts.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.contacts.index')])><i class="fa-solid fa-address-book me-2"></i>Контакты</a>
+                        <a href="{{ route('emailing.queue.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.queue.index')])><i class="fa-solid fa-hourglass me-2"></i>Очередь</a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a href="{{ route('cv.index') }}" @class(['nav-link', 'active' => \Route::is('cv.*')])>

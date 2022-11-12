@@ -15,23 +15,32 @@
     position: fixed;
     top: 0;
     overflow-y: scroll;
-    .nav-link{
-        color: $primary-text;
-        text-decoration: none;
-        &.active{
-            background-color: transparent;
-            border: 2px solid $primary;
+    .nav-item{
+        .nav-link{
+            color: $primary-text;
+            text-decoration: none;
+            border: 2px solid transparent;
+            &.active{
+                background-color: transparent;
+                border: 2px solid $primary;
+            }
+            &:hover, &.active:hover{
+                background-color: $primary;
+                color: $text-on-primary;
+            }
+            i{
+                width: 22px;
+                text-align: center;
+            }
         }
-        &:hover, &.active:hover{
-            background-color: $primary;
-            color: $text-on-primary;
+        @media (max-width: $md) {
+            width: $sidebar-width-xs;
         }
-        i{
-            width: 22px;
-            text-align: center;
+        ul{
+            margin-left: 1rem;
+            padding: 0;
+            border-left: 1px solid $border-color;
+            list-style-type: none;
         }
-    }
-    @media (max-width: $md) {
-        width: $sidebar-width-xs;
     }
 }

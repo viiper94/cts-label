@@ -2,72 +2,58 @@
 
 @section('admin-content')
 
-    <div class="container-fluid">
-        @include('admin.layout.alert')
+    <div class="container-fluid admin-reviews">
         <form id='sort_form' method='POST' action="{{ route('reviews.resort') }}">
             @csrf
         </form>
-        <div class="top-container flex">
+        <div class="justify-content-between align-items-center d-flex my-3">
             <div class="releases-actions">
-                <button type='submit' class='btn btn-primary' form="sort_form" onclick='return confirm("Отсортировать?")'>
-                    <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
-                    Отсортировать
-                </button>
-                <a href='{{ route('reviews.create') }}' class='btn btn-success'>
-                    <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
-                    Новое ревью
+                <a href="{{ route('reviews.create') }}" class="btn btn-primary">
+                    <i class="fa-solid fa-plus me-2"></i>Новое ревью
                 </a>
+                <button type="submit" class="btn btn-outline" form="sort_form" onclick="return confirm('Отсортировать?')">
+                    <i class="fa-solid fa-sort me-2"></i>Отсортировать
+                </button>
             </div>
-            <div class="pagination-container pagination__dark">
-                {{ $reviews->appends(Request::input())->links('admin.layout.pagination') }}
-            </div>
+            {{ $reviews->appends(Request::input())->links('admin.layout.pagination') }}
         </div>
-        <div class="clearfix"></div>
-        <div class='items'>
+        <table class="table table-hover table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Порядок</th>
+                <th scope="col">Трек</th>
+                <th scope="col">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
             @foreach($reviews as $review)
-                <div class="col-xs-12 col-sm-6 col-lg-4">
-                    <div class='item item__review flex'>
-                        <h4>{{ $review->track }}</h4>
-                        <form class='item-action col-xs-6 flex-column' method="post" action="{{ route('reviews.destroy', $review->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <a class='btn btn-success' href='{{ route('reviews.edit', $review->id) }}'>
-                                <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
-                                <span class="hidden-xs hidden-sm">Редактировать</span>
-                            </a>
-                            <button class='btn btn-danger' onclick='return confirm("Удалить?")' type="submit">
-                                <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
-                                <span class="hidden-xs hidden-sm">Удалить</span>
-                            </button>
-                        </form>
-                        <div class='item-sort col-xs-6 flex'>
-                            <div class="arrows flex-column">
-                                <a class='btn btn-default btn-default__dark' href='{{ route('reviews.sort', ['review' => $review->id, 'dir' => 'up']) }}'>
-                                    <span class='glyphicon glyphicon-arrow-up'></span>
+                <tr>
+                    <td class="sort text-right">
+                        <div class="row g-0">
+                            <div class="arrows col-auto">
+                                <a href="{{ route('reviews.sort', ['review' => $review->id, 'dir' => 'up']) }}">
+                                    <i class="fa-solid fa-chevron-up"></i>
                                 </a>
-                                <a class='btn btn-default btn-default__dark' href='{{ route('reviews.sort', ['review' => $review->id, 'dir' => 'down']) }}'>
-                                    <span class='glyphicon glyphicon-arrow-down'></span>
+                                <a href="{{ route('reviews.sort', ['review' => $review->id, 'dir' => 'down']) }}">
+                                    <i class="fa-solid fa-chevron-down"></i>
                                 </a>
                             </div>
-                            <input type='number' class='form-control form-control__dark' form="sort_form"
-                                   name='sort[{{ $review->id }}]' value='{{ $review->sort_id }}' size=5>
+                            <input type='number' class='form-control form-dark col-auto' form="sort_form"
+                                   name='sort[{{ $review->id }}]' value='{{ $review->sort_id }}'>
                         </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+                    </td>
+                    <td class="fs-5">{{ $review->track }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ route('reviews.edit', $review->id) }}">
+                            <i class="fa-solid fa-pen me-2"></i>Редактировать
+                        </a>
+                    </td>
+                </tr>
             @endforeach
-            <div class="clearfix"></div>
-        </div>
-        <div class="top-container flex">
-            <div class="releases-actions">
-                <button type='submit' class='btn btn-primary' form="sort_form" onclick='return confirm("Отсортировать?")'>
-                    <span class='glyphicon glyphicon-refresh' aria-hidden='true'></span>
-                    Отсортировать
-                </button>
-            </div>
-            <div class="pagination-container pagination__dark">
-                {{ $reviews->appends(Request::input())->links() }}
-            </div>
+            </tbody>
+        </table>
+        <div class="justify-content-center d-flex my-3">
+            {{ $reviews->appends(Request::input())->links('admin.layout.pagination') }}
         </div>
     </div>
 

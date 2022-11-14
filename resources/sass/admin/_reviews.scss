@@ -1,0 +1,23 @@
+// Reviews
+.admin-reviews{
+    td{
+        vertical-align: middle;
+    }
+    .sort{
+        .arrows{
+            display: flex;
+            flex-direction: column;
+            width: 30px;
+        }
+        input{
+            width: 60px;
+            text-align: center;
+            /* Chrome, Safari, Edge, Opera */
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+    }
+}

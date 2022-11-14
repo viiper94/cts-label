@@ -24,8 +24,6 @@
             @if($release->id)
                 @method('PUT')
             @endif
-            <div class="">
-            </div>
             <div class="row mb-5">
                 <div class="col-md-auto col-xs-12">
                     <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="img-fluid">

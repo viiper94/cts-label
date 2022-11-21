@@ -9,3 +9,4 @@ import "bootstrap-star-rating"
 require('./admin/common.js');
 require('./admin/feedback.js');
 require('./admin/releases.js');
+require('./admin/reviews.js');

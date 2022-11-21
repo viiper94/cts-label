@@ -51,8 +51,8 @@ class AdminReviewsController extends Controller{
         ]);
         $review->fill($request->post());
         $review->data = [
-            'reviews' => $request->input('review'),
-            'additional' => $request->input('additional')
+            'reviews' => array_values($request->input('review')),
+            'additional' => array_values($request->input('additional'))
         ];
         return $review->save() ?
             redirect()->route('reviews.index')->with(['success' => 'Ревью успешно отредактировано!']) :

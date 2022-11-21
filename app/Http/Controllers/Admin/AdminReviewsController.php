@@ -125,4 +125,19 @@ class AdminReviewsController extends Controller{
         }
     }
 
+    public function getTemplate(Request $request){
+        if(!$request->ajax()) abort(404);
+        return response()->json([
+            'html' => view('admin.reviews.'. $request->target .'_item', [
+                'key' => $request->index,
+                'item' => [
+                    'author' => '',
+                    'location' => '',
+                    'review' => '',
+                    'score' => ''
+                ]
+            ])->render()
+        ]);
+    }
+
 }

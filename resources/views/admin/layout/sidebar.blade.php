@@ -24,11 +24,11 @@
                 <a href="{{ route('studio.index') }}" @class(['nav-link', 'active' => \Route::is('studio.*')])><i class="fa-solid fa-microphone me-2"></i>CTStudio</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('school_admin') }}" @class(['nav-link', 'active' => \Route::is('school_admin')])><i class="fa-solid fa-building-columns me-2"></i>CTShool</a>
+                <a href="{{ route('school.courses.index') }}" @class(['nav-link', 'active' => \Route::is('school_admin')])><i class="fa-solid fa-building-columns me-2"></i>CTShool</a>
                 <ul>
                     <li>
-                        <a href="{{ route('school_admin') }}" @class(['nav-link', 'active' => \Route::is('school.*')])><i class="fa-solid fa-graduation-cap me-2"></i>Услуги школы</a>
-                        <a href="{{ route('school_admin') }}" @class(['nav-link', 'active' => \Route::is('school.*')])><i class="fa-solid fa-chalkboard-user me-2"></i>Преподаватели</a>
+                        <a href="{{ route('school.courses.index') }}" @class(['nav-link', 'active' => \Route::is('school.courses.*')])><i class="fa-solid fa-graduation-cap me-2"></i>Курси школы</a>
+                        <a href="{{ route('school.teachers.index') }}" @class(['nav-link', 'active' => \Route::is('school.teachers.*')])><i class="fa-solid fa-chalkboard-user me-2"></i>Преподаватели</a>
                     </li>
                 </ul>
             </li>

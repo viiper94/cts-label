@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\AdminEmailingContactsController;
 use App\Http\Controllers\Admin\AdminEmailingQueueController;
 use App\Http\Controllers\Admin\AdminReleasesController;
 use App\Http\Controllers\Admin\AdminReviewsController;
+use App\Http\Controllers\Admin\AdminSchoolCoursesController;
 use App\Http\Controllers\Admin\AdminStudioController;
 use App\Http\Controllers\Admin\AdminUsersController;
 
@@ -66,6 +67,16 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/studio/resort', [AdminStudioController::class, 'resort']);
         Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);
 
+        Route::name('school.')->prefix('school')->group(function(){
+
+            Route::post('/courses/resort', [AdminSchoolCoursesController::class, 'resort']);
+            Route::resource('/courses', AdminSchoolCoursesController::class)->except(['show', 'edit', 'create']);
+
+            Route::post('/teachers/resort', [AdminSchoolCoursesController::class, 'resort']);
+            Route::resource('/teachers', AdminSchoolCoursesController::class)->except(['show', 'edit', 'create']);
+
+        });
+
         Route::name('emailing.')->prefix('emailing')->group(function(){
 
             Route::post('/channels/start', [AdminEmailingChannelsController::class, 'start'])->name('channels.start');
@@ -100,7 +111,6 @@ Route::group(['middleware' => 'i18n'], function(){
         });
 
         Route::get('/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
-        Route::get('/school', 'AdminSchoolController@index')->name('school_admin');
 
     });
 

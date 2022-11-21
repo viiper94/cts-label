@@ -57,6 +57,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/releases/sort/{release}/{dir}', [AdminReleasesController::class, 'sort'])->name('releases.sort');
         Route::resource('/releases', AdminReleasesController::class)->except(['show']);
 
+        Route::post('/reviews/template', [AdminReviewsController::class, 'getTemplate'])->name('reviews.template');
         Route::post('/reviews/search', [AdminReviewsController::class, 'search'])->name('reviews.search');
         Route::post('/reviews/resort', [AdminReviewsController::class, 'resort'])->name('reviews.resort');
         Route::get('/reviews/sort/{review}/{dir}', [AdminReviewsController::class, 'sort'])->name('reviews.sort');

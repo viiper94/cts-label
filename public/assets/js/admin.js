@@ -40,17 +40,6 @@ $(document).ready(function(){
         if($(target).val() === '') $(target).val(title)
     });
 
-    $(document).on('click','.delete-review-btn', function(){
-        if(confirm('Удалить?')){
-            $(this).parent().remove();
-        }
-    });
-    $('.add-review-btn').click(function(){
-        let index = $(this).data('index')+1;
-        $(this).data('index', index);
-        let template = $('#'+$(this).data('target')+'_template').html().replace(/%i%/g, index);
-        $('#'+$(this).data('target')).append(template);
-    });
 
     $('.service-lang .sortable').sortable({
         stop: function(event, ui){

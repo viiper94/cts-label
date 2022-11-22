@@ -35,42 +35,40 @@ class AdminStudioController extends Controller{
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
-    public function update(Request $request, $id){
+    public function update(StudioService $studio, Request $request){
         $this->validate($request, [
             'lang' => 'string|required',
             'name' => 'string|required',
             'service_alt' => 'string|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png'
         ]);
-        $service = StudioService::findOrFail($id);
-        $service->fill($request->post());
-        $service->category = 'services';
+        $studio->fill($request->post());
+        $studio->category = 'services';
         if($request->hasFile('image')){
             // delete old image
-            $path = public_path('images/studio/services/').$service->image;
+            $path = public_path('images/studio/services/').$studio->image;
             if(file_exists($path) && is_file($path)){
                 unlink($path);
             }
             // upload new image
             $image = $request->file('image');
-            $service->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/studio/services'), $service->image);
+            $studio->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images/studio/services'), $studio->image);
         }
-        return $service->save() ?
+        return $studio->save() ?
             redirect()->route('studio.index')->with(['success' => 'Услуга успешно отредактирована!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
-    public function destroy(Request $request, $id){
-        $service = StudioService::find($id);
-        if($service->image){
+    public function destroy(StudioService $studio){
+        if($studio->image){
             // delete image
-            $path = public_path('images/studio/services/').$service->image;
+            $path = public_path('images/studio/services/').$studio->image;
             if(file_exists($path) && is_file($path)){
                 unlink($path);
             }
         }
-        return $service->delete() ?
+        return $studio->delete() ?
             redirect()->back()->with(['success' => 'Услуга успешно удалена!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }

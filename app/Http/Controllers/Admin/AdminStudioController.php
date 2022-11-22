@@ -9,10 +9,8 @@ use Illuminate\Http\Request;
 class AdminStudioController extends Controller{
 
     public function index(Request $request){
-        $services = StudioService::orderBy('sort_id', 'desc');
-        if($request->input('q')) $services->where('name', 'like', '%'.$request->post('q').'%');
         return view('admin.studio', [
-            'service_list' => $services->get()->sortBy('sort_id')->groupBy('lang')
+            'service_list' => StudioService::orderBy('lang')->orderBy('sort_id')->get()->groupBy('lang')
         ]);
     }
 

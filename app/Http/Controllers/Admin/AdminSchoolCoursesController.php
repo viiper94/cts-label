@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\School;
 use App\SchoolCourse;
 use Illuminate\Http\Request;
 
 class AdminSchoolCoursesController extends Controller{
 
-    public function index(Request $request){
+    public function index(){
         return view('admin.school.courses', [
-            'courses_lang' => SchoolCourse::where('category', 'courses')->orderBy('sort_id')->get()->groupBy('lang'),
+            'courses_lang' => SchoolCourse::where('category', 'courses')->orderBy('lang')->orderBy('sort_id')->get()->groupBy('lang'),
         ]);
     }
 

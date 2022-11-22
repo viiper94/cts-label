@@ -1,0 +1,12 @@
+// Studio School
+.service-lang{
+    max-width: 917px;
+}
+.service-img{
+    max-width: 185px;
+    cursor: pointer;
+    transition: .3s ease transform;
+    &:hover{
+        transform: scale(1.13);
+    }
+}

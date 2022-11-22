@@ -72,26 +72,11 @@ class AdminSchoolCoursesController extends Controller{
     }
 
     public function resort(Request $request){
-        foreach($request->post('sort') as $id => $sort){
-            $item = School::find($id);
-            $item->sort_id = $sort;
-            $item->save();
+        if(!$request->ajax()) abort(404);
+        foreach($request->post('data') as $sort => $id){
+            SchoolCourse::find($id)->update(['sort_id' => $sort]);
         }
-        return redirect()->back()->with(['success' => 'Успешно отсортировано!']);
-    }
-
-    public function sort(Request $request, $id, $direction){
-        if(isset($id)){
-            $item = School::find($id);
-            if($direction === 'up') $next_item = School::where('sort_id', '>', $item->sort_id)->where('lang', $item->lang)->where('category', $item->category)->orderBy('sort_id', 'asc')->first();
-            else $next_item = School::where('sort_id', '<', $item->sort_id)->where('lang', $item->lang)->where('category', $item->category)->orderBy('sort_id', 'desc')->first();
-            if(!$next_item) return redirect()->back();
-            return $item->swapSort($item, $next_item)  ?
-                redirect()->back()->with(['success' => 'Услуга успешно отредактирована!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
-        }
+        return response()->json('OK');
     }
 
 }

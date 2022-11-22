@@ -11,6 +11,8 @@ class SchoolTeacher extends School{
         'lang',
         'teacher_hinfo',
         'teacher_binfo',
+        'sort_id',
+        'visible'
     ];
 
 }

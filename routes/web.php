@@ -64,12 +64,12 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/reviews/sort/{review}/{dir}', [AdminReviewsController::class, 'sort'])->name('reviews.sort');
         Route::resource('/reviews', AdminReviewsController::class)->except(['show']);
 
-        Route::post('/studio/resort', [AdminStudioController::class, 'resort']);
+        Route::post('/studio/resort', [AdminStudioController::class, 'resort'])->name('studio.resort');
         Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);
 
         Route::name('school.')->prefix('school')->group(function(){
 
-            Route::post('/courses/resort', [AdminSchoolCoursesController::class, 'resort']);
+            Route::post('/courses/resort', [AdminSchoolCoursesController::class, 'resort'])->name('courses.resort');
             Route::resource('/courses', AdminSchoolCoursesController::class)->except(['show', 'edit', 'create']);
 
             Route::post('/teachers/resort', [AdminSchoolCoursesController::class, 'resort']);

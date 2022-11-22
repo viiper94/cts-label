@@ -9,7 +9,9 @@ class SchoolCourse extends School{
     protected $fillable = [
         'name',
         'course_alt',
-        'lang'
+        'lang',
+        'sort_id',
+        'visible'
     ];
 
 }

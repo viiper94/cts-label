@@ -14,8 +14,11 @@
         </div>
         @foreach($courses_lang as $courses)
             <div class="card text-bg-dark service-lang mb-5">
-                <h4 class="card-header">({{ $courses[0]->lang }}) {{ \Illuminate\Support\Facades\Lang::choice('school.courses', 8, locale: $courses[0]->lang) }}</h4>
-                <div class="card-body sortable">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">({{ $courses[0]->lang }}) {{ \Illuminate\Support\Facades\Lang::choice('school.courses', 8, locale: $courses[0]->lang) }}</h4>
+                    <b class="msg text-primary"></b>
+                </div>
+                <div class="card-body sortable" data-action="{{ route('school.courses.resort') }}">
                     @foreach($courses as $course)
                         <img src="/images/school/courses/{{ $course->image }}" alt="{{ $course->service_alt }}" class="service-img p-3"
                              data-id="{{ $course->id }}" data-lang="{{ $course->lang }}" data-name="{{ $course->name }}"

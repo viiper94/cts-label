@@ -2,7 +2,6 @@
 
 @section('assets')
     <link rel="stylesheet" href="/assets/css/jquery.ui.sortable.min.css">
-    <script src="/assets/js/jquery.ui.sortable.min.js"></script>
 @endsection
 
 @section('admin-content')
@@ -21,7 +20,7 @@
                 </div>
                 <div class="card-body sortable" data-action="{{ route('studio.resort') }}">
                     @foreach($services as $service)
-                        <img src="/images/studio/services/{{ $service->image }}" alt="{{ $service->service_alt }}" class="service-img p-3"
+                        <img src="/images/studio/services/{{ $service->image }}" alt="{{ $service->service_alt }}" class="service-img m-3"
                              data-id="{{ $service->id }}" data-lang="{{ $service->lang }}" data-name="{{ $service->name }}"
                              data-visible="{{ $service->visible }}" data-action="{{ route('studio.update', $service->id) }}">
                     @endforeach

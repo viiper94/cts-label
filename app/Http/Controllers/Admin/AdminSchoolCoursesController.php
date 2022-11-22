@@ -30,7 +30,7 @@ class AdminSchoolCoursesController extends Controller{
             $image->move(public_path('images/school/courses'), $course->image);
         }
         return $course->save() ?
-            redirect()->route('school_admin')->with(['success' => 'Услуга успешно отредактирована!']) :
+            redirect()->route('school.courses.index')->with(['success' => 'Услуга успешно отредактирована!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
@@ -54,7 +54,7 @@ class AdminSchoolCoursesController extends Controller{
             $image->move(public_path('images/school/courses'), $course->image);
         }
         return $course->save() ?
-            redirect()->route('school_admin')->with(['success' => 'Услуга успешно отредактирована!']) :
+            redirect()->route('school.courses.index')->with(['success' => 'Услуга успешно отредактирована!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

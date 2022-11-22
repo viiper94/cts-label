@@ -76,13 +76,11 @@ class AdminStudioController extends Controller{
     }
 
     public function resort(Request $request){
-        if($request->ajax()){
-            foreach($request->post('data') as $sort => $id){
-                StudioService::find($id)->update(['sort_id' => $sort]);
-            }
-            return response()->json('OK');
+        if(!$request->ajax()) abort(404);
+        foreach($request->post('data') as $sort => $id){
+            StudioService::find($id)->update(['sort_id' => $sort]);
         }
-        return redirect()->route('studio_admin');
+        return response()->json('OK');
     }
 
 }

@@ -3458,30 +3458,32 @@ $(document).ready(function () {
 
 /***/ }),
 
-/***/ "./resources/js/admin/studio.js":
-/*!**************************************!*\
-  !*** ./resources/js/admin/studio.js ***!
-  \**************************************/
+/***/ "./resources/js/admin/studio_school.js":
+/*!*********************************************!*\
+  !*** ./resources/js/admin/studio_school.js ***!
+  \*********************************************/
 /***/ (() => {
 
 // Studio School
 $(document).ready(function () {
   $('.service-lang .sortable').sortable({
     stop: function stop(event, ui) {
+      var $box = $(this);
+      var url = $box.data('action');
       var data = {};
       $.map($(this).find('img'), function (el) {
         data[$(el).index()] = $(el).data('id');
       });
       $.ajax({
-        url: '/cts-admin/studio/resort',
+        url: url,
         data: {
           'data': data
         },
         beforeSend: function beforeSend() {
-          $('.service-lang .msg').html('Сортировка...');
+          $box.parent().find('.msg').html('Сортировка...');
         },
         success: function success(response) {
-          $('.service-lang .msg').html('Пересортировано');
+          $box.parent().find('.msg').html('Пересортировано');
         }
       });
     }
@@ -3501,7 +3503,7 @@ $(document).ready(function () {
     $('#serviceModal').find('#preview').attr('src', $(this).attr('src'));
     $('#serviceModal').find('[name=name]').val($(this).data('name'));
     $('#serviceModal').find('#service_alt').val($(this).attr('alt'));
-    $('#serviceModal').find('#visible').prop('checked', $(this).data('visible') === '1');
+    $('#serviceModal').find('#visible').prop('checked', $(this).data('visible') == '1');
     $('#serviceModal').find('#lang option[value=' + $(this).data('lang') + ']').prop('selected', true);
     $('#serviceModal').find('#modal-form').attr('action', $(this).data('action'));
     $('#serviceModal #delete-form').css('display', 'inline-block').attr('action', $(this).data('action'));
@@ -3540,7 +3542,7 @@ __webpack_require__(/*! ./admin/common.js */ "./resources/js/admin/common.js");
 __webpack_require__(/*! ./admin/feedback.js */ "./resources/js/admin/feedback.js");
 __webpack_require__(/*! ./admin/releases.js */ "./resources/js/admin/releases.js");
 __webpack_require__(/*! ./admin/reviews.js */ "./resources/js/admin/reviews.js");
-__webpack_require__(/*! ./admin/studio.js */ "./resources/js/admin/studio.js");
+__webpack_require__(/*! ./admin/studio_school.js */ "./resources/js/admin/studio_school.js");
 
 /***/ }),
 

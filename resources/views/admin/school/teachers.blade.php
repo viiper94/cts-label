@@ -1,25 +1,113 @@
 @extends('admin.layout.layout')
 
+@section('assets')
+    <link rel="stylesheet" href="/assets/css/jquery.ui.sortable.min.css">
+@endsection
+
 @section('admin-content')
 
     <div class="container-fluid">
         <div class="releases-actions sticky-top my-3">
-            <button data-action="{{ route('school.courses.store') }}" class="btn btn-primary add-service">
-                <i class="fa-solid fa-plus me-2"></i>Новая услуга
+            <button data-action="{{ route('school.teachers.store') }}" class="btn btn-primary add-service">
+                <i class="fa-solid fa-plus me-2"></i>Новый курс
             </button>
         </div>
-        @foreach($service_list as $services)
+        @foreach($teachers_lang as $teachers)
             <div class="card text-bg-dark service-lang mb-5">
-                <h4 class="card-header">({{ $services[0]->lang }}) {{ \Illuminate\Support\Facades\Lang::choice('school.services', 8, locale: $services[0]->lang) }}</h4>
-                <div class="card-body sortable">
-                    @foreach($services as $service)
-                        <img src="/images/school/services/{{ $service->image }}" alt="{{ $service->service_alt }}" class="service-img p-3"
-                             data-id="{{ $service->id }}" data-lang="{{ $service->lang }}" data-name="{{ $service->name }}"
-                             data-visible="{{ $service->visible }}" data-action="{{ route('school.courses.update', $service->id) }}">
-                    @endforeach
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">({{ $teachers[0]->lang }}) {{ \Illuminate\Support\Facades\Lang::choice('school.teachers', 8, locale: $teachers[0]->lang) }}</h4>
+                    <b class="msg text-primary"></b>
+                </div>
+                <div class="card-body row" data-action="{{ route('school.teachers.resort') }}">
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover">
+                            <thead>
+                            <tr>
+                                <th>Картинка</th>
+                                <th>Имя</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody class="sortable" data-action="{{ route('school.teachers.resort') }}">
+                            @foreach($teachers as $teacher)
+                                <tr class="teacher">
+                                    <td>
+                                        <img src="/images/school/teachers/{{ $teacher->image }}" data-id="{{ $teacher->id }}">
+                                    </td>
+                                    <td>{{ $teacher->name }}</td>
+                                    <td class="text-end">
+                                        <button class="btn btn-outline" type="button"
+                                                data-src="/images/school/teachers/{{ $teacher->image }}"
+                                                data-binfo="{{ $teacher->teacher_binfo }}" data-hinfo="{{ $teacher->teacher_hinfo }}"
+                                                data-id="{{ $teacher->id }}" data-lang="{{ $teacher->lang }}" data-name="{{ $teacher->name }}"
+                                                data-visible="{{ $teacher->visible }}" data-action="{{ route('school.teachers.update', $teacher->id) }}">
+                                            <i class="fa-solid fa-pen me-2"></i>Редактировать
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         @endforeach
+
+        <div class="modal fade" id="serviceModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form action="{{ route('school.teachers.store') }}" enctype="multipart/form-data" method="post" id="modal-form">
+                        <div class="modal-body py-3">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <img src="/images/school/courses/default.png" id="preview" class="img-fluid">
+                                    <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-check mb-3">
+                                        <input type="hidden" name="visible" value="0">
+                                        <input type="checkbox" name="visible" id="visible" class="form-check-input">
+                                        <label for="visible" class="form-check-label">Опубликовано</label>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label form-dark">Имя</label>
+                                        <input type="text" class="form-control form-dark" name="name" required>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Язык</label>
+                                        <select class="form-select form-dark" name="lang" id="lang" required size="3">
+                                            <option value="en">English</option>
+                                            <option value="ru">Русский</option>
+                                            <option value="ua">Українська</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="form-label" for="teacher_binfo">Основное описание</label>
+                                        <textarea name="teacher_binfo" id="teacher_binfo" rows="3" class="form-control form-dark"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="teacher_hinfo">Скрытое описание</label>
+                                        <textarea name="teacher_hinfo" id="teacher_hinfo" rows="3" class="form-control form-dark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <form method="post" id="delete-form" style="display:none;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger" form="delete-form" onclick='return confirm("Удалить?")'><i class="fa-solid fa-trash"></i> Удалить</button>
+                        </form>
+                        <button type="submit" class="btn btn-primary" form="modal-form"><i class="fa-solid fa-floppy-disk"></i> Сохранить</button>
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 @endsection

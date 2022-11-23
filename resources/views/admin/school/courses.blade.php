@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-body sortable" data-action="{{ route('school.courses.resort') }}">
                     @foreach($courses as $course)
-                        <img src="/images/school/courses/{{ $course->image }}" alt="{{ $course->service_alt }}" class="service-img m-3"
+                        <img src="/images/school/courses/{{ $course->image }}" alt="{{ $course->course_alt }}" class="service-img m-3 "
                              data-id="{{ $course->id }}" data-lang="{{ $course->lang }}" data-name="{{ $course->name }}"
                              data-visible="{{ $course->visible }}" data-action="{{ route('school.courses.update', $course->id) }}">
                     @endforeach

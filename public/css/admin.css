@@ -21374,14 +21374,20 @@ body {
 .service-lang {
   max-width: 917px;
 }
-
-.service-img {
+.service-lang .service-img {
   max-width: 185px;
   cursor: pointer;
   transition: 0.3s ease transform;
 }
-.service-img:hover {
+.service-lang .service-img:hover {
   transform: scale(1.13);
+}
+.service-lang .teacher {
+  vertical-align: middle;
+  cursor: move;
+}
+.service-lang .teacher img {
+  max-width: 50px;
 }
 
 .admin-reviews td {

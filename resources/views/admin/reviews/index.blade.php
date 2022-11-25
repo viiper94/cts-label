@@ -38,13 +38,13 @@
                                     <i class="fa-solid fa-chevron-down"></i>
                                 </a>
                             </div>
-                            <input type='number' class='form-control form-dark col-auto' form="sort_form"
-                                   name='sort[{{ $review->id }}]' value='{{ $review->sort_id }}'>
+                            <input type="number" class="form-control form-dark col-auto" form="sort_form"
+                                   name="sort[{{ $review->id }}]" value="{{ $review->sort_id }}">
                         </div>
                     </td>
                     <td class="fs-5">{{ $review->track }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('reviews.edit', $review->id) }}">
+                        <a class="btn btn-outline" href="{{ route('reviews.edit', $review->id) }}">
                             <i class="fa-solid fa-pen me-2"></i>Редактировать
                         </a>
                     </td>

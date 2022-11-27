@@ -2,83 +2,85 @@
 
 @section('admin-content')
 
-    <div class="container-fluid">
+    <div class="container-fluid admin-releases">
 
-        @include('admin.layout.alert')
-        <div class="top-container flex">
+        <div class="justify-content-between align-items-center d-flex my-3">
             <div class="releases-actions">
-                <a href='{{ route('feedback_admin') }}/add' class='btn btn-success'>
-                    <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
-                    Кастомная страница фидбэка
-                </a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newFeedbackModal">
+                    <i class="fa-solid fa-plus me-2"></i>Новый фидбек
+                </button>
             </div>
-            <div class="pagination-container pagination__dark">
-                {{ $feedback_list->appends(['q' => Request::input('q')])->links('admin.layout.pagination') }}
-            </div>
+            {{ $feedback_list->appends(Request::input())->links('admin.layout.pagination') }}
         </div>
-        <div class="clearfix"></div>
-        <div class='items'>
+        <div class="row">
             @foreach($feedback_list as $feedback)
-                <div class="col-xs-12 col-md-6">
-                    <div class='item'>
-                        <div class='item-cover col-xs-2'>
-                            <a href="{{ route('feedback_admin') }}/edit/{{ $feedback->slug }}"
-                                @if($feedback->release)
-                                    style="background-image: url(/images/releases/{{ $feedback->release->image ?? 'default.png' }})"
-                                @else
-                                    style="background-image: url(/images/feedback/{{ $feedback->image ?? 'default.png' }})"
-                                @endif>
-
-                            </a>
-                        </div>
-                        <div class='item-info col-md-6 col-xs-8 flex-column' style="align-items: start">
-                            <h4>
-                                {{ $feedback->feedback_title }}
-                                @if($feedback->results->count() > 0)
-                                    <span class="label label-success">{{ $feedback->results->count() }}</span>
-                                @endif
-                                @if($feedback->release)
-                                    <a href="{{ route('release', $feedback->release_id) }}" style="color: inherit" target='_blank'>
-                                        <span class='glyphicon glyphicon-paperclip' aria-hidden='true'></span>
-                                    </a>
-                                @endif
-                            </h4>
-                            <span>
-                                <a href='{{ route('feedback', $feedback->slug) }}' target='_blank' class='btn btn-default btn-default__dark'>
-                                    <span class='glyphicon glyphicon-share' aria-hidden='true'></span>
-                                    Смотреть страницу фидбэка
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="card text-bg-dark mb-3">
+                        <div class="row g-0">
+                            <div class="card-header">
+                                <h5 class="card-title text-nowrap mb-0 text-truncate" title="{{ $feedback->feedback_title }}">{{ $feedback->feedback_title }}</h5>
+                            </div>
+                            <div class="col-12 d-flex g-0">
+                                <div class="card-img col-auto">
+                                    @if($feedback->release)
+                                        <img src="/images/releases/{{ $feedback->release->image ?? 'default.png' }}" class="img-fluid" alt="{{ $feedback->feedback_title }}">
+                                    @else
+                                        <img src="/images/feedback/{{ $feedback->image ?? 'default.png' }}" class="img-fluid" alt="{{ $feedback->feedback_title }}">
+                                    @endif
+                                </div>
+                                <div class="card-info d-flex flex-column col">
+                                    <div class="d-flex flex-grow-1">
+                                        <div class="card-body">
+                                            <small class="text-muted">Ответов</small>
+                                            <h4 class="card-text">{{ $feedback->results->count() }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-sm btn-primary" href="{{ route('feedback.edit', $feedback->id) }}">
+                                    <i class="fa-solid fa-pen me-2"></i>Редактировать
                                 </a>
-                            </span>
+                                <a class="btn btn-sm btn-outline" href="{{ route('feedback', $feedback->slug) }}">
+                                    Смотреть фидбек
+                                </a>
+                            </div>
                         </div>
-                        <div class='item-sort col-md-4 col-xs-2 flex-column'>
-                            <a class='btn btn-success' href='{{ route('feedback_admin') }}/edit/{{ $feedback->slug }}'>
-                                <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
-                                <span class="hidden-xs hidden-sm">Редактировать</span>
-                            </a>
-                            <a class='btn btn-danger' href='{{ route('feedback_admin') }}/delete/{{ $feedback->slug }}' onclick='return confirm("Удалить?")'>
-                                <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
-                                <span class="hidden-xs hidden-sm">Удалить</span>
-                            </a>
-                            <a class='btn btn-info copy-link' data-clipboard-text="{{ route('feedback', $feedback->slug) }}">
-                                <span class='glyphicon glyphicon-link' aria-hidden='true'></span>
-                                <span class="hidden-xs hidden-sm">Скопировать ссылку</span>
-                            </a>
-                        </div>
-                        <div class="clearfix"></div>
                     </div>
                 </div>
             @endforeach
-            <div class="clearfix"></div>
         </div>
-        <div class="top-container flex">
-            <div class="pagination-container pagination__dark">
-                {{ $feedback_list->appends(['q' => Request::input('q')])->links() }}
+        <div class="justify-content-center d-flex my-3">
+            {{ $feedback_list->appends(['q' => Request::input('q')])->links() }}
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="newFeedbackModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Выберите релиз</h5>
+                    <button type="button" class="text-bg-dark fs-4" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="modal-body row g-0">
+                    @foreach($releases_without_feedback as $release)
+                        <div class="col-xs-6 col-md-3 p-3">
+                            <a href="{{ route('feedback.create', $release->id) }}" class="d-block" title="{{ $release->title }}">
+                                <img src="/images/releases/{{ $release->image }}" alt="{{ $release->image }}" class="img-fluid">
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ route('feedback.create') }}" class="btn btn-outline">
+                        <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Создать кастомную страницу фидбека
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 
-@endsection
-
-@section('search')
-    @include('admin.layout.search')
 @endsection

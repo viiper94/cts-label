@@ -12,10 +12,12 @@
 */
 
 use App\Http\Controllers\Admin\AdminArtistsController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminCvController;
 use App\Http\Controllers\Admin\AdminEmailingChannelsController;
 use App\Http\Controllers\Admin\AdminEmailingContactsController;
 use App\Http\Controllers\Admin\AdminEmailingQueueController;
+use App\Http\Controllers\Admin\AdminFeedbackController;
 use App\Http\Controllers\Admin\AdminReleasesController;
 use App\Http\Controllers\Admin\AdminReviewsController;
 use App\Http\Controllers\Admin\AdminSchoolCoursesController;
@@ -45,9 +47,10 @@ Route::group(['middleware' => 'i18n'], function(){
 
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function(){
 
-        Route::get('/', 'AdminController@index')->name('admin');
+        Route::get('/', [AdminController::class, 'index'])->name('admin');
 
         Route::resource('/cv', AdminCvController::class);
+        Route::resource('/users', AdminUsersController::class)->only(['index', 'destroy']);
 
         Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
         Route::get('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
@@ -67,6 +70,10 @@ Route::group(['middleware' => 'i18n'], function(){
 
         Route::post('/studio/resort', [AdminStudioController::class, 'resort'])->name('studio.resort');
         Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);
+
+        Route::get('/feedback/create/{release?}', [AdminFeedbackController::class, 'create'])->name('feedback.create');
+        Route::put('/feedback/store/{release?}', [AdminFeedbackController::class, 'store'])->name('feedback.store');
+        Route::resource('/feedback', AdminFeedbackController::class)->except(['show', 'create', 'store']);
 
         Route::name('school.')->prefix('school')->group(function(){
 
@@ -90,28 +97,6 @@ Route::group(['middleware' => 'i18n'], function(){
             Route::delete('/clear', [AdminEmailingQueueController::class, 'clear'])->name('queue.clear');
 
         });
-
-        Route::resource('/users', AdminUsersController::class)->only(['index', 'destroy']);
-
-        Route::any('/{controller}/{action}/{id?}/{param?}', function($controller, $action, $id = null, $param = null){
-            $app = app();
-            try{
-                $controller_name = explode('_', $controller);
-                $fixed_name = array();
-                foreach($controller_name as $name){
-                    $fixed_name[] = ucfirst($name);
-                }
-                $controller = implode('', $fixed_name);
-
-                $controller = $app->make('\App\Http\Controllers\Admin\Admin' . ucfirst($controller) . 'Controller');
-                if(!method_exists($controller, $action)) throw new ReflectionException();;
-                return $controller->callAction($action, $parameters = array(Request::instance(), $id, $param));
-            }catch(ReflectionException $e){
-                abort(404);
-            }
-        });
-
-        Route::get('/feedback', 'AdminFeedbackController@index')->name('feedback_admin');
 
     });
 

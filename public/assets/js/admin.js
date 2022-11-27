@@ -1,13 +1,5 @@
 $(document).ready(function(){
 
-    $('.related_last_five').click(function(e){
-        e.preventDefault();
-        $('.related label input').prop('checked', false);
-        for(let i = 0; i < 5; i++){
-            $($('.related label input')[i]).prop('checked', true);
-        }
-    });
-
     $('#search-reviewer').keyup(function(){
         let query = $(this).val().trim();
         if(query.length > 2){

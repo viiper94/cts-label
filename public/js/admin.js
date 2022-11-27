@@ -3300,6 +3300,17 @@ $(document).ready(function () {
     $(e.trigger).html('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>\n' + '                                <span class="hidden-xs hidden-sm">Скопировано!</span>');
     e.clearSelection();
   });
+  $('.related_last_five').click(function (e) {
+    e.preventDefault();
+    $('.related-all-feedback input').prop('checked', false);
+    for (var i = 0; i < 5; i++) {
+      $($('.related-all-feedback input')[i]).prop('checked', true);
+    }
+  });
+  $('.deselect-btn').click(function (e) {
+    e.preventDefault();
+    $('.related-all-feedback input').prop('checked', false);
+  });
 });
 
 /***/ }),
@@ -3542,6 +3553,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap-star-rating */ "./node_modules/bootstrap-star-rating/js/star-rating.min.js");
 /* harmony import */ var bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4__);
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
 
 
 

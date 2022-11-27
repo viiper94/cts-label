@@ -60,11 +60,11 @@
                                         <i class="fa-solid fa-pen me-2"></i>Редактировать
                                     </a>
                                     @if($release->feedback)
-                                        <a class="btn btn-sm btn-outline" href="{{ route('feedback_admin') }}/edit/{{ $release->feedback->slug }}">
+                                        <a class="btn btn-sm btn-outline" href="{{ route('feedback.edit', $release->feedback->id) }}">
                                             <i class="fa-solid fa-message me-2"></i>Фидбек
                                         </a>
                                     @else
-                                        <a class="btn btn-sm btn-outline" href="{{ route('feedback_admin') }}/add/{{ $release->id }}">
+                                        <a class="btn btn-sm btn-outline" href="{{ route('feedback.create', $release->id) }}">
                                             <i class="fa-solid fa-plus me-2"></i>Созать фидбек
                                         </a>
                                     @endif

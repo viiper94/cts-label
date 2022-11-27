@@ -1,77 +1,88 @@
 @extends('admin.layout.layout')
 
 @section('admin-content')
-    @if($errors->any())
-        @dd($errors->first())
-    @endif
-    <div class="container">
-        @include('admin.layout.alert')
-        <form enctype="multipart/form-data" method="post">
+    <div class="container-fluid">
+        <button type="submit" class="btn btn-primary shadow sticky-top my-3" form="edit_release">
+            <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
+        </button>
+        @if($feedback->id)
+            <form action="{{ route('feedback.destroy', $feedback->id) }}" method="post" class="d-inline my-3">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-outline-danger" onclick="return confirm('Удалить фидбек?')">
+                    <i class="fa-solid fa-trash me-2"></i>Удалить
+                </button>
+            </form>
+        @endif
+        @if($feedback->release)
+            <a href='{{ route('release', $feedback->release->id) }}' class="btn btn-outline">
+                <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Релиз на сайте
+            </a>
+        @endif
+        <form enctype="multipart/form-data" method="post" id="edit_release"
+              action="{{ $feedback->id ? route('feedback.update', $feedback->id) : route('feedback.store', $feedback->release?->id) }}">
             @csrf
-            <div class="col-xs-12">
-                <div id="sticker">
-                    <button type='submit' class='btn btn-primary' name='edit_feedback'>
-                        <span class='glyphicon glyphicon-pencil' aria-hidden='true'></span>
-                        Сохранить
-                    </button>
-                    @if($feedback->release)
-                        <a href='{{ route('release', $feedback->release->id) }}' class='btn btn-success' name='edit_feedback'>
-                            <span class='glyphicon glyphicon-share' aria-hidden='true'></span>
-                            Релиз на сайте
-                        </a>
-                    @endif
+            @if($feedback->id)
+                @method('PUT')
+            @endif
+            <div class="row mb-5">
+                <div class="col-md-auto col-xs-12">
+                    <label class="form-label">Обложка</label>
+                    <div class="form-group">
+                        @if(!$feedback->release)
+                            <img src="/images/feedback/{{ $feedback->image ?? 'default.png' }}" id="preview" class="release-cover">
+                            <input type="file" class="form-control form-dark" name="image" id="uploader" accept="image/*">
+                        @else
+                            <img src="/images/releases/{{ $feedback->release->image ?? 'default.png' }}" id="preview" class="release-cover">
+                        @endif
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-md-5 col-xs-12 release-image">
-                <label>Обложка</label><br>
-                @if(!$feedback->release)
-                    <img src="/images/feedback/{{ $feedback->image ?? 'default.png' }}" id="preview">
-                    <input type="file"  name="image" value="{{ $feedback->image }}" accept="image/*">
-                @else
-                    <img src="/images/releases/{{ $feedback->release->image ?? 'default.png' }}" id="preview">
-                @endif
-            </div>
-            <div class="col-md-7 col-xs-12">
-                <div class="form-group">
-                    <label>Название</label><br>
-                    <input type="text" class="form-control form-control__dark" name="feedback_title" value="{{ $feedback->feedback_title }}" required>
-                    @if($errors->has('feedback_title'))
-                        <p class="help-block">{{ $errors->first('feedback_title') }}</p>
-                    @endif
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="visible" {{ !$feedback->visible ? : 'checked' }}> Опубликовано
-                    </label>
-                </div>
-                <div class="related-all-feedback">
-                    <h4>Also available:</h4>
-                    <button class="btn btn-primary related_last_five">Выбрать последние 5</button>
-                    <button class="btn btn-danger deselect-btn">Снять выбор</button>
-                    @foreach($feedback_list as $item)
-                        <div class="related">
-                            @if(!$feedback->release || $item->release_id != $feedback->release->id)
-                                <label style="margin-left: 0;">
-                                    <input type="checkbox" name="related[]" value="{{ $item->id }}"
-                                           @if($feedback->related->contains($item)) checked @endif>{{ $item->feedback_title }}
-                                </label>
-                            @endif
+                <div class="col-md col-xs-12">
+                    <div class="form-check mb-3">
+                        <input type="hidden" name="visible" value="0">
+                        <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($feedback->visible)>
+                        <label for="visible" class="form-check-label">Опубликовано</label>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="title" class="form-label">Название</label>
+                        <input type="text" class="form-control form-dark form-control-lg" name="feedback_title" id="title" value="{{ old('feedback_title') ?? $feedback->feedback_title }}" required>
+                        @error('feedback_title')
+                            <p class="help-block">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="card text-bg-dark related-all-feedback">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="card-title">Also available:</h5>
+                            <div class="btn-group">
+                                <button class="btn btn-outline btn-sm related_last_five" type="button">
+                                    <i class="fa-solid fa-list-check me-2"></i>Выбрать последние 5
+                                </button>
+                                <button class="btn btn-outline btn-sm deselect-btn" type="button">
+                                    <i class="fa-solid fa-rectangle-xmark me-2"></i>Снять выбор
+                                </button>
+                            </div>
                         </div>
-                    @endforeach
+                        <div class="card-body">
+                            @foreach($feedback_list as $item)
+                                @if(!$feedback->release || $item->release_id != $feedback->release->id)
+                                    <div class="form-check mb-2">
+                                        <input type="checkbox" name="related[]" id="also-{{ $item->release_id }}"
+                                               value="{{ $item->id }}" class="form-check-input" @checked($feedback->related->contains($item))>
+                                        <label for="also-{{ $item->release_id }}" class="form-check-label">{{ $item->feedback_title }}</label>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="clearfix"></div>
             <div class="col-xs-12" id="reviews">
                 @foreach($feedback->tracks as $key => $track)
-                    @if($loop->last)
-                        @php $f_index = $key @endphp
-                    @endif
                     <div class="review" id="feedback-{{ $key }}">
                         <a class="delete-review-btn btn"><span class="glyphicon glyphicon-remove"></span></a>
                         <div class="form-group">
-                            <label>Название трека</label><br>
-                            <input type="text" class="form-control form-control__dark" name="tracks[{{ $key }}][title]" value="{{ $track['title'] }}" required>
+                            <label>Название трека</label>
+                            <input type="text" class="form-control form-dark" name="tracks[{{ $key }}][title]" value="{{ $track['title'] }}" required>
                         </div>
                         <div class="form-group col-xs-6">
                             <label>Файл в высоком качестве</label><br>

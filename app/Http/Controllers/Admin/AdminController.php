@@ -11,13 +11,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller{
 
     public function index(){
-        return view('admin.index', [
-            'releases' => Release::orderBy('sort_id', 'desc')->take(25)->get(),
-            'artists' => Artist::orderBy('sort_id', 'desc')->take(25)->get(),
-            'reviews' => [],
-            'feedback' => Feedback::with('release')->orderBy('created_at', 'desc')->take(25)->get(),
-            'users' => []
-        ]);
+        return redirect()->route('releases.index');
     }
 
 }

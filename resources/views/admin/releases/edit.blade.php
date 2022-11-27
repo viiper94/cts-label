@@ -26,7 +26,7 @@
             @endif
             <div class="row mb-5">
                 <div class="col-md-auto col-xs-12">
-                    <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="img-fluid">
+                    <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="release-cover">
                     <input type="file" name="image" class="form-control form-dark" id="uploader" accept="image/jpeg, image/png">
                     @error('image')
                         <p class="help-block text-danger">{{ $message }}</p>

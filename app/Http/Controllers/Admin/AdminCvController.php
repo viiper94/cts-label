@@ -26,4 +26,11 @@ class AdminCvController extends Controller{
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
+    public function document(Cv $cv){
+        $cv->document = $cv->createDocument();
+        return $cv->save() ?
+            redirect()->back()->with(['success' => 'Файл сгенерирован!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
 }

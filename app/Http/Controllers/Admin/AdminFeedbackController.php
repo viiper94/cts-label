@@ -115,14 +115,22 @@ class AdminFeedbackController extends Controller{
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
-    public function removeResult(Request $request, $id){
-        if($id){
-            return FeedbackResult::find($id)->delete() ?
-                redirect()->back()->with(['success' => 'Успешно удалёно!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
-        }
+    public function deleteResult(FeedbackResult $result){
+        return $result->delete() ?
+            redirect()->back()->with(['success' => 'Успешно удалёно!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
+    public function getTemplate(Request $request){
+        if(!$request->ajax()) abort(404);
+        return response()->json([
+            'html' => view('admin.feedback.track_item', [
+                'key' => $request->index,
+                'track' => [
+                    'title' => '',
+                ]
+            ])->render()
+        ]);
     }
 
 }

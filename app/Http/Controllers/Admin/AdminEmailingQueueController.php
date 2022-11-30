@@ -17,8 +17,8 @@ class AdminEmailingQueueController extends Controller{
     }
 
     public function clear(){
-        return EmailingQueue::whereSent('1')->delete() ?
-            redirect()->route('queue.index')->with(['success' => 'Очередь очищена!']) :
+        return EmailingQueue::whereSent('1')->delete() !== false ?
+            redirect()->route('emailing.queue.index')->with(['success' => 'Очередь очищена!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 }

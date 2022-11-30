@@ -78,7 +78,12 @@ class Cv extends Model{
         $doc->setValue('created_at', $this->created_at->format('d/m/Y H:i'));
 
         $filename = $this->created_at->format('YmdHi').'-'.md5(time()).'.docx';
+
+        if(!is_dir(public_path('cv'))){
+            mkdir(public_path('cv'));
+        }
         $doc->saveAs(public_path('cv/'.$filename));
+
         return $filename;
     }
 

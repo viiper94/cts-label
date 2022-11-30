@@ -1,0 +1,8 @@
+// Cv
+.admin-cv{
+    .card.cv-data{
+        .card-body > div{
+            border-left: 2px solid $primary;
+        }
+    }
+}

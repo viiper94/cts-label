@@ -31,9 +31,6 @@ class AdminEmailingContactsController extends Controller{
             'channels' => EmailingChannel::all(),
             'contacts_count' => EmailingContact::count(),
             'contacts' => $contacts->paginate(100),
-            'queue_count' => EmailingQueue::count(),
-            'queue_sent' => EmailingQueue::whereSent('1')->count(),
-            'view' => 'contacts',
             'sort' => $request->input('sort'),
             'dir' => $request->input('dir'),
             'selected_channel' => isset($channel) ? $channel->title : null

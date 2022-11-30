@@ -12,11 +12,7 @@ class AdminEmailingQueueController extends Controller{
     public function index(){
         return view('admin.emailing.index', [
             'channels' => EmailingChannel::all(),
-            'contacts_count' => EmailingContact::count(),
-            'queue' => EmailingQueue::with('channel:title')->orderBy('sent')->orderBy('sort', 'asc')->paginate(100),
-            'queue_count' => EmailingQueue::count(),
-            'queue_sent' => EmailingQueue::whereSent('1')->count(),
-            'view' => 'queue'
+            'queue' => EmailingQueue::with('channel')->orderBy('sent')->orderBy('sort')->paginate(100),
         ]);
     }
 

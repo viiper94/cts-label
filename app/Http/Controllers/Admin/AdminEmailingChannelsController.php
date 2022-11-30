@@ -40,7 +40,7 @@ class AdminEmailingChannelsController extends Controller{
                 $contacts = EmailingContact::pluck('id')->toArray();
                 $channel->subscribers()->attach($contacts);
             }
-            return redirect()->route('channels.index')->with(['success' => 'Готово!']);
+            return redirect()->route('emailing.channels.index')->with(['success' => 'Готово!']);
         }else return redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
@@ -61,13 +61,13 @@ class AdminEmailingChannelsController extends Controller{
         ]);
         $channel->fill($request->post());
         return $channel->save()
-            ? redirect()->route('channels.index')->with(['success' => 'Готово!'])
+            ? redirect()->route('emailing.channels.index')->with(['success' => 'Готово!'])
             : redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
     public function destroy($id){
         return EmailingChannel::findOrFail($id)->delete()
-            ? redirect()->route('channels.index')->with(['success' => 'Удалено!'])
+            ? redirect()->route('emailing.channels.index')->with(['success' => 'Удалено!'])
             : redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
@@ -75,7 +75,7 @@ class AdminEmailingChannelsController extends Controller{
         if($request->post()){
             $this->validate($request, ['id' => 'required|numeric']);
             return EmailingQueue::whereSent('0')->where('channel_id', $request->post('id'))->delete() ?
-                redirect()->route('channels.index')->with(['success' => 'Рассылка остановлена!']) :
+                redirect()->route('emailing.channels.index')->with(['success' => 'Рассылка остановлена!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }
         return abort(403);
@@ -99,6 +99,5 @@ class AdminEmailingChannelsController extends Controller{
         }
         return abort(403);
     }
-
 
 }

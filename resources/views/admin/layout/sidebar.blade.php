@@ -44,7 +44,16 @@
                     <li>
                         <a href="{{ route('emailing.channels.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.channels.index')])><i class="fa-solid fa-database me-2"></i>Каналы</a>
                         <a href="{{ route('emailing.contacts.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.contacts.index')])><i class="fa-solid fa-address-book me-2"></i>Контакты</a>
-                        <a href="{{ route('emailing.queue.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.queue.index')])><i class="fa-solid fa-hourglass me-2"></i>Очередь</a>
+                        <a href="{{ route('emailing.queue.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.queue.index')])>
+                            <i class="fa-solid fa-hourglass me-2"></i>Очередь
+                            @if($queue_count !== 0)
+                                <span @class([
+                                    'badge',
+                                    'bg-warning text-dark' => $queue_sent !== $queue_count,
+                                    'bg-success' => $queue_sent === $queue_count
+                                ])>{{ $queue_sent }}/{{ $queue_count }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>

@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class AdminEmailingQueueController extends Controller{
 
     public function index(){
-        return view('admin.emailing.index', [
+        return view('admin.emailing.queue', [
             'channels' => EmailingChannel::all(),
             'queue' => EmailingQueue::with('channel')->orderBy('sent')->orderBy('sort')->paginate(100),
         ]);

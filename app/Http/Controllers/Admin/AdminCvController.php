@@ -14,6 +14,9 @@ class AdminCvController extends Controller{
     }
 
     public function show(Cv $cv){
+        $cv->update([
+            'status' => 1
+        ]);
         return view('admin.cv.edit', compact('cv'));
     }
 

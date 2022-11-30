@@ -26,11 +26,11 @@ class Feedback extends SharedModel{
         return $this->belongsToMany('App\Feedback', 'related_feedback', 'feedback_id', 'related_id');
     }
 
-    public function LQDir(){
+    public function LQDir() :string{
         return is_dir(public_path('/audio/feedback/'.$this->id.'/96/')) ? '96' : '320';
     }
 
-    public function HQDir(){
+    public function HQDir() :string{
         return is_dir(public_path('/audio/feedback/'.$this->id.'/320/')) ? '320' : '96';
     }
 

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class AdminEmailingChannelsController extends Controller{
 
     public function index(){
-        return view('admin.emailing.index', [
+        return view('admin.emailing.channels', [
             'channels' => EmailingChannel::withCount(['subscribers', 'queue' => function($query){
                 $query->whereSent('0');
             }])->get()

@@ -27,7 +27,7 @@ class AdminEmailingContactsController extends Controller{
         if($request->input('sort')){
             $contacts = $contacts->orderBy($request->input('sort'), ($request->input('dir') === 'down') ? 'desc' : 'asc');
         }
-        return view('admin.emailing.index', [
+        return view('admin.emailing.contacts', [
             'channels' => EmailingChannel::all(),
             'contacts_count' => EmailingContact::count(),
             'contacts' => $contacts->paginate(100),

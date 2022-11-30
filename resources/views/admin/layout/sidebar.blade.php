@@ -42,9 +42,9 @@
                 <a href="{{ route('emailing.channels.index') }}" class="nav-link"><i class="fa-solid fa-envelope me-2"></i>Рассылки</a>
                 <ul>
                     <li>
-                        <a href="{{ route('emailing.channels.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.channels.index')])><i class="fa-solid fa-database me-2"></i>Каналы</a>
-                        <a href="{{ route('emailing.contacts.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.contacts.index')])><i class="fa-solid fa-address-book me-2"></i>Контакты</a>
-                        <a href="{{ route('emailing.queue.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.queue.index')])>
+                        <a href="{{ route('emailing.channels.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.channels.*')])><i class="fa-solid fa-database me-2"></i>Каналы</a>
+                        <a href="{{ route('emailing.contacts.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.contacts.*')])><i class="fa-solid fa-address-book me-2"></i>Контакты</a>
+                        <a href="{{ route('emailing.queue.index') }}" @class(['nav-link', 'active' => \Route::is('emailing.queue.*')])>
                             <i class="fa-solid fa-hourglass me-2"></i>Очередь
                             @if($queue_count !== 0)
                                 <span @class([

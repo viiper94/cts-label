@@ -2,12 +2,14 @@
 
 @section('admin-content')
 
-    <div class="container">
-        @include('admin.layout.alert')
-        @csrf
-        <a href="{{ route('cv.public') }}" target="_blank" class="btn btn-primary">Анкета</a>
+    <div class="container-fluid">
+        <div class="releases-actions my-3">
+            <a href="{{ route('cv.public') }}" target="_blank" class="btn btn-outline">
+                <i class="fa-solid fa-list me-2"></i>Анкета
+            </a>
+        </div>
         <div class="table-responsive">
-            <table class="items-table table table-hover table__dark">
+            <table class="table table-hover table-dark">
                 <tbody>
                     <tr>
                         <th>Имя</th>
@@ -21,18 +23,16 @@
                             <td>{{ $cv->name }}</td>
                             <td>{{ $cv->email }}</td>
                             <td><span class="label {{ $cv->getStatus()['labelClass'] }}">{{ $cv->getStatus()['name'] }}</span></td>
-                            <td>{{ $cv->created_at->format('j M Y, H:i') }}</td>
+                            <td>{{ $cv->created_at->isoFormat('LLL') }}</td>
                             <td>
                                 <form action="{{ route('cv.destroy', $cv->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a class='btn btn-success' href='{{ route('cv.show', $cv->id) }}'>
-                                        <span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span> Смотреть анкету
-                                        <span class="hidden-xs hidden-sm hidden-lg">Смотреть анкету</span>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('cv.show', $cv->id) }}">
+                                        <i class="fa-solid fa-chevron-right me-2"></i>Смотреть анкету
                                     </a>
-                                    <button class='btn btn-danger' type="submit" onclick='return confirm("Удалить анкету?")'>
-                                        <span class='glyphicon glyphicon-trash' aria-hidden='true'></span>
-                                        <span class="hidden-xs hidden-sm hidden-lg">Удалить</span>
+                                    <button class="btn btn-sm btn-outline-danger" type="submit" onclick='return confirm("Удалить анкету?")'>
+                                        <i class="fa-solid fa-trash me-2"></i>Удалить
                                     </button>
                                 </form>
                             </td>

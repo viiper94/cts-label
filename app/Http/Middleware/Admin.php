@@ -25,8 +25,8 @@ class Admin
         App::setLocale('ru');
 
         View::share('cv_count', Cv::where('status', 0)->count());
-        View::share('queue_sent', EmailingQueue::count());
-        View::share('queue_count', EmailingQueue::whereSent('1')->count());
+        View::share('queue_count', EmailingQueue::count());
+        View::share('queue_sent', EmailingQueue::whereSent('1')->count());
 
         return $next($request);
     }

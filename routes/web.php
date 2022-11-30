@@ -71,8 +71,10 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/studio/resort', [AdminStudioController::class, 'resort'])->name('studio.resort');
         Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);
 
+        Route::post('/feedback/template', [AdminFeedbackController::class, 'getTemplate'])->name('feedback.template');
         Route::get('/feedback/create/{release?}', [AdminFeedbackController::class, 'create'])->name('feedback.create');
         Route::put('/feedback/store/{release?}', [AdminFeedbackController::class, 'store'])->name('feedback.store');
+        Route::delete('/feedback/delete/{result}', [AdminFeedbackController::class, 'deleteResult'])->name('feedback.deleteResult');
         Route::resource('/feedback', AdminFeedbackController::class)->except(['show', 'create', 'store']);
 
         Route::name('school.')->prefix('school')->group(function(){

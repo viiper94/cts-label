@@ -1,0 +1,15 @@
+// Dropdown
+.dropdown{
+    .dropdown-menu{
+        background-color: $background-lighten-3;
+        border-color: $border-color;
+        padding: 0;
+        a.dropdown-item{
+            color: $primary-text-darker;
+            &:hover{
+                background-color: $primary;
+                color: $text-on-primary;
+            }
+        }
+    }
+}

@@ -14,11 +14,7 @@ class AdminEmailingChannelsController extends Controller{
         return view('admin.emailing.index', [
             'channels' => EmailingChannel::withCount(['subscribers', 'queue' => function($query){
                 $query->whereSent('0');
-            }])->get(),
-            'contacts_count' => EmailingContact::count(),
-            'queue_count' => EmailingQueue::count(),
-            'queue_sent' => EmailingQueue::whereSent('1')->count(),
-            'view' => 'channels'
+            }])->get()
         ]);
     }
 

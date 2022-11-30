@@ -34,16 +34,7 @@ class Feedback extends SharedModel{
         return is_dir(public_path('/audio/feedback/'.$this->id.'/320/')) ? '320' : '96';
     }
 
-    public function renewRelatedFeedback($ids){
-        $this->related()->detach();
-        if($ids === null) return true;
-        foreach($ids as $id){
-            $this->related()->attach($id);
-        }
-        return true;
-    }
-
-    public function saveTracks(Request $request){
+    public function saveTracks(Request $request) :array{
         $path = public_path($this->file_path).'/'.$this->slug;
         $tracks = array();
         foreach($request->post('tracks') as $key => $track){

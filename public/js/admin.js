@@ -3270,8 +3270,6 @@ $(document).ready(function () {
     readURL(this, '#preview');
   });
 });
-
-// File input preview image
 function readURL(input, selector) {
   if (selector === undefined) selector = '#preview';
   if (input.files && input.files[0]) {

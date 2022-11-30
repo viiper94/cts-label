@@ -70,6 +70,10 @@ class Feedback extends SharedModel{
         return $tracks;
     }
 
+    public function hasArchive() :bool{
+        return $this->archive_name && file_exists(public_path('audio/feedback/').$this->slug.'/'.$this->archive_name);
+    }
+
     public function archiveTracks(){
         $old = public_path('audio/feedback/'.$this->slug.'/').$this->archive_name;
         if(is_file($old)){

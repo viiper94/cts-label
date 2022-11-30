@@ -35,6 +35,7 @@ class Cv extends Model{
         'course',
         'what_to_learn',
         'purpose_of_learning',
+        'status'
     ];
     public $statusCodes = [
         0 => [

@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Cv;
+use App\EmailingQueue;
 use Closure;
 use Gate;
 use App;
@@ -22,8 +24,9 @@ class Admin
         if(Gate::denies('admin')) abort(403);
         App::setLocale('ru');
 
-        $cv = App\Cv::where('status', 0)->count();
-        View::share('cv_count', $cv);
+        View::share('cv_count', Cv::where('status', 0)->count());
+        View::share('queue_sent', EmailingQueue::count());
+        View::share('queue_count', EmailingQueue::whereSent('1')->count());
 
         return $next($request);
     }

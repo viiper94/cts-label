@@ -2,76 +2,76 @@
 
 @section('admin-content')
 
-    <div class="container">
-        <form action="{{ $channel->id ? route('channels.update', $channel->id) : route('channels.store') }}" method="post" id="edit-channel-form">
+    <div class="container-fluid">
+        <button type="submit" class="btn btn-primary shadow sticky-top my-3" form="edit-channel-form">
+            <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
+        </button>
+        @if($channel->id)
+            <form action="{{ route('emailing.channels.destroy', $channel->id) }}" method="post" class="d-inline my-3">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-outline-danger" onclick="return confirm('Удалить канал рассылки?')">
+                    <i class="fa-solid fa-trash me-2"></i>Удалить
+                </button>
+            </form>
+        @endif
+        <form action="{{ $channel->id ? route('emailing.channels.update', $channel->id) : route('emailing.channels.store') }}"
+              method="post" id="edit-channel-form">
             @csrf
             @if($channel->id)
                 @method('PUT')
             @endif
             <div class="row">
-                <div class="form-group col-sm-9">
-                    <label for="title">Название канала рассылки</label><br>
-                    <input type="text" class="form-control form-control__dark" id="title" name="title" value="{{ old('title') ?? $channel->title }}" required>
-                    @if($errors->has('title'))
-                        <p class="help-block">{{ $errors->first('title') }}</p>
-                    @endif
+                <div class="form-group mb-3 col-sm-9">
+                    <label for="title" class="form-label">Название канала рассылки</label><br>
+                    <input type="text" class="form-control form-dark" id="title" name="title"
+                           value="{{ old('title') ?? $channel->title }}" required>
+                    @error('title')
+                        <p class="help-block">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="form-group col-sm-3">
-                    <label for="lang">Язык</label><br>
-                    <select class="form-control form-control__dark" id="lang" name="lang">
+                <div class="form-group mb-3 col-sm-3">
+                    <label for="lang" class="form-label">Язык</label><br>
+                    <select class="form-control form-dark" id="lang" name="lang">
                         <option value="en" @selected($channel->lang === 'en')>EN</option>
                         <option value="ua" @selected($channel->lang === 'ua')>UA</option>
                         <option value="ru" @selected($channel->lang === 'ru')>RU</option>
                     </select>
-                    @if($errors->has('lang'))
-                        <p class="help-block">{{ $errors->first('lang') }}</p>
-                    @endif
+                    @error('lang')
+                        <p class="help-block">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="subject">Тема письма</label><br>
-                <input type="text" class="form-control form-control__dark" id="subject" name="subject" value="{{ old('subject') ?? $channel->subject }}" required>
-                @if($errors->has('subject'))
-                    <p class="help-block">{{ $errors->first('subject') }}</p>
-                @endif
+            <div class="form-group mb-3">
+                <label for="subject" class="form-label">Тема письма</label><br>
+                <input type="text" class="form-control form-dark" id="subject" name="subject"
+                       value="{{ old('subject') ?? $channel->subject }}" required>
+                @error('subject')
+                    <p class="help-block">{{ $message }}</p>
+                @enderror
             </div>
-            <div class="form-group">
-                <label for="from">E-Mail отправителя</label><br>
-                <input type="email" class="form-control form-control__dark" id="from" name="from" value="{{ old('from') ?? $channel->from }}" placeholder="info@cts-label.com" required>
-                @if($errors->has('from'))
-                    <p class="help-block">{{ $errors->first('from') }}</p>
-                @endif
+            <div class="form-group mb-3">
+                <label for="from" class="form-label">E-Mail отправителя</label><br>
+                <input type="email" class="form-control form-dark" id="from" name="from"
+                       value="{{ old('from') ?? $channel->from }}" placeholder="info@cts-label.com" required>
+                @error('email')
+                    <p class="help-block">{{ $message }}</p>
+                @enderror
             </div>
-            <div class="form-group">
-                <label for="description">Описание</label><br>
-                <textarea name="description" id="description" rows="3" class="form-control form-control__dark">{{ old('description') ?? $channel->description }}</textarea>
-                @if($errors->has('description'))
-                    <p class="help-block">{{ $errors->first('description') }}</p>
-                @endif
+            <div class="form-group mb-3">
+                <label for="description" class="form-label">Описание</label><br>
+                <textarea name="description" id="description" rows="3" class="form-control form-dark">{{ old('description') ?? $channel->description }}</textarea>
+                @error('description')
+                    <p class="help-block">{{ $message }}</p>
+                @enderror
             </div>
             @if(!$channel->id)
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="add_all">
-                        Добавить ВСЕ контакты в канал
-                    </label>
+                <div class="form-check mb-3">
+                    <input type="checkbox" name="add_all" id="add_all" class="form-check-input">
+                    <label for="add_all" class="form-check-label">Добавить ВСЕ контакты в канал</label>
                 </div>
             @endif
-            <button type='submit' class='btn btn-primary' name='edit_release' form="edit-channel-form">
-                <span class='glyphicon glyphicon-check' aria-hidden='true'></span>
-                Сохранить
-            </button>
         </form>
-        @if($channel->id)
-            <form action="{{ route('channels.destroy', $channel->id) }}" method="post" style="margin-top: 10px">
-                @csrf
-                @method('DELETE')
-                <button class='btn btn-danger' type='submit' onclick='return confirm("Удалить канал рассылки?")'>
-                    <span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Удалить канал
-                </button>
-            </form>
-        @endif
     </div>
 
 @endsection

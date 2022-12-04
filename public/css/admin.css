@@ -21262,6 +21262,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 }
 
 body {
+  min-width: 350px;
   background-color: #1c1c1c;
   color: #eee;
 }
@@ -21304,6 +21305,11 @@ body {
   color: #eab120;
 }
 
+@media (max-width: 768px) {
+  .btn.sticky-top {
+    top: 62px;
+  }
+}
 .pagination-dark {
   --bs-pagination-border-radius: 0;
 }
@@ -21383,6 +21389,11 @@ body {
 .admin-releases .card .card-img {
   width: 150px;
 }
+@media (max-width: 768px) {
+  .admin-releases .card .card-img {
+    width: 125px;
+  }
+}
 
 .related a {
   color: #bfbebe;
@@ -21397,6 +21408,11 @@ body {
 
 .release-cover {
   max-width: 500px;
+}
+@media (max-width: 800px) {
+  .release-cover {
+    max-width: 100%;
+  }
 }
 
 .admin-artists .card-img img {
@@ -21437,8 +21453,12 @@ body {
   margin: 0;
 }
 
+.edit-feedback .release-cover {
+  width: 500px;
+}
+
 .related-all-feedback .card-body {
-  height: 346px;
+  height: 298px;
   overflow-y: scroll;
 }
 

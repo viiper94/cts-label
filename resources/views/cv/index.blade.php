@@ -18,15 +18,15 @@
             <h1>@lang('cv.title')</h1>
             <div class="switch-btns">
                 <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif"
-                   data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                   data-lang="en" href="{{ route('cv.public') }}">
                     @lang('shared.en')
                 </a>
                 <a class="switch-btn pull-right @if((isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru') || !isset($_COOKIE['lang'])) active @endif"
-                   data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                   data-lang="ru" href="{{ route('cv.public') }}">
                     @lang('shared.ru')
                 </a>
                 <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua') active @endif"
-                   data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
+                   data-lang="ua" href="{{ route('cv.public') }}">
                     @lang('shared.ua')
                 </a>
             </div>

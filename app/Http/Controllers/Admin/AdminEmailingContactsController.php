@@ -30,7 +30,7 @@ class AdminEmailingContactsController extends Controller{
         return view('admin.emailing.contacts', [
             'channels' => EmailingChannel::all(),
             'contacts_count' => EmailingContact::count(),
-            'contacts' => $contacts->paginate(100),
+            'contacts' => $contacts->paginate(100)->onEachSide(1),
             'sort' => $request->input('sort'),
             'dir' => $request->input('dir'),
             'selected_channel' => isset($channel) ? $channel->title : null

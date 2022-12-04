@@ -16,7 +16,7 @@ class AdminReleasesController extends Controller{
             ->orWhere('tracklist', 'like', '%' . $request->query('q') . '%')
             ->orWhere('release_number', 'like', '%' . $request->query('q') . '%');
         return view('admin.releases.index', [
-            'releases' => $releases->orderBy('sort_id', 'desc')->paginate(30)
+            'releases' => $releases->orderBy('sort_id', 'desc')->paginate(30)->onEachSide(1)
         ]);
     }
 

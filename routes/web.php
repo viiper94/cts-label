@@ -13,7 +13,7 @@
 
 use App\Http\Controllers\Admin\AdminArtistsController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\AdminCvController;
+use App\Http\Controllers\Admin\AdminSchoolCvController;
 use App\Http\Controllers\Admin\AdminEmailingChannelsController;
 use App\Http\Controllers\Admin\AdminEmailingContactsController;
 use App\Http\Controllers\Admin\AdminEmailingQueueController;
@@ -84,8 +84,8 @@ Route::group(['middleware' => 'i18n'], function(){
             Route::post('/teachers/resort', [AdminSchoolTeachersController::class, 'resort'])->name('teachers.resort');;
             Route::resource('/teachers', AdminSchoolTeachersController::class)->except(['show', 'edit', 'create']);
 
-            Route::get('/cv/document/{cv}', [AdminCvController::class, 'document'])->name('cv.document');
-            Route::resource('/cv', AdminCvController::class)->only(['index', 'show', 'destroy']);
+            Route::get('/cv/document/{cv}', [AdminSchoolCvController::class, 'document'])->name('cv.document');
+            Route::resource('/cv', AdminSchoolCvController::class)->only(['index', 'show', 'destroy']);
 
         });
 

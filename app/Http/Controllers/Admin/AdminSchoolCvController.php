@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Cv;
 use App\Http\Controllers\Controller;
 
-class AdminCvController extends Controller{
+class AdminSchoolCvController extends Controller{
 
     public function index(){
-        return view('admin.cv.index', [
+        return view('admin.school.cv.index', [
             'cv_list' => Cv::with('user')->get()
         ]);
     }
@@ -17,7 +17,7 @@ class AdminCvController extends Controller{
         $cv->update([
             'status' => 1
         ]);
-        return view('admin.cv.edit', compact('cv'));
+        return view('admin.school.cv.edit', compact('cv'));
     }
 
     public function destroy(Cv $cv){

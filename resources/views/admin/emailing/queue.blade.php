@@ -31,17 +31,7 @@
             <table class="table table-hover table-dark text-nowrap">
                 <thead>
                 <tr>
-                    <th>
-                        @if($queue_sent > 0)
-                            <form method="post" action="{{ route('emailing.queue.clear') }}">
-                                @csrf
-                                @method('DELETE')
-                                <button class='btn btn-warning' type="submit" onclick="return confirm('Очистить завершенные?')">
-                                    <span class='glyphicon glyphicon-erase' aria-hidden='true'></span>
-                                </button>
-                            </form>
-                        @endif
-                    </th>
+                    <th></th>
                     <th>Канал</th>
                     <th>От</th>
                     <th>Получатель</th>

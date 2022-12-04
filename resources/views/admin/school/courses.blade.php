@@ -29,7 +29,7 @@
         @endforeach
 
         <div class="modal fade" id="serviceModal">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body py-3">
                         <form action="{{ route('school.courses.store') }}" enctype="multipart/form-data" method="post" id="modal-form">

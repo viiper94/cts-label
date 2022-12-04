@@ -3,6 +3,9 @@
     .card{
         .card-img{
             width: 150px;
+            @media (max-width: $md) {
+                width: 125px;
+            }
         }
     }
 }
@@ -21,4 +24,7 @@
 }
 .release-cover{
     max-width: 500px;
+    @media (max-width: 800px) {
+        max-width: 100%;
+    }
 }

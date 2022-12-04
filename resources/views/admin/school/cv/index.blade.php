@@ -10,7 +10,7 @@
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-dark">
-                <tbody>
+                <tbody class="text-nowrap">
                     <tr>
                         <th>Имя</th>
                         <th>E-Mail</th>

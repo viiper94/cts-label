@@ -28,8 +28,8 @@
                     </div>
                 </div>
             @endif
-            <table class="table table-hover table-dark">
-                <tbody>
+            <table class="table table-hover table-dark text-nowrap">
+                <thead>
                 <tr>
                     <th>
                         @if($queue_sent > 0)
@@ -50,6 +50,8 @@
                     <th>Отправлено</th>
                     <th>Ошибка</th>
                 </tr>
+                </thead>
+                <tbody>
                 @foreach($queue as $item)
                     <tr @class([
                             'text-danger' => $item->error_code,

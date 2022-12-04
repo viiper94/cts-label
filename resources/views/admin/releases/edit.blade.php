@@ -24,15 +24,15 @@
             @if($release->id)
                 @method('PUT')
             @endif
-            <div class="row mb-5">
-                <div class="col-md-auto col-xs-12">
-                    <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="release-cover">
+            <div class="row">
+                <div class="col-md-auto col-xs-12 mb-3">
+                    <img src="/images/releases/{{ $release->image ?? 'default.png' }}" id="preview" class="release-cover img-fluid">
                     <input type="file" name="image" class="form-control form-dark" id="uploader" accept="image/jpeg, image/png">
                     @error('image')
                         <p class="help-block text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-md col-xs-12">
+                <div class="col-md col-xs-12 mb-3">
                     <div class="form-check mb-3">
                         <input type="hidden" name="visible" value="0">
                         <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($release->visible)>
@@ -113,7 +113,7 @@
                         <span class="badge text-bg-primary me-2">{{ count($release->related) }}</span>Related tracks:
                     </button>
                 <div id="collapseRelated" class="collapse">
-                    <div class="card-body row g-0">
+                    <div class="card-body row g-0 flex-column-reverse flex-md-row">
                         <div class="col-md-6 col-xs-12 related-all-releases">
                             <button class="btn btn-sm btn-outline-danger deselect-btn"><i class="fa-solid fa-square-xmark me-2"></i>Снять выбор</button>
                             @foreach($release_list as $item)
@@ -127,7 +127,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="col-md-6 col-xs-12 related-release-search">
+                        <div class="col-md-6 col-xs-12 related-release-search mb-3">
                             <div class="row">
                                 <input type="text" class="search-form form-control form-dark col" id='search-related' placeholder="Поиск по релизам" data-release-id="{{ $release->id }}">
                                 <div class="radios col-auto">

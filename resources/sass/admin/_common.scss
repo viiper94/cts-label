@@ -1,5 +1,6 @@
 // Common
 body{
+    min-width: 350px;
     background-color: $background;
     color: $primary-text;
     @media (max-width: $md){
@@ -42,5 +43,11 @@ main{
                 }
             }
         }
+    }
+}
+
+@media (max-width: $md) {
+    .btn.sticky-top{
+        top: 62px;
     }
 }

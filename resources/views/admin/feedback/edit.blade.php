@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('admin-content')
-    <div class="container-fluid">
+    <div class="container-fluid edit-feedback">
         <button type="submit" class="btn btn-primary shadow sticky-top my-3" form="edit_release">
             <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
         </button>
@@ -26,7 +26,7 @@
                 @method('PUT')
             @endif
             <div class="row mb-5">
-                <div class="col-md-auto col-xs-12">
+                <div class="col-xl-auto col-xs-12">
                     <label class="form-label">Обложка</label>
                     <div class="form-group">
                         @if(!$feedback->release)
@@ -37,7 +37,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md col-xs-12">
+                <div class="col-xl col-xs-12">
                     <div class="form-group mb-3">
                         <label for="title" class="form-label">Название</label>
                         <input type="text" class="form-control form-dark form-control-lg" name="feedback_title" id="title" value="{{ old('feedback_title') ?? $feedback->feedback_title }}" required>
@@ -53,14 +53,6 @@
                     <div class="card text-bg-dark related-all-feedback">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <h5 class="card-title">Also available:</h5>
-                            <div class="btn-group">
-                                <button class="btn btn-outline btn-sm related_last_five" type="button">
-                                    <i class="fa-solid fa-list-check me-2"></i>Выбрать последние 5
-                                </button>
-                                <button class="btn btn-outline btn-sm deselect-btn" type="button">
-                                    <i class="fa-solid fa-rectangle-xmark me-2"></i>Снять выбор
-                                </button>
-                            </div>
                         </div>
                         <div class="card-body">
                             @foreach($feedback_list as $item)
@@ -72,6 +64,16 @@
                                     </div>
                                 @endif
                             @endforeach
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group">
+                                <button class="btn btn-outline btn-sm related_last_five" type="button">
+                                    <i class="fa-solid fa-list-check me-2"></i>Выбрать последние 5
+                                </button>
+                                <button class="btn btn-outline btn-sm deselect-btn" type="button">
+                                    <i class="fa-solid fa-rectangle-xmark me-2"></i>Снять выбор
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

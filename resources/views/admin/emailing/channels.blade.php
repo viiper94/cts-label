@@ -12,7 +12,7 @@
         </div>
         <div class="table-responsive mb-3" data-fl-scrolls>
             <table class="table table-dark table-hover">
-                <tbody>
+                <thead>
                 <tr>
                     <th>Название</th>
                     <th>Тема письма</th>
@@ -23,6 +23,8 @@
                     <th>Создано</th>
                     <th></th>
                 </tr>
+                </thead>
+                <tbody class="text-nowrap">
                 @foreach($channels as $channel)
                     <tr>
                         <td><b>{{ $channel->title }}</b></td>

@@ -7,8 +7,8 @@
         <form method="POST" action="{{ route('artists.resort') }}" id="sort_form">
             @csrf
         </form>
-        <div class="justify-content-between align-items-center d-flex my-3">
-            <div class="releases-actions">
+        <div class="justify-content-between align-items-center flex-column-reverse flex-lg-row my-3 d-flex">
+            <div class="releases-actions m-xl-0 m-1">
                 <a href="{{ route('artists.create') }}" class="btn btn-primary">
                     <i class="fa-solid fa-plus me-2"></i>Новый артист
                 </a>
@@ -20,7 +20,7 @@
         </div>
         <div class="row">
             @foreach($artists as $artist)
-                <div class="col-md-2 col-sm-4 col-xs-12">
+                <div class="col-xxl-2 col-lg-3 col-md-6 col-sm-4 col-xs-12">
                     <div class="card text-bg-dark mb-3">
                         <div class="card-header">
                             <h5 class="card-title text-nowrap mb-0 text-truncate">{{ $artist->name }}</h5>
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="card-footer justify-content-end">
-                            <a class="btn btn-sm btn-primary" href="{{ route('artists.edit', $artist->id) }}">
+                            <a class="btn btn-sm btn-primary text-nowrap" href="{{ route('artists.edit', $artist->id) }}">
                                 <i class="fa-solid fa-pen me-2"></i>Редактировать
                             </a>
                         </div>

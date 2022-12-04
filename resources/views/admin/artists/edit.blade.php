@@ -25,15 +25,15 @@
                 @method('PUT')
             @endif
             @csrf
-            <div class="row mb-3">
-                <div class="col-md-5 col-xs-12">
+            <div class="row">
+                <div class="col-md-5 col-xs-12 mb-3">
                     <img src="/images/artists/{{ $artist->image ?? 'default.png' }}" id="preview" class="w-100">
                     <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
                     @if($errors->has('image'))
                         <p class="help-block text-danger">{{ $errors->first('image') }}</p>
                     @endif
                 </div>
-                <div class="col-md-7 col-xs-12">
+                <div class="col-md-7 col-xs-12 mb-3">
                     <div class="form-check mb-3">
                         <input type="hidden" name="visible" value="0">
                         <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($artist->visible)>

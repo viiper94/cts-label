@@ -4,9 +4,9 @@
 
     <div class="container-fluid admin-releases">
 
-        <div class="justify-content-between align-items-center d-flex my-3">
-            <div class="releases-actions">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newFeedbackModal">
+        <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
+            <div class="releases-actions text-center">
+                <button type="button" class="btn btn-primary m-xl-0 m-1" data-bs-toggle="modal" data-bs-target="#newFeedbackModal">
                     <i class="fa-solid fa-plus me-2"></i>Новый фидбек
                 </button>
             </div>
@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             @foreach($feedback_list as $feedback)
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-xxl-3 col-xl-4 col-md-12 col-sm-6 col-xs-12">
                     <div class="card text-bg-dark mb-3">
                         <div class="row g-0">
                             <div class="card-header">

@@ -3,9 +3,9 @@
 @section('admin-content')
 
     <div class="container-fluid emailing">
-        <div class="justify-content-between align-items-center d-flex my-3">
+        <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
             <div class="releases-actions">
-                <a href="{{ route('emailing.contacts.create') }}" class="btn btn-primary">
+                <a href="{{ route('emailing.contacts.create') }}" class="btn btn-primary m-xl-0 m-1">
                     <i class="fa-solid fa-plus me-2"></i>Новый контакт
                 </a>
             </div>
@@ -13,7 +13,7 @@
         </div>
         <div class="table-responsive" data-fl-scrolls>
             <table class="table table-hover table-dark">
-                <tbody>
+                <thead>
                 <tr>
                     @php $headers = [
                         'name' => 'Имя',
@@ -66,6 +66,8 @@
                     </th>
                     <th></th>
                 </tr>
+                </thead>
+                <tbody class="text-nowrap">
                 @foreach($contacts as $contact)
                     <tr>
                         <td><b @if($contact->full_name) title="{{ $contact->full_name }}" @endif>{{ $contact->name }}</b></td>

@@ -29,10 +29,10 @@
         @endforeach
 
         <div class="modal fade" id="serviceModal">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
-                    <form action="{{ route('studio.store') }}" enctype="multipart/form-data" method="post" id="modal-form">
-                        <div class="modal-body py-3">
+                    <div class="modal-body py-3">
+                        <form action="{{ route('studio.store') }}" enctype="multipart/form-data" method="post" id="modal-form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5">
@@ -63,8 +63,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                     <div class="modal-footer">
                         <form method="post" id="delete-form" style="display:none;">
                             @csrf
@@ -72,7 +72,7 @@
                             <button type="submit" class="btn btn-outline-danger" form="delete-form" onclick='return confirm("Удалить?")'><i class="fa-solid fa-trash"></i> Удалить</button>
                         </form>
                         <button type="submit" class="btn btn-primary" form="modal-form"><i class="fa-solid fa-floppy-disk"></i> Сохранить</button>
-                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Закрыть</button>
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
             </div>

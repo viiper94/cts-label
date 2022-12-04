@@ -11,12 +11,12 @@
         <form id="sort_form" method="POST" action="{{ route('releases.resort') }}">
             @csrf
         </form>
-        <div class="justify-content-between align-items-center d-flex my-3">
-            <div class="releases-actions">
-                <a href="{{ route('releases.create') }}" class="btn btn-primary">
+        <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
+            <div class="releases-actions text-center">
+                <a href="{{ route('releases.create') }}" class="btn btn-primary m-xl-0 m-1">
                     <i class="fa-solid fa-plus me-2"></i>Новый релиз
                 </a>
-                <button type="submit" class="btn btn-outline" form="sort_form" onclick="return confirm('Отсортировать?')">
+                <button type="submit" class="btn btn-outline m-xl-0 m-1" form="sort_form" onclick="return confirm('Отсортировать?')">
                     <i class="fa-solid fa-sort me-2"></i>Отсортировать
                 </button>
             </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="row">
             @foreach($releases as $release)
-                <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="col-xxl-4 col-lg-6 col-xs-12">
                     <div class="card text-bg-dark mb-3">
                         <div class="row g-0">
                             <div class="card-header">
@@ -38,7 +38,7 @@
                                     <div class="d-flex flex-grow-1">
                                         <div class="card-body">
                                             <small class="text-muted">Номер каталога</small>
-                                            <h4 class="card-text">{{ $release->release_number }}</h4>
+                                            <h5 class="card-text">{{ $release->release_number }}</h5>
                                             <small class="text-muted">Дата релиза</small>
                                             <h5 class="card-text">{{ $release->release_date?->isoFormat('LL') }}</h5>
                                         </div>

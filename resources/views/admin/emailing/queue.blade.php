@@ -19,9 +19,9 @@
             @if($queue_count > 0)
                 <div class="progress bg-dark mb-0">
                     <div @class([
-                            'progress-bar progress-bar-striped',
-                            'progress-bar-warning text-dark progress-bar-animated' => $queue_sent !== $queue_count,
-                            'progress-bar-success' => $queue_sent === $queue_count
+                            'progress-bar',
+                            'bg-success text-dark progress-bar-animated progress-bar-striped' => $queue_sent !== $queue_count,
+                            'bg-success' => $queue_sent === $queue_count
                         ]) role="progressbar" aria-valuenow="{{ floor(($queue_sent / $queue_count) * 100) }}"
                          aria-valuemin="0" aria-valuemax="100" style="width: {{ floor(($queue_sent / $queue_count) * 100) }}%">
                         <span><b>{{ floor(($queue_sent / $queue_count) * 100) }}%</b></span>

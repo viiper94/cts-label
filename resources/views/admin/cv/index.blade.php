@@ -25,10 +25,10 @@
                             <td><span class="label {{ $cv->getStatus()['labelClass'] }}">{{ $cv->getStatus()['name'] }}</span></td>
                             <td>{{ $cv->created_at->isoFormat('LLL') }}</td>
                             <td>
-                                <form action="{{ route('cv.destroy', $cv->id) }}" method="POST">
+                                <form action="{{ route('school.cv.destroy', $cv->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <a class="btn btn-sm btn-primary" href="{{ route('cv.show', $cv->id) }}">
+                                    <a class="btn btn-sm btn-primary" href="{{ route('school.cv.show', $cv->id) }}">
                                         <i class="fa-solid fa-chevron-right me-2"></i>Смотреть анкету
                                     </a>
                                     <button class="btn btn-sm btn-outline-danger" type="submit" onclick='return confirm("Удалить анкету?")'>

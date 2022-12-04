@@ -27,8 +27,18 @@
                 <a href="{{ route('school.courses.index') }}" class="nav-link"><i class="fa-solid fa-building-columns me-2"></i>CTShool</a>
                 <ul>
                     <li>
-                        <a href="{{ route('school.courses.index') }}" @class(['nav-link', 'active' => \Route::is('school.courses.*')])><i class="fa-solid fa-graduation-cap me-2"></i>Курси школы</a>
-                        <a href="{{ route('school.teachers.index') }}" @class(['nav-link', 'active' => \Route::is('school.teachers.*')])><i class="fa-solid fa-chalkboard-user me-2"></i>Преподаватели</a>
+                        <a href="{{ route('school.courses.index') }}" @class(['nav-link', 'active' => \Route::is('school.courses.*')])>
+                            <i class="fa-solid fa-graduation-cap me-2"></i>Курсы школы
+                        </a>
+                        <a href="{{ route('school.teachers.index') }}" @class(['nav-link', 'active' => \Route::is('school.teachers.*')])>
+                            <i class="fa-solid fa-chalkboard-user me-2"></i>Преподаватели
+                        </a>
+                        <a href="{{ route('school.cv.index') }}" @class(['nav-link', 'active' => \Route::is('school.cv.*')])>
+                            <i class="fa-solid fa-file-lines me-2"></i>Анкеты
+                            @if($cv_count > 0)
+                                <span class="badge bg-danger">{{ $cv_count }}</span>
+                            @endif
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -56,14 +66,6 @@
                         </a>
                     </li>
                 </ul>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('cv.index') }}" @class(['nav-link', 'active' => \Route::is('cv.*')])>
-                    <i class="fa-solid fa-file-lines me-2"></i>Анкеты
-                    @if($cv_count > 0)
-                        <span class="badge bg-danger">{{ $cv_count }}</span>
-                    @endif
-                </a>
             </li>
         </ul>
         <hr>

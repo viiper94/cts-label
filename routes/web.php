@@ -49,9 +49,6 @@ Route::group(['middleware' => 'i18n'], function(){
 
         Route::get('/', [AdminController::class, 'index'])->name('admin');
 
-        Route::get('/cv/document/{cv}', [AdminCvController::class, 'document'])->name('cv.document');
-        Route::resource('/cv', AdminCvController::class)->only(['index', 'show', 'destroy']);
-
         Route::resource('/users', AdminUsersController::class)->only(['index', 'destroy']);
 
         Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
@@ -86,6 +83,9 @@ Route::group(['middleware' => 'i18n'], function(){
 
             Route::post('/teachers/resort', [AdminSchoolTeachersController::class, 'resort'])->name('teachers.resort');;
             Route::resource('/teachers', AdminSchoolTeachersController::class)->except(['show', 'edit', 'create']);
+
+            Route::get('/cv/document/{cv}', [AdminCvController::class, 'document'])->name('cv.document');
+            Route::resource('/cv', AdminCvController::class)->only(['index', 'show', 'destroy']);
 
         });
 

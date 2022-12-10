@@ -3249,6 +3249,38 @@ function withinMaxClamp(min, value, max) {
 
 /***/ }),
 
+/***/ "./resources/js/admin.js":
+/*!*******************************!*\
+  !*** ./resources/js/admin.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var bootstrap_dist_js_bootstrap_min__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/js/bootstrap.min */ "./node_modules/bootstrap/dist/js/bootstrap.min.js");
+/* harmony import */ var bootstrap_dist_js_bootstrap_min__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_js_bootstrap_min__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var floating_scroll_dist_jquery_floatingscroll_min__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! floating-scroll/dist/jquery.floatingscroll.min */ "./node_modules/floating-scroll/dist/jquery.floatingscroll.min.js");
+/* harmony import */ var floating_scroll_dist_jquery_floatingscroll_min__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(floating_scroll_dist_jquery_floatingscroll_min__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jquery_ui_dist_jquery_ui_min__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery-ui/dist/jquery-ui.min */ "./node_modules/jquery-ui/dist/jquery-ui.min.js");
+/* harmony import */ var jquery_ui_dist_jquery_ui_min__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_dist_jquery_ui_min__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var litepicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! litepicker */ "./node_modules/litepicker/dist/litepicker.umd.js");
+/* harmony import */ var litepicker__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(litepicker__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap-star-rating */ "./node_modules/bootstrap-star-rating/js/star-rating.min.js");
+/* harmony import */ var bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4__);
+window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+
+
+
+
+__webpack_require__(/*! ./admin/common.js */ "./resources/js/admin/common.js");
+__webpack_require__(/*! ./admin/feedback.js */ "./resources/js/admin/feedback.js");
+__webpack_require__(/*! ./admin/releases.js */ "./resources/js/admin/releases.js");
+__webpack_require__(/*! ./admin/reviews.js */ "./resources/js/admin/reviews.js");
+__webpack_require__(/*! ./admin/studio_school.js */ "./resources/js/admin/studio_school.js");
+
+/***/ }),
+
 /***/ "./resources/js/admin/common.js":
 /*!**************************************!*\
   !*** ./resources/js/admin/common.js ***!
@@ -3541,38 +3573,6 @@ $(document).ready(function () {
     $('#serviceModal').modal('show');
   });
 });
-
-/***/ }),
-
-/***/ "./resources/js/app.js":
-/*!*****************************!*\
-  !*** ./resources/js/app.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bootstrap_dist_js_bootstrap_min__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap/dist/js/bootstrap.min */ "./node_modules/bootstrap/dist/js/bootstrap.min.js");
-/* harmony import */ var bootstrap_dist_js_bootstrap_min__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_js_bootstrap_min__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var floating_scroll_dist_jquery_floatingscroll_min__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! floating-scroll/dist/jquery.floatingscroll.min */ "./node_modules/floating-scroll/dist/jquery.floatingscroll.min.js");
-/* harmony import */ var floating_scroll_dist_jquery_floatingscroll_min__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(floating_scroll_dist_jquery_floatingscroll_min__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery_ui_dist_jquery_ui_min__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery-ui/dist/jquery-ui.min */ "./node_modules/jquery-ui/dist/jquery-ui.min.js");
-/* harmony import */ var jquery_ui_dist_jquery_ui_min__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_dist_jquery_ui_min__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var litepicker__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! litepicker */ "./node_modules/litepicker/dist/litepicker.umd.js");
-/* harmony import */ var litepicker__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(litepicker__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap-star-rating */ "./node_modules/bootstrap-star-rating/js/star-rating.min.js");
-/* harmony import */ var bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_star_rating__WEBPACK_IMPORTED_MODULE_4__);
-window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-
-
-
-
-
-__webpack_require__(/*! ./admin/common.js */ "./resources/js/admin/common.js");
-__webpack_require__(/*! ./admin/feedback.js */ "./resources/js/admin/feedback.js");
-__webpack_require__(/*! ./admin/releases.js */ "./resources/js/admin/releases.js");
-__webpack_require__(/*! ./admin/reviews.js */ "./resources/js/admin/reviews.js");
-__webpack_require__(/*! ./admin/studio_school.js */ "./resources/js/admin/studio_school.js");
 
 /***/ }),
 
@@ -14601,6 +14601,19 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
+/***/ }),
+
+/***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
 /***/ })
 
 /******/ 	});
@@ -14714,7 +14727,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/admin": 0,
-/******/ 			"css/admin": 0
+/******/ 			"css/admin": 0,
+/******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -14764,8 +14778,9 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin"], () => (__webpack_require__("./resources/sass/admin.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/app"], () => (__webpack_require__("./resources/js/admin.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/app"], () => (__webpack_require__("./resources/sass/admin.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

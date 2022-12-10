@@ -9,8 +9,7 @@
     @yield('meta')
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <title>@yield('title', "CTS Records")</title>
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/cts1.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{  mix('css/app.css') }}" media="screen,projection"/>
     @yield('assets')
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -26,9 +25,7 @@
 <body>
     <div id="fb-root"></div>
     @include('layout.header')
-    <section class = "main-content">
-        @yield('content')
-    </section>
+    @yield('content')
     @include('layout.footer')
 </body>
 </html>

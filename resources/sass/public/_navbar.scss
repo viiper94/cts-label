@@ -1,0 +1,8 @@
+// Navbar
+.navbar-nav{
+    .nav-link,
+    .nav-link.active{
+        color: $primary-text;
+        text-transform: uppercase;
+    }
+}

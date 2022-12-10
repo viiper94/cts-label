@@ -1,0 +1,38 @@
+@import "variables";
+
+// Reset
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    font-family: 'Open Sans', 'Arial', 'sans-serif';
+}
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap.scss";
+
+// Fonts
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+// Plugins
+@import "~bootstrap-star-rating/css/star-rating.min.css";
+
+// Common
+@import "aliases";
+@import "scrollbar";
+@import "buttons";
+@import "nav";
+@import "cards";
+@import "forms";
+@import "toasts";
+@import "badge";
+@import "modals";
+@import "tables";
+@import "dropdown";
+
+@import "public/common";
+@import "public/header";
+@import "public/navbar";

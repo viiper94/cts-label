@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    {{ $artist->name }} | CTS Records Admin Panel
+    {{ $artist->name ?? 'Новый артист' }} | CTS Records Admin Panel
 @endsection
 
 @section('admin-content')

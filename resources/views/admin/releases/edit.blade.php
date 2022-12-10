@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    {{ $release->title }} | CTS Records Admin Panel
+    {{ $release->title ?? 'Новый релиз' }} | CTS Records Admin Panel
 @endsection
 
 @section('admin-content')

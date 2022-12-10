@@ -1,5 +1,9 @@
 @extends('admin.layout.layout')
 
+@section('title')
+    {{ $review->track ?? 'Новое ревью' }} | CTS Records Admin Panel
+@endsection
+
 @section('admin-content')
 
     <div class="container-fluid">

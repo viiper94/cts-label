@@ -1,5 +1,9 @@
 @extends('admin.layout.layout')
 
+@section('title')
+    {{ $feedback->feedback_title ?? 'Новый фидбек' }} | CTS Records Admin Panel
+@endsection
+
 @section('admin-content')
     <div class="container-fluid edit-feedback">
         <button type="submit" class="btn btn-primary shadow sticky-top my-3" form="edit_release">

@@ -1,5 +1,9 @@
 @extends('admin.layout.layout')
 
+@section('title')
+    {{ $channel->title ?? 'Новый канал рассылки' }} | CTS Records Admin Panel
+@endsection
+
 @section('admin-content')
 
     <div class="container-fluid">

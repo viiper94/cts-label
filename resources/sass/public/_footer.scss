@@ -1,0 +1,74 @@
+// Footer
+footer{
+    p{
+        color: $primary-text;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    p.copyright{
+        font-size: 15px;
+    }
+    a{
+        display: inline-block;
+    }
+    img{
+        height: 40px;
+        opacity: .7;
+        cursor: pointer;
+        &:hover{
+            opacity: 1;
+        }
+    }
+    .socials{
+        background: url(../../img/socials.png) top left no-repeat;
+        width: 33px;
+        height: 33px;
+        display: inline-block;
+        margin: 1px;
+        background-position-y: -33px;
+        &:hover{
+            background-position-y: 0;
+        }
+        &.socials-beatport{
+            background-position-x: 0;
+        }
+        &.socials-itunes{
+            background-position-x: -33px;
+        }
+        &.socials-facebook{
+            background-position-x: -66px;
+        }
+        &.socials-youtube{
+            background-position-x: -99px;
+        }
+        &.socials-ra{
+            background-position-x: -132px;
+        }
+        &.socials-soundcloud{
+            background-position-x: -198px;
+        }
+        &.socials-as{
+            background-position-x: -231px;
+        }
+        &.socials-rss{
+            background-position-x: -264px;
+        }
+        &.socials-twitter{
+            background-position-x: -297px;
+        }
+        &.socials-instagram{
+            background-position-x: -330px;
+        }
+        &.socials-discogs{
+            background-position-x: -363px;
+        }
+        &.socials-spotify{
+            background-position-x: -429px;
+        }
+        &.socials-myspace{
+            background-position-x: -396px;
+        }
+    }
+}

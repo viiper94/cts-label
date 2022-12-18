@@ -21223,6 +21223,10 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 }
 
 body {
+  background-color: #000;
+}
+
+main {
   background-color: #1c1c1c;
 }
 
@@ -21394,6 +21398,47 @@ footer .socials.socials-myspace {
   background-position-x: -396px;
 }
 
+.pgn-container {
+  display: flex;
+}
+.pgn-container .pgn, .pgn-container .dots {
+  text-decoration: none;
+  font-size: 19px;
+  color: #a7a7a7;
+  padding: 0 5px;
+  height: 47px;
+  line-height: 47px;
+}
+.pgn-container .pgn.pgn-selected, .pgn-container .dots.pgn-selected {
+  color: #eee;
+}
+.pgn-container .pgn:not(.dots):hover, .pgn-container .dots:not(.dots):hover {
+  color: #e9a222;
+}
+.pgn-container .prev-btn, .pgn-container .next-btn {
+  background: url(/images/prev-next.png?2387e60b812d0933e8591e3b3764f3ef) top left no-repeat;
+  width: 20px;
+  height: 47px;
+  line-height: 53px;
+  margin: 0 7px;
+  text-decoration: none;
+}
+.pgn-container .prev-btn.btn-disabled, .pgn-container .next-btn.btn-disabled {
+  opacity: 0.5;
+}
+.pgn-container .prev-btn {
+  background-position: -3px;
+}
+.pgn-container .prev-btn:not(.btn-disabled):hover {
+  background-position: -43px;
+}
+.pgn-container .next-btn {
+  background-position: -63px;
+}
+.pgn-container .next-btn:not(.btn-disabled):hover {
+  background-position: -23px;
+}
+
 aside .widget {
   width: 310px;
   margin-bottom: 35px;
@@ -21417,5 +21462,26 @@ aside .widget .widget-content {
 }
 
 .release-brief {
-  padding: 5px;
+  position: relative;
+  width: 32%;
+  transition: 0.5s ease transform;
+}
+.release-brief .item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  text-shadow: 0 0 4px rgb(0, 0, 0);
+  background-color: rgba(42, 190, 168, 0.8);
+  color: #eee;
+  opacity: 0;
+  transition: 0.5s ease opacity;
+}
+.release-brief:hover {
+  transform: scale(1.06);
+}
+.release-brief:hover .item-overlay {
+  opacity: 1;
 }

@@ -21223,13 +21223,16 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 }
 
 body {
-  background-color: #000;
+  background-color: #1c1c1c;
 }
 
 .container {
   max-width: 1140px;
 }
 
+header {
+  background-color: #000;
+}
 header .logo {
   margin-bottom: 25px;
   width: 180px;
@@ -21316,6 +21319,9 @@ nav.navbar .navbar-toggler:focus {
   box-shadow: none;
 }
 
+footer {
+  background-color: #000;
+}
 footer p {
   color: #eee;
   font-size: 12px;
@@ -21408,4 +21414,8 @@ aside .widget h3 a:hover, aside .widget .h3 a:hover {
 aside .widget .widget-content {
   padding: 5px;
   background: #333;
+}
+
+.release-brief {
+  padding: 5px;
 }

@@ -1,0 +1,24 @@
+// Aside
+aside{
+    .widget{
+        width: 310px;
+        margin-bottom: 35px;
+        h3{
+            background: $background-lighten-2;
+            color: $primary;
+            margin: 0;
+            padding: 10px 16px;
+            font-size: 16px;
+            a{
+                text-decoration: none;
+                &:hover{
+                    color: $secondary;
+                }
+            }
+        }
+        .widget-content{
+            padding: 5px;
+            background: $background-lighten-3;
+        }
+    }
+}

@@ -1,8 +1,5 @@
 $(document).ready(function(){
-    $('#main_nav').scrollToFixed({
-        fixed : function(){$('#nav').addClass('menu-fixed');$('.navbar-brand').show()},
-        postFixed : function() {$('.navbar-brand').hide();$('#nav').removeClass('menu-fixed')}
-    });
+
     var hash = window.location.hash;
     if ($(hash + '-menu').length > 0) {
         $('#about-menu').removeClass('active');

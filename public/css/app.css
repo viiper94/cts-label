@@ -21315,3 +21315,75 @@ nav.navbar .navbar-toggler {
 nav.navbar .navbar-toggler:focus {
   box-shadow: none;
 }
+
+footer p {
+  color: #eee;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+footer p.copyright {
+  font-size: 15px;
+}
+footer a {
+  display: inline-block;
+}
+footer img {
+  height: 40px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+footer img:hover {
+  opacity: 1;
+}
+footer .socials {
+  background: url(/images/socials.png?8e50db6e9a384d2ee4d98517b0115f2f) top left no-repeat;
+  width: 33px;
+  height: 33px;
+  display: inline-block;
+  margin: 1px;
+  background-position-y: -33px;
+}
+footer .socials:hover {
+  background-position-y: 0;
+}
+footer .socials.socials-beatport {
+  background-position-x: 0;
+}
+footer .socials.socials-itunes {
+  background-position-x: -33px;
+}
+footer .socials.socials-facebook {
+  background-position-x: -66px;
+}
+footer .socials.socials-youtube {
+  background-position-x: -99px;
+}
+footer .socials.socials-ra {
+  background-position-x: -132px;
+}
+footer .socials.socials-soundcloud {
+  background-position-x: -198px;
+}
+footer .socials.socials-as {
+  background-position-x: -231px;
+}
+footer .socials.socials-rss {
+  background-position-x: -264px;
+}
+footer .socials.socials-twitter {
+  background-position-x: -297px;
+}
+footer .socials.socials-instagram {
+  background-position-x: -330px;
+}
+footer .socials.socials-discogs {
+  background-position-x: -363px;
+}
+footer .socials.socials-spotify {
+  background-position-x: -429px;
+}
+footer .socials.socials-myspace {
+  background-position-x: -396px;
+}

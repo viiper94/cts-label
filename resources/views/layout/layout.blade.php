@@ -25,6 +25,7 @@
 <body>
     <div id="fb-root"></div>
     @include('layout.header')
+    @include('admin.layout.alert')
     @yield('content')
     @include('layout.footer')
 </body>

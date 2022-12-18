@@ -3,7 +3,7 @@
 @section('title', 'About CTS')
 
 @section('content')
-    <div class = "container">
+    <div class = "container" data-bs-spy="scroll" data-bs-target="#main_nav" data-bs-smooth-scroll="true">
         <div class="col-md-9 col-sm-8 content inner">
             <div class="row" style="padding:0 30px 0 0;">
                 <script type="application/ld+json">

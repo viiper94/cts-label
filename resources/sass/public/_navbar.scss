@@ -1,8 +1,83 @@
 // Navbar
-.navbar-nav{
-    .nav-link,
-    .nav-link.active{
-        color: $primary-text;
-        text-transform: uppercase;
+nav.navbar{
+    background-color: #000;
+    padding-top: 0;
+    .menu-fixed{
+        .nav-link{
+            font-size: 14px;
+        }
+        .navbar-brand{
+            display: none;
+            @media (min-width: $lg) {
+                display: block;
+            }
+            padding: 12px 15px;
+            line-height: 20px;
+        }
+    }
+    #navbar{
+        &:not(.menu-fixed){
+            .navbar-brand{
+                display: none;
+            }
+        }
+    }
+    .navbar-nav{
+        .nav-link, .nav-link.active{
+            color: $primary-text;
+            text-transform: uppercase;
+        }
+        .nav-link{
+            padding: 15px;
+            line-height: 20px;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+        .nav-link.active{
+            box-shadow: inset 0 0 0 3px $primary;
+        }
+    }
+    .search{
+        position: relative;
+        width: 310px;
+        input{
+            height: 34px;
+            font-size: 14px;
+            color: $border-color;
+            &::placeholder{
+                font-style: italic;
+                color: $primary-text-darker;
+            }
+            & + button{
+                position: absolute;
+                right: 6px;
+                top: 3px;
+                padding: 0 5px;
+                cursor: pointer;
+                background-color: transparent;
+                font-size: 20px;
+                color: $primary-text-darker;
+            }
+        }
+    }
+    .search-small{
+        width: 200px;
+        input{
+            height: 54px;
+            & + button{
+                top: 13px;
+            }
+        }
+    }
+    .navbar-toggler{
+        background-color: $background;
+        color: $primary-text-darker;
+        //padding: 20px;
+        width: 62px;
+        height: 54px;
+        &:focus{
+            box-shadow: none;
+        }
     }
 }

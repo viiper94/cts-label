@@ -1,0 +1,41 @@
+// Pagination
+.pgn-container{
+    display: flex;
+    .pgn, .dots{
+        text-decoration: none;
+        font-size: 19px;
+        color: $primary-text-darker;
+        padding: 0 5px;
+        height: 47px;
+        line-height: 47px;
+        &.pgn-selected{
+            color: $primary-text;
+        }
+        &:not(.dots):hover{
+            color: $primary;
+        }
+    }
+    .prev-btn, .next-btn {
+        background: url(../../img/prev-next.png) top left no-repeat;
+        width: 20px;
+        height: 47px;
+        line-height: 53px;
+        margin: 0 7px;
+        text-decoration: none;
+        &.btn-disabled{
+            opacity: .5;
+        }
+    }
+    .prev-btn {
+        background-position: -3px;
+        &:not(.btn-disabled):hover{
+            background-position: -43px;
+        }
+    }
+    .next-btn {
+        background-position: -63px;
+        &:not(.btn-disabled):hover{
+            background-position: -23px;
+        }
+    }
+}

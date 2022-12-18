@@ -25,8 +25,10 @@
 <body>
     <div id="fb-root"></div>
     @include('layout.header')
-    @include('admin.layout.alert')
-    @yield('content')
+    <main class="pb-4">
+        @include('admin.layout.alert')
+        @yield('content')
+    </main>
     @include('layout.footer')
 </body>
 </html>

@@ -3260,11 +3260,8 @@ $(document).ready(function () {
   $('#main_nav').scrollToFixed({
     fixed: function fixed() {
       $('#navbar').addClass('menu-fixed');
-      // $('.navbar-brand').show();
     },
-
     postFixed: function postFixed() {
-      // $('.navbar-brand').hide();
       $('#navbar').removeClass('menu-fixed');
     }
   });

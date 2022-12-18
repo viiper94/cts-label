@@ -1,9 +1,9 @@
 @if ($paginator->hasPages())
-    <div class="row">
-        <div class = "col-xs-12 text-center pgn-container">
+    <div class="d-flex justify-content-center">
+        <div class="pgn-container">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <span class="prev-btn" aria-hidden="true" aria-label="@lang('pagination.previous')">&nbsp;</span>
+                <span class="prev-btn btn-disabled" aria-hidden="true" aria-label="@lang('pagination.previous')">&nbsp;</span>
             @else
                 <a class="prev-btn" href="{{ $paginator->previousPageUrl() }}" aria-label="@lang('pagination.previous')">&nbsp;</a>
             @endif
@@ -12,7 +12,7 @@
             @foreach ($elements as $key => $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <span>{{ $element }}</span>
+                    <span class="dots">{{ $element }}</span>
                 @endif
 
                 {{-- Array Of Links --}}
@@ -29,7 +29,7 @@
             @if ($paginator->hasMorePages())
                 <a class="next-btn" href="{{ $paginator->nextPageUrl() }}" aria-label="@lang('pagination.next')">&nbsp;</a>
             @else
-                <span class="next-btn" aria-hidden="true" aria-label="@lang('pagination.next')">&nbsp;</span>
+                <span class="next-btn btn-disabled" aria-hidden="true" aria-label="@lang('pagination.next')">&nbsp;</span>
             @endif
         </div>
     </div>

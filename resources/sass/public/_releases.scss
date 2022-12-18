@@ -1,4 +1,25 @@
 // Releases
 .release-brief{
-    padding: 5px;
+    position: relative;
+    width: 32%;
+    transition: .5s ease transform;
+    .item-overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 18px;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 1);
+        background-color: $secondary-with-alpha;
+        color: $primary-text;
+        opacity: 0;
+        transition: .5s ease opacity;
+    }
+    &:hover{
+        transform: scale(1.06);
+        .item-overlay{
+            opacity: 1;
+        }
+    }
 }

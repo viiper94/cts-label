@@ -4,17 +4,15 @@
 
 @section('content')
     <div class="container pt-3">
-        <div class="row flex-nowrap">
-            <section class="col content">
-                <div class="row">
+        <div class="row">
+            <section class="col">
+                <div class="d-flex justify-content-between flex-wrap">
                     @foreach($releases as $release)
-                        <div class="col-sm-4 col-xs-6 release-brief mb-4">
-                            <a href="{{ route('release', $release->id) }}">
+                        <div class="release-brief mb-4">
+                            <a href="{{ route('release', $release->id) }}" class="d-block">
                                 <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="img-fluid">
-                                <div class="item-overlay">
-                                    <div class="item-data">
-                                        <div>{{  $release->title  }}</div>
-                                    </div>
+                                <div class="item-overlay d-flex justify-content-center align-items-center p-3 text-center">
+                                    <span class="">{{ $release->title }}</span>
                                 </div>
                             </a>
                         </div>

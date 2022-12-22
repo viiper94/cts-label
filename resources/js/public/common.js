@@ -13,10 +13,10 @@ $(document).ready(function(){
 function setCookie(name, value, options) {
     options = options || {};
 
-    var expires = options.expires;
+    let expires = options.expires;
 
     if (typeof expires == "number" && expires) {
-        var d = new Date();
+        let d = new Date();
         d.setTime(d.getTime() + expires * 1000);
         expires = options.expires = d;
     }
@@ -26,11 +26,11 @@ function setCookie(name, value, options) {
 
     value = encodeURIComponent(value);
 
-    var updatedCookie = name + "=" + value;
+    let updatedCookie = name + "=" + value;
 
-    for (var propName in options) {
+    for (let propName in options) {
         updatedCookie += "; " + propName;
-        var propValue = options[propName];
+        let propValue = options[propName];
         if (propValue !== true) {
             updatedCookie += "=" + propValue;
         }

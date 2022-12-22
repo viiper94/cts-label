@@ -21,7 +21,7 @@
                 </a>
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a @class(['nav-link', 'active' => \Route::is('home')]) href="{{ route('home') }}">@lang('navbar.home')</a>
+                        <a @class(['nav-link', 'active' => \Route::is('home') || \Route::is('release')]) href="{{ route('home') }}">@lang('navbar.home')</a>
                     </li>
                     <li class="nav-item">
                         <a @class(['nav-link', 'active' => \Route::is('about')]) href="{{ route('about') }}" id="about-menu">@lang('navbar.about')</a>

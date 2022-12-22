@@ -21113,7 +21113,7 @@ readers do not read off random characters that represent icons */
 .litepicker .container__months .month-item-header div > .month-item-name,
 .litepicker .container__months .month-item-header div > .month-item-year {
   background-color: #333;
-  color: #a7a7a7;
+  color: #89898b;
 }
 .litepicker .container__days .day-item.is-start-date.is-end-date,
 .litepicker .container__days .day-item:hover {
@@ -21166,7 +21166,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 }
 .btn.btn-outline {
   background-color: #252525;
-  color: #a7a7a7;
+  color: #89898b;
   border: 1px solid #555;
 }
 .btn.btn-outline:hover {
@@ -21192,7 +21192,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 }
 .form-control.form-dark, .form-select.form-dark {
   background-color: #252525;
-  color: #a7a7a7;
+  color: #89898b;
 }
 
 .form-check-input {
@@ -21223,7 +21223,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 
 .modal .modal-content {
   background-color: #2a2a2a;
-  color: #a7a7a7;
+  color: #89898b;
   border-radius: 0;
   border: 1px solid #555;
 }
@@ -21247,7 +21247,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
   padding: 0;
 }
 .dropdown .dropdown-menu a.dropdown-item {
-  color: #a7a7a7;
+  color: #89898b;
 }
 .dropdown .dropdown-menu a.dropdown-item:hover {
   background-color: #e9a222;
@@ -21256,7 +21256,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 
 .text-bg-dark, .bg-dark {
   background-color: #2a2a2a !important;
-  color: #a7a7a7 !important;
+  color: #89898b !important;
 }
 
 body {
@@ -21297,7 +21297,7 @@ body {
   -moz-appearance: textfield;
 }
 .admin-items .card .card-sort a {
-  color: #a7a7a7;
+  color: #89898b;
 }
 .admin-items .card .card-sort a:hover {
   color: #e9a222;
@@ -21326,7 +21326,7 @@ body {
   color: #000;
 }
 .pagination-dark .page-item.disabled .page-link {
-  color: #a7a7a7;
+  color: #89898b;
 }
 .pagination-dark .page-item.disabled .page-link:hover {
   background-color: #e9a222;
@@ -21394,7 +21394,7 @@ body {
 }
 
 .related a {
-  color: #a7a7a7;
+  color: #89898b;
   text-decoration: none;
 }
 .related a:hover {

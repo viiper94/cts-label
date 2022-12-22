@@ -21134,7 +21134,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 }
 .btn.btn-outline {
   background-color: #252525;
-  color: #a7a7a7;
+  color: #89898b;
   border: 1px solid #555;
 }
 .btn.btn-outline:hover {
@@ -21160,7 +21160,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 }
 .form-control.form-dark, .form-select.form-dark {
   background-color: #252525;
-  color: #a7a7a7;
+  color: #89898b;
 }
 
 .form-check-input {
@@ -21191,7 +21191,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 
 .modal .modal-content {
   background-color: #2a2a2a;
-  color: #a7a7a7;
+  color: #89898b;
   border-radius: 0;
   border: 1px solid #555;
 }
@@ -21215,7 +21215,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
   padding: 0;
 }
 .dropdown .dropdown-menu a.dropdown-item {
-  color: #a7a7a7;
+  color: #89898b;
 }
 .dropdown .dropdown-menu a.dropdown-item:hover {
   background-color: #e9a222;
@@ -21232,6 +21232,28 @@ main {
 
 .container {
   max-width: 1140px;
+}
+
+.lang-switch {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  height: 75px;
+}
+.lang-switch .switch-btn {
+  text-decoration: none;
+  width: 45px;
+  height: 30px;
+  text-align: center;
+  color: #555;
+  border: 1px solid #555;
+  background: none;
+  line-height: 30px;
+  font-size: 14px;
+}
+.lang-switch .switch-btn.active {
+  color: #eee;
+  border-color: #e9a222;
 }
 
 header {
@@ -21288,11 +21310,11 @@ nav.navbar .search input {
 }
 nav.navbar .search input::-moz-placeholder {
   font-style: italic;
-  color: #a7a7a7;
+  color: #89898b;
 }
 nav.navbar .search input::placeholder {
   font-style: italic;
-  color: #a7a7a7;
+  color: #89898b;
 }
 nav.navbar .search input + button {
   position: absolute;
@@ -21302,7 +21324,7 @@ nav.navbar .search input + button {
   cursor: pointer;
   background-color: transparent;
   font-size: 20px;
-  color: #a7a7a7;
+  color: #89898b;
 }
 nav.navbar .search-small {
   width: 200px;
@@ -21315,7 +21337,7 @@ nav.navbar .search-small input + button {
 }
 nav.navbar .navbar-toggler {
   background-color: #1c1c1c;
-  color: #a7a7a7;
+  color: #89898b;
   width: 62px;
   height: 54px;
 }
@@ -21404,7 +21426,7 @@ footer .socials.socials-myspace {
 .pgn-container .pgn, .pgn-container .dots {
   text-decoration: none;
   font-size: 19px;
-  color: #a7a7a7;
+  color: #89898b;
   padding: 0 5px;
   height: 47px;
   line-height: 47px;
@@ -21484,4 +21506,100 @@ aside .widget .widget-content {
 }
 .release-brief:hover .item-overlay {
   opacity: 1;
+}
+
+.release-title {
+  color: #89898b;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 13px;
+}
+
+.release-date, .release-number {
+  color: #89898b;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.search-btns {
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+  background: url(/images/prev-next-search.png?9e180cfe4dbe126f0940741e41853a7c) top left no-repeat;
+  width: 20px;
+  height: 47px;
+  line-height: 53px;
+  margin: 0 7px;
+}
+.search-btns.prev-btn {
+  background-position: -3px;
+}
+.search-btns.prev-btn:not(.btn-disabled):hover {
+  background-position: -43px;
+}
+.search-btns.next-btn {
+  background-position: -63px;
+}
+.search-btns.next-btn:not(.btn-disabled):hover {
+  background-position: -23px;
+}
+.search-btns.btn-disabled {
+  opacity: 0.5;
+}
+
+.release-search {
+  color: #89898b;
+  padding: 0 20px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.share {
+  background: url(/images/share.png?0f07ea8325c691dda81d0211178a08f6) top left no-repeat;
+  width: 55px;
+  height: 49px;
+}
+.share.share-youtube {
+  background-color: #000;
+  background-position-x: -4px;
+}
+.share.share-beatport {
+  background-color: #000;
+  background-position-x: -160px;
+}
+.share.share-facebook {
+  background-color: #000;
+  background-position-x: -56px;
+}
+.share.share-twitter {
+  background-color: #000;
+  background-position-x: -104px;
+}
+.share.share-mail {
+  background-color: #000;
+  background-position-x: -362px;
+}
+.share:not(.btn-disabled):hover {
+  background-position-y: -49px;
+  background-color: #e9a222;
+}
+.share.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.release-tracklist {
+  color: #89898b;
+  min-height: 300px;
+}
+
+.release-content {
+  color: #89898b;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.release-related {
+  color: #89898b;
 }

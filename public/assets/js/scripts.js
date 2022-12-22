@@ -19,20 +19,7 @@ $(document).ready(function(){
         }
 
     });
-    $('.switch-btn').click(function(){
-        /*var id = $(this).attr('toggle');
-        console.log(id);
-        $('.switch-btn').each(function(){
-            $(this).removeClass('active');
-        })
-        $(this).addClass('active');
-        $('#ru,#en,#ua').hide();
-        $('#'+id).show();*/
-        setCookie('lang', $(this).data('lang'), {
-            expires : 3600 * 24 * 365,
-            path : '/'
-        });
-    });
+
     $('#collapsable').ajaxForm({
         url : '/subscribe/',
         type : 'POST',

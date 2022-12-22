@@ -5,7 +5,7 @@ return [
     'name' => 'Name',
     'birth_date' => 'Date of birth',
     'dj_name' => 'DJ Name, name of musical project (if available)',
-    'vk' => 'Instagram',
+    'instagram' => 'Instagram',
     'facebook' => 'Facebook',
     'soundcloud' => 'Soundcloud',
     'other_social' => 'Other',

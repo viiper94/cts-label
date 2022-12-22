@@ -3,7 +3,7 @@
 @section('title', $release->title)
 
 @section('content')
-    <div class="container pt-3">
+    <div class="container release pt-3">
         <div class="row">
             <section class="col pe-5">
                 <div class="row">

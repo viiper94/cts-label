@@ -38,11 +38,23 @@
                             <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="release-image img-fluid w-100"/>
                         </figure>
                         <div class="release-buttons d-flex justify-content-between py-5">
-                            <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank" class="share share-youtube @if(!$release->youtube) btn-disabled @endif"></a>
-                            <a @if($release->beatport) href="{{ $release->beatport }}" @endif target="_blank" class="share share-beatport @if(!$release->beatport) btn-disabled @endif"></a>
-                            <a href="javascript:void(0)" onclick="shareSocial('fb')" class="share share-facebook"></a>
-                            <a href="javascript:void(0)" onclick="shareSocial('twitter')" class="share share-twitter"></a>
-                            <a href="javascript:void(0)" onclick="shareSocial('mail')" class="share share-mail"></a>
+                            <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank"
+                               @class(['share share-youtube', 'btn-disabled' => !$release->youtube])>
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                            <a @if($release->beatport) href="{{ $release->beatport }}" @endif target="_blank"
+                                @class(['share share-beatport', 'btn-disabled' => !$release->beatport])>
+                                <i class="fa-brands fa-youtube"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="shareSocial('fb')" class="share share-facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="shareSocial('twitter')" class="share share-twitter">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="shareSocial('mail')" class="share share-mail">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
                         </div>
                         <div class="release-tracklist">
                             @if($release->tracklist)

@@ -67,36 +67,21 @@
     font-style: italic;
 }
 .share{
-    background: url(../../img/share.png) top left no-repeat;
     width: 55px;
     height: 49px;
-    &.share-youtube{
-        background-color: #000;
-        background-position-x: -4px;
-    }
-    &.share-beatport{
-        background-color: #000;
-        background-position-x: -160px;
-    }
-    &.share-facebook{
-        background-color: #000;
-        background-position-x: -56px;
-    }
-    &.share-twitter{
-        background-color: #000;
-        background-position-x: -104px;
-    }
-    &.share-mail{
-        background-color: #000;
-        background-position-x: -362px;
-    }
+    background-color: #000;
+    font-size: 30px;
+    color: $primary-text-darker;
+    text-align: center;
+    line-height: 49px;
     &:not(.btn-disabled):hover{
-        background-position-y: -49px;
         background-color: $primary;
+        color: $primary-text;
     }
     &.btn-disabled{
         opacity: .5;
         cursor: not-allowed;
+        color: $primary-text-darker;
     }
 }
 .release-tracklist{

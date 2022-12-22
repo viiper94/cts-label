@@ -23,3 +23,91 @@
         }
     }
 }
+.release-title{
+    color: $primary-text-darker;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 13px;
+}
+.release-date, .release-number{
+    color: $primary-text-darker;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.search-btns{
+    outline: none;
+    display: inline-block;
+    text-decoration: none;
+    background: url(../../img/prev-next-search.png) top left no-repeat;
+    width: 20px;
+    height: 47px;
+    line-height: 53px;
+    margin: 0 7px;
+    &.prev-btn {
+        background-position: -3px;
+        &:not(.btn-disabled):hover{
+            background-position: -43px;
+        }
+    }
+    &.next-btn {
+        background-position: -63px;
+        &:not(.btn-disabled):hover{
+            background-position: -23px;
+        }
+    }
+    &.btn-disabled {
+        opacity: 0.5;
+    }
+}
+.release-search {
+    color: $primary-text-darker;
+    padding: 0 20px;
+    font-size: 14px;
+    font-style: italic;
+}
+.share{
+    background: url(../../img/share.png) top left no-repeat;
+    width: 55px;
+    height: 49px;
+    &.share-youtube{
+        background-color: #000;
+        background-position-x: -4px;
+    }
+    &.share-beatport{
+        background-color: #000;
+        background-position-x: -160px;
+    }
+    &.share-facebook{
+        background-color: #000;
+        background-position-x: -56px;
+    }
+    &.share-twitter{
+        background-color: #000;
+        background-position-x: -104px;
+    }
+    &.share-mail{
+        background-color: #000;
+        background-position-x: -362px;
+    }
+    &:not(.btn-disabled):hover{
+        background-position-y: -49px;
+        background-color: $primary;
+    }
+    &.btn-disabled{
+        opacity: .5;
+        cursor: not-allowed;
+    }
+}
+.release-tracklist{
+    color: $primary-text-darker;
+    min-height: 300px;
+}
+.release-content{
+    color: $primary-text-darker;
+    font-size: 16px;
+    text-align: justify;
+}
+.release-related{
+    color: $primary-text-darker;
+}

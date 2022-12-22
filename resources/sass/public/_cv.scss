@@ -1,0 +1,11 @@
+// Cv
+.anketa{
+    label{
+        color: $primary-text-darker;
+    }
+    .user-socials{
+        input[type=text]{
+            display: none;
+        }
+    }
+}

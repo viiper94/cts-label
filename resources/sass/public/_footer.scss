@@ -23,53 +23,22 @@ footer{
         }
     }
     .socials{
-        background: url(../../img/socials.png) top left no-repeat;
+        font-size: 18px;
+        border: 2px solid $primary-text;
+        color: $primary-text;
         width: 33px;
         height: 33px;
-        display: inline-block;
-        margin: 1px;
-        background-position-y: -33px;
-        &:hover{
-            background-position-y: 0;
-        }
-        &.socials-beatport{
-            background-position-x: 0;
-        }
-        &.socials-itunes{
-            background-position-x: -33px;
-        }
-        &.socials-facebook{
-            background-position-x: -66px;
-        }
-        &.socials-youtube{
-            background-position-x: -99px;
-        }
+        line-height: 29px;
+        text-align: center;
+        margin-left: 5px;
+        background-color: transparent;
         &.socials-ra{
-            background-position-x: -132px;
+            line-height: 24px;
         }
-        &.socials-soundcloud{
-            background-position-x: -198px;
-        }
-        &.socials-as{
-            background-position-x: -231px;
-        }
-        &.socials-rss{
-            background-position-x: -264px;
-        }
-        &.socials-twitter{
-            background-position-x: -297px;
-        }
-        &.socials-instagram{
-            background-position-x: -330px;
-        }
-        &.socials-discogs{
-            background-position-x: -363px;
-        }
-        &.socials-spotify{
-            background-position-x: -429px;
-        }
-        &.socials-myspace{
-            background-position-x: -396px;
+        &:hover{
+            border-color: $primary;
+            background-color: $primary;
+            color: #000;
         }
     }
 }

@@ -8,3 +8,24 @@ main{
 .container{
     max-width: 1140px;
 }
+.lang-switch{
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    height: 75px;
+    .switch-btn{
+        text-decoration: none;
+        width: 45px;
+        height: 30px;
+        text-align: center;
+        color: $border-color;
+        border: 1px solid $border-color;
+        background: none;
+        line-height: 30px;
+        font-size: 14px;
+        &.active{
+            color: $primary-text;
+            border-color: $primary;
+        }
+    }
+}

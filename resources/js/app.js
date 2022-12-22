@@ -3,3 +3,4 @@ import "scrolltofixed/jquery-scrolltofixed";
 
 require('./public/common.js');
 require('./public/navbar.js');
+require('./public/releases.js');

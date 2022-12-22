@@ -21,18 +21,12 @@
                         <div class="lang-switch pb-3">
                             @if($release->detectActiveDescriptionLang(count: true) > 1)
                                 <div class="btn-group">
-                                    @if($release->getUsefulText($release->description_ua))
-                                        <a class="btn switch-btn @if($release->detectActiveDescriptionLang() === 'ua') active @endif"
-                                           data-lang="ua" href="{{ route('release', $release->id) }}">@lang('shared.ua')</a>
-                                    @endif
-                                    @if($release->getUsefulText($release->description_ru))
-                                        <a class="btn switch-btn @if($release->detectActiveDescriptionLang() === 'ru') active @endif"
-                                           data-lang="ru" href="{{ route('release', $release->id) }}">@lang('shared.ru')</a>
-                                    @endif
-                                    @if($release->getUsefulText($release->description_en))
-                                        <a class="btn switch-btn @if($release->detectActiveDescriptionLang() === 'en') active @endif"
-                                           data-lang="en" href="{{ route('release', $release->id) }}">@lang('shared.en')</a>
-                                    @endif
+                                    @foreach(['en', 'ua', 'ru'] as $item)
+                                        @if($release->getUsefulText($release['description_'.$item]))
+                                            <a @class(['btn switch-btn', 'active' => $release->detectActiveDescriptionLang() === $item])
+                                               data-lang="{{ $item }}" href="{{ route('release', $release->id) }}">@lang('shared.'.$item)</a>
+                                        @endif
+                                    @endforeach
                                 </div>
                             @endif
                         </div>

@@ -20,18 +20,20 @@
                         </div>
                         <div class="lang-switch pb-3">
                             @if($release->detectActiveDescriptionLang(count: true) > 1)
-                                @if($release->getUsefulText($release->description_ua))
-                                    <a class="switch-btn @if($release->detectActiveDescriptionLang() === 'ua') active @endif"
-                                       data-lang="ua" href="{{ route('release', $release->id) }}">@lang('shared.ua')</a>
-                                @endif
-                                @if($release->getUsefulText($release->description_ru))
-                                    <a class="switch-btn @if($release->detectActiveDescriptionLang() === 'ru') active @endif"
-                                       data-lang="ru" href="{{ route('release', $release->id) }}">@lang('shared.ru')</a>
-                                @endif
-                                @if($release->getUsefulText($release->description_en))
-                                    <a class="switch-btn @if($release->detectActiveDescriptionLang() === 'en') active @endif"
-                                        data-lang="en" href="{{ route('release', $release->id) }}">@lang('shared.en')</a>
-                                @endif
+                                <div class="btn-group">
+                                    @if($release->getUsefulText($release->description_ua))
+                                        <a class="btn switch-btn @if($release->detectActiveDescriptionLang() === 'ua') active @endif"
+                                           data-lang="ua" href="{{ route('release', $release->id) }}">@lang('shared.ua')</a>
+                                    @endif
+                                    @if($release->getUsefulText($release->description_ru))
+                                        <a class="btn switch-btn @if($release->detectActiveDescriptionLang() === 'ru') active @endif"
+                                           data-lang="ru" href="{{ route('release', $release->id) }}">@lang('shared.ru')</a>
+                                    @endif
+                                    @if($release->getUsefulText($release->description_en))
+                                        <a class="btn switch-btn @if($release->detectActiveDescriptionLang() === 'en') active @endif"
+                                           data-lang="en" href="{{ route('release', $release->id) }}">@lang('shared.en')</a>
+                                    @endif
+                                </div>
                             @endif
                         </div>
                     </div>

@@ -13,19 +13,17 @@ main{
     justify-content: end;
     align-items: flex-end;
     height: 75px;
-    .switch-btn{
+    .switch-btn, .switch-btn:active{
         text-decoration: none;
         width: 45px;
-        height: 30px;
-        text-align: center;
+        height: 33px;
         color: $border-color;
         border: 1px solid $border-color;
-        background: none;
-        line-height: 30px;
         font-size: 14px;
         &.active{
             color: $primary-text;
             border-color: $primary;
+            z-index: 9;
         }
     }
 }

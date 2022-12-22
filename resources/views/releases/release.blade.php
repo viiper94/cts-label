@@ -39,22 +39,22 @@
                         </figure>
                         <div class="release-buttons d-flex justify-content-between py-5">
                             <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank"
-                               @class(['share share-youtube', 'btn-disabled' => !$release->youtube])>
+                               @class(['share', 'btn-disabled' => !$release->youtube])>
                                 <i class="fa-brands fa-youtube"></i>
                             </a>
                             <a @if($release->beatport) href="{{ $release->beatport }}" @endif target="_blank"
-                                @class(['share share-beatport', 'btn-disabled' => !$release->beatport])>
-                                <i class="fa-brands fa-youtube"></i>
+                                @class(['share', 'btn-disabled' => !$release->beatport])>
+                                <i class="icon-beatport"></i>
                             </a>
-                            <a href="javascript:void(0)" onclick="shareSocial('fb')" class="share share-facebook">
+                            <button type="button" class="share sharer share-facebook" data-social="fb">
                                 <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                            <a href="javascript:void(0)" onclick="shareSocial('twitter')" class="share share-twitter">
+                            </button>
+                            <button type="button" class="share sharer share-twitter" data-social="tw">
                                 <i class="fa-brands fa-twitter"></i>
-                            </a>
-                            <a href="javascript:void(0)" onclick="shareSocial('mail')" class="share share-mail">
+                            </button>
+                            <button type="button" class="share sharer share-mail" data-social="mail">
                                 <i class="fa-solid fa-envelope"></i>
-                            </a>
+                            </button>
                         </div>
                         <div class="release-tracklist">
                             @if($release->tracklist)

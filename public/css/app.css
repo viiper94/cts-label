@@ -21554,37 +21554,22 @@ aside .widget .widget-content {
 }
 
 .share {
-  background: url(/images/share.png?0f07ea8325c691dda81d0211178a08f6) top left no-repeat;
   width: 55px;
   height: 49px;
-}
-.share.share-youtube {
   background-color: #000;
-  background-position-x: -4px;
-}
-.share.share-beatport {
-  background-color: #000;
-  background-position-x: -160px;
-}
-.share.share-facebook {
-  background-color: #000;
-  background-position-x: -56px;
-}
-.share.share-twitter {
-  background-color: #000;
-  background-position-x: -104px;
-}
-.share.share-mail {
-  background-color: #000;
-  background-position-x: -362px;
+  font-size: 30px;
+  color: #89898b;
+  text-align: center;
+  line-height: 49px;
 }
 .share:not(.btn-disabled):hover {
-  background-position-y: -49px;
   background-color: #e9a222;
+  color: #eee;
 }
 .share.btn-disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  color: #89898b;
 }
 
 .release-tracklist {

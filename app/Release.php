@@ -42,8 +42,8 @@ class Release extends SharedModel{
     public function detectActiveDescriptionLang($count = false){
         $available_descriptions = array();
         $this->description_en ? $available_descriptions[] = 'en' : false;
-        $this->description_ru ? $available_descriptions[] = 'ru' : false;
         $this->description_ua ? $available_descriptions[] = 'ua' : false;
+        $this->description_ru ? $available_descriptions[] = 'ru' : false;
         if($count){
             return count($available_descriptions);
         }

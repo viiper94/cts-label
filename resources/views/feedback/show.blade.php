@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <div class="container py-5 feedback">
+    <div class="container pt-5 pb-3 feedback">
         <div class="row">
             <div class="col-12 col-sm-auto cover">
                 @if($feedback->release)
@@ -89,23 +89,25 @@
 
             @if(count($feedback->tracks) > 1)
                 <!-- ----------- Best track ------------- -->
-                <div class="best_track">
-                    <span>Best Track/Remix:</span>
-                    @foreach($feedback->tracks as $track)
-                        <label>
-                            <input type="radio" name="best_track" value="{{ $track['title'] }}" required>&nbsp
-                            {{ $track['title'] }}
-                        </label>
+                <div class="best_track text-light mb-5">
+                    <h6 class="fw-bold">Best Track/Remix:</h6>
+                    @foreach($feedback->tracks as $key => $track)
+                        <div class="form-check">
+                            <input type="radio" name="best_track" id="best_{{ $key }}" value="{{ $track['title'] }}" class="form-check-input" required>
+                            <label for="best_{{ $key }}" class="form-check-label">{{ $track['title'] }}</label>
+                        </div>
                     @endforeach
                 </div>
             @endif
 
             <!-- ----------- Comment ------------- -->
-            <div class="comment">
-                <span>Comment:</span>
-                <textarea name="comment" class="form-control" cols="59" rows="7" required></textarea>
+            <div class="comment text-light mb-5">
+                <h6 class="fw-bold">Comment:</h6>
+                <textarea name="comment" class="form-control form-dark" rows="3" required></textarea>
             </div>
-            <input class="submit_button btn btn-primary" type="submit" name="send_feedback" value="Send Feedback">
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary" type="submit"><i class="fa-solid fa-check me-2"></i>Send feedback</button>
+            </div>
         </form>
     </div>
 

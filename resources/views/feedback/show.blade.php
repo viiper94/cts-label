@@ -1,47 +1,58 @@
-@extends('feedback.layout')
+@extends('layout.layout')
 
 @section('content')
 
-{{--    @if($errors->any())--}}
-{{--        @dump($errors)--}}
-{{--    @endif--}}
-    <section>
-        <div class="cover">
-            @if($feedback->release)
-                <a href="{{ route('release', $feedback->release->id) }}" target="_blank">
-                    <img src="/images/releases/{{ $feedback->release->image }}" alt="{{ $feedback->release->title }}" style="max-width: 250px;">
-                </a>
-            @else
-                <img src="/images/feedback/{{ $feedback->image }}" alt="{{ $feedback->feedback_title }}" style="max-width: 250px;">
-            @endif
-        </div>
-        <div class="header_text_en">
-            <span>Please let us know what you think by filling out this feedback form! After filling out our feedback
-                form and sending your reaction by pushing "Send Feedback" button, you will get download links on new page.</span>
-        </div>
-        <div class="header_text_ru">
-            <span>Будь ласка оцініть треки та залиште свій коментар у наведеній нижче формі! Після заповнення форми та
-                надсилання Вашої рецензії, натисканням кнопки "Send Feedback", download лінки будуть доступні на наступній сторінці.</span>
-{{--            <span>Пожалуйста оцените треки и оставьте свой коментарий в нижеприведенной форме! После заполнения формы и--}}
-{{--                отправки Вашей рецензии, нажатием кнопки "Send Feedback", download линки будут доступны на следующей странице.</span>--}}
-        </div>
-        @if(count($feedback->related) > 0)
-            <div class="also_avaliable">
-                <span>Also avaliable:</span>
-                @foreach($feedback->related as $track)
-                    <a href="{{ route('feedback', $track->slug) }}" target="_blank">{{ $track->feedback_title }}</a>
-                @endforeach
+    <div class="container py-5 feedback">
+        <div class="row">
+            <div class="col-12 col-sm-auto cover">
+                @if($feedback->release)
+                    <a href="{{ route('release', $feedback->release->id) }}" target="_blank">
+                        <img src="/images/releases/{{ $feedback->release->image }}" alt="{{ $feedback->release->title }}">
+                    </a>
+                @else
+                    <img src="/images/feedback/{{ $feedback->image }}" alt="{{ $feedback->feedback_title }}">
+                @endif
             </div>
-        @endif
-    </section>
-    <div class="main_content">
-        <form class="form-horizontal" id="feedback-form" method="POST">
+            <div class="col-12 col-sm">
+                <div class="lang-switch mb-3">
+                    <div class="btn-group">
+                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en' || !isset($_COOKIE['lang'])])
+                           data-lang="en" href="{{ route('feedback', $feedback->slug) }}">
+                            @lang('shared.en')
+                        </a>
+                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua'])
+                           data-lang="ua" href="{{ route('feedback', $feedback->slug) }}">
+                            @lang('shared.ua')
+                        </a>
+                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru'])
+                           data-lang="ru" href="{{ route('feedback', $feedback->slug) }}">
+                            @lang('shared.ru')
+                        </a>
+                    </div>
+                </div>
+                <p class="header_text py-3">@lang('feedback.header_text')</p>
+                <hr>
+                @if(count($feedback->related) > 0)
+                    <div class="also_available py-3">
+                        <h6 class="fw-bold">Also available:</h6>
+                        @foreach($feedback->related as $track)
+                            <a href="{{ route('feedback', $track->slug) }}" target="_blank">{{ $track->feedback_title }}</a>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <form id="feedback-form" class="py-3" method="post">
             @csrf
-            <div class="info_inputs">
-                <span>Feedback Form</span>
-                <input type="text" class="form-control" id="name" name="name" required placeholder="Your Name">
-                <input type="email" class="form-control" id="email" name="email" required placeholder="Your E-mail">
+            <div class="row">
+                <h5 class="text-center fw-bold">Feedback Form</h5>
+                <div class="d-flex w-25 m-auto flex-column form-group">
+                    <input type="text" class="form-control form-dark mb-2" id="name" name="name" required placeholder="Your Name">
+                    <input type="email" class="form-control form-dark" id="email" name="email" required placeholder="Your E-mail">
+                </div>
             </div>
+            <hr class="w-75 m-auto my-3">
 
             <!-- ----------- Tracks ------------- -->
             @foreach($feedback->tracks as $key => $track)
@@ -76,16 +87,16 @@
             @endforeach
 
             @if(count($feedback->tracks) > 1)
-            <!-- ----------- Best track ------------- -->
-            <div class="best_track">
-                <span>Best Track/Remix:</span>
-                @foreach($feedback->tracks as $track)
-                    <label>
-                        <input type="radio" name="best_track" value="{{ $track['title'] }}" required>&nbsp
-                        {{ $track['title'] }}
-                    </label>
-                @endforeach
-            </div>
+                <!-- ----------- Best track ------------- -->
+                <div class="best_track">
+                    <span>Best Track/Remix:</span>
+                    @foreach($feedback->tracks as $track)
+                        <label>
+                            <input type="radio" name="best_track" value="{{ $track['title'] }}" required>&nbsp
+                            {{ $track['title'] }}
+                        </label>
+                    @endforeach
+                </div>
             @endif
 
             <!-- ----------- Comment ------------- -->
@@ -98,8 +109,9 @@
     </div>
 
     <script>
-        let players = [];
-        @foreach($feedback->tracks as $key => $track)
+        $(document).ready(function(){
+            let players = [];
+            @foreach($feedback->tracks as $key => $track)
 
             let wavesurfer_{{ $key }} = WaveSurfer.create({
                 container: '#waveform_{{ $key }}',
@@ -107,19 +119,7 @@
                 height: 90,
                 waveColor: '#339999',
                 progressColor: '#339999',
-                cursorWidth: 0,
-                /*plugins: [
-                    WaveSurfer.cursor.create({
-                        showTime: true,
-                        opacity: 1,
-                        customShowTimeStyle: {
-                            'background-color': '#000',
-                            color: '#fff',
-                            padding: '2px',
-                            'font-size': '10px'
-                        }
-                    })
-                ]*/
+                cursorWidth: 0
             });
             players.push(wavesurfer_{{ $key }});
             wavesurfer_{{ $key }}.load('/audio/feedback/{{ $feedback->slug }}/320/{!! $track[320] !!}');
@@ -164,22 +164,24 @@
             wavesurfer_{{ $key }}.on('audioprocess', function(){
                 $('.track[data-id={{ $key }}] .current-time').text(convertDuration(wavesurfer_{{ $key }}.getCurrentTime()));
             });
-        @endforeach
+            @endforeach
 
-        function convertDuration(duration){
-            var dec = duration / 60;
-            var min = parseInt(dec);
-            if (min.toString().length === 1) min = '0' + min;
-            var sec = Math.round((dec - min)*60);
-            if (sec.toString().length === 1) sec = '0' + sec;
-            return min + ':' + sec;
-        }
+            function convertDuration(duration){
+                var dec = duration / 60;
+                var min = parseInt(dec);
+                if (min.toString().length === 1) min = '0' + min;
+                var sec = Math.round((dec - min)*60);
+                if (sec.toString().length === 1) sec = '0' + sec;
+                return min + ':' + sec;
+            }
 
-        function getBarClickPercent(e, el){
-            var clickedPositionPx = e.pageX - $(el).offset().left;
-            var seekBarWidth = $(el).width();
-            return clickedPositionPx/seekBarWidth *100;
-        }
+            function getBarClickPercent(e, el){
+                var clickedPositionPx = e.pageX - $(el).offset().left;
+                var seekBarWidth = $(el).width();
+                return clickedPositionPx/seekBarWidth *100;
+            }
+        });
+
 
     </script>
 

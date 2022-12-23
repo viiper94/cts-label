@@ -21157,6 +21157,8 @@ readers do not read off random characters that represent icons */
 
 .icon-resident-advisor:before {
   content: "\e801";
+  font-size: 12px;
+  width: auto;
 }
 
 .icon-myspace:before {
@@ -21165,6 +21167,37 @@ readers do not read off random characters that represent icons */
 
 .icon-discogs:before {
   content: "\e803";
+}
+
+.litepicker .container__months {
+  border-radius: 0;
+}
+.litepicker .container__months .month-item-header div > .month-item-name,
+.litepicker .container__months .month-item-header div > .month-item-year {
+  background-color: #333;
+  color: #89898b;
+}
+.litepicker .container__days .day-item.is-start-date.is-end-date,
+.litepicker .container__days .day-item:hover {
+  border-radius: 0;
+}
+
+:root {
+  --litepicker-container-months-color-bg: #333 !important;
+  --litepicker-container-months-box-shadow-color: rgba(0,0,0,.12) !important;
+  --litepicker-month-header-color: #eab120 !important;
+  --litepicker-button-prev-month-color-hover: #eab120 !important;
+  --litepicker-button-next-month-color-hover: #eab120 !important;
+  --litepicker-day-color: #fff;
+  --litepicker-day-color-hover: #eab120 !important;
+  --litepicker-is-today-color: #eab120 !important;
+  --litepicker-is-in-range-color: #333 !important;
+  --litepicker-is-locked-color: #727272 !important;
+  --litepicker-is-start-color: rgb(47, 47, 47) !important;
+  --litepicker-is-start-color-bg: #eab120 !important;
+  --litepicker-is-end-color: rgb(47, 47, 47) !important;
+  --litepicker-is-end-color-bg: #eab120 !important;
+  --litepicker-button-reset-color-hover: #eab120 !important;
 }
 
 body::-webkit-scrollbar, .modal-body::-webkit-scrollbar, .table-responsive::-webkit-scrollbar, select::-webkit-scrollbar, .sidebar::-webkit-scrollbar {
@@ -21285,6 +21318,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 
 body {
   background-color: #000;
+  color: #eee;
 }
 
 main {
@@ -21299,7 +21333,6 @@ main {
   display: flex;
   justify-content: end;
   align-items: flex-end;
-  height: 75px;
 }
 .lang-switch .switch-btn, .lang-switch .switch-btn:active {
   text-decoration: none;
@@ -21429,54 +21462,23 @@ footer img:hover {
   opacity: 1;
 }
 footer .socials {
-  background: url(/images/socials.png?8e50db6e9a384d2ee4d98517b0115f2f) top left no-repeat;
+  font-size: 18px;
+  border: 2px solid #eee;
+  color: #eee;
   width: 33px;
   height: 33px;
-  display: inline-block;
-  margin: 1px;
-  background-position-y: -33px;
-}
-footer .socials:hover {
-  background-position-y: 0;
-}
-footer .socials.socials-beatport {
-  background-position-x: 0;
-}
-footer .socials.socials-itunes {
-  background-position-x: -33px;
-}
-footer .socials.socials-facebook {
-  background-position-x: -66px;
-}
-footer .socials.socials-youtube {
-  background-position-x: -99px;
+  line-height: 29px;
+  text-align: center;
+  margin-left: 5px;
+  background-color: transparent;
 }
 footer .socials.socials-ra {
-  background-position-x: -132px;
+  line-height: 24px;
 }
-footer .socials.socials-soundcloud {
-  background-position-x: -198px;
-}
-footer .socials.socials-as {
-  background-position-x: -231px;
-}
-footer .socials.socials-rss {
-  background-position-x: -264px;
-}
-footer .socials.socials-twitter {
-  background-position-x: -297px;
-}
-footer .socials.socials-instagram {
-  background-position-x: -330px;
-}
-footer .socials.socials-discogs {
-  background-position-x: -363px;
-}
-footer .socials.socials-spotify {
-  background-position-x: -429px;
-}
-footer .socials.socials-myspace {
-  background-position-x: -396px;
+footer .socials:hover {
+  border-color: #e9a222;
+  background-color: #e9a222;
+  color: #000;
 }
 
 .pgn-container {
@@ -21567,21 +21569,19 @@ aside .widget .widget-content {
   opacity: 1;
 }
 
-.release-title {
+.release .release-title {
   color: #89898b;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 20px;
   margin-top: 13px;
 }
-
-.release-date, .release-number {
+.release .release-date, .release .release-number {
   color: #89898b;
   font-size: 15px;
   margin-bottom: 10px;
 }
-
-.search-btns {
+.release .search-btns {
   outline: none;
   display: inline-block;
   text-decoration: none;
@@ -21591,30 +21591,31 @@ aside .widget .widget-content {
   line-height: 53px;
   margin: 0 7px;
 }
-.search-btns.prev-btn {
+.release .search-btns.prev-btn {
   background-position: -3px;
 }
-.search-btns.prev-btn:not(.btn-disabled):hover {
+.release .search-btns.prev-btn:not(.btn-disabled):hover {
   background-position: -43px;
 }
-.search-btns.next-btn {
+.release .search-btns.next-btn {
   background-position: -63px;
 }
-.search-btns.next-btn:not(.btn-disabled):hover {
+.release .search-btns.next-btn:not(.btn-disabled):hover {
   background-position: -23px;
 }
-.search-btns.btn-disabled {
+.release .search-btns.btn-disabled {
   opacity: 0.5;
 }
-
-.release-search {
+.release .release-search {
   color: #89898b;
   padding: 0 20px;
   font-size: 14px;
   font-style: italic;
 }
-
-.share {
+.release .lang-switch {
+  height: 75px;
+}
+.release .share {
   width: 55px;
   height: 49px;
   background-color: #000;
@@ -21623,27 +21624,144 @@ aside .widget .widget-content {
   text-align: center;
   line-height: 49px;
 }
-.share:not(.btn-disabled):hover {
+.release .share:not(.btn-disabled):hover {
   background-color: #e9a222;
   color: #eee;
 }
-.share.btn-disabled {
+.release .share.btn-disabled {
   opacity: 0.5;
   cursor: not-allowed;
   color: #89898b;
 }
-
-.release-tracklist {
+.release .release-tracklist {
   color: #89898b;
   min-height: 300px;
 }
-
-.release-content {
+.release .release-content {
   color: #89898b;
   font-size: 16px;
   text-align: justify;
 }
-
-.release-related {
+.release .release-related {
   color: #89898b;
+}
+
+.artists .a-b {
+  color: #89898b;
+  font-size: 17px;
+}
+.artists .artist-brief {
+  position: relative;
+  width: 25%;
+  font-size: 14px;
+  cursor: pointer;
+}
+.artists .artist-brief a {
+  display: block;
+}
+.artists .artist-brief .artist-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #eee;
+  padding: 10px;
+  transition: 0.3s ease padding-bottom;
+}
+.artists .artist-brief:hover .artist-title {
+  color: #e9a222;
+  padding-bottom: 40px;
+}
+
+.about h5, .about .h5 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #89898b;
+}
+.about h6, .about .h6 {
+  font-size: 14px;
+  color: #89898b;
+}
+.about p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.about #contacts a {
+  color: #eee;
+  text-decoration: none;
+}
+.about #contacts a:hover {
+  color: #e9a222;
+}
+.about #contacts .cts-records {
+  background: url(/images/cts-records.png?6e7d15806a5c5288e41169f4d2f861cf) 330px no-repeat;
+}
+.about #contacts .cts-school {
+  background: url(/images/cts-school.png?d54d35a10b649a81bac9ceebfd616bd9) 330px -5px no-repeat;
+}
+.about #contacts .cts-studio {
+  background: url(/images/cts-studio.png?624ab650179470f7168800aadd4d4ec0) 330px -9px no-repeat;
+}
+
+.anketa label {
+  color: #89898b;
+}
+.anketa .user-socials input[type=text] {
+  display: none;
+}
+
+.feedback ul {
+  list-style: none;
+  padding-left: 0;
+}
+.feedback ul a {
+  color: #89898b;
+  text-decoration: none;
+}
+.feedback ul a:hover {
+  color: #e9a222;
+}
+.feedback .cover img {
+  width: 350px;
+}
+.feedback hr {
+  border-color: #89898b;
+}
+.feedback .header_text {
+  color: #eee;
+  text-align: justify;
+}
+.feedback .also_available {
+  color: #eee;
+}
+.feedback .track {
+  color: #89898b;
+}
+.feedback .track .info .time {
+  width: 100px;
+}
+.feedback .track .info .volume-bar {
+  position: relative;
+  overflow: hidden;
+  background-color: #333;
+  width: 150px;
+  height: 5px;
+  cursor: pointer;
+}
+.feedback .track .info .volume-bar .volume-bar-value {
+  background-color: #e9a222;
+  height: 100%;
+  width: 100%;
+}
+.feedback .track .bar {
+  background: url(/images/loading.gif?3277027d4d5eaa56d39c51a61c504635) no-repeat center center;
+  background-size: contain;
+}
+.feedback .track .bar .play-pause {
+  background-color: transparent;
+  font-size: 25px;
+  color: #e9a222;
+}
+.feedback .track .bar .play-pause i {
+  width: 25px;
 }

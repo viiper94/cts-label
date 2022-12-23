@@ -1,7 +1,14 @@
 <?php
 return [
 
-    'header_text' => 'Please let us know what you think by filling out this feedback form! After filling out our feedback
-                    form and sending your reaction by pushing "Send Feedback" button, you will get download links on new page.',
+    'header_text' => 'Пожалуйста, оцените треки и оставьте свой коментарий в нижеприведенной форме! После заполнения формы и
+                отправки вашей рецензии, нажатием кнопки "Отправить", download линки будут доступны на следующей странице.',
+    'send' => 'Отправить',
+    'also_available' => 'Также доступно',
+    'feedback_form' => 'Фидбек форма',
+    'your_name' => 'Ваше имя',
+    'your_email' => 'Ваш E-Mail',
+    'best_track' => 'Лучший трек/ремикс',
+    'comment' => 'Комментарий'
 
 ];

@@ -18,8 +18,11 @@
                 </button>
             </form>
         @endif
+        <a href='{{ route('feedback', $feedback->slug) }}' class="btn btn-outline" target="_blank">
+            <i class="fa-solid fa-comment me-2"></i>Смотреть фидбек
+        </a>
         @if($feedback->release)
-            <a href='{{ route('release', $feedback->release->id) }}' class="btn btn-outline">
+            <a href='{{ route('release', $feedback->release->id) }}' class="btn btn-outline" target="_blank">
                 <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Релиз на сайте
             </a>
         @endif

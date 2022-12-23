@@ -12,12 +12,48 @@
     }
     .also_available{
         color: $primary-text;
-        a{
-            color: $primary-text-darker;
-            display: block;
-            text-decoration: none;
-            &:hover{
+        ul{
+            list-style: none;
+            padding-left: 0;
+            a{
+                color: $primary-text-darker;
+                text-decoration: none;
+                &:hover{
+                    color: $primary;
+                }
+            }
+        }
+    }
+    .track{
+        color: $primary-text-darker;
+        .info{
+            .time{
+                width: 100px;
+            }
+            .volume-bar{
+                position: relative;
+                overflow: hidden;
+                background-color: $background-lighten-3;
+                width: 150px;
+                height: 5px;
+                cursor: pointer;
+                .volume-bar-value{
+                    background-color: $primary;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+        .bar{
+            background: url(../../img/loading.gif) no-repeat center center;
+            background-size: contain;
+            .play-pause{
+                background-color: transparent;
+                font-size: 25px;
                 color: $primary;
+                i{
+                    width: 25px;
+                }
             }
         }
     }

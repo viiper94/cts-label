@@ -35,9 +35,11 @@
                 @if(count($feedback->related) > 0)
                     <div class="also_available py-3">
                         <h6 class="fw-bold">Also available:</h6>
-                        @foreach($feedback->related as $track)
-                            <a href="{{ route('feedback', $track->slug) }}" target="_blank">{{ $track->feedback_title }}</a>
-                        @endforeach
+                        <ul class="">
+                            @foreach($feedback->related as $track)
+                                <li><a href="{{ route('feedback', $track->slug) }}" target="_blank">{{ $track->feedback_title }}</a></li>
+                            @endforeach
+                        </ul>
                     </div>
                 @endif
             </div>

@@ -8,7 +8,7 @@
 
     <div class="container-fluid">
         <div class="releases-actions my-3">
-            <a href="{{ route('cv.public') }}" target="_blank" class="btn btn-outline">
+            <a href="{{ route('school.cv') }}" target="_blank" class="btn btn-outline">
                 <i class="fa-solid fa-list me-2"></i>Анкета
             </a>
         </div>

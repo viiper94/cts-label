@@ -1,0 +1,24 @@
+// Feedback
+.feedback{
+    .cover img{
+        width: 350px;
+    }
+    hr{
+        border-color: $primary-text-darker;
+    }
+    .header_text{
+        color: $primary-text;
+        text-align: justify;
+    }
+    .also_available{
+        color: $primary-text;
+        a{
+            color: $primary-text-darker;
+            display: block;
+            text-decoration: none;
+            &:hover{
+                color: $primary;
+            }
+        }
+    }
+}

@@ -9,6 +9,10 @@ return [
     'your_name' => 'Ваше имя',
     'your_email' => 'Ваш E-Mail',
     'best_track' => 'Лучший трек/ремикс',
-    'comment' => 'Комментарий'
+    'comment' => 'Комментарий',
+
+    'thank_you' => 'Спасибо!',
+    'find_links' => 'Вы можете найти ссылки на скачивание ниже!',
+    'download_archive' => 'Скачать архив',
 
 ];

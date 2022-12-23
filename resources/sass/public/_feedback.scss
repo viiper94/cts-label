@@ -1,5 +1,16 @@
 // Feedback
 .feedback{
+    ul{
+        list-style: none;
+        padding-left: 0;
+        a{
+            color: $primary-text-darker;
+            text-decoration: none;
+            &:hover{
+                color: $primary;
+            }
+        }
+    }
     .cover img{
         width: 350px;
     }
@@ -12,17 +23,6 @@
     }
     .also_available{
         color: $primary-text;
-        ul{
-            list-style: none;
-            padding-left: 0;
-            a{
-                color: $primary-text-darker;
-                text-decoration: none;
-                &:hover{
-                    color: $primary;
-                }
-            }
-        }
     }
     .track{
         color: $primary-text-darker;

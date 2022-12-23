@@ -9,6 +9,10 @@ return [
     'your_name' => 'Your Name',
     'your_email' => 'Your E-Mail',
     'best_track' => 'Best Track/Remix',
-    'comment' => 'Comment'
+    'comment' => 'Comment',
+
+    'thank_you' => 'Thank you!',
+    'find_links' => 'You can find download links below!',
+    'download_archive' => 'Download archive',
 
 ];

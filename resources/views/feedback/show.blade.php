@@ -54,7 +54,7 @@
         <form id="feedback-form" class="py-3" method="post">
             @csrf
             <div class="row">
-                <h5 class="text-center fw-bold">Feedback Form</h5>
+                <h5 class="text-center fw-bold text-light mb-3">Feedback Form</h5>
                 <div class="d-flex w-25 m-auto flex-column form-group">
                     <input type="text" class="form-control form-dark mb-2" id="name" name="name" required placeholder="Your Name">
                     <input type="email" class="form-control form-dark" id="email" name="email" required placeholder="Your E-mail">
@@ -65,31 +65,24 @@
             <!-- ----------- Tracks ------------- -->
             @foreach($feedback->tracks as $key => $track)
 
-                <div class="track" data-id="{{ $key }}">
-                    <div class="info">
-                        <div class="title">{{ $track['title'] }}</div>
-                        <div class="time">
-                            <div class="current-time"></div>
-                            <div class="time-break"></div>
-                            <div class="duration"></div>
+                <div class="track py-3" data-id="{{ $key }}">
+                    <div class="info d-flex align-items-center">
+                        <div class="title flex-grow-1">{{ $track['title'] }}</div>
+                        <div class="time ">
+                            <span class="current-time"></span>
+                            <span class="time-break"></span>
+                            <span class="duration"></span>
                         </div>
-                        <div class="volume-bar">
+                        <div class="volume-bar ms-3">
                             <div class="volume-bar-value"></div>
                         </div>
                     </div>
-                    <div class="bar" style="background-image: url(/assets/css/loading.gif);">
-                        <a class="play-pause"><i class="fas fa-play"></i></a>
-                        <div id="waveform_{{ $key }}" class="waveform"></div>
+                    <div class="bar d-flex align-items-center">
+                        <button type="button" class="play-pause me-3"><i class="fa-solid fa-play"></i></button>
+                        <div id="waveform_{{ $key }}" class="waveform flex-grow-1"></div>
                     </div>
-                    <div class="rate_radio">
-                        @for($i = 1; $i <= 10; $i++)
-                            <input type="radio" id="{{ $key.'_'.$i }}" name="rates[{{ $track['title'] }}]" value="{{ $i }}" required>
-                        @endfor
-                    </div>
-                    <div class="rate_labels">
-                        @for($i = 1; $i <= 10; $i++)
-                            <label for="{{ $key.'_'.$i }}">{{ $i }}</label>
-                        @endfor
+                    <div class="rate_stars py-3">
+                        <input type="radio" class="star-rating" name="rates[{{ $track['title'] }}]" value="0" required>
                     </div>
                 </div>
             @endforeach
@@ -123,16 +116,16 @@
 
             let wavesurfer_{{ $key }} = WaveSurfer.create({
                 container: '#waveform_{{ $key }}',
+                normalize: true,
                 barHeight: 1.3,
-                height: 90,
-                waveColor: '#339999',
-                progressColor: '#339999',
-                cursorWidth: 0
+                height: 70,
+                waveColor: '#5b450d',
+                progressColor: '#e9a222',
+                cursorWidth: 1
             });
             players.push(wavesurfer_{{ $key }});
             wavesurfer_{{ $key }}.load('/audio/feedback/{{ $feedback->slug }}/320/{!! $track[320] !!}');
             wavesurfer_{{ $key }}.on('ready', function(){
-
                 $('.track[data-id={{ $key }}] .bar').css({
                     'background-image': 'none'
                 });

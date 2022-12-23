@@ -1,7 +1,7 @@
 <header class="pt-2 pb-3">
     <div class="container text-center text-lg-start">
         <a href="{{ route('home') }}" class="d-block">
-            <img src="/assets/img/logo.png" class="logo" alt="Creative Technology Studio"/>
+            <img src="/images/logo.png" class="logo" alt="Creative Technology Studio"/>
         </a>
     </div>
     <nav class="navbar navbar-expand-lg pb-0" id="main_nav">
@@ -17,7 +17,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar">
                 <a class="navbar-brand me-0" href="{{ route('home') }}">
-                    <img src="/assets/img/logo-small.png" alt="Creative technology Studio" class="sticky-logo"/>
+                    <img src="/images/logo-small.png" alt="Creative technology Studio" class="sticky-logo"/>
                 </a>
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">

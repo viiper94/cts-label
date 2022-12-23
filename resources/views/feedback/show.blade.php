@@ -22,11 +22,11 @@
             <div class="col-12 col-sm">
                 <div class="lang-switch mb-3">
                     <div class="btn-group">
-                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en' || !isset($_COOKIE['lang'])])
+                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en'])
                            data-lang="en" href="{{ route('feedback', $feedback->slug) }}">
                             @lang('shared.en')
                         </a>
-                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua'])
+                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua' || !isset($_COOKIE['lang'])])
                            data-lang="ua" href="{{ route('feedback', $feedback->slug) }}">
                             @lang('shared.ua')
                         </a>
@@ -82,7 +82,7 @@
                         <div id="waveform_{{ $key }}" class="waveform flex-grow-1"></div>
                     </div>
                     <div class="rate_stars py-3">
-                        <input type="radio" class="star-rating" name="rates[{{ $track['title'] }}]" value="0" required>
+                        <input type="number" class="star-rating" name="rates[{{ $track['title'] }}]" value=0 required>
                     </div>
                 </div>
             @endforeach

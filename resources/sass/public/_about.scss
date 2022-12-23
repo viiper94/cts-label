@@ -1,0 +1,35 @@
+// About
+.about{
+    h5{
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: $primary-text-darker;
+    }
+    h6{
+        font-size: 14px;
+        color: $primary-text-darker;
+    }
+    p{
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    #contacts{
+        a{
+            color: $primary-text;
+            text-decoration: none;
+            &:hover{
+                color: $primary;
+            }
+        }
+        .cts-records{
+            background: url(../../img/cts-records.png) 330px no-repeat;
+        }
+        .cts-school{
+            background: url(../../img/cts-school.png) 330px -5px no-repeat;
+        }
+        .cts-studio{
+            background: url(../../img/cts-studio.png) 330px -9px no-repeat;
+        }
+    }
+
+}

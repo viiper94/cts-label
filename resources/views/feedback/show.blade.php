@@ -1,5 +1,11 @@
 @extends('layout.layout')
 
+@section('title', 'Feedback to '. $feedback->feedback_title)
+
+@section('scripts')
+    <script src="/js/wavesurfer.min.js"></script>
+@endsection
+
 @section('content')
 
     <div class="container py-5 feedback">

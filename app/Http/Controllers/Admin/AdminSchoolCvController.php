@@ -22,7 +22,7 @@ class AdminSchoolCvController extends Controller{
 
     public function destroy(Cv $cv){
         return $cv->delete() ?
-            redirect()->back()->with(['success' => 'Анкета удалена!']) :
+            redirect()->route('school.cv.index')->with(['success' => 'Анкета удалена!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

@@ -61,7 +61,7 @@ class AdminReviewsController extends Controller{
 
     public function destroy(Review $review){
         return $review->delete() ?
-            redirect()->back()->with(['success' => 'Ревью успешно удалено!']) :
+            redirect()->route('reviews.index')->with(['success' => 'Ревью успешно удалено!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

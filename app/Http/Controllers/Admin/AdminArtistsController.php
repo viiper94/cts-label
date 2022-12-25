@@ -82,7 +82,7 @@ class AdminArtistsController extends Controller{
             }
         }
         return $artist->delete() ?
-            redirect()->back()->with(['success' => 'Артист успешно удалён!']) :
+            redirect()->route('artists.index')->with(['success' => 'Артист успешно удалён!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

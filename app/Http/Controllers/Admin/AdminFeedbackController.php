@@ -111,7 +111,7 @@ class AdminFeedbackController extends Controller{
             }
         }
         return $feedback->delete() ?
-            redirect()->back()->with(['success' => 'Фидбэк успешно удалён!']) :
+            redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно удалён!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

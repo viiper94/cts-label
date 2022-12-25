@@ -100,7 +100,7 @@ class AdminReleasesController extends Controller{
             }
         }
         return $release->delete() ?
-            redirect()->back()->with(['success' => 'Релиз успешно удалён!']) :
+            redirect()->route('releases.index')->with(['success' => 'Релиз успешно удалён!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

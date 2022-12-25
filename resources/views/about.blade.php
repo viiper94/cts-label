@@ -22,7 +22,7 @@
         }
     </script>
 
-    <div class="container about pt-3" data-bs-spy="scroll" data-bs-target="#main_nav" data-bs-smooth-scroll="true">
+    <div class="container about pt-3" data-bs-spy="scroll" data-bs-target="#main_nav">
         <div class="row">
             <section class="col pe-5">
                 <div id="about">
@@ -50,12 +50,12 @@
                     </form>
                 </div>
                 <div id="demo" class="py-5">
-                    <h5 class="py-3">@lang('about.demo_policy')</h5>
+                    <h5 class="a-b mt-3 mb-4">@lang('about.demo_policy')</h5>
                     @lang('about.demo')
                 </div>
                 <div id="contacts" class="pt-5">
-                    <h5 class="pt-3">@lang('navbar.contact')</h5>
-                    <div class="pt-3 pb-5 cts-records">
+                    <h5 class="a-b mt-3 mb-4">@lang('navbar.contact')</h5>
+                    <div class="pt-2 pb-5 cts-records">
                         <h6>@lang('about.contact_cts_studio_requests')</h6>
                         <p>@lang('about.contact_general_info') <a href="mailto:info@cts-studio.com">info@cts-studio.com</a></p>
                         <p>@lang('about.contact_bookings') <a href="mailto:info@cts-studio.com">info@cts-studio.com</a></p>

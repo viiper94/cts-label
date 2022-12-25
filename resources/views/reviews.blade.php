@@ -3,49 +3,53 @@
 @section('title', 'Reviews')
 
 @section('content')
-    <div class = "container">
-        <div class="col-md-9 col-sm-8 content inner">
-            <div class="row" style="padding:0 30px 0 0;">
-                <div class="a-b">@lang('reviews.reviews')</div>
+    <div class="container reviews pt-3">
+        <div class="row">
+            <section class="col">
+                <h5 class="a-b mt-3 mb-4">@lang('reviews.reviews')</h5>
                 @foreach($tracks as $review)
-                    <div class="col-xs-12 review-brief">
-                        <div class="row">
-                            <h2>{{ $review->track }}</h2>
-                            @if($review->data['reviews'])
-                                @foreach($review->data['reviews'] as $item)
-                                    @if($item['author'] && $item['review'])
-                                        <h3>{{ $item['author'] }}</h3>
+                    <div class="review-brief me-5 pb-5 mb-5">
+                        <h6 class="review-track fw-bold mb-4">{{ $review->track }}</h6>
+                        @if($review->data['reviews'])
+                            @foreach($review->data['reviews'] as $item)
+                                @if($item['author'] && $item['review'])
+                                    <div class="review my-3">
+                                        <p class="fw-bold mb-0"><i class="fa-solid fa-angles-right me-1"></i>{{ $item['author'] }}</p>
                                         @if($item['location'])
-                                            <div class="location">({{ $item['location'] }})</div>
+                                            <p class="location fw-bold mb-0">({{ $item['location'] }})</p>
                                         @endif
-                                        <div class="col-sm-6"><div class="row">{{ $item['review'] }}</div></div>
-                                        <div class="col-sm-5 col-sm-offset-1">
-                                            @for($i = 0; $i < $item['score']; $i++)
-                                                <img src="/assets/img/star.png" width="16" height="13" class="pull-left"/>
-                                            @endfor
+                                        <div class="row pt-2">
+                                            <div class="col-12 col-sm-7">
+                                                <p class="review-text">{{ $item['review'] }}</p>
+                                            </div>
+                                            <div class="col-12 col-sm-5 review-score">
+                                                @for($i = 0; $i < $item['score']; $i++)
+                                                    <i class="fa-solid fa-star"></i>
+                                                @endfor
+                                            </div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                    @endif
-                                @endforeach
-                            @endif
+                                    </div>
+                                @endif
+                            @endforeach
                             @if($review->data['additional'])
-                                <div class="also-supported">@lang('reviews.also_supported')</div>
-                                @foreach($review->data['additional'] as $key => $supported)
-                                    @if($supported['author'])
-                                        <h4>{{ $supported['author'] }}
+                                <div class="also-supported">
+                                    <p class="mb-0">@lang('reviews.also_supported')</p>
+                                    @foreach($review->data['additional'] as $key => $supported)
+                                        @if($supported['author'])
+                                            <span class="fw-bold text-nowrap"><i class="fa-solid fa-angles-right me-1"></i>{{ $supported['author'] }}</span>
                                             @if($supported['location'])
-                                                <span class="nobold">({{ $supported['location'] }})</span>
+                                                <span> ({{ $supported['location'] }})</span>
                                             @endif
-                                        </h4>
-                                    @endif
-                                @endforeach
+                                        @endif
+                                    @endforeach
+                                </div>
                             @endif
-                        </div>
+                        @endif
                     </div>
                 @endforeach
-            </div>
-            {{ $tracks->links('layout.pagination') }}
+                {{ $tracks->links('layout.pagination') }}
+            </section>
+            @include('layout.aside')
         </div>
-        @include('layout.aside')
     </div>
 @endsection

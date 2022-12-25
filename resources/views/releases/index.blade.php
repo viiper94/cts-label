@@ -6,7 +6,7 @@
     <div class="container pt-3">
         <div class="row">
             <section class="col">
-                <div class="d-flex justify-content-between flex-wrap">
+                <div class="d-flex flex-wrap">
                     @foreach($releases as $release)
                         <div class="release-brief mb-4">
                             <a href="{{ route('release', $release->id) }}" class="d-block">

@@ -10,7 +10,7 @@
           "@type": "Organization",
           "name": "CTS Label",
           "url" : "https://www.cts-label.com",
-          "logo": "https://www.cts-label.com/assets/images/logo.png",
+          "logo": "https://www.cts-label.com/images/logo.png",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Kyiv, Ukraine",

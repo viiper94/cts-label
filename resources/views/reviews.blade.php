@@ -31,19 +31,19 @@
                                     </div>
                                 @endif
                             @endforeach
-                            @if($review->data['additional'])
-                                <div class="also-supported">
-                                    <p class="mb-0">@lang('reviews.also_supported')</p>
-                                    @foreach($review->data['additional'] as $key => $supported)
-                                        @if($supported['author'])
-                                            <span class="fw-bold text-nowrap"><i class="fa-solid fa-angles-right me-1"></i>{{ $supported['author'] }}</span>
-                                            @if($supported['location'])
-                                                <span> ({{ $supported['location'] }})</span>
-                                            @endif
+                        @endif
+                        @if($review->data['additional'])
+                            <div class="also-supported">
+                                <p class="mb-0">@lang('reviews.also_supported')</p>
+                                @foreach($review->data['additional'] as $key => $supported)
+                                    @if($supported['author'])
+                                        <span class="fw-bold text-nowrap"><i class="fa-solid fa-angles-right me-1"></i>{{ $supported['author'] }}</span>
+                                        @if($supported['location'])
+                                            <span> ({{ $supported['location'] }})</span>
                                         @endif
-                                    @endforeach
-                                </div>
-                            @endif
+                                    @endif
+                                @endforeach
+                            </div>
                         @endif
                     </div>
                 @endforeach

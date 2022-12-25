@@ -1,5 +1,8 @@
 // Common
+
 $(document).ready(function(){
+
+    $('.alert-toast').toast('show');
 
     $('.switch-btn').click(function(){
         setCookie('lang', $(this).data('lang'), {

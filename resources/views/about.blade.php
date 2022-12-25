@@ -26,7 +26,7 @@
         <div class="row">
             <section class="col pe-5">
                 <div id="about">
-                    <h5 class="py-3">@lang('navbar.about')</h5>
+                    <h5 class="a-b mt-3 mb-4">@lang('navbar.about')</h5>
                     @lang('about.about')
                 </div>
                 <div class="pb-5">

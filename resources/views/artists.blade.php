@@ -6,7 +6,7 @@
     <div class="container pt-3 artists">
         <div class="row">
             <section class="col pe-5">
-                <div class="a-b mt-3 mb-4 text-uppercase">@lang('artists.artists_remixers')</div>
+                <h5 class="a-b mt-3 mb-4">@lang('artists.artists_remixers')</h5>
                 <div class="d-flex flex-wrap mb-3">
                     @foreach($artists as $artist)
                         <div class="artist-brief">

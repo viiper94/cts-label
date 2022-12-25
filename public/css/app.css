@@ -21348,6 +21348,12 @@ main {
   z-index: 9;
 }
 
+.a-b {
+  color: #89898b;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
 header {
   background-color: #000;
 }
@@ -21545,6 +21551,7 @@ aside .widget .widget-content {
 }
 
 .release-brief {
+  margin-left: 10px;
   position: relative;
   width: 32%;
   transition: 0.5s ease transform;
@@ -21646,10 +21653,6 @@ aside .widget .widget-content {
   color: #89898b;
 }
 
-.artists .a-b {
-  color: #89898b;
-  font-size: 17px;
-}
 .artists .artist-brief {
   position: relative;
   width: 25%;
@@ -21673,11 +21676,6 @@ aside .widget .widget-content {
   padding-bottom: 40px;
 }
 
-.about h5, .about .h5 {
-  font-size: 1rem;
-  text-transform: uppercase;
-  color: #89898b;
-}
 .about h6, .about .h6 {
   font-size: 14px;
   color: #89898b;
@@ -21694,7 +21692,7 @@ aside .widget .widget-content {
   color: #e9a222;
 }
 .about #contacts .cts-records {
-  background: url(/images/cts-records.png?6e7d15806a5c5288e41169f4d2f861cf) 330px no-repeat;
+  background: url(/images/cts-records.png?6e7d15806a5c5288e41169f4d2f861cf) 330px 25px no-repeat;
 }
 .about #contacts .cts-school {
   background: url(/images/cts-school.png?d54d35a10b649a81bac9ceebfd616bd9) 330px -5px no-repeat;
@@ -21764,4 +21762,130 @@ aside .widget .widget-content {
 }
 .feedback .track .bar .play-pause i {
   width: 25px;
+}
+
+.reviews .review-brief {
+  border-bottom: 4px solid #89898b;
+  font-size: 14px;
+}
+.reviews .review-brief .review-track {
+  color: #33BCAF;
+  font-size: 16px;
+}
+.reviews .review-brief .review-score .fa-star {
+  color: #f9ce1a;
+  font-size: 13px;
+}
+.reviews .review-brief .fa-angles-right {
+  color: #f9ce1a;
+}
+.reviews .review-brief .also-supported > p {
+  font-size: 12px;
+}
+
+.studio .studio-header {
+  background-color: #333;
+  box-shadow: inset 0 -23px 13px -21px black;
+}
+.studio .studio-header .container {
+  background: url(/images/cts-studio-y.png?1493dcc7383b1b32244543f8eaefdf41) no-repeat 12px center;
+}
+.studio .studio-nav {
+  background-color: #2a2a2a;
+  box-shadow: inset 0 -23px 13px -21px black;
+}
+.studio .studio-nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+.studio .studio-nav ul li a {
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px dotted #eee;
+  color: #eee;
+  font-size: 17px;
+}
+.studio .studio-nav ul li:hover a {
+  color: #e9a222;
+  border-bottom-color: #e9a222;
+}
+.studio .studio-content {
+  font-size: 14px;
+}
+.studio .studio-content .marquee {
+  position: relative;
+  height: 170px;
+}
+.studio .studio-content .marquee .marquee-flow {
+  position: absolute;
+  width: 200%;
+  animation: marquee 40s linear infinite;
+}
+.studio .studio-content .marquee .marquee-flow span {
+  width: 50%;
+}
+.studio .studio-content h1, .studio .studio-content .h1 {
+  font-size: 22px;
+  color: #e9a222;
+}
+.studio .studio-content .equipment .equipment-header {
+  text-align: center;
+  border: 4px solid #e9a222;
+  font-size: 15px;
+  font-weight: bold;
+  width: 166px;
+}
+.studio .studio-content .equipment .equipment-text {
+  font-size: 12px;
+  color: #bfbebe;
+  width: 275px;
+  margin-left: 190px;
+}
+.studio .studio-content .services .service-image {
+  display: block;
+  cursor: pointer;
+  transition: 0.3s ease transform;
+  opacity: 0.7;
+}
+.studio .studio-content .services .service-image:hover {
+  transform: scale(1.06);
+  opacity: 1;
+}
+.studio .studio-content .services ul {
+  list-style: none;
+}
+.studio .studio-content .services ul li {
+  width: 33%;
+  display: inline-block;
+  font-size: 15px;
+}
+.studio .studio-content .services ul li:nth-child(2) {
+  text-align: center;
+}
+.studio .studio-content .services ul li:last-child {
+  text-align: right;
+}
+.studio .studio-content .services a.price-list {
+  font-size: 15px;
+  color: #eee;
+}
+.studio .studio-content .services a.price-list:hover {
+  color: #e9a222;
+}
+.studio .studio-content .contacts a {
+  color: #eee;
+  text-decoration: none;
+}
+.studio .studio-content .contacts a:hover {
+  color: #e9a222;
+}
+
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
 }

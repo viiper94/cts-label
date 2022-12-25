@@ -3256,7 +3256,9 @@ function withinMaxClamp(min, value, max) {
 /***/ (() => {
 
 // Common
+
 $(document).ready(function () {
+  $('.alert-toast').toast('show');
   $('.switch-btn').click(function () {
     setCookie('lang', $(this).data('lang'), {
       expires: 3600 * 24 * 365,
@@ -3380,6 +3382,21 @@ $(document).ready(function () {
     }
     console.log(url);
     window.open(url, 'share-dialog', "resizable=0,width=626,height=436,scrollbars=yes");
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/public/studio.js":
+/*!***************************************!*\
+  !*** ./resources/js/public/studio.js ***!
+  \***************************************/
+/***/ (() => {
+
+// Studio
+$(document).ready(function () {
+  $('.studio .service-link').click(function () {
+    $('#service-modal').find('input[name=service]').val($(this).data('name'));
   });
 });
 
@@ -15123,6 +15140,7 @@ __webpack_require__(/*! ./public/common.js */ "./resources/js/public/common.js")
 __webpack_require__(/*! ./public/navbar.js */ "./resources/js/public/navbar.js");
 __webpack_require__(/*! ./public/releases.js */ "./resources/js/public/releases.js");
 __webpack_require__(/*! ./public/feedback.js */ "./resources/js/public/feedback.js");
+__webpack_require__(/*! ./public/studio.js */ "./resources/js/public/studio.js");
 __webpack_require__(/*! ./public/cv.js */ "./resources/js/public/cv.js");
 })();
 

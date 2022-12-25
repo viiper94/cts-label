@@ -16,9 +16,9 @@
                 <a href="{{ route('artists.create') }}" class="btn btn-primary">
                     <i class="fa-solid fa-plus me-2"></i>Новый артист
                 </a>
-                <button type="submit" class="btn btn-outline" form="sort_form" onclick="return confirm('Отсортировать?')">
-                    <i class="fa-solid fa-sort me-2"></i>Отсортировать
-                </button>
+{{--                <button type="submit" class="btn btn-outline" form="sort_form" onclick="return confirm('Отсортировать?')">--}}
+{{--                    <i class="fa-solid fa-sort me-2"></i>Отсортировать--}}
+{{--                </button>--}}
             </div>
             {{ $artists->appends(Request::input())->links('admin.layout.pagination') }}
         </div>
@@ -33,15 +33,15 @@
                             <div class="card-img col">
                                 <img src="/images/artists/{{ $artist->image ?? 'default.png' }}" class="img-fluid" alt="{{ $artist->name }}">
                             </div>
-                            <div class="card-sort col-auto">
-                                <a href="{{ route('artists.sort', ['artist' => $artist->id, 'dir' => 'up']) }}" class="fs-2">
-                                    <i class="fa-solid fa-chevron-up"></i>
-                                </a>
-                                <input type="number" class="text-bg-dark" name="sort[{{ $artist->id }}]" value="{{ $artist->sort_id }}" form="sort_form">
-                                <a href="{{ route('artists.sort', ['artist' => $artist->id, 'dir' => 'down']) }}" class="fs-2">
-                                    <i class="fa-solid fa-chevron-down"></i>
-                                </a>
-                            </div>
+{{--                            <div class="card-sort col-auto">--}}
+{{--                                <a href="{{ route('artists.sort', ['artist' => $artist->id, 'dir' => 'up']) }}" class="fs-2">--}}
+{{--                                    <i class="fa-solid fa-chevron-up"></i>--}}
+{{--                                </a>--}}
+{{--                                <input type="number" class="text-bg-dark" name="sort[{{ $artist->id }}]" value="{{ $artist->sort_id }}" form="sort_form">--}}
+{{--                                <a href="{{ route('artists.sort', ['artist' => $artist->id, 'dir' => 'down']) }}" class="fs-2">--}}
+{{--                                    <i class="fa-solid fa-chevron-down"></i>--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
                         </div>
                         <div class="card-footer justify-content-end">
                             <a class="btn btn-sm btn-primary text-nowrap" href="{{ route('artists.edit', $artist->id) }}">

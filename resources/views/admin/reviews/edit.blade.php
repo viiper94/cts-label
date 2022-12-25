@@ -43,7 +43,7 @@
                                 @include('admin.reviews.review_item', compact('key', 'item'))
                             @endforeach
                         @endif
-                        <a class="add-review-btn btn btn-outline" data-index="{{ count($review->data['reviews']) }}" data-target="review">
+                        <a class="add-review-btn btn btn-outline" data-index="{{ $review->data['reviews'] ? count($review->data['reviews']) : 0 }}" data-target="review">
                             <i class="fa-solid fa-plus me-2"></i>Добавить ревью
                         </a>
                     </div>
@@ -54,7 +54,7 @@
                                 @include('admin.reviews.additional_item', compact('key', 'item'))
                             @endforeach
                         @endif
-                        <a class="add-review-btn btn btn-outline" data-index="{{ count($review->data['additional']) }}" data-target="additional">
+                        <a class="add-review-btn btn btn-outline" data-index="{{ $review->data['additional'] ? count($review->data['additional']) : 0 }}" data-target="additional">
                             <i class="fa-solid fa-plus me-2"></i>Добавить
                         </a>
                     </div>

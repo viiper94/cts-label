@@ -1,0 +1,25 @@
+// Reviews
+.reviews{
+    .review-brief{
+        border-bottom: 4px solid $primary-text-darker;
+        font-size: 14px;
+        .review-track{
+            color: #33BCAF;
+            font-size: 16px;
+        }
+        .review-score {
+            .fa-star{
+                color: #f9ce1a;
+                font-size: 13px;
+            }
+        }
+        .fa-angles-right{
+            color: #f9ce1a;
+        }
+        .also-supported{
+            & > p{
+                font-size: 12px;
+            }
+        }
+    }
+}

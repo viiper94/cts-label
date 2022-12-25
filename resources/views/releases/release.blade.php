@@ -67,7 +67,7 @@
                         {!! $release['description_'.$release->detectActiveDescriptionLang()] !!}
                     </div>
                 </div>
-                @if($release->related)
+                @if(count($release->related) > 0)
                     <div class="row py-5">
                         <div class="col-12 release-related">
                             <h6 class="mb-3">@lang('releases.related_releases')</h6>

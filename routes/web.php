@@ -39,6 +39,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/reviews', 'ReviewsController@index')->name('reviews');
     Route::get('/about.html', 'AppController@about')->name('about');
     Route::get('/studio.html', 'AppController@studio')->name('studio');
+    Route::post('/studio.html', 'AppController@sendCallback');
     Route::get('/ctschool.html', 'AppController@ctschool')->name('school');
     Route::any('/anketa', 'CvController@index')->name('school.cv');
     Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');

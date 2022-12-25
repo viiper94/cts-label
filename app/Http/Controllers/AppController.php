@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CallbackMail;
 use App\School;
 use App\StudioService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 
 class AppController extends Controller{
 
@@ -35,6 +37,29 @@ class AppController extends Controller{
         return view('studio', [
             'services' => $services->orderBy('sort_id')->get()
         ]);
+    }
+
+    public function sendCallback(Request $request){
+        $this->validate($request, [
+            'service' => 'string|required',
+            'name' => 'string|required',
+            'tel' => 'string|nullable',
+            'email' => 'email|required:tel'
+        ]);
+        try{
+            Mail::to(env('ADMIN_EMAIL'))->send(new CallbackMail(
+                data: [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'tel' => $request->tel,
+                    'target' => 'studio',
+                    'service' => $request->service,
+                ]
+            ));
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors('Возникла ошибка =(');
+        }
+        return redirect()->back()->with(['success' => 'Запрос успешно отправлен!']);
     }
 
 }

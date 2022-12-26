@@ -139,14 +139,12 @@ return [
                             <p>E-MAIL: ',
 
     'modal' => [
-
         'header' => 'We\'ll contact you back!',
         'your_name' => 'Your Name',
         'your_tel' => 'Your Tel. Number',
         'your_email' => 'Your E-Mail',
         'service' => 'Service title',
         'submit' => 'Submit',
-
     ]
 
 ];

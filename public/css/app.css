@@ -21783,101 +21783,105 @@ aside .widget .widget-content {
   font-size: 12px;
 }
 
-.studio .studio-header {
+.studio .studio-header, .school .studio-header {
   background-color: #333;
   box-shadow: inset 0 -23px 13px -21px black;
 }
-.studio .studio-header .container {
+.studio .studio-header .container, .school .studio-header .container {
   background: url(/images/cts-studio-y.png?1493dcc7383b1b32244543f8eaefdf41) no-repeat 12px center;
 }
-.studio .studio-nav {
+.studio .studio-nav, .school .studio-nav {
   background-color: #2a2a2a;
   box-shadow: inset 0 -23px 13px -21px black;
 }
-.studio .studio-nav ul {
+.studio .studio-nav ul, .school .studio-nav ul {
   display: flex;
   justify-content: space-between;
   list-style: none;
 }
-.studio .studio-nav ul li a {
+.studio .studio-nav ul li a, .school .studio-nav ul li a {
   text-transform: uppercase;
   text-decoration: none;
   border-bottom: 1px dotted #eee;
   color: #eee;
   font-size: 17px;
 }
-.studio .studio-nav ul li:hover a {
+.studio .studio-nav ul li:hover a, .school .studio-nav ul li:hover a {
   color: #e9a222;
   border-bottom-color: #e9a222;
 }
-.studio .studio-content {
+.studio .studio-content, .studio .school-content, .school .studio-content, .school .school-content {
   font-size: 14px;
 }
-.studio .studio-content .marquee {
+.studio .studio-content .marquee, .studio .school-content .marquee, .school .studio-content .marquee, .school .school-content .marquee {
   position: relative;
   height: 170px;
 }
-.studio .studio-content .marquee .marquee-flow {
+.studio .studio-content .marquee .marquee-flow, .studio .school-content .marquee .marquee-flow, .school .studio-content .marquee .marquee-flow, .school .school-content .marquee .marquee-flow {
   position: absolute;
   width: 200%;
   animation: marquee 40s linear infinite;
 }
-.studio .studio-content .marquee .marquee-flow span {
-  width: 50%;
+.studio .studio-content .marquee .marquee-flow span img, .studio .school-content .marquee .marquee-flow span img, .school .studio-content .marquee .marquee-flow span img, .school .school-content .marquee .marquee-flow span img {
+  max-height: 170px;
 }
-.studio .studio-content h1, .studio .studio-content .h1 {
+.studio .studio-content h1, .studio .studio-content .h1, .studio .school-content h1, .studio .school-content .h1, .school .studio-content h1, .school .studio-content .h1, .school .school-content h1, .school .school-content .h1 {
   font-size: 22px;
   color: #e9a222;
 }
-.studio .studio-content .equipment .equipment-header {
+.studio .studio-content .equipment .equipment-header, .studio .school-content .equipment .equipment-header, .school .studio-content .equipment .equipment-header, .school .school-content .equipment .equipment-header {
   text-align: center;
   border: 4px solid #e9a222;
   font-size: 15px;
   font-weight: bold;
   width: 166px;
 }
-.studio .studio-content .equipment .equipment-text {
+.studio .studio-content .equipment .equipment-text, .studio .school-content .equipment .equipment-text, .school .studio-content .equipment .equipment-text, .school .school-content .equipment .equipment-text {
   font-size: 12px;
   color: #bfbebe;
   width: 275px;
   margin-left: 190px;
+  padding: 0 4px;
 }
-.studio .studio-content .services .service-image {
+.studio .studio-content .equipment .equipment-text p, .studio .school-content .equipment .equipment-text p, .school .studio-content .equipment .equipment-text p, .school .school-content .equipment .equipment-text p {
+  margin-bottom: 10px;
+}
+.studio .studio-content .services .service-image, .studio .school-content .services .service-image, .school .studio-content .services .service-image, .school .school-content .services .service-image {
   display: block;
   cursor: pointer;
   transition: 0.3s ease transform;
   opacity: 0.7;
 }
-.studio .studio-content .services .service-image:hover {
+.studio .studio-content .services .service-image:hover, .studio .school-content .services .service-image:hover, .school .studio-content .services .service-image:hover, .school .school-content .services .service-image:hover {
   transform: scale(1.06);
   opacity: 1;
 }
-.studio .studio-content .services ul {
+.studio .studio-content .services ul, .studio .school-content .services ul, .school .studio-content .services ul, .school .school-content .services ul {
   list-style: none;
 }
-.studio .studio-content .services ul li {
+.studio .studio-content .services ul li, .studio .school-content .services ul li, .school .studio-content .services ul li, .school .school-content .services ul li {
   width: 33%;
   display: inline-block;
   font-size: 15px;
 }
-.studio .studio-content .services ul li:nth-child(2) {
+.studio .studio-content .services ul li:nth-child(2), .studio .school-content .services ul li:nth-child(2), .school .studio-content .services ul li:nth-child(2), .school .school-content .services ul li:nth-child(2) {
   text-align: center;
 }
-.studio .studio-content .services ul li:last-child {
+.studio .studio-content .services ul li:last-child, .studio .school-content .services ul li:last-child, .school .studio-content .services ul li:last-child, .school .school-content .services ul li:last-child {
   text-align: right;
 }
-.studio .studio-content .services a.price-list {
+.studio .studio-content .services a.price-list, .studio .school-content .services a.price-list, .school .studio-content .services a.price-list, .school .school-content .services a.price-list {
   font-size: 15px;
   color: #eee;
 }
-.studio .studio-content .services a.price-list:hover {
+.studio .studio-content .services a.price-list:hover, .studio .school-content .services a.price-list:hover, .school .studio-content .services a.price-list:hover, .school .school-content .services a.price-list:hover {
   color: #e9a222;
 }
-.studio .studio-content .contacts a {
+.studio .studio-content .contacts a, .studio .school-content .contacts a, .school .studio-content .contacts a, .school .school-content .contacts a {
   color: #eee;
   text-decoration: none;
 }
-.studio .studio-content .contacts a:hover {
+.studio .studio-content .contacts a:hover, .studio .school-content .contacts a:hover, .school .studio-content .contacts a:hover, .school .school-content .contacts a:hover {
   color: #e9a222;
 }
 
@@ -21888,4 +21892,62 @@ aside .widget .widget-content {
   100% {
     left: -100%;
   }
+}
+.school .school-header {
+  background-color: #333;
+  box-shadow: inset 0 -23px 13px -21px black;
+}
+.school .school-header .container {
+  background: url(/images/cts-school-y.png?1c3f5d81e54cb24953ee89f0e08dd8fd) no-repeat 12px center;
+}
+.school .school-header .school-epigraph {
+  width: 360px;
+  font-size: 14px;
+  font-style: italic;
+  color: #e9a222;
+  text-align: right;
+}
+.school .studio-content .courses .course-button, .school .school-content .courses .course-button {
+  height: 50px;
+  width: 165px;
+  font-size: 13px;
+  color: #eee;
+  border: 4px solid #e9a222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease transform;
+}
+.school .studio-content .courses .course-button:last-child, .school .school-content .courses .course-button:last-child {
+  font-size: 18px;
+}
+.school .studio-content .courses .course-button:hover, .school .school-content .courses .course-button:hover {
+  transform: scale(1.1);
+}
+.school .studio-content .equipment .equipment-text, .school .school-content .equipment .equipment-text {
+  width: 166px;
+}
+.school .studio-content .teachers .teacher, .school .school-content .teachers .teacher {
+  height: 120px;
+  font-size: 12px;
+}
+.school .studio-content .teachers .teacher .teacher-name, .school .school-content .teachers .teacher .teacher-name {
+  text-transform: uppercase;
+}
+.school .studio-content .teachers .teacher .binfo, .school .school-content .teachers .teacher .binfo {
+  color: #adadad;
+}
+.school .studio-content .teachers .teacher .hinfo, .school .school-content .teachers .teacher .hinfo {
+  color: #adadad;
+  display: none;
+  background-color: #000;
+}
+.school .studio-content .teachers .teacher:hover .binfo, .school .school-content .teachers .teacher:hover .binfo {
+  display: none;
+}
+.school .studio-content .teachers .teacher:hover .hinfo, .school .school-content .teachers .teacher:hover .hinfo {
+  display: block;
 }

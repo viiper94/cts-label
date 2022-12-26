@@ -168,6 +168,7 @@
                     </div>
                     <div class="modal-body">
                         @csrf
+                        <input type="hidden" name="target" value="studio">
                         <div class="form-group mb-3">
                             <label for="service" class="form-label">@lang('studio.modal.service')</label>
                             <input type="text" name="service" id="service" class="form-control form-dark" readonly>

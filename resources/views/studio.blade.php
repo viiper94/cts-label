@@ -177,16 +177,16 @@
                             <input type="text" name="name" id="name" class="form-control form-dark" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="tel" class="form-label">@lang('studio.modal.your_tel')</label>
-                            <input type="tel" name="tel" id="tel" class="form-control form-dark">
-                        </div>
-                        <div class="form-group">
                             <label for="email" class="form-label">@lang('studio.modal.your_email')*</label>
                             <input type="email" name="email" id="email" class="form-control form-dark" required>
                         </div>
+                        <div class="form-group">
+                            <label for="tel" class="form-label">@lang('studio.modal.your_tel')</label>
+                            <input type="tel" name="tel" id="tel" class="form-control form-dark">
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">@lang('studio.modal.submit')</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>@lang('studio.modal.submit')</button>
                         <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </form>

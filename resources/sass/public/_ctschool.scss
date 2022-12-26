@@ -7,7 +7,7 @@
             background: url("../../img/cts-school-y.png") no-repeat 12px center;
         }
         .school-epigraph{
-            width: 360px;
+            width: 370px;
             font-size: 14px;
             font-style: italic;
             color: $primary;
@@ -46,6 +46,9 @@
             .teacher{
                 height: 120px;
                 font-size: 12px;
+                img{
+                    opacity: .7;
+                }
                 .teacher-name{
                     text-transform: uppercase;
                 }
@@ -58,12 +61,43 @@
                     background-color: #000;
                 }
                 &:hover{
+                    img{
+                        opacity: 1;
+                    }
                     .binfo{
                         display: none;
                     }
                     .hinfo{
                         display: block;
                     }
+                }
+            }
+        }
+        .about_courses{
+            .course-img{
+                position: relative;
+                .img-overlay{
+                    position: absolute;
+                    height: 45px;
+                    width: 100%;
+                    bottom: 0;
+                    font-size: 12px;
+                    background-color: rgba(37, 37, 37, 0.75);
+                    padding: 5px;
+                    color: $primary-text-darker;
+                    transition: .3s ease height;
+                }
+                &:hover .img-overlay{
+                    height: 80px;
+                    color: $primary-text;
+                }
+            }
+        }
+        .contacts{
+            a{
+                color: $primary;
+                &:hover{
+                    text-decoration: underline;
                 }
             }
         }

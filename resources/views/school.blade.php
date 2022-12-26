@@ -1,11 +1,5 @@
 @extends('layout.layout')
 
-@section('assets')
-    <link href="/assets/css/ctssc2.css" rel="stylesheet">
-    <link  href="/assets/css/styles.css" rel="stylesheet">
-    <script type="text/javascript" src="/assets/js/modernizr.js"></script>
-@endsection
-
 @section('title')
     @lang('school.page_title')
 @endsection
@@ -47,13 +41,14 @@
 @section('meta')
     <meta property="og:title" content="CTSchool - професійні курси DJ-їв і саунд продюсерів в Києві">
     <meta property="og:description" content="Навчання майстерності діджея, курси продюсерів і звукорежисерів, написання музики, курси вокалу, сольфеджіо, робота в музичних редакторах">
-    <meta property="og:image" content="https://cts-label.com/assets/img/ctschool-y.png">
+    <meta property="og:image" content="https://cts-label.com/images/ctschool-y.png">
     <meta property="og:url" content="https://cts-label.com/ctschool.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="CTSchool">
 @endsection
 
 @section('content')
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -71,115 +66,135 @@
 
     }
     </script>
-    <div class="col-xs-12 school-page">
-        <div class="row">
-            <div class="col-xs-12 s-logo">
-                <div class="container">
-                    <img src="/assets/img/ctschool-y.png" alt="CTSchool">
-                    <div class="pull-right">
-                        <div class="text-right switch-btns" style="padding-right:18px;">
-                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en') active @endif"
-                               data-lang="en" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
-                                @lang('shared.en')
-                            </a>
-                            <a class="switch-btn pull-right @if(isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru') active @endif"
-                               data-lang="ru" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
-                                @lang('shared.ru')
-                            </a>
-                            <a class="switch-btn pull-right @if((isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua') || !isset($_COOKIE['lang'])) active @endif"
-                               data-lang="ua" href="{{!$_SERVER['QUERY_STRING'] ? '' : '?'.$_SERVER['QUERY_STRING']}}">
-                                @lang('shared.ua')
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-6 pull-right">
-                        <h1>@lang('school.page_header')</h1>
+
+    <div class="school">
+        <div class="school-header py-5">
+            <div class="container py-3">
+                <div class="lang-switch align-items-center">
+                    <p class="me-5 mb-0 school-epigraph">@lang('school.page_header')</p>
+                    <div class="btn-group">
+                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en'])
+                           data-lang="en" href="{{ route('school') }}">
+                            @lang('shared.en')
+                        </a>
+                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua' || !isset($_COOKIE['lang'])])
+                           data-lang="ua" href="{{ route('school') }}">
+                            @lang('shared.ua')
+                        </a>
+                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru'])
+                           data-lang="ru" href="{{ route('school') }}">
+                            @lang('shared.ru')
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="school-menu school-land">
-                <div class="container">
-                    <ul class="list-unstyled s-menu">
-                        <li><a href="#about">@lang('school.about_courses')</a></li>
-                        <li><a href="#equipment">@lang('school.equipment')</a></li>
-                        <li><a href="#teachers">@lang('school.teachers')</a></li>
-                        <li><a href="#prices">@lang('school.cost_of_education')</a></li>
-                        <li><a href="#contacts">@lang('school.contact')</a></li>
-                    </ul>
-                </div>
+        <div class="studio-nav">
+            <div class="container">
+                <ul class="py-3 px-0">
+                    <li><a href="#about">@lang('school.about_courses')</a></li>
+                    <li><a href="#equipment">@lang('school.equipment')</a></li>
+                    <li><a href="#teachers">@lang('school.teachers')</a></li>
+                    <li><a href="#prices">@lang('school.cost_of_education')</a></li>
+                    <li><a href="#contacts">@lang('school.contact')</a></li>
+                </ul>
             </div>
         </div>
-        <div class="clearfix"></div>
-        <div class="container">
-            <h2 class="sh text-center" id="courses">@lang('school.courses')</h2>
-            <div class="сol-xs-12 course-buttons text-center">
-                <div class="course-button l1 hover_one">@lang('school.sound_producer')</div>
-                <div class="course-button l2 hover_two">@lang('school.sound_engineer')</div>
-                <div class="course-button l2 hover_three">@lang('school.foh_engineer')</div>
-                <div class="course-button l2 hover_four">@lang('school.music_theory')</div>
-                <div class="course-button l2 hover_five">@lang('school.vocal')</div>
-                <div class="course-button l1b hover_six">@lang('school.dj')</div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="school-images">
-                <section class="b-marquee-line">
-                    <div class="b-marquee-line__flow">
-                        <div class="b-marquee-line__flow-in">
-                            <span class="b-marquee-line__flow-block">
-                                @for($i = 1; $i < 7; $i++)
-                                    <img src="/assets/img/school-{{ $i }}.jpg" class="pull-left">
-                                @endfor
-                            </span>
-                            <span class="b-marquee-line__flow-block">
-                                @for($i = 1; $i < 7; $i++)
-                                    <img src="/assets/img/school-{{ $i }}.jpg" class="pull-left">
-                                @endfor
-						    </span>
+        <div class="school-content">
+            <div class="container py-4">
+                <section class="courses py-5">
+                    <h1 class="text-center text-uppercase fw-bold mb-5">@lang('school.courses')</h1>
+                    <div class="d-flex justify-content-between text-uppercase">
+                        <a href="#prices" class="course-button">@lang('school.sound_producer')</a>
+                        <a href="#prices" class="course-button">@lang('school.sound_engineer')</a>
+                        <a href="#prices" class="course-button">@lang('school.foh_engineer')</a>
+                        <a href="#prices" class="course-button">@lang('school.music_theory')</a>
+                        <a href="#prices" class="course-button">@lang('school.vocal')</a>
+                        <a href="#prices" class="course-button">@lang('school.dj')</a>
+                    </div>
+                    <div class="marquee overflow-hidden my-5">
+                        <div class="marquee-flow d-flex">
+                        <span class="d-flex">
+                            @for($i = 1; $i < 7; $i++)
+                                <img src="/images/school/school-{{ $i }}.jpg">
+                            @endfor
+                        </span>
+                        <span class="d-flex">
+                            @for($i = 1; $i < 7; $i++)
+                                <img src="/images/school/school-{{ $i }}.jpg">
+                            @endfor
+                        </span>
                         </div>
                     </div>
                 </section>
-                <div class="clearfix"></div>
-            </div>
-            <h2 class="text-center sh" id="equipment">@lang('school.equipment')</h2>
-            <div class="col-xs-12">
-                <div class="col-md-3 col-md-offset-3 col-sm-4 grey-text hrdw">
+                <section class="equipment py-5">
+                    <h1 class="text-center text-uppercase fw-bold mb-5" id="equipment">@lang('school.equipment')</h1>
                     <div class="row">
-                        <div class="bordered" style="text-transform:uppercase;">@lang('school.hardware')</div>
-                        @lang('school.hardware_text')
+                        <div class="col-12 col-sm-6 px-5">
+                            <p class="equipment-header text-uppercase py-2 ms-auto me-5">
+                                @lang('school.hardware')
+                            </p>
+                            <div class="equipment-text me-5 ms-auto">
+                                @lang('school.hardware_text')
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 px-5">
+                            <p class="equipment-header text-uppercase py-2 me-auto ms-5">
+                                @lang('school.software')
+                            </p>
+                            <div class="equipment-text ms-5 me-auto">
+                                @lang('school.software_text')
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center py-3">
+                            <a href="{{ route('studio') }}#equipment" class="text-center text-decoration-none">@lang('school.check_full_set')</a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-4 grey-text hrdw">
-                    <div class="row">
-                        <div class="bordered" style="text-transform:uppercase;">@lang('school.software')</div>
-                        @lang('school.software_text')
-                    </div>
-                </div>
-                <div class="col-sm-4 col-sm-offset-4 text-center">
-                    <p><a href="{{ route('studio') }}#equipment">@lang('school.check_full_set')</a></p>
-                </div>
-                <div class="clearfix"></div>
-                <h2 class="text-center sh" id="teachers">@lang('school.teachers')</h2>
-                <div class="teachers">
+                </section>
+                <section class="teachers py-5">
+                    <h1 class="text-center text-uppercase fw-bold mb-5" id="teachers">@lang('school.teachers')</h1>
                     <div class="row">
                         @foreach($teachers as $teacher)
-                            <div class="col-md-4 @if($loop->iteration === 4 || $loop->iteration === 7) col-md-offset-2 @endif
-                                @if($loop->iteration === 6) col-md-offset-4 @endif col-sm-6 col-xs-12 teacher">
-                                <img src="/images/school/teachers/{{ $teacher->image }}">
-                                <b>{{ $teacher->name }}</b>
-                                <div class="binfo">{!! $teacher->teacher_binfo !!}</div>
-                                <div class="hinfo">{!! $teacher->teacher_hinfo !!}</div>
+                            <div @class([
+                                        'col-md-4 col-sm-6 col-xs-12 teacher row mb-5',
+                                        'offset-md-2' => $loop->iteration === 4 || $loop->iteration === 7,
+                                        'offset-md-4' => $loop->iteration === 6,
+                                    ])>
+                                <div class="col-auto">
+                                    <img src="/images/school/teachers/{{ $teacher->image }}">
+                                </div>
+                                <div class="col">
+                                    <p class="teacher-name mb-2 fw-bold">{{ $teacher->name }}</p>
+                                    <div class="binfo">{!! $teacher->teacher_binfo !!}</div>
+                                    <div class="hinfo">{!! $teacher->teacher_hinfo !!}</div>
+                                </div>
                             </div>
-                            @if($loop->iteration === 3 || $loop->iteration === 8)
-                                <div class="clearfix visible-md visible-lg hidden-sm hidden-xs"></div>
-                            @endif
-                            @if($loop->iteration % 2 === 0)
-                                <div class="clearfix visible-sm"></div>
-                            @endif
                         @endforeach
                     </div>
-                </div>
+                </section>
+                <section class="about_courses pb-5 pt-3">
+                    <h1 class="text-center text-uppercase fw-bold mb-5" id="about_courses">@lang('school.about_courses')</h1>
+                    <div class="row">
+                        <div class="col">
+
+                        </div>
+                        <div class="col-auto">
+                            <div class="course-img course-img2">
+                                <img src="/assets/img/school-9.jpg" class="img-fluid">
+                                <div class="img-overlay">@lang('school.lesson_holds_sergio')</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xs-12 school-page">
+
+        <div class="container">
+
                 <h2 class="text-center sh" id="about">@lang('school.about_courses')</h2>
                 <div class="text">
                     <div class="row">

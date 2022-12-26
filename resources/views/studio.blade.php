@@ -23,7 +23,7 @@
 @section('meta')
     <meta property="og:title" content="CTS Studio - професійна студія звукозапису незалежного рекорд-лейблу CTS Records в Києві">
     <meta property="og:description" content="CTS Studio - професійна студія звукозапису незалежного рекорд-лейблу CTS Records в Києві">
-    <meta property="og:image" content="https://www.cts-label.com/assets/img/cts-studio-y.png">
+    <meta property="og:image" content="https://www.cts-label.com/images/cts-studio-y.png">
     <meta property="og:url" content="https://cts-label.com/studio.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="CTStudio">
@@ -88,13 +88,13 @@
                         <div class="marquee-flow d-flex">
                         <span class="d-flex">
                             @for($i = 1; $i <= 8; $i++)
-                                <img src="/images/studio-{{ $i }}.jpg">
+                                <img src="/images/studio/studio-{{ $i }}.jpg">
                             @endfor
                         </span>
                             <span class="d-flex">
                             @for($i = 1; $i <= 8; $i++)
-                                    <img src="/images/studio-{{ $i }}.jpg">
-                                @endfor
+                                <img src="/images/studio/studio-{{ $i }}.jpg">
+                            @endfor
                         </span>
                         </div>
                     </div>

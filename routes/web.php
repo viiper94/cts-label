@@ -41,6 +41,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/studio.html', 'AppController@studio')->name('studio');
     Route::post('/studio.html', 'AppController@sendCallback');
     Route::get('/ctschool.html', 'AppController@ctschool')->name('school');
+    Route::post('/ctschool.html', 'AppController@sendCallback');
     Route::any('/anketa', 'CvController@index')->name('school.cv');
     Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');

@@ -1,5 +1,5 @@
 // CTStudio
-.studio{
+.studio, .school{
     .studio-header{
         background-color: $background-lighten-3;
         box-shadow: inset 0 -23px 13px -21px black;
@@ -29,7 +29,7 @@
             }
         }
     }
-    .studio-content{
+    .studio-content, .school-content{
         font-size: 14px;
         .marquee{
             position: relative;
@@ -38,8 +38,8 @@
                 position: absolute;
                 width: 200%;
                 animation: marquee 40s linear infinite;
-                span{
-                    width: 50%;
+                span img{
+                    max-height: 170px;
                 }
             }
         }
@@ -60,6 +60,10 @@
                 color: #bfbebe;
                 width: 275px;
                 margin-left: 190px;
+                padding: 0 4px;
+                p{
+                    margin-bottom: 10px;
+                }
             }
         }
         .services{
@@ -110,4 +114,3 @@
      0% { left: 0; }
      100% { left: -100%; }
  }
-

@@ -52,11 +52,12 @@ class AppController extends Controller{
                     'name' => $request->name,
                     'email' => $request->email,
                     'tel' => $request->tel,
-                    'target' => 'studio',
+                    'target' => $request->target,
                     'service' => $request->service,
                 ]
             ));
         }catch(\Exception $e){
+//            dd($e);
             return redirect()->back()->withErrors('Возникла ошибка =(');
         }
         return redirect()->back()->with(['success' => 'Запрос успешно отправлен!']);

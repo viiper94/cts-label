@@ -156,7 +156,7 @@
                     <div class="row">
                         @foreach($teachers as $teacher)
                             <div @class([
-                                        'col-md-4 col-sm-6 col-xs-12 teacher row mb-5',
+                                        'col-md-4 col-sm-6 col-xs-12 teacher row mb-3',
                                         'offset-md-2' => $loop->iteration === 4 || $loop->iteration === 7,
                                         'offset-md-4' => $loop->iteration === 6,
                                     ])>
@@ -176,99 +176,126 @@
                     <h1 class="text-center text-uppercase fw-bold mb-5" id="about_courses">@lang('school.about_courses')</h1>
                     <div class="row">
                         <div class="col">
-
-                        </div>
-                        <div class="col-auto">
-                            <div class="course-img course-img2">
-                                <img src="/assets/img/school-9.jpg" class="img-fluid">
-                                <div class="img-overlay">@lang('school.lesson_holds_sergio')</div>
+                            <p class="text-paragraph">@lang('school.about_text')</p>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <div class="course-img">
+                                        <img src="/images/school/school-7.jpg" class="img-fluid">
+                                        <div class="img-overlay">@lang('school.master_class_ekspert')</div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p>@lang('school.lessons_held')</p>
+                                    @lang('school.lessons_held_text')
+                                </div>
+                                <div class="col-auto">
+                                    <div class="course-img">
+                                        <img src="/images/school/school-8.jpg" class="img-fluid">
+                                        <div class="img-overlay">@lang('school.consultation_conducted_by_belyavina')</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-auto">
+                            <div class="course-img">
+                                <img src="/images/school/school-9.jpg" class="img-fluid">
+                                <div class="img-overlay"><p>@lang('school.lesson_holds_sergio')</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row py-4">
+                        <div class="col-12">
+                            <p>@lang('school.about_text_2')</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="course-img mb-3">
+                                <img src="/images/school/school-10.jpg" class="img-fluid">
+                                <div class="img-overlay">@lang('school.sound_engineering_lesson_shapovalov')</div>
+                            </div>
+                            <div class="course-img">
+                                <img src="/images/school/school-12.jpg" class="img-fluid">
+                                <div class="img-overlay">@lang('school.lesson_music_theory_semergey')</div>
+                            </div>
+                        </div>
+                        <div class="col d-flex flex-column justify-content-between">
+                            <p>* @lang('school.about_text_3')</p>
+                            <p>** @lang('school.about_text_4')</p>
+                            <p>*** @lang('school.about_text_5')</p>
+                            <p class="mb-0">**** @lang('school.about_text_6')</p>
+                        </div>
+                        <div class="col-auto">
+                            <div class="course-img mb-3">
+                                <img src="/images/school/school-11.jpg" class="img-fluid">
+                                <div class="img-overlay">@lang('school.djing_by_yoshi')</div>
+                            </div>
+                            <div class="course-img">
+                                <img src="/images/school/school-13.jpg" class="img-fluid">
+                                <div class="img-overlay">@lang('school.production_lesson_by_sergio')</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="services py-5">
+                    <h1 class="text-center text-uppercase fw-bold mb-5" id="prices">@lang('school.cost_of_education')</h1>
+                    <div class="service-images d-flex justify-content-between px-5 flex-wrap">
+                        @foreach($courses as $course)
+                            <div class="service-item m-3">
+                                <a data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $course->name }}" class="service-link">
+                                    <img src="/images/school/courses/{{ $course->image }}"
+                                         class="service-image" @if($course->alt) alt="{{ $course->alt }}" @endif>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </section>
+                <section class="contacts pt-5">
+                    <h1 class="text-center text-uppercase fw-bold mb-5" id="contact">@lang('school.contact')</h1>
+                    <div class="text-center">
+                        <p class="mb-4">@lang('school.contact_text_1')</p>
+                        <p class="mb-4">@lang('school.contact_text_2')</p>
+                        <div class="contact-info">@lang('school.contact_info')</div>
                     </div>
                 </section>
             </div>
         </div>
     </div>
 
-
-    <div class="col-xs-12 school-page">
-
-        <div class="container">
-
-                <h2 class="text-center sh" id="about">@lang('school.about_courses')</h2>
-                <div class="text">
-                    <div class="row">
-                        <p class="pull-left text-paragraph">@lang('school.about_text')</p>
-                        <div class="course-img course-img2 pull-right">
-                            <img src="/assets/img/school-9.jpg" class="img-responsive">
-                            <div class="img-overlay">@lang('school.lesson_holds_sergio')</div>
+    <div class="modal fade" id="service-modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form method="post">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalLabel">@lang('studio.modal.header')</h1>
+                    </div>
+                    <div class="modal-body">
+                        @csrf
+                        <input type="hidden" name="target" value="school">
+                        <div class="form-group mb-3">
+                            <label for="service" class="form-label">@lang('studio.modal.service')</label>
+                            <input type="text" name="service" id="service" class="form-control form-dark" readonly>
                         </div>
-                        <div class="clearfix hidden-md hidden-lg hidden-sm visible-xs"></div>
-                        <div class="course-img course-img1 pull-left">
-                            <img src="/assets/img/school-7.jpg" class="img-responsive">
-                            <div class="img-overlay">@lang('school.master_class_ekspert')</div>
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">@lang('studio.modal.your_name')*</label>
+                            <input type="text" name="name" id="name" class="form-control form-dark" required>
                         </div>
-                        <div class="course-img course-img1 pull-right">
-                            <img src="/assets/img/school-8.jpg" class="img-responsive">
-                            <div class="img-overlay">@lang('school.consultation_conducted_by_belyavina')</div>
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">@lang('studio.modal.your_email')*</label>
+                            <input type="email" name="email" id="email" class="form-control form-dark" required>
                         </div>
-                        <div class="course-list">
-                            <h5 style="padding-bottom: 15px;">@lang('school.lessons_held')</h5>
-                            @lang('school.lessons_held_text')
+                        <div class="form-group">
+                            <label for="tel" class="form-label">@lang('studio.modal.your_tel')</label>
+                            <input type="tel" name="tel" id="tel" class="form-control form-dark">
                         </div>
                     </div>
-                    <div class="row">
-                        <p style="margin-bottom: 30px;">@lang('school.about_text_2')</p>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>@lang('studio.modal.submit')</button>
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 course-img-block pull-left">
-                            <div class="course-img course-img3">
-                                <img src="/assets/img/school-10.jpg" class="img-responsive">
-                                <div class="img-overlay">@lang('school.sound_engineering_lesson_shapovalov')</div>
-                            </div>
-                            <div class="course-img course-img3">
-                                <img src="/assets/img/school-12.jpg" class="img-responsive">
-                                <div class="img-overlay">@lang('school.lesson_music_theory_semergey')</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 course-center-text">
-
-                            <p>* @lang('school.about_text_3')</p>
-                            <p>** @lang('school.about_text_4')</p>
-                            <p>*** @lang('school.about_text_5')</p>
-                            <p>**** @lang('school.about_text_6')</p>
-                        </div>
-                        <div class="col-md-4 course-img-block pull-right">
-                            <div class="course-img course-img3">
-                                <img src="/assets/img/school-11.jpg" class="img-responsive">
-                                <div class="img-overlay">@lang('school.djing_by_yoshi')</div>
-                            </div>
-                            <div class="course-img course-img3">
-                                <img src="/assets/img/school-13.jpg" class="img-responsive">
-                                <div class="img-overlay">@lang('school.production_lesson_by_sergio')</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h2 class="text-center sh" id="prices">@lang('school.cost_of_education')</h2>
-                <div class="service-images ">
-                    @foreach($courses as $course)
-                        <div class="col-md-3 col-sm-6 text-center">
-                            <a href="mailto:info@cts-label.com?@lang('school.mail_body'). {{ $course->name ?? "" }}">
-                                <img src="/images/school/courses/{{ $course->image }}"
-                                     class="service-image" @if($course->course_alt) alt="{{ $course->course_alt }}"@endif>
-                            </a>
-                        </div>
-                    @endforeach
-                    <div class="clearfix"></div>
-                </div>
-                <h2 class="text-center sh" id="contacts">@lang('school.contact')</h2>
-                <div class="text-center col-xs-12">
-                    <p>@lang('school.contact_text_1')</p><br>
-                    <p>@lang('school.contact_text_2')</p><br>
-                    <div class="contact-info">@lang('school.contact_info')</div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+
 @endsection

@@ -21851,6 +21851,7 @@ aside .widget .widget-content {
   cursor: pointer;
   transition: 0.3s ease transform;
   opacity: 0.7;
+  width: 185px;
 }
 .studio .studio-content .services .service-image:hover, .studio .school-content .services .service-image:hover, .school .studio-content .services .service-image:hover, .school .school-content .services .service-image:hover {
   transform: scale(1.06);
@@ -21901,7 +21902,7 @@ aside .widget .widget-content {
   background: url(/images/cts-school-y.png?1c3f5d81e54cb24953ee89f0e08dd8fd) no-repeat 12px center;
 }
 .school .school-header .school-epigraph {
-  width: 360px;
+  width: 370px;
   font-size: 14px;
   font-style: italic;
   color: #e9a222;
@@ -21934,6 +21935,9 @@ aside .widget .widget-content {
   height: 120px;
   font-size: 12px;
 }
+.school .studio-content .teachers .teacher img, .school .school-content .teachers .teacher img {
+  opacity: 0.7;
+}
 .school .studio-content .teachers .teacher .teacher-name, .school .school-content .teachers .teacher .teacher-name {
   text-transform: uppercase;
 }
@@ -21945,9 +21949,36 @@ aside .widget .widget-content {
   display: none;
   background-color: #000;
 }
+.school .studio-content .teachers .teacher:hover img, .school .school-content .teachers .teacher:hover img {
+  opacity: 1;
+}
 .school .studio-content .teachers .teacher:hover .binfo, .school .school-content .teachers .teacher:hover .binfo {
   display: none;
 }
 .school .studio-content .teachers .teacher:hover .hinfo, .school .school-content .teachers .teacher:hover .hinfo {
   display: block;
+}
+.school .studio-content .about_courses .course-img, .school .school-content .about_courses .course-img {
+  position: relative;
+}
+.school .studio-content .about_courses .course-img .img-overlay, .school .school-content .about_courses .course-img .img-overlay {
+  position: absolute;
+  height: 45px;
+  width: 100%;
+  bottom: 0;
+  font-size: 12px;
+  background-color: rgba(37, 37, 37, 0.75);
+  padding: 5px;
+  color: #89898b;
+  transition: 0.3s ease height;
+}
+.school .studio-content .about_courses .course-img:hover .img-overlay, .school .school-content .about_courses .course-img:hover .img-overlay {
+  height: 80px;
+  color: #eee;
+}
+.school .studio-content .contacts a, .school .school-content .contacts a {
+  color: #e9a222;
+}
+.school .studio-content .contacts a:hover, .school .school-content .contacts a:hover {
+  text-decoration: underline;
 }

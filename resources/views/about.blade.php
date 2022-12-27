@@ -22,9 +22,9 @@
         }
     </script>
 
-    <div class="container about pt-3" data-bs-spy="scroll" data-bs-target="#main_nav">
+    <div class="container about pt-3">
         <div class="row">
-            <section class="col pe-5">
+            <section class="col pe-5" data-bs-spy="scroll" data-bs-target="#main_nav" data-bs-rootMargin="-30px 0 -88% 0px" data-bs-threshold=".7">
                 <div id="about">
                     <h5 class="a-b mt-3 mb-4">@lang('navbar.about')</h5>
                     @lang('about.about')
@@ -49,11 +49,11 @@
                         </div>
                     </form>
                 </div>
-                <div id="demo" class="py-5">
+                <div id="demo" class="py-5 mb-5">
                     <h5 class="a-b mt-3 mb-4">@lang('about.demo_policy')</h5>
                     @lang('about.demo')
                 </div>
-                <div id="contacts" class="pt-5">
+                <div id="contacts" class="">
                     <h5 class="a-b mt-3 mb-4">@lang('navbar.contact')</h5>
                     <div class="pt-2 pb-5 cts-records">
                         <h6>@lang('about.contact_cts_studio_requests')</h6>

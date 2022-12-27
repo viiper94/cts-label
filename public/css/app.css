@@ -21316,6 +21316,11 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
   color: #000;
 }
 
+.text-bg-dark, .bg-dark {
+  background-color: #2a2a2a !important;
+  color: #89898b !important;
+}
+
 body {
   background-color: #000;
   color: #eee;
@@ -21372,7 +21377,7 @@ nav.navbar .menu-fixed .nav-link {
 }
 nav.navbar .menu-fixed .navbar-brand {
   display: none;
-  padding: 12px 15px;
+  padding: 12px 9px;
   line-height: 20px;
 }
 @media (min-width: 992px) {
@@ -21551,7 +21556,7 @@ aside .widget .widget-content {
 }
 
 .release-brief {
-  margin-left: 10px;
+  margin-right: 10px;
   position: relative;
   width: 32%;
   transition: 0.5s ease transform;

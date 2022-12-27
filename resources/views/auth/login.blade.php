@@ -2,39 +2,37 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('login') }}" method="post" class="col-md-7 col-xs-12">
-            <div class="form-group">
-                <label for="email">@lang('user.email')</label>
-                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
-                @if($errors->has('email'))
-                    <p class="help-block">{{ $errors->first('email') }}</p>
-                @endif
-            </div>
-            <div class="form-group">
-                <label for="password">@lang('user.password')</label>
-                <input type="password" name="password" id="password" class="form-control">
-                @if($errors->has('password'))
-                    <p class="help-block">{{ $errors->first('password') }}</p>
-                @endif
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> @lang('auth.remember_me')
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
+        <div class="d-flex align-items-center flex-column">
+            <form action="{{ route('login') }}" method="post" class="m-5 p-5 w-50">
                 @csrf
-                <button type="submit" class="btn btn-default">@lang('auth.submit')</button>
-                <a class="col s12 center" href="{{ route('password.request') }}">@lang('user.forgot_password')</a>
-                <p class="center col s12">@lang('user.dont_have_account')
-                    <a href="{{ route('register') }}">@lang('user.register')</a>
-                </p>
-            </div>
-        </form>
-        <div class="social-login col-xs-12 col-md-5">
-            @include('auth.social')
+                <div class="card text-bg-dark">
+                    <div class="card-header">
+                        @lang('auth.login_header')
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">@lang('user.email')</label>
+                            <input type="email" class="form-control form-dark" name="email" id="email" value="{{ old('email') }}" required>
+                            @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">@lang('user.password')</label>
+                            <input type="password" class="form-control form-dark" name="password" id="password" required>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="remember" id="remember" @checked(old('remember'))>
+                            <label for="remember" class="form-check-label">@lang('auth.remember_me')</label>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>@lang('auth.submit')</button>
+                        <a href="{{ route('register') }}" class="btn btn-outline"><i class="fa-solid fa-user-plus me-2"></i>@lang('user.register')</a>
+                        <a href="{{ route('password.request') }}" class="ms-3">@lang('user.forgot_password')</a>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

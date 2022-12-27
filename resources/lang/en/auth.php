@@ -13,6 +13,9 @@ return [
     |
     */
 
+    'login_header' => 'CTS Records Admin Panel Login',
+    'register_header' => 'CTS Records Register',
+
     'password_confirmation' => 'Password Confirmation',
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',

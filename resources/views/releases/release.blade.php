@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-7 col-md-12">
+                    <div class="col-xs-12 col-sm-7">
                         <figure>
                             <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="release-image img-fluid w-100"/>
                         </figure>

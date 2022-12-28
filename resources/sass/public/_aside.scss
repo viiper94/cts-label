@@ -3,6 +3,8 @@ aside{
     .widget{
         width: 310px;
         margin-bottom: 35px;
+        margin-left: auto;
+        margin-right: auto;
         @media (min-width: $md) and (max-width: $lg) {
             width: 245px;
         }

@@ -91,6 +91,9 @@
     .release-tracklist{
         color: $primary-text-darker;
         min-height: 300px;
+        @media (max-width: $md) {
+            min-height: auto;
+        }
     }
     .release-content{
         color: $primary-text-darker;

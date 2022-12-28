@@ -5,9 +5,9 @@
 @section('content')
     <div class="container release pt-3">
         <div class="row">
-            <section class="col pe-5">
+            <section class="col pe-md-5">
                 <div class="row">
-                    <div class="col-xs-12 col-md-7">
+                    <div class="col-xs-12 col-sm-7">
                         <h1 class="release-title">{{ $release->title }}</h1>
                         <div class="release-number"><strong>@lang('releases.release_number') </strong>{{ $release->release_number }}</div>
                         <div class="release-date"><strong>@lang('releases.release_date') </strong>{{ $release->release_date->format('j F Y') }}</div>
@@ -33,11 +33,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-md-7">
+                    <div class="col-xs-12 col-sm-7 col-md-12">
                         <figure>
                             <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="release-image img-fluid w-100"/>
                         </figure>
-                        <div class="release-buttons d-flex justify-content-between py-5">
+                        <div class="release-buttons d-flex justify-content-between py-md-5 py-3">
                             <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank"
                                @class(['share', 'btn-disabled' => !$release->youtube])>
                                 <i class="fa-brands fa-youtube"></i>
@@ -56,14 +56,14 @@
                                 <i class="fa-solid fa-envelope"></i>
                             </button>
                         </div>
-                        <div class="release-tracklist">
+                        <div class="release-tracklist mb-md-0 mb-3">
                             @if($release->tracklist)
                                 <h6 class="fw-bold">@lang('releases.tracklist')</h6>
                                 {!! $release->tracklist !!}
                             @endif
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-5 release-content">
+                    <div class="col-xs-12 col-sm-5 release-content">
                         {!! $release['description_'.$release->detectActiveDescriptionLang()] !!}
                     </div>
                 </div>
@@ -71,15 +71,17 @@
                     <div class="row py-5">
                         <div class="col-12 release-related">
                             <h6 class="mb-3">@lang('releases.related_releases')</h6>
-                            <div class="d-flex justify-content-between flex-wrap">
+                            <div class="row g-0">
                                 @foreach($release->related as $item)
-                                    <div class="release-brief release-brief-related">
-                                        <a href="{{ route('release', $item->id) }}" class="d-block">
-                                            <img src="/images/releases/{{ $item->image }}" alt="{{ $item->title }}" class="img-fluid">
-                                            <div class="item-overlay d-flex justify-content-center align-items-center p-3 text-center">
-                                                <span class="">{{ $item->title }}</span>
-                                            </div>
-                                        </a>
+                                    <div class="col-4 g-2">
+                                        <div class="release-brief release-brief-related">
+                                            <a href="{{ route('release', $item->id) }}" class="d-block">
+                                                <img src="/images/releases/{{ $item->image }}" alt="{{ $item->title }}" class="img-fluid">
+                                                <div class="item-overlay d-flex justify-content-center align-items-center p-3 text-center">
+                                                    <span class="">{{ $item->title }}</span>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>

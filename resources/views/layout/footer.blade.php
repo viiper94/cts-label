@@ -1,9 +1,9 @@
 <footer class="pt-5">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-6 col-sm-7">
+            <div class="col-xs-12 col-md-6">
                 <p>@lang('footer.partners')</p>
-                <div class="partners">
+                <div class="partners d-flex">
                     <img src="/assets/img/best-track.png">
                     <img src="/assets/img/heads.png">
                     <a href="https://kissfm.ua/" target="_blank">
@@ -16,9 +16,9 @@
                     <img src="/assets/img/tochka.png">
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6 col-sm-5">
-                <p class="text-end">@lang('footer.follow_us')</p>
-                <div class="d-flex justify-content-end">
+            <div class="col-xs-12 col-md-6">
+                <p class="text-md-end">@lang('footer.follow_us')</p>
+                <div class="d-flex justify-content-md-end flex-wrap">
                     <a href="https://beatport.com/label/cts-creative-technologies-studio/4470" class="socials socials-beatport" target="_blank">
                         <i class="icon-beatport"></i>
                     </a>

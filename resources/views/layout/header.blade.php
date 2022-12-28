@@ -1,12 +1,12 @@
-<header class="pt-2 pb-3">
-    <div class="container text-center text-lg-start">
+<header class="pt-2">
+    <div class="container text-center text-md-start">
         <a href="{{ route('home') }}" class="d-block">
             <img src="/images/logo.png" class="logo" alt="Creative Technology Studio"/>
         </a>
     </div>
-    <nav class="navbar navbar-expand-lg pb-0" id="main_nav">
+    <nav class="navbar navbar-expand-md" id="main_nav">
         <div class="container">
-            <div class="w-100 d-flex d-lg-none justify-content-between my-lg-0 my-2">
+            <div class="w-100 d-flex d-md-none justify-content-between navbar-xs">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -17,7 +17,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar">
                 <a class="navbar-brand me-0" href="{{ route('home') }}">
-                    <img src="/images/logo-small.png" alt="Creative technology Studio" class="sticky-logo"/>
+                    <img src="/images/logo-small.png" alt="Creative Technology Studio" class="sticky-logo">
                 </a>
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
@@ -45,7 +45,7 @@
                         <a @class(['nav-link']) href="{{ route('about', '#contacts') }}" id="contacts-menu">@lang('navbar.contact')</a>
                     </li>
                 </ul>
-                <form class="d-none d-lg-flex search">
+                <form class="d-none d-md-flex search">
                     <input class="form-control form-dark" type="text" placeholder="Search here ..." name="q" value="{{ Request::input('q') }}">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>

@@ -3,6 +3,9 @@ aside{
     .widget{
         width: 310px;
         margin-bottom: 35px;
+        @media (min-width: $md) and (max-width: $lg) {
+            width: 245px;
+        }
         h3{
             background: $background-lighten-2;
             color: $primary;

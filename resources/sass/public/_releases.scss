@@ -1,8 +1,6 @@
 // Releases
 .release-brief{
-    margin-right: 10px;
     position: relative;
-    width: 32%;
     transition: .5s ease transform;
     .item-overlay{
         position: absolute;
@@ -24,8 +22,8 @@
         }
     }
 }
-.release{
 
+.release{
     .release-title{
         color: $primary-text-darker;
         font-size: 20px;

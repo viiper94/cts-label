@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <p>@lang('footer.partners')</p>
-                <div class="partners d-flex">
+                <div class="partners d-flex flex-wrap">
                     <img src="/assets/img/best-track.png">
                     <img src="/assets/img/heads.png">
                     <a href="https://kissfm.ua/" target="_blank">

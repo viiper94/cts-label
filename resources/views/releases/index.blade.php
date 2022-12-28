@@ -5,10 +5,10 @@
 @section('content')
     <div class="container pt-3">
         <div class="row">
-            <section class="col">
+            <section class="col-md">
                 <div class="row g-1">
                     @foreach($releases as $release)
-                        <div class="col-md-4 mb-4 g-2">
+                        <div class="col-6 col-sm-4 mb-4 g-2">
                             <div class="release-brief">
                                 <a href="{{ route('release', $release->id) }}" class="d-block">
                                     <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="img-fluid">
@@ -18,7 +18,6 @@
                                 </a>
                             </div>
                         </div>
-
                     @endforeach
                 </div>
                 {{ $releases->links('layout.pagination') }}

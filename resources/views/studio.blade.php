@@ -70,7 +70,7 @@
         </div>
         <div class="studio-nav">
             <div class="container">
-                <ul class="py-3 px-0">
+                <ul class="d-flex align-items-center justify-content-md-between flex-column flex-md-row py-3 px-0">
                     <li><a href="#equipment">@lang('studio.equipment')</a></li>
                     <li><a href="#services">@lang('studio.services')</a></li>
                     <li><a href="#projects">@lang('studio.projects')</a></li>
@@ -105,7 +105,7 @@
                 <section class="equipment py-5">
                     <h1 class="text-center text-uppercase fw-bold mb-5" id="equipment">@lang('studio.equipment')</h1>
                     <div class="row">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-md-6">
                             <p class="equipment-header text-uppercase py-2 m-auto">
                                 @lang('studio.equip_main')
                             </p>
@@ -113,8 +113,8 @@
                                 @lang('studio.main_studio')
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                            <p class="equipment-header text-uppercase py-2 m-auto">
+                        <div class="col-12 col-md-6">
+                            <p class="equipment-header text-uppercase mt-5 mt-md-0 py-2 m-auto">
                                 @lang('studio.equip_dj')
                             </p>
                             <div class="equipment-text pt-5">
@@ -125,7 +125,7 @@
                 </section>
                 <section class="services py-5">
                     <h1 class="text-center text-uppercase fw-bold mb-5" id="services">@lang('studio.services')</h1>
-                    <div class="service-images d-flex justify-content-between px-5 flex-wrap">
+                    <div class="service-images d-flex justify-content-evenly px-5 flex-wrap">
                         @foreach($services as $service)
                             <div class="service-item m-3">
                                 <a data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $service->name }}" class="service-link">

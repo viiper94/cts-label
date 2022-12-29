@@ -33,7 +33,7 @@
                         <a @class(['nav-link', 'active' => \Route::is('studio')]) href="{{ route('studio') }}">@lang('navbar.studio')</a>
                     </li>
                     <li class="nav-item">
-                        <a @class(['nav-link', 'active' => \Route::is('school.*')]) href="{{ route('school') }}">@lang('navbar.school')</a>
+                        <a @class(['nav-link', 'active' => \Route::is('school*')]) href="{{ route('school') }}">@lang('navbar.school')</a>
                     </li>
                     <li class="nav-item">
                         <a @class(['nav-link', 'active' => \Route::is('reviews')]) href="{{ route('reviews') }}">@lang('navbar.reviews')</a>

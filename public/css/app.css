@@ -21324,6 +21324,7 @@ body::-webkit-scrollbar-thumb:hover, .modal-body::-webkit-scrollbar-thumb:hover,
 body {
   background-color: #000;
   color: #eee;
+  min-width: 350px;
 }
 
 main {
@@ -21371,22 +21372,21 @@ header .logo {
 nav.navbar {
   background-color: #000;
   padding-top: 0;
+  padding-bottom: 0;
 }
-nav.navbar .menu-fixed .nav-link {
-  font-size: 14px;
-}
-nav.navbar .menu-fixed .navbar-brand {
-  display: none;
-  padding: 12px 9px;
-  line-height: 20px;
-}
-@media (min-width: 992px) {
-  nav.navbar .menu-fixed .navbar-brand {
-    display: block;
+@media (min-width: 768px) {
+  nav.navbar:not(.scroll-to-fixed-fixed) {
+    padding-bottom: 16px;
   }
 }
-nav.navbar #navbar:not(.menu-fixed) .navbar-brand {
-  display: none;
+nav.navbar .navbar-xs {
+  margin-bottom: 0;
+}
+@media (max-width: 768px) {
+  nav.navbar.scroll-to-fixed-fixed .navbar-xs {
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
 }
 nav.navbar .navbar-nav .nav-link, nav.navbar .navbar-nav .nav-link.active {
   color: #eee;
@@ -21396,20 +21396,66 @@ nav.navbar .navbar-nav .nav-link {
   padding: 15px;
   line-height: 20px;
 }
+@media (min-width: 768px) and (max-width: 992px) {
+  nav.navbar .navbar-nav .nav-link {
+    font-size: 14px;
+    padding: 15px 8px;
+  }
+}
+@media (max-width: 1200px) {
+  nav.navbar .navbar-nav .nav-link {
+    font-size: 14px;
+  }
+}
 nav.navbar .navbar-nav .nav-link:hover {
   background-color: #e9a222;
 }
 nav.navbar .navbar-nav .nav-link.active {
   box-shadow: inset 0 0 0 3px #e9a222;
 }
+nav.navbar .menu-fixed .nav-link {
+  font-size: 14px;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  nav.navbar .menu-fixed .nav-link {
+    font-size: 11px;
+  }
+}
+nav.navbar .menu-fixed .navbar-brand {
+  display: none;
+  padding: 12px 9px;
+  line-height: 20px;
+}
+@media (min-width: 768px) {
+  nav.navbar .menu-fixed .navbar-brand {
+    display: block;
+  }
+}
+nav.navbar #navbar:not(.menu-fixed) .navbar-brand {
+  display: none;
+}
 nav.navbar .search {
   position: relative;
   width: 310px;
+}
+@media (min-width: 768px) and (max-width: 1200px) {
+  nav.navbar .search {
+    flex: 1;
+    max-width: 310px;
+    width: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  nav.navbar .search {
+    max-width: 245px;
+  }
 }
 nav.navbar .search input {
   height: 34px;
   font-size: 14px;
   color: #555;
+  border: 1px solid #1c1c1c;
+  background-color: #1c1c1c;
 }
 nav.navbar .search input::-moz-placeholder {
   font-style: italic;
@@ -21441,6 +21487,7 @@ nav.navbar .search-small input + button {
 nav.navbar .navbar-toggler {
   background-color: #1c1c1c;
   color: #89898b;
+  border-bottom-color: #1c1c1c;
   width: 62px;
   height: 54px;
 }
@@ -21468,6 +21515,7 @@ footer img {
   height: 40px;
   opacity: 0.7;
   cursor: pointer;
+  margin-bottom: 5px;
 }
 footer img:hover {
   opacity: 1;
@@ -21481,7 +21529,14 @@ footer .socials {
   line-height: 29px;
   text-align: center;
   margin-left: 5px;
+  margin-top: 5px;
   background-color: transparent;
+}
+@media (max-width: 768px) {
+  footer .socials {
+    margin-left: 0;
+    margin-right: 5px;
+  }
 }
 footer .socials.socials-ra {
   line-height: 24px;
@@ -21536,6 +21591,13 @@ footer .socials:hover {
 aside .widget {
   width: 310px;
   margin-bottom: 35px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  aside .widget {
+    width: 245px;
+  }
 }
 aside .widget h3, aside .widget .h3 {
   background: #2a2a2a;
@@ -21556,9 +21618,7 @@ aside .widget .widget-content {
 }
 
 .release-brief {
-  margin-right: 10px;
   position: relative;
-  width: 32%;
   transition: 0.5s ease transform;
 }
 .release-brief .item-overlay {
@@ -21645,9 +21705,26 @@ aside .widget .widget-content {
   cursor: not-allowed;
   color: #89898b;
 }
+@media (max-width: 1000px) {
+  .release .release-buttons {
+    max-width: 335px;
+    margin: auto;
+  }
+  .release .release-buttons .share {
+    width: 38px;
+    height: 33px;
+    font-size: 20px;
+    line-height: 33px;
+  }
+}
 .release .release-tracklist {
   color: #89898b;
   min-height: 300px;
+}
+@media (max-width: 768px) {
+  .release .release-tracklist {
+    min-height: auto;
+  }
 }
 .release .release-content {
   color: #89898b;
@@ -21660,9 +21737,11 @@ aside .widget .widget-content {
 
 .artists .artist-brief {
   position: relative;
-  width: 25%;
   font-size: 14px;
   cursor: pointer;
+}
+.artists .artist-brief img {
+  width: 100%;
 }
 .artists .artist-brief a {
   display: block;
@@ -21696,14 +21775,22 @@ aside .widget .widget-content {
 .about #contacts a:hover {
   color: #e9a222;
 }
-.about #contacts .cts-records {
-  background: url(/images/cts-records.png?6e7d15806a5c5288e41169f4d2f861cf) 330px 25px no-repeat;
+@media (min-width: 576px) {
+  .about #contacts .cts-records {
+    background: url(/images/cts-records.png?6e7d15806a5c5288e41169f4d2f861cf) 330px 25px no-repeat;
+  }
+  .about #contacts .cts-school {
+    background: url(/images/cts-school.png?d54d35a10b649a81bac9ceebfd616bd9) 330px -5px no-repeat;
+  }
+  .about #contacts .cts-studio {
+    background: url(/images/cts-studio.png?624ab650179470f7168800aadd4d4ec0) 330px -9px no-repeat;
+  }
 }
-.about #contacts .cts-school {
-  background: url(/images/cts-school.png?d54d35a10b649a81bac9ceebfd616bd9) 330px -5px no-repeat;
-}
-.about #contacts .cts-studio {
-  background: url(/images/cts-studio.png?624ab650179470f7168800aadd4d4ec0) 330px -9px no-repeat;
+@media (max-width: 992px) {
+  .about #contacts .cts-records, .about #contacts .cts-school, .about #contacts .cts-studio {
+    background-position-x: right;
+    background-size: 45%;
+  }
 }
 
 .anketa label {
@@ -21800,8 +21887,6 @@ aside .widget .widget-content {
   box-shadow: inset 0 -23px 13px -21px black;
 }
 .studio .studio-nav ul, .school .studio-nav ul {
-  display: flex;
-  justify-content: space-between;
   list-style: none;
 }
 .studio .studio-nav ul li a, .school .studio-nav ul li a {
@@ -21827,6 +21912,21 @@ aside .widget .widget-content {
   width: 200%;
   animation: marquee 40s linear infinite;
 }
+@media (max-width: 992px) {
+  .studio .studio-content .marquee .marquee-flow, .studio .school-content .marquee .marquee-flow, .school .studio-content .marquee .marquee-flow, .school .school-content .marquee .marquee-flow {
+    animation-duration: 30s;
+  }
+}
+@media (max-width: 768px) {
+  .studio .studio-content .marquee .marquee-flow, .studio .school-content .marquee .marquee-flow, .school .studio-content .marquee .marquee-flow, .school .school-content .marquee .marquee-flow {
+    animation-duration: 20s;
+  }
+}
+@media (max-width: 576px) {
+  .studio .studio-content .marquee .marquee-flow, .studio .school-content .marquee .marquee-flow, .school .studio-content .marquee .marquee-flow, .school .school-content .marquee .marquee-flow {
+    animation-duration: 10s;
+  }
+}
 .studio .studio-content .marquee .marquee-flow span img, .studio .school-content .marquee .marquee-flow span img, .school .studio-content .marquee .marquee-flow span img, .school .school-content .marquee .marquee-flow span img {
   max-height: 170px;
 }
@@ -21844,9 +21944,18 @@ aside .widget .widget-content {
 .studio .studio-content .equipment .equipment-text, .studio .school-content .equipment .equipment-text, .school .studio-content .equipment .equipment-text, .school .school-content .equipment .equipment-text {
   font-size: 12px;
   color: #bfbebe;
-  width: 275px;
-  margin-left: 190px;
-  padding: 0 4px;
+  width: 320px;
+  margin: auto;
+}
+@media (min-width: 768px) {
+  .studio .studio-content .equipment .equipment-text, .studio .school-content .equipment .equipment-text, .school .studio-content .equipment .equipment-text, .school .school-content .equipment .equipment-text {
+    padding-left: 82px;
+  }
+}
+@media (max-width: 768px) {
+  .studio .studio-content .equipment .equipment-text, .studio .school-content .equipment .equipment-text, .school .studio-content .equipment .equipment-text, .school .school-content .equipment .equipment-text {
+    text-align: center;
+  }
 }
 .studio .studio-content .equipment .equipment-text p, .studio .school-content .equipment .equipment-text p, .school .studio-content .equipment .equipment-text p, .school .school-content .equipment .equipment-text p {
   margin-bottom: 10px;
@@ -21866,15 +21975,13 @@ aside .widget .widget-content {
   list-style: none;
 }
 .studio .studio-content .services ul li, .studio .school-content .services ul li, .school .studio-content .services ul li, .school .school-content .services ul li {
-  width: 33%;
-  display: inline-block;
   font-size: 15px;
+  padding: 0 5px;
 }
-.studio .studio-content .services ul li:nth-child(2), .studio .school-content .services ul li:nth-child(2), .school .studio-content .services ul li:nth-child(2), .school .school-content .services ul li:nth-child(2) {
-  text-align: center;
-}
-.studio .studio-content .services ul li:last-child, .studio .school-content .services ul li:last-child, .school .studio-content .services ul li:last-child, .school .school-content .services ul li:last-child {
-  text-align: right;
+@media (min-width: 992px) {
+  .studio .studio-content .services ul li, .studio .school-content .services ul li, .school .studio-content .services ul li, .school .school-content .services ul li {
+    width: 33%;
+  }
 }
 .studio .studio-content .services a.price-list, .studio .school-content .services a.price-list, .school .studio-content .services a.price-list, .school .school-content .services a.price-list {
   font-size: 15px;
@@ -21906,12 +22013,22 @@ aside .widget .widget-content {
 .school .school-header .container {
   background: url(/images/cts-school-y.png?1c3f5d81e54cb24953ee89f0e08dd8fd) no-repeat 12px center;
 }
+@media (max-width: 768px) {
+  .school .school-header .container {
+    background-position-y: top;
+  }
+}
 .school .school-header .school-epigraph {
   width: 370px;
   font-size: 14px;
   font-style: italic;
   color: #e9a222;
-  text-align: right;
+}
+@media (max-width: 768px) {
+  .school .school-header .school-epigraph {
+    max-width: 100%;
+    align-self: center;
+  }
 }
 .school .studio-content .courses .course-button, .school .school-content .courses .course-button {
   height: 50px;
@@ -21933,15 +22050,35 @@ aside .widget .widget-content {
 .school .studio-content .courses .course-button:hover, .school .school-content .courses .course-button:hover {
   transform: scale(1.1);
 }
-.school .studio-content .equipment .equipment-text, .school .school-content .equipment .equipment-text {
+.school .studio-content .equipment .school-equipment-text, .school .school-content .equipment .school-equipment-text {
+  font-size: 12px;
+  color: #bfbebe;
+  margin: auto;
   width: 166px;
+}
+@media (min-width: 768px) {
+  .school .studio-content .equipment .school-equipment-text, .school .school-content .equipment .school-equipment-text {
+    padding-left: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .school .studio-content .equipment .school-equipment-text, .school .school-content .equipment .school-equipment-text {
+    text-align: center;
+  }
+}
+.school .studio-content .equipment .school-equipment-text p, .school .school-content .equipment .school-equipment-text p {
+  margin-bottom: 10px;
 }
 .school .studio-content .teachers .teacher, .school .school-content .teachers .teacher {
   height: 120px;
   font-size: 12px;
 }
+.school .studio-content .teachers .teacher > .row, .school .school-content .teachers .teacher > .row {
+  max-width: 350px;
+}
 .school .studio-content .teachers .teacher img, .school .school-content .teachers .teacher img {
   opacity: 0.7;
+  width: 84px;
 }
 .school .studio-content .teachers .teacher .teacher-name, .school .school-content .teachers .teacher .teacher-name {
   text-transform: uppercase;
@@ -21965,6 +22102,9 @@ aside .widget .widget-content {
 }
 .school .studio-content .about_courses .course-img, .school .school-content .about_courses .course-img {
   position: relative;
+}
+.school .studio-content .about_courses .course-img img, .school .school-content .about_courses .course-img img {
+  width: 100%;
 }
 .school .studio-content .about_courses .course-img .img-overlay, .school .school-content .about_courses .course-img .img-overlay {
   position: absolute;

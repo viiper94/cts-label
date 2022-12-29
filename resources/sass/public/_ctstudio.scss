@@ -93,20 +93,10 @@
             ul{
                 list-style: none;
                 li{
-                    width: 33%;
-                    display: inline-block;
                     font-size: 15px;
-                    &:nth-child(2){
-                        text-align: center;
-                    }
-                    @media (min-width: $md){
-                        &:last-child{
-                            text-align: right;
-                        }
-                    }
-                    @media (max-width: $md) {
-                        width: 100%;
-                        text-align: center;
+                    padding: 0 5px;
+                    @media (min-width: $lg) {
+                        width: 33%;
                     }
                 }
             }

@@ -135,7 +135,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <ul class="px-5 py-3 mb-0">
+                    <ul class="px-5 py-3 mb-0 d-flex flex-column flex-wrap flex-md-row justify-content-center justify-content-md-evenly text-center">
                         <li>@lang('studio.service_1');</li>
                         <li>@lang('studio.service_2');</li>
                         <li>@lang('studio.service_3').</li>

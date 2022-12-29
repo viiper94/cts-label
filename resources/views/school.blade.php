@@ -69,9 +69,9 @@
 
     <div class="school">
         <div class="school-header py-5">
-            <div class="container py-3">
-                <div class="lang-switch align-items-center">
-                    <p class="me-5 mb-0 school-epigraph">@lang('school.page_header')</p>
+            <div class="container d-flex flex-column flex-md-row justify-content-end align-items-end align-items-md-center py-3">
+                <p class="me-md-5 mb-0 school-epigraph order-last order-md-first text-center text-md-end">@lang('school.page_header')</p>
+                <div class="lang-switch mb-5 mb-md-0">
                     <div class="btn-group">
                         <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en'])
                            data-lang="en" href="{{ route('school') }}">
@@ -91,7 +91,7 @@
         </div>
         <div class="studio-nav">
             <div class="container">
-                <ul class="py-3 px-0">
+                <ul class="d-flex align-items-center justify-content-md-between flex-column flex-md-row py-3 px-0">
                     <li><a href="#about">@lang('school.about_courses')</a></li>
                     <li><a href="#equipment">@lang('school.equipment')</a></li>
                     <li><a href="#teachers">@lang('school.teachers')</a></li>
@@ -104,7 +104,7 @@
             <div class="container py-4">
                 <section class="courses py-5">
                     <h1 class="text-center text-uppercase fw-bold mb-5">@lang('school.courses')</h1>
-                    <div class="d-flex justify-content-between text-uppercase">
+                    <div class="d-flex flex-wrap justify-content-evenly text-uppercase gap-2">
                         <a href="#prices" class="course-button">@lang('school.sound_producer')</a>
                         <a href="#prices" class="course-button">@lang('school.sound_engineer')</a>
                         <a href="#prices" class="course-button">@lang('school.foh_engineer')</a>
@@ -131,18 +131,18 @@
                     <h1 class="text-center text-uppercase fw-bold mb-5" id="equipment">@lang('school.equipment')</h1>
                     <div class="row">
                         <div class="col-12 col-sm-6 px-5">
-                            <p class="equipment-header text-uppercase py-2 ms-auto me-5">
+                            <p class="equipment-header text-uppercase py-2 m-auto me-md-5">
                                 @lang('school.hardware')
                             </p>
-                            <div class="equipment-text me-5 ms-auto">
+                            <div class="school-equipment-text me-md-5 py-3 m-auto">
                                 @lang('school.hardware_text')
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 px-5">
-                            <p class="equipment-header text-uppercase py-2 me-auto ms-5">
+                            <p class="equipment-header text-uppercase py-2 m-auto ms-md-5">
                                 @lang('school.software')
                             </p>
-                            <div class="equipment-text ms-5 me-auto">
+                            <div class="school-equipment-text ms-md-5 py-3 m-auto">
                                 @lang('school.software_text')
                             </div>
                         </div>
@@ -153,20 +153,27 @@
                 </section>
                 <section class="teachers py-5">
                     <h1 class="text-center text-uppercase fw-bold mb-5" id="teachers">@lang('school.teachers')</h1>
-                    <div class="row">
+                    <div class="row gy-4 gy-sm-5 gy-md-4">
                         @foreach($teachers as $teacher)
                             <div @class([
-                                        'col-md-4 col-sm-6 col-xs-12 teacher row mb-3',
-                                        'offset-md-2' => $loop->iteration === 4 || $loop->iteration === 7,
-                                        'offset-md-4' => $loop->iteration === 6,
+                                        'teacher mb-3 col-sm-6',
+                                        'col-lg-4' => in_array($loop->iteration, [1,2,3,9,10,11]),
+                                        'col-md-6' => in_array($loop->iteration, [4,5,7,8]),
+                                        'col-md-12' => $loop->iteration === 6
                                     ])>
-                                <div class="col-auto">
-                                    <img src="/images/school/teachers/{{ $teacher->image }}">
-                                </div>
-                                <div class="col">
-                                    <p class="teacher-name mb-2 fw-bold">{{ $teacher->name }}</p>
-                                    <div class="binfo">{!! $teacher->teacher_binfo !!}</div>
-                                    <div class="hinfo">{!! $teacher->teacher_hinfo !!}</div>
+                                <div @class([
+                                        'm-auto row',
+                                        'ms-lg-auto me-lg-3' => in_array($loop->iteration, [4,7]),
+                                        'ms-lg-3' => in_array($loop->iteration, [5,8]),
+                                    ])>
+                                    <div class="col-auto">
+                                        <img src="/images/school/teachers/{{ $teacher->image }}">
+                                    </div>
+                                    <div class="col">
+                                        <p class="teacher-name mb-2 fw-bold">{{ $teacher->name }}</p>
+                                        <div class="binfo">{!! $teacher->teacher_binfo !!}</div>
+                                        <div class="hinfo">{!! $teacher->teacher_hinfo !!}</div>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -175,20 +182,30 @@
                 <section class="about_courses pb-5 pt-3">
                     <h1 class="text-center text-uppercase fw-bold mb-5" id="about_courses">@lang('school.about_courses')</h1>
                     <div class="row">
-                        <div class="col">
-                            <p class="text-paragraph">@lang('school.about_text')</p>
+                        <div class="col-md col-12">
                             <div class="row">
-                                <div class="col-auto">
+                                <div class="col">
+                                    <p class="text-paragraph">@lang('school.about_text')</p>
+                                </div>
+                                <div class="col-5 d-md-none">
+                                    <div class="course-img">
+                                        <img src="/images/school/school-9.jpg" class="img-fluid">
+                                        <div class="img-overlay"><p>@lang('school.lesson_holds_sergio')</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row pt-3 pt-md-0 g-0 g-md-2">
+                                <div class="col-6 col-md-4">
                                     <div class="course-img">
                                         <img src="/images/school/school-7.jpg" class="img-fluid">
                                         <div class="img-overlay">@lang('school.master_class_ekspert')</div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-md-4 order-last order-md-0 col-12 py-3 py-md-0">
                                     <p>@lang('school.lessons_held')</p>
                                     @lang('school.lessons_held_text')
                                 </div>
-                                <div class="col-auto">
+                                <div class="col-6 col-md-4">
                                     <div class="course-img">
                                         <img src="/images/school/school-8.jpg" class="img-fluid">
                                         <div class="img-overlay">@lang('school.consultation_conducted_by_belyavina')</div>
@@ -196,7 +213,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto">
+                        <div class="col-md-3 d-none d-md-block">
                             <div class="course-img">
                                 <img src="/images/school/school-9.jpg" class="img-fluid">
                                 <div class="img-overlay"><p>@lang('school.lesson_holds_sergio')</p></div>
@@ -209,37 +226,41 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-auto">
-                            <div class="course-img mb-3">
-                                <img src="/images/school/school-10.jpg" class="img-fluid">
-                                <div class="img-overlay">@lang('school.sound_engineering_lesson_shapovalov')</div>
-                            </div>
-                            <div class="course-img">
-                                <img src="/images/school/school-12.jpg" class="img-fluid">
-                                <div class="img-overlay">@lang('school.lesson_music_theory_semergey')</div>
+                        <div class="col-12 col-md-4">
+                            <div class="row g-0">
+                                <div class="course-img mb-md-3 col-6 col-md-12">
+                                    <img src="/images/school/school-10.jpg" class="img-fluid">
+                                    <div class="img-overlay">@lang('school.sound_engineering_lesson_shapovalov')</div>
+                                </div>
+                                <div class="course-img col-6 col-md-12">
+                                    <img src="/images/school/school-12.jpg" class="img-fluid">
+                                    <div class="img-overlay">@lang('school.lesson_music_theory_semergey')</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col d-flex flex-column justify-content-between">
+                        <div class="col-12 col-md-4 d-flex flex-column justify-content-between py-3 py-md-0">
                             <p>* @lang('school.about_text_3')</p>
                             <p>** @lang('school.about_text_4')</p>
                             <p>*** @lang('school.about_text_5')</p>
                             <p class="mb-0">**** @lang('school.about_text_6')</p>
                         </div>
-                        <div class="col-auto">
-                            <div class="course-img mb-3">
-                                <img src="/images/school/school-11.jpg" class="img-fluid">
-                                <div class="img-overlay">@lang('school.djing_by_yoshi')</div>
-                            </div>
-                            <div class="course-img">
-                                <img src="/images/school/school-13.jpg" class="img-fluid">
-                                <div class="img-overlay">@lang('school.production_lesson_by_sergio')</div>
+                        <div class="col-12 col-md-4">
+                            <div class="row g-0">
+                                <div class="course-img mb-md-3 col-6 col-md-12">
+                                    <img src="/images/school/school-11.jpg" class="img-fluid">
+                                    <div class="img-overlay">@lang('school.djing_by_yoshi')</div>
+                                </div>
+                                <div class="course-img col-6 col-md-12">
+                                    <img src="/images/school/school-13.jpg" class="img-fluid">
+                                    <div class="img-overlay">@lang('school.production_lesson_by_sergio')</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 <section class="services py-5">
                     <h1 class="text-center text-uppercase fw-bold mb-5" id="prices">@lang('school.cost_of_education')</h1>
-                    <div class="service-images d-flex justify-content-between px-5 flex-wrap">
+                    <div class="service-images d-flex justify-content-evenly px-5 flex-wrap">
                         @foreach($courses as $course)
                             <div class="service-item m-3">
                                 <a data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $course->name }}" class="service-link">

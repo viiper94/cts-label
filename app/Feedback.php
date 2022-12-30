@@ -10,7 +10,8 @@ class Feedback extends SharedModel{
     protected $table = 'feedback';
     protected $casts = [
         'tracks' => 'array',
-        'visible' => 'boolean'
+        'visible' => 'boolean',
+        'emailing_sent' => 'boolean'
     ];
     public $file_path = 'audio/feedback';
 

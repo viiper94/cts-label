@@ -62,7 +62,7 @@ class AdminEmailingContactsController extends Controller{
         $contact->fill($request->post());
         if($contact->save()){
             $contact->channels()->sync($request->input('channels'));
-            return redirect()->route('contacts.index')->with(['success' => 'Готово!']);
+            return redirect()->route('emailing.contacts.index')->with(['success' => 'Готово!']);
         }else{
             return redirect()->back()->withErrors(['Возникла ошибка =(']);
         }
@@ -92,7 +92,7 @@ class AdminEmailingContactsController extends Controller{
         $contact->fill($request->post());
         if($contact->save()){
             $contact->channels()->sync($request->input('channels'));
-            return redirect()->route('contacts.index')->with(['success' => 'Готово!']);
+            return redirect()->route('emailing.contacts.index')->with(['success' => 'Готово!']);
         }else{
             return redirect()->back()->withErrors(['Возникла ошибка =(']);
         }
@@ -100,7 +100,7 @@ class AdminEmailingContactsController extends Controller{
 
     public function destroy(EmailingContact $contact){
         return $contact->delete() ?
-            redirect()->route('contacts.index')->with(['success' => 'Удалено!']) :
+            redirect()->route('emailing.contacts.index')->with(['success' => 'Удалено!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

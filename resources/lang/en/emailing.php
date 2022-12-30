@@ -3,7 +3,7 @@ return [
     'unsubscribe' => [
         'unsubscribe_from' => 'Unsubscribe from this mailing list',
         'email' => 'Your E-Mail address',
-        'receive_message' => 'You will no receive messages from',
+        'receive_message' => 'You will no longer receive messages from',
         'you_can' => 'You can:',
         'unsubscribe_current' => 'Unsubscribe from current mailing list',
         'unsubscribe_all' => 'Unsubscribe completely',

@@ -26,6 +26,9 @@
                 <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Релиз на сайте
             </a>
         @endif
+        <button type="button" class="btn btn-outline" data-bs-target="#feedbackModal" data-bs-toggle="modal">
+            <i class="fa-solid fa-envelopes-bulk me-2"></i>Рассылка
+        </button>
         <form enctype="multipart/form-data" method="post" id="edit_release" class="mb-3"
               action="{{ $feedback->id ? route('feedback.update', $feedback->id) : route('feedback.store', $feedback->release?->id) }}">
             @csrf
@@ -151,23 +154,36 @@
         @endif
     </div>
 
-    <script type="text/html" id="reviews_template">
-        <div class="review" id="feedback-%i%">
-            <a class="delete-review-btn btn"><span class="glyphicon glyphicon-remove"></span></a>
-            <div class="form-group">
-                <label>Название трека</label><br>
-                <input type="text" class="form-control form-control__dark" name="tracks[%i%][title]" required>
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('feedback.emailing') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $feedback->id }}">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Рассылка фидбека</h1>
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        @if($feedback->emeiling_sent)
+                            <p class="text-warning">Рассылка по данному фидбеку уже была</p>
+                        @endif
+                        <h6>Выберите каналы, по которым запускать рассылку</h6>
+                        @foreach($emailing_channels as $item)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="channels[]" value="{{ $item->id }}" id="{{ $item->id }}">
+                                <label class="form-check-label" for="{{ $item->id }}">
+                                    <b>{{ $item->title }}</b> <small>({{ $item->subscribers_count }})</small>
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-play me-2"></i>Запустить рассылку</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group col-xs-6">
-                <label>Файл в высоком качестве</label><br>
-                <input type="file" style="font-size: 13px;" name="tracks[%i%][320]" data-id="%i%" accept=".mp3">
-            </div>
-            <div class="form-group col-xs-6">
-                <label>Файл в низком качестве</label><br>
-                <input type="file" style="font-size: 13px;" name="tracks[%i%][96]" data-id="%i%" accept=".mp3">
-            </div>
-            <div class="clearfix"></div>
         </div>
-    </script>
+    </div>
 
 @endsection

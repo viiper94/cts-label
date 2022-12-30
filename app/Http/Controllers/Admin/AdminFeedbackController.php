@@ -70,7 +70,8 @@ class AdminFeedbackController extends Controller{
         $feedback->load('related');
         return view('admin.feedback.edit', [
             'feedback' => $feedback,
-            'feedback_list' => Feedback::orderBy('release_id', 'desc')->get()
+            'feedback_list' => Feedback::orderBy('release_id', 'desc')->get(),
+            'emailing_channels' => EmailingChannel::withCount('subscribers')->get()
         ]);
     }
 

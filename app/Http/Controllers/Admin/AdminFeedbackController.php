@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\EmailingChannel;
+use App\EmailingQueue;
 use App\Feedback;
 use App\FeedbackResult;
 use App\Http\Controllers\Controller;
@@ -131,6 +133,32 @@ class AdminFeedbackController extends Controller{
                 ]
             ])->render()
         ]);
+    }
+
+    public function emailing(Request $request){
+        if($request->post()){
+            $this->validate($request, ['channels' => 'required|array']);
+            foreach($request->channels as $id){
+                $channel = EmailingChannel::with('subscribers')->findOrFail($id);
+                foreach($channel->subscribers as $contact){
+                    $mail = EmailingQueue::create([
+                        'channel_id' => $channel->id,
+                        'data' => [
+                            'template' => 'feedback',
+                            'unsubscribe' => true
+                        ],
+                        'feedback_id' => $request->id,
+                        'subject' => $channel->subject,
+                        'from' => $channel->from ?? env('EMAIL_FROM'),
+                        'name' => $contact->name,
+                        'to' => $contact->email,
+                    ]);
+//                    Mail::to($contact->email)->send(new Emailing($mail)); // for test only
+                }
+            }
+            return redirect()->back()->with(['success' => 'Рассылка запущена!']);
+        }
+        abort(403);
     }
 
 }

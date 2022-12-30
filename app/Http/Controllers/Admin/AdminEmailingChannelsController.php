@@ -88,6 +88,9 @@ class AdminEmailingChannelsController extends Controller{
             foreach($channel->subscribers as $contact){
                 $mail = EmailingQueue::create([
                     'channel_id' => $channel->id,
+                    'data' => [
+                        'template' => 'custom'
+                    ],
                     'subject' => $channel->subject,
                     'from' => $channel->from ?? env('EMAIL_FROM'),
                     'name' => $contact->name,
@@ -97,7 +100,7 @@ class AdminEmailingChannelsController extends Controller{
             }
             return redirect()->back()->with(['success' => 'Рассылка запущена!']);
         }
-        return abort(403);
+        abort(403);
     }
 
 }

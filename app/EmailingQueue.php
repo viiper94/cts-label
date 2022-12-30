@@ -17,10 +17,13 @@ class EmailingQueue extends Model{
         'to',
         'subject',
         'name',
+        'data',
+        'feedback_id',
     ];
 
     protected $casts = [
-        'sent' => 'boolean'
+        'sent' => 'boolean',
+        'data' => 'array',
     ];
 
     public function channel(){
@@ -34,6 +37,7 @@ class EmailingQueue extends Model{
     public static function send(){
         $in_queue = EmailingQueue::whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
         foreach($in_queue as $mail){
+            if(!isset($mail->data['template'])) continue;
             try{
                 Mail::to($mail->to)->send(new Emailing($mail));
                 $mail->error_code = null;
@@ -49,7 +53,6 @@ class EmailingQueue extends Model{
                 $mail->error_message = $e->getMessage();
                 $mail->save();
             }
-
         }
         return true;
     }

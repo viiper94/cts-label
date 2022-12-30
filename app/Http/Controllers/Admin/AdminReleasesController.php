@@ -31,6 +31,7 @@ class AdminReleasesController extends Controller{
         $this->validate($request, [
             'title' => 'required|string',
             'release_number' => 'string|nullable',
+            'genre' => 'string|nullable',
             'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
             'beatport' => 'url|nullable',
@@ -65,6 +66,7 @@ class AdminReleasesController extends Controller{
         $this->validate($request, [
             'title' => 'required|string',
             'release_number' => 'string|nullable',
+            'genre' => 'string|nullable',
             'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
             'beatport' => 'url|nullable',

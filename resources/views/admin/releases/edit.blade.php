@@ -46,6 +46,13 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
+                        <label class="form-label">Жанр</label><br>
+                        <input type="text" class="form-control form-dark" name="genre" value="{{ old('genre') ?? $release->genre }}" required>
+                        @error('genre')
+                            <p class="help-block text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group mb-3">
                         <label class="form-label">Номер</label><br>
                         <input type="text" class="form-control form-dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
                         @error('release_number')

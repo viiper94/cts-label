@@ -24,6 +24,7 @@ class Release extends SharedModel{
         'description_ru',
         'description_ua',
         'tracklist',
+        'genre',
         'visible'
     ];
 

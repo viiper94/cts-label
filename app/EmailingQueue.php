@@ -30,12 +30,16 @@ class EmailingQueue extends Model{
         return $this->hasOne('App\EmailingChannel', 'id', 'channel_id');
     }
 
+    public function feedback(){
+        return $this->hasOne('App\Feedback', 'id', 'feedback_id');
+    }
+
     public function recipient(){
         return $this->hasOne('App\EmailingContact', 'email', 'to');
     }
 
     public static function send(){
-        $in_queue = EmailingQueue::whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
+        $in_queue = EmailingQueue::with('feedback', 'feedback.release', 'feedback.related')->whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
         foreach($in_queue as $mail){
             if(!isset($mail->data['template'])) continue;
             try{

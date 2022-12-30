@@ -22127,3 +22127,8 @@ aside .widget .widget-content {
 .school .studio-content .contacts a:hover, .school .school-content .contacts a:hover {
   text-decoration: underline;
 }
+
+.error-page > div {
+  height: calc(100vh - 490px);
+  min-height: 240px;
+}

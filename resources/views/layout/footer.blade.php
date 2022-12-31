@@ -4,16 +4,16 @@
             <div class="col-xs-12 col-md-6">
                 <p>@lang('footer.partners')</p>
                 <div class="partners d-flex flex-wrap">
-                    <img src="/assets/img/best-track.png">
-                    <img src="/assets/img/heads.png">
+                    <img src="/images/best-track.png">
+                    <img src="/images/heads.png">
                     <a href="https://kissfm.ua/" target="_blank">
-                        <img src="/assets/img/kissfm.png">
+                        <img src="/images/kissfm.png">
                     </a>
-                    <img src="/assets/img/sweet.png">
+                    <img src="/images/sweet.png">
                     <a href="https://facebook.com/MARTS.art.project/" target="_blank">
-                        <img src="/assets/img/marls.png">
+                        <img src="/images/marls.png">
                     </a>
-                    <img src="/assets/img/tochka.png">
+                    <img src="/images/tochka.png">
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">

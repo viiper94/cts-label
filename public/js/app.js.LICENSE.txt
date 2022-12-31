@@ -1,0 +1,53 @@
+/*!
+  * Bootstrap v5.2.3 (https://getbootstrap.com/)
+  * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+  */
+
+/*!
+ * 
+ * litepicker.umd.js
+ * Litepicker v2.0.12 (https://github.com/wakirin/Litepicker)
+ * Package: litepicker (https://www.npmjs.com/package/litepicker)
+ * License: MIT (https://github.com/wakirin/Litepicker/blob/master/LICENCE.md)
+ * Copyright 2019-2021 Rinat G.
+ *     
+ * Hash: 504eef9c08cb42543660
+ * 
+ */
+
+/*!
+ * Sizzle CSS Selector Engine v2.3.9
+ * https://sizzlejs.com/
+ *
+ * Copyright JS Foundation and other contributors
+ * Released under the MIT license
+ * https://js.foundation/
+ *
+ * Date: 2022-12-19
+ */
+
+/*!
+ * bootstrap-star-rating v4.1.2
+ * http://plugins.krajee.com/star-rating
+ *
+ * Author: Kartik Visweswaran
+ * Copyright: 2013 - 2021, Kartik Visweswaran, Krajee.com
+ *
+ * Licensed under the BSD 3-Clause
+ * https://github.com/kartik-v/bootstrap-star-rating/blob/master/LICENSE.md
+ */
+
+/*!
+ * jQuery JavaScript Library v3.6.3
+ * https://jquery.com/
+ *
+ * Includes Sizzle.js
+ * https://sizzlejs.com/
+ *
+ * Copyright OpenJS Foundation and other contributors
+ * Released under the MIT license
+ * https://jquery.org/license
+ *
+ * Date: 2022-12-20T21:28Z
+ */

@@ -47,7 +47,7 @@ class Controller extends BaseController{
             $decrypted = json_decode(Crypt::decryptString($hash), true);
 
         }catch (DecryptException $e){
-            return abort(404);
+            abort(404);
         }
 
         $channel = EmailingChannel::whereId($decrypted['channel_id'])->firstOrFail();
@@ -63,7 +63,7 @@ class Controller extends BaseController{
             $complete = true;
         }
 
-        return view('emails.unsubscribe', [
+        return view('unsubscribe', [
             'email' => $decrypted['email'],
             'from' => $decrypted['from'],
             'complete' => $complete

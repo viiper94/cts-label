@@ -21,8 +21,13 @@ class Emailing extends Mailable{
                 'channel_id' => $this->mail->channel->id
             ]))
             : false;
+        if(isset($this->mail->data['template']) && $this->mail->data['template'] === 'feedback'){
+            $subject = $this->mail->feedback->feedback_title;
+            if($this->mail->feedback->release->genre) $subject .= '. Genre: '.$this->mail->feedback->release->genre;
+            $subject .= '. Download & feedback!';
+        }
         return $this->from($this->mail->from, 'CTS Records')
-                    ->subject($this->mail->subject)
+                    ->subject($subject ?? $this->mail->subject)
                     ->view('emails.emailing.'.$this->mail->data['template'], [
                         'name' => $this->mail->name,
                         'hash' => $hash

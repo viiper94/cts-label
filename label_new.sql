@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Час створення: Жов 17 2022 р., 10:46
--- Версія сервера: 10.3.36-MariaDB-cll-lve
--- Версія PHP: 7.4.30
+-- Час створення: Гру 31 2022 р., 08:47
+-- Версія сервера: 10.3.37-MariaDB-cll-lve
+-- Версія PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,12 +32,12 @@ CREATE TABLE `artists` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sort_id` int(11) NOT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 1,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description_ru` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description_ua` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) DEFAULT NULL,
+  `name` varchar(191) NOT NULL,
+  `link` varchar(191) DEFAULT NULL,
+  `description_en` text DEFAULT NULL,
+  `description_ru` text DEFAULT NULL,
+  `description_ua` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -180,7 +180,9 @@ INSERT INTO `artists` (`id`, `sort_id`, `visible`, `image`, `name`, `link`, `des
 (1849, 123, 1, '6cd1195e1662905b526103102996f798.jpg', 'Daniel-X', 'https://www.facebook.com/DannyVlasov', NULL, NULL, NULL, '2021-03-02 14:07:39', '2021-03-02 14:23:34'),
 (1851, 124, 1, 'de3026f0b3a17488e968993779910637.jpg', 'DJ Jivan', 'https://www.facebook.com/jivanswami', NULL, NULL, NULL, '2021-10-26 14:23:05', '2021-10-26 14:23:05'),
 (1852, 125, 1, '6069ce1d432a6d689d2b7092b4c442d5.jpg', 'Cream Croc', 'https://www.facebook.com/CreamCroc', NULL, NULL, NULL, '2021-10-26 14:28:08', '2021-10-26 14:28:08'),
-(1853, 126, 1, '31bb09142c4c3c37acc1e006328808c9.jpg', 'Basslucy', 'https://www.facebook.com/basslucy.paydar.7', NULL, NULL, NULL, '2021-11-22 16:02:13', '2021-11-22 16:02:13');
+(1853, 126, 1, '31bb09142c4c3c37acc1e006328808c9.jpg', 'Basslucy', 'https://www.facebook.com/basslucy.paydar.7', NULL, NULL, NULL, '2021-11-22 16:02:13', '2021-11-22 16:02:13'),
+(1854, 127, 1, 'f4feef1be0e00d754190c751ebfc7c41.jpg', 'Detcom', 'https://ra.co/dj/detcom', NULL, NULL, NULL, '2022-12-21 01:39:25', '2022-12-21 01:39:25'),
+(1855, 128, 1, '85041acf133f347a7c0a95e38727738a.jpg', 'Refinders', 'https://www.facebook.com/refindersband.official/', NULL, NULL, NULL, '2022-12-21 01:42:11', '2022-12-21 01:42:11');
 
 -- --------------------------------------------------------
 
@@ -192,33 +194,33 @@ CREATE TABLE `cv` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL,
   `birth_date` date NOT NULL,
-  `dj_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vk` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `facebook` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `soundcloud` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `other_social` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_number` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `education` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sound_engineer_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sound_producer_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dj_skills` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `music_genres` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `additional_info` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `learned_about_ctschool` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `what_to_learn` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `purpose_of_learning` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dj_name` varchar(191) DEFAULT NULL,
+  `vk` varchar(191) DEFAULT NULL,
+  `facebook` varchar(191) DEFAULT NULL,
+  `soundcloud` varchar(191) DEFAULT NULL,
+  `other_social` varchar(191) DEFAULT NULL,
+  `phone_number` varchar(191) NOT NULL,
+  `address` text NOT NULL,
+  `education` text NOT NULL,
+  `job` text NOT NULL,
+  `sound_engineer_skills` text DEFAULT NULL,
+  `sound_producer_skills` text DEFAULT NULL,
+  `dj_skills` text DEFAULT NULL,
+  `music_genres` text DEFAULT NULL,
+  `additional_info` text DEFAULT NULL,
+  `learned_about_ctschool` text NOT NULL,
+  `what_to_learn` text DEFAULT NULL,
+  `purpose_of_learning` text DEFAULT NULL,
   `closed_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `course` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `os` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `equipment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `document` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `course` varchar(191) NOT NULL,
+  `os` text DEFAULT NULL,
+  `equipment` text DEFAULT NULL,
+  `document` varchar(191) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -238,14 +240,14 @@ INSERT INTO `cv` (`id`, `user_id`, `status`, `name`, `email`, `birth_date`, `dj_
 
 CREATE TABLE `email_channels` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `template` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) NOT NULL,
+  `description` varchar(191) DEFAULT NULL,
+  `template` varchar(191) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `from` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `subject` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'en'
+  `from` varchar(191) DEFAULT NULL,
+  `subject` varchar(191) NOT NULL,
+  `lang` varchar(191) NOT NULL DEFAULT 'en'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -254,9 +256,7 @@ CREATE TABLE `email_channels` (
 
 INSERT INTO `email_channels` (`id`, `title`, `description`, `template`, `created_at`, `updated_at`, `from`, `subject`, `lang`) VALUES
 (1, 'Тест', NULL, NULL, '2022-09-30 12:42:58', '2022-10-05 16:54:48', 'info@cts-studio.com', 'ADE meeting with CTS Records', 'en'),
-(2, 'ADE', NULL, NULL, '2022-10-05 15:20:21', '2022-10-05 15:20:21', 'info@cts-studio.com', 'ADE meeting with CTS Records', 'en'),
-(4, 'Test Failed', NULL, NULL, '2022-10-08 14:08:01', '2022-10-08 14:08:01', 'info@cts-studio.com', 'ADE meeting with CTS Records', 'en'),
-(5, 'Test failer pt2', NULL, NULL, '2022-10-08 14:11:45', '2022-10-08 14:11:45', 'info@cts-studio.com', 'ADE meeting with CTS Records', 'en');
+(2, 'ADE', NULL, NULL, '2022-10-05 15:20:21', '2022-10-05 15:20:21', 'info@cts-studio.com', 'ADE meeting with CTS Records', 'en');
 
 -- --------------------------------------------------------
 
@@ -2719,20 +2719,20 @@ INSERT INTO `email_channels_contacts` (`i`, `contact_id`, `channel_id`) VALUES
 
 CREATE TABLE `email_contacts` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `full_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `position` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `additional` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lang` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'en',
-  `email_channels` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) NOT NULL,
+  `full_name` varchar(191) DEFAULT NULL,
+  `email` varchar(191) NOT NULL,
+  `company` text DEFAULT NULL,
+  `position` text DEFAULT NULL,
+  `additional` text DEFAULT NULL,
+  `lang` varchar(191) DEFAULT 'en',
+  `email_channels` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_foa` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(191) DEFAULT NULL,
+  `website` varchar(191) DEFAULT NULL,
+  `country` varchar(191) DEFAULT NULL,
+  `company_foa` varchar(191) DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -4211,16 +4211,16 @@ INSERT INTO `email_contacts` (`id`, `name`, `full_name`, `email`, `company`, `po
 CREATE TABLE `email_queue` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `channel_id` int(11) NOT NULL,
-  `subject` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `from` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `to` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` text NOT NULL,
+  `from` varchar(191) NOT NULL,
+  `to` varchar(191) NOT NULL,
+  `name` varchar(191) NOT NULL,
   `sent` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `sort` int(11) NOT NULL DEFAULT 0,
   `error_code` int(11) DEFAULT NULL,
-  `error_message` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `error_message` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -5709,10 +5709,10 @@ INSERT INTO `email_queue` (`id`, `channel_id`, `subject`, `from`, `to`, `name`, 
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -5726,14 +5726,14 @@ CREATE TABLE `feedback` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sort_id` int(11) DEFAULT NULL,
   `release_id` int(11) DEFAULT NULL,
-  `feedback_title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `archive_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tracks` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feedback_title` varchar(191) NOT NULL,
+  `archive_name` varchar(191) DEFAULT NULL,
+  `tracks` text NOT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `slug` varchar(191) DEFAULT NULL,
+  `image` varchar(191) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -5750,7 +5750,8 @@ INSERT INTO `feedback` (`id`, `sort_id`, `release_id`, `feedback_title`, `archiv
 (24, 0, 1861, 'Basslucy - Guest', 'basslucy-guest.zip', '[{\"title\":\"Basslucy - Guest\",\"96\":\"Basslucy - Guest.mp3\",\"320\":\"Basslucy - Guest.mp3\"}]', 1, '2021-11-12 19:11:29', '2021-11-12 19:11:29', 'basslucy-guest', NULL),
 (26, 0, 1862, 'Basslucy - Moondancer incl. Sergio Mega Remix', 'basslucy-moondancer-incl-sergio-mega-remix.zip', '[{\"title\":\"Original Mix\",\"96\":\"Basslucy - Moondancer (Original Mix).mp3\",\"320\":\"Basslucy - Moondancer (Original Mix).mp3\"},{\"title\":\"Sergio Mega Remix\",\"96\":\"Basslucy - Moondancer (Sergio Mega Remix).mp3\",\"320\":\"Basslucy - Moondancer (Sergio Mega Remix).mp3\"},{\"title\":\"Cream Croc Remix\",\"96\":\"Basslucy - Moondancer (Cream Croc Remix).mp3\",\"320\":\"Basslucy - Moondancer (Cream Croc Remix).mp3\"},{\"title\":\"Skylined Remix\",\"96\":\"Basslucy - Moondancer (Skylined Remix).mp3\",\"320\":\"Basslucy - Moondancer (Skylined Remix).mp3\"}]', 1, '2022-01-24 14:57:28', '2022-01-24 14:57:28', 'basslucy-moondancer-incl-sergio-mega-remix', NULL),
 (27, 0, NULL, 'Basslucy - Moondancer (Sergio Mega Remix)', 'basslucy-moondancer-sergio-mega-remix.zip', '[{\"title\":\"Basslucy - Moondancer (Sergio Mega Remix)\",\"96\":\"Basslucy - Moondancer (Sergio Mega Remix).mp3\",\"320\":\"Basslucy - Moondancer (Sergio Mega Remix).mp3\"}]', 1, '2022-01-24 18:15:21', '2022-01-24 18:15:21', 'basslucy-moondancer-sergio-mega-remix', '8952119f534f818ae75f50f41b52b18a.jpg'),
-(28, 0, NULL, 'CTS sampler ADE 2022', 'cts-sampler-ade-2022.zip', '[{\"title\":\"4ykLive - Nail Rain\",\"96\":\"4ykLive - Nail Rain.mp3\",\"320\":\"4ykLive - Nail Rain.mp3\"},{\"title\":\"Refinders - Dreaming (Cream Croc Remix)\",\"96\":\"Refinders - Dreaming (Cream Croc Remix).mp3\",\"320\":\"Refinders - Dreaming (Cream Croc Remix).mp3\"},{\"title\":\"Prohor - Irpin\",\"96\":\"Prohor - Irpin.mp3\",\"320\":\"Prohor - Irpin.mp3\"},{\"title\":\"Sergio Mega - Lights\",\"96\":\"Sergio Mega - Lights.mp3\",\"320\":\"Sergio Mega - Lights.mp3\"},{\"title\":\"Sergio Mega - That Tune\",\"96\":\"Sergio Mega - That Tune.mp3\",\"320\":\"Sergio Mega - That Tune.mp3\"},{\"title\":\"Vitalii Sky - The Drums\",\"96\":\"Vitalii Sky - The Drums.mp3\",\"320\":\"Vitalii Sky - The Drums.mp3\"},{\"title\":\"Vitalii Sky - Euphoria\",\"96\":\"Vitalii Sky - Euphoria.mp3\",\"320\":\"Vitalii Sky - Euphoria.mp3\"},{\"title\":\"Detcom - The Invasion\",\"96\":\"Detcom - The Invasion.mp3\",\"320\":\"Detcom - The Invasion.mp3\"},{\"title\":\"Serge Lazar - Architecture\",\"96\":\"Serge Lazar - Architecture.mp3\",\"320\":\"Serge Lazar - Architecture.mp3\"},{\"title\":\"Serge Lazar - Resistance\",\"96\":\"Serge Lazar - Resistance.mp3\",\"320\":\"Serge Lazar - Resistance.mp3\"},{\"title\":\"Skylined - Chemical Diving\",\"320\":\"Skylined - Chemical Diving.mp3\",\"96\":\"Skylined - Chemical Diving.mp3\"},{\"title\":\"Skylined - Strightforward\",\"320\":\"Skylined - Strightforward.mp3\",\"96\":\"Skylined - Strightforward.mp3\"}]', 1, '2022-10-17 00:17:20', '2022-10-17 00:30:12', 'cts-sampler-ade-2022', '2b2ff4943d20a0994a644e350dba0535.jpg');
+(28, 0, NULL, 'CTS sampler ADE 2022', 'cts-sampler-ade-2022.zip', '[{\"title\":\"4ykLive - Nail Rain\",\"96\":\"4ykLive - Nail Rain.mp3\",\"320\":\"4ykLive - Nail Rain.mp3\"},{\"title\":\"Refinders - Dreaming (Cream Croc Remix)\",\"96\":\"Refinders - Dreaming (Cream Croc Remix).mp3\",\"320\":\"Refinders - Dreaming (Cream Croc Remix).mp3\"},{\"title\":\"Prohor - Irpin\",\"96\":\"Prohor - Irpin.mp3\",\"320\":\"Prohor - Irpin.mp3\"},{\"title\":\"Sergio Mega - Lights\",\"96\":\"Sergio Mega - Lights.mp3\",\"320\":\"Sergio Mega - Lights.mp3\"},{\"title\":\"Sergio Mega - That Tune\",\"96\":\"Sergio Mega - That Tune.mp3\",\"320\":\"Sergio Mega - That Tune.mp3\"},{\"title\":\"Vitalii Sky - The Drums\",\"96\":\"Vitalii Sky - The Drums.mp3\",\"320\":\"Vitalii Sky - The Drums.mp3\"},{\"title\":\"Vitalii Sky - Euphoria\",\"96\":\"Vitalii Sky - Euphoria.mp3\",\"320\":\"Vitalii Sky - Euphoria.mp3\"},{\"title\":\"Detcom - The Invasion\",\"96\":\"Detcom - The Invasion.mp3\",\"320\":\"Detcom - The Invasion.mp3\"},{\"title\":\"Serge Lazar - Architecture\",\"96\":\"Serge Lazar - Architecture.mp3\",\"320\":\"Serge Lazar - Architecture.mp3\"},{\"title\":\"Serge Lazar - Resistance\",\"96\":\"Serge Lazar - Resistance.mp3\",\"320\":\"Serge Lazar - Resistance.mp3\"},{\"title\":\"Skylined - Chemical Diving\",\"320\":\"Skylined - Chemical Diving.mp3\",\"96\":\"Skylined - Chemical Diving.mp3\"},{\"title\":\"Skylined - Strightforward\",\"320\":\"Skylined - Strightforward.mp3\",\"96\":\"Skylined - Strightforward.mp3\"}]', 1, '2022-10-17 00:17:20', '2022-10-17 00:30:12', 'cts-sampler-ade-2022', '2b2ff4943d20a0994a644e350dba0535.jpg'),
+(29, 0, NULL, 'Refinders - Dreaming (Remixes)', 'refinders-dreaming-remixes.zip', '[{\"title\":\"Refinders - Dreaming (Original Mix)\",\"96\":\"Refinders - Dreaming (Original Mix).mp3\",\"320\":\"Refinders - Dreaming (Original Mix).mp3\"},{\"title\":\"Refinders - Dreaming (Cream Croc Remix)\",\"320\":\"Refinders - Dreaming (Cream Croc Remix).mp3\",\"96\":\"Refinders - Dreaming (Cream Croc Remix).mp3\"},{\"title\":\"Refinders - Dreaming (Feelmark & Lirity Remix)\",\"320\":\"Refinders - Dreming (Feelmark & Lirity Remix).mp3\",\"96\":\"Refinders - Dreming (Feelmark & Lirity Remix).mp3\"},{\"title\":\"Refinders - Dreaming (John Kayder Remix)\",\"320\":\"Refinders - Dreaming (John Kayder Remix).mp3\",\"96\":\"Refinders - Dreaming (John Kayder Remix).mp3\"}]', 1, '2022-12-22 08:18:23', '2022-12-22 08:18:23', 'refinders-dreaming-remixes', '178d589010207c1d7ffd012d06b139d9.jpg');
 
 -- --------------------------------------------------------
 
@@ -5761,11 +5762,11 @@ INSERT INTO `feedback` (`id`, `sort_id`, `release_id`, `feedback_title`, `archiv
 CREATE TABLE `feedback_results` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `feedback_id` int(11) NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rates` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `best_track` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `rates` text NOT NULL,
+  `best_track` text DEFAULT NULL,
+  `comment` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -5802,7 +5803,7 @@ INSERT INTO `feedback_results` (`id`, `feedback_id`, `name`, `email`, `rates`, `
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -5852,8 +5853,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `token` varchar(191) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -5894,7 +5895,7 @@ INSERT INTO `related_feedback` (`feedback_id`, `related_id`, `created_at`, `upda
 CREATE TABLE `related_releases` (
   `release_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп даних таблиці `related_releases`
@@ -6977,7 +6978,10 @@ INSERT INTO `related_releases` (`release_id`, `related_id`) VALUES
 (1862, 1843),
 (1863, 1862),
 (1863, 1859),
-(1863, 1844);
+(1863, 1844),
+(1865, 1864),
+(1865, 1862),
+(1865, 1860);
 
 -- --------------------------------------------------------
 
@@ -6988,16 +6992,16 @@ INSERT INTO `related_releases` (`release_id`, `related_id`) VALUES
 CREATE TABLE `releases` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sort_id` int(11) NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `release_number` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(191) NOT NULL,
+  `release_number` varchar(191) DEFAULT NULL,
   `release_date` date DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `beatport` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `youtube` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description_en` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description_ru` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description_ua` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tracklist` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) DEFAULT NULL,
+  `beatport` varchar(191) DEFAULT NULL,
+  `youtube` varchar(191) DEFAULT NULL,
+  `description_en` text DEFAULT NULL,
+  `description_ru` text DEFAULT NULL,
+  `description_ua` text DEFAULT NULL,
+  `tracklist` text DEFAULT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -7375,7 +7379,8 @@ INSERT INTO `releases` (`id`, `sort_id`, `title`, `release_number`, `release_dat
 (1861, 364, 'Basslucy - Guest', 'CTS364213', '2021-11-19', 'dc09cdb3a91f87749750d60db4c2cff7.jpg', 'https://www.beatport.com/release/guest/3572936', 'https://www.youtube.com/watch?v=aJ8mJS8rGbk', '<p style=\"text-align:justify\">We are glad to welcome Basslucy - sound producer from Iran on CTS Records with his new hot single Guest! With this punchy tune Basslucy deliver tight and groovy vibes ready for a crowd dancefloor... Enjoy!</p>', '<p style=\"text-align:justify\">Мы рады приветствовать Basslucy - саунд-продюсера из Ирана на CTS Records с его новым горячим синглом Guest! С этой энергичной композициией&nbsp;Basslucy доставил плотные груви ритмы, специально подготовленные для жаркого танцпола... Enjoy!</p>', '<p style=\"text-align:justify\">Ми раді вітати Basslucy - саундпродюсера з Ірану на CTS Records з його новим гарячим синглом Guest! З цією енергійною композицією&nbsp;Basslucy доставив плотні груві ритми, готові до жаркого танцполу... Enjoy!</p>', '<p>Basslucy - Guest</p>', 1, '2021-11-12 18:44:17', '2022-10-15 10:13:15'),
 (1862, 365, 'Basslucy - Moondancer', 'CTS365213', '2021-12-17', '34d7a01fe1272fad2494abd1786958ae.jpg', 'https://www.beatport.com/release/moondancer/3603258', 'https://www.youtube.com/watch?v=iPpRqFd4_pg', '<p style=\"text-align:justify\">Another release from&nbsp;sound producer Basslucy on CTS. Atmospheric&nbsp;trippy original is supplemented with remixes. Dark techy mix by&nbsp;Sergio Mega, Cream Croc deliver their&nbsp;acid version and also deep dech vibes by Skylined&nbsp;influenced with Detroit techno traditions... Enjoy</p>', '<p style=\"text-align:justify\">Еще один релиз саунд продюсера Basslucy на CTS. Атмосферный триповый оригинал дополнен ремиксами. Дарк-тек микс от Sergio Mega, Cream Croc представили&nbsp;свою acid версию, а также&nbsp;deep tech c влиянием техно-традиций Детройта от Skylined... Enjoy</p>', '<p style=\"text-align:justify\">Ще один випуск саунд продюсера Basslucy на CTS. Атмосферний&nbsp;триповий&nbsp;оригінал доповнено реміксами. Дарк-тек мікс від&nbsp;Sergio Mega, Cream Croc створили acid версію, а також deep tech&nbsp;з впливом детройтських техно-традицій від Skylined&nbsp;... Enjoy</p>', '<p>Basslucy - Moondancer (Original Mix)<br />\r\nBasslucy - Moondancer (Sergio Mega Remix)<br />\r\nBasslucy - Moondancer (Cream Croc Remix)<br />\r\nBasslucy - Moondancer (Skylined Remix)</p>', 1, '2021-12-02 16:22:25', '2022-10-15 10:12:41'),
 (1863, 366, 'Vitalii Sky - We the People', 'CTS366223', '2022-05-07', '0c0dbf5a2fa43b650d20e1c130705e80.jpeg', 'https://www.beatport.com/release/we-the-people/3733446', 'https://www.youtube.com/watch?v=9cmp4zOJBys', '<p style=\"text-align:justify\">With this release Ukrainian sound producer Vitalii Sky and we here on Kyiv based record label CTS Records would like to show our solidarity and unity with all Ukrainian people who fight brave to struggle for our liberty and sovereignty now. We stay strong and we&#39;ll never give up - we the people of Ukraine! Slava Ukraini!</p>', '<p style=\"text-align:justify\">Этим релизом украинский саунд-продюсер Vitalii Sky и мы здесь, на киевском лейбле CTS Records, хотели бы продемонстрировать нашу солидарность и единство со всем украинским народом, который сейчас храбро борется за нашу свободу и суверенитет. Мы остаемся сильными и никогда не сдадимся - мы народ Украины! Слава Україні!</p>', '<p style=\"text-align:justify\">Цим релізом український саундпродюсер Vitalii Sky і ми тут, на київському лейблі CTS Records, хочемо продемонструвати&nbsp;нашу солідарність і єдність з усім українським народом, який зараз відважно бореться за нашу свободу та суверенітет. Ми залишаємося сильними і ніколи не здамося - ми, народ України! Слава Україні!</p>', '<p>Vitalii Sky - We the People</p>', 1, '2022-05-05 18:34:07', '2022-10-15 10:11:49'),
-(1864, 367, 'CTS sampler ADE 2022', 'PROMO', '2022-10-19', '887bf02c54e4400b20c2743882ffc536.jpg', NULL, NULL, '<p>CTS Records presents selection of tracks by Ukrainian producers made during war time prepared specialy for Amsterdam Dance Event 2022</p>', '<p>CTS Records presents selection of tracks by Ukrainian producers made during war time prepared specialy for Amsterdam Dance Event 2022</p>', '<p>CTS Records представляє добірку треків українських продюсерів, створених у воєнний час, підготовлену спеціально для Amsterdam Dance Event 2022</p>', '<p>1.&nbsp;4ykLive - Nail Rain<br />\r\n2. Refinders - Dreaming (Cream Croc Remix)<br />\r\n3. Prohor - Irpin</p>\r\n\r\n<p>4. Sergio Mega - Lights<br />\r\n5. Sergio Mega - That Tune</p>\r\n\r\n<p>6. Vitalii Sky -&nbsp;The Drums<br />\r\n7. Vitalii Sky - Euphoria</p>\r\n\r\n<p>8. Detcom - The Invasion<br />\r\n9. Serge Lazar - Architecture<br />\r\n10. Serge Lazar - Resistance</p>\r\n\r\n<p>11. Skylined -&nbsp;Chemical Diving<br />\r\n12. Skylined - Strightforward</p>\r\n\r\n<p>&nbsp;</p>', 1, '2022-10-16 23:12:32', '2022-10-17 07:38:29');
+(1864, 367, 'CTS sampler ADE 2022', 'PROMO', '2022-10-19', '887bf02c54e4400b20c2743882ffc536.jpg', NULL, NULL, '<p>CTS Records presents selection of tracks by Ukrainian producers made during war time prepared specialy for Amsterdam Dance Event 2022</p>', '<p>CTS Records presents selection of tracks by Ukrainian producers made during war time prepared specialy for Amsterdam Dance Event 2022</p>', '<p>CTS Records представляє добірку треків українських продюсерів, створених у воєнний час, підготовлену спеціально для Amsterdam Dance Event 2022</p>', '<p>1.&nbsp;4ykLive - Nail Rain<br />\r\n2. Refinders - Dreaming (Cream Croc Remix)<br />\r\n3. Prohor - Irpin</p>\r\n\r\n<p>4. Sergio Mega - Lights<br />\r\n5. Sergio Mega - That Tune</p>\r\n\r\n<p>6. Vitalii Sky -&nbsp;The Drums<br />\r\n7. Vitalii Sky - Euphoria</p>\r\n\r\n<p>8. Detcom - The Invasion<br />\r\n9. Serge Lazar - Architecture<br />\r\n10. Serge Lazar - Resistance</p>\r\n\r\n<p>11. Skylined -&nbsp;Chemical Diving<br />\r\n12. Skylined - Straightforward</p>\r\n\r\n<p>&nbsp;</p>', 1, '2022-10-16 23:12:32', '2022-12-14 18:05:19'),
+(1865, 368, 'Refinders - Dreaming (Remixes)', 'CTS367223', '2022-12-23', '470a863a407359c080298705eb333d2e.jpg', NULL, NULL, '<p>Winter of 2022 on CTS&nbsp;is sounds with Refinders synthpop band. &nbsp;<br />\r\nFor this release Refinders deliver their spespecial selection of remixes handly picked up of over 80 works.&nbsp;Went through such a tight competition Feelmark &amp; Lirity and John Kayder remixes have melodic techno accents and built on main vocal part of the track in a same time both of them are destinctive and have own specials.&nbsp;<br />\r\nCream Croc duo remix supplements the EP with its punchy groove and dark deep atmospheres ... don&#39;t let the shadows get you down and keep on dreaming!<br />\r\n&nbsp;</p>', '<p>Зима 2022&nbsp;года на CTS звучит в унисон с синти-поп-группой Refinders.<br />\r\nДля этого релиза Refinders представили свою специальную подборку ремиксов, тщательно отобранных из более чем 80 работ. Прошедшие через столь жесткую конкуренцию ремиксы Feelmark &amp; ​​Lirity и John Kayder имеют мелодичные техно-акценты и построены на основной вокальной части трека, в то же время оба они самобытны и имеют свои особенности. Ремикс дуэта Cream Croc дополняет EP своим напористым грувом и мрачной глубокой атмосферой... не позволяйте теням сломить вас и продолжайте мечтать!</p>', '<p>Зима 2022 року на CTS &nbsp;звучить в унісон&nbsp;із синт-поп гуртом Refinders.<br />\r\nДля цього випуску Refinders пропонують свою особливу добірку реміксів, зібраних вручну з понад&nbsp;80 творів. Пройшовши через таку жорстку конкуренцію, ремікси Feelmark &amp; ​​Lirity та John Kayder мають мелодичні техно акценти та побудовані на основній вокальній частині треку, водночас обидва вони самобутні та мають власні особливості. Ремікс від дуету Cream Croc доповнює EP своїм напористим грувом і темною глибокою атмосферою... не дозволяйте тіні збити вас із ладу та продовжуйте мріяти!</p>', '<p>Original Mix<br />\r\nCream Croc Remix<br />\r\nFeelmark &amp; Lirity Remix<br />\r\nJohn Kayder Remix</p>', 1, '2022-12-14 18:14:39', '2022-12-14 18:16:23');
 
 -- --------------------------------------------------------
 
@@ -7386,8 +7391,8 @@ INSERT INTO `releases` (`id`, `sort_id`, `title`, `release_number`, `release_dat
 CREATE TABLE `reviews` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sort_id` int(11) NOT NULL,
-  `track` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `data` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `track` varchar(191) NOT NULL,
+  `data` longtext NOT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -7588,13 +7593,13 @@ INSERT INTO `reviews` (`id`, `sort_id`, `track`, `data`, `visible`, `created_at`
 CREATE TABLE `school` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sort_id` int(11) NOT NULL DEFAULT 0,
-  `category` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `teacher_binfo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `teacher_hinfo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `course_alt` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category` varchar(191) NOT NULL,
+  `lang` varchar(191) NOT NULL,
+  `name` text DEFAULT NULL,
+  `teacher_binfo` text DEFAULT NULL,
+  `teacher_hinfo` text DEFAULT NULL,
+  `image` varchar(191) DEFAULT NULL,
+  `course_alt` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 0
@@ -7684,11 +7689,11 @@ INSERT INTO `school` (`id`, `sort_id`, `category`, `lang`, `name`, `teacher_binf
 CREATE TABLE `studio` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sort_id` int(11) NOT NULL,
-  `category` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lang` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `service_alt` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category` varchar(191) NOT NULL,
+  `lang` varchar(191) NOT NULL,
+  `name` varchar(191) DEFAULT NULL,
+  `image` varchar(191) DEFAULT NULL,
+  `service_alt` text DEFAULT NULL,
   `visible` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -7724,8 +7729,8 @@ INSERT INTO `studio` (`id`, `sort_id`, `category`, `lang`, `name`, `image`, `ser
 
 CREATE TABLE `subscribers` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `name` varchar(191) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -7745,15 +7750,15 @@ INSERT INTO `subscribers` (`id`, `email`, `name`, `created_at`, `updated_at`) VA
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT 0,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(191) DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -7879,7 +7884,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблиці `artists`
 --
 ALTER TABLE `artists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1854;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1856;
 
 --
 -- AUTO_INCREMENT для таблиці `cv`
@@ -7921,7 +7926,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблиці `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT для таблиці `feedback_results`
@@ -7939,7 +7944,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблиці `releases`
 --
 ALTER TABLE `releases`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1865;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1866;
 
 --
 -- AUTO_INCREMENT для таблиці `reviews`

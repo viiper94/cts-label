@@ -104,7 +104,7 @@
             <div class="container py-4">
                 <section class="courses py-5">
                     <h1 class="text-center text-uppercase fw-bold mb-5">@lang('school.courses')</h1>
-                    <div class="d-flex flex-wrap justify-content-evenly text-uppercase gap-2">
+                    <div class="d-flex flex-wrap justify-content-evenly justify-content-xl-between text-uppercase gap-2">
                         <a href="#prices" class="course-button">@lang('school.sound_producer')</a>
                         <a href="#prices" class="course-button">@lang('school.sound_engineer')</a>
                         <a href="#prices" class="course-button">@lang('school.foh_engineer')</a>
@@ -213,9 +213,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 d-none d-md-block">
+                        <div class="col-md-auto d-none d-md-block">
                             <div class="course-img">
-                                <img src="/images/school/school-9.jpg" class="img-fluid">
+                                <img src="/images/school/school-9.jpg" class="img-fluid" style="width: 233px;">
                                 <div class="img-overlay"><p>@lang('school.lesson_holds_sergio')</p></div>
                             </div>
                         </div>

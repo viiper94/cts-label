@@ -9,3 +9,4 @@ require('./public/releases.js');
 require('./public/feedback.js');
 require('./public/studio.js');
 require('./public/cv.js');
+require('./public/about.js');

@@ -1,6 +1,6 @@
 <header class="pt-2">
     <div class="container text-center text-md-start">
-        <a href="{{ route('home') }}" class="d-block">
+        <a href="{{ route('home') }}" class="d-inline-block">
             <img src="/images/logo.png" class="logo" alt="Creative Technology Studio"/>
         </a>
     </div>
@@ -24,7 +24,7 @@
                         <a @class(['nav-link', 'active' => \Route::is('home') || \Route::is('release')]) href="{{ route('home') }}">@lang('navbar.home')</a>
                     </li>
                     <li class="nav-item">
-                        <a @class(['nav-link', 'active' => \Route::is('about')]) href="{{ \Route::is('about') ? '#about' : route('about') }}" id="about-menu">@lang('navbar.about')</a>
+                        <a @class(['nav-link', 'active' => \Route::is('about')]) href="{{ route('about') }}" id="about-menu">@lang('navbar.about')</a>
                     </li>
                     <li class="nav-item">
                         <a @class(['nav-link', 'active' => \Route::is('artists')]) href="{{ route('artists') }}">@lang('navbar.artists')</a>

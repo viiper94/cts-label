@@ -24,7 +24,7 @@
 
     <div class="container about pt-3">
         <div class="row">
-            <section class="col pe-5" data-bs-spy="scroll" data-bs-target="#main_nav" data-bs-rootMargin="-30px 0 -70% 0px" data-bs-threshold=".7">
+            <section class="col pe-5">
                 <div id="about">
                     <h5 class="a-b mt-3 mb-4">@lang('navbar.about')</h5>
                     @lang('about.about')

@@ -14,23 +14,35 @@ class Emailing extends Mailable{
     public function __construct(public $mail){}
 
     public function build(){
-        $hash = isset($this->mail->data['unsubscribe']) && $this->mail->data['unsubscribe'] ?
+        return $this->from($this->mail->from, 'CTS Records')
+                    ->subject($this->getSubject())
+                    ->view($this->getView(), [
+                        'name' => $this->mail->name,
+                        'hash' => $this->getHash()
+                    ]);
+    }
+
+    private function getSubject() :string{
+        if(isset($this->mail->data['template']) && $this->mail->data['template'] === 'feedback'){
+            $subject = $this->mail->feedback->feedback_title;
+            if($this->mail->feedback->release->genre) $subject .= '. Genre: '.$this->mail->feedback->release->genre;
+            $subject .= '. Download & feedback!';
+        }
+        return $subject ?? $this->mail->subject;
+    }
+
+    private function getHash() :string{
+        return isset($this->mail->data['unsubscribe']) && $this->mail->data['unsubscribe'] ?
             Crypt::encryptString(json_encode([
                 'email' => $this->mail->to,
                 'from' => $this->mail->from,
                 'channel_id' => $this->mail->channel->id
             ]))
             : false;
-        if(isset($this->mail->data['template']) && $this->mail->data['template'] === 'feedback'){
-            $subject = $this->mail->feedback->feedback_title;
-            if($this->mail->feedback->release->genre) $subject .= '. Genre: '.$this->mail->feedback->release->genre;
-            $subject .= '. Download & feedback!';
-        }
-        return $this->from($this->mail->from, 'CTS Records')
-                    ->subject($subject ?? $this->mail->subject)
-                    ->view('emails.emailing.'.$this->mail->data['template'], [
-                        'name' => $this->mail->name,
-                        'hash' => $hash
-                    ]);
     }
+
+    private function getView() :string{
+        return 'emails.emailing.'.$this->mail->data['template'];
+    }
+
 }

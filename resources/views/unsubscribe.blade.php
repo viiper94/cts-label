@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <div class="container unsubscribe py-5">
+    <div class="container auth py-5">
         <form method="post" class="py-5">
             @csrf
-            <div class="card text-bg-dark w-50 m-auto">
+            <div class="card text-bg-dark m-auto">
                 <div class="card-header"><h5 class="card-title mb-0">@lang('emailing.unsubscribe.unsubscribe_from')</h5></div>
                 <div class="card-body">
                     <p class="mb-0">@lang('emailing.unsubscribe.email') <b>{{ $email }}</b></p>

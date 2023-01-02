@@ -10,7 +10,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <form class="search search-small">
+                <form class="search search-small" action="{{ route('home') }}">
                     <input class="form-control form-dark" type="text" placeholder="Search here ..." name="q" value="{{ Request::input('q') }}">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
@@ -45,7 +45,7 @@
                         <a @class(['nav-link']) href="{{ route('about', '#contacts') }}" id="contacts-menu">@lang('navbar.contact')</a>
                     </li>
                 </ul>
-                <form class="d-none d-md-flex search">
+                <form class="d-none d-md-flex search" action="{{ route('home') }}">
                     <input class="form-control form-dark" type="text" placeholder="Search here ..." name="q" value="{{ Request::input('q') }}">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>

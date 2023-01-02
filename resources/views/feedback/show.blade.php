@@ -66,15 +66,17 @@
             @foreach($feedback->tracks as $key => $track)
 
                 <div class="track py-3" data-id="{{ $key }}">
-                    <div class="info d-flex align-items-center">
-                        <div class="title flex-grow-1">{{ $track['title'] }}</div>
-                        <div class="time text-nowrap">
-                            <span class="current-time"></span>
-                            <span class="time-break"></span>
-                            <span class="duration"></span>
-                        </div>
-                        <div class="volume-bar ms-3">
-                            <div class="volume-bar-value"></div>
+                    <div class="info row align-items-center">
+                        <div class="title col-12 col-md flex-grow-1">{{ $track['title'] }}</div>
+                        <div class="col-12 col-md-auto d-flex align-items-center flex-nowrap justify-content-between">
+                            <div class="time text-nowrap">
+                                <span class="current-time"></span>
+                                <span class="time-break"></span>
+                                <span class="duration"></span>
+                            </div>
+                            <div class="volume-bar ms-3">
+                                <div class="volume-bar-value"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="bar d-flex align-items-center">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\EmailingChannel;
+use App\EmailingContact;
 use App\EmailingQueue;
 use App\Feedback;
 use App\FeedbackResult;
@@ -139,23 +140,25 @@ class AdminFeedbackController extends Controller{
     public function emailing(Request $request){
         if($request->post()){
             $this->validate($request, ['channels' => 'required|array']);
+            $contacts = EmailingContact::select();
             foreach($request->channels as $id){
-                $channel = EmailingChannel::with('subscribers')->findOrFail($id);
-                foreach($channel->subscribers as $contact){
-                    $mail = EmailingQueue::create([
-                        'channel_id' => $channel->id,
-                        'data' => [
-                            'template' => 'feedback',
-                            'unsubscribe' => true
-                        ],
-                        'feedback_id' => $request->id,
-                        'subject' => $channel->subject,
-                        'from' => $channel->from ?? env('EMAIL_FROM'),
-                        'name' => $contact->name,
-                        'to' => $contact->email,
-                    ]);
+                $contacts = $contacts->orWhereRelation('channels', 'id', $id);
+            }
+            $contacts = $contacts->get();
+            foreach($contacts as $contact){
+                $mail = EmailingQueue::create([
+                    'channel_id' => $contact->channels[0]->id,
+                    'data' => [
+                        'template' => 'feedback',
+                        'unsubscribe' => true
+                    ],
+                    'feedback_id' => $request->id,
+                    'subject' => $contact->channels[0]->subject,
+                    'from' => $channel->from ?? env('EMAIL_FROM'),
+                    'name' => $contact->name,
+                    'to' => $contact->email,
+                ]);
 //                    Mail::to($contact->email)->send(new Emailing($mail)); // for test only
-                }
             }
             return redirect()->back()->with(['success' => 'Рассылка запущена!']);
         }

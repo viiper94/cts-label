@@ -10,9 +10,9 @@
 
     <div class="container pt-5 pb-3 feedback">
         <div class="row">
-            <div class="col-12 col-sm-auto cover">
+            <div class="col-12 col-sm-auto cover text-center">
                 @if($feedback->release)
-                    <a href="{{ route('release', $feedback->release->id) }}" target="_blank">
+                    <a href="{{ route('release', $feedback->release->id) }}" target="_blank" class="d-block">
                         <img src="/images/releases/{{ $feedback->release->image }}" alt="{{ $feedback->release->title }}">
                     </a>
                 @else
@@ -20,7 +20,7 @@
                 @endif
             </div>
             <div class="col-12 col-sm">
-                <div class="lang-switch mb-3">
+                <div class="lang-switch mb-3 mt-3 mt-sm-0 justify-content-center justify-content-sm-end">
                     <div class="btn-group">
                         <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en'])
                            data-lang="en" href="{{ route('feedback', $feedback->slug) }}">
@@ -55,7 +55,7 @@
             @csrf
             <div class="row">
                 <h5 class="text-center fw-bold text-light mb-3">@lang('feedback.feedback_form')</h5>
-                <div class="d-flex w-25 m-auto flex-column form-group">
+                <div class="d-flex m-auto flex-column form-group user-info">
                     <input type="text" class="form-control form-dark mb-2" id="name" name="name" required placeholder="@lang('feedback.your_name')">
                     <input type="email" class="form-control form-dark" id="email" name="email" required placeholder="@lang('feedback.your_email')">
                 </div>
@@ -68,7 +68,7 @@
                 <div class="track py-3" data-id="{{ $key }}">
                     <div class="info d-flex align-items-center">
                         <div class="title flex-grow-1">{{ $track['title'] }}</div>
-                        <div class="time ">
+                        <div class="time text-nowrap">
                             <span class="current-time"></span>
                             <span class="time-break"></span>
                             <span class="duration"></span>

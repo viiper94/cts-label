@@ -165,6 +165,7 @@
                 <form method="post">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="modalLabel">@lang('studio.modal.header')</h1>
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal-body">
                         @csrf
@@ -188,7 +189,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>@lang('studio.modal.submit')</button>
-                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </form>
             </div>

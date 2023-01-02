@@ -51,7 +51,7 @@
                         </th>
                     @endforeach
                     <th style="overflow: visible">
-                        <div class="dropdown">
+                        <div class="dropdown text-center">
                             <button class="btn btn-sm btn-outline dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown">
                                 @if(Request::input('channel')){{ $selected_channel }}@elseКаналы@endif
                                 <span class="caret"></span>

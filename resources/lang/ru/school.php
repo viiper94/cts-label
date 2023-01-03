@@ -65,7 +65,7 @@ return [
     'mail_body' => 'body=Мое имя:%0AМой телефон:%0A&Subject=Обучение в CTSchool',
 
     'contact_text_1' => 'Вы можете связаться с нами оставив ваше сообщение
-                                <a href="https://www.facebook.com/groups/161704380617200" target="_blank" class="yellow-link">на странице CTSchool</a>,
+                                <a href="https://www.facebook.com/groups/161704380617200" target="_blank" rel="noreferrer" class="yellow-link">на странице CTSchool</a>,
                                 после чего мы в индивидуальном порядке пригласим вас пройти собеседование.',
     'contact_text_2' => 'ЗАПИСАТЬСЯ НА СОБЕСЕДОВАНИЕ ТАКЖЕ МОЖНО ПО ТЕЛЕФОНУ:',
     'contact_info' => '<p>+38 098 685 40 33</p><p>E-MAIL: <a href="mailto:info@cts-label.com">info@cts-label.com</a></p>',

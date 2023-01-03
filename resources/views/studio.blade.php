@@ -23,7 +23,7 @@
 @section('meta')
     <meta property="og:title" content="CTS Studio - професійна студія звукозапису незалежного рекорд-лейблу CTS Records в Києві">
     <meta property="og:description" content="CTS Studio - професійна студія звукозапису незалежного рекорд-лейблу CTS Records в Києві">
-    <meta property="og:image" content="https://www.cts-label.com/images/cts-studio-y.png">
+    <meta property="og:image" content="https://cts-label.com/images/cts-studio-y.png">
     <meta property="og:url" content="https://cts-label.com/studio.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="CTStudio">
@@ -86,16 +86,18 @@
                     </div>
                     <div class="marquee overflow-hidden mb-3">
                         <div class="marquee-flow d-flex">
-                        <span class="d-flex">
-                            @for($i = 1; $i <= 8; $i++)
-                                <img src="/images/studio/studio-{{ $i }}.jpg">
+                            @for($i = 0; $i < 2; $i++)
+                                <span class="d-flex">
+                                    <img src="/images/studio/studio-1.jpg" alt="CTS студия, CTS студія, услуги студии звукозаписи Киев, студия звукозаписи Киев, профессиональная студия в Киеве,">
+                                    <img src="/images/studio/studio-2.jpg" alt="ремиксы, мастеринг, аранжировка, вокал, сведение">
+                                    <img src="/images/studio/studio-3.jpg" alt="зведення музикальних композицій, зведення та мастеринг">
+                                    <img src="/images/studio/studio-4.jpg" alt="профессиональный мастеринг, качественное сведение и мастеринг в Киеве">
+                                    <img src="/images/studio/studio-5.jpg" alt="школа, диджеинг, продюсеринг, запись">
+                                    <img src="/images/studio/studio-6.jpg" alt="professional mixing and mastering">
+                                    <img src="/images/studio/studio-7.jpg" alt="студії звукозапису Київ">
+                                    <img src="/images/studio/studio-8.jpg" alt="услуги звукозаписи, CTS, CTS studio Kiev">
+                                </span>
                             @endfor
-                        </span>
-                            <span class="d-flex">
-                            @for($i = 1; $i <= 8; $i++)
-                                <img src="/images/studio/studio-{{ $i }}.jpg">
-                            @endfor
-                        </span>
                         </div>
                     </div>
                     <div class="text">
@@ -130,7 +132,7 @@
                             <div class="service-item m-3">
                                 <a data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $service->name }}" class="service-link">
                                     <img src="/images/studio/services/{{ $service->image }}"
-                                         class="service-image" @if($service->alt) alt="{{ $service->alt }}" @endif>
+                                         class="service-image" @if($service->service_alt) alt="{{ $service->service_alt }}" @endif>
                                 </a>
                             </div>
                         @endforeach
@@ -164,7 +166,7 @@
             <div class="modal-content">
                 <form method="post">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalLabel">@lang('studio.modal.header')</h1>
+                        <h3 class="modal-title fs-5" id="modalLabel">@lang('studio.modal.header')</h3>
                         <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal-body">

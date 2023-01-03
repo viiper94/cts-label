@@ -103,7 +103,7 @@
                     </div>
                 </section>
                 <section class="equipment py-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="equipment">@lang('studio.equipment')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="equipment">@lang('studio.equipment')</h2>
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <p class="equipment-header text-uppercase py-2 m-auto">
@@ -124,7 +124,7 @@
                     </div>
                 </section>
                 <section class="services py-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="services">@lang('studio.services')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="services">@lang('studio.services')</h2>
                     <div class="service-images d-flex justify-content-evenly px-5 flex-wrap">
                         @foreach($services as $service)
                             <div class="service-item m-3">
@@ -145,11 +145,11 @@
                     </div>
                 </section>
                 <section class="projects py-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="projects">@lang('studio.projects')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="projects">@lang('studio.projects')</h2>
                     <div class="text">@lang('studio.bottom_text')</div>
                 </section>
                 <section class="contacts pt-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="contacts">@lang('studio.contacts')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="contacts">@lang('studio.contacts')</h2>
                     <div class="text-center">
                         @lang('studio.contacts_text')
                         <a href="mailto:info@cts-label.com">info@cts-label.com</a>

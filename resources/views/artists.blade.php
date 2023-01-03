@@ -2,6 +2,10 @@
 
 @section('title', 'CTS Studio Artists')
 
+@section('description')
+    CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.
+@endsection
+
 @section('content')
     <div class="container pt-3 artists">
         <div class="row">

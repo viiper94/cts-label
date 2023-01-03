@@ -2,6 +2,9 @@
 
 @section('title', 'CTS Records - New Electronic Music')
 
+@section('keywords', 'CTS, Creative Technologies Studio, electronic music')
+@section('description', 'CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.')
+
 @section('content')
     <div class="container pt-3">
         <div class="row">

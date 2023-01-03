@@ -112,16 +112,16 @@
                     </div>
                     <div class="marquee overflow-hidden my-5">
                         <div class="marquee-flow d-flex">
-                        <span class="d-flex">
-                            @for($i = 1; $i < 7; $i++)
-                                <img src="/images/school/school-{{ $i }}.jpg">
-                            @endfor
-                        </span>
-                        <span class="d-flex">
-                            @for($i = 1; $i < 7; $i++)
-                                <img src="/images/school/school-{{ $i }}.jpg">
-                            @endfor
-                        </span>
+                        @for($i = 0; $i < 2; $i++)
+                            <span class="d-flex">
+                                <img src="/images/school/school-1.jpg" alt="курси DJ Київ, навчання діджеїнгу">
+                                <img src="/images/school/school-2.jpg" alt="курси вокалу, вокальне мистецтво, тренер з вокалу, школа вокалу">
+                                <img src="/images/school/school-3.jpg" alt="навчання звукорежисурі, курси звукорежисерів, звукорежисура навчання">
+                                <img src="/images/school/school-4.jpg" alt="навчання майстерності діджея, стати dj, курсы DJ Киев">
+                                <img src="/images/school/school-5.jpg" alt="написання музики, створення електронної музики, аранжувальник">
+                                <img src="/images/school/school-6.jpg" alt="dj школа, DJ школа Киев, dj school">
+                            </span>
+                        @endfor
                         </div>
                     </div>
                 </section>
@@ -165,7 +165,7 @@
                                         'ms-lg-3' => in_array($loop->iteration, [5,8]),
                                     ])>
                                     <div class="col-auto">
-                                        <img src="/images/school/teachers/{{ $teacher->image }}">
+                                        <img src="/images/school/teachers/{{ $teacher->image }}" alt="{{ $teacher->name }}">
                                     </div>
                                     <div class="col">
                                         <p class="teacher-name mb-2 fw-bold">{{ $teacher->name }}</p>
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="col-5 d-md-none">
                                     <div class="course-img">
-                                        <img src="/images/school/school-9.jpg" class="img-fluid">
+                                        <img src="/images/school/school-9.jpg" class="img-fluid" alt="@lang('school.lesson_holds_sergio')">
                                         <div class="img-overlay"><p>@lang('school.lesson_holds_sergio')</p></div>
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                             <div class="row pt-3 pt-md-0 g-0 g-md-2">
                                 <div class="col-6 col-md-4">
                                     <div class="course-img">
-                                        <img src="/images/school/school-7.jpg" class="img-fluid">
+                                        <img src="/images/school/school-7.jpg" class="img-fluid" alt="@lang('school.master_class_ekspert')">
                                         <div class="img-overlay">@lang('school.master_class_ekspert')</div>
                                     </div>
                                 </div>
@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="col-6 col-md-4">
                                     <div class="course-img">
-                                        <img src="/images/school/school-8.jpg" class="img-fluid">
+                                        <img src="/images/school/school-8.jpg" class="img-fluid" alt="@lang('school.consultation_conducted_by_belyavina')">
                                         <div class="img-overlay">@lang('school.consultation_conducted_by_belyavina')</div>
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@
                         </div>
                         <div class="col-md-auto d-none d-md-block">
                             <div class="course-img">
-                                <img src="/images/school/school-9.jpg" class="img-fluid" style="width: 233px;">
+                                <img src="/images/school/school-9.jpg" class="img-fluid" style="width: 233px;" alt="@lang('school.lesson_holds_sergio')">
                                 <div class="img-overlay"><p>@lang('school.lesson_holds_sergio')</p></div>
                             </div>
                         </div>
@@ -227,11 +227,11 @@
                         <div class="col-12 col-md-4">
                             <div class="row g-0">
                                 <div class="course-img mb-md-3 col-6 col-md-12">
-                                    <img src="/images/school/school-10.jpg" class="img-fluid">
+                                    <img src="/images/school/school-10.jpg" class="img-fluid" alt="@lang('school.sound_engineering_lesson_shapovalov')">
                                     <div class="img-overlay">@lang('school.sound_engineering_lesson_shapovalov')</div>
                                 </div>
                                 <div class="course-img col-6 col-md-12">
-                                    <img src="/images/school/school-12.jpg" class="img-fluid">
+                                    <img src="/images/school/school-12.jpg" class="img-fluid" alt="@lang('school.lesson_music_theory_semergey')">
                                     <div class="img-overlay">@lang('school.lesson_music_theory_semergey')</div>
                                 </div>
                             </div>
@@ -245,11 +245,11 @@
                         <div class="col-12 col-md-4">
                             <div class="row g-0">
                                 <div class="course-img mb-md-3 col-6 col-md-12">
-                                    <img src="/images/school/school-11.jpg" class="img-fluid">
+                                    <img src="/images/school/school-11.jpg" class="img-fluid" alt="@lang('school.djing_by_yoshi')">
                                     <div class="img-overlay">@lang('school.djing_by_yoshi')</div>
                                 </div>
                                 <div class="course-img col-6 col-md-12">
-                                    <img src="/images/school/school-13.jpg" class="img-fluid">
+                                    <img src="/images/school/school-13.jpg" class="img-fluid" alt="@lang('school.production_lesson_by_sergio')">
                                     <div class="img-overlay">@lang('school.production_lesson_by_sergio')</div>
                                 </div>
                             </div>
@@ -263,7 +263,7 @@
                             <div class="service-item m-3">
                                 <a data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $course->name }}" class="service-link">
                                     <img src="/images/school/courses/{{ $course->image }}"
-                                         class="service-image" @if($course->alt) alt="{{ $course->alt }}" @endif>
+                                         class="service-image" @if($course->course_alt) alt="{{ $course->course_alt }}" @endif>
                                 </a>
                             </div>
                         @endforeach

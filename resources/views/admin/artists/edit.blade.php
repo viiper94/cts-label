@@ -50,7 +50,7 @@
                     <div class="form-group mb-3">
                         <label class="form-label" for="link">Ссылка в социальную сеть</label><br>
                         <input type="url" class="form-control form-control-lg form-dark" name="link" id="link"
-                               value="{{ old('link') ?? $artist->link }}" required>
+                               value="{{ old('link') ?? $artist->link }}">
                         @error('link')
                             <p class="help-block text-danger">{{ $message }}</p>
                         @enderror

@@ -70,7 +70,7 @@
     <div class="school">
         <div class="school-header py-5">
             <div class="container d-flex flex-column flex-md-row justify-content-end align-items-end align-items-md-center py-3">
-                <p class="me-md-5 mb-0 school-epigraph order-last order-md-first text-center text-md-end">@lang('school.page_header')</p>
+                <h1 class="me-md-5 mb-0 school-epigraph order-last order-md-first text-center text-md-end">@lang('school.page_header')</h1>
                 <div class="lang-switch mb-5 mb-md-0">
                     <div class="btn-group">
                         <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en'])
@@ -103,7 +103,7 @@
         <div class="school-content">
             <div class="container py-4">
                 <section class="courses py-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5">@lang('school.courses')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5">@lang('school.courses')</h2>
                     <div class="d-flex flex-wrap justify-content-evenly justify-content-xl-between text-uppercase gap-2">
                         <a href="#prices" class="course-button">@lang('school.sound_producer')</a>
                         <a href="#prices" class="course-button">@lang('school.sound_engineer')</a>
@@ -128,7 +128,7 @@
                     </div>
                 </section>
                 <section class="equipment py-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="equipment">@lang('school.equipment')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="equipment">@lang('school.equipment')</h2>
                     <div class="row">
                         <div class="col-12 col-sm-6 px-5">
                             <p class="equipment-header text-uppercase py-2 m-auto me-md-5">
@@ -152,7 +152,7 @@
                     </div>
                 </section>
                 <section class="teachers py-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="teachers">@lang('school.teachers')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="teachers">@lang('school.teachers')</h2>
                     <div class="row gy-4 gy-sm-5 gy-md-4">
                         @foreach($teachers as $teacher)
                             <div @class([
@@ -180,7 +180,7 @@
                     </div>
                 </section>
                 <section class="about_courses pb-5 pt-3">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="about_courses">@lang('school.about_courses')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="about_courses">@lang('school.about_courses')</h2>
                     <div class="row">
                         <div class="col-md col-12">
                             <div class="row">
@@ -259,7 +259,7 @@
                     </div>
                 </section>
                 <section class="services py-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="prices">@lang('school.cost_of_education')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="prices">@lang('school.cost_of_education')</h2>
                     <div class="service-images d-flex justify-content-evenly px-5 flex-wrap">
                         @foreach($courses as $course)
                             <div class="service-item m-3">
@@ -272,7 +272,7 @@
                     </div>
                 </section>
                 <section class="contacts pt-5">
-                    <h1 class="text-center text-uppercase fw-bold mb-5" id="contact">@lang('school.contact')</h1>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="contact">@lang('school.contact')</h2>
                     <div class="text-center">
                         <p class="mb-4">@lang('school.contact_text_1')</p>
                         <p class="mb-4">@lang('school.contact_text_2')</p>
@@ -288,7 +288,7 @@
             <div class="modal-content">
                 <form method="post">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalLabel">@lang('studio.modal.header')</h1>
+                        <h3 class="modal-title fs-5" id="modalLabel">@lang('studio.modal.header')</h3>
                         <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal-body">

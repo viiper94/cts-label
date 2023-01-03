@@ -49,11 +49,11 @@
                             <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="release-image img-fluid w-100"/>
                         </figure>
                         <div class="release-buttons d-flex justify-content-between py-md-5 py-3">
-                            <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank"
+                            <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank" rel="noreferrer"
                                @class(['share', 'btn-disabled' => !$release->youtube])>
                                 <i class="fa-brands fa-youtube"></i>
                             </a>
-                            <a @if($release->beatport) href="{{ $release->beatport }}" @endif target="_blank"
+                            <a @if($release->beatport) href="{{ $release->beatport }}" @endif target="_blank" rel="noreferrer"
                                 @class(['share', 'btn-disabled' => !$release->beatport])>
                                 <i class="icon-beatport"></i>
                             </a>

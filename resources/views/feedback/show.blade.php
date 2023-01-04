@@ -52,17 +52,6 @@
                 </div>
                 <hr>
                 <p class="header_text py-3">@lang('feedback.header_text')</p>
-                <hr>
-                @if(count($feedback->related) > 0)
-                    <div class="also_available py-3">
-                        <h6 class="fw-bold">@lang('feedback.also_available'):</h6>
-                        <ul class="">
-                            @foreach($feedback->related as $track)
-                                <li><a href="{{ route('feedback', $track->slug) }}" target="_blank">{{ $track->feedback_title }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
             </div>
         </div>
 

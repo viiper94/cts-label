@@ -58,13 +58,15 @@ class Feedback extends SharedModel{
                 }
             }
         }
-        foreach($this->tracks as $key => $track){
-            if(!isset($request->post('tracks')[$key])){
-                if(isset($this->tracks[$key][96]) && is_file($path.'/96/'.$this->tracks[$key][96])){
-                    unlink($path.'/96/'.$this->tracks[$key][96]);
-                }
-                if(isset($this->tracks[$key][320]) && is_file($path.'/320/'.$this->tracks[$key][320])){
-                    unlink($path.'/320/'.$this->tracks[$key][320]);
+        if($this->tracks){
+            foreach($this->tracks as $key => $track){
+                if(!isset($request->post('tracks')[$key])){
+                    if(isset($this->tracks[$key][96]) && is_file($path.'/96/'.$this->tracks[$key][96])){
+                        unlink($path.'/96/'.$this->tracks[$key][96]);
+                    }
+                    if(isset($this->tracks[$key][320]) && is_file($path.'/320/'.$this->tracks[$key][320])){
+                        unlink($path.'/320/'.$this->tracks[$key][320]);
+                    }
                 }
             }
         }

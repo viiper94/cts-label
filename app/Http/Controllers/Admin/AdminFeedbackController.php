@@ -52,10 +52,9 @@ class AdminFeedbackController extends Controller{
             'tracks' => 'array|required'
         ]);
         $feedback->release_id = $release?->id;
-        $feedback->feedback_title = $request->input('feedback_title');
+        $feedback->fill($request->post());
         $feedback->slug = Str::slug($feedback->feedback_title);
         $feedback->sort_id = $feedback->getLatestSortId(Feedback::class);
-        $feedback->visible = $request->input('visible') == 'on';
         $feedback->tracks = $feedback->saveTracks($request);
         $feedback->archive_name = $feedback->archiveTracks();
         if(!$release && $request->hasFile('image')){
@@ -86,8 +85,7 @@ class AdminFeedbackController extends Controller{
             'feedback_title' => 'string|required',
             'tracks' => 'array|required'
         ]);
-        $feedback->feedback_title = $request->input('feedback_title');
-        $feedback->visible = $request->input('visible') == 'on';
+        $feedback->fill($request->post());
         $feedback->tracks = $feedback->saveTracks($request);
         $feedback->archive_name = $feedback->archiveTracks();
         $feedback->related()->sync($request->post('related'));
@@ -145,7 +143,9 @@ class AdminFeedbackController extends Controller{
     public function emailing(Request $request){
         if($request->post()){
             $this->validate($request, ['channels' => 'required|array']);
-            $contacts = EmailingContact::select();
+            $contacts = EmailingContact::with(['channels' => function($query) use ($request){
+                $query->whereIn('id', $request->channels);
+            }]);
             foreach($request->channels as $id){
                 $contacts = $contacts->orWhereRelation('channels', 'id', $id);
             }
@@ -159,7 +159,7 @@ class AdminFeedbackController extends Controller{
                     ],
                     'feedback_id' => $request->id,
                     'subject' => $contact->channels[0]->subject,
-                    'from' => $channel->from ?? env('EMAIL_FROM'),
+                    'from' => $contact->channels[0]->from ?? env('EMAIL_FROM'),
                     'name' => $contact->name,
                     'to' => $contact->email,
                 ]);

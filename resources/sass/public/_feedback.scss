@@ -20,6 +20,9 @@
     .header_text{
         color: $primary-text;
         text-align: justify;
+        p{
+            margin-bottom: 0;
+        }
     }
     .also_available{
         color: $primary-text;

@@ -99,7 +99,7 @@ class AdminFeedbackController extends Controller{
             $image->move(public_path('images/feedback'), $feedback->image);
         }
         return $feedback->save() ?
-            redirect()->route('feedback_admin')->with(['success' => 'Фидбэк успешно отредактирован!']) :
+            redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно отредактирован!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

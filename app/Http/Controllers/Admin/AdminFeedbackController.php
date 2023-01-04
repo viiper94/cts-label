@@ -63,9 +63,13 @@ class AdminFeedbackController extends Controller{
             $feedback->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
             $image->move(public_path('images/feedback'), $feedback->image);
         }
-        return $feedback->save() ?
-            redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно добавлен!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+        if($feedback->save()){
+            $feedback->related()->sync($request->post('related'));
+            return $feedback->save() ?
+                redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно добавлен!']) :
+                redirect()->back()->withErrors(['Возникла ошибка =(']);
+        }
+        return redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
     public function edit(Feedback $feedback){

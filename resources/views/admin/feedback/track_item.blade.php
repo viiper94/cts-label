@@ -16,6 +16,9 @@
         </div>
         @if(key_exists(96, $track) && $track[96] !== '' || key_exists(320, $track) && $track[320] !== '')
             <audio src="/audio/feedback/{{ $feedback->slug }}/{{ $feedback->LQDir() }}/{{ $track[$feedback->LQDir()] }}" controls style="width: 100%;"></audio>
+            @if(!is_file(public_path('/audio/feedback/'.$feedback->slug.'/'.$feedback->LQDir().'/'.$track[$feedback->LQDir()])))
+                <small class="text-danger">Аудио файл не найден</small>
+            @endif
         @endif
     </div>
     <div class="card-footer">

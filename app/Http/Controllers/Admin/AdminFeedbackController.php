@@ -143,7 +143,9 @@ class AdminFeedbackController extends Controller{
     public function emailing(Request $request){
         if($request->post()){
             $this->validate($request, ['channels' => 'required|array']);
-            $contacts = EmailingContact::select();
+            $contacts = EmailingContact::with(['channels' => function($query) use ($request){
+                $query->whereIn('id', $request->channels);
+            }]);
             foreach($request->channels as $id){
                 $contacts = $contacts->orWhereRelation('channels', 'id', $id);
             }
@@ -157,7 +159,7 @@ class AdminFeedbackController extends Controller{
                     ],
                     'feedback_id' => $request->id,
                     'subject' => $contact->channels[0]->subject,
-                    'from' => $channel->from ?? env('EMAIL_FROM'),
+                    'from' => $contact->channels[0]->from ?? env('EMAIL_FROM'),
                     'name' => $contact->name,
                     'to' => $contact->email,
                 ]);

@@ -20,20 +20,27 @@
                 @endif
             </div>
             <div class="col-12 col-sm">
-                <div class="lang-switch mb-3 mt-3 mt-sm-0 justify-content-center justify-content-sm-end">
-                    <div class="btn-group">
-                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en'])
-                           data-lang="en" href="{{ route('feedback', $feedback->slug) }}">
-                            @lang('shared.en')
-                        </a>
-                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua' || !isset($_COOKIE['lang'])])
-                           data-lang="ua" href="{{ route('feedback', $feedback->slug) }}">
-                            @lang('shared.ua')
-                        </a>
-                        <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru'])
-                           data-lang="ru" href="{{ route('feedback', $feedback->slug) }}">
-                            @lang('shared.ru')
-                        </a>
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <h5 class="mb-3 mt-3 mt-sm-0 text-center text-sm-start">{{ $feedback->feedback_title }}</h5>
+                    </div>
+                    <div class="col-12 col-md-auto">
+                        <div class="lang-switch mb-3 mt-3 mt-sm-0 justify-content-center justify-content-md-end">
+                            <div class="btn-group">
+                                <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en'])
+                                   data-lang="en" href="{{ route('feedback', $feedback->slug) }}">
+                                    @lang('shared.en')
+                                </a>
+                                <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua' || !isset($_COOKIE['lang'])])
+                                   data-lang="ua" href="{{ route('feedback', $feedback->slug) }}">
+                                    @lang('shared.ua')
+                                </a>
+                                <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru'])
+                                   data-lang="ru" href="{{ route('feedback', $feedback->slug) }}">
+                                    @lang('shared.ru')
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <p class="header_text py-3">@lang('feedback.header_text')</p>

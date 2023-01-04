@@ -17,8 +17,8 @@ class AppController extends Controller{
 
     public function ctschool(){
         return view('school', [
-            'teachers' => School::where(['category' => 'teachers', 'lang' => App::getLocale()])->orderBy('sort_id', 'desc')->get(),
-            'courses' => School::where(['category' => 'courses', 'lang' => App::getLocale()])->orderBy('sort_id', 'desc')->get(),
+            'teachers' => School::where(['category' => 'teachers', 'lang' => App::getLocale()])->orderBy('sort_id')->get(),
+            'courses' => School::where(['category' => 'courses', 'lang' => App::getLocale()])->orderBy('sort_id')->get(),
             'prices' => [],
             'subject' => [],
         ]);

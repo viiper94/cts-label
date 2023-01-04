@@ -13,6 +13,13 @@ class Feedback extends SharedModel{
         'visible' => 'boolean',
         'emailing_sent' => 'boolean'
     ];
+    public $fillable = [
+        'feedback_title',
+        'description_en',
+        'description_ua',
+        'description_ru',
+        'visible'
+    ];
     public $file_path = 'audio/feedback';
 
     public function release(){

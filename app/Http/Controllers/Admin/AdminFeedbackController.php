@@ -52,10 +52,9 @@ class AdminFeedbackController extends Controller{
             'tracks' => 'array|required'
         ]);
         $feedback->release_id = $release?->id;
-        $feedback->feedback_title = $request->input('feedback_title');
+        $feedback->fill($request->post());
         $feedback->slug = Str::slug($feedback->feedback_title);
         $feedback->sort_id = $feedback->getLatestSortId(Feedback::class);
-        $feedback->visible = $request->input('visible') == 'on';
         $feedback->tracks = $feedback->saveTracks($request);
         $feedback->archive_name = $feedback->archiveTracks();
         if(!$release && $request->hasFile('image')){
@@ -86,8 +85,7 @@ class AdminFeedbackController extends Controller{
             'feedback_title' => 'string|required',
             'tracks' => 'array|required'
         ]);
-        $feedback->feedback_title = $request->input('feedback_title');
-        $feedback->visible = $request->input('visible') == 'on';
+        $feedback->fill($request->post());
         $feedback->tracks = $feedback->saveTracks($request);
         $feedback->archive_name = $feedback->archiveTracks();
         $feedback->related()->sync($request->post('related'));

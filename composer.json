@@ -8,9 +8,9 @@
         "doctrine/dbal": "^3.0",
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.4",
-        "phpoffice/phpword": "v0.18.*",
-        "stichoza/google-translate-php": "^4.0"
+        "laravel/ui": "^4.0",
+        "phpoffice/phpword": "^v1.0",
+        "stichoza/google-translate-php": "^5.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

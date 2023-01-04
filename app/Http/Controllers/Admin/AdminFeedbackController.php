@@ -86,7 +86,7 @@ class AdminFeedbackController extends Controller{
         $feedback->visible = $request->input('visible') == 'on';
         $feedback->tracks = $feedback->saveTracks($request);
         $feedback->archive_name = $feedback->archiveTracks();
-        $feedback->related->sync($request->post('related'));
+        $feedback->related()->sync($request->post('related'));
         if($request->hasFile('image')){
             // delete old image
             $path = public_path('images/feedback/').$feedback->image;

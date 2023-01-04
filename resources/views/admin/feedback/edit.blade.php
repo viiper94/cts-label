@@ -88,6 +88,28 @@
                     </div>
                 </div>
             </div>
+            @if(!$feedback->release)
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="description form-group mb-3">
+                            <label for="description_en">Описание (англ.)</label>
+                            <textarea name="description_en" id="description_en">{!! old('description_en') ?? $feedback->description_en !!}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="description form-group mb-3">
+                            <label for="description_ua">Описание (укр.)</label>
+                            <textarea name="description_ua" id="description_ua">{!! old('description_ua') ?? $feedback->description_ua !!}</textarea>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="description form-group mb-3">
+                            <label for="description_ru">Описание (рус.)</label>
+                            <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $feedback->description_ru !!}</textarea>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h3 class="mb-0">Треки</h3>
                 @if($feedback->hasArchive())
@@ -186,4 +208,28 @@
         </div>
     </div>
 
+    @if(!$feedback->release)
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#description_en'))
+                .then(newEditor => {
+                    enEditor = newEditor;
+                });
+            ClassicEditor.create(document.querySelector('#description_ru'))
+                .then(newEditor => {
+                    ruEditor = newEditor;
+                });
+            ClassicEditor.create(document.querySelector('#description_ua'))
+                .then(newEditor => {
+                    uaEditor = newEditor;
+                });
+            ClassicEditor.create(document.querySelector('#tracklist'));
+        </script>
+    @endif
+
+@endsection
+
+@section('assets')
+    <script src="/js/ckeditor.js"></script>
+    <link rel="stylesheet" href="/css/ckeditor.css">
 @endsection

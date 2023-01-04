@@ -43,6 +43,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="py-3 header_text">
+                    @if($feedback->release)
+                        {!! $feedback->release['description_'.$feedback->release->detectActiveDescriptionLang()] !!}
+                    @else
+                        {!! $feedback['description_'.app()->getLocale()] !!}
+                    @endif
+                </div>
+                <hr>
                 <p class="header_text py-3">@lang('feedback.header_text')</p>
                 <hr>
                 @if(count($feedback->related) > 0)

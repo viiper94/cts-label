@@ -43,6 +43,7 @@
                     <th>Добавлен в очередь</th>
                     <th>Отправлено</th>
                     <th>Ошибка</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -66,6 +67,15 @@
                         <td>{{ $item->created_at->isoFormat('LLL') }}</td>
                         <td>{{ $item->sent ? $item->updated_at->isoFormat('LLL') : '–' }}</td>
                         <td title="{{ $item->error_message ?? false }}">{{ $item->error_code ??  '–' }}</td>
+                        <td>
+                            <form action="{{ route('emailing.queue.destroy', $item->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Удалить из очереди рассылки?')">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

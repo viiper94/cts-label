@@ -22,6 +22,12 @@ class AdminEmailingQueueController extends Controller{
         ]);
     }
 
+    public function destroy(EmailingQueue $queue){
+        return $queue->delete() ?
+            redirect()->route('emailing.queue.index')->with(['success' => 'Адресат успешно удалён!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
     public function clear(){
         return EmailingQueue::whereSent('1')->delete() !== false ?
             redirect()->route('emailing.queue.index')->with(['success' => 'Очередь очищена!']) :

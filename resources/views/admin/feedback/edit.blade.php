@@ -20,15 +20,15 @@
             <a href='{{ route('feedback', $feedback->slug) }}' class="btn btn-outline" target="_blank">
                 <i class="fa-solid fa-comment me-2"></i>Смотреть фидбек
             </a>
+            <button type="button" class="btn btn-outline" data-bs-target="#feedbackModal" data-bs-toggle="modal">
+                <i class="fa-solid fa-envelopes-bulk me-2"></i>Рассылка
+            </button>
         @endif
         @if($feedback->release)
             <a href='{{ route('release', $feedback->release->id) }}' class="btn btn-outline" target="_blank">
                 <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Релиз на сайте
             </a>
         @endif
-        <button type="button" class="btn btn-outline" data-bs-target="#feedbackModal" data-bs-toggle="modal">
-            <i class="fa-solid fa-envelopes-bulk me-2"></i>Рассылка
-        </button>
         <form enctype="multipart/form-data" method="post" id="edit_release" class="mb-3"
               action="{{ $feedback->id ? route('feedback.update', $feedback->id) : route('feedback.store', $feedback->release?->id) }}">
             @csrf

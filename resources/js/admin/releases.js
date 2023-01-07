@@ -98,4 +98,110 @@ $(document).ready(function(){
         $('.related input').prop('checked', false);
     });
 
+    $(document).on('click', '.add-track', function(){
+        let id = $(this).data('track-id');
+        let url = $(this).data('url');
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(response){
+                $('#trackModal').find('.modal-content').html(response.modal);
+            }
+        });
+    });
+
+    $('#trackSearchModal input[name=search]').keyup(function(){
+        let url = $(this).data('url');
+        let query = $(this).val();
+        if(query.length > 3){
+            $.ajax({
+                url: url,
+                data: {
+                    query: query
+                },
+                success: function(response){
+                    $('#trackSearchModal').find('.search-items .table-responsive').html(response.modal);
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '.add-to-release', function(){
+        let id = $(this).data('track-id');
+        let url = $(this).data('url');
+        addTrackToReleaseTracklist(id, url);
+    });
+
+    $('.tracks table tbody.sortable').sortable({
+        handle: '.sort-handle',
+    });
+
+    $(document).on('click', '.remove-track', function(){
+        if(confirm('Удалить трек из релиза?')) $(this).parents('tr').remove();
+        else return false;
+    });
+
+    $(document).on('click', '.save-track', function(e){
+        let url = $(this).data('url');
+        let method = $(this).data('method');
+        let data = {};
+        let hasEmptyRequiredField = false;
+        $('#trackModal small.text-danger').remove();
+        $('#trackModal').find('input, select').each(function(){
+            let $el = $(this)[0];
+            if($el.required && $el.value === ''){
+                $('label[for='+$el.id+']').after('<small class="text-danger d-block">Обязательное поле</small>');
+                hasEmptyRequiredField = true;
+            }
+            data[$el.name] = $el.value ?? null;
+        });
+        if(hasEmptyRequiredField) return false;
+        $.ajax({
+            type: method,
+            url: url,
+            data: data,
+            success: function(response){
+                addTrackToReleaseTracklist(response.id, response.url);
+                $('#trackModal').modal('hide');
+            },
+            error: function(xhr){
+                let response = xhr.responseJSON;
+                if($(response.errors).length > 0){
+                    $('.save-track').before('<small class="text-danger d-block">'+response.message+'</small>');
+                    $.each(response.errors, function(name, messages){
+                        $('label[for='+name+']').after('<small class="text-danger d-block">'+messages[0]+'</small>');
+                    });
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '#isrc-generate', function(){
+        let url = $(this).data('url');
+        $button = $(this);
+        $.ajax({
+            url: url,
+            success: function(response){
+                $('#trackModal #isrc').val(response.isrc);
+                $button.addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
+            },
+        });
+    });
+
+    function addTrackToReleaseTracklist(id, url){
+        $.ajax({
+            url: url,
+            data: {
+                id: id
+            },
+            success: function(response){
+                if($('tr[data-track-id='+id+']').length > 0){
+                    $('tr[data-track-id='+id+']').replaceWith(response.html);
+                }else{
+                    $(response.html).appendTo($('.tracks table tbody')[0]);
+                }
+            }
+        });
+    }
+
 });

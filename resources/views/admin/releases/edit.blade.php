@@ -108,10 +108,40 @@
                         <textarea name="description_ua" id="description_uk">{!! old('description_ua') ?? $release->description_ua !!}</textarea>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-5">
-                    <div class="description form-group mb-3">
-                        <label class="en">Треклист</label>
-                        <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>
+                <div class="col-12 col-md-auto">
+{{--                    <div class="description form-group mb-3">--}}
+{{--                        <label class="en">Треклист</label>--}}
+{{--                        <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>--}}
+{{--                    </div>--}}
+                    <div class="tracks" id="tracklist">
+                        <h6>Треклист</h6>
+                        <div class="table-responsive">
+                            <table class="table table-hover table-dark">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Артисты</th>
+                                    <th>Название</th>
+                                    <th>Микс</th>
+                                    <th>ISRC</th>
+                                    <th class="text-center">
+                                        <button type="button" class="btn btn-sm btn-outline search-track" data-bs-toggle="modal" data-bs-target="#trackSearchModal">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-primary add-track" data-bs-toggle="modal" data-bs-target="#trackModal" data-url="{{ route('tracks.create') }}">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody class="text-nowrap sortable">
+                                @foreach($release->tracks as $track)
+                                    @include('admin.tracks.release_tracklist_item', compact('track'))
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,93 @@
+<?php
+
+namespace App;
+
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
+
+class Track extends Model{
+
+    public $fillable = [
+        'name',
+        'mix_name',
+//        'artists',
+//        'remixers',
+        'composer',
+        'isrc',
+        'bpm',
+        'genre',
+        'length',
+        'youtube',
+        'beatport_id',
+        'beatport_release_id',
+        'beatport_wave',
+        'beatport_sample',
+        'beatport_sample_start',
+        'beatport_sample_end'
+    ];
+
+    public $casts = [
+        'artists' => 'array',
+        'remixers' => 'array',
+    ];
+
+    public function releases(){
+        return $this->belongsToMany(Release::class, 'track_release');
+    }
+
+    public function length(): Attribute{
+        return Attribute::make(
+            get: function($value){
+                return Track::millisecondsToMinutes($value);
+            },
+            set: fn ($value) => stripos($value, ':') ? Track::minutesToMilliseconds($value) : $value,
+        );
+    }
+
+    public function beatportSampleStart(): Attribute{
+        return Attribute::make(
+            get: function($value){
+               return Track::millisecondsToMinutes($value);
+            },
+            set: fn ($value) => stripos($value, ':') ? Track::minutesToMilliseconds($value) : $value,
+        );
+    }
+
+    public function beatportSampleEnd(): Attribute{
+        return Attribute::make(
+            get: function($value){
+               return Track::millisecondsToMinutes($value);
+            },
+            set: fn ($value) => stripos($value, ':') ? Track::minutesToMilliseconds($value) : $value,
+        );
+    }
+
+    private static function millisecondsToMinutes($value): string{
+        if(!$value) return '';
+        $sec = floor($value / 1000);
+        $minutes = floor($sec / 60);
+        $seconds = $sec - ($minutes*60);
+        return Carbon::parse('00:'.$minutes.':'.$seconds)->format('i:s');
+    }
+
+    private static function minutesToMilliseconds($value): string{
+        if(!$value) return '';
+        $exploded = explode(':', $value);
+        $minutes = (int) $exploded[0];
+        $seconds = (int) $exploded[1];
+        return $minutes*60000 + $seconds*1000;
+    }
+
+    public static function generateISRCCode(): string{
+        $like = 'UA-CT1-'.date('y').'-%';
+        $latest = Track::select('isrc')->where('isrc', 'like', $like)->orderBy('isrc', 'desc')->first();
+        if(!$latest) return 'UA-CT1-'.date('y').'-00001';
+        else{
+            $isrc = explode('-', $latest->isrc);
+            return 'UA-CT1-'.date('y').'-'.sprintf("%'.05d", (int) $isrc[3] + 1);
+        }
+    }
+
+}

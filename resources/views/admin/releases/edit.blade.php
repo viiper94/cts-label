@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Жанр</label><br>
-                        <input type="text" class="form-control form-dark" name="genre" value="{{ old('genre') ?? $release->genre }}" required>
+                        <input type="text" class="form-control form-dark" name="genre" value="{{ old('genre') ?? $release->genre }}">
                         @error('genre')
                             <p class="help-block text-danger">{{ $message }}</p>
                         @enderror

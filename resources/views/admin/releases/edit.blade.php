@@ -186,6 +186,37 @@
             </div>
         </form>
     </div>
+
+    <div class="modal fade" id="trackModal" tabindex="-1" aria-labelledby="trackModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="trackSearchModal" tabindex="-1" aria-labelledby="trackSearchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <input type="text" name="search" class="form-control form-dark" placeholder="Поиск трека" data-url="{{ route('tracks.search') }}">
+                    <button type="button" class="btn btn-outline ms-3" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="search-items" style="min-height: 150px;">
+                        <div class="table-responsive" data-fl-scrolls>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const picker = new Litepicker({
             element: document.getElementById('release_date'),

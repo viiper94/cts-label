@@ -242,8 +242,9 @@
             .then(newEditor => {
                 uaEditor = newEditor;
             });
-        ClassicEditor.create(document.querySelector('#tracklist'));
+        // ClassicEditor.create(document.querySelector('#tracklist'));
     </script>
+
 @endsection
 
 @section('assets')

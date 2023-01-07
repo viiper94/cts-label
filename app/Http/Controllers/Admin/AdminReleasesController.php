@@ -179,4 +179,13 @@ class AdminReleasesController extends Controller{
         }
     }
 
+    public function addTrack(Request $request){
+        if(!$request->ajax()) abort(403);
+        return response()->json([
+            'html' => view('admin.tracks.release_tracklist_item', [
+                'track' => Track::findOrFail($request->post('id'))
+            ])->render()
+        ]);
+    }
+
 }

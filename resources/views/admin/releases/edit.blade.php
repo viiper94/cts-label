@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col-xs-12 col-md-7">
+                <div class="col-12 col-md">
                     <div class="description form-group mb-3">
                         <label class="en">Описание (англ.)</label>
                         <textarea name="description_en" id="description_en">{!! old('description_en') ?? $release->description_en !!}</textarea>

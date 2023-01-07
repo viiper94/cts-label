@@ -15,7 +15,10 @@
         @include('admin.layout.search')
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="{{ route('releases.index') }}" @class(['nav-link', 'active' => \Route::is('releases.*')])><i class="fa-solid fa-music me-2"></i>Релизы</a>
+                <a href="{{ route('releases.index') }}" @class(['nav-link', 'active' => \Route::is('releases.*')])><i class="fa-solid fa-compact-disc me-2"></i>Релизы</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('tracks.index') }}" @class(['nav-link', 'active' => \Route::is('tracks.*')])><i class="fa-solid fa-music me-2"></i>Треки</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('artists.index') }}" @class(['nav-link', 'active' => \Route::is('artists.*')])><i class="fa-solid fa-users me-2"></i>Артисты</a>

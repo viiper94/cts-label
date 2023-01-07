@@ -28,6 +28,18 @@ $(document).ready(function(){
         }
     });
 
+    $('#cat-generate').click(function(){
+        let url = $(this).data('url');
+        $button = $(this);
+        $.ajax({
+            url: url,
+            success: function(response){
+                $('[name=release_number]').val(response.cat);
+                $button.addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
+            }
+        });
+    });
+
     $(document).on('keyup', '#search-related', function(){
         let query = $(this).val();
         let id = $(this).data('release-id');

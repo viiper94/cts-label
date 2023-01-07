@@ -54,7 +54,14 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Номер</label><br>
-                        <input type="text" class="form-control form-dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
+                            @if(!$release->id)
+                                <button class="btn btn-outline" type="button" id="cat-generate" data-url="{{ route('releases.getCat') }}">
+                                    Сгенерировать
+                                </button>
+                            @endif
+                        </div>
                         @error('release_number')
                             <p class="help-block text-danger">{{ $message }}</p>
                         @enderror

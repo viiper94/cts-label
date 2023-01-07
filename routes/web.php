@@ -58,6 +58,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
         Route::resource('/artists', AdminArtistsController::class)->except(['show']);
 
+        Route::post('/releases/getCat', [AdminReleasesController::class, 'generateReleaseNumber'])->name('releases.getCat');
         Route::post('/releases/add_track', [AdminReleasesController::class, 'addTrack'])->name('releases.add_track');
         Route::post('/releases/related', [AdminReleasesController::class, 'searchRelated']);
         Route::post('/releases/translate', [AdminReleasesController::class, 'translate']);

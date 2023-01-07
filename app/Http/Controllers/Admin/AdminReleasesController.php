@@ -8,6 +8,7 @@ use App\Track;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Validation\Rule;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class AdminReleasesController extends Controller{
@@ -32,7 +33,7 @@ class AdminReleasesController extends Controller{
     public function store(Request $request){
         $this->validate($request, [
             'title' => 'required|string',
-            'release_number' => 'string|nullable',
+            'release_number' => 'string|nullable|unique:releases,release_number',
             'genre' => 'string|nullable',
             'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
@@ -68,7 +69,7 @@ class AdminReleasesController extends Controller{
     public function update(Release $release, Request $request){
         $this->validate($request, [
             'title' => 'required|string',
-            'release_number' => 'string|nullable',
+            'release_number' => ['string', 'nullable', Rule::unique('releases', 'release_number')->ignore($release->id)],
             'genre' => 'string|nullable',
             'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
@@ -185,6 +186,13 @@ class AdminReleasesController extends Controller{
             'html' => view('admin.tracks.release_tracklist_item', [
                 'track' => Track::findOrFail($request->post('id'))
             ])->render()
+        ]);
+    }
+
+    public function generateReleaseNumber(Request $request){
+        if(!$request->ajax()) abort(404);
+        return response()->json([
+            'cat' => Release::generateReleaseNumber()
         ]);
     }
 

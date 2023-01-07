@@ -10,6 +10,17 @@
     }
 }
 
+.tracks{
+    table{
+        counter-reset: row;
+        tbody{
+            tr > td:first-child:before{
+                counter-increment: row;
+                content: counter(row);
+            }
+        }
+    }
+}
 .related{
     a{
         color: $primary-text-darker;

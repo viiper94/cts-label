@@ -5,20 +5,20 @@ body, .modal-body, .table-responsive, select, .sidebar{
         height: 10px;
     }
     &::-webkit-scrollbar-track{
-        background: $background;
+        background: $background-lighten-2;
         border-radius: 0;
     }
     &::-webkit-scrollbar-thumb{
         cursor: pointer;
-        border-radius: 5px;
-        background: $background-lighten-1;
+        border-radius: 0;
+        background: $border-color;
         -webkit-transition: color 0.2s ease;
         transition: color 0.2s ease;
         &:window-inactive {
-            background: $background-lighten-1;
+            background: $background-lighten-2;
         }
         &:hover {
-            background: $background-lighten-3;
+            background: $border-color;
         }
     }
 }

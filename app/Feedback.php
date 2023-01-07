@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use ZipArchive;
 
 class Feedback extends SharedModel{
@@ -59,8 +60,10 @@ class Feedback extends SharedModel{
                             unlink($path.'/'.$bitrate.'/'.$this->tracks[$key][$bitrate]);
                         }
                         // save new file
-                        $item->move(public_path('audio/feedback/'.$this->slug.'/'.$bitrate), $item->getClientOriginalName());
-                        $tracks[$key][$bitrate] = $item->getClientOriginalName();
+                        $filename = Str::slug(explode('.', $item->getClientOriginalName())[0]).'.'.$item->getClientOriginalExtension();
+
+                        $item->move(public_path('audio/feedback/'.$this->slug.'/'.$bitrate), $filename);
+                        $tracks[$key][$bitrate] = $filename;
                     }
                 }
             }

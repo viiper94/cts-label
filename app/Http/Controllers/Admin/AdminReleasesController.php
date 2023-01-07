@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Release;
+use App\Track;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class AdminReleasesController extends Controller{
@@ -48,6 +50,7 @@ class AdminReleasesController extends Controller{
             $image->move(public_path('images/releases'), $release->image);
         }
         if($release->save()){
+            $release->tracks()->attach($request->post('tracks'));
             $release->related()->attach($request->post('related'));
             return redirect()->route('releases.index')->with(['success' => 'Релиз успешно добавлен!']);
         }else{
@@ -58,7 +61,7 @@ class AdminReleasesController extends Controller{
     public function edit($id){
         return view('admin.releases.edit', [
             'release_list' => Release::orderBy('sort_id', 'desc')->get(),
-            'release' => Release::with('related')->findOrFail($id)
+            'release' => Release::with('related', 'tracks')->findOrFail($id)
         ]);
     }
 
@@ -76,6 +79,8 @@ class AdminReleasesController extends Controller{
         $release->fill($request->post());
         $release->release_date = $request->date('release_date');
         $release->related()->sync($request->post('related'));
+        $release->tracks()->detach(Arr::pluck($release->tracks, 'id'));
+        $release->tracks()->attach($request->post('tracks'));
         if($request->hasFile('image')){
             // delete old image
             $path = public_path('images/releases/') . $release->image;

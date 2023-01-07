@@ -32,6 +32,10 @@ class Release extends SharedModel{
         return $this->belongsToMany('App\Release', 'related_releases', 'release_id', 'related_id');
     }
 
+    public function tracks(){
+        return $this->belongsToMany(Track::class, 'track_release');
+    }
+
     public function feedback(){
         return $this->hasOne('App\Feedback');
     }

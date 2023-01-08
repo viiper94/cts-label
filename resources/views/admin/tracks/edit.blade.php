@@ -48,6 +48,10 @@
             </div>
         </div>
         <div class="form-group mb-3">
+            <label for="genre" class="form-label">Жанр</label>
+            <input type="text" class="form-control form-dark" id="genre" name="genre" value="{{ $track->genre }}">
+        </div>
+        <div class="form-group mb-3">
             <label for="youtube" class="form-label">Ссылка в YouTube</label>
             <div class="input-group">
                 <input type="url" class="form-control form-dark" id="youtube" name="youtube" value="{{ $track->youtube }}">
@@ -59,10 +63,6 @@
         <div class="form-group mb-3">
             <label for="bpm" class="form-label">BPM</label>
             <input type="number" class="form-control form-dark" id="bpm" name="bpm" value="{{ $track->bpm }}">
-        </div>
-        <div class="form-group mb-3">
-            <label for="genre" class="form-label">Жанр</label>
-            <input type="text" class="form-control form-dark" id="genre" name="genre" value="{{ $track->genre }}">
         </div>
         <div class="form-group mb-3">
             <label for="length" class="form-label">Продолжительность</label>

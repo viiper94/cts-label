@@ -144,6 +144,7 @@ $(document).ready(function(){
         let id = $(this).data('track-id');
         let url = $(this).data('url');
         addTrackToReleaseTracklist(id, url);
+        $(this).addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
     });
 
     $('.tracks table tbody.sortable').sortable({

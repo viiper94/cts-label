@@ -7,7 +7,8 @@
     <td><small>{{ $track->mix_name }}</small></td>
     <td><small>{{ $track->isrc }}</small></td>
     <td class="text-center">
-        <button type="button" class="btn btn-sm btn-outline add-track" data-url="{{ route('tracks.edit', $track->id) }}" data-bs-toggle="modal" data-bs-target="#trackModal">
+        <button type="button" class="btn btn-sm btn-outline add-track" data-url="{{ route('tracks.edit', $track->id) }}"
+                data-bs-toggle="modal" data-bs-target="#trackModal" data-id="{{ $track->id }}">
             <i class="fa-solid fa-pen"></i>
         </button>
         <button type="button" class="btn btn-sm btn-outline-danger remove-track">

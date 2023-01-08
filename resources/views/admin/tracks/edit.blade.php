@@ -26,7 +26,7 @@
             <input type="text" class="form-control form-dark" id="mix_name" name="mix_name" value="{{ $track->mix_name }}">
         </div>
         <div class="form-group mb-3">
-            <label for="remixers" class="form-label">Ремиксер(ы) <small class="text-muted">перечислите через запятую, если много</small></label>
+            <label for="remixers" class="form-label">Ремиксер(ы) <small class="text-muted">перечислите через запятую</small></label>
             <input type="text" class="form-control form-dark" id="remixers" name="remixers" value="{{ implode(', ', (array)$track->remixers) }}">
         </div>
         <div class="form-group mb-3">

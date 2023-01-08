@@ -109,7 +109,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-primary save-track" data-method="{{ $track->id ? 'PUT' : 'POST' }}"
-                data-url="{{ $track->id ? route('tracks.update', $track->id) : route('tracks.store') }}">
+                data-url="{{ $track->id ? route('tracks.update', $track->id) : route('tracks.store') }}" @if($track->id) data-id="{{ $track->id }}"@endif>
             <i class="fa-solid fa-check me-2"></i>Сохранить
         </button>
     </div>

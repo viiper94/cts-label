@@ -21,6 +21,14 @@
         }
     }
 }
+#trackModal{
+    .add-promt{
+        cursor: pointer;
+        font-size: 12px;
+        float: right;
+    }
+}
+
 .related{
     a{
         color: $primary-text-darker;

@@ -99,6 +99,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="justify-content-center d-flex my-3">
+            {{ $tracks->appends(Request::input())->links('admin.layout.pagination') }}
+        </div>
     </div>
 
 @endsection

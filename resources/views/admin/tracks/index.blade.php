@@ -80,9 +80,19 @@
                             @if($track->beatport_sample)
                                 <a href="{{ $track->beatport_sample }}" target="_blank" class="btn btn-sm btn-outline"><i class="fa-solid fa-play"></i></a>
                             @endif
-                            <a href="{{ route('releases.edit', $track->releases[0]->id) }}#tracklist" class="btn btn-sm btn-outline-primary">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
+                            @if(count($track->releases) > 0)
+                                <a href="{{ route('releases.edit', $track->releases[0]->id) }}#tracklist" class="btn btn-sm btn-outline-primary">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            @else
+                                <form action="{{ route('tracks.destroy', $track->id) }}" method="post" class="d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Удалить этот трек?')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

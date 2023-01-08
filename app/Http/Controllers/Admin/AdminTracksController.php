@@ -103,15 +103,11 @@ class AdminTracksController extends Controller{
             : ['error' => 'Возникла ошибка =(']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Track  $track
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Track $track)
-    {
-        //
+
+    public function destroy(Track $track){
+        return $track->delete() ?
+            redirect()->route('tracks.index')->with(['success' => 'Трек успешно удалён!']) :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
     public function search(Request $request){

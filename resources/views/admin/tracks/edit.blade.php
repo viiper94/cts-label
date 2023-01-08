@@ -13,10 +13,16 @@
         </div>
         <div class="form-group mb-3">
             <label for="name" class="form-label">Название*</label>
+            @if(!$track->id && session('name'))
+                <a class="add-promt text-muted">{{ session('name') }}</a>
+            @endif
             <input type="text" class="form-control form-dark" id="name" name="name" value="{{ $track->name }}" required>
         </div>
         <div class="form-group mb-3">
             <label for="mix_name" class="form-label">Микс</label>
+            @if(!$track->id && session('mix_name'))
+                <a class="add-promt text-muted">{{ session('mix_name') }}</a>
+            @endif
             <input type="text" class="form-control form-dark" id="mix_name" name="mix_name" value="{{ $track->mix_name }}">
         </div>
         <div class="form-group mb-3">
@@ -25,6 +31,9 @@
         </div>
         <div class="form-group mb-3">
             <label for="composer" class="form-label">Композитор</label>
+            @if(!$track->id && session('composer'))
+                <a class="add-promt text-muted">{{ session('composer') }}</a>
+            @endif
             <input type="text" class="form-control form-dark" id="composer" name="composer" value="{{ $track->composer }}">
         </div>
         <div class="form-group mb-3">

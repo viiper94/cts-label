@@ -61,6 +61,10 @@
             <input type="number" class="form-control form-dark" id="beatport_id" name="beatport_id" value="{{ $track->beatport_id }}">
         </div>
         <div class="form-group mb-3">
+            <label for="beatport_slug" class="form-label">Beatport Slug</label>
+            <input type="text" class="form-control form-dark" id="beatport_slug" name="beatport_slug" value="{{ $track->beatport_slug }}">
+        </div>
+        <div class="form-group mb-3">
             <label for="beatport_release_id" class="form-label">Beatport ID релиза</label>
             <input type="number" class="form-control form-dark" id="beatport_release_id" name="beatport_release_id" value="{{ $track->beatport_release_id }}">
         </div>

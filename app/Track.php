@@ -21,6 +21,7 @@ class Track extends Model{
         'length',
         'youtube',
         'beatport_id',
+        'beatport_slug',
         'beatport_release_id',
         'beatport_wave',
         'beatport_sample',

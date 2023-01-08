@@ -71,6 +71,14 @@
                             @if($release->tracklist)
                                 <h6 class="fw-bold">@lang('releases.tracklist')</h6>
                                 {!! $release->tracklist !!}
+                                @foreach($release->tracks as $track)
+                                    <p class="mb-0">
+                                        {{ $track->artists }} - {{ $track->name }} @if($track->mix_name) ({{ $track->mix_name }}) @endif
+                                        @if($track->youtube)
+                                            <a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
+                                        @endif
+                                    </p>
+                                @endforeach
                             @endif
                         </div>
                     </div>

@@ -17,6 +17,9 @@
                     <i class="fa-solid fa-trash me-2"></i>Удалить
                 </button>
             </form>
+            <a href="{{ route('release', $release->id) }}" class="btn btn-outline" target="_blank">
+                <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Релиз на сайте
+            </a>
         @endif
         <form enctype="multipart/form-data" method="post" id="edit_release"
               action="{{ $release->id ? route('releases.update', $release->id) : route('releases.store') }}">

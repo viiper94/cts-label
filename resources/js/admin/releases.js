@@ -111,15 +111,17 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.add-track', function(){
-        let id = $(this).data('track-id');
+        let id = $(this).data('id');
         let url = $(this).data('url');
-        $.ajax({
-            url: url,
-            type: 'GET',
-            success: function(response){
-                $('#trackModal').find('.modal-content').html(response.modal);
-            }
-        });
+        if($('#trackModal .save-track').data('id') !== id){
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(response){
+                    $('#trackModal').find('.modal-content').html(response.modal);
+                }
+            });
+        }
     });
 
     $('#trackSearchModal input[name=search]').keyup(function(){
@@ -174,6 +176,7 @@ $(document).ready(function(){
             data: data,
             success: function(response){
                 addTrackToReleaseTracklist(response.id, response.url);
+                $('#trackModal').find('.save-track').attr('data-id', '0');
                 $('#trackModal').modal('hide');
             },
             error: function(xhr){

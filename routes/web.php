@@ -66,6 +66,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/releases/sort/{release}/{dir}', [AdminReleasesController::class, 'sort'])->name('releases.sort');
         Route::resource('/releases', AdminReleasesController::class)->except(['show']);
 
+        Route::get('/tracks/import', [AdminTracksController::class, 'import']);
         Route::post('/tracks/isrc', [AdminTracksController::class, 'generateISRCCode'])->name('tracks.isrc');
         Route::post('/tracks/search', [AdminTracksController::class, 'search'])->name('tracks.search');
         Route::post('/tracks/updateTrack', [AdminTracksController::class, 'updateTrack'])->name('tracks.updateTrack');
@@ -113,54 +114,6 @@ Route::group(['middleware' => 'i18n'], function(){
             Route::get('/queue', [AdminEmailingQueueController::class, 'index'])->name('queue.index');
 
         });
-
-//        Route::get('/import', function(){
-//
-//            $pages = json_decode(file_get_contents(resource_path('tracks.json')), true);
-////            dd($pages['page_1']['results']);
-//
-//            foreach(array_reverse($pages) as $page){
-//
-//                foreach(array_reverse($page['results']) as $item){
-//
-////                    dd($track['catalog_number']);
-//
-//                    $artists = array();
-//                    $remixers = array();
-//
-//                    foreach($item['artists'] as $artist){
-//                        $artists[] = $artist['name'];
-//                    }
-//                    foreach($item['remixers'] as $remixer){
-//                        $remixers[] = $remixer['name'];
-//                    }
-//
-//                    $track = \App\Track::create([
-//                        'name' => $item['name'],
-//                        'mix_name' => $item['mix_name'],
-//                        'isrc' => preg_replace('/(UA)(CT1)([0-9]{2})([0-9]{5})/', '$1-$2-$3-$4', $item['isrc']),
-//                        'bpm' => $item['bpm'],
-//                        'genre' => $item['genre']['name'],
-//                        'length' => $item['length_ms'],
-//                        'beatport_id' => $item['id'],
-//                        'beatport_release_id' => $item['release']['id'],
-//                        'beatport_wave' => $item['image']['uri'] ?? null,
-//                        'beatport_sample' => $item['sample_url'],
-//                        'beatport_sample_start' => $item['sample_start_ms'],
-//                        'beatport_sample_end' => $item['sample_end_ms'],
-//                        'artists' => $artists,
-//                        'remixers' => $remixers,
-//                    ]);
-//                    $catalogue = str_replace([' ', '-'], '', $item['catalog_number']);
-//                    $release = \App\Release::where('release_number', $catalogue)->first();
-//                    if(!$release) $release = \App\Release::where('beatport', 'like', '%'.$track->beatport_release_id.'%')->first();
-//                    echo "CAT: $catalogue, $track->name ";
-//                    $release->tracks()->attach($track->id);
-//                    echo "    DONE <br>";
-//                }
-//
-//            }
-//        });
 
     });
 

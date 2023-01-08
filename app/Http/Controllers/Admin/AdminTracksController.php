@@ -143,4 +143,65 @@ class AdminTracksController extends Controller{
         ]);
     }
 
+    public function import(){
+
+        $pages = json_decode(file_get_contents(resource_path('tracks.json')), true);
+//            dd($pages['page_1']['results']);
+
+        foreach(array_reverse($pages) as $page){
+
+            foreach(array_reverse($page['results']) as $item){
+
+//                    dd($track['catalog_number']);
+
+                $artists = array();
+                $remixers = array();
+
+                foreach($item['artists'] as $artist){
+                    $artists[] = $artist['name'];
+                }
+                if(count($item['remixers']) > 0){
+                    foreach($item['remixers'] as $remixer){
+                        $remixers[] = $remixer['name'];
+                    }
+                }
+
+                $isrc = preg_replace('/(UA)(CT1)([0-9]{2})([0-9]{5})/', '$1-$2-$3-$4', $item['isrc']);
+                $track = $item['isrc'] ? \App\Track::where('isrc', $isrc)->first() : null;
+
+                if(!$track){
+                    $track = \App\Track::create([
+                        'name' => $item['name'],
+                        'mix_name' => $item['mix_name'],
+                        'isrc' => $isrc ?? null,
+                        'bpm' => $item['bpm'],
+                        'genre' => $item['genre']['name'],
+                        'length' => $item['length_ms'],
+                        'beatport_id' => $item['id'],
+                        'beatport_slug' => $item['slug'],
+                        'beatport_release_id' => $item['release']['id'],
+                        'beatport_wave' => $item['image']['uri'] ?? null,
+                        'beatport_sample' => $item['sample_url'],
+                        'beatport_sample_start' => $item['sample_start_ms'],
+                        'beatport_sample_end' => $item['sample_end_ms'],
+                        'artists' => implode(', ', $artists),
+                        'remixers' => $remixers ?? null,
+                    ]);
+                }
+
+                $catalogue = str_replace([' ', '-'], '', $item['catalog_number']);
+                $release = \App\Release::where('release_number', $catalogue)->first();
+
+                if(!$release) $release = \App\Release::where('beatport', 'like', '%'.$item['release']['id'].'%')->first();
+
+                echo "CAT: $catalogue, $track->name ";
+
+                $release->tracks()->attach($track->id);
+
+                echo "    DONE <br>";
+            }
+
+        }
+    }
+
 }

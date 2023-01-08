@@ -60,9 +60,12 @@ class AdminReleasesController extends Controller{
     }
 
     public function edit($id){
+        $release = Release::with('related', 'tracks')->findOrFail($id);
         return view('admin.releases.edit', [
             'release_list' => Release::orderBy('sort_id', 'desc')->get(),
-            'release' => Release::with('related', 'tracks')->findOrFail($id)
+            'release' => $release,
+            'prev' => Release::where('sort_id', '<', $release->sort_id)->orderBy('sort_id', 'desc')->first(),
+            'next' => Release::where('sort_id', '>', $release->sort_id)->orderBy('sort_id', 'asc')->first(),
         ]);
     }
 

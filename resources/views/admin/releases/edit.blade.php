@@ -31,6 +31,24 @@
                     @error('image')
                         <p class="help-block text-danger">{{ $message }}</p>
                     @enderror
+                    <div class="row d-none d-md-flex pt-5">
+                        <div class="col-6 text-end">
+                            @if($next)
+                                <p class="mb-0">След. релиз</p>
+                                <a href="{{ route('releases.edit', $next->id) }}">
+                                    <img src="/images/releases/{{ $next->image }}" title="{{ $next->title }}" class="img-fluid" style="width: 100px;">
+                                </a>
+                            @endif
+                        </div>
+                        <div class="col-6">
+                            @if($prev)
+                                <p class="mb-0">Пред. релиз</p>
+                                <a href="{{ route('releases.edit', $prev->id) }}">
+                                    <img src="/images/releases/{{ $prev->image }}" title="{{ $prev->title }}" class="img-fluid" style="width: 100px;">
+                                </a>
+                            @endif
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md col-xs-12 mb-3">
                     <div class="form-check mb-3">

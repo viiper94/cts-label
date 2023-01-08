@@ -59,7 +59,6 @@ class AdminTracksController extends Controller{
         ]);
         $track = new Track();
         $track->fill($request->post());
-        $track->artists = explode(',' , $request->post('artists'));
         $track->remixers = explode(',' , $request->post('remixers'));
         return response()->json($track->save()
             ? ['id' => $track->id, 'url' => route('releases.add_track')]

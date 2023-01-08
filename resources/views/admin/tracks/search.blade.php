@@ -16,7 +16,7 @@
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </td>
-            <td>{{ implode(', ', $item->artists) }}</td>
+            <td>{{ $item->artists }}</td>
             <td>{{ $item->name }}</td>
             <td>{{ $item->mix_name }}</td>
             <td>

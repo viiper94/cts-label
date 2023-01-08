@@ -56,7 +56,7 @@
                             @endforeach
                         </td>
                         <td>
-                            {{ implode(', ', $track->artists) }}
+                            {{ $track->artists }}
                         </td>
                         <td>
                             <b>{{ $track->name }}</b>

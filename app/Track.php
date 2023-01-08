@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 class Track extends Model{
 
     public $fillable = [
+        'artists',
         'name',
         'mix_name',
-//        'artists',
-//        'remixers',
+        'remixers',
         'composer',
         'isrc',
         'bpm',
@@ -30,7 +30,6 @@ class Track extends Model{
     ];
 
     public $casts = [
-        'artists' => 'array',
         'remixers' => 'array',
     ];
 

@@ -2,7 +2,7 @@
     <td>
         <input type="hidden" name="tracks[]" value="{{ $track->id }}">
     </td>
-    <td>{{ implode(', ', $track->artists) }}</td>
+    <td>{{ $track->artists }}</td>
     <td>{{ $track->name }}</td>
     <td><small>{{ $track->mix_name }}</small></td>
     <td><small>{{ $track->isrc }}</small></td>

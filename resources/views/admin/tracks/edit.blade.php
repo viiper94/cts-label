@@ -5,8 +5,11 @@
     </div>
     <div class="modal-body">
         <div class="form-group mb-3">
-            <label for="artists" class="form-label">Артист(ы)* <small class="text-muted">перечислите через запятую, если много</small></label>
-            <input type="text" class="form-control form-dark" id="artists" name="artists" value="{{ implode(', ', (array)$track->artists) }}" required>
+            <label for="artists" class="form-label">Артист(ы)* <small class="text-muted">перечислите через запятую</small></label>
+            @if(!$track->id && session('artists'))
+                <a class="add-promt text-muted">{{ session('artists') }}</a>
+            @endif
+            <input type="text" class="form-control form-dark" id="artists" name="artists" value="{{ $track->artists }}" required>
         </div>
         <div class="form-group mb-3">
             <label for="name" class="form-label">Название*</label>

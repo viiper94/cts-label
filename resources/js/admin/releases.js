@@ -203,6 +203,12 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on('click', '.add-promt', function(){
+        let text = $(this).text();
+        $(this).next().val(text);
+        $(this).remove();
+    });
+
     function addTrackToReleaseTracklist(id, url){
         $.ajax({
             url: url,

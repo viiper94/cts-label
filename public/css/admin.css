@@ -21404,6 +21404,12 @@ body {
   content: counter(row);
 }
 
+#trackModal .add-promt {
+  cursor: pointer;
+  font-size: 12px;
+  float: right;
+}
+
 .related a {
   color: #89898b;
   text-decoration: none;

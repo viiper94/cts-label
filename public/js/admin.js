@@ -3393,6 +3393,17 @@ $(document).ready(function () {
       });
     }
   });
+  $('#cat-generate').click(function () {
+    var url = $(this).data('url');
+    $button = $(this);
+    $.ajax({
+      url: url,
+      success: function success(response) {
+        $('[name=release_number]').val(response.cat);
+        $button.addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
+      }
+    });
+  });
   $(document).on('keyup', '#search-related', function () {
     var query = $(this).val();
     var id = $(this).data('release-id');
@@ -3462,15 +3473,17 @@ $(document).ready(function () {
     $('.related input').prop('checked', false);
   });
   $(document).on('click', '.add-track', function () {
-    var id = $(this).data('track-id');
+    var id = $(this).data('id');
     var url = $(this).data('url');
-    $.ajax({
-      url: url,
-      type: 'GET',
-      success: function success(response) {
-        $('#trackModal').find('.modal-content').html(response.modal);
-      }
-    });
+    if ($('#trackModal .save-track').data('id') !== id) {
+      $.ajax({
+        url: url,
+        type: 'GET',
+        success: function success(response) {
+          $('#trackModal').find('.modal-content').html(response.modal);
+        }
+      });
+    }
   });
   $('#trackSearchModal input[name=search]').keyup(function () {
     var url = $(this).data('url');
@@ -3491,6 +3504,7 @@ $(document).ready(function () {
     var id = $(this).data('track-id');
     var url = $(this).data('url');
     addTrackToReleaseTracklist(id, url);
+    $(this).addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
   });
   $('.tracks table tbody.sortable').sortable({
     handle: '.sort-handle'
@@ -3520,6 +3534,7 @@ $(document).ready(function () {
       data: data,
       success: function success(response) {
         addTrackToReleaseTracklist(response.id, response.url);
+        $('#trackModal').find('.save-track').attr('data-id', '0');
         $('#trackModal').modal('hide');
       },
       error: function error(xhr) {
@@ -3543,6 +3558,11 @@ $(document).ready(function () {
         $button.addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
       }
     });
+  });
+  $(document).on('click', '.add-promt', function () {
+    var text = $(this).text();
+    $(this).next().val(text);
+    $(this).remove();
   });
   function addTrackToReleaseTracklist(id, url) {
     $.ajax({

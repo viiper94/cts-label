@@ -39,7 +39,7 @@
         <div class="form-group mb-3">
             <label for="isrc" class="form-label">ISRC код*</label>
             <div class="input-group">
-                <input type="text" class="form-control form-dark" id="isrc" name="isrc" value="{{ $track->isrc }}" placeholder="UA-CT1-XX-XXXXX" required>
+                <input type="text" class="form-control form-dark" id="isrc" name="isrc" value="{{ $track->isrc }}" placeholder="UA-CT1-XX-XXXXX">
                 @if(!$track->isrc)
                     <button class="btn btn-outline" type="button" id="isrc-generate" data-url="{{ route('tracks.isrc') }}">
                         Сгенерировать

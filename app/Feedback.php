@@ -109,4 +109,14 @@ class Feedback extends SharedModel{
         return $filename;
     }
 
+    public static function getPeaks($track): ?string{
+        if(isset($track['peaks'])){
+            if(empty(json_decode($track['peaks']))){
+                return null;
+            }else return $track['peaks'];
+        }else{
+            return null;
+        }
+    }
+
 }

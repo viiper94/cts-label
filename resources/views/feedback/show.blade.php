@@ -6,6 +6,10 @@
     <script src="/js/wavesurfer.min.js"></script>
 @endsection
 
+@section('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('content')
 
     <div class="container pt-5 pb-3 feedback">
@@ -74,9 +78,9 @@
                         <div class="title col-12 col-md flex-grow-1">{{ $track['title'] }}</div>
                         <div class="col-12 col-md-auto d-flex align-items-center flex-nowrap justify-content-between">
                             <div class="time text-nowrap">
-                                <span class="current-time"></span>
-                                <span class="time-break"></span>
-                                <span class="duration"></span>
+                                <span class="current-time">00:00</span>
+                                <span class="time-break">/</span>
+                                <span class="duration">00:00</span>
                             </div>
                             <div class="volume-bar ms-3">
                                 <div class="volume-bar-value"></div>
@@ -119,79 +123,26 @@
 
     <script>
         $(document).ready(function(){
-            let players = [];
+
+            window.players = [];
+
             @foreach($feedback->tracks as $key => $track)
 
-            let wavesurfer_{{ $key }} = WaveSurfer.create({
-                container: '#waveform_{{ $key }}',
-                normalize: true,
-                barHeight: 1.3,
-                height: 70,
-                waveColor: '#5b450d',
-                progressColor: '#e9a222',
-                cursorWidth: 1
-            });
-            players.push(wavesurfer_{{ $key }});
-            wavesurfer_{{ $key }}.load('/audio/feedback/{{ $feedback->slug }}/96/{!! $track[96] !!}');
-            wavesurfer_{{ $key }}.on('ready', function(){
-                $('.track[data-id={{ $key }}] .bar').css({
-                    'background-image': 'none'
-                });
-                $('.track[data-id={{ $key }}] .volume-bar-value').css({
-                    width: (wavesurfer_{{ $key }}.getVolume()*100) + '%'
-                });
-                $('.track[data-id={{ $key }}] .current-time').text('00:00');
-                $('.track[data-id={{ $key }}] .time-break').text('/');
-                $('.track[data-id={{ $key }}] .duration').text(convertDuration(wavesurfer_{{ $key }}.getDuration()));
+            window.players.push(new FeedbackPlayer({
+                url: '/audio/feedback/{{ $feedback->slug }}/96/{!! $track[96] !!}',
+                trackIndex: {{ $key }},
+                feedbackId: {{ $feedback->id }},
+                @if(isset($track['peaks']) && !empty(json_decode($track['peaks'])))
+                peaks: {{ \App\Feedback::getPeaks($track) }},
+                @else
+                savePeaksRoute: '{{ route('feedback.peaks') }}'
+                @endif
+            }));
 
-
-                $('.track[data-id={{ $key }}] .play-pause').click(function(){
-                    if(!wavesurfer_{{ $key }}.isPlaying()){
-                        $.each(players, function(index, player){
-                            if(index + 1 !== {{ $key }}){
-                                player.pause();
-                                $('.play-pause i').removeClass('fa-pause').addClass('fa-play');
-                            }
-                        });
-                        wavesurfer_{{ $key }}.play();
-                        $(this).find('i').removeClass('fa-play').addClass('fa-pause');
-                    }else{
-                        wavesurfer_{{ $key }}.pause();
-                        $(this).find('i').removeClass('fa-pause').addClass('fa-play');
-                    }
-                });
-                $('.track[data-id={{ $key }}] .volume-bar').click(function(e){
-                    var clickedPositionPercent = getBarClickPercent(e, this);
-                    $('.track .volume-bar-value').css({
-                        width: clickedPositionPercent + '%'
-                    });
-                    $.each(players, function(index, player){
-                        player.setVolume(clickedPositionPercent/100);
-                    });
-                });
-            });
-            wavesurfer_{{ $key }}.on('audioprocess', function(){
-                $('.track[data-id={{ $key }}] .current-time').text(convertDuration(wavesurfer_{{ $key }}.getCurrentTime()));
-            });
             @endforeach
 
-            function convertDuration(duration){
-                var dec = duration / 60;
-                var min = parseInt(dec);
-                if (min.toString().length === 1) min = '0' + min;
-                var sec = Math.round((dec - min)*60);
-                if (sec.toString().length === 1) sec = '0' + sec;
-                return min + ':' + sec;
-            }
-
-            function getBarClickPercent(e, el){
-                var clickedPositionPx = e.pageX - $(el).offset().left;
-                var seekBarWidth = $(el).width();
-                return clickedPositionPx/seekBarWidth *100;
-            }
         });
-
-
     </script>
+    <script src="/js/feedback_player.js"></script>
 
 @endsection

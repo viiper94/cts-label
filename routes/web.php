@@ -81,6 +81,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/studio/resort', [AdminStudioController::class, 'resort'])->name('studio.resort');
         Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);
 
+        Route::post('/feedback/peaks', [AdminFeedbackController::class, 'peaks'])->name('feedback.peaks');
         Route::post('/feedback/template', [AdminFeedbackController::class, 'getTemplate'])->name('feedback.template');
         Route::post('/feedback/emailing', [AdminFeedbackController::class, 'emailing'])->name('feedback.emailing');
         Route::get('/feedback/create/{release?}', [AdminFeedbackController::class, 'create'])->name('feedback.create');

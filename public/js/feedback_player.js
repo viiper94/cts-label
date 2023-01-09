@@ -88,7 +88,7 @@ class FeedbackPlayer{
 
     sendPeaks(){
         let parent = this;
-        parent.player.exportPCM().then(function(response){
+        parent.player.exportPCM(1024, 10000, true).then(function(response){
             $.ajax({
                 url: parent.savePeaksRoute,
                 type : 'POST',

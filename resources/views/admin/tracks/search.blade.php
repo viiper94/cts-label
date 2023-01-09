@@ -5,6 +5,7 @@
         <th>Артист</th>
         <th>Название</th>
         <th>Микс</th>
+        <th>Длина</th>
         <th>Релиз</th>
     </tr>
     </thead>
@@ -19,6 +20,7 @@
             <td>{{ $item->artists }}</td>
             <td>{{ $item->name }}</td>
             <td>{{ $item->mix_name }}</td>
+            <td>{{ $item->length }}</td>
             <td>
                 @foreach($item->releases as $release)
                     {{ $release->title }} @if(!$loop->last), @endif

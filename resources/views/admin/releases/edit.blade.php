@@ -161,6 +161,7 @@
                                     <th>Артисты</th>
                                     <th>Название</th>
                                     <th>Микс</th>
+                                    <th>Длина</th>
                                     <th>ISRC</th>
                                     <th class="text-center">
                                         <button type="button" class="btn btn-sm btn-outline search-track" data-bs-toggle="modal" data-bs-target="#trackSearchModal">

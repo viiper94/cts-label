@@ -6,6 +6,7 @@
         <th>Название</th>
         <th>Микс</th>
         <th>Длина</th>
+        <th>ISRC</th>
         <th>Релиз</th>
     </tr>
     </thead>
@@ -21,6 +22,7 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->mix_name }}</td>
             <td>{{ $item->length }}</td>
+            <td>{{ $item->isrc }}</td>
             <td>
                 @foreach($item->releases as $release)
                     {{ $release->title }} @if(!$loop->last), @endif

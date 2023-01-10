@@ -96,11 +96,17 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Beatport</label><br>
+                        <label class="form-label">Ссылка в магазин (Beatport, Spotify, iTunes, etc.)</label><br>
                         <div class="input-group">
                             <input type="text" class="form-control form-dark" name="beatport" value="{{ old('beatport') ?? $release->beatport }}">
                             @if($release->beatport)
-                                <a class="btn btn-outline" href="{{ $release->beatport }}" target="_blank"><i class="icon-beatport"></i></a>
+                                <a class="btn btn-outline" href="{{ $release->beatport }}" target="_blank">
+                                    <i @class([
+                                        'icon-beatport' => $release->getStore() === 'beatport',
+                                        'icon-discogs' => $release->getStore() === 'discogs',
+                                        'fa-brands fa-spotify' => $release->getStore() === 'spotify',
+                                    ])></i>
+                                </a>
                             @endif
                         </div>
                         @error('beatport')
@@ -108,7 +114,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Youtube</label><br>
+                        <label class="form-label">Ссылка в Youtube</label><br>
                         <div class="input-group">
                             <input type="text" class="form-control form-dark" name="youtube" value="{{ old('youtube') ?? $release->youtube }}">
                             @if($release->youtube)
@@ -122,35 +128,11 @@
                 </div>
             </div>
             <div class="row mb-5">
-                <div class="col-12 col-md">
-                    <div class="description form-group mb-3">
-                        <label class="en">Описание (англ.)</label>
-                        <textarea name="description_en" id="description_en">{!! old('description_en') ?? $release->description_en !!}</textarea>
-                    </div>
-                    <div class="description form-group mb-3">
-                        <div class="d-flex justify-content-between">
-                            <label class="en">Описание (рус.)</label>
-                            <a class="btn btn-sm btn-outline translate_description" data-to-lang="ru">
-                                <i class="fa-solid fa-language me-2"></i>Перевести на русский
-                            </a>
-                        </div>
-                        <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $release->description_ru !!}</textarea>
-                    </div>
-                    <div class="description form-group mb-3">
-                        <div class="d-flex justify-content-between">
-                            <label class="en">Описание (укр.)</label>
-                            <a class="btn btn-sm btn-outline translate_description" data-to-lang="uk">
-                                <i class="fa-solid fa-language me-2"></i>Перевести на украинский
-                            </a>
-                        </div>
-                        <textarea name="description_ua" id="description_uk">{!! old('description_ua') ?? $release->description_ua !!}</textarea>
-                    </div>
-                </div>
-                <div class="col-12 col-md-auto">
-{{--                    <div class="description form-group mb-3">--}}
-{{--                        <label class="en">Треклист</label>--}}
-{{--                        <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>--}}
-{{--                    </div>--}}
+                <div class="col-12">
+                    {{--                    <div class="description form-group mb-3">--}}
+                    {{--                        <label class="en">Треклист</label>--}}
+                    {{--                        <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>--}}
+                    {{--                    </div>--}}
                     <div class="tracks" id="tracklist">
                         <h6>Треклист</h6>
                         <div class="table-responsive">
@@ -181,6 +163,30 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="description form-group mb-3">
+                        <label class="en">Описание (англ.)</label>
+                        <textarea name="description_en" id="description_en">{!! old('description_en') ?? $release->description_en !!}</textarea>
+                    </div>
+                    <div class="description form-group mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="en">Описание (рус.)</label>
+                            <a class="btn btn-sm btn-outline translate_description" data-to-lang="ru">
+                                <i class="fa-solid fa-language me-2"></i>Перевести на русский
+                            </a>
+                        </div>
+                        <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $release->description_ru !!}</textarea>
+                    </div>
+                    <div class="description form-group mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="en">Описание (укр.)</label>
+                            <a class="btn btn-sm btn-outline translate_description" data-to-lang="uk">
+                                <i class="fa-solid fa-language me-2"></i>Перевести на украинский
+                            </a>
+                        </div>
+                        <textarea name="description_ua" id="description_uk">{!! old('description_ua') ?? $release->description_ua !!}</textarea>
                     </div>
                 </div>
             </div>

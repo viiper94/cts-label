@@ -83,4 +83,11 @@ class Release extends SharedModel{
         return 'CTS'.((int)$matches[1]+1).date('y').'3';
     }
 
+    public function getStore(): ?string{
+        if(stripos($this->beatport, 'beatport.com/')) return 'beatport';
+        if(stripos($this->beatport, 'spotify.com/')) return 'spotify';
+        if(stripos($this->beatport, 'discogs.com/')) return 'discogs';
+        return null;
+    }
+
 }

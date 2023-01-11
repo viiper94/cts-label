@@ -12,7 +12,11 @@ class Release extends SharedModel{
     ];
 
     protected $casts = [
-        'visible' => 'boolean'
+        'visible' => 'boolean',
+        'tracklist_show_artist' => 'boolean',
+        'tracklist_show_title' => 'boolean',
+        'tracklist_show_mix' => 'boolean',
+        'tracklist_show_custom' => 'boolean',
     ];
 
     protected $fillable = [

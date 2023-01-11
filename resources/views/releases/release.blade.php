@@ -56,9 +56,10 @@
                             <a @if($release->beatport) href="{{ $release->beatport }}" @endif target="_blank" rel="noreferrer"
                                 @class(['share', 'btn-disabled' => !$release->beatport])>
                                 <i @class([
-                                        'icon-beatport' => $release->getStore() === 'beatport',
+                                        'icon-beatport' => $release->getStore() === 'beatport' || $release->getStore() === null,
                                         'icon-discogs' => $release->getStore() === 'discogs',
                                         'fa-brands fa-spotify' => $release->getStore() === 'spotify',
+                                        'fa-solid fa-download' => $release->getStore() === 'cts',
                                     ])></i>
                             </a>
                             <button type="button" class="share sharer share-facebook" data-social="fb">

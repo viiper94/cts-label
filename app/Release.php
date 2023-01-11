@@ -95,6 +95,7 @@ class Release extends SharedModel{
         if(stripos($this->beatport, 'beatport.com/')) return 'beatport';
         if(stripos($this->beatport, 'spotify.com/')) return 'spotify';
         if(stripos($this->beatport, 'discogs.com/')) return 'discogs';
+        if(stripos($this->beatport, 'cts-label.com/')) return 'cts';
         return null;
     }
 

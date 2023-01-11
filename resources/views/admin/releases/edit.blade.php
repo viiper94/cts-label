@@ -163,6 +163,37 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="inline-params">
+                            <h6>Параметры отображения треклиста на странице релиза</h6>
+                            <div class="form-check form-check-inline">
+                                <input type="hidden" name="tracklist_show_artist" value="0">
+                                <input class="form-check-input" type="checkbox" id="show_artist" name="tracklist_show_artist"
+                                    @checked($release->tracklist_show_artist) value="1">
+                                <label class="form-check-label" for="show_artist">Показывать артиста</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="hidden" name="tracklist_show_title" value="0">
+                                <input class="form-check-input" type="checkbox" id="show_title" name="tracklist_show_title"
+                                    @checked($release->tracklist_show_title) value="1">
+                                <label class="form-check-label" for="show_title">Показывать название</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="hidden" name="tracklist_show_mix" value="0">
+                                <input class="form-check-input" type="checkbox" id="show_mix" name="tracklist_show_mix"
+                                    @checked($release->tracklist_show_mix) value="1">
+                                <label class="form-check-label" for="show_mix">Показывать микс</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="hidden" name="tracklist_show_custom" value="0">
+                                <input class="form-check-input" type="checkbox" id="show_custom" name="tracklist_show_custom"
+                                    @checked($release->tracklist_show_custom) value="1">
+                                <label class="form-check-label" for="show_custom">Показывать кастомный текст</label>
+                            </div>
+                        </div>
+                        <div class="description form-group my-3" id="tracklist_text" style="display: @if($release->tracklist_show_custom) block @else none @endif">
+                            <label class="en">Треклист (кастомный текст)</label>
+                            <textarea name="tracklist" id="tracklist_textarea">{!! old('tracklist') ?? $release->tracklist !!}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">
@@ -288,7 +319,7 @@
             .then(newEditor => {
                 uaEditor = newEditor;
             });
-        // ClassicEditor.create(document.querySelector('#tracklist'));
+        ClassicEditor.create(document.querySelector('#tracklist_textarea'));
     </script>
 
 @endsection

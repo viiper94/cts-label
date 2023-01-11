@@ -141,6 +141,7 @@
                                     <th>Микс</th>
                                     <th>Длина</th>
                                     <th>ISRC</th>
+                                    <th></th>
                                     <th class="text-center">
                                         <button type="button" class="btn btn-sm btn-outline search-track" data-bs-toggle="modal" data-bs-target="#trackSearchModal">
                                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -262,13 +263,6 @@
     <div class="modal fade" id="trackModal" tabindex="-1" aria-labelledby="trackModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             @include('admin.tracks.edit', ['track' => new \App\Track()])
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-body text-center">--}}
-{{--                    <div class="spinner-border text-warning" style="width: 3rem; height: 3rem;" role="status">--}}
-{{--                        <span class="visually-hidden">Loading...</span>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
         </div>
     </div>
 

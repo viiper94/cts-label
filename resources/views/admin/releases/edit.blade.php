@@ -129,11 +129,7 @@
             </div>
             <div class="row mb-5">
                 <div class="col-12">
-                    {{--                    <div class="description form-group mb-3">--}}
-                    {{--                        <label class="en">Треклист</label>--}}
-                    {{--                        <textarea name="tracklist" id="tracklist">{!! old('tracklist') ?? $release->tracklist !!}</textarea>--}}
-                    {{--                    </div>--}}
-                    <div class="tracks" id="tracklist">
+                    <div class="tracks mb-5" id="tracklist">
                         <h6>Треклист</h6>
                         <div class="table-responsive">
                             <table class="table table-hover table-dark">

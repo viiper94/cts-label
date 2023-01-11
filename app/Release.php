@@ -29,7 +29,11 @@ class Release extends SharedModel{
         'description_ua',
         'tracklist',
         'genre',
-        'visible'
+        'visible',
+        'tracklist_show_artist',
+        'tracklist_show_title',
+        'tracklist_show_mix',
+        'tracklist_show_custom',
     ];
 
     public function related(){

@@ -99,4 +99,29 @@ class Release extends SharedModel{
         return null;
     }
 
+    public function getTracklistRow($track): string{
+        $string = '';
+        if($this->tracklist_show_artist){
+            $string .= $track->artists;
+        }
+        if($this->tracklist_show_artist && $this->tracklist_show_title){
+            $string .= ' - ';
+        }
+        if($this->tracklist_show_title){
+            $string .= $track->name;
+        }
+        if(($this->tracklist_show_title || $this->tracklist_show_artist)
+            && $track->mix_name && $this->tracklist_show_mix){
+            $string .= ' (';
+        }
+        if($track->mix_name && $this->tracklist_show_mix){
+            $string .= $track->mix_name;
+        }
+        if(($this->tracklist_show_title || $this->tracklist_show_artist)
+            && $track->mix_name && $this->tracklist_show_mix){
+            $string .= ')';
+        }
+        return $string;
+    }
+
 }

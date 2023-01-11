@@ -73,17 +73,21 @@
                             </button>
                         </div>
                         <div class="release-tracklist mb-md-0 mb-3">
-                            @if($release->tracklist)
+                            @if($release->tracks)
                                 <h6 class="fw-bold">@lang('releases.tracklist')</h6>
-                                {!! $release->tracklist !!}
-                                @foreach($release->tracks as $track)
-                                    <p class="mb-0">
-                                        {{ $track->artists }} - {{ $track->name }} @if($track->mix_name) ({{ $track->mix_name }}) @endif
-                                        @if($track->youtube)
-                                            <a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
-                                        @endif
-                                    </p>
-                                @endforeach
+                                @if($release->tracklist_show_custom)
+                                    {!! $release->tracklist !!}
+                                @else
+                                    @foreach($release->tracks as $track)
+                                        <p class="mb-0">
+                                            {{ $release->getTracklistRow($track) }}
+                                            @if($track->youtube)
+                                                <a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
+                                            @endif
+                                        </p>
+                                    @endforeach
+                                @endif
+
                             @endif
                         </div>
                     </div>

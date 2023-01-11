@@ -26,7 +26,9 @@ class AdminReleasesController extends Controller{
     public function create(){
         return view('admin.releases.edit', [
             'release_list' => Release::orderBy('sort_id', 'desc')->get(),
-            'release' => new Release()
+            'release' => new Release(),
+            'prev' => null,
+            'next' => null,
         ]);
     }
 

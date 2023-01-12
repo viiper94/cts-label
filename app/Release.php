@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+use ZipArchive;
+
 class Release extends SharedModel{
 
     protected $dates = [
@@ -35,6 +38,12 @@ class Release extends SharedModel{
         'tracklist_show_mix',
         'tracklist_show_custom',
     ];
+
+    public function __construct(){
+        $this->tracklist_show_artist = true;
+        $this->tracklist_show_title = true;
+        $this->tracklist_show_mix = true;
+    }
 
     public function related(){
         return $this->belongsToMany('App\Release', 'related_releases', 'release_id', 'related_id');
@@ -122,6 +131,42 @@ class Release extends SharedModel{
             $string .= ')';
         }
         return $string;
+    }
+
+    public function createLabelCopy(){
+        if(!$this->tracks) return false;
+        $dir = $this->release_number.'_'.str_replace(' ', '_', $this->title);
+        @mkdir(public_path('labelCopy'));
+        $path = 'labelCopy/'.$dir;
+        if(!is_dir(public_path($path))){
+            mkdir(public_path($path));
+        }
+
+        $zip = new \ZipArchive();
+        $zip_filename = $dir.'.zip';
+        if($zip->open(public_path($path.'/'.$zip_filename), ZipArchive::CREATE) !== true){
+            return false;
+        }
+        $zip->addEmptyDir($dir);
+
+        foreach($this->tracks as $track){
+            $doc = Pdf::loadView('admin.releases.pdf.label_copy', [
+                'track' => $track,
+                'release' => $this
+            ]);
+
+            $filename = $track->artists.' - '.$track->name;
+            if($track->mix_name) $filename .= ' ('.$track->mix_name.')';
+            $filename_pdf =  $filename.'.pdf';
+
+            $doc->save($path.'/'.$filename_pdf);
+
+            $zip->addFile(public_path($path.'/'.$filename_pdf), $dir.'/'.$filename_pdf);
+
+        }
+
+        $zip->close();
+        return '/'.$path.'/'.$zip_filename;
     }
 
 }

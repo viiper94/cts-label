@@ -201,4 +201,10 @@ class AdminReleasesController extends Controller{
         ]);
     }
 
+    public function labelCopy(Release $release){
+        return $release->createLabelCopy() ?
+            redirect()->back() :
+            redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
 }

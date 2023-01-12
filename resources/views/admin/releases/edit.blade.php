@@ -258,6 +258,14 @@
                 </div>
             </div>
         </form>
+        <div class="d-flex my-5">
+            <form action="{{ route('releases.labelCopy', $release->id) }}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-outline">
+                    <i class="fa-solid fa-file-pdf me-2"></i>Export Label Copy
+                </button>
+            </form>
+        </div>
     </div>
 
     <div class="modal fade" id="trackModal" tabindex="-1" aria-labelledby="trackModalLabel" aria-hidden="true">

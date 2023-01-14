@@ -2,9 +2,8 @@
 
 namespace App;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
-use PhpOffice\PhpWord\TemplateProcessor;
 
 class Cv extends Model{
 
@@ -16,7 +15,7 @@ class Cv extends Model{
         'name',
         'email',
         'dj_name',
-        'vk',
+        'instagram',
         'facebook',
         'soundcloud',
         'other_social',

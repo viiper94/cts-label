@@ -261,9 +261,17 @@
         <div class="d-flex my-5">
             <form action="{{ route('releases.labelCopy', $release->id) }}" method="post">
                 @csrf
-                <button type="submit" class="btn btn-outline">
-                    <i class="fa-solid fa-file-pdf me-2"></i>Export Label Copy
-                </button>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-outline">
+                        <i class="fa-solid fa-file-pdf me-2"></i>Export Label Copy
+                    </button>
+                    @if(is_file(public_path($release->label_copy_zip)))
+                        <a href="{{ $release->label_copy_zip }}" class="btn btn-outline">
+                            <i class="fa-solid fa-download me-2"></i>
+                            Save Label Copy
+                        </a>
+                    @endif
+                </div>
             </form>
         </div>
     </div>

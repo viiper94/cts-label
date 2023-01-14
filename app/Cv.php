@@ -61,27 +61,13 @@ class Cv extends Model{
 
     public function createDocument() :string{
 
-        $doc = new TemplateProcessor(resource_path('cv/'.App::getLocale().'_template.docx'));
-
-        foreach($this->fillable as $attr){
-            if(!in_array($attr, ['vk','facebook','soundcloud','other_social'])){
-                $doc->setValue($attr, $this->$attr ?? '-');
-            }
-            $doc->setValue('birth_date', $this->birth_date->format('d/m/Y'));
-            $socials_arr = array();
-            foreach(['vk','facebook','soundcloud','other_social'] as $soc){
-                !isset($this->$soc) ? : ($socials_arr[] = $this->$soc);
-            }
-            $doc->setValue('socials', implode(' <w:br/>', $socials_arr));
-        }
-        $doc->setValue('created_at', $this->created_at->format('d/m/Y H:i'));
-
-        $filename = $this->created_at->format('YmdHi').'-'.md5(time()).'.docx';
+        $filename = $this->created_at->format('YmdHi').'-'.md5(time()).'.pdf';
+        $doc = Pdf::loadView('admin.school.cv.pdf.cv_document', ['cv' => $this]);
 
         if(!is_dir(public_path('cv'))){
             mkdir(public_path('cv'));
         }
-        $doc->saveAs(public_path('cv/'.$filename));
+        $doc->save(public_path('cv/'.$filename));
 
         return $filename;
     }

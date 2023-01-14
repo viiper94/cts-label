@@ -202,8 +202,9 @@ class AdminReleasesController extends Controller{
     }
 
     public function labelCopy(Release $release){
-        return $release->createLabelCopy() ?
-            redirect()->back() :
+        $release->label_copy_zip = $release->createLabelCopy();
+        return $release->save() ?
+            redirect()->back()->with(['success' => 'Label Copy создано!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 

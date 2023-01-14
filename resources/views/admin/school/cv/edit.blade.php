@@ -7,9 +7,7 @@
 @section('admin-content')
 
     <div class="container-fluid admin-cv">
-        <form action="{{ route('school.cv.index') }}/document" method="post" class="my-3">
-            @csrf
-            <input type="hidden" name="id" value="{{ $cv->id }}">
+        <div class="d-flex my-3">
             @if(is_file(public_path('cv/'.$cv->document)))
                 <a href="{{ url('/'). '/cv/'.$cv->document }}" class="btn btn-primary">
                     <i class="fa-solid fa-file-word me-2"></i>Скачать анкету
@@ -19,7 +17,7 @@
                     <i class="fa-solid fa-gears me-2"></i>Cгенерировать документ
                 </a>
             @endif
-        </form>
+        </div>
         <div class="card text-bg-dark cv-data mb-3">
             <div class="card-body row g-0">
                 <div class="col-xs-12 col-md-6 my-3 px-3">

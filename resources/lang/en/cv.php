@@ -26,9 +26,16 @@ return [
     'course' => 'Which course you\'d like to learn in CTSchool?',
     'what_to_learn' => 'What you\'d like to study in learning process?',
     'purpose_of_learning' => 'The purpose of studies (skills usage in further work, hobbies etc.)',
+    'created_at' => 'Date of form completion',
 
     'submit' => 'Submit!',
 
     'end_msg' => 'Thank you for filling out an application form, you will be contacted shortly!',
     'error_msg' => 'An error occurred =(',
+
+    'sound_engineer' => 'Sound Engineer',
+    'arranger' => 'Arranger',
+    'dj' => 'DJ',
+    'sound_producer' => 'Sound Producer',
+
 ];

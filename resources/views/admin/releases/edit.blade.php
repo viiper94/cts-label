@@ -146,7 +146,7 @@
                                         <button type="button" class="btn btn-sm btn-outline search-track" data-bs-toggle="modal" data-bs-target="#trackSearchModal">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                         </button>
-                                        <button type="button" class="btn btn-sm btn-outline-primary add-track" data-bs-toggle="modal" data-bs-target="#trackModal" data-url="{{ route('tracks.create') }}">
+                                        <button type="button" class="btn btn-sm btn-outline-primary add-track" data-url="{{ route('tracks.create') }}">
                                             <i class="fa-solid fa-plus"></i>
                                         </button>
                                     </th>

@@ -113,15 +113,25 @@ $(document).ready(function(){
     $(document).on('click', '.add-track', function(){
         let id = $(this).data('id');
         let url = $(this).data('url');
+        let $btn = $(this);
+        let inner = $btn.html();
         if($('#trackModal .save-track').data('id') !== id){
             $.ajax({
                 url: url,
                 type: 'GET',
+                beforeSend: function(){
+                    $btn.html(btnSpinner());
+                },
                 success: function(response){
                     $('#trackModal').find('.modal-content').html(response.modal);
+                    $('#trackModal').modal('show');
+                },
+                complete: function(){
+                    $btn.html(inner);
                 }
             });
         }
+        $('#trackModal').modal('show');
     });
 
     $('#trackSearchModal input[name=search]').keyup(function(){
@@ -133,8 +143,14 @@ $(document).ready(function(){
                 data: {
                     query: query
                 },
+                beforeSend: function(){
+                    $('#trackSearchModal').find('.search-items').before(spinner());
+                },
                 success: function(response){
                     $('#trackSearchModal').find('.search-items .table-responsive').html(response.modal);
+                },
+                complete: function(){
+                    $('#trackSearchModal').find('.spinner').remove();
                 }
             });
         }
@@ -157,8 +173,9 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.save-track', function(e){
-        let url = $(this).data('url');
-        let method = $(this).data('method');
+        let $btn = $(this);
+        let url = $btn.data('url');
+        let method = $btn.data('method');
         let data = {};
         let hasEmptyRequiredField = false;
         $('#trackModal small.text-danger').remove();
@@ -175,6 +192,10 @@ $(document).ready(function(){
             type: method,
             url: url,
             data: data,
+            beforeSend: function(){
+                $btn.prop('disabled', true).find('i').hide();
+                $btn.prepend(btnSpinner());
+            },
             success: function(response){
                 addTrackToReleaseTracklist(response.id, response.url);
                 $('#trackModal').find('.save-track').attr('data-id', '0');
@@ -188,6 +209,10 @@ $(document).ready(function(){
                         $('label[for='+name+']').after('<small class="text-danger d-block">'+messages[0]+'</small>');
                     });
                 }
+            },
+            complete: function(){
+                $btn.prop('disabled', false).find('i').show();
+                $btn.find('.spinner-border').remove();
             }
         });
     });
@@ -235,3 +260,16 @@ $(document).ready(function(){
     });
 
 });
+
+function spinner(){
+    return '<div class="spinner d-flex justify-content-center">\n' +
+        '  <div class="spinner-border" role="status">\n' +
+        '    <span class="visually-hidden">Загрузка...</span>\n' +
+        '  </div>\n' +
+        '</div>';
+}
+
+function btnSpinner(){
+    return '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
+        '  <span class="visually-hidden">Загрузка...</span>';
+}

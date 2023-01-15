@@ -16,8 +16,8 @@
         @endif
     </td>
     <td class="text-center">
-        <button type="button" class="btn btn-sm btn-outline-primary add-track" data-url="{{ route('tracks.edit', $track->id) }}"
-                data-bs-toggle="modal" data-bs-target="#trackModal" data-id="{{ $track->id }}">
+        <button type="button" class="btn btn-sm btn-outline-primary add-track"
+                data-url="{{ route('tracks.edit', $track->id) }}" data-id="{{ $track->id }}">
             <i class="fa-solid fa-pen"></i>
         </button>
         <button type="button" class="btn btn-sm btn-outline-danger remove-track">

@@ -38,8 +38,10 @@
                                 <div class="card-info d-flex flex-column col">
                                     <div class="d-flex flex-grow-1">
                                         <div class="card-body">
+                                            <small class="text-muted">Треков</small>
+                                            <h4 class="card-text">{{ $feedback->ftracks_count }}</h4>
                                             <small class="text-muted">Ответов</small>
-                                            <h4 class="card-text">{{ $feedback->results->count() }}</h4>
+                                            <h4 class="card-text">{{ $feedback->results_count }}</h4>
                                         </div>
                                     </div>
                                 </div>

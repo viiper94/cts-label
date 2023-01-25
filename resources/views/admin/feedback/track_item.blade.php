@@ -17,25 +17,38 @@
             </div>
         </div>
         <div class="row my-3">
-            <div class="form-group col-sm-6">
-                <label>Файл в высоком качестве (.mp3, 320 kbps)</label><br>
-                <input type="file" class="form-control form-dark" name="tracks[{{ $key }}][320]" accept=".mp3">
-            </div>
-            <div class="form-group col-sm-6">
-                <label>Файл в низком качестве (.mp3, 96 kbps)</label><br>
-                <input type="file" class="form-control form-dark" name="tracks[{{ $key }}][96]" accept=".mp3">
+            <div class="form-group mb-3">
+                <label class="form-label">Файл в высоком качестве (.mp3, 320 kbps)</label>
+                <input type="file" class="form-control form-dark" name="tracks[{{ $key }}][320]" accept=".mp3"
+                       @if($feedback->id && $track->hasHQFile()) style="display: none" @endif id="track_{{ $key }}_320">
+                @if($feedback->id && $track->hasHQFile())
+                    <div class="track-player align-items-center gap-2" id="track_{{ $key }}_320_player" style="display: flex">
+                        <div class="player">
+                            <audio src="{{ $track->filePath() }}"></audio>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline ms-3 replace-track" data-target="track_{{ $key }}_320">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
+                    </div>
+                @endif
             </div>
         </div>
-        @if(key_exists(96, $track) && $track[96] !== '' || key_exists(320, $track) && $track[320] !== '')
-            <audio src="/audio/feedback/{{ $feedback->slug }}/{{ $feedback->LQDir() }}/{{ $track[$feedback->LQDir()] }}" controls style="width: 100%;"></audio>
-            @if(!is_file(public_path('/audio/feedback/'.$feedback->slug.'/'.$feedback->LQDir().'/'.$track[$feedback->LQDir()])))
-                <small class="text-danger">Аудио файл не найден</small>
-            @endif
-        @endif
-    </div>
-    <div class="card-footer">
-        <button class="btn btn-sm btn-outline-danger delete-track-btn" type="button">
-            <i class="fa-solid fa-trash me-2"></i>Удалить
-        </button>
+        <div class="row my-3">
+            <div class="form-group mb-3">
+                <label>Файл в низком качестве (.mp3, 96 kbps)</label>
+                <input type="file" class="form-control form-dark" name="tracks[{{ $key }}][96]" accept=".mp3"
+                       @if($feedback->id && $track->hasLQFile()) style="display: none" @endif id="track_{{ $key }}_96">
+                @if($feedback->id && $track->hasLQFile())
+                    <div class="track-player align-items-center gap-2" id="track_{{ $key }}_96_player" style="display: flex">
+                        <div class="player">
+                            <audio src="{{ $track->filePath(true) }}"></audio>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline ms-3 replace-track" data-target="track_{{ $key }}_96">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </button>
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
 </div>

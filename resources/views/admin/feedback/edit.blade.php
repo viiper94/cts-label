@@ -237,9 +237,19 @@
         </script>
     @endif
 
+    <script>
+        GreenAudioPlayer.init({
+            selector: '.player', // inits Green Audio Player on each audio container that has class "player"
+            stopOthersOnPlay: true,
+            showDownloadButton: true
+        });
+    </script>
+
 @endsection
 
 @section('assets')
     <script src="/js/ckeditor.js"></script>
     <link rel="stylesheet" href="/css/ckeditor.css">
+    <script src="/js/green-audio-player.min.js"></script>
+    <link rel="stylesheet" href="/css/green-audio-player.css">
 @endsection

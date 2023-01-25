@@ -50,7 +50,7 @@
                                 <a class="btn btn-sm btn-primary" href="{{ route('feedback.edit', $feedback->id) }}">
                                     <i class="fa-solid fa-pen me-2"></i>Редактировать
                                 </a>
-                                <a class="btn btn-sm btn-outline" href="{{ route('feedback', $feedback->slug) }}">
+                                <a class="btn btn-sm btn-outline" href="{{ route('feedback', $feedback->slug) }}" target="_blank">
                                     Смотреть фидбек
                                 </a>
                             </div>

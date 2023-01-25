@@ -11,6 +11,9 @@ class FeedbackPlayer{
         let parent = this;
 
         this.player.load(init.url, this.peaks);
+        this.player.on('audioprocess', function(){
+            $('.track[data-id='+parent.trackIndex+'] .current-time').text(parent.convertDuration(parent.player.getCurrentTime()));
+        });
         this.player.on('ready', function(){
 
             parent.afterInit();

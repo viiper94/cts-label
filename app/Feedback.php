@@ -40,11 +40,11 @@ class Feedback extends SharedModel{
     }
 
     public function LQDir() :string{
-        return is_dir(public_path('/audio/feedback/'.$this->id.'/96/')) ? '96' : '320';
+        return is_dir(public_path('/audio/feedback/'.$this->slug.'/96/')) ? '96' : '320';
     }
 
     public function HQDir() :string{
-        return is_dir(public_path('/audio/feedback/'.$this->id.'/320/')) ? '320' : '96';
+        return is_dir(public_path('/audio/feedback/'.$this->slug.'/320/')) ? '320' : '96';
     }
 
     public function saveTracks(Request $request, $new = false){

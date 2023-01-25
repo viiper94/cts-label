@@ -87,7 +87,8 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/feedback/emailing', [AdminFeedbackController::class, 'emailing'])->name('feedback.emailing');
         Route::get('/feedback/create/{release?}', [AdminFeedbackController::class, 'create'])->name('feedback.create');
         Route::post('/feedback/store/{release?}', [AdminFeedbackController::class, 'store'])->name('feedback.store');
-        Route::delete('/feedback/delete/{result}', [AdminFeedbackController::class, 'deleteResult'])->name('feedback.deleteResult');
+        Route::delete('/feedback/result/destroy/{result}', [AdminFeedbackController::class, 'destroyResult'])->name('feedback.result.destroy');
+        Route::delete('/feedback/track/destroy/{track}', [AdminFeedbackController::class, 'destroyTrack'])->name('feedback.track.destroy');
         Route::resource('/feedback', AdminFeedbackController::class)->except(['show', 'create', 'store']);
 
         Route::name('school.')->prefix('school')->group(function(){

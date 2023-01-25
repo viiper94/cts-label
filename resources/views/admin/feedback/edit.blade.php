@@ -234,7 +234,6 @@
                 .then(newEditor => {
                     uaEditor = newEditor;
                 });
-            ClassicEditor.create(document.querySelector('#tracklist'));
         </script>
     @endif
 

@@ -52,13 +52,10 @@ class Feedback extends SharedModel{
         if($request->file('tracks')){
             foreach($request->file('tracks') as $key => $file){
                 foreach($file as $bitrate => $item){
-                    if ($item->isValid()) {
-                        // deleting old file
-                        if(isset($this->tracks[$key][$bitrate]) && is_file($path.'/'.$bitrate.'/'.$this->tracks[$key][$bitrate])){
-                            unlink($path.'/'.$bitrate.'/'.$this->tracks[$key][$bitrate]);
-                        }
-                        // save new file
-                        $filename = Str::slug(explode('.', $item->getClientOriginalName())[0]).'.'.$item->getClientOriginalExtension();
+                    if ($item->isValid()){
+                        $filename = Str::slug(explode('.', $item->getClientOriginalName())[0]);
+                        $filename .= $bitrate == 96 ? '.LOFI.' : '.';
+                        $filename .= $item->getClientOriginalExtension();
 
                         $item->move(public_path('audio/feedback/'.$this->slug.'/'.$bitrate), $filename);
                         $files[$key][$bitrate] = $filename;

@@ -21,8 +21,11 @@
                 <div class="col-xxl-3 col-xl-4 col-md-12 col-sm-6 col-xs-12">
                     <div class="card text-bg-dark mb-3">
                         <div class="row g-0">
-                            <div class="card-header">
-                                <h5 class="card-title text-nowrap mb-0 text-truncate" title="{{ $feedback->feedback_title }}">{{ $feedback->feedback_title }}</h5>
+                            <div class="card-header d-flex flex-nowrap align-items-center">
+                                <h5 class="card-title text-nowrap mb-0 text-truncate flex-grow-1" title="{{ $feedback->feedback_title }}">{{ $feedback->feedback_title }}</h5>
+                                @if(!$feedback->release)
+                                    <i class="fa-solid fa-wand-magic-sparkles ms-2" title="Кастомный фидбек"></i>
+                                @endif
                             </div>
                             <div class="col-12 d-flex g-0">
                                 <div class="card-img col-auto">

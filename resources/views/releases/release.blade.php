@@ -14,6 +14,7 @@
 @endsection
 
 @section('content')
+
     <div class="container release pt-3">
         <div class="row">
             <section class="col pe-md-5">
@@ -120,4 +121,45 @@
             @include('layout.aside')
         </div>
     </div>
+@endsection
+
+@section('json-ld')
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicAlbum",
+        "name": "{{ $release->title }}",
+        "image": "{{ url('/') }}/images/releases/{{ $release->image }}",
+        "url": "{{ route('release', $release->id) }}",
+        "albumProductionType": "https://schema.org/StudioAlbum",
+        @if($release->tracks)
+            "track": {
+                "@type": "ItemList",
+                "numberOfItems": {{ count($release->tracks) }},
+                "itemListElement": [
+                    @foreach($release->tracks as $track)
+                        {
+                            "@type": "ListItem",
+                            "position": {{ $loop->iteration }},
+                                    "item": {
+                                        "@type": "MusicRecording",
+                                        "isrcCode": "{{ $track->isrc }}",
+                                        "byArtist": {
+                                            "@type": "MusicGroup",
+                                            "name": "{{ $track->artists }}"
+                                        },
+                                        @if($track->length)
+                            "duration": "{{ $track->lengthToIso8601() }}",
+                                        @endif
+                        "name": "{{ $track->name }}@if($track->mix_name) ({{ $track->mix_name }})@endif"
+                        }
+                    }@if(!$loop->last),@endif
+                @endforeach
+                ]
+            }
+        @endif
+    }
+</script>
+
 @endsection

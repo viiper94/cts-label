@@ -21,6 +21,7 @@
         ga('send', 'pageview');
     </script>
     @include('layout.scripts')
+    @yield('json-ld')
 </head>
 <body>
     <div id="fb-root"></div>

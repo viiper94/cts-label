@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 class FeedbackController extends Controller{
 
     public function show(Request $request, $slug){
-        $feedback = Feedback::with('related', 'release')->where('slug', $slug)->firstOrFail();
+        $feedback = Feedback::with('related', 'release', 'ftracks')->where('slug', $slug)->firstOrFail();
         if($request->post() && $slug){
             $this->validate($request, [
                 'name' => 'required|string',
@@ -37,7 +37,7 @@ class FeedbackController extends Controller{
 
     public function end($slug){
         return view('feedback.end', [
-            'feedback' => Feedback::with('release')->where('slug', $slug)->firstOrFail()
+            'feedback' => Feedback::with('related', 'ftracks')->where('slug', $slug)->firstOrFail()
         ]);
     }
 

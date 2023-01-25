@@ -6,10 +6,10 @@
         <h3 class="fw-bold">@lang('feedback.thank_you')</h3>
         <h5 class="fw-bold">@lang('feedback.find_links')</h5>
         <ul class="pt-3">
-            @foreach($feedback->tracks as $track)
+            @foreach($feedback->ftracks as $track)
                 <li>
-                    <a href="/audio/feedback/{{ $feedback->slug }}/320/{{ $track[320] }}" target="_blank">
-                        <i class="fa-solid fa-download me-2 text-muted"></i>{{ $track['title'] }}
+                    <a href="/audio/feedback/{{ $feedback->slug }}/320/{{ $track->file_320 }}" target="_blank">
+                        <i class="fa-solid fa-download me-2 text-muted"></i>{{ $track->name }}
                     </a>
                 </li>
             @endforeach

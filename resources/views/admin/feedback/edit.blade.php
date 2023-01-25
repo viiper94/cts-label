@@ -120,8 +120,11 @@
             </div>
             <div class="row g-0">
                 <div class="tracks col-12">
-                    @foreach($feedback->tracks as $key => $track)
-                        @include('admin.feedback.track_item', compact('key', 'track'))
+                    @foreach(!$feedback->id ? $feedback->release?->tracks ?? $feedback->ftracks : $feedback->ftracks as $key => $track)
+                        @include('admin.feedback.track_item', compact('key', 'track', 'feedback'))
+                        @if($track->id)
+                            <input type="hidden" name="tracks[{{ $key }}][id]" value="{{ $track->id }}">
+                        @endif
                     @endforeach
                 </div>
                 <div class="col-12">

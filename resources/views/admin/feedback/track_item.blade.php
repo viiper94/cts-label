@@ -2,7 +2,19 @@
     <div class="card-body">
         <div class="form-group">
             <label class="form-label">Название трека</label>
-            <input type="text" class="form-control form-dark" name="tracks[{{ $key }}][title]" value="{{ $track['title'] }}" required>
+            <div class="input-group">
+                <input type="text" class="form-control form-control-lg form-dark" name="tracks[{{ $key }}][name]"
+                       value="{{ !$feedback->id
+                                    ? (!$feedback->release ? '' : $track->getFullTitle())
+                                    : $track->name }}" placeholder="Название трека" required>
+                @if(!$feedback->release)
+                    <button class="btn btn-lg btn-outline delete-feedback-track-btn" type="button"
+                            @if($feedback->id) data-url="{{ route('feedback.track.destroy', $track->id) }}" @endif
+                            onclick="return confirm('Удалить этот трек?')">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                @endif
+            </div>
         </div>
         <div class="row my-3">
             <div class="form-group col-sm-6">

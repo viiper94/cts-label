@@ -71,11 +71,11 @@
             <hr class="w-75 m-auto my-3">
 
             <!-- ----------- Tracks ------------- -->
-            @foreach($feedback->tracks as $key => $track)
+            @foreach($feedback->ftracks as $key => $track)
 
                 <div class="track py-3" data-id="{{ $key }}">
                     <div class="info row align-items-center">
-                        <div class="title col-12 col-md flex-grow-1">{{ $track['title'] }}</div>
+                        <div class="title col-12 col-md flex-grow-1">{{ $track->name }}</div>
                         <div class="col-12 col-md-auto d-flex align-items-center flex-nowrap justify-content-between">
                             <div class="time text-nowrap">
                                 <span class="current-time">00:00</span>
@@ -92,19 +92,19 @@
                         <div id="waveform_{{ $key }}" class="waveform flex-grow-1"></div>
                     </div>
                     <div class="rate_stars py-3">
-                        <input type="number" class="star-rating" name="rates[{{ $track['title'] }}]" value=0 required>
+                        <input type="number" class="star-rating" name="rates[{{ $track->name }}]" value=0 required>
                     </div>
                 </div>
             @endforeach
 
-            @if(count($feedback->tracks) > 1)
+            @if(count($feedback->ftracks) > 1)
                 <!-- ----------- Best track ------------- -->
                 <div class="best_track text-light mb-5">
                     <h6 class="fw-bold">@lang('feedback.best_track'):</h6>
-                    @foreach($feedback->tracks as $key => $track)
+                    @foreach($feedback->ftracks as $key => $track)
                         <div class="form-check">
-                            <input type="radio" name="best_track" id="best_{{ $key }}" value="{{ $track['title'] }}" class="form-check-input" required>
-                            <label for="best_{{ $key }}" class="form-check-label">{{ $track['title'] }}</label>
+                            <input type="radio" name="best_track" id="best_{{ $key }}" value="{{ $track->name }}" class="form-check-input" required>
+                            <label for="best_{{ $key }}" class="form-check-label">{{ $track->name }}</label>
                         </div>
                     @endforeach
                 </div>
@@ -126,13 +126,14 @@
 
             window.players = [];
 
-            @foreach($feedback->tracks as $key => $track)
+            @foreach($feedback->ftracks as $key => $track)
 
             window.players.push(new FeedbackPlayer({
-                url: '/audio/feedback/{{ $feedback->slug }}/96/{!! $track[96] !!}',
+                url: '/audio/feedback/{{ $feedback->slug }}/96/{!! $track->file_96 !!}',
                 trackIndex: {{ $key }},
                 feedbackId: {{ $feedback->id }},
-                @if(isset($track['peaks']) && !empty(json_decode($track['peaks'])))
+                trackId: {{ $track->id }},
+                @if(isset($track->peaks) && !empty(json_decode($track->peaks)))
                 peaks: {{ \App\Feedback::getPeaks($track) }},
                 @else
                 savePeaksRoute: '{{ route('feedback.peaks') }}'

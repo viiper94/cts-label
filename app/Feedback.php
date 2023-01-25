@@ -23,6 +23,10 @@ class Feedback extends SharedModel{
     ];
     public $file_path = 'audio/feedback';
 
+    public function ftracks(){
+        return $this->hasMany(FeedbackTrack::class);
+    }
+
     public function release(){
         return $this->belongsTo('App\Release');
     }
@@ -43,14 +47,8 @@ class Feedback extends SharedModel{
         return is_dir(public_path('/audio/feedback/'.$this->id.'/320/')) ? '320' : '96';
     }
 
-    public function saveTracks(Request $request) :array{
-        $path = public_path($this->file_path).'/'.$this->slug;
-        $tracks = array();
-        foreach($request->post('tracks') as $key => $track){
-            $tracks[$key]['title'] = $track['title'];
-            if(isset($this->tracks[$key][96])) $tracks[$key][96] = $this->tracks[$key][96];
-            if(isset($this->tracks[$key][320])) $tracks[$key][320] = $this->tracks[$key][320];
-        }
+    public function saveTracks(Request $request, $new = false){
+        $files = array();
         if($request->file('tracks')){
             foreach($request->file('tracks') as $key => $file){
                 foreach($file as $bitrate => $item){
@@ -63,24 +61,34 @@ class Feedback extends SharedModel{
                         $filename = Str::slug(explode('.', $item->getClientOriginalName())[0]).'.'.$item->getClientOriginalExtension();
 
                         $item->move(public_path('audio/feedback/'.$this->slug.'/'.$bitrate), $filename);
-                        $tracks[$key][$bitrate] = $filename;
+                        $files[$key][$bitrate] = $filename;
                     }
                 }
             }
         }
-        if($this->tracks){
-            foreach($this->tracks as $key => $track){
-                if(!isset($request->post('tracks')[$key])){
-                    if(isset($this->tracks[$key][96]) && is_file($path.'/96/'.$this->tracks[$key][96])){
-                        unlink($path.'/96/'.$this->tracks[$key][96]);
-                    }
-                    if(isset($this->tracks[$key][320]) && is_file($path.'/320/'.$this->tracks[$key][320])){
-                        unlink($path.'/320/'.$this->tracks[$key][320]);
-                    }
+        foreach($request->post('tracks') as $key => $item){
+            $track = $new || !isset($item['id']) ?
+                new FeedbackTrack() :
+                FeedbackTrack::with('feedback')->find($item['id']);
+            $track->name = $item['name'];
+            if(isset($files[$key]['320'])){
+                if(!$new && $track->file_320 && $track->hasHQFile()){
+                    unlink(public_path($track->filePath()));
                 }
+                $track->file_320 = $files[$key]['320'];
             }
+            if(isset($files[$key]['96'])){
+                if(!$new && $track->file_96 && $track->hasLQFile()){
+                    unlink(public_path($track->filePath(lq: true)));
+                }
+                $track->file_96 = $files[$key]['96'];
+            }
+            $track->feedback_id = $this->id;
+            if($new && $this->release && isset($item['id'])){
+                $track->track_id = $item['id'];
+            }
+            $track->save();
         }
-        return $tracks;
     }
 
     public function hasArchive() :bool{
@@ -101,19 +109,19 @@ class Feedback extends SharedModel{
         }
 
         $zip->addEmptyDir(htmlentities(trim($this->feedback_title)));
-        foreach($this->tracks as $track){
-            $zip->addFile(public_path('audio/feedback/'.$this->slug.'/'.$this->HQDir()).'/'.$track[$this->HQDir()],
-                htmlentities(trim($this->feedback_title)).'/'.$track[$this->HQDir()]);
+        foreach($this->ftracks as $track){
+            $zip->addFile(public_path('audio/feedback/'.$this->slug.'/'.$this->HQDir()).'/'.$track->file_320,
+                htmlentities(trim($this->feedback_title)).'/'.$track->file_320);
         }
         $zip->close();
         return $filename;
     }
 
     public static function getPeaks($track): ?string{
-        if(isset($track['peaks'])){
-            if(empty(json_decode($track['peaks']))){
+        if(isset($track->peaks)){
+            if(empty(json_decode($track->peaks))){
                 return null;
-            }else return $track['peaks'];
+            }else return $track->peaks;
         }else{
             return null;
         }

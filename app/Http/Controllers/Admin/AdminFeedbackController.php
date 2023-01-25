@@ -7,6 +7,7 @@ use App\EmailingContact;
 use App\EmailingQueue;
 use App\Feedback;
 use App\FeedbackResult;
+use App\FeedbackTrack;
 use App\Http\Controllers\Controller;
 use App\Release;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ use Illuminate\Support\Str;
 class AdminFeedbackController extends Controller{
 
     public function index(Request $request){
-        $feedback = Feedback::with('release', 'results');
+        $feedback = Feedback::with('release')->withCount('ftracks', 'results');
         if($request->input('q')) $feedback->where('feedback_title', 'like', '%'.$request->input('q').'%');
         return view('admin.feedback.index', [
             'feedback_list' => $feedback->latest()->paginate(20),
@@ -31,12 +32,7 @@ class AdminFeedbackController extends Controller{
             $feedback->feedback_title = $release->title;
             $feedback->release = $release;
         }
-        $tracks_count = $release ? $feedback->release->getTracksCount() : 1;
-        $tracks = array();
-        for($i = 0; $i < $tracks_count; $i++){
-            $tracks[$i] = ['title' => '', 96 => '', 320 => ''];
-        }
-        $feedback->tracks = $tracks;
+        $feedback->ftracks = [new FeedbackTrack()];
         return view('admin.feedback.edit', [
             'feedback' => $feedback,
             'feedback_list' => Feedback::orderBy('release_id', 'desc')->get(),
@@ -55,14 +51,14 @@ class AdminFeedbackController extends Controller{
         $feedback->fill($request->post());
         $feedback->slug = Str::slug($feedback->feedback_title);
         $feedback->sort_id = $feedback->getLatestSortId(Feedback::class);
-        $feedback->tracks = $feedback->saveTracks($request);
-        $feedback->archive_name = $feedback->archiveTracks();
         if(!$release && $request->hasFile('image')){
             $image = $request->file('image');
             $feedback->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
             $image->move(public_path('images/feedback'), $feedback->image);
         }
         if($feedback->save()){
+            $feedback->saveTracks($request, new: true);
+            $feedback->archive_name = $feedback->archiveTracks();
             $feedback->related()->sync($request->post('related'));
             return $feedback->save() ?
                 redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно добавлен!']) :
@@ -72,7 +68,9 @@ class AdminFeedbackController extends Controller{
     }
 
     public function edit(Feedback $feedback){
-        $feedback->load('related');
+        $feedback->load(['related', 'ftracks' => function($query){
+            $query->with('feedback');
+        }]);
         return view('admin.feedback.edit', [
             'feedback' => $feedback,
             'feedback_list' => Feedback::orderBy('release_id', 'desc')->get(),
@@ -86,7 +84,7 @@ class AdminFeedbackController extends Controller{
             'tracks' => 'array|required'
         ]);
         $feedback->fill($request->post());
-        $feedback->tracks = $feedback->saveTracks($request);
+        $feedback->saveTracks($request);
         $feedback->archive_name = $feedback->archiveTracks();
         $feedback->related()->sync($request->post('related'));
         if($request->hasFile('image')){
@@ -107,7 +105,7 @@ class AdminFeedbackController extends Controller{
 
     public function destroy(Feedback $feedback){
         $feedback->related()->detach();
-        if($feedback->tracks){
+        if($feedback->ftracks){
             // delete audio files
             $path = public_path('audio/feedback/'.$feedback->slug);
             if(is_dir($path)){
@@ -122,7 +120,14 @@ class AdminFeedbackController extends Controller{
             redirect()->back()->withErrors(['Возникла ошибка =(']);
     }
 
-    public function deleteResult(FeedbackResult $result){
+    public function destroyTrack(Request $request, FeedbackTrack $track){
+        if(!$request->ajax()) abort(404);
+        return response()->json([
+            'status' => $track->delete() ? 'OK' : 'Error'
+        ]);
+    }
+
+    public function destroyResult(FeedbackResult $result){
         return $result->delete() ?
             redirect()->back()->with(['success' => 'Успешно удалёно!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
@@ -133,9 +138,8 @@ class AdminFeedbackController extends Controller{
         return response()->json([
             'html' => view('admin.feedback.track_item', [
                 'key' => $request->index,
-                'track' => [
-                    'title' => '',
-                ]
+                'track' => new FeedbackTrack(),
+                'feedback' => new Feedback()
             ])->render()
         ]);
     }

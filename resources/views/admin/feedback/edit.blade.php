@@ -171,7 +171,7 @@
                                 @endif
                                 <p class="mb-0"><i class="fa-solid fa-comment me-2"></i>Коммент:</p>
                                 <p><b>{!! nl2br(e($result->comment)) !!}</b></p>
-                                <form action="{{ route('feedback.deleteResult', $result->id) }}" method="post" class="mt-3">
+                                <form action="{{ route('feedback.result.destroy', $result->id) }}" method="post" class="mt-3">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete-feedback-result-btn btn btn-outline-danger btn-sm"

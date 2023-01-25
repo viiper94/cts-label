@@ -89,4 +89,17 @@ class Track extends Model{
         }
     }
 
+    public function getFullTitle(): string{
+        $title = $this->artists . ' - ' . $this->name;
+        if($this->mix_name) $title .= ' (' . $this->mix_name . ')';
+        return $title;
+    }
+
+    public function lengthToIso8601(){
+        $length_arr = explode(':', $this->length);
+        $m = (int)$length_arr[0];
+        $s = (int)$length_arr[1];
+        return 'PT'.$m.'M'.$s.'S';
+    }
+
 }

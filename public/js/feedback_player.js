@@ -4,6 +4,7 @@ class FeedbackPlayer{
         this.trackIndex = init.trackIndex;
         this.peaks = init.peaks;
         this.feedbackId = init.feedbackId;
+        this.trackId = init.trackId;
         this.savePeaksRoute = init.savePeaksRoute;
 
         this.player = WaveSurfer.create(this.getPlayerParams());
@@ -101,8 +102,7 @@ class FeedbackPlayer{
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
-                    id: parent.feedbackId,
-                    track: parent.trackIndex,
+                    track: parent.trackId,
                     peaks: JSON.stringify(response)
                 }
             });

@@ -172,11 +172,9 @@ class AdminFeedbackController extends Controller{
 
     public function peaks(Request $request){
         if(!$request->ajax()) abort(404);
-        $feedback = Feedback::findOrFail($request->id);
-        $tracks = $feedback->tracks;
-        $tracks[$request->track]['peaks'] = $request->peaks;
-        $feedback->tracks = $tracks;
-        $feedback->save();
+        $track = FeedbackTrack::findOrFail($request->track);
+        $track->peaks = $request->peaks;
+        $track->save();
         return response()->json(['status'=>'ok']);
     }
 

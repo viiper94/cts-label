@@ -31,6 +31,7 @@ class AdminFeedbackController extends Controller{
             $feedback->release_id = $release->id;
             $feedback->feedback_title = $release->title;
             $feedback->release = $release;
+            $feedback->release->load('tracks');
         }
         $feedback->ftracks = [new FeedbackTrack()];
         return view('admin.feedback.edit', [

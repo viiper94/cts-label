@@ -70,7 +70,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Выберите релиз</h5>
-                    <button type="button" class="text-bg-dark fs-4" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>

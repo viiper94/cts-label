@@ -47,7 +47,7 @@ class AppController extends Controller{
             'email' => 'email|required:tel'
         ]);
         try{
-            Mail::to(env('ADMIN_EMAIL'))->send(new CallbackMail(
+            Mail::to(env('INFO_EMAIL'))->send(new CallbackMail(
                 data: [
                     'name' => $request->name,
                     'email' => $request->email,
@@ -57,7 +57,6 @@ class AppController extends Controller{
                 ]
             ));
         }catch(\Exception $e){
-//            dd($e);
             return redirect()->back()->withErrors('Возникла ошибка =(');
         }
         return redirect()->back()->with(['success' => 'Запрос успешно отправлен!']);

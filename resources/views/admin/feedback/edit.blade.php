@@ -134,12 +134,13 @@
                         @endif
                     @endforeach
                 </div>
-                <div class="col-12">
-                    <a class="add-track-btn btn btn-outline" data-index="{{ count($feedback->tracks) }}">
-                        <i class="fa-solid fa-plus me-2"></i>Добавить трек
-                    </a>
-                </div>
-
+                @if(!$feedback->release)
+                    <div class="col-12">
+                        <a class="add-track-btn btn btn-outline" data-index="{{ count($feedback->ftracks) }}">
+                            <i class="fa-solid fa-plus me-2"></i>Добавить трек
+                        </a>
+                    </div>
+                @endif
             </div>
         </form>
 

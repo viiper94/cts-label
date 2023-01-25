@@ -112,9 +112,9 @@ class AdminFeedbackController extends Controller{
             if(is_dir($path)){
                 $this->rrmdir($path);
             }
-            if($feedback->image && is_file(public_path('images/feedback/'.$feedback->image))){
-                unlink(public_path('images/feedback/'.$feedback->image));
-            }
+        }
+        if($feedback->image && is_file(public_path('images/feedback/'.$feedback->image))){
+            unlink(public_path('images/feedback/'.$feedback->image));
         }
         return $feedback->delete() ?
             redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно удалён!']) :

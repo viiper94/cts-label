@@ -89,7 +89,7 @@
                 </div>
             </div>
             @if(!$feedback->release)
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-12 col-md-4">
                         <div class="description form-group mb-3">
                             <label for="description_en">Описание (англ.)</label>

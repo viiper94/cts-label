@@ -1,5 +1,5 @@
 <div class="card text-bg-dark mb-3 track-card" id="track-{{ $key }}">
-    <div class="card-body">
+    <div class="card-header">
         <div class="form-group">
             <label class="form-label">Название трека</label>
             <div class="input-group">
@@ -16,6 +16,8 @@
                 @endif
             </div>
         </div>
+    </div>
+    <div class="card-body">
         <div class="row my-3">
             <div class="form-group mb-3">
                 <label class="form-label">Файл в высоком качестве (.mp3, 320 kbps)</label>

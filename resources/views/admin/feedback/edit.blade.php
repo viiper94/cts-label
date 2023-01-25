@@ -119,6 +119,13 @@
                 @endif
             </div>
             <div class="row g-0">
+                <small class="mb-0 text-muted">Лимит на загрузку файлов - 100Mb</small>
+                <small class="mb-0 text-muted">Максимум загружаемых файлов - 20шт</small>
+                <div class="progress bg-dark mb-3">
+                    <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span><span class="current">0</span>Mb / 100Mb</span></div>
+                </div>
+            </div>
+            <div class="row g-0">
                 <div class="tracks col-12">
                     @foreach(!$feedback->id ? $feedback->release?->tracks ?? $feedback->ftracks : $feedback->ftracks as $key => $track)
                         @include('admin.feedback.track_item', compact('key', 'track', 'feedback'))

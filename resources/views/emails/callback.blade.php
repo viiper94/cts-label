@@ -1,9 +1,19 @@
-<p>Имя</p>
-<p style="font-weight: bold">{{ $data['name'] }}</p>
+@component('mail::message')
 
-<hr>
+*Имя* <br>
+**{{ $data['name'] }}**
+
+*Желаемый курс/услуга* <br>
+**{{$data['service']}}**
 
 @if(isset($data['tel']))
-    <p>Телефон</p>
-    <p style="font-weight: bold">{{ $data['tel'] }}</p>
+*Телефон*<br>
+**{{ $data['tel'] }}**
 @endif
+
+@if(isset($data['email']))
+*E-Mail*<br>
+**{{ $data['email'] }}**
+@endif
+
+@endcomponent

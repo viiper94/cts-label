@@ -41,7 +41,7 @@ class CallbackMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.callback',
+            markdown: 'emails.callback',
         );
     }
 

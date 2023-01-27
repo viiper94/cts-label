@@ -29,13 +29,13 @@ class CvMail extends Mailable{
         );
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
-    public function build()
+    public function attachments()
     {
-        return $this->markdown('emails.cv.admin')->subject('Анкета на обучение в CTSchool')->from($this->cv->email);
+        return [
+            Attachment::fromPath(public_path('cv/'.$this->cv->document))
+                ->as('anketa.pdf')
+                ->withMime('application/pdf'),
+        ];
     }
+
 }

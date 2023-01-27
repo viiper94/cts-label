@@ -252,11 +252,9 @@ $(document).ready(function(){
     }
 
     $('#show_custom').change(function(){
-        if(this.checked){
-            $('#tracklist_text').show();
-        }else{
-            $('#tracklist_text').hide();
-        }
+        $('#tracklist_text').animate({
+            height: "toggle"
+        });
     });
 
 });

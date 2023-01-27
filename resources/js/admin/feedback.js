@@ -32,15 +32,19 @@ $(document).ready(function(){
     $(document).on('click','.delete-feedback-track-btn', function(){
         let $btn = $(this);
         let url = $btn.data('url');
-        $.ajax({
-            type: 'DELETE',
-            url: url,
-            success: function(response){
-                if(response.status === 'OK'){
-                    $btn.parents('.card').remove();
+        if(url){
+            $.ajax({
+                type: 'DELETE',
+                url: url,
+                success: function(response){
+                    if(response.status === 'OK'){
+                        $btn.parents('.card').remove();
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            $btn.parents('.card').remove();
+        }
     });
 
     $(document).on('change', '.edit-feedback .tracks input[type=file]', function(e){

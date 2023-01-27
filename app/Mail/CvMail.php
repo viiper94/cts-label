@@ -3,24 +3,30 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CvMail extends Mailable
-{
+class CvMail extends Mailable{
     use Queueable, SerializesModels;
 
-    public $cv;
+    public function __construct(public $cv){}
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($cv)
+    public function envelope(){
+        return new Envelope(
+            from: new Address($this->cv->email, $this->cv->name),
+            subject: 'Анкета на обучение в CTSchool',
+        );
+    }
+
+    public function content()
     {
-        $this->cv = $cv;
+        return new Content(
+            markdown: 'emails.cv.admin',
+        );
     }
 
     /**

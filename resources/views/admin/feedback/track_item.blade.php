@@ -25,7 +25,7 @@
                 <input type="file" class="form-control form-dark" name="tracks[{{ $key }}][320]" accept=".mp3"
                        @if($feedback->id && $track->hasHQFile()) style="display: none" @endif id="track_{{ $key }}_320">
                 @if($feedback->id && $track->hasHQFile())
-                    <div class="track-player align-items-center gap-2" id="track_{{ $key }}_320_player" style="display: flex">
+                    <div class="track-player align-items-center" id="track_{{ $key }}_320_player" style="display: flex">
                         <div class="player">
                             <audio src="{{ $track->filePath() }}"></audio>
                         </div>

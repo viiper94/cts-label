@@ -3,6 +3,19 @@
     .release-cover{
         width: 500px;
     }
+    .tracks{
+        counter-reset: track;
+        .feedback-track-number{
+            border-color: $border-color;
+            z-index: 1;
+            font-size: 1.25rem;
+            &:before{
+                counter-increment: track;
+                content: counter(track);
+            }
+        }
+
+    }
 }
 .related-all-feedback .card-body{
     height: 298px;

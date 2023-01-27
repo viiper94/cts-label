@@ -3,6 +3,7 @@
         <div class="form-group">
             <label class="form-label">Название трека</label>
             <div class="input-group">
+                <span class="feedback-track-number input-group-text text-bg-dark">.</span>
                 <input type="text" class="form-control form-control-lg form-dark" name="tracks[{{ $key }}][name]"
                        value="{{ !$feedback->id
                                     ? (!$feedback->release ? '' : $track->getFullTitle())

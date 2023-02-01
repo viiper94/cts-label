@@ -132,7 +132,7 @@
                             <div class="service-item m-3">
                                 <button data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $service->name }}"
                                         class="service-link bg-transparent">
-                                    <img src="/images/studio/services/{{ $service->image }}"
+                                    <img src="/images/studio/services/{{ $service->image }}" loading="lazy"
                                          class="service-image" @if($service->service_alt) alt="{{ $service->service_alt }}" @endif>
                                 </button>
                             </div>

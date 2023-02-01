@@ -47,7 +47,7 @@
                 </ul>
                 <form class="d-none d-md-flex search" action="{{ route('home') }}">
                     <input class="form-control form-dark" type="text" placeholder="Search here ..." name="q" value="{{ Request::input('q') }}">
-                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
         </div>

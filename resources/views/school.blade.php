@@ -114,12 +114,12 @@
                         <div class="marquee-flow d-flex">
                         @for($i = 0; $i < 2; $i++)
                             <span class="d-flex">
-                                <img src="/images/school/school-1.jpg" alt="курси DJ Київ, навчання діджеїнгу">
+                                <img src="/images/school/school-1.jpg" alt="професійні курси, курси DJ Київ, навчання діджеїнгу">
                                 <img src="/images/school/school-2.jpg" alt="курси вокалу, вокальне мистецтво, тренер з вокалу, школа вокалу">
                                 <img src="/images/school/school-3.jpg" alt="навчання звукорежисурі, курси звукорежисерів, звукорежисура навчання">
                                 <img src="/images/school/school-4.jpg" alt="навчання майстерності діджея, стати dj, курсы DJ Киев">
-                                <img src="/images/school/school-5.jpg" alt="написання музики, створення електронної музики, аранжувальник">
-                                <img src="/images/school/school-6.jpg" alt="dj школа, DJ школа Киев, dj school">
+                                <img src="/images/school/school-5.jpg" alt="написання музики, створення електронної музики, аранжування">
+                                <img src="/images/school/school-6.jpg" alt="dj школа, DJ школа Киев, dj school, курси саунд продюсерів в Києві">
                             </span>
                         @endfor
                         </div>

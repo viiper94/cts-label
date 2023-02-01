@@ -130,10 +130,11 @@
                     <div class="service-images d-flex justify-content-evenly px-5 flex-wrap">
                         @foreach($services as $service)
                             <div class="service-item m-3">
-                                <a data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $service->name }}" class="service-link">
+                                <button data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $service->name }}"
+                                        class="service-link bg-transparent">
                                     <img src="/images/studio/services/{{ $service->image }}"
                                          class="service-image" @if($service->service_alt) alt="{{ $service->service_alt }}" @endif>
-                                </a>
+                                </button>
                             </div>
                         @endforeach
                     </div>

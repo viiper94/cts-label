@@ -5,12 +5,15 @@
 @section('description', htmlspecialchars_decode(str_replace('&nbsp;', ' ', strip_tags($release['description_'.$release->detectActiveDescriptionLang()]))))
 
 @section('meta')
+    <meta property="og:locale" content="uk_UA">
+    <meta property="og:type" content="music.album">
     <meta property="og:title" content="{{ $release->title }}">
     <meta property="og:description" content="{!! htmlspecialchars_decode(str_replace('&nbsp;', ' ', strip_tags($release['description_'.$release->detectActiveDescriptionLang()]))) !!}">
     <meta property="og:image" content="{{ url('/') }}/images/releases/{{ $release->image }}">
     <meta property="og:url" content="{{ route('release', $release->id) }}">
-    <meta property="og:type" content="article">
     <meta property="og:site_name" content="CTS Records">
+    <meta property="music:release_date" content="{{ $release->release_date->format('Y-m-d') }}">
+    <link rel="canonical" href="https://cts-label.com/reelases/{{ $release->id }}">
 @endsection
 
 @section('content')
@@ -142,17 +145,17 @@
                         {
                             "@type": "ListItem",
                             "position": {{ $loop->iteration }},
-                                    "item": {
-                                        "@type": "MusicRecording",
-                                        "isrcCode": "{{ $track->isrc }}",
-                                        "byArtist": {
-                                            "@type": "MusicGroup",
-                                            "name": "{{ $track->artists }}"
-                                        },
-                                        @if($track->length)
-                            "duration": "{{ $track->lengthToIso8601() }}",
-                                        @endif
-                        "name": "{{ $track->name }}@if($track->mix_name) ({{ $track->mix_name }})@endif"
+                            "item": {
+                                "@type": "MusicRecording",
+                                "isrcCode": "{{ $track->isrc }}",
+                                "byArtist": {
+                                    "@type": "MusicGroup",
+                                    "name": "{{ $track->artists }}"
+                                },
+                                @if($track->length)
+                                    "duration": "{{ $track->lengthToIso8601() }}",
+                                @endif
+                            "name": "{{ $track->name }}@if($track->mix_name) ({{ $track->mix_name }})@endif"
                         }
                     }@if(!$loop->last),@endif
                 @endforeach

@@ -17,16 +17,18 @@
 @endsection
 
 @section('description')
-    CTS Studio - студія звукозапису незалежного рекорд-лейблу CTS Records
+    CTS Studio - студія звукозапису незалежного рекорд-лейблу CTS Record, послуги накопичення і виробництва фонограм, якісне зведення та мастеринг в Києві
 @endsection
 
 @section('meta')
+    <meta property="og:locale" content="uk_UA">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="CTS Studio - професійна студія звукозапису незалежного рекорд-лейблу CTS Records в Києві">
     <meta property="og:description" content="CTS Studio - професійна студія звукозапису незалежного рекорд-лейблу CTS Records в Києві">
     <meta property="og:image" content="https://cts-label.com/images/cts-studio-y.png">
     <meta property="og:url" content="https://cts-label.com/studio.html">
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="CTStudio">
+    <meta property="og:site_name" content="CTS Studio">
+    <link rel="canonical" href="https://cts-label.com/studio.html">
 @endsection
 
 @section('content')
@@ -36,7 +38,7 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Cтудія звукозапису CTS Records",
-      "url" : "https://www.cts-label.com/studio.html",
+      "url" : "https://cts-label.com/studio.html",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Kyiv, Ukraine",

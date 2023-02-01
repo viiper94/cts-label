@@ -52,7 +52,7 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Курси звукорежисури і аранжування CTSchool",
-      "url" : "https://www.cts-label.com/ctschool.html",
+      "url" : "https://cts-label.com/ctschool.html",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Kyiv, Ukraine",

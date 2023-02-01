@@ -71,10 +71,10 @@
         <div class="studio-nav">
             <div class="container">
                 <ul class="d-flex align-items-center justify-content-md-between flex-column flex-md-row py-3 px-0">
-                    <li><a href="#equipment">@lang('studio.equipment')</a></li>
-                    <li><a href="#services">@lang('studio.services')</a></li>
-                    <li><a href="#projects">@lang('studio.projects')</a></li>
-                    <li><a href="#contacts">@lang('studio.contacts')</a></li>
+                    <li><a href="#equipment"><span>@lang('studio.equipment')</span></a></li>
+                    <li><a href="#services"><span>@lang('studio.services')</span></a></li>
+                    <li><a href="#projects"><span>@lang('studio.projects')</span></a></li>
+                    <li><a href="#contacts"><span>@lang('studio.contacts')</span></a></li>
                 </ul>
             </div>
         </div>

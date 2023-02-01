@@ -16,9 +16,17 @@
                 a{
                     text-transform: uppercase;
                     text-decoration: none;
-                    border-bottom: 1px dotted $primary-text;
                     color: $primary-text;
                     font-size: 17px;
+                    @media (max-width: $md){
+                        font-size: 24px;
+                        display: block;
+                        height: 48px;
+                        line-height: 48px;
+                    }
+                    span{
+                        border-bottom: 1px dotted $primary-text;
+                    }
                 }
                 &:hover a{
                     color: $primary;

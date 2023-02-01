@@ -90,11 +90,11 @@
         <div class="studio-nav">
             <div class="container">
                 <ul class="d-flex align-items-center justify-content-md-between flex-column flex-md-row py-3 px-0">
-                    <li><a href="#about">@lang('school.about_courses')</a></li>
-                    <li><a href="#equipment">@lang('school.equipment')</a></li>
-                    <li><a href="#teachers">@lang('school.teachers')</a></li>
-                    <li><a href="#prices">@lang('school.cost_of_education')</a></li>
-                    <li><a href="#contacts">@lang('school.contact')</a></li>
+                    <li><a href="#about"><span>@lang('school.about_courses')</span></a></li>
+                    <li><a href="#equipment"><span>@lang('school.equipment')</span></a></li>
+                    <li><a href="#teachers"><span>@lang('school.teachers')</span></a></li>
+                    <li><a href="#prices"><span>@lang('school.cost_of_education')</span></a></li>
+                    <li><a href="#contacts"><span>@lang('school.contact')</span></a></li>
                 </ul>
             </div>
         </div>

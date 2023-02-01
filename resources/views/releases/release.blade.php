@@ -21,8 +21,8 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-7">
                         <h1 class="release-title">{{ $release->title }}</h1>
-                        <div class="release-number"><strong>@lang('releases.release_number') </strong>{{ $release->release_number }}</div>
-                        <div class="release-date"><strong>@lang('releases.release_date') </strong>{{ $release->release_date->format('j F Y') }}</div>
+                        <h2 class="release-number"><strong>@lang('releases.release_number') </strong>{{ $release->release_number }}</h2>
+                        <h2 class="release-date"><strong>@lang('releases.release_date') </strong>{{ $release->release_date->format('j F Y') }}</h2>
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <div class="text-center">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="release-tracklist mb-md-0 mb-3">
                             @if($release->tracks)
-                                <h6 class="fw-bold">@lang('releases.tracklist')</h6>
+                                <h2 class="fw-bold">@lang('releases.tracklist')</h2>
                                 @if($release->tracklist_show_custom)
                                     {!! $release->tracklist !!}
                                 @else
@@ -99,12 +99,12 @@
                 @if(count($release->related) > 0)
                     <div class="row py-5">
                         <div class="col-12 release-related">
-                            <h6 class="mb-3">@lang('releases.related_releases')</h6>
+                            <h2 class="mb-3">@lang('releases.related_releases')</h2>
                             <div class="row g-0">
                                 @foreach($release->related as $item)
                                     <div class="col-4 g-2">
                                         <div class="release-brief release-brief-related">
-                                            <a href="{{ route('release', $item->id) }}" class="d-block">
+                                            <a href="{{ route('release', $item->id) }}" class="d-block" title="{{ $item->title }}">
                                                 <img src="/images/releases/{{ $item->image }}" alt="{{ $item->title }}" class="img-fluid">
                                                 <div class="item-overlay d-flex justify-content-center align-items-center p-3 text-center">
                                                     <span class="">{{ $item->title }}</span>

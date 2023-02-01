@@ -34,15 +34,17 @@
     уроки теорії музики
 @endsection
 
-@section('description', 'Навчання майстерності діджея, курси продюсерів і звукорежисерів, написання музики, курси вокалу, сольфеджіо, робота в музичних редакторах в Києві.')
+@section('description', 'Курси DJ, курси звукорежисури, уроки написання музики, курси вокалу, створення музики, написання електронної музики, робота в музичних редакторах, уроки діджеїнгу в Києві.')
 
 @section('meta')
+    <meta property="og:locale" content="uk_UA">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="CTSchool - професійні курси DJ-їв і саунд продюсерів в Києві">
     <meta property="og:description" content="Навчання майстерності діджея, курси продюсерів і звукорежисерів, написання музики, курси вокалу, сольфеджіо, робота в музичних редакторах">
     <meta property="og:image" content="https://cts-label.com/images/ctschool-y.png">
     <meta property="og:url" content="https://cts-label.com/ctschool.html">
-    <meta property="og:type" content="article">
     <meta property="og:site_name" content="CTSchool">
+    <link rel="canonical" href="https://cts-label.com/ctschool.html">
 @endsection
 
 @section('content')

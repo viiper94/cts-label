@@ -114,12 +114,12 @@
                         <div class="marquee-flow d-flex">
                         @for($i = 0; $i < 2; $i++)
                             <span class="d-flex">
-                                <img src="/images/school/school-1.jpg" alt="професійні курси, курси DJ Київ, навчання діджеїнгу">
-                                <img src="/images/school/school-2.jpg" alt="курси вокалу, вокальне мистецтво, тренер з вокалу, школа вокалу">
-                                <img src="/images/school/school-3.jpg" alt="навчання звукорежисурі, курси звукорежисерів, звукорежисура навчання">
-                                <img src="/images/school/school-4.jpg" alt="навчання майстерності діджея, стати dj, курсы DJ Киев">
-                                <img src="/images/school/school-5.jpg" alt="написання музики, створення електронної музики, аранжування">
-                                <img src="/images/school/school-6.jpg" alt="dj школа, DJ школа Киев, dj school, курси саунд продюсерів в Києві">
+                                <img src="/images/school/school-1.jpg" height="170" alt="професійні курси, курси DJ Київ, навчання діджеїнгу">
+                                <img src="/images/school/school-2.jpg" height="170" alt="курси вокалу, вокальне мистецтво, тренер з вокалу, школа вокалу">
+                                <img src="/images/school/school-3.jpg" height="170" alt="навчання звукорежисурі, курси звукорежисерів, звукорежисура навчання">
+                                <img src="/images/school/school-4.jpg" height="170" alt="навчання майстерності діджея, стати dj, курсы DJ Киев">
+                                <img src="/images/school/school-5.jpg" height="170" alt="написання музики, створення електронної музики, аранжування">
+                                <img src="/images/school/school-6.jpg" height="170" alt="dj школа, DJ школа Киев, dj school, курси саунд продюсерів в Києві">
                             </span>
                         @endfor
                         </div>
@@ -263,7 +263,7 @@
                             <div class="service-item m-3">
                                 <button data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $course->name }}"
                                         class="service-link bg-transparent">
-                                    <img src="/images/school/courses/{{ $course->image }}" loading="lazy"
+                                    <img src="/images/school/courses/{{ $course->image }}" loading="lazy" width="185" height="185"
                                          class="service-image" @if($course->course_alt) alt="{{ $course->course_alt }}" @endif>
                                 </button>
                             </div>

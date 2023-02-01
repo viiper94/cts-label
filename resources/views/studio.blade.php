@@ -88,14 +88,14 @@
                         <div class="marquee-flow d-flex">
                             @for($i = 0; $i < 2; $i++)
                                 <span class="d-flex">
-                                    <img src="/images/studio/studio-1.jpg" alt="CTS студия, CTS студія, услуги студии звукозаписи Киев, студия звукозаписи Киев, профессиональная студия в Киеве,">
-                                    <img src="/images/studio/studio-2.jpg" alt="ремиксы, мастеринг, аранжировка, вокал, сведение">
-                                    <img src="/images/studio/studio-3.jpg" alt="зведення музикальних композицій, зведення та мастеринг">
-                                    <img src="/images/studio/studio-4.jpg" alt="профессиональный мастеринг, качественное сведение и мастеринг в Киеве">
-                                    <img src="/images/studio/studio-5.jpg" alt="школа, диджеинг, продюсеринг, запись">
-                                    <img src="/images/studio/studio-6.jpg" alt="professional mixing and mastering">
-                                    <img src="/images/studio/studio-7.jpg" alt="студії звукозапису Київ">
-                                    <img src="/images/studio/studio-8.jpg" alt="услуги звукозаписи, CTS, CTS studio Kiev">
+                                    <img src="/images/studio/studio-1.jpg" height="170" alt="CTS студия, CTS студія, услуги студии звукозаписи Киев, студия звукозаписи Киев, профессиональная студия в Киеве,">
+                                    <img src="/images/studio/studio-2.jpg" height="170" alt="ремиксы, мастеринг, аранжировка, вокал, сведение">
+                                    <img src="/images/studio/studio-3.jpg" height="170" alt="зведення музикальних композицій, зведення та мастеринг">
+                                    <img src="/images/studio/studio-4.jpg" height="170" alt="профессиональный мастеринг, качественное сведение и мастеринг в Киеве">
+                                    <img src="/images/studio/studio-5.jpg" height="170" alt="школа, диджеинг, продюсеринг, запись">
+                                    <img src="/images/studio/studio-6.jpg" height="170" alt="professional mixing and mastering">
+                                    <img src="/images/studio/studio-7.jpg" height="170" alt="студії звукозапису Київ">
+                                    <img src="/images/studio/studio-8.jpg" height="170" alt="услуги звукозаписи, CTS, CTS studio Kiev">
                                 </span>
                             @endfor
                         </div>
@@ -132,7 +132,7 @@
                             <div class="service-item m-3">
                                 <button data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $service->name }}"
                                         class="service-link bg-transparent">
-                                    <img src="/images/studio/services/{{ $service->image }}" loading="lazy"
+                                    <img src="/images/studio/services/{{ $service->image }}" loading="lazy" height="185" width="185"
                                          class="service-image" @if($service->service_alt) alt="{{ $service->service_alt }}" @endif>
                                 </button>
                             </div>

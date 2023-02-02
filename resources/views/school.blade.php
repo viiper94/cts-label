@@ -96,7 +96,7 @@
                     <li><a href="#equipment"><span>@lang('school.equipment')</span></a></li>
                     <li><a href="#teachers"><span>@lang('school.teachers')</span></a></li>
                     <li><a href="#prices"><span>@lang('school.cost_of_education')</span></a></li>
-                    <li><a href="#contacts"><span>@lang('school.contact')</span></a></li>
+                    <li><a href="#contact"><span>@lang('school.contact')</span></a></li>
                 </ul>
             </div>
         </div>
@@ -273,7 +273,7 @@
                     </div>
                 </section>
                 <section class="contacts pt-5">
-                    <h2 class="text-center text-uppercase fw-bold mb-5" id="contacts">@lang('school.contact')</h2>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="contact">@lang('school.contact')</h2>
                     <div class="text-center">
                         <p class="mb-4">@lang('school.contact_text_1')</p>
                         <p class="mb-4">@lang('school.contact_text_2')</p>

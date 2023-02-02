@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\AdminSchoolTeachersController;
 use App\Http\Controllers\Admin\AdminStudioController;
 use App\Http\Controllers\Admin\AdminTracksController;
 use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\WebinarContactController;
 
 Route::group(['middleware' => 'i18n'], function(){
 
@@ -47,6 +48,8 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
     Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
+
+    Route::get('/event', [WebinarContactController::class, 'index'])->name('event');
 
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function(){
 

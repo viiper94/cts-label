@@ -172,11 +172,24 @@
                                 Викладач
                             </label>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>@lang('studio.modal.submit')</button>
-                    </div>
-                </form>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" value="інше" id="other" required>
+                            <label class="form-check-label" for="other">
+                                Інше
+                            </label>
+                        </div>
+                        <div class="form-group mb-3" style="display: none" id="if_other">
+                            <input type="text" name="other" class="form-control form-dark">
+                        </div>
+                        <div class="form-group my-3">
+                            <label for="additional" class="form-label">Додаткова інформація, яку ви хотіли б нам повідомити</label>
+                            <textarea name="additional" id="additional" class="form-control form-dark"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button form="register" type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>Зарееструватися</button>
+                </div>
             </div>
         </div>
     </div>

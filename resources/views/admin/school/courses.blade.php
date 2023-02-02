@@ -62,7 +62,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label">Описание</label>
+                                        <label class="form-label">Ключевые слова</label>
                                         <textarea name="service_alt" id="service_alt" rows="3" class="form-control form-dark"></textarea>
                                     </div>
                                 </div>

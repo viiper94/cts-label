@@ -180,7 +180,7 @@
                     </div>
                 </section>
                 <section class="about_courses pb-5 pt-3">
-                    <h2 class="text-center text-uppercase fw-bold mb-5" id="about_courses">@lang('school.about_courses')</h2>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="about">@lang('school.about_courses')</h2>
                     <div class="row">
                         <div class="col-md col-12">
                             <div class="row">
@@ -273,7 +273,7 @@
                     </div>
                 </section>
                 <section class="contacts pt-5">
-                    <h2 class="text-center text-uppercase fw-bold mb-5" id="contact">@lang('school.contact')</h2>
+                    <h2 class="text-center text-uppercase fw-bold mb-5" id="contacts">@lang('school.contact')</h2>
                     <div class="text-center">
                         <p class="mb-4">@lang('school.contact_text_1')</p>
                         <p class="mb-4">@lang('school.contact_text_2')</p>

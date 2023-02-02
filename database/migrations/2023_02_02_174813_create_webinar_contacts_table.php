@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-
+            $table->string('tel');
+            $table->string('type');
+            $table->string('other')->nullable();
+            $table->text('additional')->nullable();
             $table->timestamps();
         });
     }

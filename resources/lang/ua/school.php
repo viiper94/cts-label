@@ -50,13 +50,13 @@ return [
     'lessons_held_text' => 'в студії CTS,<br>в клубі CINEMA,<br>в студії Національної академії керівних кадрів культури
                                 і мистецтв України,<br>в магазині МУЗТОРГ.',
 
-    'lesson_holds_sergio' => 'Заняття проводить Sergio Mega',
+    'lesson_holds_sergio' => 'Урок проводить Sergio Mega',
     'master_class_ekspert' => 'Майстер-клас проводить DJ Ekspert',
     'consultation_conducted_by_belyavina' => 'Консультацію проводить Наталя Белявіна',
-    'sound_engineering_lesson_shapovalov' => 'Заняття по звукорежисурі проводить Іван Шаповалов',
-    'lesson_music_theory_semergey' => 'Заняття по теорії музики проводить Олександра Семергей',
-    'djing_by_yoshi' => 'Заняття по DJ-їнгу в клубі Cinema проводить DJ Yoshi',
-    'production_lesson_by_sergio' => 'Заняття по продакшн проводить Sergio Mega',
+    'sound_engineering_lesson_shapovalov' => 'Урок по звукорежисурі проводить Іван Шаповалов',
+    'lesson_music_theory_semergey' => 'Навчання теорії музики проводить Олександра Семергей',
+    'djing_by_yoshi' => 'Урок по DJ-їнгу в клубі Cinema проводить DJ Yoshi',
+    'production_lesson_by_sergio' => 'Урок по продакшн проводить Sergio Mega',
 
     'mail_body' => 'body=Моє ім\'я:%0AМій телефон:%0A&Subject=Навчання в CTSchool',
 

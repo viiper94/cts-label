@@ -4,11 +4,11 @@
 
 @section('content')
 
-    <div class="container py-5">
+    <div class="container event py-5">
 
-        <h1>Вебінар <b>Маркетинг і менеджмент артиста в кризові часи</b></h1>
+        <h1>Маркетинг і менеджмент артиста в кризові часи</h1>
         <div class="row my-5 py-5">
-            <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+            <h2>Про вебінар</h2>
             <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda consectetur cupiditate delectus
                 deleniti exercitationem impedit ipsam, magnam nemo obcaecati odit officia provident quasi reiciendis similique sit tempore velit voluptate.
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda consectetur cupiditate delectus
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col">
                     <span>
-                        <b>Speaker Name</b>
+                        <b>Speaker Name</b> -
                         Topic Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, est.
                     </span>
                 </div>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col">
                     <span>
-                        <b>Speaker Name</b>
+                        <b>Speaker Name</b> -
                         Topic Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad facere fugit nemo nisi soluta, unde..
                     </span>
                 </div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col">
                     <span>
-                        <b>Speaker Name</b>
+                        <b>Speaker Name</b> -
                         Topic Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt ipsum qui ratione ut?.
                     </span>
                 </div>
@@ -98,7 +98,7 @@
             </div>
         </div>
 
-        <div class="d-flex align-items-center justify-content-center my-5 py-5">
+        <div class="d-flex align-items-center justify-content-center my-5 pt-5">
             <button class="btn-primary btn btn-lg" data-bs-toggle="modal" data-bs-target="#event-modal">
                 <i class="fa-solid fa-ticket me-2"></i>
                 Зарееструватись на вебінар
@@ -108,26 +108,26 @@
     </div>
 
     <div class="modal fade" id="event-modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-                <form method="post">
-                    <div class="modal-header">
-                        <h3 class="modal-title fs-5" id="modalLabel">Реестрація на вебінар</h3>
-                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div class="modal-body">
+                <div class="modal-header">
+                    <h3 class="modal-title fs-5" id="modalLabel">Реестрація на вебінар</h3>
+                    <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="register">
                         @csrf
                         <input type="hidden" name="target" value="school">
                         <div class="form-group mb-3">
-                            <label for="name" class="form-label">Ім'я, Прізвище</label>
+                            <label for="name" class="form-label">Ім'я, Прізвище*</label>
                             <input type="text" name="name" id="name" class="form-control form-dark" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="email" class="form-label">E-mail</label>
+                            <label for="email" class="form-label">E-mail*</label>
                             <input type="email" name="email" id="email" class="form-control form-dark" required>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="tel" class="form-label">Контактний телефон</label>
+                            <label for="tel" class="form-label">Контактний телефон*</label>
                             <input type="tel" name="tel" id="tel" class="form-control form-dark" required>
                         </div>
                         <div class="form-check pt-3">

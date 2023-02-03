@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\StudioService;
 use Illuminate\Http\Request;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 
 class AdminStudioController extends Controller{
 
@@ -27,8 +29,8 @@ class AdminStudioController extends Controller{
         $service->sort_id = intval($service->getLatestSortId(StudioService::class) + 1);
         if($request->hasFile('image')){
             $image = $request->file('image');
-            $service->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/studio/services'), $service->image);
+            $service->image = md5($image->getClientOriginalName(). time()).'.webp';
+            Image::load($image->getPathname())->width(185)->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/courses/').$service->image);
         }
         return $service->save() ?
             redirect()->route('studio.index')->with(['success' => 'Услуга успешно добавлена!']) :
@@ -52,8 +54,8 @@ class AdminStudioController extends Controller{
             }
             // upload new image
             $image = $request->file('image');
-            $studio->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/studio/services'), $studio->image);
+            $studio->image = md5($image->getClientOriginalName(). time()).'.webp';
+            Image::load($image->getPathname())->width(185)->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/courses/').$studio->image);
         }
         return $studio->save() ?
             redirect()->route('studio.index')->with(['success' => 'Услуга успешно отредактирована!']) :

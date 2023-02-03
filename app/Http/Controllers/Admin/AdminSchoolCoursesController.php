@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\SchoolCourse;
 use Illuminate\Http\Request;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 
 class AdminSchoolCoursesController extends Controller{
 
@@ -26,8 +28,8 @@ class AdminSchoolCoursesController extends Controller{
         if($request->hasFile('image')){
             // upload new image
             $image = $request->file('image');
-            $course->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/school/courses'), $course->image);
+            $course->image = md5($image->getClientOriginalName(). time()).'.webp';
+            Image::load($image->getPathname())->width(185)->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/courses/').$course->image);
         }
         return $course->save() ?
             redirect()->route('school.courses.index')->with(['success' => 'Услуга успешно отредактирована!']) :
@@ -50,8 +52,8 @@ class AdminSchoolCoursesController extends Controller{
             }
             // upload new image
             $image = $request->file('image');
-            $course->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/school/courses'), $course->image);
+            $course->image = md5($image->getClientOriginalName(). time()).'.webp';
+            Image::load($image->getPathname())->width(185)->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/courses/').$course->image);
         }
         return $course->save() ?
             redirect()->route('school.courses.index')->with(['success' => 'Услуга успешно отредактирована!']) :

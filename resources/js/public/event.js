@@ -16,4 +16,8 @@ $(document).ready(function(){
         }
     });
 
+    $('#event-modal #register').submit(function(){
+        $('#event-modal button[type=submit]').prop('disabled', true)
+    });
+
 });

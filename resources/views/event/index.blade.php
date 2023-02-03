@@ -8,7 +8,7 @@
 
         <h1>Маркетинг і менеджмент артиста в кризові часи</h1>
         <div class="row my-5 py-5">
-            <h2>Про вебінар</h2>
+            <h2 class="mb-4">Про вебінар</h2>
             <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda consectetur cupiditate delectus
                 deleniti exercitationem impedit ipsam, magnam nemo obcaecati odit officia provident quasi reiciendis similique sit tempore velit voluptate.
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda consectetur cupiditate delectus
@@ -20,12 +20,12 @@
 
         <div class="row my-5 py-5">
             <h2 class="mb-4">Спікери</h2>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex gap-3 justify-content-evenly flex-wrap">
                 @for($i = 0; $i < 3; $i++)
-                    <div class="card text-bg-dark" style="width: 300px">
-                        <img src="/images/school/courses/default.png" alt="">
+                    <div class="card text-bg-dark speaker">
+                        <img src="/images/school/courses/default.png" alt="" class="">
                         <div class="card-body">
-                            <h3>Speaker Name</h3>
+                            <h5 class="card-title">Speaker Name</h5>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta doloribus error
                                 libero quo quod rem voluptate. </p>
                             <button class="btn btn-outline-primary">
@@ -45,8 +45,8 @@
 
         <div class="row my-5 py-5">
             <h2 class="mb-4">Розклад</h2>
-            <h5>Дата: 15 лютого, 2023 року</h5>
-            <h5>Місце: <a href="#">Zoom за посиланням</a></h5>
+            <h5 class="text-center">Дата: 15 лютого, 2023 року</h5>
+            <h5 class="text-center">Місце: <a href="#">Zoom за посиланням</a></h5>
             <div class="row pt-3 mt-3">
                 <div class="col-2">
                     <h4 class="text-end">11.00</h4>

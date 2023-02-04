@@ -14,7 +14,7 @@
                         <div class="col-6 col-sm-4 mb-4 g-2">
                             <div class="release-brief">
                                 <a href="{{ route('release', $release->id) }}" class="d-block">
-                                    <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="img-fluid" loading="lazy">
+                                    <img src="/images/releases/{{ $release->image_270 ?? $release->image }}" alt="{{ $release->title }}" class="img-fluid" loading="lazy">
                                     <div class="item-overlay d-flex justify-content-center align-items-center p-3 text-center">
                                         <span class="">{{ $release->title }}</span>
                                     </div>

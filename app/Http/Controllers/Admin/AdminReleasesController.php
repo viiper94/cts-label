@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Release;
 use App\Track;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
@@ -48,9 +47,7 @@ class AdminReleasesController extends Controller{
         $release->release_date = $request->date('release_date');
         $release->sort_id = intval($release->getLatestSortId(Release::class)) + 1;
         if($request->hasFile('image')){
-            $image = $request->file('image');
-            $release->image = md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/releases'), $release->image);
+            $release->saveImage($request->file('image'));
         }
         if($release->save()){
             $release->tracks()->attach($request->post('tracks'));
@@ -88,15 +85,8 @@ class AdminReleasesController extends Controller{
         $release->tracks()->detach(Arr::pluck($release->tracks, 'id'));
         $release->tracks()->attach($request->post('tracks'));
         if($request->hasFile('image')){
-            // delete old image
-            $path = public_path('images/releases/') . $release->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-            // upload new image
-            $image = $request->file('image');
-            $release->image = md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images/releases'), $release->image);
+            $release->deleteImages();
+            $release->saveImage($request->file('image'));
         }
         return $release->save() ?
             redirect()->route('releases.index')->with(['success' => 'Релиз успешно отредактирован!']) :
@@ -106,11 +96,7 @@ class AdminReleasesController extends Controller{
     public function destroy(Release $release){
         $release->related()->detach();
         if($release->image){
-            // delete image
-            $path = public_path('images/releases/') . $release->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
+            $release->deleteImages();
         }
         return $release->delete() ?
             redirect()->route('releases.index')->with(['success' => 'Релиз успешно удалён!']) :

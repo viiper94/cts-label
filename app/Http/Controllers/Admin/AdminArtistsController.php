@@ -33,9 +33,7 @@ class AdminArtistsController extends Controller{
             $artist->fill($request->post());
             $artist->sort_id = intval($artist->getLatestSortId(Artist::class)) + 1;
             if($request->hasFile('image')){
-                $image = $request->file('image');
-                $artist->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-                $image->move(public_path('images/artists'), $artist->image);
+                $artist->saveImage($request->file('image'));
             }
             return $artist->save() ?
                 redirect()->route('artists.index')->with(['success' => 'Артист успешно добавлен!']) :
@@ -58,15 +56,8 @@ class AdminArtistsController extends Controller{
         ]);
         $artist->fill($request->post());
         if($request->hasFile('image')){
-            // delete old image
-            $path = public_path('images/artists/').$artist->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-            // upload new image
-            $image = $request->file('image');
-            $artist->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/artists'), $artist->image);
+            $artist->deleteImages();
+            $artist->saveImage($request->file('image'));
         }
         return $artist->save() ?
             redirect()->route('artists.index')->with(['success' => 'Артист успешно отредактирован!']) :
@@ -74,13 +65,7 @@ class AdminArtistsController extends Controller{
     }
 
     public function destroy(Artist $artist){
-        if($artist->image){
-            // delete image
-            $path = public_path('images/artists/').$artist->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-        }
+        $artist->deleteImages();
         return $artist->delete() ?
             redirect()->route('artists.index')->with(['success' => 'Артист успешно удалён!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);

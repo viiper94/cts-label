@@ -3,6 +3,9 @@
 namespace App;
 
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\UploadedFile;
+use Spatie\Image\Image;
+use Spatie\Image\Manipulations;
 use ZipArchive;
 
 class Release extends SharedModel{
@@ -167,6 +170,24 @@ class Release extends SharedModel{
 
         $zip->close();
         return '/'.$path.'/'.$zip_filename;
+    }
+
+    public function saveImage(UploadedFile $image){
+        $name = md5($image->getClientOriginalName().time());
+        $this->image = $name.'_500.jpg';
+        $this->image_270 = $name.'_270.jpg';
+        $file = Image::load($image->getPathname())->quality(75);
+        $file->format(Manipulations::FORMAT_JPG)->width(270)->save(public_path('images/releases/').$this->image_270);
+        $file->format(Manipulations::FORMAT_JPG)->width(500)->save(public_path('images/releases/').$this->image);
+    }
+
+    public function deleteImages(){
+        foreach([$this->image ?? null, $this->image_270 ?? null] as $src){
+            $path = public_path('images/releases/').$src;
+            if(file_exists($path) && is_file($path)){
+                unlink($path);
+            }
+        }
     }
 
 }

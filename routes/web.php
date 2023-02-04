@@ -54,7 +54,9 @@ Route::group(['middleware' => 'i18n'], function(){
 
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function(){
 
-        Route::get('/', [AdminController::class, 'index'])->name('admin');
+        Route::get('/', function(){
+            return redirect()->route('releases.index');
+        })->name('admin');
 
         Route::resource('/users', AdminUsersController::class)->only(['index', 'destroy']);
 

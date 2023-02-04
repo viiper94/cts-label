@@ -26,9 +26,10 @@ class Picture extends Component
         return view('components.picture');
     }
 
-    public function type($src) :string{
+    public function type($src) :string|bool{
         $file = array_reverse(explode('/', $src))[0];
         $format = array_reverse(explode('.', $file))[0];
+        if(!$format) return false;
         return match($format){
             'avif' => 'image/avif',
             'bmp' => 'image/bmp',
@@ -39,6 +40,10 @@ class Picture extends Component
             'tiff', 'tif' => 'image/tiff',
             'webp' => 'image/webp',
         };
+    }
+
+    public function hasFile($src) :bool{
+        return is_file(public_path($src));
     }
 
 }

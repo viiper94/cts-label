@@ -50,7 +50,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-7">
                         <figure>
-                            <img src="/images/releases/{{ $release->image }}" alt="{{ $release->title }}" class="release-image img-fluid w-100"/>
+                            <x-picture :src="['/images/releases/'.($release->image ?? $release->image_270)]" alt="{{ $release->title }}" class="release-image img-fluid w-100"/>
                         </figure>
                         <div class="release-buttons d-flex justify-content-between py-md-5 py-3">
                             <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank" rel="noreferrer"

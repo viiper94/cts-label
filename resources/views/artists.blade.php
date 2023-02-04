@@ -15,7 +15,10 @@
                     @foreach($artists as $artist)
                         <div class="artist-brief col-6 col-sm-4 col-md-4 col-lg-3 g-0">
                             @if($artist->link) <a href="{{ $artist->link }}" target="_blank">@endif
-                                <img src="/images/artists/{{ $artist->image }}" alt="{{ $artist->name }}" class="img-fluid" loading="lazy">
+                                <x-picture :src="[
+                                    '/images/artists/'.$artist->image_webp,
+                                    '/images/artists/'.$artist->image
+                                ]" alt="{{ $artist->name }}" loading="lazy"/>
                                 <div class="artist-title">{{ $artist->name }}</div>
                             @if($artist->link)</a>@endif
                         </div>

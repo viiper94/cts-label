@@ -116,12 +116,12 @@
                         <div class="marquee-flow d-flex">
                         @for($i = 0; $i < 2; $i++)
                             <span class="d-flex">
-                                <img src="/images/school/school-1.webp" height="170" width="145" alt="професійні курси, курси DJ Київ, навчання діджеїнгу">
-                                <img src="/images/school/school-2.webp" height="170" width="184" alt="курси вокалу, вокальне мистецтво, тренер з вокалу, школа вокалу">
-                                <img src="/images/school/school-3.webp" height="170" width="224" alt="навчання звукорежисурі, курси звукорежисерів, звукорежисура навчання">
-                                <img src="/images/school/school-4.webp" height="170" width="223" alt="навчання майстерності діджея, стати dj, курсы DJ Киев">
-                                <img src="/images/school/school-5.webp" height="170" width="213" alt="написання музики, створення електронної музики, аранжування">
-                                <img src="/images/school/school-6.webp" height="170" width="128" alt="dj школа, DJ школа Киев, dj school, курси саунд продюсерів в Києві">
+                                <x-picture :src="['/images/school/school-1.webp', '/images/school/school-1.jpg']" height="170" width="145" alt="професійні курси, курси DJ Київ, навчання діджеїнгу"></x-picture>
+                                <x-picture :src="['/images/school/school-2.webp', '/images/school/school-2.jpg']" height="170" width="184" alt="курси вокалу, вокальне мистецтво, тренер з вокалу, школа вокалу"></x-picture>
+                                <x-picture :src="['/images/school/school-3.webp', '/images/school/school-3.jpg']" height="170" width="224" alt="навчання звукорежисурі, курси звукорежисерів, звукорежисура навчання"></x-picture>
+                                <x-picture :src="['/images/school/school-4.webp', '/images/school/school-4.jpg']" height="170" width="223" alt="навчання майстерності діджея, стати dj, курсы DJ Киев"></x-picture>
+                                <x-picture :src="['/images/school/school-5.webp', '/images/school/school-5.jpg']" height="170" width="213" alt="написання музики, створення електронної музики, аранжування"></x-picture>
+                                <x-picture :src="['/images/school/school-6.webp', '/images/school/school-6.jpg']" height="170" width="128" alt="dj школа, DJ школа Киев, dj school, курси саунд продюсерів в Києві"></x-picture>
                             </span>
                         @endfor
                         </div>
@@ -167,7 +167,7 @@
                                         'ms-lg-3' => in_array($loop->iteration, [5,8]),
                                     ])>
                                     <div class="col-auto">
-                                        <img src="/images/school/teachers/{{ $teacher->image }}" alt="{{ $teacher->name }}" loading="lazy">
+                                        <img src="/images/school/teachers/{{ $teacher->image }}" alt="{{ $teacher->name }}" width="84" height="84" loading="lazy">
                                     </div>
                                     <div class="col">
                                         <p class="teacher-name mb-2 fw-bold">{{ $teacher->name }}</p>

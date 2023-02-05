@@ -10,7 +10,13 @@
     h1{
         font-size: 30px;
     }
-    .speaker{
-        max-width: 300px;
+    .bg-img{
+        @media (min-width: $md) {
+            height: 25vw;
+            max-height: 280px;
+        }
+        max-height: 400px;
+        background: center center;
+        background-size: cover;
     }
 }

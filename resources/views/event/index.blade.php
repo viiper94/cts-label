@@ -18,16 +18,17 @@
                 deleniti exercitationem impedit ipsam, magnam nemo obcaecati odit officia provident quasi reiciendis similique sit tempore velit voluptate.</p>
         </div>
 
-        <div class="row my-5 py-5">
+        <section class="my-5 py-5">
             <h2 class="mb-4">Спікери</h2>
-            <div class="d-flex gap-3 justify-content-evenly flex-wrap">
-                @for($i = 0; $i < 3; $i++)
-                    <div class="card text-bg-dark speaker">
-                        <img src="/images/school/courses/default.png" alt="" class="">
-                        <div class="card-body">
-                            <h5 class="card-title">Speaker Name</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta doloribus error
-                                libero quo quod rem voluptate. </p>
+
+            <div class="card text-bg-dark speaker mb-5">
+                <div class="row g-0">
+                    <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/Lilia_lazareva.png')"></div>
+                    <div class="col-8 col-md-9 card-body d-flex flex-column">
+                        <h5 class="card-title">Лілія Лазарєва</h5>
+                        <p class="flex-grow-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta doloribus error
+                            libero quo quod rem voluptate. </p>
+                        <div class="btns">
                             <button class="btn btn-outline-primary">
                                 Більше інформації
                             </button>
@@ -39,14 +40,57 @@
                             </a>
                         </div>
                     </div>
-                @endfor
+                </div>
             </div>
-        </div>
+
+            <div class="card text-bg-dark speaker mb-5">
+                <div class="row g-0">
+                    <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/denys_vasylev.png')"></div>
+                    <div class="col-8 col-md-9 card-body d-flex flex-column">
+                        <h5 class="card-title">Денис Васильев</h5>
+                        <p class="flex-grow-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta doloribus error
+                            libero quo quod rem voluptate. </p>
+                        <div class="btns">
+                            <button class="btn btn-outline-primary">
+                                Більше інформації
+                            </button>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-bg-dark speaker mb-5">
+                <div class="row g-0">
+                    <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/sergio.png')"></div>
+                    <div class="col-8 col-md-9 card-body d-flex flex-column">
+                        <h5 class="card-title">Сергій Лазарєв</h5>
+                        <p class="flex-grow-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta doloribus error
+                            libero quo quod rem voluptate. </p>
+                        <div class="btns">
+                            <button class="btn btn-outline-primary">
+                                Більше інформації
+                            </button>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
 
         <div class="row my-5 py-5">
-            <h2 class="mb-4">Розклад</h2>
-            <h5 class="text-center">Дата: 15 лютого, 2023 року</h5>
-            <h5 class="text-center">Місце: <a href="#">Zoom за посиланням</a></h5>
+            <h2 class="mb-4">Програма вебінару</h2>
             <div class="row pt-3 mt-3">
                 <div class="col-2">
                     <h4 class="text-end">11.00</h4>

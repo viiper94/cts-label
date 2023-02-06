@@ -24,10 +24,7 @@ class AdminSchoolTeachersController extends Controller{
         $teacher->fill($request->post());
         $teacher->category = 'teachers';
         if($request->hasFile('image')){
-            // upload new image
-            $image = $request->file('image');
-            $teacher->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/school/teachers'), $teacher->image);
+            $teacher->saveImage($request->file('image'));
         }
         return $teacher->save() ?
             redirect()->route('school.teachers.index')->with(['success' => 'Учитель успешно отредактирован!']) :
@@ -43,15 +40,8 @@ class AdminSchoolTeachersController extends Controller{
         $teacher->fill($request->post());
         $teacher->category = 'teachers';
         if($request->hasFile('image')){
-            // delete old image
-            $path = public_path('images/school/teachers/').$teacher->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-            // upload new image
-            $image = $request->file('image');
-            $teacher->image = md5($image->getClientOriginalName(). time()).'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('images/school/teachers'), $teacher->image);
+            $teacher->deleteImages();
+            $teacher->saveImage($request->file('image'));
         }
         return $teacher->save() ?
             redirect()->route('school.teachers.index')->with(['success' => 'Учитель успешно отредактирован!']) :
@@ -59,12 +49,7 @@ class AdminSchoolTeachersController extends Controller{
     }
 
     public function destroy(SchoolTeacher $teacher){
-        if($teacher->image){
-            $path = public_path('images/school/'.$teacher->category.'/').$teacher->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-        }
+        $teacher->deleteImages();
         return $teacher->delete() ?
             redirect()->back()->with(['success' => 'Успешно удалено!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);

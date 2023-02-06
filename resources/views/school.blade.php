@@ -167,7 +167,8 @@
                                         'ms-lg-3' => in_array($loop->iteration, [5,8]),
                                     ])>
                                     <div class="col-auto">
-                                        <img src="/images/school/teachers/{{ $teacher->image }}" alt="{{ $teacher->name }}" width="84" height="84" loading="lazy">
+                                        <x-picture :src="['/images/school/teachers/'.$teacher->image_webp, '/images/school/teachers/'.$teacher->image]"
+                                                   alt="{{ $teacher->name }}" width="84" height="84" loading="lazy"/>
                                     </div>
                                     <div class="col">
                                         <p class="teacher-name mb-2 fw-bold">{{ $teacher->name }}</p>
@@ -189,7 +190,8 @@
                                 </div>
                                 <div class="col-5 d-md-none">
                                     <div class="course-img">
-                                        <img src="/images/school/school-9.webp" class="img-fluid" alt="@lang('school.lesson_holds_sergio')" loading="lazy">
+                                        <x-picture :src="['/images/school/school-9.webp', '/images/school/school-9.jpg']"
+                                                   class="img-fluid" alt="@lang('school.lesson_holds_sergio')" loading="lazy"/>
                                         <div class="img-overlay"><p>@lang('school.lesson_holds_sergio')</p></div>
                                     </div>
                                 </div>
@@ -197,7 +199,8 @@
                             <div class="row pt-3 pt-md-0 g-0 g-md-2">
                                 <div class="col-6 col-md-4">
                                     <div class="course-img">
-                                        <img src="/images/school/school-7.webp" class="img-fluid" alt="@lang('school.master_class_ekspert')" loading="lazy">
+                                        <x-picture :src="['/images/school/school-7.webp', '/images/school/school-7.jpg']"
+                                                   class="img-fluid" alt="@lang('school.master_class_ekspert')" loading="lazy"/>
                                         <div class="img-overlay">@lang('school.master_class_ekspert')</div>
                                     </div>
                                 </div>
@@ -207,7 +210,8 @@
                                 </div>
                                 <div class="col-6 col-md-4">
                                     <div class="course-img">
-                                        <img src="/images/school/school-8.webp" class="img-fluid" alt="@lang('school.consultation_conducted_by_belyavina')" loading="lazy">
+                                        <x-picture :src="['/images/school/school-8.webp', '/images/school/school-8.jpg']"
+                                                   class="img-fluid" alt="@lang('school.consultation_conducted_by_belyavina')" loading="lazy"/>
                                         <div class="img-overlay">@lang('school.consultation_conducted_by_belyavina')</div>
                                     </div>
                                 </div>
@@ -215,7 +219,8 @@
                         </div>
                         <div class="col-md-auto d-none d-md-block">
                             <div class="course-img">
-                                <img src="/images/school/school-9.webp" class="img-fluid" style="width: 233px;" alt="@lang('school.lesson_holds_sergio')" loading="lazy">
+                                <x-picture :src="['/images/school/school-9.webp', '/images/school/school-9.jpg']"
+                                           class="img-fluid" style="width: 233px;" alt="@lang('school.lesson_holds_sergio')" loading="lazy"/>
                                 <div class="img-overlay"><p>@lang('school.lesson_holds_sergio')</p></div>
                             </div>
                         </div>
@@ -229,11 +234,13 @@
                         <div class="col-12 col-md-4">
                             <div class="row g-0">
                                 <div class="course-img mb-md-3 col-6 col-md-12">
-                                    <img src="/images/school/school-10.webp" class="img-fluid" alt="@lang('school.sound_engineering_lesson_shapovalov')" loading="lazy">
+                                    <x-picture :src="['/images/school/school-10.webp', '/images/school/school-10.jpg']"
+                                               class="img-fluid" alt="@lang('school.sound_engineering_lesson_shapovalov')" loading="lazy"/>
                                     <div class="img-overlay">@lang('school.sound_engineering_lesson_shapovalov')</div>
                                 </div>
                                 <div class="course-img col-6 col-md-12">
-                                    <img src="/images/school/school-12.webp" class="img-fluid" alt="@lang('school.lesson_music_theory_semergey')" loading="lazy">
+                                    <x-picture :src="['/images/school/school-12.webp', '/images/school/school-12.jpg']"
+                                               class="img-fluid" alt="@lang('school.lesson_music_theory_semergey')" loading="lazy"/>
                                     <div class="img-overlay">@lang('school.lesson_music_theory_semergey')</div>
                                 </div>
                             </div>
@@ -247,11 +254,13 @@
                         <div class="col-12 col-md-4">
                             <div class="row g-0">
                                 <div class="course-img mb-md-3 col-6 col-md-12">
-                                    <img src="/images/school/school-11.webp" class="img-fluid" alt="@lang('school.djing_by_yoshi')" loading="lazy">
+                                    <x-picture :src="['/images/school/school-11.webp', '/images/school/school-11.jpg']"
+                                               class="img-fluid" alt="@lang('school.djing_by_yoshi')" loading="lazy"/>
                                     <div class="img-overlay">@lang('school.djing_by_yoshi')</div>
                                 </div>
                                 <div class="course-img col-6 col-md-12">
-                                    <img src="/images/school/school-13.webp" class="img-fluid" alt="@lang('school.production_lesson_by_sergio')" loading="lazy">
+                                    <x-picture :src="['/images/school/school-13.webp', '/images/school/school-13.jpg']"
+                                               class="img-fluid" alt="@lang('school.production_lesson_by_sergio')" loading="lazy"/>
                                     <div class="img-overlay">@lang('school.production_lesson_by_sergio')</div>
                                 </div>
                             </div>
@@ -265,8 +274,8 @@
                             <div class="service-item m-3">
                                 <button data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $course->name }}"
                                         class="service-link bg-transparent">
-                                    <img src="/images/school/courses/{{ $course->image }}" loading="lazy" width="185" height="185"
-                                         class="service-image" @if($course->course_alt) alt="{{ $course->course_alt }}" @endif>
+                                    <x-picture :src="['/images/school/courses/'.$course->image_webp, '/images/school/courses/'.$course->image]"
+                                               alt="{{ $course->course_alt }}" class="service-image" loading="lazy" width="185" height="185"/>
                                 </button>
                             </div>
                         @endforeach

@@ -26,10 +26,7 @@ class AdminSchoolCoursesController extends Controller{
         $course->fill($request->post());
         $course->category = 'courses';
         if($request->hasFile('image')){
-            // upload new image
-            $image = $request->file('image');
-            $course->image = md5($image->getClientOriginalName(). time()).'.webp';
-            Image::load($image->getPathname())->width(185)->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/courses/').$course->image);
+            $course->saveImage($request->file('image'));
         }
         return $course->save() ?
             redirect()->route('school.courses.index')->with(['success' => 'Услуга успешно отредактирована!']) :
@@ -45,15 +42,8 @@ class AdminSchoolCoursesController extends Controller{
         $course->fill($request->post());
         $course->category = 'courses';
         if($request->hasFile('image')){
-            // delete old image
-            $path = public_path('images/school/courses/').$course->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-            // upload new image
-            $image = $request->file('image');
-            $course->image = md5($image->getClientOriginalName(). time()).'.webp';
-            Image::load($image->getPathname())->width(185)->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/courses/').$course->image);
+            $course->deleteImages();
+            $course->saveImage($request->file('image'));
         }
         return $course->save() ?
             redirect()->route('school.courses.index')->with(['success' => 'Услуга успешно отредактирована!']) :
@@ -61,12 +51,7 @@ class AdminSchoolCoursesController extends Controller{
     }
 
     public function destroy(SchoolCourse $course){
-        if($course->image){
-            $path = public_path('images/school/'.$course->category.'/').$course->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-        }
+        $course->deleteImages();
         return $course->delete() ?
             redirect()->back()->with(['success' => 'Успешно удалено!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);

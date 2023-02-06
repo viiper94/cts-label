@@ -5,7 +5,7 @@
 @section('description', htmlspecialchars_decode(str_replace('&nbsp;', ' ', strip_tags($release['description_'.$release->detectActiveDescriptionLang()]))))
 
 @section('meta')
-    <link rel="canonical" href="https://cts-label.com/reelases/{{ $release->id }}">
+    <link rel="canonical" href="https://cts-label.com/releases/{{ $release->id }}">
     <!-- OG Meta tags -->
     <meta property="og:locale" content="uk_UA">
     <meta property="og:type" content="music.album">

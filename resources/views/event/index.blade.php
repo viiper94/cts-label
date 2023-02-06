@@ -38,7 +38,7 @@
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
                         <h5 class="card-title">ЛІЛІЯ ЛАЗАРЄВА</h5>
                         <p class="flex-grow-1">Арт менеджерка, співзасновниця рекорд лейблу та студії звукозапису CTS Records,
-                            лекторка, експерторка сфери музичного маркетингу та менеджменту.</p>
+                            лекторка, експертка сфери музичного маркетингу та менеджменту.</p>
                         <div class="btns">
                             <a href="#" class="btn btn-outline">
                                 <i class="fa-brands fa-facebook-f"></i>

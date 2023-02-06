@@ -28,9 +28,7 @@ class AdminStudioController extends Controller{
         $service->category = 'services';
         $service->sort_id = intval($service->getLatestSortId(StudioService::class) + 1);
         if($request->hasFile('image')){
-            $image = $request->file('image');
-            $service->image = md5($image->getClientOriginalName(). time()).'.webp';
-            Image::load($image->getPathname())->width(185)->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/courses/').$service->image);
+            $service->saveImage($request->file('image'));
         }
         return $service->save() ?
             redirect()->route('studio.index')->with(['success' => 'Услуга успешно добавлена!']) :
@@ -47,15 +45,8 @@ class AdminStudioController extends Controller{
         $studio->fill($request->post());
         $studio->category = 'services';
         if($request->hasFile('image')){
-            // delete old image
-            $path = public_path('images/studio/services/').$studio->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-            // upload new image
-            $image = $request->file('image');
-            $studio->image = md5($image->getClientOriginalName(). time()).'.webp';
-            Image::load($image->getPathname())->width(185)->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/courses/').$studio->image);
+            $studio->deleteImages();
+            $studio->saveImage($request->file('image'));
         }
         return $studio->save() ?
             redirect()->route('studio.index')->with(['success' => 'Услуга успешно отредактирована!']) :
@@ -63,13 +54,7 @@ class AdminStudioController extends Controller{
     }
 
     public function destroy(StudioService $studio){
-        if($studio->image){
-            // delete image
-            $path = public_path('images/studio/services/').$studio->image;
-            if(file_exists($path) && is_file($path)){
-                unlink($path);
-            }
-        }
+        $studio->deleteImages();
         return $studio->delete() ?
             redirect()->back()->with(['success' => 'Услуга успешно удалена!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);

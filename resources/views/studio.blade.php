@@ -90,14 +90,22 @@
                         <div class="marquee-flow d-flex">
                             @for($i = 0; $i < 2; $i++)
                                 <span class="d-flex">
-                                    <img src="/images/studio/studio-1.jpg" height="170" alt="CTS студия, CTS студія, услуги студии звукозаписи Киев, студия звукозаписи Киев, профессиональная студия в Киеве,">
-                                    <img src="/images/studio/studio-2.jpg" height="170" alt="ремиксы, мастеринг, аранжировка, вокал, сведение">
-                                    <img src="/images/studio/studio-3.jpg" height="170" alt="зведення музикальних композицій, зведення та мастеринг">
-                                    <img src="/images/studio/studio-4.jpg" height="170" alt="профессиональный мастеринг, качественное сведение и мастеринг в Киеве">
-                                    <img src="/images/studio/studio-5.jpg" height="170" alt="школа, диджеинг, продюсеринг, запись">
-                                    <img src="/images/studio/studio-6.jpg" height="170" alt="professional mixing and mastering">
-                                    <img src="/images/studio/studio-7.jpg" height="170" alt="студії звукозапису Київ">
-                                    <img src="/images/studio/studio-8.jpg" height="170" alt="услуги звукозаписи, CTS, CTS studio Kiev">
+                                    <x-picture :src="['/images/studio/studio-1.webp', '/images/studio/studio-1.jpg']" height="170"
+                                         alt="CTS студия, CTS студія, услуги студии звукозаписи Киев, студия звукозаписи Киев, профессиональная студия в Киеве"/>
+                                    <x-picture :src="['/images/studio/studio-2.webp', '/images/studio/studio-2.jpg']" height="170"
+                                         alt="ремиксы, мастеринг, аранжировка, вокал, сведение"/>
+                                    <x-picture :src="['/images/studio/studio-3.webp', '/images/studio/studio-3.jpg']" height="170"
+                                         alt="зведення музикальних композицій, зведення та мастеринг"/>
+                                    <x-picture :src="['/images/studio/studio-4.webp', '/images/studio/studio-4.jpg']" height="170"
+                                         alt="профессиональный мастеринг, качественное сведение и мастеринг в Киеве"/>
+                                    <x-picture :src="['/images/studio/studio-5.webp', '/images/studio/studio-5.jpg']" height="170"
+                                         alt="школа, диджеинг, продюсеринг, запись"/>
+                                    <x-picture :src="['/images/studio/studio-6.webp', '/images/studio/studio-6.jpg']" height="170"
+                                         alt="professional mixing and mastering"/>
+                                    <x-picture :src="['/images/studio/studio-7.webp', '/images/studio/studio-7.jpg']" height="170"
+                                         alt="студії звукозапису Київ"/>
+                                    <x-picture :src="['/images/studio/studio-8.webp', '/images/studio/studio-8.jpg']" height="170"
+                                         alt="услуги звукозаписи, CTS, CTS studio Kiev"/>
                                 </span>
                             @endfor
                         </div>
@@ -134,8 +142,8 @@
                             <div class="service-item m-3">
                                 <button data-bs-toggle="modal" data-bs-target="#service-modal" data-name="{{ $service->name }}"
                                         class="service-link bg-transparent">
-                                    <img src="/images/studio/services/{{ $service->image }}" loading="lazy" height="185" width="185"
-                                         class="service-image" @if($service->service_alt) alt="{{ $service->service_alt }}" @endif>
+                                    <x-picture :src="['/images/studio/services/'.$service->image_webp, '/images/studio/services/'.$service->image]"
+                                           loading="lazy" height="185" width="185" class="service-image" alt="{{ $service->service_alt }}"/>
                                 </button>
                             </div>
                         @endforeach

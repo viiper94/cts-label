@@ -4,18 +4,29 @@
 
 @section('content')
 
+    <div class="event-header py-3">
+        <div class="container py-5">
+            <h1>Маркетинг і менеджмент артиста в кризові часи</h1>
+        </div>
+    </div>
+
     <div class="container event py-5">
 
-        <h1>Маркетинг і менеджмент артиста в кризові часи</h1>
-        <div class="row my-5 py-5">
+        <div class="row mb-5 py-5">
             <h2 class="mb-4">Про вебінар</h2>
-            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda consectetur cupiditate delectus
-                deleniti exercitationem impedit ipsam, magnam nemo obcaecati odit officia provident quasi reiciendis similique sit tempore velit voluptate.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda consectetur cupiditate delectus
-                deleniti exercitationem impedit ipsam, magnam nemo obcaecati odit officia provident quasi reiciendis similique sit tempore velit voluptate.
-                <br>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda consectetur cupiditate delectus
-                deleniti exercitationem impedit ipsam, magnam nemo obcaecati odit officia provident quasi reiciendis similique sit tempore velit voluptate.</p>
+            <p class="mb-0 mx-auto" style="max-width: 800px">Цей вебінар спрямований на розширення можливостей музикантів та артистів, які продовжують свою
+                творчу діяльність під час війни. Проект «Маркетинг і менеджмент артиста в кризові часи» призваний допомогти
+                українським митцям втілити свої творчі проекти та знайти додаткові джерела фінансування під час війни.
+                Вебінар буде цікавий також звукорежисери, музичним менеджерам, арт-менеджерам та іншим діячам творчої сфери
+                з питань, промоції та монетизації музичних творів. Подія проходить за підтримки Гете Інститут.
+                Спікери поділяться з аудиторією власним досвідом та вже реалізованими кейсами та дадуть відповіді на питання.</p>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-center my-5 py-5">
+            <button class="btn-primary btn btn-lg" data-bs-toggle="modal" data-bs-target="#event-modal">
+                <i class="fa-solid fa-ticket me-2"></i>
+                Зарееструватись на вебінар
+            </button>
         </div>
 
         <section class="my-5 py-5">
@@ -25,13 +36,10 @@
                 <div class="row g-0">
                     <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/Lilia_lazareva.png')"></div>
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
-                        <h5 class="card-title">Лілія Лазарєва</h5>
-                        <p class="flex-grow-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta doloribus error
-                            libero quo quod rem voluptate. </p>
+                        <h5 class="card-title">ЛІЛІЯ ЛАЗАРЄВА</h5>
+                        <p class="flex-grow-1">Арт менеджерка, співзасновниця рекорд лейблу та студії звукозапису CTS Records,
+                            лекторка, експерторка сфери музичного маркетингу та менеджменту.</p>
                         <div class="btns">
-                            <button class="btn btn-outline-primary">
-                                Більше інформації
-                            </button>
                             <a href="#" class="btn btn-outline">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
@@ -47,13 +55,12 @@
                 <div class="row g-0">
                     <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/denys_vasylev.png')"></div>
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
-                        <h5 class="card-title">Денис Васильев</h5>
-                        <p class="flex-grow-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta doloribus error
-                            libero quo quod rem voluptate. </p>
+                        <h5 class="card-title">ДЕНИС ВАСИЛЬЄВ</h5>
+                        <p class="flex-grow-1">Музикант, автор композитор Performing Right Society (PRS) UK. Лауреат
+                            першої премії фестивалю «Червона Рута» 2017 року в жанрі інструментальний фольклор. Продюсер
+                            музичного проєкту “Barabanza” (Гурт /Школа /Музей). Арт директор міжнародної музичної
+                            резиденції SoundArtSpace. Експерт проєктів EU4Culture/House of Europe.</p>
                         <div class="btns">
-                            <button class="btn btn-outline-primary">
-                                Більше інформації
-                            </button>
                             <a href="#" class="btn btn-outline">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
@@ -69,13 +76,12 @@
                 <div class="row g-0">
                     <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/sergio.png')"></div>
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
-                        <h5 class="card-title">Сергій Лазарєв</h5>
-                        <p class="flex-grow-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dicta doloribus error
-                            libero quo quod rem voluptate. </p>
+                        <h5 class="card-title">СЕРГІЙ ЛАЗАРЄВ a.k.a. SERGIO MEGA</h5>
+                        <p><i>модератор вебінару</i></p>
+                        <p class="flex-grow-1">Музикант, композитор, продюсер, експерт мистецьких і культурних проектів,
+                            співзасновник лейблу та студії звукозапису CTS Records, кандидат мистецтвознавства,
+                            доцент кафедри кіно-, телемистецтва КНУКіМ.</p>
                         <div class="btns">
-                            <button class="btn btn-outline-primary">
-                                Більше інформації
-                            </button>
                             <a href="#" class="btn btn-outline">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
@@ -90,54 +96,32 @@
         </section>
 
         <div class="row my-5 py-5">
-            <h2 class="mb-4">Програма вебінару</h2>
-            <div class="row pt-3 mt-3">
-                <div class="col-2">
-                    <h4 class="text-end">11.00</h4>
+            <h2 class="mb-5">Програма вебінару</h2>
+            <div class="wrapper">
+                <div class="row mb-4">
+                    <h5>ЛІЛІЯ ЛАЗАРЄВА</h5>
+                    <ul>
+                        <li>Грантові програми для українських митців, діячів музичної сфери.</li>
+                        <li>Участь у фестивалях та шоукейсах.</li>
+                    </ul>
                 </div>
-                <div class="col">
-                    <b>Початок вебінару</b>
+                <div class="row mb-4">
+                    <h5>ДЕНИС ВАСИЛЬЄВ</h5>
+                    <ul>
+                        <li>Створення міжнародних культурних проєктів. Особливості їх менеджменту.</li>
+                        <li>Міжнародні музичні резиденції. Що це таке і навіщо в них брати участь.</li>
+                        <li>Робота автора с ОКУ.</li>
+                    </ul>
                 </div>
-            </div>
-            <div class="row pt-3">
-                <div class="col-2">
-                    <h4 class="text-end">11.00 - 13.30</h4>
+                <div class="row mb-4">
+                    <h5>СЕРГІЙ ЛАЗАРЄВ a.k.a. SERGIO MEGA</h5>
+                    <ul>
+                        <li>Сучасні технології просування музичних творів.</li>
+                        <li>Видання музичних творів – практичні поради.</li>
+                    </ul>
                 </div>
-                <div class="col">
-                    <span>
-                        <b>Speaker Name</b> -
-                        Topic Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, est.
-                    </span>
-                </div>
-            </div>
-            <div class="row pt-3">
-                <div class="col-2">
-                    <h4 class="text-end">13.30 - 15.00</h4>
-                </div>
-                <div class="col">
-                    <span>
-                        <b>Speaker Name</b> -
-                        Topic Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad facere fugit nemo nisi soluta, unde..
-                    </span>
-                </div>
-            </div>
-            <div class="row pt-3">
-                <div class="col-2">
-                    <h4 class="text-end">15.00 - 16.30</h4>
-                </div>
-                <div class="col">
-                    <span>
-                        <b>Speaker Name</b> -
-                        Topic Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt ipsum qui ratione ut?.
-                    </span>
-                </div>
-            </div>
-            <div class="row pt-3 ">
-                <div class="col-2">
-                    <h4 class="text-end">16.30 - 17.00</h4>
-                </div>
-                <div class="col">
-                    <b>Фінальне слово</b>
+                <div class="row">
+                    <h5>ПИТАННЯ ТА ВІДПОВІДІ</h5>
                 </div>
             </div>
         </div>

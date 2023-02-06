@@ -32,6 +32,7 @@
 @endsection
 
 @section('meta')
+    <link rel="canonical" href="https://cts-label.com">
     <!-- OG Meta tags -->
     <meta property="og:title" content="CTS Records">
     <meta property="og:type" content="music.record_label">

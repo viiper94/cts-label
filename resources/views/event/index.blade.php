@@ -25,14 +25,14 @@
         <div class="d-flex align-items-center justify-content-center my-5 py-5">
             <button class="btn-primary btn btn-lg" data-bs-toggle="modal" data-bs-target="#event-modal">
                 <i class="fa-solid fa-ticket me-2"></i>
-                Зарееструватись на вебінар
+                Зареєструватись на вебінар
             </button>
         </div>
 
         <section class="my-5 py-5">
             <h2 class="mb-4">Спікери</h2>
 
-            <div class="card text-bg-dark speaker mb-5">
+            <div class="card text-bg-dark speaker border-0 mb-5">
                 <div class="row g-0">
                     <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/Lilia_lazareva.png')"></div>
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <div class="card text-bg-dark speaker mb-5">
+            <div class="card text-bg-dark speaker border-0 mb-5">
                 <div class="row g-0">
                     <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/denys_vasylev.png')"></div>
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="card text-bg-dark speaker mb-5">
+            <div class="card text-bg-dark speaker border-0 mb-5">
                 <div class="row g-0">
                     <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/sergio.png')"></div>
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
@@ -129,7 +129,7 @@
         <div class="d-flex align-items-center justify-content-center my-5 pt-5">
             <button class="btn-primary btn btn-lg" data-bs-toggle="modal" data-bs-target="#event-modal">
                 <i class="fa-solid fa-ticket me-2"></i>
-                Зарееструватись на вебінар
+                Зареєструватись на вебінар
             </button>
         </div>
 
@@ -216,7 +216,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button form="register" type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>Зарееструватися</button>
+                    <button form="register" type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>Зареєструватися</button>
                 </div>
             </div>
         </div>

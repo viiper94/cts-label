@@ -12,7 +12,6 @@
 */
 
 use App\Http\Controllers\Admin\AdminArtistsController;
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminSchoolCvController;
 use App\Http\Controllers\Admin\AdminEmailingChannelsController;
 use App\Http\Controllers\Admin\AdminEmailingContactsController;

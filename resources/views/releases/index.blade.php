@@ -54,41 +54,29 @@
   "@context": "https://schema.org",
   "@type": "MusicGroup",
   "name": "CTS Records",
-  "url": "https://www.famousrecords.com/",
+  "url": "https://cts-label.com/",
   "sameAs": [
-    "https://www.facebook.com/famousrecords",
-    "https://www.twitter.com/famousrecords",
-    "https://www.instagram.com/famousrecords"
+    "https://facebook.com/CTS.Records",
+    "https://twitter.com/CTS_RECORDS",
+    "https://www.youtube.com/channel/UCudx-EMGd8zRddRAFWl7YHA"
   ],
-  "logo": "https://www.famousrecords.com/images/logo.png",
-  "image": "https://www.famousrecords.com/images/header.jpg",
-  "musicGenre": "Pop, Rock, R&B, Hip-Hop",
-  "description": "Famous Records is a leading record label, known for discovering and promoting the best talent in popular music genres.",
+  "logo": "https://cts-label.com/images/logo.png",
+  "image": "https://cts-label.com/images/logo.png",
+  "musicGenre": "House, Techno, Tech House, Indie Dance",
+  "description": "CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.",
   "album": [
-    {
-      "@type": "MusicAlbum",
-      "name": "Summer Hits",
-      "byArtist": {
-        "@type": "MusicGroup",
-        "name": "Various Artists"
-      },
-      "image": "https://www.famousrecords.com/images/albums/summerhits.jpg",
-      "genre": "Pop",
-      "releaseDate": "2022-06-01",
-      "recordLabel": "Famous Records"
-    },
-    {
-      "@type": "MusicAlbum",
-      "name": "Rockin' the Night",
-      "byArtist": {
-        "@type": "MusicGroup",
-        "name": "The Rockers"
-      },
-      "image": "https://www.famousrecords.com/images/albums/rockinthenight.jpg",
-      "genre": "Rock",
-      "releaseDate": "2022-07-15",
-      "recordLabel": "Famous Records"
-    }
+@foreach($releases->take(3) as $release)
+        {
+        "@type": "MusicAlbum",
+        "name": "{{ $release->title }}",
+        "image": "{{ url('/') }}/images/releases/{{ $release->image }}",
+        @if($release->genre) "genre": "{{ $release->genre }}",
+        @endif
+        "releaseDate": "{{ $release->release_date->format('Y-m-d') }}",
+        "recordLabel": "CTS Records"
+      }@if(!$loop->last), @endif
+
+@endforeach
   ]
 }
 </script>

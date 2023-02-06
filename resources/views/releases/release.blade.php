@@ -5,6 +5,8 @@
 @section('description', htmlspecialchars_decode(str_replace('&nbsp;', ' ', strip_tags($release['description_'.$release->detectActiveDescriptionLang()]))))
 
 @section('meta')
+    <link rel="canonical" href="https://cts-label.com/reelases/{{ $release->id }}">
+    <!-- OG Meta tags -->
     <meta property="og:locale" content="uk_UA">
     <meta property="og:type" content="music.album">
     <meta property="og:title" content="{{ $release->title }}">
@@ -13,7 +15,19 @@
     <meta property="og:url" content="{{ route('release', $release->id) }}">
     <meta property="og:site_name" content="CTS Records">
     <meta property="music:release_date" content="{{ $release->release_date->format('Y-m-d') }}">
-    <link rel="canonical" href="https://cts-label.com/reelases/{{ $release->id }}">
+    <!-- Twitter Meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $release->title }}">
+    <meta name="twitter:description" content="{!! htmlspecialchars_decode(str_replace('&nbsp;', ' ', strip_tags($release['description_'.$release->detectActiveDescriptionLang()]))) !!}">
+    <meta name="twitter:image" content="{{ url('/') }}/images/releases/{{ $release->image }}">
+    <meta name="twitter:image:alt" content="{{ $release->title }}">
+    <meta name="twitter:site" content="@CTS_RECORDS">
+    <meta name="twitter:label1" content="Release Date">
+    <meta name="twitter:data1" content="{{ $release->release_date->isoFormat('LL') }}">
+    @if($release->genre)
+        <meta name="twitter:label2" content="Genre">
+        <meta name="twitter:data2" content="{{ $release->genre }}">
+    @endif
 @endsection
 
 @section('content')

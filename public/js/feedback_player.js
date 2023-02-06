@@ -91,37 +91,33 @@ class FeedbackPlayer{
     }
 
     sendPeaks(){
-        let parent = this;
-        parent.player.exportPCM(1024, 10000, true).then(function(response){
+        this.player.exportPCM(1024, 10000, true).then(pcmData => {
+            const peaks = JSON.stringify(pcmData);
+            const csrfToken = $('meta[name="csrf-token"]').attr('content');
+            const savePeaksRoute = this.savePeaksRoute;
+            const trackId = this.trackId;
+
             $.ajax({
-                url: parent.savePeaksRoute,
-                type : 'POST',
+                url: savePeaksRoute,
+                type: 'POST',
                 cache: false,
-                dataType : 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                data: {
-                    track: parent.trackId,
-                    peaks: JSON.stringify(response)
-                }
+                dataType: 'json',
+                headers: { 'X-CSRF-TOKEN': csrfToken },
+                data: { track: trackId, peaks }
             });
         });
     }
 
     getBarClickPercent(e, el){
-        let clickedPositionPx = e.pageX - $(el).offset().left;
-        let seekBarWidth = $(el).width();
-        return clickedPositionPx/seekBarWidth *100;
+        return (e.pageX - $(el).offset().left) / $(el).width() * 100;
     }
 
     convertDuration(duration){
-        let dec = duration / 60;
-        let min = parseInt(dec);
-        if (min.toString().length === 1) min = '0' + min;
-        let sec = Math.round((dec - min)*60);
-        if (sec.toString().length === 1) sec = '0' + sec;
-        return min + ':' + sec;
+        let minutes = Math.floor(duration / 60);
+        let seconds = Math.round(duration - minutes * 60);
+        minutes = (minutes < 10) ? `0${minutes}` : minutes;
+        seconds = (seconds < 10) ? `0${seconds}` : seconds;
+        return `${minutes}:${seconds}`;
     }
 
 }

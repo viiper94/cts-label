@@ -19,7 +19,7 @@ class WebinarContactController extends Controller{
         app()->setLocale('ua');
         $this->validate($request, [
             'name' => 'string|required|max:190',
-            'email' => 'email|required|max:190',
+            'email' => 'email|required|max:190|unique:webinar_contacts,email',
             'tel' => 'string|required|max:190',
             'type' => 'string|required',
             'other' => 'string|required_if:type,інше|nullable|max:190',

@@ -17,7 +17,7 @@ class WebinarMail extends Mailable{
     public function envelope()
     {
         return new Envelope(
-            from: env('INFO_EMAIL', 'info@cts-label.com'),
+            from: new Address(env('INFO_EMAIL', 'info@cts-label.com'), 'CTS Records'),
             subject: 'Реєстрація на вебінар "Маркетинг та менеджмент артиста у кризові часи"',
         );
     }

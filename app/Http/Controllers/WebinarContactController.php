@@ -11,10 +11,12 @@ use Illuminate\Support\Facades\Mail;
 class WebinarContactController extends Controller{
 
     public function index(){
+        app()->setLocale('ua');
         return view('event.index');
     }
 
     public function store(Request $request){
+        app()->setLocale('ua');
         $this->validate($request, [
             'name' => 'string|required|max:190',
             'email' => 'email|required|max:190',

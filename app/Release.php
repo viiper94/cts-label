@@ -4,6 +4,7 @@ namespace App;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 use ZipArchive;
@@ -173,7 +174,7 @@ class Release extends SharedModel{
     }
 
     public function saveImage(UploadedFile $image){
-        $name = md5($image->getClientOriginalName().time());
+        $name = $this->id .'-'. Str::slug($this->title);
         $this->image = $name.'_500.jpg';
         $this->image_270 = $name.'_270.jpg';
         $file = Image::load($image->getPathname())->quality(75);

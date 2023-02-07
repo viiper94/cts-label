@@ -25,6 +25,8 @@ use App\Http\Controllers\Admin\AdminStudioController;
 use App\Http\Controllers\Admin\AdminTracksController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\WebinarContactController;
+use Illuminate\Support\Str;
+use Spatie\Image\Manipulations;
 
 Route::group(['middleware' => 'i18n'], function(){
 
@@ -123,6 +125,32 @@ Route::group(['middleware' => 'i18n'], function(){
 
         });
 
-    });
+        Route::get('/releases/images', function(){
+            ini_set('max_execution_time', 999);
+            foreach(\App\Release::all() as $release){
 
+                $old_image = public_path('/images/releases/').$release->image;
+                $old_image_270 = public_path('/images/releases/').$release->image_270;
+
+                $name = $release->id .'-'. Str::slug($release->title);
+
+                $release->image = $name.'_500.jpg';
+                $release->image_270 = $name.'_270.jpg';
+
+                $file = \Spatie\Image\Image::load($old_image)->quality(75);
+                $file->format(Manipulations::FORMAT_JPG)->width(270)->save(public_path('images/releases/').$release->image_270);
+                $file->format(Manipulations::FORMAT_JPG)->width(500)->save(public_path('images/releases/').$release->image);
+
+                if(file_exists($old_image) && is_file($old_image)){
+                    unlink($old_image);
+                }
+                if(file_exists($old_image_270) && is_file($old_image_270)){
+                    unlink($old_image_270);
+                }
+
+                $release->save();
+
+            }
+        });
+    });
 });

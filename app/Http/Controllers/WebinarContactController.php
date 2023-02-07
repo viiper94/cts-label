@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\EmailingContact;
+use App\Mail\WebinarMail;
 use App\WebinarContact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class WebinarContactController extends Controller{
 
@@ -29,9 +31,13 @@ class WebinarContactController extends Controller{
                 $emailing_contact = EmailingContact::create([
                     'email' => $contact->email,
                     'name' => $contact->name,
+                    'position' => $contact->type === 'інше' ? $contact->other : $contact->type
                 ]);
             }
             $emailing_contact->channels()->attach(12);
+
+            Mail::to($contact->email)->send(new WebinarMail($contact));
+
             return redirect()->route('event')->with(['success' => 'Ви успішно зарееструвались на вебінар!']);
         }else{
             return redirect()->back()->withErrors(['Виникла помилка, спробуйте трохи пізніше =(']);

@@ -207,3 +207,27 @@
     </div>
 
 @endsection
+
+@section('json-ld')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Cтудія звукозапису CTS Studio",
+          "url" : "https://cts-label.com/studio.html",
+          "logo": "https://cts-label.com/images/cts-studio-y.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kyiv",
+            "addressCountry": "Ukraine",
+            "streetAddress": "Bessarabska Square, 4",
+            "postalCode": "01001"
+          },
+          "sameAs": [
+            "https://www.facebook.com/groups/161704380617200"
+          ],
+          "telephone": "+38-098-685-40-33",
+          "email": "info@cts-label.com"
+        }
+    </script>
+@endsection

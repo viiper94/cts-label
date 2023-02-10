@@ -49,24 +49,6 @@
 
 @section('content')
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Курси звукорежисури і аранжування CTSchool",
-      "url" : "https://cts-label.com/ctschool.html",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Kyiv, Ukraine",
-        "streetAddress": "Бессарабська площа, 4,"
-      },
-      "email": "info(at)cts-label.com",
-
-     "telephone": "+38 098 685 40 33"
-
-    }
-    </script>
-
     <div class="school">
         <div class="school-header py-5">
             <div class="container d-flex flex-column flex-md-row justify-content-end align-items-end align-items-md-center py-3">
@@ -329,4 +311,28 @@
         </div>
     </div>
 
+@endsection
+
+@section('json-ld')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "MusicSchool",
+          "name": "Курси звукорежисури і аранжування CTSchool",
+          "url" : "https://cts-label.com/ctschool.html",
+          "logo": "https://cts-label.com/images/cts-school-y.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kyiv",
+            "addressCountry": "Ukraine",
+            "streetAddress": "Bessarabska Square, 4",
+            "postalCode": "01001"
+          },
+          "sameAs": [
+            "https://www.facebook.com/groups/161704380617200"
+          ],
+          "telephone": "+38-098-685-40-33",
+          "email": "info@cts-label.com"
+        }
+    </script>
 @endsection

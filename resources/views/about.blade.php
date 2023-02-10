@@ -91,12 +91,8 @@
             "https://twitter.com/CTS_RECORDS",
             "https://www.youtube.com/channel/UCudx-EMGd8zRddRAFWl7YHA"
           ],
-          "contactPoint": [{
-            "@type": "ContactPoint",
-            "telephone": "+38-098-685-40-33",
-            "contactType": "customer service",
-            "email": "info@cts-label.com"
-          }]
+          "telephone": "+38-098-685-40-33",
+          "email": "info@cts-label.com"
         }
     </script>
 @endsection

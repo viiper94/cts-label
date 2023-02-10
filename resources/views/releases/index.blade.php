@@ -32,7 +32,7 @@
 @endsection
 
 @section('meta')
-    <link rel="canonical" href="https://cts-label.com">
+    <link rel="canonical" @if(Request::input('page'))href="https://cts-label.com/?page={{ Request::input('page') }}" @else href="https://cts-label.com" @endif>
     <!-- OG Meta tags -->
     <meta property="og:title" content="CTS Records">
     <meta property="og:type" content="music.record_label">

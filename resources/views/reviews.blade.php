@@ -6,6 +6,10 @@
     CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.
 @endsection
 
+@section('meta')
+    <link rel="canonical" @if(Request::input('page'))href="https://cts-label.com/reviews?page={{ Request::input('page') }}" @else href="https://cts-label.com/reviews" @endif>
+@endsection
+
 @section('content')
     <div class="container reviews pt-3">
         <div class="row">

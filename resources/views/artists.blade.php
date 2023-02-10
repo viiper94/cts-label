@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('title', 'CTS Studio Artists')
+@section('title', 'CTS Records Artists')
 
 @section('description', 'CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.')
 

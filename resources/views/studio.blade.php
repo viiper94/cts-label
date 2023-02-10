@@ -31,22 +31,6 @@
 
 @section('content')
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Cтудія звукозапису CTS Records",
-      "url" : "https://cts-label.com/studio.html",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Kyiv, Ukraine",
-        "streetAddress": "Бессарабська площа, 4,"
-      },
-      "email": "info(at)cts-label.com",
-      "telephone": "+38 098 685 40 33"
-    }
-    </script>
-
     <div class="studio">
         <div class="studio-header py-5">
             <div class="container py-3">

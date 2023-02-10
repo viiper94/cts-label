@@ -16,24 +16,6 @@
 
 @section('content')
 
-    <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "CTS Label",
-          "url" : "https://www.cts-label.com",
-          "logo": "https://www.cts-label.com/images/logo.png",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Kyiv, Ukraine",
-            "streetAddress": "Бессарабська площа, 4,"
-          },
-          "email": "info(at)cts-label.com",
-
-         "telephone": "+38 098 685 40 33"
-        }
-    </script>
-
     <div class="container about pt-3">
         <div class="row">
             <section class="col pe-5">
@@ -89,4 +71,34 @@
             @include('layout.aside')
         </div>
     </div>
+@endsection
+
+@section('json-ld')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "CTS Records",
+          "url" : "https://cts-label.com",
+          "logo": "https://cts-label.com/images/logo.png",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kyiv",
+            "addressCountry": "Ukraine",
+            "streetAddress": "Bessarabska Square, 4",
+            "postalCode": "01001"
+          },
+          "sameAs": [
+            "https://facebook.com/CTS.Records",
+            "https://twitter.com/CTS_RECORDS",
+            "https://www.youtube.com/channel/UCudx-EMGd8zRddRAFWl7YHA"
+          ],
+          "contactPoint": [{
+            "@type": "ContactPoint",
+            "telephone": "+38-098-685-40-33",
+            "contactType": "customer service",
+            "email": "info@cts-label.com"
+          }]
+        }
+    </script>
 @endsection

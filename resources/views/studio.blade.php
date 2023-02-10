@@ -16,9 +16,7 @@
     professional mixing and mastering, quality mixing and mastering in Kiev
 @endsection
 
-@section('description')
-    CTS Studio - студія звукозапису незалежного рекорд-лейблу CTS Record, послуги накопичення і виробництва фонограм, якісне зведення та мастеринг в Києві
-@endsection
+@section('description', 'CTS Studio - студія звукозапису незалежного рекорд-лейблу CTS Record, послуги накопичення і виробництва фонограм, якісне зведення та мастеринг в Києві')
 
 @section('meta')
     <meta property="og:locale" content="uk_UA">

@@ -2,9 +2,7 @@
 
 @section('title', 'CTS Studio Artists')
 
-@section('description')
-    CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.
-@endsection
+@section('description', 'CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.')
 
 @section('meta')
     <link rel="canonical" @if(Request::input('page'))href="https://cts-label.com/artists?page={{ Request::input('page') }}" @else href="https://cts-label.com/artists" @endif>

@@ -37,16 +37,8 @@
                     <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/Lilia_lazareva.png')"></div>
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
                         <h5 class="card-title">ЛІЛІЯ ЛАЗАРЄВА</h5>
-                        <p class="flex-grow-1">Арт менеджерка, співзасновниця рекорд лейблу та студії звукозапису CTS Records,
+                        <p>Арт менеджерка, співзасновниця рекорд лейблу та студії звукозапису CTS Records,
                             лекторка, експертка сфери музичного маркетингу та менеджменту.</p>
-                        <div class="btns">
-                            <a href="#" class="btn btn-outline">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -56,18 +48,10 @@
                     <div class="col-4 col-md-3 bg-img" style="background-image: url('/images/event/denys_vasylev.png')"></div>
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
                         <h5 class="card-title">ДЕНИС ВАСИЛЬЄВ</h5>
-                        <p class="flex-grow-1">Музикант, автор композитор Performing Right Society (PRS) UK. Лауреат
+                        <p>Музикант, автор композитор Performing Right Society (PRS) UK. Лауреат
                             першої премії фестивалю «Червона Рута» 2017 року в жанрі інструментальний фольклор. Продюсер
                             музичного проєкту “Barabanza” (Гурт /Школа /Музей). Арт директор міжнародної музичної
                             резиденції SoundArtSpace. Експерт проєктів EU4Culture/House of Europe.</p>
-                        <div class="btns">
-                            <a href="#" class="btn btn-outline">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -78,17 +62,9 @@
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
                         <h5 class="card-title">СЕРГІЙ ЛАЗАРЄВ a.k.a. SERGIO MEGA</h5>
                         <p><i>модератор вебінару</i></p>
-                        <p class="flex-grow-1">Музикант, композитор, продюсер, експерт мистецьких і культурних проектів,
+                        <p>Музикант, композитор, продюсер, експерт мистецьких і культурних проектів,
                             співзасновник лейблу та студії звукозапису CTS Records, кандидат мистецтвознавства,
                             доцент кафедри кіно-, телемистецтва КНУКіМ.</p>
-                        <div class="btns">
-                            <a href="#" class="btn btn-outline">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -216,7 +192,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button form="register" type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>Зареєструватися</button>
+                    <button form="register" type="submit" class="btn btn-primary"><i class="fa-solid fa-check me-2"></i>Зареєструватись</button>
                 </div>
             </div>
         </div>

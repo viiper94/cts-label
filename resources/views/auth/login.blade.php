@@ -33,6 +33,13 @@
                     <a href="{{ route('password.request') }}" class="py-2 d-inline-block">@lang('user.forgot_password')</a>
                 </div>
             </div>
+{{--            <h5 class="my-4 text-center text-muted">OR</h5>--}}
+{{--            <div class="d-flex justify-content-center">--}}
+{{--                <a href="{{ route('auth.google') }}" class="btn btn-lg btn-outline">--}}
+{{--                    <i class="fa-brands fa-google me-2"></i>Login with Google--}}
+{{--                </a>--}}
+{{--            </div>--}}
         </form>
+
     </div>
 @endsection

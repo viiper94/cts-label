@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -36,4 +37,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function redirectToGoogle(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback(){
+        $user = Socialite::driver('google')->user();
+
+        dd($user->getName());
+
+        // Here you can use the user's information to log them in, create a new account, etc.
+
+        return redirect('/');
+    }
+
 }

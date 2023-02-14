@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminSchoolTeachersController;
 use App\Http\Controllers\Admin\AdminStudioController;
 use App\Http\Controllers\Admin\AdminTracksController;
 use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\WebinarContactController;
 use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
@@ -31,9 +32,8 @@ use Spatie\Image\Manipulations;
 Route::group(['middleware' => 'i18n'], function(){
 
     Auth::routes();
-    Route::get('auth/facebook', 'Auth\LoginController@redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/google', 'Auth\LoginController@redirectToGoogle')->name('auth.google');
-    Route::get('auth/google/handle', 'Auth\LoginController@handleGoogleCallback');
+    Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
     Route::get('/', 'ReleasesController@index')->name('home');
     Route::get('/search', 'ReleasesController@index')->name('search');

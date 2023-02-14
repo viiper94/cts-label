@@ -59,7 +59,8 @@ Route::group(['middleware' => 'i18n'], function(){
             return redirect()->route('releases.index');
         })->name('admin');
 
-        Route::resource('/users', AdminUsersController::class)->only(['index', 'destroy']);
+        Route::get('/users', [AdminUsersController::class, 'index'])->name('users.index');
+        Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('users.destroy');
 
         Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
         Route::get('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');

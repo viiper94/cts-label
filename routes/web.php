@@ -118,6 +118,7 @@ Route::group(['middleware' => 'i18n'], function(){
             Route::post('/channels/stop', [AdminEmailingChannelsController::class, 'stop'])->name('channels.stop');
             Route::resource('/channels', AdminEmailingChannelsController::class)->except(['show']);
 
+            Route::get('/contacts/import', [AdminEmailingContactsController::class, 'import'])->name('contacts.import');
             Route::resource('/contacts', AdminEmailingContactsController::class)->except(['show']);
 
             Route::delete('/queue/clear', [AdminEmailingQueueController::class, 'clear'])->name('queue.clear');

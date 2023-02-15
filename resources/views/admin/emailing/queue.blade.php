@@ -20,6 +20,9 @@
             {{ $queue->appends(Request::input())->links('admin.layout.pagination') }}
         </div>
         <div class="table-responsive" data-fl-scrolls>
+            @if($queue_sent !== $queue_count)
+                <p class="text-muted mb-0">До завершения рассылки: {{ \App\EmailingQueue::getEta($queue_count - $queue_sent) }}</p>
+            @endif
             @if($queue_count > 0)
                 <div class="progress bg-dark mb-0">
                     <div @class([

@@ -61,4 +61,17 @@ class EmailingQueue extends Model{
         return true;
     }
 
+    public static function getEta($numEmailsInQueue) :string{
+        $rate = 4; // assumed sending rate of 4 emails per minute
+        $minutes = ceil($numEmailsInQueue / $rate); // calculate number of minutes needed to send all emails
+        $hours = floor($minutes / 60); // calculate number of hours needed to send all emails
+        $minutes = $minutes % 60; // calculate number of remaining minutes
+        $eta = '';
+        if ($hours > 0) {
+            $eta .= $hours . ' ч ';
+        }
+        $eta .= $minutes . ' минут'; // format ETA string
+        return $eta;
+    }
+
 }

@@ -36,7 +36,11 @@
                         <td>{{ $channel->from ?? env('EMAIL_FROM') }}</td>
                         <td>{{ $channel->description }}</td>
                         <td>{{ strtoupper($channel->lang) }}</td>
-                        <td>{{ $channel->subscribers_count }}</td>
+                        <td>
+                            <a href="{{ route('emailing.contacts.index', ['channel' => $channel->id]) }}" class="text-decoration-none">
+                                {{ $channel->subscribers_count }}
+                            </a>
+                        </td>
                         <td>{{ $channel->created_at->isoFormat('LLL') }}</td>
                         <td>
                             <a class="btn btn-sm btn-outline-warning" href="{{ route('emailing.channels.edit', $channel->id) }}">

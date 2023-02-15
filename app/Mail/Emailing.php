@@ -4,6 +4,9 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Crypt;
 
@@ -13,13 +16,21 @@ class Emailing extends Mailable{
 
     public function __construct(public $mail){}
 
-    public function build(){
-        return $this->from($this->mail->from, 'CTS Records')
-                    ->subject($this->getSubject())
-                    ->view($this->getView(), [
-                        'name' => $this->mail->name,
-                        'hash' => $this->getHash()
-                    ]);
+    public function envelope(){
+        return new Envelope(
+            from: new Address($this->mail->from, 'CTS Records'),
+            subject: $this->getSubject()
+        );
+    }
+
+    public function content(){
+        return new Content(
+            markdown: $this->getView(),
+            with: [
+                'name' => $this->mail->name,
+                'hash' => $this->getHash()
+            ]
+        );
     }
 
     private function getSubject() :string{

@@ -59,6 +59,9 @@ Route::group(['middleware' => 'i18n'], function(){
             return redirect()->route('releases.index');
         })->name('admin');
 
+        Route::get('/event', [WebinarContactController::class, 'admin'])->name('event.index');
+        Route::delete('/event/{contact}', [WebinarContactController::class, 'destroy'])->name('event.destroy');
+
         Route::get('/users', [AdminUsersController::class, 'index'])->name('users.index');
         Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('users.destroy');
 

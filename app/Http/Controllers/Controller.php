@@ -51,7 +51,7 @@ class Controller extends BaseController{
         }
 
         $channel = EmailingChannel::whereId($decrypted['channel_id'])->firstOrFail();
-        App::setLocale($_COOKIE['lang'] ?? $channel->lang);
+        App::setLocale($channel->lang);
 
         if($request->post()){
             if($request->input('type') === 'all'){

@@ -76,7 +76,7 @@
                             <form action="{{ route('emailing.queue.destroy', $item->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Удалить из очереди рассылки?')">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Удалить из очереди рассылки?')">
                                     <i class="fa-solid fa-xmark"></i>
                                 </button>
                             </form>

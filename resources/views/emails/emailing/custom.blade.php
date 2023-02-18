@@ -29,7 +29,7 @@
 *Реєстрація до участі обов'язкова. <br>
 Процес реєстрації дуже простий і не забере більше ніж дві хвилини.
 
-<x-mail::button :url="'https://cts-label.com/event/marketing-and-management'">
+<x-mail::button :url="route('event')">
     ЗАРЕЄСТРУВАТИСЬ НА ВЕБІНАР
 </x-mail::button>
 

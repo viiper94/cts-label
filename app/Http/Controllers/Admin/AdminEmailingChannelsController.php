@@ -78,7 +78,7 @@ class AdminEmailingChannelsController extends Controller{
                 redirect()->route('emailing.channels.index')->with(['success' => 'Рассылка остановлена!']) :
                 redirect()->back()->withErrors(['Возникла ошибка =(']);
         }
-        return abort(403);
+        abort(403);
     }
 
     public function start(Request $request){
@@ -89,6 +89,7 @@ class AdminEmailingChannelsController extends Controller{
                 $mail = EmailingQueue::create([
                     'channel_id' => $channel->id,
                     'data' => [
+                        'unsubscribe' => true,
                         'template' => 'custom'
                     ],
                     'subject' => $channel->subject,

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Mail\Emailing;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Mailer\Exception\TransportException;
 
@@ -42,6 +43,7 @@ class EmailingQueue extends Model{
         $in_queue = EmailingQueue::with('channel', 'recipient', 'feedback', 'feedback.release', 'feedback.related')
             ->whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
         foreach($in_queue as $mail){
+            App::setLocale($mail->channel->lang);
             if(!isset($mail->data['template'])) continue;
             try{
                 Mail::to($mail->to)->send(new Emailing($mail));

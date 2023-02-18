@@ -70,6 +70,9 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('event.index') }}" @class(['nav-link', 'active' => \Route::is('event.*')])><i class="bi bi-webcam-fill me-2"></i>Вебинар</a>
+            </li>
         </ul>
         <hr>
         <a href="{{ route('home') }}" class="text-decoration-none fw-bold"><i class="fa-solid fa-house me-2"></i>Вернуться на сайт</a>

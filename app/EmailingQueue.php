@@ -74,7 +74,7 @@ class EmailingQueue extends Model{
         if ($hours > 0) {
             $eta .= $hours . ' ч ';
         }
-        $eta .= $minutes . ' минут'; // format ETA string
+        $eta .= $minutes . ' мин'; // format ETA string
         return $eta;
     }
 

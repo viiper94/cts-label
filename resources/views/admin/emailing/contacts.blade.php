@@ -8,10 +8,26 @@
 
     <div class="container-fluid emailing">
         <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
-            <div class="releases-actions">
+            <div class="releases-actions d-flex gap-2">
                 <a href="{{ route('emailing.contacts.create') }}" class="btn btn-primary m-xl-0 m-1">
                     <i class="fa-solid fa-plus me-2"></i>Новый контакт
                 </a>
+                <div class="dropdown text-center">
+                    <button class="btn btn-outline dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown">
+                        @if(Request::input('channel')){{ $selected_channel }}@elseФильтровать по каналам@endif
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        @foreach($channels as $item)
+                            <li>
+                                <a href="{{ route('emailing.contacts.index', ['channel' => $item->id]) }}" class="dropdown-item">
+                                    {{ $item->title }}
+                                </a>
+                            </li>
+                        @endforeach
+                        <li><a href="{{ route('emailing.contacts.index') }}" class="dropdown-item">Все каналы</a></li>
+                    </ul>
+                </div>
             </div>
             {{ $contacts->appends(Request::input())->links('admin.layout.pagination') }}
         </div>
@@ -50,24 +66,7 @@
                             @endif
                         </th>
                     @endforeach
-                    <th style="overflow: visible">
-                        <div class="dropdown text-center">
-                            <button class="btn btn-sm btn-outline dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown">
-                                @if(Request::input('channel')){{ $selected_channel }}@elseКаналы@endif
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                @foreach($channels as $item)
-                                    <li>
-                                        <a href="{{ route('emailing.contacts.index', ['channel' => $item->id]) }}" class="dropdown-item">
-                                            {{ $item->title }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                                <li><a href="{{ route('emailing.contacts.index') }}" class="dropdown-item">Все каналы</a></li>
-                            </ul>
-                        </div>
-                    </th>
+                    <th class="text-center">Канал(ы)</th>
                     <th></th>
                 </tr>
                 </thead>

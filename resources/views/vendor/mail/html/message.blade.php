@@ -1,3 +1,5 @@
+@props(['hash' => null])
+
 <x-mail::layout>
 {{-- Header --}}
 <x-slot:header>
@@ -21,7 +23,11 @@
 {{-- Footer --}}
 <x-slot:footer>
 <x-mail::footer>
-© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+@if($hash)
+<a href="{{ route('unsubscribe', $hash) }}" target="_blank">@lang('emailing.unsubscribe.unsubscribe_from_letters')</a>
+@endif
+
+© {{ date('Y') }} {{ config('app.name') }}. @lang('footer.copyright')
 </x-mail::footer>
 </x-slot:footer>
 </x-mail::layout>

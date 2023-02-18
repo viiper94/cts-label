@@ -52,13 +52,15 @@
                 <tbody>
                 @foreach($queue as $item)
                     <tr @class([
-                            'text-danger' => $item->error_code,
+                            'text-danger' => $item->error_code !== null && $item->sent,
+                            'text-warning' => $item->error_code !== null && !$item->sent,
                             'text-success' => !$item->error_code && $item->sent,
                         ])>
                         <td>
                             <i @class([
                                 'fa-solid',
-                                'fa-triangle-exclamation text-danger' => $item->error_code,
+                                'fa-triangle-exclamation text-danger' => $item->error_code !== null && $item->sent,
+                                'fa-triangle-exclamation text-warning' => $item->error_code !== null && !$item->sent,
                                 'fa-check text-success' => !$item->error_code && $item->sent,
                                 'fa-hourglass-half text-info' => !$item->sent
                                 ]) aria-hidden='true'></i>

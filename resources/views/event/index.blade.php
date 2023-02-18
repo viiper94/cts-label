@@ -15,9 +15,9 @@
         <div class="row mb-5 py-5">
             <h2 class="mb-4">Про вебінар</h2>
             <p class="mb-5 mx-auto" style="max-width: 800px">Цей вебінар спрямований на розширення можливостей музикантів та артистів,
-                які продовжують свою творчу діяльність під час війни. Проект «Маркетинг і менеджмент артиста в кризові часи»
+                які продовжують свою творчу діяльність під час війни. Проєкт «Маркетинг і менеджмент артиста в кризові часи»
                 призваний допомогти українським митцям втілити свої творчі проекти та знайти додаткові джерела фінансування під час війни.
-                Вебінар буде цікавий також звукорежисерам, музичним менеджерам, арт-менеджерам та іншим діячам творчої сфери з
+                Вебінар буде цікавий також звукорежисерам, музичним менеджерам, артменеджерам та іншим діячам творчої сфери з
                 питань промоції та монетизації музичних творів. Подія проходить за підтримки Goethe-Institut.
                 Спікери поділяться з аудиторією власним досвідом та вже реалізованими кейсами та дадуть відповіді на питання.</p>
             <p class="mx-auto" style="max-width: 800px">
@@ -67,7 +67,7 @@
                     <div class="col-8 col-md-9 card-body d-flex flex-column">
                         <h5 class="card-title">СЕРГІЙ ЛАЗАРЄВ a.k.a. SERGIO MEGA</h5>
                         <p><i>модератор вебінару</i></p>
-                        <p>Музикант, композитор, продюсер, експерт мистецьких і культурних проектів,
+                        <p>Музикант, композитор, продюсер, експерт мистецьких і культурних проєктів,
                             співзасновник лейблу та студії звукозапису CTS Records, кандидат мистецтвознавства,
                             доцент кафедри кіно-, телемистецтва КНУКіМ.</p>
                     </div>
@@ -107,11 +107,17 @@
             </div>
         </div>
 
-        <div class="d-flex align-items-center justify-content-center my-5 pt-5">
+        <div class="d-flex align-items-center justify-content-center my-5 py-5">
             <button class="btn-primary btn btn-lg" data-bs-toggle="modal" data-bs-target="#event-modal">
                 <i class="fa-solid fa-ticket me-2"></i>
                 Зареєструватись на вебінар
             </button>
+        </div>
+
+        <div class="row my-5 pt-5 text-center">
+            <h2 class="mb-5">Зворотній зв'язок</h2>
+            <p class="fs-5"><i class="fa-solid fa-phone me-3"></i>+380 (67) 466-75-13</p>
+            <p class="fs-5"><i class="fa-brands fa-telegram me-3"></i><a class="text-decoration-none text-light" href="https://t.me/Lilia_Lazareva" target="_blank">@Lilia_Lazareva</a></p>
         </div>
 
     </div>
@@ -120,7 +126,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title fs-5" id="modalLabel">Реестрація на вебінар</h3>
+                    <h3 class="modal-title fs-5" id="modalLabel">Реєстрація на вебінар</h3>
                     <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="modal-body">

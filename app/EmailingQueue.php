@@ -39,7 +39,8 @@ class EmailingQueue extends Model{
     }
 
     public static function send(){
-        $in_queue = EmailingQueue::with('feedback', 'feedback.release', 'feedback.related')->whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
+        $in_queue = EmailingQueue::with('channel', 'recipient', 'feedback', 'feedback.release', 'feedback.related')
+            ->whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
         foreach($in_queue as $mail){
             if(!isset($mail->data['template'])) continue;
             try{

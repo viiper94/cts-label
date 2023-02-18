@@ -23,7 +23,7 @@ class AdminTracksController extends Controller{
             $tracks = $tracks->orderBy($request->input('sort'), ($request->input('dir') === 'down') ? 'desc' : 'asc');
         }
         return view('admin.tracks.index', [
-            'tracks' => $tracks->orderBy('isrc', 'desc')->orderBy('beatport_id', 'desc')->paginate(30)
+            'tracks' => $tracks->latest()->paginate(30)
         ]);
     }
 

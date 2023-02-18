@@ -15,6 +15,21 @@ class WebinarContactController extends Controller{
         return view('event.index');
     }
 
+    public function admin(Request $request){
+        return view('admin.event.index', [
+            'contacts' => WebinarContact::latest()->paginate(30),
+            'total' => WebinarContact::count(),
+            'sort' => $request->input('sort'),
+            'dir' => $request->input('dir'),
+        ]);
+    }
+
+    public function destroy(WebinarContact $contact){
+        return $contact->delete()
+            ? redirect()->back()->with(['success' => 'Удалено!'])
+            : redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
     public function store(Request $request){
         app()->setLocale('ua');
         $this->validate($request, [
@@ -40,7 +55,7 @@ class WebinarContactController extends Controller{
 
             Mail::to($contact->email)->send(new WebinarMail($contact));
 
-            return redirect()->route('event')->with(['success' => 'Ви успішно зарееструвались на вебінар!']);
+            return redirect()->route('event')->with(['success' => 'Ви успішно зареєструвались на вебінар!']);
         }else{
             return redirect()->back()->withErrors(['Виникла помилка, спробуйте трохи пізніше =(']);
         }

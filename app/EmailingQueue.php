@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Mail\Emailing;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
@@ -51,7 +52,7 @@ class EmailingQueue extends Model{
                 $mail->error_message = null;
                 $mail->sent = true;
                 $mail->save();
-            }catch(TransportException $e){
+            }catch(Exception $e){
                 if($mail->sort === '1'){
                     $mail->sent = true;
                 }

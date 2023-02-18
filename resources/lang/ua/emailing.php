@@ -8,6 +8,7 @@ return [
         'unsubscribe_current' => 'Відписатись від поточної розсилки',
         'unsubscribe_all' => 'Відписатись від усіх розсилок',
         'unsubscribe' => 'Відписатись',
+        'unsubscribe_from_letters' => 'Відмовитись від листів',
         'you_unsubscribed' => 'Ви успішно відписались!',
     ]
 ];

@@ -8,6 +8,7 @@ return [
         'unsubscribe_current' => 'Unsubscribe from current mailing list',
         'unsubscribe_all' => 'Unsubscribe completely',
         'unsubscribe' => 'Unsubscribe',
+        'unsubscribe_from_letters' => 'Unsubscribe from emails',
         'you_unsubscribed' => 'You have been unsubscribed successfully!',
     ]
 ];

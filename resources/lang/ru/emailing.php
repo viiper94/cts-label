@@ -8,6 +8,7 @@ return [
         'unsubscribe_current' => 'Отписаться от текущей рассылки',
         'unsubscribe_all' => 'Отписаться от всех рассылок',
         'unsubscribe' => 'Отписаться',
+        'unsubscribe_from_letters' => 'Отказаться от писем',
         'you_unsubscribed' => 'Вы успешно отписались!',
     ]
 ];

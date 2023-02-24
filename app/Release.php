@@ -11,19 +11,13 @@ use ZipArchive;
 
 class Release extends SharedModel{
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-        'release_date'
-    ];
-
     protected $casts = [
         'visible' => 'boolean',
         'tracklist_show_artist' => 'boolean',
         'tracklist_show_title' => 'boolean',
         'tracklist_show_mix' => 'boolean',
         'tracklist_show_custom' => 'boolean',
+        'release_date' => 'datetime',
     ];
 
     protected $fillable = [

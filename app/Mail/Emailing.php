@@ -45,7 +45,7 @@ class Emailing extends Mailable{
     private function getSubject() :string{
         if($this->mail->template === 'feedback'){
             $subject = $this->mail->feedback->feedback_title;
-            if($this->mail->feedback->release->genre) $subject .= '. Genre: '.$this->mail->feedback->release->genre;
+            if($this->mail->feedback->release?->genre) $subject .= '. Genre: '.$this->mail->feedback->release->genre;
             $subject .= '. Download & feedback!';
         }
         return $subject ?? $this->mail->subject;

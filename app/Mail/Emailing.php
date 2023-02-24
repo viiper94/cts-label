@@ -43,7 +43,7 @@ class Emailing extends Mailable{
     }
 
     private function getSubject() :string{
-        if(isset($this->mail->data['template']) && $this->mail->data['template'] === 'feedback'){
+        if($this->mail->template === 'feedback'){
             $subject = $this->mail->feedback->feedback_title;
             if($this->mail->feedback->release->genre) $subject .= '. Genre: '.$this->mail->feedback->release->genre;
             $subject .= '. Download & feedback!';
@@ -52,7 +52,7 @@ class Emailing extends Mailable{
     }
 
     private function getHash() :string{
-        return isset($this->mail->data['unsubscribe']) && $this->mail->data['unsubscribe'] ?
+        return $this->mail->unsubscribe ?
             Crypt::encryptString(json_encode([
                 'email' => $this->mail->to,
                 'from' => $this->mail->from,
@@ -62,7 +62,7 @@ class Emailing extends Mailable{
     }
 
     private function getView() :string{
-        return 'emails.emailing.'.$this->mail->data['template'];
+        return 'emails.emailing.'.$this->mail->template;
     }
 
 }

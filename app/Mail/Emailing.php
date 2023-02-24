@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
@@ -31,6 +32,14 @@ class Emailing extends Mailable{
                 'hash' => $this->getHash()
             ]
         );
+    }
+
+    public function attachments(){
+        return [
+//            Attachment::fromPath(public_path('webinar/Showcase-Festivals.pdf'))
+//                ->as('Showcase-Festivals.pdf')
+//                ->withMime('application/pdf')
+        ];
     }
 
     private function getSubject() :string{

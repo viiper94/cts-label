@@ -19,7 +19,7 @@ return [
     ],
     'required' => 'Поле :attribute є обов\'язкове.',
     'required_if' => 'Поле :attribute є обов\'язкове якщо обрано :value.',
-    'string' => 'Поле :attribute повинно бути тестовим рядком.',
+    'string' => 'Поле :attribute повинно бути текстовим рядком.',
     'unique' => 'Такий :attribute вже зареєстрований.',
 
     /*

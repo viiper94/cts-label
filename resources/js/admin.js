@@ -11,3 +11,4 @@ require('./admin/feedback.js');
 require('./admin/releases.js');
 require('./admin/reviews.js');
 require('./admin/studio_school.js');
+require('./admin/emailing.js');

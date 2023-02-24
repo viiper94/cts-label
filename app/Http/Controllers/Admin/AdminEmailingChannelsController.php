@@ -86,7 +86,7 @@ class AdminEmailingChannelsController extends Controller{
             $this->validate($request, ['id' => 'required|numeric']);
             $channel = EmailingChannel::with('subscribers')->findOrFail($request->post('id'));
             foreach($channel->subscribers as $contact){
-                $mail = EmailingQueue::create([
+                EmailingQueue::create([
                     'channel_id' => $channel->id,
                     'data' => [
                         'unsubscribe' => true,
@@ -97,11 +97,29 @@ class AdminEmailingChannelsController extends Controller{
                     'name' => $contact->name,
                     'to' => $contact->email,
                 ]);
-//                Mail::to($contact->email)->send(new Emailing($mail)); // for test only
             }
             return redirect()->back()->with(['success' => 'Рассылка запущена!']);
         }
         abort(403);
+    }
+
+    public function startTest(Request $request){
+        $this->validate($request, ['channel' => 'required|numeric']);
+        $channel = EmailingChannel::findOrFail($request->channel);
+        foreach($request->test_emails as $name => $email){
+            EmailingQueue::create([
+                'channel_id' => $channel->id,
+                'data' => [
+                    'unsubscribe' => true,
+                    'template' => 'custom'
+                ],
+                'subject' => $channel->subject,
+                'from' => $channel->from ?? env('EMAIL_FROM'),
+                'name' => $name,
+                'to' => $email,
+            ]);
+        }
+        return redirect()->back()->with(['success' => 'Тестовая рассылка запущена!']);
     }
 
 }

@@ -158,10 +158,8 @@ class AdminFeedbackController extends Controller{
             foreach($contacts as $contact){
                 $mail = EmailingQueue::create([
                     'channel_id' => $contact->channels[0]->id,
-                    'data' => [
-                        'template' => 'feedback',
-                        'unsubscribe' => true
-                    ],
+                    'unsubscribe' => true,
+                    'template' => 'feedback',
                     'feedback_id' => $request->id,
                     'subject' => $contact->channels[0]->subject,
                     'from' => $contact->channels[0]->from ?? env('EMAIL_FROM'),

@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::table('email_channels', function (Blueprint $table) {
             $table->boolean('unsubscribe')->default(1);
         });
+        Schema::table('email_queue', function (Blueprint $table) {
+            $table->boolean('unsubscribe')->nullable();
+            $table->string('template')->nullable();
+        });
     }
 
     /**
@@ -27,6 +31,10 @@ return new class extends Migration
     {
         Schema::table('email_channels', function (Blueprint $table) {
             $table->dropColumn('unsubscribe');
+        });
+        Schema::table('email_queue', function (Blueprint $table) {
+            $table->dropColumn('unsubscribe');
+            $table->dropColumn('template');
         });
     }
 };

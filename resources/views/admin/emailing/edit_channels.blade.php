@@ -62,6 +62,11 @@
                     <p class="help-block">{{ $message }}</p>
                 @enderror
             </div>
+            <div class="form-check mb-3">
+                <input type="hidden" name="unsubscribe" value="0">
+                <input type="checkbox" name="unsubscribe" id="unsubscribe" class="form-check-input" value="1" @checked(!$channel->id || $channel->unsubscribe)>
+                <label for="unsubscribe" class="form-check-label">Добавлять кнопку <b>Отписаться</b></label>
+            </div>
             <div class="form-group mb-3">
                 <label for="description" class="form-label">Описание</label><br>
                 <textarea name="description" id="description" rows="3" class="form-control form-dark">{{ old('description') ?? $channel->description }}</textarea>

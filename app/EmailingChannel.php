@@ -9,7 +9,19 @@ class EmailingChannel extends Model{
 
     protected $table = 'email_channels';
 
-    protected $fillable = ['title', 'description', 'from', 'subject', 'template', 'lang'];
+    protected $fillable = [
+        'title',
+        'description',
+        'from',
+        'subject',
+        'template',
+        'lang',
+        'unsubscribe'
+    ];
+
+    protected $casts = [
+        'unsubscribe' => 'boolean'
+    ];
 
     public function subscribers(){
         return $this->belongsToMany('App\EmailingContact', 'email_channels_contacts', 'channel_id', 'contact_id');

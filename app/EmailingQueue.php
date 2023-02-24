@@ -21,9 +21,12 @@ class EmailingQueue extends Model{
         'name',
         'data',
         'feedback_id',
+        'unsubscribe',
+        'template',
     ];
 
     protected $casts = [
+        'unsubscribe' => 'boolean',
         'sent' => 'boolean',
         'data' => 'array',
     ];

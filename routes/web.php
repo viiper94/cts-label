@@ -50,9 +50,6 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
     Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
 
-    Route::get('/event/marketing-and-management', [WebinarContactController::class, 'index'])->name('event');
-    Route::post('/event/marketing-and-management', [WebinarContactController::class, 'store']);
-
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function(){
 
         Route::get('/', function(){

@@ -21,11 +21,10 @@
                     <th>Название</th>
                     <th>Тема письма</th>
                     <th>Отправитель</th>
-                    <th>Описание</th>
                     <th>Язык</th>
                     <th>Подписчиков</th>
                     <th>Создано</th>
-                    <th></th>
+                    <th class="text-end">Действия</th>
                 </tr>
                 </thead>
                 <tbody class="text-nowrap">
@@ -33,9 +32,8 @@
                     @if($channel->id === 1) @continue @endif
                     <tr>
                         <td><b>{{ $channel->title }}</b></td>
-                        <td>{{ $channel->subject }}</td>
+                        <td title="{{ $channel->subject }}" style="max-width: 300px; text-overflow: ellipsis; overflow: hidden">{{ $channel->subject }}</td>
                         <td>{{ $channel->from ?? env('EMAIL_FROM') }}</td>
-                        <td>{{ $channel->description }}</td>
                         <td>{{ strtoupper($channel->lang) }}</td>
                         <td>
                             <a href="{{ route('emailing.contacts.index', ['channel' => $channel->id]) }}" class="text-decoration-none">
@@ -43,7 +41,7 @@
                             </a>
                         </td>
                         <td>{{ $channel->created_at->isoFormat('LLL') }}</td>
-                        <td>
+                        <td class="text-end">
                             <a class="btn btn-sm btn-outline-warning" href="{{ route('emailing.channels.edit', $channel->id) }}">
                                 <i class="fa-solid fa-pen"></i>
                             </a>

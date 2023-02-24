@@ -1,3 +1,14 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{{ config('app.name') }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+</head>
+<body>
+
 <div align="center">
 
     <table style="text-align: center; width: 695px; background-color: #fff; font-family: Arial, Sans-Serif">
@@ -29,23 +40,27 @@
         </tr>
         <tr>
             <td style="text-align: center;">
-                <h2>Dear {{ $name }}!</h2>
-                <h1>We need your feedback!</h1>
+                <h2 style="text-align: center;">Dear {{ $name }}!</h2>
+                <h1 style="text-align: center;">We need your feedback!</h1>
             </td>
         </tr>
         <tr>
             <td style="text-align: center;">
-                <p style="color: blue;font-size: 13px;"><b>DOWNLOAD TRACKS FOR FREE AND SEND US YOUR REACTIONS FOR USING ON SEVERAL WEBSITES</b></p>
+                <p style="color: blue;font-size: 13px;text-align: center"><b>DOWNLOAD TRACKS FOR FREE AND SEND US YOUR REACTIONS FOR USING ON SEVERAL WEBSITES</b></p>
             </td>
         </tr>
         <tr>
             <td style="text-align: center;">
-                <h1>{{ $mail->feedback->feedback_title }}</h1>
+                <h1 style="text-align: center;">{{ $mail->feedback->feedback_title }}</h1>
                 @if($mail->feedback->release?->genre)
-                    <h3>Genre: {{ $mail->feedback->release->genre }}</h3>
+                    <h3 style="text-align: center;">Genre: {{ $mail->feedback->release->genre }}</h3>
                 @endif
-                <div style="font-size: 16px;">
-                    {!! $mail->feedback->release->description_en !!}
+                <div style="font-size: 16px;text-align: center;">
+                    @if($mail->feedback->release)
+                        {!! strip_tags($mail->feedback->release->description_en, '<br>') !!}
+                    @else
+                        {!! strip_tags($mail->feedback->description_en, '<br>') !!}
+                    @endif
                 </div>
             </td>
         </tr>
@@ -62,14 +77,14 @@
         </tr>
         <tr>
             <td>
-                <h3><a href="{{ route('feedback', $mail->feedback->slug) }}" target="_blank" style="color: blue;font-size: 19px;">Download & feedback</a></h3>
+                <h3 style="text-align: center"><a href="{{ route('feedback', $mail->feedback->slug) }}" target="_blank" style="color: blue;font-size: 19px;">Download & feedback</a></h3>
             </td>
         </tr>
         @if(count($mail->feedback->related) > 0)
             <tr>
                 <td style="font-size: 12px">
-                    <p>Also available:</p>
-                    <p>
+                    <p style="text-align: center; margin-bottom: 0">Also available:</p>
+                    <p style="text-align: center;">
                         @foreach($mail->feedback->related as $item)
                             <a href="{{ route('feedback', $item->slug) }}" target="_blank" style="color: red;"><b>{{ $item->feedback_title }}</b></a>
                             <br>
@@ -80,9 +95,9 @@
         @endif
         <tr>
             <td style="font-size: 12px">
-                <p>CTS Records | Baseyna 3, of. 49 | 01004 | Ukraine, Kyiv <br>
-                Phone / Fax +38 044 496 09 02 | <a href="mailto:records@cts-studio.com" target="_blank">records@cts-studio.com</a> | <a href="{{ route('home') }}" target="_blank">www.cts-label.com</a> <br>
-                Booking contact: Lilia Lazareva | <a href="mailto:lilia@cts-studio.com" target="_blank">lilia@cts-studio.com</a> | Cell +38 067 466 75 13</p>
+                <p style="text-align: center;">CTS Records | Baseyna 3, of. 49 | 01004 | Ukraine, Kyiv <br>
+                    Phone / Fax +38 044 496 09 02 | <a href="mailto:records@cts-studio.com" target="_blank">records@cts-studio.com</a> | <a href="{{ route('home') }}" target="_blank">www.cts-label.com</a> <br>
+                    Booking contact: Lilia Lazareva | <a href="mailto:lilia@cts-studio.com" target="_blank">lilia@cts-studio.com</a> | Cell +38 067 466 75 13</p>
             </td>
         </tr>
         <tr>
@@ -143,7 +158,7 @@
         @if($hash)
             <tr>
                 <td>
-                    <p style="font-size: 12px; font-style: italic">You get this e-mail because you are a part of international music industry.
+                    <p style="font-size: 12px; font-style: italic;text-align: center">You get this e-mail because you are a part of international music industry.
                         <br>
                         We respect you and your inbox! If you feel disturbed by our newsletter,<br>
                         push <a href="{{ route('unsubscribe', $hash) }}" target="_blank">unsubscribe</a> and you will immediately be...</p>
@@ -154,3 +169,6 @@
     </table>
 
 </div>
+
+</body>
+</html>

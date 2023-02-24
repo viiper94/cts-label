@@ -48,7 +48,7 @@ class EmailingQueue extends Model{
             ->whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
         foreach($in_queue as $mail){
             App::setLocale($mail->channel->lang);
-            if(!isset($mail->data['template'])) continue;
+            if(!$mail->template) continue;
             try{
                 Mail::to($mail->to)->send(new Emailing($mail));
                 $mail->error_code = null;

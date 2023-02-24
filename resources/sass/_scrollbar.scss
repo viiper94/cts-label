@@ -1,4 +1,4 @@
-body, .modal-body, .table-responsive, select, .sidebar, .fl-scrolls{
+body, div, select, textarea{
     &::-webkit-scrollbar{
         -webkit-appearance: none;
         width: 10px;

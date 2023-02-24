@@ -117,6 +117,7 @@ Route::group(['middleware' => 'i18n'], function(){
 
         Route::name('emailing.')->prefix('emailing')->group(function(){
 
+            Route::post('/channels/start/test', [AdminEmailingChannelsController::class, 'startTest'])->name('channels.start.test');
             Route::post('/channels/start', [AdminEmailingChannelsController::class, 'start'])->name('channels.start');
             Route::post('/channels/stop', [AdminEmailingChannelsController::class, 'stop'])->name('channels.stop');
             Route::resource('/channels', AdminEmailingChannelsController::class)->except(['show']);

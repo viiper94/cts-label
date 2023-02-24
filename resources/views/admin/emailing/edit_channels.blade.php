@@ -57,7 +57,7 @@
             <div class="form-group mb-3">
                 <label for="from" class="form-label">E-Mail отправителя</label><br>
                 <input type="email" class="form-control form-dark" id="from" name="from"
-                       value="{{ old('from') ?? $channel->from }}" placeholder="info@cts-label.com" required>
+                       value="{{ old('from') ?? $channel->from }}" placeholder="info@cts-studio.com" required>
                 @error('email')
                     <p class="help-block">{{ $message }}</p>
                 @enderror

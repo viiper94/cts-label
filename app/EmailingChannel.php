@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class EmailingChannel extends Model{
 
     protected $table = 'email_channels';
+    public $from = 'info@cts-studio.com';
 
     protected $fillable = [
         'title',

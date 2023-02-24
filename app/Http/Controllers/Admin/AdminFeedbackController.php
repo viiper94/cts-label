@@ -9,8 +9,10 @@ use App\Feedback;
 use App\FeedbackResult;
 use App\FeedbackTrack;
 use App\Http\Controllers\Controller;
+use App\Mail\Emailing;
 use App\Release;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class AdminFeedbackController extends Controller{

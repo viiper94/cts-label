@@ -50,6 +50,9 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
     Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
 
+    Route::get('/event/marketing-and-management', [WebinarContactController::class, 'index'])->name('event');
+    Route::post('/event/marketing-and-management', [WebinarContactController::class, 'store']);
+
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function(){
 
         Route::get('/', function(){
@@ -76,7 +79,8 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::resource('/releases', AdminReleasesController::class)->except(['show']);
 
         Route::get('/tracks/import', [AdminTracksController::class, 'import']);
-        Route::post('/tracks/isrc', [AdminTracksController::class, 'generateISRCCode'])->name('tracks.isrc');
+        Route::post('/tracks/isrc/get', [AdminTracksController::class, 'generateISRCCode'])->name('tracks.isrc.get');
+        Route::post('/tracks/isrc/check', [AdminTracksController::class, 'checkISRCCode'])->name('tracks.isrc.check');
         Route::post('/tracks/search', [AdminTracksController::class, 'search'])->name('tracks.search');
         Route::post('/tracks/updateTrack', [AdminTracksController::class, 'updateTrack'])->name('tracks.updateTrack');
         Route::resource('/tracks', AdminTracksController::class)->except(['show']);

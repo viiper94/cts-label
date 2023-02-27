@@ -163,6 +163,13 @@ $(document).ready(function(){
         $(this).addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
     });
 
+    $(document).on('click', '.add-isrc-to-release', function(){
+        let id = $(this).data('track-id');
+        let url = $(this).data('url');
+        addTrackToReleaseTracklist(id, url);
+        $(this).addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check me-2"></i>Добавлен!');
+    });
+
     $('.tracks table tbody.sortable').sortable({
         handle: '.sort-handle',
     });
@@ -178,7 +185,7 @@ $(document).ready(function(){
         let method = $btn.data('method');
         let data = {};
         let hasEmptyRequiredField = false;
-        $('#trackModal small.text-danger').remove();
+        $('#trackModal label + small.text-danger').remove();
         $('#trackModal').find('input, select').each(function(){
             let $el = $(this)[0];
             if($el.required && $el.value === ''){
@@ -227,6 +234,46 @@ $(document).ready(function(){
                 $button.addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
             },
         });
+    });
+
+    $(document).on('input', '#trackModal #isrc', function(){
+        $('.isrc-existed').remove();
+        let $input = $(this);
+        let inputValue = $(this).val();
+
+        // Remove all non-alphanumeric characters
+        inputValue = inputValue.replace(/UA-CT1-/g, "").replace(/[^0-9]/g, "");
+
+        // Add dashes to the appropriate positions
+        if (inputValue.length > 2) {
+            inputValue = [inputValue.slice(0, 2), "-", inputValue.slice(2)].join("");
+        }
+        if (inputValue.length > 8) {
+            inputValue = inputValue.slice(0, 8);
+        }
+
+        // Add static part if not input del or backspace
+        let formatted = inputValue.length > 0 ? 'UA-CT1-' + inputValue : inputValue;
+
+        // Set the input field value to the formatted input value
+        $(this).val(formatted).attr('value', formatted);
+
+        if(formatted.length === 15){
+            let url = $(this).data('url');
+
+            $.ajax({
+                url: url,
+                data: {
+                    isrc: formatted
+                },
+                success: function(response){
+                    if(response.track && response.html){
+                        $input.parent().after(response.html);
+                    }
+                }
+            });
+        }
+
     });
 
     $(document).on('click', '.add-promt', function(){

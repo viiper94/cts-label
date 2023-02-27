@@ -37,11 +37,12 @@
             <input type="text" class="form-control form-dark" id="composer" name="composer" value="{{ $track->composer }}">
         </div>
         <div class="form-group mb-3">
-            <label for="isrc" class="form-label">ISRC код*</label>
+            <label for="isrc" class="form-label">ISRC код* <small class="text-muted">вводите цыферную часть</small></label>
             <div class="input-group">
-                <input type="text" class="form-control form-dark" id="isrc" name="isrc" value="{{ $track->isrc }}" placeholder="UA-CT1-XX-XXXXX">
+                <input type="text" class="form-control form-dark" id="isrc" name="isrc" value="{{ $track->isrc }}" placeholder="UA-CT1-XX-XXXXX"
+                    data-url="{{ route('tracks.isrc.check') }}">
                 @if(!$track->isrc)
-                    <button class="btn btn-outline" type="button" id="isrc-generate" data-url="{{ route('tracks.isrc') }}">
+                    <button class="btn btn-outline" type="button" id="isrc-generate" data-url="{{ route('tracks.isrc.get') }}">
                         Сгенерировать
                     </button>
                 @endif

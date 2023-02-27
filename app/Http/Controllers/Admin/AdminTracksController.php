@@ -134,6 +134,15 @@ class AdminTracksController extends Controller{
         ]);
     }
 
+    public function checkISRCCode(Request $request){
+        if(!$request->ajax()) abort(404);
+        $track = Track::select(['id', 'artists', 'name', 'mix_name', 'isrc'])->whereIsrc($request->isrc)->first();
+        return response()->json([
+            'track' => $track,
+            'html' => $track ? view('admin.tracks.already_exists', compact('track'))->render() : null
+        ]);
+    }
+
     public function updateTrack(Request $request){
         if(!$request->ajax()) abort(403);
         return response()->json([

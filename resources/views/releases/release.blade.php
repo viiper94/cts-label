@@ -110,7 +110,9 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-5 release-content">
-                        {!! $release['description_'.$release->detectActiveDescriptionLang()] !!}
+                        <div class="release-content-wrapper">
+                            {!! $release['description_'.$release->detectActiveDescriptionLang()] !!}
+                        </div>
                     </div>
                 </div>
                 @if(count($release->related) > 0)

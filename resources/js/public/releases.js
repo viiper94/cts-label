@@ -2,6 +2,13 @@
 
 $(document).ready(function(){
 
+    $('.release-content-wrapper').readmore({
+        collapsedHeight: 932,
+        moreLink: '<button class="btn btn-sm btn-outline mt-1 border-0">...</button>',
+        lessLink: '<button class="btn btn-sm btn-outline mt-1 border-0"><i class="fa-solid fa-caret-up me-2"></i>Hide</button>',
+        heightMargin: 30
+    });
+
     $('button.sharer').click(function(){
         let title = $('.release-title').html();
         let img = $('.release-image').attr('src');

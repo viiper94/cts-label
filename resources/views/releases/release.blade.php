@@ -43,9 +43,9 @@
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <div class="text-center">
-                            <a @if($prev)href="{{ route('release', $prev->id) }}" @endif class="prev-btn search-btns @if(!$prev)btn-disabled @endif">&nbsp;</a>
+                            <a @if($prev)href="{{ route('release', $prev->id) }}" @endif class="prev-btn search-btns @if(!$prev)btn-disabled @endif" title="Previous">&nbsp;</a>
                             <span class="release-search">@lang('releases.search_release')</span>
-                            <a @if($next)href="{{ route('release', $next->id) }}" @endif class="next-btn search-btns @if(!$next)btn-disabled @endif">&nbsp;</a>
+                            <a @if($next)href="{{ route('release', $next->id) }}" @endif class="next-btn search-btns @if(!$next)btn-disabled @endif" title="Next">&nbsp;</a>
                         </div>
                         <div class="lang-switch pb-3">
                             @if($release->detectActiveDescriptionLang(count: true) > 1)

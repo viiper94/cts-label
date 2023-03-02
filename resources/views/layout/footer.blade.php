@@ -46,9 +46,9 @@
                        rel="noreferrer" title="Last FM">
                         <i class="fa-brands fa-lastfm"></i>
                     </a>
-                    <button type="button" class="socials socials-rss" title="RSS">
+                    <a href="{{ route('rss') }}" class="socials socials-rss" title="RSS">
                         <i class="fa-solid fa-rss"></i>
-                    </button>
+                    </a>
                     <a href="https://twitter.com/CTS_RECORDS" class="socials socials-twitter" target="_blank"
                        rel="noreferrer" title="Twitter">
                         <i class="fa-brands fa-twitter"></i>

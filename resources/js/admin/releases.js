@@ -230,8 +230,9 @@ $(document).ready(function(){
         $.ajax({
             url: url,
             success: function(response){
-                $('#trackModal #isrc').val(response.isrc);
+                $('#trackModal #isrc').val(response.isrc).removeClass('is-invalid');
                 $button.addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
+                $('.isrc-existed').remove();
             },
         });
     });
@@ -268,7 +269,9 @@ $(document).ready(function(){
                 },
                 success: function(response){
                     if(response.track && response.html){
-                        $input.parent().after(response.html);
+                        $input.removeClass('is-valid').addClass('is-invalid').parent().after(response.html);
+                    }else{
+                        $input.removeClass('is-invalid').addClass('is-valid');
                     }
                 }
             });

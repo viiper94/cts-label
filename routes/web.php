@@ -36,6 +36,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
     Route::get('/', 'ReleasesController@index')->name('home');
+    Route::get('/feed', 'ReleasesController@rss')->name('rss');
     Route::get('/search', 'ReleasesController@index')->name('search');
     Route::get('/releases/{id}', 'ReleasesController@show')->name('release');
     Route::get('/artists', 'ArtistsController@index')->name('artists');

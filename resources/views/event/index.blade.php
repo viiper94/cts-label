@@ -28,9 +28,9 @@
         </div>
 
         <div class="d-flex align-items-center justify-content-center my-5 py-5">
-            <button class="btn-primary btn btn-lg" data-bs-toggle="modal" data-bs-target="#event-modal">
+            <button class="btn-primary btn btn-lg disabled">
                 <i class="fa-solid fa-ticket me-2"></i>
-                Зареєструватись на вебінар
+                Реєстрацію завершено
             </button>
         </div>
 
@@ -108,9 +108,9 @@
         </div>
 
         <div class="d-flex align-items-center justify-content-center my-5 py-5">
-            <button class="btn-primary btn btn-lg" data-bs-toggle="modal" data-bs-target="#event-modal">
+            <button class="btn-primary btn btn-lg disabled">
                 <i class="fa-solid fa-ticket me-2"></i>
-                Зареєструватись на вебінар
+                Реєстрацію завершено
             </button>
         </div>
 

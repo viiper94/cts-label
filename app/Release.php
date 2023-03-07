@@ -133,7 +133,7 @@ class Release extends SharedModel{
 
     public function createLabelCopy(){
         if(!$this->tracks) return false;
-        $dir = $this->release_number.'_'.str_replace(' ', '_', $this->title);
+        $dir = $this->release_number.'_'.str_replace([' ', '#'], ['_', ''], $this->title);
         @mkdir(public_path('labelCopy'));
         $path = 'labelCopy/'.$dir;
         if(!is_dir(public_path($path))){

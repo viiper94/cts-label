@@ -9,11 +9,11 @@
                     <a href="https://kissfm.ua/" target="_blank" rel="noreferrer" title="Kiss FM">
                         <img src="/images/kissfm.png" alt="KISS FM">
                     </a>
-                    <img src="/images/sweet.png" alt="Sweet'n'Low">
+{{--                    <img src="/images/sweet.png" alt="Sweet'n'Low">--}}
                     <a href="https://facebook.com/MARTS.art.project/" target="_blank" rel="noreferrer" title="Facebook MARTS">
                         <img src="/images/marls.png" alt="MARTS.art.project">
                     </a>
-                    <img src="/images/tochka.png" alt="Tochka.net">
+{{--                    <img src="/images/tochka.png" alt="Tochka.net">--}}
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
@@ -53,9 +53,10 @@
                        rel="noreferrer" title="Twitter">
                         <i class="fa-brands fa-twitter"></i>
                     </a>
-                    <button type="button" class="socials socials-instagram" title="Instagram">
+                    <a href="https://www.instagram.com/cts_records" class="socials socials-instagram" target="_blank"
+                       rel="noreferrer" title="Instagram">
                         <i class="fa-brands fa-instagram"></i>
-                    </button>
+                    </a>
                     <a href="https://discogs.com/label/74862-CTS-records" class="socials socials-discogs" target="_blank"
                        rel="noreferrer" title="Discogs">
                         <i class="icon-discogs"></i>
@@ -63,10 +64,6 @@
                     <a href="https://open.spotify.com/user/892tia21rho36ip7xqygpqxpq" class="socials socials-spotify" target="_blank"
                        rel="noreferrer" title="Spotify">
                         <i class="fa-brands fa-spotify"></i>
-                    </a>
-                    <a href="https://myspace.com/cts_records" class="socials socials-myspace" target="_blank"
-                       rel="noreferrer" title="MySpace">
-                        <i class="icon-myspace"></i>
                     </a>
                 </div>
             </div>

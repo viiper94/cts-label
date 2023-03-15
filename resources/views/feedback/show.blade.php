@@ -62,7 +62,7 @@
         <form id="feedback-form" class="py-3" method="post">
             @csrf
             <div class="row">
-                <h5 class="text-center fw-bold text-light mb-3">@lang('feedback.feedback_form')</h5>
+{{--                <h5 class="text-center fw-bold text-light mb-3">@lang('feedback.feedback_form')</h5>--}}
                 <div class="d-flex m-auto flex-column form-group user-info">
                     <input type="text" class="form-control form-dark mb-2" id="name" name="name" required placeholder="@lang('feedback.your_name')">
                     <input type="email" class="form-control form-dark" id="email" name="email" required placeholder="@lang('feedback.your_email')">

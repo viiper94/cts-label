@@ -86,6 +86,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/tracks/updateTrack', [AdminTracksController::class, 'updateTrack'])->name('tracks.updateTrack');
         Route::resource('/tracks', AdminTracksController::class)->except(['show']);
 
+        Route::get('/reviews/import', [AdminReviewsController::class, 'import']);
         Route::post('/reviews/template', [AdminReviewsController::class, 'getTemplate'])->name('reviews.template');
         Route::post('/reviews/search', [AdminReviewsController::class, 'search'])->name('reviews.search');
         Route::post('/reviews/resort', [AdminReviewsController::class, 'resort'])->name('reviews.resort');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Review;
+use App\Track;
 use Illuminate\Http\Request;
 
 class AdminReviewsController extends Controller{
@@ -138,6 +139,55 @@ class AdminReviewsController extends Controller{
                 ]
             ])->render()
         ]);
+    }
+
+    public function import(){
+        $reviews = json_decode(file_get_contents(resource_path('reviews.json')), true);
+        foreach($reviews as $review){
+            $review_track_author = explode(' - ', $review['track'])[0];
+            $review_track_name_and_mix = explode(' - ', $review['track'])[1];
+            if(stripos($review_track_name_and_mix, ' (')){
+                $review_track_name = explode(' (', $review_track_name_and_mix)[0];
+                $review_track_mix =  str_replace(')', '', explode(' (', $review_track_name_and_mix)[1]);
+            }else{
+                $review_track_name = $review_track_name_and_mix;
+                $review_track_mix = null;
+            }
+
+            $q = Track::whereName(trim($review_track_name))->whereArtists(trim($review_track_author));
+            if($review_track_mix) $q = $q->whereMixName($review_track_mix);
+            $track = $q->get();
+
+            if(count($track) === 1){
+
+                foreach($review['data']['reviews'] as $item){
+                    Review::create([
+                        'track_id' => $track->id,
+                        'author' => $item->author,
+                        'location' => $item->location,
+                        'review' => $item->review,
+                        'score' => $item->score,
+                        'sort_id' => 0,
+                    ]);
+                }
+                foreach($review['data']['additional'] as $item){
+                    Review::create([
+                        'track_id' => $track->id,
+                        'author' => $item->author,
+                        'location' => $item->location,
+                        'sort_id' => 0,
+                    ]);
+                }
+
+            }else{
+                if(count($track) > 1){
+                    printf("Знайдено більше одного: $review[track] / $review_track_author / $review_track_name / $review_track_mix /<br>");
+                }
+                if(count($track) === 0){
+                    printf("Не знайдено жодного треку: $review[track] / $review_track_author / $review_track_name / $review_track_mix /<br>");
+                }
+            }
+        }
     }
 
 }

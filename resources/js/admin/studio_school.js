@@ -7,7 +7,6 @@ $(document).ready(function(){
             let url = $box.data('action');
             let data = {};
             $.map($(this).find('img'), function(el, i){
-                console.log(i);
                 data[i] = $(el).data('id');
             });
             $.ajax({

@@ -1,11 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    CTStudio - Услуги | CTS Records Admin Panel
-@endsection
-
-@section('assets')
-    <link rel="stylesheet" href="/assets/css/jquery.ui.sortable.min.css">
+    Услуги CTStudio | CTS Records Admin Panel
 @endsection
 
 @section('admin-content')

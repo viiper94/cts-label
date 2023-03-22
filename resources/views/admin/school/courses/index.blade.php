@@ -1,60 +1,29 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    CTSchool - Преподаватели | CTS Records Admin Panel
-@endsection
-
-@section('assets')
-    <link rel="stylesheet" href="/assets/css/jquery.ui.sortable.min.css">
+    Курсы CTSchool | CTS Records Admin Panel
 @endsection
 
 @section('admin-content')
 
     <div class="container-fluid">
         <div class="releases-actions sticky-top my-3">
-            <button data-action="{{ route('school.teachers.store') }}" class="btn btn-primary add-service">
+            <button data-action="{{ route('school.courses.store') }}" class="btn btn-primary add-service">
                 <i class="fa-solid fa-plus me-2"></i>Новый курс
             </button>
         </div>
-        @foreach($teachers_lang as $teachers)
+        @foreach($courses_lang as $courses)
             <div class="card text-bg-dark service-lang mb-5">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0">({{ $teachers[0]->lang }}) {{ \Illuminate\Support\Facades\Lang::choice('school.teachers', 8, locale: $teachers[0]->lang) }}</h4>
+                    <h4 class="mb-0">({{ $courses[0]->lang }}) {{ \Illuminate\Support\Facades\Lang::choice('school.courses', 8, locale: $courses[0]->lang) }}</h4>
                     <b class="msg text-primary"></b>
                 </div>
-                <div class="card-body row" data-action="{{ route('school.teachers.resort') }}">
-                    <div class="table-responsive">
-                        <table class="table table-dark table-hover">
-                            <thead>
-                            <tr>
-                                <th>Картинка</th>
-                                <th>Имя</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody class="sortable" data-action="{{ route('school.teachers.resort') }}">
-                            @foreach($teachers as $teacher)
-                                <tr class="teacher">
-                                    <td>
-                                        <img src="/images/school/teachers/{{ $teacher->image }}" data-id="{{ $teacher->id }}">
-                                    </td>
-                                    <td>{{ $teacher->name }}</td>
-                                    <td class="text-end">
-                                        <button class="btn btn-outline" type="button"
-                                                data-src="/images/school/teachers/{{ $teacher->image }}"
-                                                data-binfo="{{ $teacher->teacher_binfo }}" data-hinfo="{{ $teacher->teacher_hinfo }}"
-                                                data-id="{{ $teacher->id }}" data-lang="{{ $teacher->lang }}" data-name="{{ $teacher->name }}"
-                                                data-visible="{{ $teacher->visible }}" data-action="{{ route('school.teachers.update', $teacher->id) }}">
-                                            <i class="fa-solid fa-pen me-sm-2"></i>
-                                            <span class="d-none d-sm-inline">Редактировать</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
+                <div class="card-body sortable" data-action="{{ route('school.courses.resort') }}">
+                    @foreach($courses as $course)
+                        <img src="/images/school/courses/{{ $course->image }}" alt="{{ $course->course_alt }}" class="service-img m-3 "
+                             data-id="{{ $course->id }}" data-lang="{{ $course->lang }}" data-name="{{ $course->name }}"
+                             data-visible="{{ $course->visible }}" data-action="{{ route('school.courses.update', $course->id) }}">
+                    @endforeach
                 </div>
             </div>
         @endforeach
@@ -63,7 +32,7 @@
             <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body py-3">
-                        <form action="{{ route('school.teachers.store') }}" enctype="multipart/form-data" method="post" id="modal-form">
+                        <form action="{{ route('school.courses.store') }}" enctype="multipart/form-data" method="post" id="modal-form">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5">
@@ -77,7 +46,7 @@
                                         <label for="visible" class="form-check-label">Опубликовано</label>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label class="form-label form-dark">Имя</label>
+                                        <label class="form-label form-dark">Название курса</label>
                                         <input type="text" class="form-control form-dark" name="name" required>
                                     </div>
                                     <div class="form-group mb-3">
@@ -88,13 +57,9 @@
                                             <option value="ua">Українська</option>
                                         </select>
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label class="form-label" for="teacher_binfo">Основное описание</label>
-                                        <textarea name="teacher_binfo" id="teacher_binfo" rows="3" class="form-control form-dark"></textarea>
-                                    </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="teacher_hinfo">Скрытое описание</label>
-                                        <textarea name="teacher_hinfo" id="teacher_hinfo" rows="3" class="form-control form-dark"></textarea>
+                                        <label class="form-label">Ключевые слова</label>
+                                        <textarea name="course_alt" id="service_alt" rows="3" class="form-control form-dark"></textarea>
                                     </div>
                                 </div>
                             </div>

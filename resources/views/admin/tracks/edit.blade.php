@@ -37,7 +37,7 @@
             <input type="text" class="form-control form-dark" id="composer" name="composer" value="{{ $track->composer }}">
         </div>
         <div class="form-group mb-3">
-            <label for="isrc" class="form-label">ISRC код* <small class="text-muted">вводите цыферную часть</small></label>
+            <label for="isrc" class="form-label">ISRC код* <small class="text-muted">вводите циферную часть</small></label>
             <div class="input-group">
                 <input type="text" class="form-control form-dark" id="isrc" name="isrc" value="{{ $track->isrc }}" placeholder="UA-CT1-XX-XXXXX"
                     data-url="{{ route('tracks.isrc.check') }}">

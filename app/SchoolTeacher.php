@@ -9,6 +9,7 @@ class SchoolTeacher extends School{
         'lang',
         'teacher_hinfo',
         'teacher_binfo',
+        'course_alt',
         'sort_id',
         'visible'
     ];

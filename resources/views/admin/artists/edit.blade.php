@@ -23,8 +23,15 @@
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label" for="link">Ссылка в социальную сеть</label><br>
-                    <input type="url" class="form-control form-control-lg form-dark" name="link" id="link"
-                           value="{{ $artist->link }}">
+                    <div class="input-group">
+                        <input type="url" class="form-control form-dark" name="link" id="link"
+                               value="{{ $artist->link }}">
+                        @if($artist->link)
+                            <a class="btn btn-outline border-0" href="{{ $artist->link }}" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

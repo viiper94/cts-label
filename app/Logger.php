@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Http\Request;
 use Monolog\Formatter\LineFormatter;
+use Monolog\LogRecord;
 
 class Logger{
 
@@ -28,7 +29,7 @@ class Logger{
         }
     }
 
-    public function processLogRecord(array $record): array{
+    public function processLogRecord(LogRecord $record): LogRecord{
         $record['extra'] += [
             'user' => $this->request->user()->name  ?? 'guest',
             'url' => $this->request->getRequestUri(),

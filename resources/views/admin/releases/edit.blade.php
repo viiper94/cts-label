@@ -100,7 +100,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control form-dark" name="beatport" value="{{ old('beatport') ?? $release->beatport }}">
                             @if($release->beatport)
-                                <a class="btn btn-outline" href="{{ $release->beatport }}" target="_blank">
+                                <a class="btn btn-outline border-0" href="{{ $release->beatport }}" target="_blank">
                                     <i @class([
                                         'icon-beatport' => $release->getStore() === 'beatport',
                                         'icon-discogs' => $release->getStore() === 'discogs',
@@ -118,7 +118,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control form-dark" name="youtube" value="{{ old('youtube') ?? $release->youtube }}">
                             @if($release->youtube)
-                                <a class="btn btn-outline" href="{{ $release->youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                                <a class="btn btn-outline border-0" href="{{ $release->youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                             @endif
                         </div>
                         @error('youtube')

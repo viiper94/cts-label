@@ -231,7 +231,7 @@ $(document).ready(function(){
             url: url,
             success: function(response){
                 $('#trackModal #isrc').val(response.isrc).removeClass('is-invalid');
-                $button.addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check"></i>');
+                $button.addClass('btn-outline-success').removeClass('btn-outline border-0').html('<i class="fa-solid fa-check"></i>');
                 $('.isrc-existed').remove();
             },
         });

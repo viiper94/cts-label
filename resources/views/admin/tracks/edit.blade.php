@@ -42,7 +42,7 @@
                 <input type="text" class="form-control form-dark" id="isrc" name="isrc" value="{{ $track->isrc }}" placeholder="UA-CT1-XX-XXXXX"
                     data-url="{{ route('tracks.isrc.check') }}">
                 @if(!$track->isrc)
-                    <button class="btn btn-outline" type="button" id="isrc-generate" data-url="{{ route('tracks.isrc.get') }}">
+                    <button class="btn btn-outline border-0" type="button" id="isrc-generate" data-url="{{ route('tracks.isrc.get') }}">
                         Сгенерировать
                     </button>
                 @endif
@@ -57,7 +57,7 @@
             <div class="input-group">
                 <input type="url" class="form-control form-dark" id="youtube" name="youtube" value="{{ $track->youtube }}">
                 @if($track->youtube)
-                    <a class="btn btn-outline" href="{{ $track->youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a class="btn btn-outline border-0" href="{{ $track->youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 @endif
             </div>
         </div>
@@ -86,7 +86,7 @@
             <div class="input-group">
                 <input type="url" class="form-control form-dark" id="beatport_wave" name="beatport_wave" value="{{ $track->beatport_wave }}">
                 @if($track->beatport_wave)
-                    <a class="btn btn-outline" href="{{ $track->beatport_wave }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a class="btn btn-outline border-0" href="{{ $track->beatport_wave }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 @endif
             </div>
         </div>
@@ -95,7 +95,7 @@
             <div class="input-group">
                 <input type="url" class="form-control form-dark" id="beatport_sample" name="beatport_sample" value="{{ $track->beatport_sample }}">
                 @if($track->beatport_sample)
-                    <a class="btn btn-outline" href="{{ $track->beatport_sample }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a class="btn btn-outline border-0" href="{{ $track->beatport_sample }}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 @endif
             </div>
         </div>

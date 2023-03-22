@@ -8,8 +8,8 @@
 
     <div class="container-fluid">
         <div class="releases-actions sticky-top my-3">
-            <button data-action="{{ route('school.teachers.store') }}" class="btn btn-primary add-service">
-                <i class="fa-solid fa-plus me-2"></i>Новый курс
+            <button data-url="{{ route('school.teachers.create') }}" class="btn btn-primary add-service">
+                <i class="fa-solid fa-plus me-2"></i>Новый преподаватель
             </button>
         </div>
         @foreach($teachers_lang as $teachers)
@@ -36,13 +36,9 @@
                                     </td>
                                     <td>{{ $teacher->name }}</td>
                                     <td class="text-end">
-                                        <button class="btn btn-outline" type="button"
-                                                data-src="/images/school/teachers/{{ $teacher->image }}"
-                                                data-binfo="{{ $teacher->teacher_binfo }}" data-hinfo="{{ $teacher->teacher_hinfo }}"
-                                                data-id="{{ $teacher->id }}" data-lang="{{ $teacher->lang }}" data-name="{{ $teacher->name }}"
-                                                data-visible="{{ $teacher->visible }}" data-action="{{ route('school.teachers.update', $teacher->id) }}">
-                                            <i class="fa-solid fa-pen me-sm-2"></i>
-                                            <span class="d-none d-sm-inline">Редактировать</span>
+                                        <button class="btn btn-sm btn-outline-primary" type="button" data-id="{{ $teacher->id }}"
+                                                data-url="{{ route('school.teachers.edit', $teacher->id) }}">
+                                            <i class="fa-solid fa-pen"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -55,55 +51,12 @@
             </div>
         @endforeach
 
-        <div class="modal fade" id="serviceModal">
+        <div class="modal fade" id="editServiceModal">
             <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-body py-3">
-                        <form action="{{ route('school.teachers.store') }}" enctype="multipart/form-data" method="post" id="modal-form">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <img src="/images/school/courses/default.png" id="preview" class="img-fluid">
-                                    <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="form-check mb-3">
-                                        <input type="hidden" name="visible" value="0">
-                                        <input type="checkbox" name="visible" id="visible" class="form-check-input">
-                                        <label for="visible" class="form-check-label">Опубликовано</label>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="form-label form-dark">Имя</label>
-                                        <input type="text" class="form-control form-dark" name="name" required>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Язык</label>
-                                        <select class="form-select form-dark" name="lang" id="lang" required size="3">
-                                            <option value="en">English</option>
-                                            <option value="ru">Русский</option>
-                                            <option value="ua">Українська</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="form-label" for="teacher_binfo">Основное описание</label>
-                                        <textarea name="teacher_binfo" id="teacher_binfo" rows="3" class="form-control form-dark"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="teacher_hinfo">Скрытое описание</label>
-                                        <textarea name="teacher_hinfo" id="teacher_hinfo" rows="3" class="form-control form-dark"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <form method="post" id="delete-form" style="display:none;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger" form="delete-form" onclick='return confirm("Удалить?")'><i class="fa-solid fa-trash"></i> Удалить</button>
-                        </form>
-                        <button type="submit" class="btn btn-primary" form="modal-form"><i class="fa-solid fa-floppy-disk"></i> Сохранить</button>
-                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Редактирование преподавателя</h5>
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-times"></i></button>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@
 
     <div class="container-fluid">
         <div class="releases-actions sticky-top my-3">
-            <button data-action="{{ route('school.courses.store') }}" class="btn btn-primary add-service">
+            <button data-url="{{ route('school.courses.create') }}" class="btn btn-primary add-service">
                 <i class="fa-solid fa-plus me-2"></i>Новый курс
             </button>
         </div>
@@ -20,59 +20,19 @@
                 </div>
                 <div class="card-body sortable" data-action="{{ route('school.courses.resort') }}">
                     @foreach($courses as $course)
-                        <img src="/images/school/courses/{{ $course->image }}" alt="{{ $course->course_alt }}" class="service-img m-3 "
-                             data-id="{{ $course->id }}" data-lang="{{ $course->lang }}" data-name="{{ $course->name }}"
-                             data-visible="{{ $course->visible }}" data-action="{{ route('school.courses.update', $course->id) }}">
+                        <img src="/images/school/courses/{{ $course->image ?? 'default.png' }}" alt="{{ $course->course_alt }}" class="service-img m-3"
+                             data-id="{{ $course->id }}" data-url="{{ route('school.courses.edit', $course->id) }}">
                     @endforeach
                 </div>
             </div>
         @endforeach
 
-        <div class="modal fade" id="serviceModal">
+        <div class="modal fade" id="editServiceModal">
             <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-body py-3">
-                        <form action="{{ route('school.courses.store') }}" enctype="multipart/form-data" method="post" id="modal-form">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <img src="/images/school/courses/default.png" id="preview" class="img-fluid">
-                                    <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="form-check mb-3">
-                                        <input type="hidden" name="visible" value="0">
-                                        <input type="checkbox" name="visible" id="visible" class="form-check-input">
-                                        <label for="visible" class="form-check-label">Опубликовано</label>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="form-label form-dark">Название курса</label>
-                                        <input type="text" class="form-control form-dark" name="name" required>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="form-label">Язык</label>
-                                        <select class="form-select form-dark" name="lang" id="lang" required size="3">
-                                            <option value="en">English</option>
-                                            <option value="ru">Русский</option>
-                                            <option value="ua">Українська</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Ключевые слова</label>
-                                        <textarea name="course_alt" id="service_alt" rows="3" class="form-control form-dark"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <form method="post" id="delete-form" style="display:none;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger" form="delete-form" onclick='return confirm("Удалить?")'><i class="fa-solid fa-trash"></i> Удалить</button>
-                        </form>
-                        <button type="submit" class="btn btn-primary" form="modal-form"><i class="fa-solid fa-floppy-disk"></i> Сохранить</button>
-                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Редактирование курса</h5>
+                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-times"></i></button>
                     </div>
                 </div>
             </div>

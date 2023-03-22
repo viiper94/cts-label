@@ -15,6 +15,10 @@ class Review extends SharedModel{
         'visible'
     ];
 
+    public function track(){
+        return $this->belongsTo(Track::class);
+    }
+
     protected function asJson($value){
         return json_encode($value, JSON_UNESCAPED_UNICODE);
     }

@@ -36,6 +36,14 @@ class Track extends Model{
         return $this->belongsToMany(Release::class, 'track_release');
     }
 
+    public function reviews(){
+        return $this->hasMany(Review::class)->whereNotNull('review');
+    }
+
+    public function also_supported(){
+        return $this->hasMany(Review::class)->whereNull('review');
+    }
+
     public function length(): Attribute{
         return Attribute::make(
             get: function($value){

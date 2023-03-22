@@ -11,7 +11,7 @@ use function Termwind\render;
 class AdminTracksController extends Controller{
 
     public function index(Request $request){
-        $tracks = Track::with('releases');
+        $tracks = Track::with('releases')->withCount('reviews', 'also_supported');
         if($request->input('q')){
             $tracks = $tracks->where('name', 'like', '%'.$request->input('q').'%')
                 ->orWhere('artists', 'like', '%'.$request->input('q').'%')

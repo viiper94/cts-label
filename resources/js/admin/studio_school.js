@@ -17,7 +17,7 @@ $(document).ready(function(){
                 beforeSend: function(){
                     $box.parents('.service-lang').find('.msg').removeClass('text-danger').removeClass('text-success').html('Сортировка...');
                 },
-                success: function(response){
+                success: function(){
                     $box.parents('.service-lang').find('.msg').addClass('text-success').html('Пересортировано');
                 },
                 error: function(){

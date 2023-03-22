@@ -25,6 +25,7 @@
                             <tr>
                                 <th>Картинка</th>
                                 <th>Имя</th>
+                                <th>Описание</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -35,6 +36,7 @@
                                         <img src="/images/school/teachers/{{ $teacher->image }}" data-id="{{ $teacher->id }}">
                                     </td>
                                     <td>{{ $teacher->name }}</td>
+                                    <td class="text-nowrap text-truncate" style="max-width: 400px;">{{ strip_tags($teacher->teacher_binfo) }}</td>
                                     <td class="text-end">
                                         <button class="btn btn-sm btn-outline-primary" type="button" data-id="{{ $teacher->id }}"
                                                 data-url="{{ route('school.teachers.edit', $teacher->id) }}">

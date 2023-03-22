@@ -12,7 +12,7 @@ $(document).ready(function(){
     $('.alert-toast').toast('show');
     $('.collapse').collapse('hide');
 
-    $('#uploader').change(function(){
+    $(document).on('change', '#uploader', function(){
         readURL(this, '#preview');
     });
 

@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
     $('.service-lang .sortable').sortable({
-        stop: function(event, ui){
+        update: function(event, ui){
             let $box = $(this);
             let url = $box.data('action');
             let data = {};

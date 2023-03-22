@@ -88,7 +88,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::resource('/reviews', AdminReviewsController::class)->except(['index']);
 
         Route::post('/studio/resort', [AdminStudioController::class, 'resort'])->name('studio.resort');
-        Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);
+        Route::resource('/studio', AdminStudioController::class)->except(['show']);
 
         Route::post('/feedback/peaks', [AdminFeedbackController::class, 'peaks'])->name('feedback.peaks');
         Route::post('/feedback/template', [AdminFeedbackController::class, 'getTemplate'])->name('feedback.template');
@@ -102,10 +102,10 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::name('school.')->prefix('school')->group(function(){
 
             Route::post('/courses/resort', [AdminSchoolCoursesController::class, 'resort'])->name('courses.resort');
-            Route::resource('/courses', AdminSchoolCoursesController::class)->except(['show', 'edit', 'create']);
+            Route::resource('/courses', AdminSchoolCoursesController::class)->except(['show']);
 
             Route::post('/teachers/resort', [AdminSchoolTeachersController::class, 'resort'])->name('teachers.resort');;
-            Route::resource('/teachers', AdminSchoolTeachersController::class)->except(['show', 'edit', 'create']);
+            Route::resource('/teachers', AdminSchoolTeachersController::class)->except(['show']);
 
             Route::get('/cv/document/{cv}', [AdminSchoolCvController::class, 'document'])->name('cv.document');
             Route::resource('/cv', AdminSchoolCvController::class)->only(['index', 'show', 'destroy']);

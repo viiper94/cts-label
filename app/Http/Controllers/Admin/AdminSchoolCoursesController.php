@@ -29,7 +29,7 @@ class AdminSchoolCoursesController extends Controller{
         $this->validate($request, [
             'name' => 'string|required',
             'course_alt' => 'string|nullable',
-            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png'
+            'image' => 'nullable|image|mimes:jpeg,png'
         ]);
         $course = new SchoolCourse();
         $course->fill($request->post());
@@ -53,7 +53,7 @@ class AdminSchoolCoursesController extends Controller{
         $this->validate($request, [
             'name' => 'string|required',
             'course_alt' => 'string|nullable',
-            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png'
+            'image' => 'nullable|image|mimes:jpeg,png'
         ]);
         $course->fill($request->post());
         $course->category = 'courses';

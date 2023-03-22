@@ -29,7 +29,9 @@ class AdminSchoolTeachersController extends Controller{
         $this->validate($request, [
             'name' => 'string|required',
             'course_alt' => 'string|nullable',
-            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png'
+            'teacher_binfo' => 'string|nullable',
+            'teacher_hinfo' => 'string|nullable',
+            'image' => 'nullable|image|mimes:jpeg,png'
         ]);
         $teacher = new SchoolTeacher();
         $teacher->fill($request->post());
@@ -53,7 +55,9 @@ class AdminSchoolTeachersController extends Controller{
         $this->validate($request, [
             'name' => 'string|required',
             'course_alt' => 'string|nullable',
-            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png'
+            'teacher_binfo' => 'string|nullable',
+            'teacher_hinfo' => 'string|nullable',
+            'image' => 'nullable|image|mimes:jpeg,png'
         ]);
         $teacher->fill($request->post());
         $teacher->category = 'teachers';

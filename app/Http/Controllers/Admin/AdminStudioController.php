@@ -30,7 +30,7 @@ class AdminStudioController extends Controller{
             'lang' => 'string|required',
             'name' => 'string|required',
             'service_alt' => 'string|nullable',
-            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png'
+            'image' => 'image|mimes:jpeg,png|nullable'
         ]);
         $service->fill($request->post());
         $service->category = 'services';
@@ -55,7 +55,7 @@ class AdminStudioController extends Controller{
             'lang' => 'string|required',
             'name' => 'string|required',
             'service_alt' => 'string|nullable',
-            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png'
+            'image' => 'image|mimes:jpeg,png|nullable'
         ]);
         $studio->fill($request->post());
         $studio->category = 'services';

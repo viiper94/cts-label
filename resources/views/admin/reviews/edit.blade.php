@@ -1,76 +1,40 @@
-@extends('admin.layout.layout')
-
-@section('title')
-    {{ $review->track ?? 'Новое ревью' }} | CTS Records Admin Panel
-@endsection
-
-@section('admin-content')
-
-    <div class="container-fluid">
-        <form enctype="multipart/form-data" method="post"
-              action="{{ $review->id ? route('reviews.update', $review->id) : route('reviews.store') }}">
-            @if($review->id)
-                @method('PUT')
-            @endif
-            @csrf
-            <button type="submit" class="btn btn-primary shadow sticky-top my-3">
-                <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
-            </button>
-            <div class="row">
-                <div class="col-md-7 col-xs-12">
-                    <div class="form-group mb-3">
-                        <label class="form-label" for="track">Трек</label>
-                        <input type="text" class="form-control form-dark form-control-lg" name="track" id="track"
-                               value="{{ $review->track }}" required>
-                        @error('track')
-                        <p class="help-block text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="hidden" name="visible" value="0">
-                        <input type="checkbox" name="visible" id="visible"
-                               class="form-check-input" @checked($review->visible)>
-                        <label for="visible" class="form-check-label">Опубликовано</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-7 col-xs-12">
-                    <div id="reviews" class="mb-5">
-                        <h3>Ревью:</h3>
-                        @if($review->data['reviews'])
-                            @foreach($review->data['reviews'] as $key => $item)
-                                @include('admin.reviews.review_item', compact('key', 'item'))
-                            @endforeach
-                        @endif
-                        <a class="add-review-btn btn btn-outline" data-index="{{ $review->data['reviews'] ? count($review->data['reviews']) : 0 }}" data-target="review">
-                            <i class="fa-solid fa-plus me-2"></i>Добавить ревью
-                        </a>
-                    </div>
-                    <div id="additional" class="mb-3">
-                        <h3>Also supported:</h3>
-                        @if($review->data['additional'])
-                            @foreach($review->data['additional'] as $key => $item)
-                                @include('admin.reviews.additional_item', compact('key', 'item'))
-                            @endforeach
-                        @endif
-                        <a class="add-review-btn btn btn-outline" data-index="{{ $review->data['additional'] ? count($review->data['additional']) : 0 }}" data-target="additional">
-                            <i class="fa-solid fa-plus me-2"></i>Добавить
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-5 col-xs-12 search-reviewer">
-                    <div class="sticky-top">
-                        <h5 class="mb-3">Поиск автора ревью:</h5>
-                        <div class="form-group">
-                            <input type="text" class="search-form form-control form-dark" id="search-reviewer"
-                                   placeholder="Поиск">
-                        </div>
-                        <div class="founded mt-3"></div>
-                    </div>
-                </div>
-            </div>
-        </form>
+<div class="modal-body">
+    <div class="form-group mb-3">
+        <label class="form-label">Автор:</label>
+        <input type="text" class="form-control form-dark" name="author" value="{{ $review->author }}" data-url="{{ route('reviews.search') }}">
     </div>
-
-@endsection
+    <div class="form-group mb-3 location-form-group">
+        <label class="form-label">Локация:</label>
+        <div class="input-group">
+            <input type="text" class="form-control form-dark" name="location" value="{{ $review->location }}">
+            <button type="button" class="btn btn-outline save-author-location border-0" style="display: none"
+                    data-url="">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+        </div>
+    </div>
+    <div class="form-group mb-3">
+        <label class="form-label">Ревью:</label>
+        <textarea class="form-control form-dark" name="review" required>{{ $review->review }}</textarea>
+    </div>
+    <div class="scores">
+        <input class="star-rating" type="text" name="score" value="{{ $review->score }}">
+    </div>
+    <div class="form-group my-3">
+        <label class="form-label">Источник:</label>
+        <input type="text" class="form-control form-dark" name="source" value="{{ $review->source }}">
+    </div>
+</div>
+<div class="modal-footer">
+    <input type="hidden" name="track_id" value="">
+    @if($review->id)
+        <button type="button" class="btn btn-outline-danger save-review" data-url="{{ route('reviews.destroy', $review->id) }}"
+            data-method="delete">
+            <i class="fa-solid fa-trash me-2"></i>Удалить
+        </button>
+    @endif
+    <button type="button" class="btn btn-primary save-review" data-url="{{ $review->id ? route('reviews.update', $review->id) : route('reviews.store') }}"
+            data-method="{{ $review->id ? 'put' : 'post' }}">
+        <i class="fa-solid fa-check me-2"></i>Сохранить
+    </button>
+</div>

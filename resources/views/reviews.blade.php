@@ -13,39 +13,37 @@
         <div class="row">
             <section class="col">
                 <h5 class="a-b mt-3 mb-4">@lang('reviews.reviews')</h5>
-                @foreach($tracks as $review)
+                @foreach($tracks as $track)
                     <div class="review-brief me-5 pb-5 mb-5">
-                        <h6 class="review-track fw-bold mb-4">{{ $review->track }}</h6>
-                        @if($review->data['reviews'])
-                            @foreach($review->data['reviews'] as $item)
-                                @if($item['author'] && $item['review'])
-                                    <div class="review my-3">
-                                        <p class="fw-bold mb-0"><i class="fa-solid fa-angles-right me-1"></i>{{ $item['author'] }}</p>
-                                        @if($item['location'])
-                                            <p class="location fw-bold mb-0">({{ $item['location'] }})</p>
-                                        @endif
-                                        <div class="row pt-2">
-                                            <div class="col-12 col-sm-7">
-                                                <p class="review-text">{{ $item['review'] }}</p>
-                                            </div>
-                                            <div class="col-12 col-sm-5 review-score">
-                                                @for($i = 0; $i < $item['score']; $i++)
-                                                    <i class="fa-solid fa-star"></i>
-                                                @endfor
-                                            </div>
+                        <h6 class="review-track fw-bold mb-4">{{ $track->getFullTitle() }}</h6>
+                        @if(count($track->reviews) > 0)
+                            @foreach($track->reviews as $review)
+                                <div class="review my-3">
+                                    <p class="fw-bold mb-0"><i class="fa-solid fa-angles-right me-1"></i>{{ $review->author }}</p>
+                                    @if($review->location)
+                                        <p class="location fw-bold mb-0">({{ $review->location }})</p>
+                                    @endif
+                                    <div class="row pt-2">
+                                        <div class="col-12 col-sm-7">
+                                            <p class="review-text">{{ $review->review }}</p>
+                                        </div>
+                                        <div class="col-12 col-sm-5 review-score">
+                                            @for($i = 0; $i < $review->score; $i++)
+                                                <i class="fa-solid fa-star"></i>
+                                            @endfor
                                         </div>
                                     </div>
-                                @endif
+                                </div>
                             @endforeach
                         @endif
-                        @if($review->data['additional'])
+                        @if(count($track->also_supported) > 0)
                             <div class="also-supported">
                                 <p class="mb-0">@lang('reviews.also_supported')</p>
-                                @foreach($review->data['additional'] as $key => $supported)
-                                    @if($supported['author'])
-                                        <span class="fw-bold text-nowrap"><i class="fa-solid fa-angles-right me-1"></i>{{ $supported['author'] }}</span>
-                                        @if($supported['location'])
-                                            <span> ({{ $supported['location'] }})</span>
+                                @foreach($track->also_supported as $review)
+                                    @if($review->author)
+                                        <span class="fw-bold text-nowrap"><i class="fa-solid fa-angles-right me-1"></i>{{ $review->author }}</span>
+                                        @if($review->location)
+                                            <span> ({{ $review->location }})</span>
                                         @endif
                                     @endif
                                 @endforeach

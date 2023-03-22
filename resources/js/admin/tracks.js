@@ -128,7 +128,7 @@ function loadTrackReviewsToModal(url){
 function getSortableParams(){
     return {
         handle: '.sort-handle',
-        stop: function(event, ui){
+        update: function(event, ui){
             let url = $(this).data('url');
             let data = {};
             $.map($(this).find('tr'), function(el, i){

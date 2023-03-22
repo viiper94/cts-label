@@ -9,16 +9,17 @@ use Illuminate\Http\Request;
 class AdminArtistsController extends Controller{
 
     public function index(Request $request){
-        $artists = Artist::select('id', 'sort_id', 'name', 'link', 'image');
+        $artists = Artist::select('id', 'name', 'image');
         if($request->input('q')) $artists->where('name', 'like', '%'.$request->input('q').'%');
         return view('admin.artists.index', [
-            'artists' => $artists->orderBy('sort_id', 'desc')->paginate(30)
+            'artists' => $artists->latest()->paginate(30)
         ]);
     }
 
-    public function create(){
-        return view('admin.artists.edit', [
-            'artist' => new Artist()
+    public function create(Request $request){
+        if(!$request->ajax()) abort(403);
+        return response()->json([
+            'html' => view('admin.artists.edit', ['artist' => new Artist()])->render()
         ]);
     }
 
@@ -27,7 +28,7 @@ class AdminArtistsController extends Controller{
         if($request->post()){
             $this->validate($request, [
                 'name' => 'required|string',
-                'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png',
+                'image' => 'nullable|image|mimes:jpeg,png',
                 'link' => 'url|nullable'
             ]);
             $artist->fill($request->post());
@@ -44,14 +45,17 @@ class AdminArtistsController extends Controller{
         ]);
     }
 
-    public function edit(Artist $artist){
-        return view('admin.artists.edit', compact('artist'));
+    public function edit(Request $request, Artist $artist){
+        if(!$request->ajax()) abort(403);
+        return response()->json([
+            'html' => view('admin.artists.edit', compact('artist'))->render()
+        ]);
     }
 
     public function update(Artist $artist, Request $request){
         $this->validate($request, [
             'name' => 'required|string',
-            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png',
+            'image' => 'nullable|image|mimes:jpeg,png',
             'link' => 'url|nullable'
         ]);
         $artist->fill($request->post());

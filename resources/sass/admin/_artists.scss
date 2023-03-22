@@ -1,6 +1,15 @@
 // Artists
 .admin-artists{
-    .card-img img{
-        max-height: 235px;
+    .edit-artist{
+        cursor: pointer;
+        .card-img-overlay{
+            top: auto;
+            background-color: rgba(0, 0, 0, .6);
+        }
+        &:hover{
+            .card-img-overlay{
+                color: $primary-text;
+            }
+        }
     }
 }

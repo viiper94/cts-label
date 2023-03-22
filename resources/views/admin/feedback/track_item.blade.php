@@ -3,13 +3,13 @@
         <div class="form-group">
             <label class="form-label">Название трека</label>
             <div class="input-group">
-                <span class="feedback-track-number input-group-text text-bg-dark border-0">.</span>
+                <button type="button" class="btn btn-outline feedback-track-number border-0" disabled>.</button>
                 <input type="text" class="form-control form-control-lg form-dark" name="tracks[{{ $key }}][name]"
                        value="{{ !$feedback->id
                                     ? (!$feedback->release ? '' : $track->getFullTitle())
                                     : $track->name }}" placeholder="Название трека" required>
                 @if(!$feedback->release)
-                    <button class="btn btn-lg btn-outline delete-feedback-track-btn" type="button"
+                    <button class="btn btn-lg btn-outline delete-feedback-track-btn border-0" type="button"
                             @if($feedback->id) data-url="{{ route('feedback.track.destroy', $track->id) }}" @endif
                             onclick="return confirm('Удалить этот трек?')">
                         <i class="fa-solid fa-trash"></i>

@@ -85,8 +85,7 @@ Route::group(['middleware' => 'i18n'], function(){
 
         Route::post('/reviews/search', [AdminReviewsController::class, 'search'])->name('reviews.search');
         Route::post('/reviews/resort', [AdminReviewsController::class, 'resort'])->name('reviews.resort');
-        Route::get('/reviews/sort/{review}/{dir}', [AdminReviewsController::class, 'sort'])->name('reviews.sort');
-        Route::resource('/reviews', AdminReviewsController::class)->except(['show']);
+        Route::resource('/reviews', AdminReviewsController::class)->except(['index']);
 
         Route::post('/studio/resort', [AdminStudioController::class, 'resort'])->name('studio.resort');
         Route::resource('/studio', AdminStudioController::class)->except(['show', 'edit', 'create']);

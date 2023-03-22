@@ -9,185 +9,107 @@ use Illuminate\Http\Request;
 
 class AdminReviewsController extends Controller{
 
-    public function index(Request $request){
-        $reviews = Review::orderBy('sort_id', 'desc');
-        if($request->input('q')) $reviews->where('track', 'like', '%'.$request->input('q').'%');
-        return view('admin.reviews.index', [
-            'reviews' => $reviews->paginate(30)
+    public function show(Request $request, $id){
+        if(!$request->ajax()) abort(403);
+        $track = Track::with([
+            'reviews' => function($q){
+                $q->orderBy('sort_id');
+            },
+            'also_supported' => function($q){
+                $q->orderBy('sort_id');
+            }])->find($id);
+        return response()->json([
+            'html' => view('admin.reviews.track_reviews', [
+                'track' => $track
+            ])->render(),
+            'name' => $track->getFullTitle()
         ]);
     }
 
-    public function create(){
+    public function create(Request $request){
+        if(!$request->ajax()) abort(403);
         $review = new Review();
-        return view('admin.reviews.edit', compact('review'));
+        return response()->json([
+            'html' => view('admin.reviews.edit', compact('review'))->render()
+        ]);
     }
 
     public function store(Request $request){
+        if(!$request->ajax()) abort(403);
         $this->validate($request, [
-            'track' => 'required|string',
-            'review' => 'required_without:additional|array',
-            'additional' => 'required_without:review|array',
+            'track_id' => 'required|string',
+            'author' => 'nullable|string',
+            'location' => 'nullable|string',
+            'source' => 'nullable|string',
+            'review' => 'nullable|required_with:score|string',
+            'score' => 'nullable|required_with:review|numeric',
         ]);
         $review = new Review();
-        $review->fill($request->post());
-        $review->sort_id = intval($review->getLatestSortId(Review::class)) + 1;
-        $review->data = [
-            'reviews' => array_values($request->input('review')),
-            'additional' => array_values($request->input('additional'))
-        ];
+        $review->fill($request->post()+[
+            'sort_id' => 0
+            ]);
         return $review->save() ?
-            redirect()->route('reviews.index')->with(['success' => 'Ревью успешно добавлено!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            response()->json([
+                'message' => 'Ревью успешно добавлено!',
+                'url' => route('reviews.show', $review->track_id)
+            ]) :
+            response()->json(status:500);
     }
 
-    public function edit(Review $review){
-        return view('admin.reviews.edit', compact('review'));
+    public function edit(Request $request, Review $review){
+        if(!$request->ajax()) abort(403);
+        return response()->json([
+            'html' => view('admin.reviews.edit', compact('review'))->render()
+        ]);
     }
 
     public function update(Request $request, Review $review){
+        if(!$request->ajax()) abort(403);
         $this->validate($request, [
-            'track' => 'required|string',
-            'review' => 'required_without:additional|array',
-            'additional' => 'required_without:review|array',
+            'track_id' => 'required|string',
+            'author' => 'nullable|string',
+            'location' => 'nullable|string',
+            'source' => 'nullable|string',
+            'review' => 'nullable|required_with:score|string',
+            'score' => 'nullable|required_with:review|numeric',
         ]);
-        $review->fill($request->post());
-        $review->data = [
-            'reviews' => array_values($request->input('review')),
-            'additional' => array_values($request->input('additional'))
-        ];
+        $review->fill($request->post()+[
+                'sort_id' => 0
+            ]);
         return $review->save() ?
-            redirect()->route('reviews.index')->with(['success' => 'Ревью успешно отредактировано!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            response()->json([
+                'message' => 'Ревью успешно добавлено!',
+                'url' => route('reviews.show', $review->track_id)
+            ]) :
+            response()->json(status:500);
     }
 
-    public function destroy(Review $review){
+    public function destroy(Request $request, Review $review){
+        if(!$request->ajax()) abort(403);
         return $review->delete() ?
-            redirect()->route('reviews.index')->with(['success' => 'Ревью успешно удалено!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
-    }
-
-    public function resort(Request $request){
-        foreach($request->post('sort') as $id => $sort){
-            $review = Review::find($id);
-            $review->sort_id = $sort;
-            $review->save();
-        }
-        return redirect()->back()->with(['success' => 'Ревью успешно отсортированы!']);
-    }
-
-    public function sort(Request $request, $id, $direction){
-        if(isset($id)){
-            $review = Review::find($id);
-            if($direction === 'up') $next_review = Review::where('sort_id', '>', $review->sort_id)->orderBy('sort_id', 'asc')->first();
-            else $next_review = Review::where('sort_id', '<', $review->sort_id)->orderBy('sort_id', 'desc')->first();
-            if(!$next_review) return redirect()->back();
-            return $review->swapSort($review, $next_review)  ?
-                redirect()->back()->with(['success' => 'Ревью успешно отредактировано!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
-        }else{
-            return abort(404);
-        }
+            response()->json([
+                'message' => 'Ревью удалено!',
+                'url' => route('reviews.show', $review->track_id)
+            ]) :
+            response()->json(status:500);
     }
 
     public function search(Request $request){
-        if($request->ajax() && $request->post('query')){
-            $response = array();
-            $reviews = Review::where('data', 'like', '%'.$request->post('query').'%')->get();
-            if($reviews){
-                foreach($reviews as $item){
-                    foreach($item->data['reviews'] as $review){
-                        // search where query is like author
-                        if(stripos($review['author'], $request->post('query')) !== false){
-                            // check if already founded before
-                            if(!$response){
-                                $response[] = $review;
-                                continue;
-                            }
-                            foreach($response as $author){
-                                if(trim($review['location']) === trim($author['location'])){
-                                    break;
-                                }
-                               $response[] = $review;
-                            }
-                        }
-                    }
-                }
-                $status = 'ok';
-            }else{
-                $status = 'No result';
-            }
-
-            return response()->json([
-                'data' => $response,
-                'status' => $status,
-            ]);
-        }else{
-            abort(404);
-        }
-    }
-
-    public function getTemplate(Request $request){
-        if(!$request->ajax()) abort(404);
+        if(!$request->ajax() && $request->post('query')) abort(403);
+        $reviews = Review::select('author', 'location')->where('author', 'like', '%'.$request->post('query').'%')->distinct()->get();
         return response()->json([
-            'html' => view('admin.reviews.'. $request->target .'_item', [
-                'key' => $request->index,
-                'item' => [
-                    'author' => '',
-                    'location' => '',
-                    'review' => '',
-                    'score' => ''
-                ]
-            ])->render()
+            'html' => view('admin.reviews.author_locations', compact('reviews'))->render(),
         ]);
     }
 
-    public function import(){
-        $reviews = json_decode(file_get_contents(resource_path('reviews.json')), true);
-        foreach($reviews as $review){
-            $review_track_author = explode(' - ', $review['track'])[0];
-            $review_track_name_and_mix = explode(' - ', $review['track'])[1];
-            if(stripos($review_track_name_and_mix, ' (')){
-                $review_track_name = explode(' (', $review_track_name_and_mix)[0];
-                $review_track_mix =  str_replace(')', '', explode(' (', $review_track_name_and_mix)[1]);
-            }else{
-                $review_track_name = $review_track_name_and_mix;
-                $review_track_mix = null;
-            }
-
-            $q = Track::whereName(trim($review_track_name))->whereArtists(trim($review_track_author));
-            if($review_track_mix) $q = $q->whereMixName($review_track_mix);
-            $track = $q->get();
-
-            if(count($track) === 1){
-
-                foreach($review['data']['reviews'] as $item){
-                    Review::create([
-                        'track_id' => $track->id,
-                        'author' => $item->author,
-                        'location' => $item->location,
-                        'review' => $item->review,
-                        'score' => $item->score,
-                        'sort_id' => 0,
-                    ]);
-                }
-                foreach($review['data']['additional'] as $item){
-                    Review::create([
-                        'track_id' => $track->id,
-                        'author' => $item->author,
-                        'location' => $item->location,
-                        'sort_id' => 0,
-                    ]);
-                }
-
-            }else{
-                if(count($track) > 1){
-                    printf("Знайдено більше одного: $review[track] / $review_track_author / $review_track_name / $review_track_mix /<br>");
-                }
-                if(count($track) === 0){
-                    printf("Не знайдено жодного треку: $review[track] / $review_track_author / $review_track_name / $review_track_mix /<br>");
-                }
-            }
+    public function resort(Request $request){
+        if(!$request->ajax()) abort(403);
+        foreach($request->post('data') as $key => $id){
+            $review = Review::find($id);
+            $review->sort_id = $key;
+            $review->save();
         }
+        return response()->json();
     }
 
 }

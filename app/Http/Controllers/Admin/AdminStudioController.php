@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\StudioService;
 use Illuminate\Http\Request;
-use Spatie\Image\Image;
-use Spatie\Image\Manipulations;
 
 class AdminStudioController extends Controller{
 
@@ -65,7 +63,7 @@ class AdminStudioController extends Controller{
         foreach($request->post('data') as $sort => $id){
             StudioService::find($id)->update(['sort_id' => $sort]);
         }
-        return response()->json('OK');
+        return response()->json();
     }
 
 }

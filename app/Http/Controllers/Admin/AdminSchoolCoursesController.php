@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\SchoolCourse;
 use Illuminate\Http\Request;
-use Spatie\Image\Image;
-use Spatie\Image\Manipulations;
 
 class AdminSchoolCoursesController extends Controller{
 
@@ -62,7 +60,7 @@ class AdminSchoolCoursesController extends Controller{
         foreach($request->post('data') as $sort => $id){
             SchoolCourse::find($id)->update(['sort_id' => $sort]);
         }
-        return response()->json('OK');
+        return response()->json();
     }
 
 }

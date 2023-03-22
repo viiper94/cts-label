@@ -46,9 +46,6 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="{{ route('reviews.index') }}" @class(['nav-link', 'active' => \Route::is('reviews.*')])><i class="fa-solid fa-star me-2"></i>Ревью</a>
-            </li>
-            <li class="nav-item">
                 <a href="{{ route('feedback.index') }}" @class(['nav-link', 'active' => \Route::is('feedback.*')])><i class="fa-solid fa-comments me-2"></i>Фидбеки</a>
             </li>
             <li class="nav-item">

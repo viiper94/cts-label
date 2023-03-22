@@ -9,8 +9,19 @@ use Illuminate\Http\Request;
 class AdminSchoolTeachersController extends Controller{
 
     public function index(){
-        return view('admin.school.teachers', [
-            'teachers_lang' => SchoolTeacher::where('category', 'teachers')->orderBy('lang')->orderBy('sort_id')->get()->groupBy('lang'),
+        return view('admin.school.teachers.index', [
+            'teachers_lang' => SchoolTeacher::where('category', 'teachers')
+                ->orderBy('lang')
+                ->orderBy('sort_id')
+                ->get()
+                ->groupBy('lang'),
+        ]);
+    }
+
+    public function create(Request $request){
+        if(!$request->ajax()) abort(403);
+        return response()->json([
+            'html' => view('admin.school.teachers.edit', ['teacher' => new SchoolTeacher()])->render()
         ]);
     }
 
@@ -29,6 +40,13 @@ class AdminSchoolTeachersController extends Controller{
         return $teacher->save() ?
             redirect()->route('school.teachers.index')->with(['success' => 'Учитель успешно отредактирован!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
+    public function edit(Request $request, SchoolTeacher $teacher){
+        if(!$request->ajax()) abort(403);
+        return response()->json([
+            'html' => view('admin.school.teachers.edit', ['teacher' => $teacher])->render()
+        ]);
     }
 
     public function update(Request $request, SchoolTeacher $teacher){

@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 
 class AdminStudioController extends Controller{
 
-    public function index(Request $request){
-        return view('admin.studio', [
-            'service_list' => StudioService::orderBy('lang')->orderBy('sort_id')->get()->groupBy('lang')
+    public function index(){
+        return view('admin.studio.index', [
+            'service_list' => StudioService::orderBy('lang')
+                ->orderBy('sort_id')
+                ->get()
+                ->groupBy('lang')
+        ]);
+    }
+
+    public function create(Request $request){
+        if(!$request->ajax()) abort(403);
+        return response()->json([
+            'html' => view('admin.studio.edit', ['service' => new StudioService()])->render()
         ]);
     }
 
@@ -31,6 +41,13 @@ class AdminStudioController extends Controller{
         return $service->save() ?
             redirect()->route('studio.index')->with(['success' => 'Услуга успешно добавлена!']) :
             redirect()->back()->withErrors(['Возникла ошибка =(']);
+    }
+
+    public function edit(Request $request, StudioService $studio){
+        if(!$request->ajax()) abort(403);
+        return response()->json([
+            'html' => view('admin.studio.edit', ['service' => $studio])->render()
+        ]);
     }
 
     public function update(StudioService $studio, Request $request){

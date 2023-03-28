@@ -45,11 +45,11 @@ $(document).ready(function(){
             type: $btn.data('method'),
             data: {
                 track_id: $('#editReviewModal input[name=track_id]').val(),
-                author: $('#editReviewModal input[name=author]').val(),
-                location: $('#editReviewModal input[name=location]').val(),
+                author: $('#editReviewModal input[name=author]').val().trim(),
+                location: $('#editReviewModal input[name=location]').val().trim(),
                 score: $('#editReviewModal input[name=score]').val(),
-                review: $('#editReviewModal textarea[name=review]').val(),
-                source: $('#editReviewModal input[name=source]').val(),
+                review: $('#editReviewModal textarea[name=review]').val().trim(),
+                source: $('#editReviewModal input[name=source]').val().trim(),
             },
             success: function(response){
                 $('main').append(getAlertToast('Успех', response.message, 'text-bg-success', 'save-review-toast'));
@@ -140,7 +140,7 @@ function getSortableParams(){
                     'data': data
                 },
                 success: function(response){
-                    $('main').append(getAlertToast('Успех', 'Ревью пересортирован', 'text-bg-success', 'sort-toast'));
+                    $('main').append(getAlertToast('Успех', 'Ревью пересортированы', 'text-bg-success', 'sort-toast'));
                 },
                 error: function(){
                     $('main').append(getAlertToast('Ошибка', 'Возникла ошибка =(', 'text-bg-danger', 'sort-toast'));

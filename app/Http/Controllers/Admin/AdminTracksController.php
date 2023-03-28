@@ -96,6 +96,7 @@ class AdminTracksController extends Controller{
             'beatport_sample_start' => 'string|nullable',
             'beatport_sample_end' => 'string|nullable'
         ]);
+        session($request->post());
         $track->fill($request->post());
         $track->remixers = explode(',' , $request->post('remixers'));
         return response()->json($track->save()

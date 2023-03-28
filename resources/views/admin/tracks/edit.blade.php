@@ -6,32 +6,35 @@
     <div class="modal-body">
         <div class="form-group mb-3">
             <label for="artists" class="form-label">Артист(ы)* <small class="text-muted">перечислите через запятую</small></label>
-            @if(!$track->id && session('artists'))
+            @if(session('artists'))
                 <a class="add-promt text-muted">{{ session('artists') }}</a>
             @endif
             <input type="text" class="form-control form-dark" id="artists" name="artists" value="{{ $track->artists }}" required>
         </div>
         <div class="form-group mb-3">
             <label for="name" class="form-label">Название*</label>
-            @if(!$track->id && session('name'))
+            @if(session('name'))
                 <a class="add-promt text-muted">{{ session('name') }}</a>
             @endif
             <input type="text" class="form-control form-dark" id="name" name="name" value="{{ $track->name }}" required>
         </div>
         <div class="form-group mb-3">
             <label for="mix_name" class="form-label">Микс</label>
-            @if(!$track->id && session('mix_name'))
+            @if(session('mix_name'))
                 <a class="add-promt text-muted">{{ session('mix_name') }}</a>
             @endif
             <input type="text" class="form-control form-dark" id="mix_name" name="mix_name" value="{{ $track->mix_name }}">
         </div>
         <div class="form-group mb-3">
             <label for="remixers" class="form-label">Ремиксер(ы) <small class="text-muted">перечислите через запятую</small></label>
+            @if(session('remixers'))
+                <a class="add-promt text-muted">{{ session('remixers') }}</a>
+            @endif
             <input type="text" class="form-control form-dark" id="remixers" name="remixers" value="{{ implode(', ', (array)$track->remixers) }}">
         </div>
         <div class="form-group mb-3">
             <label for="composer" class="form-label">Композитор</label>
-            @if(!$track->id && session('composer'))
+            @if(session('composer'))
                 <a class="add-promt text-muted">{{ session('composer') }}</a>
             @endif
             <input type="text" class="form-control form-dark" id="composer" name="composer" value="{{ $track->composer }}">
@@ -50,6 +53,9 @@
         </div>
         <div class="form-group mb-3">
             <label for="genre" class="form-label">Жанр</label>
+            @if(session('genre'))
+                <a class="add-promt text-muted">{{ session('genre') }}</a>
+            @endif
             <input type="text" class="form-control form-dark" id="genre" name="genre" value="{{ $track->genre }}">
         </div>
         <div class="form-group mb-3">
@@ -63,22 +69,37 @@
         </div>
         <div class="form-group mb-3">
             <label for="bpm" class="form-label">BPM</label>
+            @if(session('bpm'))
+                <a class="add-promt text-muted">{{ session('bpm') }}</a>
+            @endif
             <input type="number" class="form-control form-dark" id="bpm" name="bpm" value="{{ $track->bpm }}">
         </div>
         <div class="form-group mb-3">
             <label for="length" class="form-label">Продолжительность</label>
+            @if(session('length'))
+                <a class="add-promt text-muted">{{ session('length') }}</a>
+            @endif
             <input type="text" class="form-control form-dark" id="length" name="length" value="{{ $track->length }}" placeholder="xx:xx">
         </div>
         <div class="form-group mb-3">
             <label for="beatport_id" class="form-label">Beatport ID</label>
+            @if(session('beatport_id'))
+                <a class="add-promt text-muted">{{ session('beatport_id') }}</a>
+            @endif
             <input type="number" class="form-control form-dark" id="beatport_id" name="beatport_id" value="{{ $track->beatport_id }}">
         </div>
         <div class="form-group mb-3">
             <label for="beatport_slug" class="form-label">Beatport Slug</label>
+            @if(session('beatport_slug'))
+                <a class="add-promt text-muted">{{ session('beatport_slug') }}</a>
+            @endif
             <input type="text" class="form-control form-dark" id="beatport_slug" name="beatport_slug" value="{{ $track->beatport_slug }}">
         </div>
         <div class="form-group mb-3">
             <label for="beatport_release_id" class="form-label">Beatport ID релиза</label>
+            @if(session('beatport_release_id'))
+                <a class="add-promt text-muted">{{ session('beatport_release_id') }}</a>
+            @endif
             <input type="number" class="form-control form-dark" id="beatport_release_id" name="beatport_release_id" value="{{ $track->beatport_release_id }}">
         </div>
         <div class="form-group mb-3">

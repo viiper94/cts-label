@@ -23,6 +23,7 @@ class Release extends SharedModel{
     protected $fillable = [
         'title',
         'release_number',
+        'exclusive_period',
         'beatport',
         'youtube',
         'description_en',

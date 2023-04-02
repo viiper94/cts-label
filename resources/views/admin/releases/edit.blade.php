@@ -87,13 +87,26 @@
                             <p class="help-block text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">Дата</label><br>
-                        <input type="hidden" name="release_date" id="release_date"
-                               value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}">
-                        @error('release_date')
-                            <p class="help-block text-danger">{{ $message }}</p>
-                        @enderror
+                    <div class="row">
+                        <div class="form-group mb-3 col-auto">
+                            <label class="form-label">Дата релиза</label><br>
+                            <input type="hidden" name="release_date" id="release_date"
+                                   value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}">
+                            @error('release_date')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3 col-auto">
+                            <label class="form-label" for="exclusive_period">Эксклюзивный период</label><br>
+                            <select class="form-select form-dark form-select mb-3" name="exclusive_period" id="exclusive_period">
+                                <option @selected(!$release->exclusive_period)>Без эксклюзивного периода</option>
+                                <option value="2" @selected($release->exclusive_period === '2')>2 недели</option>
+                                <option value="4" @selected($release->exclusive_period === '4')>4 недели</option>
+                            </select>
+                            @error('exclusive_period')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label">Ссылка в магазин (Beatport, Spotify, iTunes, etc.)</label><br>

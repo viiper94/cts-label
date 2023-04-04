@@ -159,6 +159,7 @@
                         </h2>
                         <div id="collapse_{{ $key }}" class="accordion-collapse collapse" aria-labelledby="heading_{{ $key }}" data-bs-parent="#accordion">
                             <div class="accordion-body text-bg-dark">
+                                <p><i class="fa-solid fa-user me-2"></i>Имя: <b>{{ $result->name }}</b></p>
                                 <p><i class="fa-solid fa-envelope me-2"></i>E-mail: <b>{{ $result->email }}</b></p>
                                 <p class="mb-0"><i class="fa-solid fa-star me-2"></i><b>Оценки</b>:</p>
                                 <ul style="list-style: none" class="mb-3">

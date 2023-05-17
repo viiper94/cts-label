@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "spatie/image": "^2.2",
+        "spatie/laravel-backup": "^8.1",
         "stichoza/google-translate-php": "^5.0"
     },
     "require-dev": {

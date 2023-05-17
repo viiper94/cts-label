@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             EmailingQueue::send();
         })->everyMinute();
+        $schedule->command('backup:clean')->daily()->at('01:00');
+        $schedule->command('backup:run')->daily()->at('01:30');
     }
 
     /**

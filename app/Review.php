@@ -2,7 +2,11 @@
 
 namespace App;
 
-class Review extends SharedModel{
+use OwenIt\Auditing\Contracts\Auditable;
+
+class Review extends SharedModel implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
         'track_id',

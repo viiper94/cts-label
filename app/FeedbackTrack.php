@@ -2,7 +2,11 @@
 
 namespace App;
 
-class FeedbackTrack extends SharedModel{
+use OwenIt\Auditing\Contracts\Auditable;
+
+class FeedbackTrack extends SharedModel implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     public $fillable = [
         'name',

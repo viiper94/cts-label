@@ -4,8 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class EmailingChannel extends Model{
+class EmailingChannel extends Model implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $table = 'email_channels';
     public $from = 'info@cts-studio.com';

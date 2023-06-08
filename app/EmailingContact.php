@@ -5,8 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class EmailingContact extends Model{
+class EmailingContact extends Model implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     use SoftDeletes;
 

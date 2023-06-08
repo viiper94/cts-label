@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Http\UploadedFile;
+use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 
-class StudioService extends SharedModel{
+class StudioService extends SharedModel implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $table = 'studio';
 

@@ -2,7 +2,11 @@
 
 namespace App;
 
-class SchoolTeacher extends School{
+use OwenIt\Auditing\Contracts\Auditable;
+
+class SchoolTeacher extends School implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
         'name',

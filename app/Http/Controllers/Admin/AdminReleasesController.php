@@ -81,9 +81,9 @@ class AdminReleasesController extends Controller{
         ]);
         $release->fill($request->post());
         $release->release_date = $request->date('release_date');
-        $release->related()->sync($request->post('related'));
+        $release->auditSync('related', $request->post('related'));
         $release->tracks()->detach(Arr::pluck($release->tracks, 'id'));
-        $release->tracks()->attach($request->post('tracks'));
+        $release->auditAttach('tracks', $request->post('tracks'));
         if($request->hasFile('image')){
             $release->deleteImages();
             $release->saveImage($request->file('image'));

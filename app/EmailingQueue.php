@@ -7,9 +7,12 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
+use OwenIt\Auditing\Contracts\Auditable;
 use Symfony\Component\Mailer\Exception\TransportException;
 
-class EmailingQueue extends Model{
+class EmailingQueue extends Model implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $table = 'email_queue';
 

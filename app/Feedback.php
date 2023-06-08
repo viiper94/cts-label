@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use OwenIt\Auditing\Contracts\Auditable;
 use ZipArchive;
 
-class Feedback extends SharedModel{
+class Feedback extends SharedModel implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $table = 'feedback';
     protected $casts = [

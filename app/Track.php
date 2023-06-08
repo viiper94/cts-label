@@ -5,8 +5,11 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Track extends Model{
+class Track extends Model implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     public $fillable = [
         'artists',

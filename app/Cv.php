@@ -4,8 +4,11 @@ namespace App;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Cv extends Model{
+class Cv extends Model implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $table = 'cv';
     protected $casts = [

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use OwenIt\Auditing\Contracts\Auditable;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
@@ -9,7 +10,9 @@ use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 use ZipArchive;
 
-class Release extends SharedModel{
+class Release extends SharedModel implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $casts = [
         'visible' => 'boolean',
@@ -39,6 +42,7 @@ class Release extends SharedModel{
     ];
 
     public function __construct(){
+        parent::__construct();
         $this->tracklist_show_artist = true;
         $this->tracklist_show_title = true;
         $this->tracklist_show_mix = true;

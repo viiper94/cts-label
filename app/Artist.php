@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Http\UploadedFile;
+use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Image\Image;
 use Spatie\Image\Manipulations;
 
-class Artist extends SharedModel{
+class Artist extends SharedModel implements Auditable{
+
+    use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [
         'name',

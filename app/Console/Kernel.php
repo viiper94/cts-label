@@ -3,8 +3,10 @@
 namespace App\Console;
 
 use App\EmailingQueue;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,11 +26,20 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule){
+
+        // handling emails
         $schedule->call(function(){
             EmailingQueue::send();
         })->everyMinute();
-        $schedule->command('backup:clean')->daily()->at('01:00');
-        $schedule->command('backup:run')->daily()->at('01:30');
+
+        // handling backups
+        $schedule->command('backup:run')->daily()->at('01:00')->when(function(){
+            return DB::table('audits')->whereDate('created_at', Carbon::yesterday())->count() > 0;
+        });
+        $schedule->command('backup:clean')->daily()->at('01:30')->when(function(){
+            return DB::table('audits')->whereDate('created_at', Carbon::yesterday())->count() > 0;
+        });
+
     }
 
     /**

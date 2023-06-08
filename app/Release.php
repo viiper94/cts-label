@@ -78,23 +78,12 @@ class Release extends SharedModel implements Auditable{
 
         if($cookie_lang && $this['description_'.$cookie_lang]){
             return $cookie_lang;
-        }else{
-            if($this['description_'.$default_lang]){
-                return $default_lang;
-            }else if($available_descriptions){
-                return $available_descriptions[0];
-            }else{
-                return false;
-            }
+        }else if($this['description_'.$default_lang]){
+            return $default_lang;
+        }else if($available_descriptions){
+            return $available_descriptions[0];
         }
-    }
-
-    public function getTracksCount(){
-        if($this->tracklist){
-            $lines_arr = preg_split('/\r\n|\n|\r/',$this->tracklist);
-            return count($lines_arr);
-        }
-        return 1;
+        return false;
     }
 
     public static function generateReleaseNumber(): string{

@@ -54,11 +54,7 @@
                     </div>
                 </div>
                 <div class="col-md col-xs-12 mb-3">
-                    <div class="form-check mb-3">
-                        <input type="hidden" name="visible" value="0">
-                        <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($release->visible)>
-                        <label for="visible" class="form-check-label">Опубликовано</label>
-                    </div>
+                    <x-checkbox class="mb-3" name="visible" label="Опубликовано" :checked="$release->visible"></x-checkbox>
                     <div class="form-group mb-3">
                         <label class="form-label">Название</label><br>
                         <input type="text" class="form-control form-dark" name="title" value="{{ old('title') ?? $release->title }}" required>
@@ -231,30 +227,10 @@
                         </div>
                         <div class="inline-params">
                             <h6>Параметры отображения треклиста на странице релиза</h6>
-                            <div class="form-check form-check-inline">
-                                <input type="hidden" name="tracklist_show_artist" value="0">
-                                <input class="form-check-input" type="checkbox" id="show_artist" name="tracklist_show_artist"
-                                    @checked($release->tracklist_show_artist) value="1">
-                                <label class="form-check-label" for="show_artist">Показывать артиста</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="hidden" name="tracklist_show_title" value="0">
-                                <input class="form-check-input" type="checkbox" id="show_title" name="tracklist_show_title"
-                                    @checked($release->tracklist_show_title) value="1">
-                                <label class="form-check-label" for="show_title">Показывать название</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="hidden" name="tracklist_show_mix" value="0">
-                                <input class="form-check-input" type="checkbox" id="show_mix" name="tracklist_show_mix"
-                                    @checked($release->tracklist_show_mix) value="1">
-                                <label class="form-check-label" for="show_mix">Показывать микс</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="hidden" name="tracklist_show_custom" value="0">
-                                <input class="form-check-input" type="checkbox" id="show_custom" name="tracklist_show_custom"
-                                    @checked($release->tracklist_show_custom) value="1">
-                                <label class="form-check-label" for="show_custom">Показывать кастомный текст</label>
-                            </div>
+                            <x-checkbox class="form-check-inline" name="tracklist_show_artist" label="Показывать артиста" :checked="$release->tracklist_show_artist"></x-checkbox>
+                            <x-checkbox class="form-check-inline" name="tracklist_show_title" label="Показывать название" :checked="$release->tracklist_show_title"></x-checkbox>
+                            <x-checkbox class="form-check-inline" name="tracklist_show_mix" label="Показывать микс" :checked="$release->tracklist_show_mix"></x-checkbox>
+                            <x-checkbox class="form-check-inline" name="tracklist_show_custom" id="show_custom" label="Показывать кастомный текст" :checked="$release->tracklist_show_custom"></x-checkbox>
                         </div>
                         <div class="description form-group my-3" id="tracklist_text" style="display: @if($release->tracklist_show_custom) block @else none @endif">
                             <label class="en">Треклист (кастомный текст)</label>

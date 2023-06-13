@@ -27,8 +27,11 @@
                 <div class="col-xxl-4 col-lg-6 col-xs-12">
                     <div class="card text-bg-dark mb-3">
                         <div class="row g-0">
-                            <div class="card-header">
-                                <h5 class="card-title text-nowrap mb-0 text-truncate">{{ $release->title }}</h5>
+                            <div class="card-header d-flex">
+                                <h5 class="card-title text-nowrap mb-0 text-truncate col">{{ $release->title }}</h5>
+                                @if($release->hasUnfinishedUploads(true))
+                                    <i class="bi bi-exclamation-triangle text-danger col-auto" title="Есть незавершенные выгрузки"></i>
+                                @endif
                             </div>
                             <div class="col-12 d-flex g-0">
                                 <div class="card-img col-auto">

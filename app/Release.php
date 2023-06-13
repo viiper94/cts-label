@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use OwenIt\Auditing\Contracts\Auditable;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\UploadedFile;
@@ -197,6 +198,39 @@ class Release extends SharedModel implements Auditable{
                 unlink($path);
             }
         }
+    }
+
+    public function hasUnfinishedUploads($count = false) :bool|array{
+        $today = Carbon::today();
+        $result = array();
+
+        if($this->uploaded_on_beatport){
+            if(!$this->uploaded_on_believe && $today >= $this->release_date){
+                $result['uploaded_on_believe'] = 'Необходимо выгрузить до ' . $this->release_date->isoFormat('LL');
+            }
+            if(!$this->uploaded_on_juno && $today >= $this->release_date->addDays(12)){
+                $result['uploaded_on_juno'] = 'Необходимо выгрузить до ' . $this->release_date->addDays(12)->isoFormat('LL');
+            }
+            if(!$this->uploaded_on_google_drive && $today >= $this->release_date->addDays(14)){
+                $result['uploaded_on_google_drive'] = 'Необходимо выгрузить ' . $this->release_date->addDays(14)->isoFormat('LL');
+            }
+            if(!$this->label_copy_uploaded && $today >= $this->release_date->addDays(14)){
+                $result['label_copy_uploaded'] = 'Необходимо выгрузить ' . $this->release_date->addDays(14)->isoFormat('LL');
+            }
+        }
+        if($this->promo_upload){
+            if(!$this->uploaded_on_zip_dj && $today >= $this->release_date->subDays(1)){
+                $result['uploaded_on_zip_dj'] = 'Необходимо выгрузить до ' . $this->release_date->subDays(1)->isoFormat('LL');
+            }
+            if(!$this->uploaded_on_music_worx && $today >= $this->release_date->subDays(1)){
+                $result['uploaded_on_music_worx'] = 'Необходимо выгрузить до ' . $this->release_date->subDays(1)->isoFormat('LL');
+            }
+            if(!$this->uploaded_on_release_promo && $today >= $this->release_date->subDays(1)){
+                $result['uploaded_on_release_promo'] = 'Необходимо выгрузить до ' . $this->release_date->subDays(1)->isoFormat('LL');
+            }
+        }
+
+        return $count ? count($result) > 0 : $result;
     }
 
 }

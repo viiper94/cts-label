@@ -21,6 +21,16 @@ class Release extends SharedModel implements Auditable{
         'tracklist_show_mix' => 'boolean',
         'tracklist_show_custom' => 'boolean',
         'release_date' => 'datetime',
+        'uploaded_on_beatport' => 'boolean',
+        'uploaded_on_believe' => 'boolean',
+        'uploaded_on_juno' => 'boolean',
+        'uploaded_on_google_drive' => 'boolean',
+        'promo_upload' => 'boolean',
+        'uploaded_on_zip_dj' => 'boolean',
+        'uploaded_on_music_worx' => 'boolean',
+        'uploaded_on_release_promo' => 'boolean',
+        'label_copy_uploaded' => 'boolean',
+        'is_emailing_done' => 'boolean',
     ];
 
     protected $fillable = [
@@ -39,6 +49,16 @@ class Release extends SharedModel implements Auditable{
         'tracklist_show_title',
         'tracklist_show_mix',
         'tracklist_show_custom',
+        'uploaded_on_beatport',
+        'uploaded_on_believe',
+        'uploaded_on_juno',
+        'uploaded_on_google_drive',
+        'promo_upload',
+        'uploaded_on_zip_dj',
+        'uploaded_on_music_worx',
+        'uploaded_on_release_promo',
+        'label_copy_uploaded',
+        'is_emailing_done',
     ];
 
     public function __construct(){

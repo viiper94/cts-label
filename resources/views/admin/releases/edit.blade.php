@@ -156,7 +156,7 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Ссылка в магазин (Beatport, Spotify, iTunes, etc.)</label><br>
                         <div class="input-group">
-                            <input type="text" class="form-control form-dark" name="beatport" value="{{ old('beatport') ?? $release->beatport }}">
+                            <input type="url" class="form-control form-dark" name="beatport" value="{{ old('beatport') ?? $release->beatport }}">
                             @if($release->beatport)
                                 <a class="btn btn-outline border-0" href="{{ $release->beatport }}" target="_blank">
                                     <i @class([
@@ -174,7 +174,7 @@
                     <div class="form-group mb-3">
                         <label class="form-label">Ссылка в Youtube</label><br>
                         <div class="input-group">
-                            <input type="text" class="form-control form-dark" name="youtube" value="{{ old('youtube') ?? $release->youtube }}">
+                            <input type="url" class="form-control form-dark" name="youtube" value="{{ old('youtube') ?? $release->youtube }}">
                             @if($release->youtube)
                                 <a class="btn btn-outline border-0" href="{{ $release->youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                             @endif

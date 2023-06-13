@@ -85,7 +85,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group mb-3 col-auto">
-                            <label class="form-label">Дата релиза</label><br>
+                            <label class="form-label">Дата релиза на Beatport</label><br>
                             <input type="hidden" name="release_date" id="release_date"
                                    value="{{ old('release_date') ?? $release->release_date?->format('d F Y') }}">
                             @error('release_date')

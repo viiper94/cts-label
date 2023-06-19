@@ -92,7 +92,7 @@
                                 <p class="help-block text-danger">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-xxl">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group mb-3">

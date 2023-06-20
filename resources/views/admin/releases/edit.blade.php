@@ -108,49 +108,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-lg-6">
-                                    @php $check = $release->hasUnfinishedUploads(); @endphp
-                                    <x-checkbox class="mt-2" label="Выгружено на Beatport" name="uploaded_on_beatport" :checked="$release->uploaded_on_beatport"></x-checkbox>
-                                    <x-checkbox class="mt-2" label="Выгружено на <a href='https://www.believebackstage.com/' target='_blank'>Believe Digital</a>"
-                                                name="uploaded_on_believe" :checked="$release->uploaded_on_believe"></x-checkbox>
-                                    @isset($check['uploaded_on_believe'])
-                                        <small class="text-danger">{{ $check['uploaded_on_believe'] }}</small>
-                                    @endisset
-                                    <x-checkbox class="mt-2" label="Выгружено на <a href='https://lms.junodownload.com/lms/release/' target='_blank'>Juno</a>"
-                                                name="uploaded_on_juno" :checked="$release->uploaded_on_juno"></x-checkbox>
-                                    @isset($check['uploaded_on_juno'])
-                                        <small class="text-danger">{{ $check['uploaded_on_juno'] }}</small>
-                                    @endisset
-                                    <x-checkbox class="mt-2" label="Выгружено на Google Диск" name="uploaded_on_google_drive" :checked="$release->uploaded_on_google_drive"></x-checkbox>
-                                    @isset($check['uploaded_on_google_drive'])
-                                        <small class="text-danger">{{ $check['uploaded_on_google_drive'] }}</small>
-                                    @endisset
-                                    <x-checkbox class="mt-2" label="Выгружено на Housesession (Label copy)" name="label_copy_uploaded" :checked="$release->label_copy_uploaded"></x-checkbox>
-                                    @isset($check['label_copy_uploaded'])
-                                        <small class="text-danger">{{ $check['label_copy_uploaded'] }}</small>
-                                    @endisset
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <x-checkbox class="mt-2 mb-4" label="Выгружать на промо" name="promo_upload" :checked="$release->promo_upload"></x-checkbox>
-                                    <x-checkbox class="mt-2" label="Выгружено на <a href='https://www.zipdj.com/' target='_blank'>Zip DJ</a>"
-                                                name="uploaded_on_zip_dj" :checked="$release->uploaded_on_zip_dj"></x-checkbox>
-                                    @isset($check['uploaded_on_zip_dj'])
-                                        <small class="text-danger">{{ $check['uploaded_on_zip_dj'] }}</small>
-                                    @endisset
-                                    <x-checkbox class="mt-2" label="Выгружено на <a href='https://pro.music-worx.com/en/user/addrelease' target='_blank'>Music Worx</a>"
-                                                name="uploaded_on_music_worx" :checked="$release->uploaded_on_music_worx"></x-checkbox>
-                                    @isset($check['uploaded_on_music_worx'])
-                                        <small class="text-danger">{{ $check['uploaded_on_music_worx'] }}</small>
-                                    @endisset
-                                    <x-checkbox class="mt-2" label="Выгружено на <a href='http://releasepromo.com/' target='_blank'>Release Promo</a>"
-                                                name="uploaded_on_release_promo" :checked="$release->uploaded_on_release_promo"></x-checkbox>
-                                    @isset($check['uploaded_on_release_promo'])
-                                        <small class="text-danger">{{ $check['uploaded_on_release_promo'] }}</small>
-                                    @endisset
-                                    <x-checkbox class="mt-2" label="Рассылка сделана" name="is_emailing_done" :checked="$release->is_emailing_done"></x-checkbox>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="form-group mb-3">
@@ -264,9 +222,9 @@
                 </div>
             </div>
             <div class="card text-bg-dark mb-5">
-                    <button class="card-header p-3 accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRelated" aria-expanded="false" aria-controls="collapseRelated">
-                        <span class="badge text-bg-primary me-2">{{ count($release->related) }}</span>Related tracks:
-                    </button>
+                <button class="card-header p-3 accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRelated" aria-expanded="false" aria-controls="collapseRelated">
+                    <span class="badge text-bg-primary me-2">{{ count($release->related) }}</span>Related tracks:
+                </button>
                 <div id="collapseRelated" class="collapse">
                     <div class="card-body row g-0 flex-column-reverse flex-md-row">
                         <div class="col-md-6 col-xs-12 related-all-releases">
@@ -298,6 +256,74 @@
                             </div>
                             <div class="checked-releases mt-3"></div>
                             <div class="item-list mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card text-bg-dark mb-5">
+                <button class="card-header p-3 accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFlow" aria-expanded="false" aria-controls="collapseFlow">
+                    <span @class(['badge text-bg-success me-2', 'text-bg-danger' => $release->hasUnfinishedUploads(true)])>
+                        {{ count($release->hasUnfinishedUploads()) ?? '0' }}
+                    </span>
+                    Выгрузки:
+                </button>
+                <div class="collapse" id="collapseFlow">
+                    <div class="card-body row">
+                        <div class="col-12 col-lg-6">
+                            @php $check = $release->hasUnfinishedUploads(); @endphp
+                            <x-checkbox class="mt-2" name="uploaded_on_beatport" :checked="$release->uploaded_on_beatport">
+                                Выгружено на Beatport
+                            </x-checkbox>
+                            <x-checkbox class="mt-2" name="uploaded_on_believe" :checked="$release->uploaded_on_believe">
+                                Выгружено на <a href='https://www.believebackstage.com/' target='_blank'>Believe Digital</a>
+                            </x-checkbox>
+                            @isset($check['uploaded_on_believe'])
+                                <small class="text-danger">{{ $check['uploaded_on_believe'] }}</small>
+                            @endisset
+                            <x-checkbox class="mt-2" name="uploaded_on_juno" :checked="$release->uploaded_on_juno">
+                                Выгружено на <a href='https://lms.junodownload.com/lms/release/' target='_blank'>Juno</a>
+                            </x-checkbox>
+                            @isset($check['uploaded_on_juno'])
+                                <small class="text-danger">{{ $check['uploaded_on_juno'] }}</small>
+                            @endisset
+                            <x-checkbox class="mt-2" name="uploaded_on_google_drive" :checked="$release->uploaded_on_google_drive">
+                                Выгружено на Google Диск
+                            </x-checkbox>
+                            @isset($check['uploaded_on_google_drive'])
+                                <small class="text-danger">{{ $check['uploaded_on_google_drive'] }}</small>
+                            @endisset
+                            <x-checkbox class="mt-2" name="label_copy_uploaded" :checked="$release->label_copy_uploaded">
+                                Выгружено на Housesession (Label copy)
+                            </x-checkbox>
+                            @isset($check['label_copy_uploaded'])
+                                <small class="text-danger">{{ $check['label_copy_uploaded'] }}</small>
+                            @endisset
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <x-checkbox class="mt-2 mb-4" name="promo_upload" :checked="$release->promo_upload">
+                                Выгружать на промо
+                            </x-checkbox>
+                            <x-checkbox class="mt-2" name="uploaded_on_zip_dj" :checked="$release->uploaded_on_zip_dj">
+                                Выгружено на <a href='https://www.zipdj.com/' target='_blank'>Zip DJ</a>
+                            </x-checkbox>
+                            @isset($check['uploaded_on_zip_dj'])
+                                <small class="text-danger">{{ $check['uploaded_on_zip_dj'] }}</small>
+                            @endisset
+                            <x-checkbox class="mt-2" name="uploaded_on_music_worx" :checked="$release->uploaded_on_music_worx">
+                                Выгружено на <a href='https://pro.music-worx.com/en/user/addrelease' target='_blank'>Music Worx</a>
+                            </x-checkbox>
+                            @isset($check['uploaded_on_music_worx'])
+                                <small class="text-danger">{{ $check['uploaded_on_music_worx'] }}</small>
+                            @endisset
+                            <x-checkbox class="mt-2" name="uploaded_on_release_promo" :checked="$release->uploaded_on_release_promo">
+                                Выгружено на <a href='http://releasepromo.com/' target='_blank'>Release Promo</a>
+                            </x-checkbox>
+                            @isset($check['uploaded_on_release_promo'])
+                                <small class="text-danger">{{ $check['uploaded_on_release_promo'] }}</small>
+                            @endisset
+                            <x-checkbox class="mt-2" name="is_emailing_done" :checked="$release->is_emailing_done">
+                                Рассылка сделана
+                            </x-checkbox>
                         </div>
                     </div>
                 </div>

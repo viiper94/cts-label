@@ -55,11 +55,7 @@
                             <p class="help-block">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="form-check mb-3">
-                        <input type="hidden" name="visible" value="0">
-                        <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($feedback->visible)>
-                        <label for="visible" class="form-check-label">Опубликовано</label>
-                    </div>
+                    <x-checkbox class="mb-3" name="visible" :checked="$feedback->visible">Опубликовано</x-checkbox>
                     <div class="card text-bg-dark related-all-feedback">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <h5 class="card-title">Also available:</h5>
@@ -67,11 +63,13 @@
                         <div class="card-body">
                             @foreach($feedback_list as $item)
                                 @if(!$feedback->release || $item->release_id != $feedback->release->id)
-                                    <div class="form-check mb-2">
-                                        <input type="checkbox" name="related[]" id="also-{{ $item->release_id }}"
-                                               value="{{ $item->id }}" class="form-check-input" @checked($feedback->related->contains($item))>
-                                        <label for="also-{{ $item->release_id }}" class="form-check-label">{{ $item->feedback_title }}</label>
-                                    </div>
+                                    <x-checkbox class="mb-2"
+                                                name="related[]"
+                                                :value="$item->id"
+                                                :id="$item->release_id"
+                                                :checked="$feedback->related->contains($item)">
+                                        {{ $item->feedback_title }}
+                                    </x-checkbox>
                                 @endif
                             @endforeach
                         </div>

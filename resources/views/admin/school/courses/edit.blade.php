@@ -11,11 +11,7 @@
                 <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
             </div>
             <div class="col-md-7">
-                <div class="form-check mb-3">
-                    <input type="hidden" name="visible" value="0">
-                    <input type="checkbox" name="visible" value="1" id="visible" class="form-check-input" @checked($course->visible)>
-                    <label for="visible" class="form-check-label">Опубликовано</label>
-                </div>
+                <x-checkbox class="mb-3" name="visible" :checked="$course->visible">Опубликовано</x-checkbox>
                 <label class="form-label mb-0">Язык</label><br>
                 <div class="form-check form-check-inline mb-3">
                     <input type="radio" name="lang" id="lang-en" class="form-check-input" value="en"

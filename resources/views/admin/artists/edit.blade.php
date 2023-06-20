@@ -11,11 +11,7 @@
                 <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
             </div>
             <div class="col-md-7 col-xs-12 mb-3">
-                <div class="form-check mb-3">
-                    <input type="hidden" name="visible" value="0">
-                    <input type="checkbox" name="visible" id="visible" class="form-check-input" @checked($artist->visible)>
-                    <label for="visible" class="form-check-label">Опубликовано</label>
-                </div>
+                <x-checkbox class="mb-3" name="visible" :checked="$artist->visible">Опубликовано</x-checkbox>
                 <div class="form-group mb-3">
                     <label class="form-label" for="name">Имя</label><br>
                     <input type="text" class="form-control form-control-lg form-dark" name="name" id="name"

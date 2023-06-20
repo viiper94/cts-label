@@ -62,11 +62,9 @@
                     <p class="help-block">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="form-check mb-3">
-                <input type="hidden" name="unsubscribe" value="0">
-                <input type="checkbox" name="unsubscribe" id="unsubscribe" class="form-check-input" value="1" @checked(!$channel->id || $channel->unsubscribe)>
-                <label for="unsubscribe" class="form-check-label">Добавлять кнопку <b>Отписаться</b></label>
-            </div>
+            <x-checkbox class="mb-3" name="unsubscribe" :checked="!$channel->id || $channel->unsubscribe">
+                Добавлять кнопку <b>Отписаться</b>
+            </x-checkbox>
             <div class="form-group mb-3">
                 <label for="description" class="form-label">Описание</label><br>
                 <textarea name="description" id="description" rows="3" class="form-control form-dark">{{ old('description') ?? $channel->description }}</textarea>
@@ -75,10 +73,7 @@
                 @enderror
             </div>
             @if(!$channel->id)
-                <div class="form-check mb-3">
-                    <input type="checkbox" name="add_all" id="add_all" class="form-check-input">
-                    <label for="add_all" class="form-check-label">Добавить ВСЕ контакты в канал</label>
-                </div>
+                <x-checkbox class="mb-3" label="Добавить ВСЕ контакты в канал" name="add_all"></x-checkbox>
             @endif
         </form>
     </div>

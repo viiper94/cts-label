@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="col-md col-xs-12 mb-3">
-                    <x-checkbox class="mb-3" name="visible" label="Опубликовано" :checked="$release->visible"></x-checkbox>
+                    <x-checkbox class="mb-3" name="visible" :checked="$release->visible">Опубликовано</x-checkbox>
                     <div class="form-group mb-3">
                         <label class="form-label">Название</label><br>
                         <input type="text" class="form-control form-dark" name="title" value="{{ old('title') ?? $release->title }}" required>
@@ -227,10 +227,10 @@
                         </div>
                         <div class="inline-params">
                             <h6>Параметры отображения треклиста на странице релиза</h6>
-                            <x-checkbox class="form-check-inline" name="tracklist_show_artist" label="Показывать артиста" :checked="$release->tracklist_show_artist"></x-checkbox>
-                            <x-checkbox class="form-check-inline" name="tracklist_show_title" label="Показывать название" :checked="$release->tracklist_show_title"></x-checkbox>
-                            <x-checkbox class="form-check-inline" name="tracklist_show_mix" label="Показывать микс" :checked="$release->tracklist_show_mix"></x-checkbox>
-                            <x-checkbox class="form-check-inline" name="tracklist_show_custom" id="show_custom" label="Показывать кастомный текст" :checked="$release->tracklist_show_custom"></x-checkbox>
+                            <x-checkbox class="form-check-inline" name="tracklist_show_artist" :checked="$release->tracklist_show_artist">Показывать артиста</x-checkbox>
+                            <x-checkbox class="form-check-inline" name="tracklist_show_title" :checked="$release->tracklist_show_title">Показывать название</x-checkbox>
+                            <x-checkbox class="form-check-inline" name="tracklist_show_mix" :checked="$release->tracklist_show_mix">Показывать микс</x-checkbox>
+                            <x-checkbox class="form-check-inline" name="tracklist_show_custom" id="show_custom" :checked="$release->tracklist_show_custom">Показывать кастомный текст</x-checkbox>
                         </div>
                         <div class="description form-group my-3" id="tracklist_text" style="display: @if($release->tracklist_show_custom) block @else none @endif">
                             <label class="en">Треклист (кастомный текст)</label>

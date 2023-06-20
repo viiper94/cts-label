@@ -118,14 +118,13 @@
                 </div>
                 <div class="card-body">
                     @foreach($channels as $key => $channel)
-                        <div class="form-check">
-                            <input type="checkbox" name="channels[]" value="{{ $channel->id }}" class="form-check-input"
-                                   @checked(
-                                       (old() && is_array(old('channels')) && in_array($channel->id, old('channels')))
-                                       || (!old() && $contact->channels->contains($channel->id))
-                                   ) id="channel-{{ $key }}">
-                            <label class="form-label" for="channel-{{ $key }}">{{ $channel->title }}</label>
-                        </div>
+                        <x-checkbox name="channels[]"
+                                    :id="$channel->id"
+                                    :value="$channel->id"
+                                    :checked="(old() && is_array(old('channels')) && in_array($channel->id, old('channels')))
+                                       || (!old() && $contact->channels->contains($channel->id))">
+                            {{ $channel->title }}
+                        </x-checkbox>
                     @endforeach
                 </div>
             </div>

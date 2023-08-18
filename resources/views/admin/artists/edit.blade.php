@@ -11,14 +11,14 @@
                 <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
             </div>
             <div class="col-md-7 col-xs-12 mb-3">
-                <x-checkbox class="mb-3" name="visible" :checked="$artist->visible">Опубликовано</x-checkbox>
+                <x-checkbox class="mb-3" name="visible" :checked="$artist->visible">@lang('artists.visible')</x-checkbox>
                 <div class="form-group mb-3">
-                    <label class="form-label" for="name">Имя</label><br>
+                    <label class="form-label" for="name">@lang('artists.name')</label><br>
                     <input type="text" class="form-control form-control-lg form-dark" name="name" id="name"
                            value="{{ $artist->name }}" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label" for="link">Ссылка в социальную сеть</label><br>
+                    <label class="form-label" for="link">@lang('artists.link')</label><br>
                     <div class="input-group">
                         <input type="url" class="form-control form-dark" name="link" id="link"
                                value="{{ $artist->link }}">
@@ -38,12 +38,12 @@
         <form action="{{ route('artists.destroy', $artist->id) }}" method="post">
             @csrf
             @method('DELETE')
-            <button class="btn btn-outline-danger" onclick="return confirm('Удалить артиста?')">
-                <i class="fa-solid fa-trash me-2"></i>Удалить
+            <button class="btn btn-outline-danger" onclick="return confirm('@lang('artists.delete_artist')?')">
+                <i class="fa-solid fa-trash me-2"></i>@lang('artists.delete')
             </button>
         </form>
     @endif
     <button class="btn btn-primary" form="edit_form" type="submit">
-        <i class="fa-solid fa-check me-2"></i>Сохранить
+        <i class="fa-solid fa-check me-2"></i>@lang('artists.save')
     </button>
 </div>

@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Контакты рассылки | CTS Records Admin Panel
+    @lang('emailing.contacts.emailing_contacts') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -10,11 +10,11 @@
         <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
             <div class="releases-actions d-flex gap-2">
                 <a href="{{ route('emailing.contacts.create') }}" class="btn btn-primary m-xl-0 m-1">
-                    <i class="fa-solid fa-plus me-2"></i>Новый контакт
+                    <i class="fa-solid fa-plus me-2"></i>@lang('emailing.contacts.new_emailing_contact')
                 </a>
                 <div class="dropdown text-center">
                     <button class="btn btn-outline dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown">
-                        @if(Request::input('channel')){{ $selected_channel }}@elseФильтровать по каналам@endif
+                        @if(Request::input('channel')){{ $selected_channel }}@else @lang('emailing.contacts.filter_by_channel') @endif
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -25,7 +25,7 @@
                                 </a>
                             </li>
                         @endforeach
-                        <li><a href="{{ route('emailing.contacts.index') }}" class="dropdown-item">Все каналы</a></li>
+                        <li><a href="{{ route('emailing.contacts.index') }}" class="dropdown-item">@lang('emailing.contacts.all_channels')</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,37 +36,37 @@
                 <thead>
                 <tr>
                     @php $headers = [
-                        'name' => 'Имя',
-                        'email' => 'E-Mail',
-                        'company' => 'Компания',
-                        'company_foa' => 'Сфера',
-                        'position' => 'Должность',
-                        'website' => 'Сайт',
-                        'phone' => 'Телефон',
-                        'additional' => 'Доп. инфо',
-                        'created_at' => 'Добавлен',
+                        'name',
+                        'email',
+                        'company',
+                        'company_foa',
+                        'position',
+                        'website',
+                        'phone',
+                        'additional',
+                        'created_at',
                     ];
                     @endphp
-                    @foreach($headers as $key => $item)
-                        <th>
-                            <a href="{{ route('emailing.contacts.index', [
-                                    'sort' => $key,
-                                    'dir' => ($dir === 'up' ? 'down' : 'up'),
-                                    'channel' => Request::input('channel'),
-                                    'q' => Request::input('q'),
-                                ]) }}" class="text-light text-nowrap">
-                                {{ $item }}
-                            </a>
-                            @if($sort === $key)
+                    @foreach($headers as $item)
+                        <th class="text-nowrap">
+                            @if($sort === $item)
                                 <i @class([
                                     'fa-solid text-warning',
                                     'fa-arrow-down-a-z' => ($dir === 'up'),
                                     'fa-arrow-down-z-a' => ($dir === 'down'),
                                 ])></i>
                             @endif
+                            <a href="{{ route('emailing.contacts.index', [
+                                    'sort' => $item,
+                                    'dir' => ($dir === 'up' ? 'down' : 'up'),
+                                    'channel' => Request::input('channel'),
+                                    'q' => Request::input('q'),
+                                ]) }}" class="text-light text-nowrap">
+                                @lang('emailing.contacts.'.$item)
+                            </a>
                         </th>
                     @endforeach
-                    <th class="text-center">Канал(ы)</th>
+                    <th class="text-center">@lang('emailing.contacts.channels')</th>
                     <th></th>
                 </tr>
                 </thead>

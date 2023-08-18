@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Фидбеки | CTS Records Admin Panel
+    @lang('feedback.feedbacks') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -11,7 +11,7 @@
         <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
             <div class="releases-actions text-center">
                 <button type="button" class="btn btn-primary m-xl-0 m-1" data-bs-toggle="modal" data-bs-target="#newFeedbackModal">
-                    <i class="fa-solid fa-plus me-2"></i>Новый фидбек
+                    <i class="fa-solid fa-plus me-2"></i>@lang('feedback.new_feedback')
                 </button>
             </div>
             {{ $feedback_list->appends(Request::input())->links('admin.layout.pagination') }}
@@ -24,7 +24,7 @@
                             <div class="card-header d-flex flex-nowrap align-items-center">
                                 <h5 class="card-title text-nowrap mb-0 text-truncate flex-grow-1" title="{{ $feedback->feedback_title }}">{{ $feedback->feedback_title }}</h5>
                                 @if(!$feedback->release)
-                                    <i class="fa-solid fa-wand-magic-sparkles ms-2" title="Кастомный фидбек"></i>
+                                    <i class="fa-solid fa-wand-magic-sparkles ms-2" title="@lang('feedback.custom_feedback')"></i>
                                 @endif
                             </div>
                             <div class="col-12 d-flex g-0">
@@ -38,9 +38,9 @@
                                 <div class="card-info d-flex flex-column col">
                                     <div class="d-flex flex-grow-1">
                                         <div class="card-body">
-                                            <small class="text-muted">Треков</small>
+                                            <small class="text-muted">@lang('feedback.tracks')</small>
                                             <h4 class="card-text">{{ $feedback->ftracks_count }}</h4>
-                                            <small class="text-muted">Ответов</small>
+                                            <small class="text-muted">@lang('feedback.replies.replies')</small>
                                             <h4 class="card-text">{{ $feedback->results_count }}</h4>
                                         </div>
                                     </div>
@@ -48,10 +48,10 @@
                             </div>
                             <div class="card-footer">
                                 <a class="btn btn-sm btn-primary" href="{{ route('feedback.edit', $feedback->id) }}">
-                                    <i class="fa-solid fa-pen me-2"></i>Редактировать
+                                    <i class="fa-solid fa-pen me-2"></i>@lang('shared.admin.edit')
                                 </a>
                                 <a class="btn btn-sm btn-outline" href="{{ route('feedback', $feedback->slug) }}" target="_blank">
-                                    Смотреть фидбек
+                                    @lang('feedback.frontend')
                                 </a>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Выберите релиз</h5>
+                    <h5 class="modal-title">@lang('feedback.pick_release')</h5>
                     <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="{{ route('feedback.create') }}" class="btn btn-outline">
-                        <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Создать кастомную страницу фидбека
+                        <i class="fa-solid fa-wand-magic-sparkles me-2"></i>@lang('feedback.create_custom')
                     </a>
                 </div>
             </div>

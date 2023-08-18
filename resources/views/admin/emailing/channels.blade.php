@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Каналы рассылки | CTS Records Admin Panel
+    @lang('emailing.channels.emailing_channels') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -10,7 +10,7 @@
         <div class="justify-content-between align-items-center d-flex my-3">
             <div class="releases-actions">
                 <a href="{{ route('emailing.channels.create') }}" class="btn btn-primary">
-                    <i class="fa-solid fa-plus me-2"></i>Новый канал рассылки
+                    <i class="fa-solid fa-plus me-2"></i>@lang('emailing.channels.new_emailing_channel')
                 </a>
             </div>
         </div>
@@ -18,13 +18,13 @@
             <table class="table table-dark table-hover">
                 <thead>
                 <tr>
-                    <th>Название</th>
-                    <th>Тема письма</th>
-                    <th>Отправитель</th>
-                    <th>Язык</th>
-                    <th>Подписчиков</th>
-                    <th>Создано</th>
-                    <th class="text-end">Действия</th>
+                    <th>@lang('emailing.channels.channel_title')</th>
+                    <th>@lang('emailing.channels.channel_subject')</th>
+                    <th>@lang('emailing.channels.channel_sender')</th>
+                    <th>@lang('emailing.channels.channel_language')</th>
+                    <th>@lang('emailing.channels.channel_subscribers')</th>
+                    <th>@lang('emailing.channels.channel_created_at')</th>
+                    <th class="text-end">@lang('emailing.channels.channel_actions')</th>
                 </tr>
                 </thead>
                 <tbody class="text-nowrap">
@@ -49,7 +49,7 @@
                                 <form action="{{ route('emailing.channels.stop') }}" method="post" class="d-inline">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $channel->id }}">
-                                    <button class="btn btn-sm btn-danger" onclick="return confirm('Остановить рассылку?')">
+                                    <button class="btn btn-sm btn-danger" onclick="return confirm('@lang('emailing.channels.stop_emailing')?')">
                                         <i class="fa-solid fa-stop"></i>
                                     </button>
                                 </form>
@@ -61,7 +61,7 @@
                                 <form action="{{ route('emailing.channels.start') }}" method="post" class="d-inline">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $channel->id }}">
-                                    <button class='btn btn-sm btn-success' onclick='return confirm("Запустить рассылку?")'>
+                                    <button class='btn btn-sm btn-success' onclick='return confirm("@lang('emailing.channels.start_emailing')?")'>
                                         <i class="fa-solid fa-play"></i>
                                     </button>
                                 </form>
@@ -82,7 +82,7 @@
                     @csrf
                     <input type="hidden" name="channel" value="">
                     <div class="modal-header">
-                        <h5 class="mb-0">Выберите адреса для тестовой рассылки</h5>
+                        <h5 class="mb-0">@lang('emailing.channels.pick_addresses_for_test')</h5>
                         <button type="button" class="btn btn-outline ms-3" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal-body">
@@ -94,22 +94,21 @@
                         @endforeach
                         <div class="btn-group mt-3">
                             <button type="button" id="select-all-emails" class="btn btn-sm btn-outline">
-                                <i class="bi bi-check-square me-2"></i>Выбрать все
+                                <i class="bi bi-check-square me-2"></i>@lang('emailing.channels.check_all')
                             </button>
                             <button type="button" id="deselect-all-emails" class="btn btn-sm btn-outline">
-                                <i class="bi bi-square me-2"></i>Убрать все
+                                <i class="bi bi-square me-2"></i>@lang('emailing.channels.uncheck_all')
                             </button>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-outline-primary">
-                            <i class="fa-solid fa-check me-2"></i>Отправить
+                            <i class="fa-solid fa-check me-2"></i>@lang('emailing.channels.send_test')
                         </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
 
 @endsection

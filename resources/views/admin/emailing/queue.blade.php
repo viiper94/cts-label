@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Очередь рассылки | CTS Records Admin Panel
+    @lang('emailing.queue.emailing_queue') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -12,8 +12,8 @@
                 @if($queue_sent > 0)
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-outline-danger" type="submit" onclick="return confirm('Удалить завершенные?')">
-                        <i class="fa-solid fa-eraser me-2"></i>Удалить завершенные
+                    <button class="btn btn-outline-danger" type="submit" onclick="return confirm('@lang('emailing.queue.remove_finished')?')">
+                        <i class="fa-solid fa-eraser me-2"></i>@lang('emailing.queue.remove_finished')
                     </button>
                 @endif
             </form>
@@ -21,7 +21,7 @@
         </div>
         <div class="table-responsive" data-fl-scrolls>
             @if($queue_sent !== $queue_count)
-                <p class="text-muted mb-0">До завершения рассылки: {{ \App\EmailingQueue::getEta($queue_count - $queue_sent) }}</p>
+                <p class="text-muted mb-0">@lang('emailing.queue.letters_remain'): {{ \App\EmailingQueue::getEta($queue_count - $queue_sent) }}</p>
             @endif
             @if($queue_count > 0)
                 <div class="progress bg-dark mb-0">
@@ -39,13 +39,13 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Канал</th>
-                    <th>От</th>
-                    <th>Получатель</th>
-                    <th>Имя получателя</th>
-                    <th>Добавлен в очередь</th>
-                    <th>Отправлено</th>
-                    <th>Ошибка</th>
+                    <th>@lang('emailing.queue.channel')</th>
+                    <th>@lang('emailing.queue.from')</th>
+                    <th>@lang('emailing.queue.recipient_email')</th>
+                    <th>@lang('emailing.queue.recipient_name')</th>
+                    <th>@lang('emailing.queue.created_at')</th>
+                    <th>@lang('emailing.queue.sent_at')</th>
+                    <th>@lang('emailing.queue.error')</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -76,7 +76,7 @@
                             <form action="{{ route('emailing.queue.destroy', $item->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Удалить из очереди рассылки?')">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('@lang('emailing.queue.remove_from_queue')?')">
                                     <i class="fa-solid fa-xmark"></i>
                                 </button>
                             </form>

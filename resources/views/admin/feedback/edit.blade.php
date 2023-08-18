@@ -1,32 +1,32 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    {{ $feedback->feedback_title ?? 'Новый фидбек' }} | CTS Records Admin Panel
+    {{ $feedback->feedback_title ?? trans('feedback.new_feedback') }} | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
     <div class="container-fluid edit-feedback">
         <button type="submit" class="btn btn-primary shadow sticky-top my-3" form="edit_release">
-            <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
+            <i class="fa-solid fa-floppy-disk me-2"></i>@lang('shared.admin.save')
         </button>
         @if($feedback->id)
             <form action="{{ route('feedback.destroy', $feedback->id) }}" method="post" class="d-inline my-3">
                 @method('DELETE')
                 @csrf
                 <button class="btn btn-outline-danger" onclick="return confirm('Удалить фидбек?')">
-                    <i class="fa-solid fa-trash me-2"></i>Удалить
+                    <i class="fa-solid fa-trash me-2"></i>@lang('shared.admin.delete')
                 </button>
             </form>
-            <a href='{{ route('feedback', $feedback->slug) }}' class="btn btn-outline" target="_blank">
-                <i class="fa-solid fa-comment me-2"></i>Смотреть фидбек
-            </a>
             <button type="button" class="btn btn-outline" data-bs-target="#feedbackModal" data-bs-toggle="modal">
-                <i class="fa-solid fa-envelopes-bulk me-2"></i>Рассылка
+                <i class="fa-solid fa-envelopes-bulk me-2"></i>@lang('feedback.emailing.feedback_emailing')
             </button>
+            <a href='{{ route('feedback', $feedback->slug) }}' class="btn btn-outline" target="_blank">
+                <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>@lang('feedback.frontend')
+            </a>
         @endif
         @if($feedback->release)
             <a href='{{ route('release', $feedback->release->id) }}' class="btn btn-outline" target="_blank">
-                <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Релиз на сайте
+                <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>@lang('feedback.release')
             </a>
         @endif
         <form enctype="multipart/form-data" method="post" id="edit_release" class="mb-3"
@@ -37,7 +37,7 @@
             @endif
             <div class="row mb-5">
                 <div class="col-xl-auto col-xs-12">
-                    <label class="form-label">Обложка</label>
+                    <label class="form-label">@lang('feedback.image')</label>
                     <div class="form-group">
                         @if(!$feedback->release)
                             <img src="/images/feedback/{{ $feedback->image ?? 'default.png' }}" id="preview" class="release-cover">
@@ -49,16 +49,16 @@
                 </div>
                 <div class="col-xl col-xs-12">
                     <div class="form-group mb-3">
-                        <label for="title" class="form-label">Название</label>
+                        <label for="title" class="form-label">@lang('feedback.feedback_title')</label>
                         <input type="text" class="form-control form-dark form-control-lg" name="feedback_title" id="title" value="{{ old('feedback_title') ?? $feedback->feedback_title }}" required>
                         @error('feedback_title')
                             <p class="help-block">{{ $message }}</p>
                         @enderror
                     </div>
-                    <x-checkbox class="mb-3" name="visible" :checked="$feedback->visible">Опубликовано</x-checkbox>
+                    <x-checkbox class="mb-3" name="visible" :checked="$feedback->visible">@lang('feedback.visible')</x-checkbox>
                     <div class="card text-bg-dark related-all-feedback">
                         <div class="card-header d-flex align-items-center justify-content-between">
-                            <h5 class="card-title">Also available:</h5>
+                            <h5 class="card-title">@lang('feedback.also_available'):</h5>
                         </div>
                         <div class="card-body">
                             @foreach($feedback_list as $item)
@@ -76,10 +76,10 @@
                         <div class="card-footer">
                             <div class="btn-group">
                                 <button class="btn btn-outline btn-sm related_last_five" type="button">
-                                    <i class="fa-solid fa-list-check me-2"></i>Выбрать последние 5
+                                    <i class="fa-solid fa-list-check me-2"></i>@lang('feedback.check_last_five')
                                 </button>
                                 <button class="btn btn-outline btn-sm deselect-btn" type="button">
-                                    <i class="fa-solid fa-rectangle-xmark me-2"></i>Снять выбор
+                                    <i class="fa-solid fa-rectangle-xmark me-2"></i>@lang('feedback.deselect')
                                 </button>
                             </div>
                         </div>
@@ -90,35 +90,35 @@
                 <div class="row mb-3">
                     <div class="col-12 col-md-4">
                         <div class="description form-group mb-3">
-                            <label for="description_en">Описание (англ.)</label>
+                            <label for="description_en">@lang('feedback.description_en')</label>
                             <textarea name="description_en" id="description_en">{!! old('description_en') ?? $feedback->description_en !!}</textarea>
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="description form-group mb-3">
-                            <label for="description_ua">Описание (укр.)</label>
+                            <label for="description_ua">@lang('feedback.description_ua')</label>
                             <textarea name="description_ua" id="description_ua">{!! old('description_ua') ?? $feedback->description_ua !!}</textarea>
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="description form-group mb-3">
-                            <label for="description_ru">Описание (рус.)</label>
+                            <label for="description_ru">@lang('feedback.description_ru')</label>
                             <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $feedback->description_ru !!}</textarea>
                         </div>
                     </div>
                 </div>
             @endif
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h3 class="mb-0">Треки</h3>
+                <h3 class="mb-0">@lang('feedback.tracks')</h3>
                 @if($feedback->hasArchive())
                     <a href="/audio/feedback/{{ $feedback->slug }}/{{ $feedback->archive_name }}" class="btn btn-outline btn-sm">
-                        <i class="fa-solid fa-file-zipper me-2"></i>Скачать архив
+                        <i class="fa-solid fa-file-zipper me-2"></i>@lang('feedback.download_archive')
                     </a>
                 @endif
             </div>
             <div class="row g-0">
-                <small class="mb-0 text-muted">Лимит на загрузку файлов - 100Mb</small>
-                <small class="mb-0 text-muted">Максимум загружаемых файлов - 20шт</small>
+                <small class="mb-0 text-muted">@lang('feedback.upload_size_limit_100')</small>
+                <small class="mb-0 text-muted">@lang('feedback.upload_count_limit_20')</small>
                 <div class="progress bg-dark mb-3">
                     <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span><span class="current">0</span>Mb / 100Mb</span></div>
                 </div>
@@ -135,7 +135,7 @@
                 @if(!$feedback->release)
                     <div class="col-12">
                         <a class="add-track-btn btn btn-outline" data-index="{{ count($feedback->ftracks) }}">
-                            <i class="fa-solid fa-plus me-2"></i>Добавить трек
+                            <i class="fa-solid fa-plus me-2"></i>@lang('feedback.add_track')
                         </a>
                     </div>
                 @endif
@@ -144,7 +144,7 @@
 
         @if($feedback->results->count() > 0)
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h3 class="mb-0">Фидбеки</h3>
+                <h3 class="mb-0">@lang('feedback.replies.replies')</h3>
             </div>
             <div class="accordion mb-3" id="accordion">
                 @foreach($feedback->results as $key => $result)
@@ -157,25 +157,25 @@
                         </h2>
                         <div id="collapse_{{ $key }}" class="accordion-collapse collapse" aria-labelledby="heading_{{ $key }}" data-bs-parent="#accordion">
                             <div class="accordion-body text-bg-dark">
-                                <p><i class="fa-solid fa-user me-2"></i>Имя: <b>{{ $result->name }}</b></p>
-                                <p><i class="fa-solid fa-envelope me-2"></i>E-mail: <b>{{ $result->email }}</b></p>
-                                <p class="mb-0"><i class="fa-solid fa-star me-2"></i><b>Оценки</b>:</p>
+                                <p><i class="fa-solid fa-user me-2"></i>@lang('user.name'): <b>{{ $result->name }}</b></p>
+                                <p><i class="fa-solid fa-envelope me-2"></i>@lang('user.email'): <b>{{ $result->email }}</b></p>
+                                <p class="mb-0"><i class="fa-solid fa-star me-2"></i><b>@lang('feedback.replies.scores')</b>:</p>
                                 <ul style="list-style: none" class="mb-3">
                                     @foreach($result->rates as $track => $score)
                                         <li><b>{{ $score }}</b>: "{{ $track }}"</li>
                                     @endforeach
                                 </ul>
                                 @if($result->best_track)
-                                    <p><i class="fa-solid fa-heart me-2"></i>Best track: <b>{{ $result->best_track }}</b></p>
+                                    <p><i class="fa-solid fa-heart me-2"></i>@lang('feedback.best_track'): <b>{{ $result->best_track }}</b></p>
                                 @endif
-                                <p class="mb-0"><i class="fa-solid fa-comment me-2"></i>Коммент:</p>
+                                <p class="mb-0"><i class="fa-solid fa-comment me-2"></i>@lang('feedback.comment'):</p>
                                 <p><b>{!! nl2br(e($result->comment)) !!}</b></p>
                                 <form action="{{ route('feedback.result.destroy', $result->id) }}" method="post" class="mt-3">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete-feedback-result-btn btn btn-outline-danger btn-sm"
-                                       onclick="return confirm('Вы уверены, что хотите удалить?')">
-                                        <i class="fa-solid fa-trash me-2"></i>Удалить
+                                       onclick="return confirm('@lang('shared.admin.are_you_sure_to_delete')?')">
+                                        <i class="fa-solid fa-trash me-2"></i>@lang('shared.admin.delete')
                                     </button>
                                 </form>
                             </div>
@@ -193,14 +193,14 @@
                     @csrf
                     <input type="hidden" name="id" value="{{ $feedback->id }}">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Рассылка фидбека</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">@lang('feedback.emailing.feedback_emailing')</h1>
                         <button type="button" class="btn btn-outline" data-bs-dismiss="modal"><i class="fa-solid fa-times"></i></button>
                     </div>
                     <div class="modal-body">
                         @if($feedback->emeiling_sent)
-                            <p class="text-warning">Рассылка по данному фидбеку уже была</p>
+                            <p class="text-warning">@lang('feedback.emailing.emailing_sent_already')</p>
                         @endif
-                        <h6>Выберите каналы, по которым запускать рассылку</h6>
+                        <h6>@lang('feedback.emailing.pick_channels_to_email')</h6>
                         @foreach($emailing_channels as $item)
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="channels[]" value="{{ $item->id }}" id="{{ $item->id }}">
@@ -211,7 +211,7 @@
                         @endforeach
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-play me-2"></i>Запустить рассылку</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-play me-2"></i>@lang('feedback.emailing.start_emailing')</button>
                     </div>
                 </form>
             </div>

@@ -1,21 +1,21 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    {{ $contact->name ?? 'Новый контакт рассылки' }} | CTS Records Admin Panel
+    {{ $contact->name ?? trans('emailing.contacts.new_emailing_contact') }} | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
 
     <div class="container-fluid">
         <button type="submit" class="btn btn-primary shadow sticky-top my-3" form="edit-contact-form">
-            <i class="fa-solid fa-floppy-disk me-2"></i>Сохранить
+            <i class="fa-solid fa-floppy-disk me-2"></i>@lang('shared.admin.save')
         </button>
         @if($contact->id)
             <form action="{{ route('emailing.contacts.destroy', $contact->id) }}" method="post" class="d-inline my-3">
                 @method('DELETE')
                 @csrf
-                <button class="btn btn-outline-danger" onclick="return confirm('Удалить контакт?')">
-                    <i class="fa-solid fa-trash me-2"></i>Удалить
+                <button class="btn btn-outline-danger" onclick="return confirm('@lang('emailing.contacts.delete_contact')?')">
+                    <i class="fa-solid fa-trash me-2"></i>@lang('shared.admin.delete')
                 </button>
             </form>
         @endif
@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label for="name" class="form-label">Имя*</label>
+                        <label for="name" class="form-label">@lang('emailing.contacts.name')*</label>
                         <input type="text" class="form-control form-dark" id="name" name="name"
                                value="{{ old('name') ?? $contact->name }}" required>
                         @error('name')
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label for="full_name" class="form-label">Полное имя</label>
+                        <label for="full_name" class="form-label">@lang('emailing.contacts.full_name')</label>
                         <input type="text" class="form-control form-dark" id="full_name" name="full_name"
                                value="{{ old('full_name') ?? $contact->full_name }}">
                         @error('full_name')
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label for="email" class="form-label">E-Mail*</label>
+                <label for="email" class="form-label">@lang('emailing.contacts.email')*</label>
                 <input type="email" class="form-control form-dark" id="email" name="email"
                        value="{{ old('email') ?? $contact->email }}" required>
                 @error('email')
@@ -57,7 +57,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-sm-6 mb-3" class="form-label">
-                    <label for="company" class="form-label">Компания</label>
+                    <label for="company" class="form-label">@lang('emailing.contacts.company')</label>
                     <input type="text" class="form-control form-dark" id="company" name="company"
                            value="{{ old('company') ?? $contact->company }}">
                     @error('company')
@@ -65,7 +65,7 @@
                     @enderror
                 </div>
                 <div class="form-group col-sm-6 mb-3">
-                    <label for="company_foa" class="form-label">Сфера деятельности компании</label>
+                    <label for="company_foa" class="form-label">@lang('emailing.contacts.company_foa')</label>
                     <input type="text" class="form-control form-dark" id="company_foa" name="company_foa"
                            value="{{ old('company_foa') ?? $contact->company_foa }}">
                     @error('company_foa')
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label for="position" class="form-label">Должность</label>
+                <label for="position" class="form-label">@lang('emailing.contacts.position')</label>
                 <input type="text" class="form-control form-dark" id="position" name="position"
                        value="{{ old('position') ?? $contact->position }}">
                 @error('position')
@@ -82,7 +82,7 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
-                <label for="website" class="form-label">Сайт</label>
+                <label for="website" class="form-label">@lang('emailing.contacts.website')</label>
                 <input type="url" class="form-control form-dark" id="website" name="website"
                        value="{{ old('website') ?? $contact->website }}">
                 @error('website')
@@ -90,7 +90,7 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
-                <label for="phone" class="form-label">Номер телефона</label>
+                <label for="phone" class="form-label">@lang('emailing.contacts.phone')</label>
                 <input type="text" class="form-control form-dark" id="phone" name="phone"
                        value="{{ old('phone') ?? $contact->phone }}">
                 @error('phone')
@@ -98,7 +98,7 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
-                <label for="country" class="form-label">Страна</label>
+                <label for="country" class="form-label">@lang('emailing.contacts.country')</label>
                 <input type="text" class="form-control form-dark" id="country" name="country"
                        value="{{ old('country') ?? $contact->country }}">
                 @error('country')
@@ -106,7 +106,7 @@
                 @enderror
             </div>
             <div class="form-group mb-3">
-                <label for="additional" class="form-label">Дополнительная информация</label>
+                <label for="additional" class="form-label">@lang('emailing.contacts.additional')</label>
                 <textarea name="additional" id="additional" rows="3" class="form-control form-dark">{{ old('additional') ?? $contact->additional }}</textarea>
                 @error('additional')
                     <p class="help-block">{{ $message }}</p>
@@ -114,7 +114,7 @@
             </div>
             <div class="card text-bg-dark" style="width: 18rem;">
                 <div class="card-header">
-                    <h4 class="card-title">Каналы рассылки</h4>
+                    <h4 class="card-title">@lang('emailing.channels.emailing_channels')</h4>
                 </div>
                 <div class="card-body">
                     @foreach($channels as $key => $channel)

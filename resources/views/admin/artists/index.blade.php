@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Артисты | CTS Records Admin Panel
+    @lang('artists.artists') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -11,7 +11,7 @@
         <div class="justify-content-between align-items-center flex-column-reverse flex-lg-row my-3 d-flex">
             <div class="releases-actions m-xl-0 m-1">
                 <button data-url="{{ route('artists.create') }}" class="btn btn-primary edit-artist">
-                    <i class="fa-solid fa-plus me-2"></i>Новый артист
+                    <i class="fa-solid fa-plus me-2"></i>@lang('artists.new_artist')
                 </button>
             </div>
             {{ $artists->appends(Request::input())->links('admin.layout.pagination') }}
@@ -36,7 +36,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Редактирование артиста</h5>
+                        <h5 class="modal-title">@lang('artists.edit_artist')</h5>
                         <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-times"></i></button>
                     </div>
 

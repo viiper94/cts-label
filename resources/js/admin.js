@@ -7,6 +7,7 @@ import Litepicker from "litepicker"
 import "bootstrap-star-rating"
 
 require('./admin/common.js');
+require('./public/common.js');
 require('./admin/feedback.js');
 require('./admin/releases.js');
 require('./admin/studio_school.js');

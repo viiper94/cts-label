@@ -69,6 +69,23 @@
             </li>
         </ul>
         <hr>
-        <a href="{{ route('home') }}" class="text-decoration-none fw-bold"><i class="fa-solid fa-house me-2"></i>Вернуться на сайт</a>
+        <div class="lang-switch">
+            <div class="btn-group">
+                <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'en'])
+                   data-lang="en" href="{{ url()->current() }}">
+                    @lang('shared.en')
+                </a>
+                <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru'])
+                   data-lang="ru" href="{{ url()->current() }}">
+                    @lang('shared.ru')
+                </a>
+                <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua' || !isset($_COOKIE['lang'])])
+                   data-lang="ua" href="{{ url()->current() }}">
+                    @lang('shared.ua')
+                </a>
+            </div>
+        </div>
+        <hr>
+        <a href="{{ route('home') }}" class="text-decoration-none fw-bold"><i class="fa-solid fa-house me-2"></i>@lang('shared.admin.sidebar.to_website')</a>
     </div>
 </nav>

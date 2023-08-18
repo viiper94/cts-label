@@ -55,3 +55,8 @@ main{
 .sort-handle{
     cursor: move;
 }
+
+.text-muted {
+    --bs-text-opacity: 1;
+    color: $primary-text-darker-1 !important;
+}

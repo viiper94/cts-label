@@ -10,6 +10,9 @@
         color: $primary-text-darker;
     }
 }
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $background-lighten-3;
+}
 .form-check-input{
     &[type=checkbox]{
         border-radius: 0;

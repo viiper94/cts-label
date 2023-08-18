@@ -6,7 +6,6 @@ use App\Cv;
 use App\EmailingQueue;
 use Closure;
 use Gate;
-use App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
@@ -22,7 +21,6 @@ class Admin
     public function handle($request, Closure $next){
         if(Auth::guest()) return redirect('login');
         if(Gate::denies('admin')) abort(403);
-        App::setLocale('ru');
 
         View::share('cv_count', Cv::where('status', 0)->count());
         View::share('queue_count', EmailingQueue::count());

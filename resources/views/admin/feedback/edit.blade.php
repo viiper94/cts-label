@@ -79,7 +79,7 @@
                                     <i class="fa-solid fa-list-check me-2"></i>@lang('feedback.check_last_five')
                                 </button>
                                 <button class="btn btn-outline btn-sm deselect-btn" type="button">
-                                    <i class="fa-solid fa-rectangle-xmark me-2"></i>@lang('feedback.deselect')
+                                    <i class="fa-solid fa-rectangle-xmark me-2"></i>@lang('shared.admin.deselect_all')
                                 </button>
                             </div>
                         </div>

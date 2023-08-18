@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Релизы | CTS Records Admin Panel
+    @lang('releases.releases') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -14,10 +14,10 @@
         <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
             <div class="releases-actions text-center">
                 <a href="{{ route('releases.create') }}" class="btn btn-primary m-xl-0 m-1">
-                    <i class="fa-solid fa-plus me-2"></i>Новый релиз
+                    <i class="fa-solid fa-plus me-2"></i>@lang('releases.new_release')
                 </a>
-                <button type="submit" class="btn btn-outline m-xl-0 m-1" form="sort_form" onclick="return confirm('Отсортировать?')">
-                    <i class="fa-solid fa-sort me-2"></i>Отсортировать
+                <button type="submit" class="btn btn-outline m-xl-0 m-1" form="sort_form" onclick="return confirm('@lang('shared.admin.are_you_sure_to_sort')?')">
+                    <i class="fa-solid fa-sort me-2"></i>@lang('shared.admin.sort')
                 </button>
             </div>
             {{ $releases->appends(Request::input())->links('admin.layout.pagination') }}
@@ -30,7 +30,7 @@
                             <div class="card-header d-flex">
                                 <h5 class="card-title text-nowrap mb-0 text-truncate col">{{ $release->title }}</h5>
                                 @if($release->hasUnfinishedUploads(true))
-                                    <i class="bi bi-exclamation-triangle text-danger col-auto" title="Есть незавершенные выгрузки"></i>
+                                    <i class="bi bi-exclamation-triangle text-danger col-auto" title="@lang('releases.there_are_uncompleted_uploads')"></i>
                                 @endif
                             </div>
                             <div class="col-12 d-flex g-0">
@@ -40,9 +40,9 @@
                                 <div class="card-info d-flex flex-column col">
                                     <div class="d-flex flex-grow-1">
                                         <div class="card-body">
-                                            <small class="text-muted">Номер каталога</small>
+                                            <small class="text-muted">@lang('releases.release_number')</small>
                                             <h5 class="card-text">{{ $release->release_number }}</h5>
-                                            <small class="text-muted">Дата релиза</small>
+                                            <small class="text-muted">@lang('releases.release_date')</small>
                                             <h5 class="card-text">{{ $release->release_date?->isoFormat('LL') }}</h5>
                                         </div>
                                         <div class="card-sort">
@@ -60,15 +60,15 @@
                             <div class="col-12 g-0">
                                 <div class="card-footer justify-content-end">
                                     <a class="btn btn-sm btn-primary" href="{{ route('releases.edit', $release->id) }}">
-                                        <i class="fa-solid fa-pen me-2"></i>Редактировать
+                                        <i class="fa-solid fa-pen me-2"></i>@lang('shared.admin.edit')
                                     </a>
                                     @if($release->feedback)
                                         <a class="btn btn-sm btn-outline" href="{{ route('feedback.edit', $release->feedback->id) }}">
-                                            <i class="fa-solid fa-message me-2"></i>Фидбек
+                                            <i class="fa-solid fa-message me-2"></i>@lang('releases.feedback')
                                         </a>
                                     @else
                                         <a class="btn btn-sm btn-outline" href="{{ route('feedback.create', $release->id) }}">
-                                            <i class="fa-solid fa-plus me-2"></i>Созать фидбек
+                                            <i class="fa-solid fa-plus me-2"></i>@lang('releases.add_feedback')
                                         </a>
                                     @endif
                                 </div>

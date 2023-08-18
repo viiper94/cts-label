@@ -9,9 +9,12 @@ return [
     'admin' => [
         'cts_admin_panel' => 'CTS Records Admin Panel',
         'edit' => 'Edit',
+        'sort' => 'Sort',
         'save' => 'Save',
         'delete' => 'Delete',
+        'are_you_sure_to_sort' => 'Are you sure to sort items',
         'are_you_sure_to_delete' => 'Are you sure to delete this',
+        'deselect_all' => 'Deselect All',
         'sidebar' => [
             'header' => 'CTS Admin Panel',
             'releases' => 'Releases',

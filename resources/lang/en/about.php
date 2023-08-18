@@ -5,7 +5,7 @@ return [
 <p>CTS is a community of creative people with modern views aspect of the dance music developemnt and perspectives.</p>
 <p>CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere. Our music is creative reflecting of fast nowadays sounds evolution. In dynamics of modern life today we don&#39;t forget to look into the future.</p>
 <p>Our record label concept is presenting electronic dance music in modern information &amp; cultural space like a direction of modern art with full rights for existence which has already gained a foothold in modern art.</p>
-<p>Creative Technologies Studio Ltd. was founded by Sergio Mega aka Sergiy Lazarev and Lilia Lazareva in April 2004.</p>
+<p>Creative Technologies Studio Ltd. was founded by Sergio Mega aka Sergiy Lazarev and Lilia Lazareva in April 2001.</p>
 <p>Released artists: DJ Pierre (USA), Esford aka Batish (ARTBAT, UA),&nbsp;Anthony Attalla (USA),&nbsp;Nathan Barato (CA),&nbsp;Truati (BR), Joal (PT), Niels Von Geyer (DE), Kotov &amp; Andre Wilde (CA), Aquabeat (UA), &nbsp;Yan Oxygen (UA), Gaga (HU),&nbsp;Dub Makers (UA), Andi Vax (UA), Andrea Martini (DK), Joee Cons (CA), Slackers Project (UA) , DJ DerBastler (UA), Tka4 (UA), DJ Tiesel (UA), D&#39;Mond (CN) and many others...</p>
 <p>CTS propose wide spectrum of sound services, remixes, DJ sets and live acts as well from CTS artists rooster.</p>
 <p>CTS records presents CTSound &amp; CTSchool, bouth projects are open from January 2009</p>

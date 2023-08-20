@@ -145,6 +145,14 @@ return [
         'your_email' => 'Your E-Mail',
         'service' => 'Service title',
         'submit' => 'Submit',
-    ]
+    ],
 
+    'visible' => 'Visible',
+    'service_name' => 'Course name',
+    'lang' => 'Language',
+    'keywords' => 'Keywords',
+    'delete_service' => 'Delete this service',
+    'ctstudio_services' => 'CTStudio Services',
+    'new_service' => 'New Service',
+    'edit_service' => 'Service Editing',
 ];

@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Анкета от {{ $cv->name }} | CTS Records Admin Panel
+    @lang('cv.cv_from') {{ $cv->name }} | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -10,11 +10,11 @@
         <div class="d-flex my-3">
             @if(is_file(public_path('cv/'.$cv->document)))
                 <a href="{{ url('/'). '/cv/'.$cv->document }}" class="btn btn-primary">
-                    <i class="fa-solid fa-file-word me-2"></i>Скачать анкету
+                    <i class="fa-solid fa-file-word me-2"></i>@lang('cv.download_cv')
                 </a>
             @else
                 <a href="{{ route('school.cv.document', $cv->id) }}" class="btn btn-primary">
-                    <i class="fa-solid fa-gears me-2"></i>Cгенерировать документ
+                    <i class="fa-solid fa-gears me-2"></i>@lang('cv.generate_doc')
                 </a>
             @endif
         </div>
@@ -98,8 +98,8 @@
                     <p class="mb-0 fs-4"><b>{{ $cv->purpose_of_learning ?? '—' }}</b></p>
                 </div>
                 <div class="col-xs-12 my-3 px-3">
-                    <p class="text-muted mb-0"><i>21. Дата заполнения</i></p>
-                    <p class="mb-0 fs-4"><b>{{ $cv->created_at->format('d/m/Y H:i') }}</b></p>
+                    <p class="text-muted mb-0"><i>21. @lang('cv.created_at')</i></p>
+                    <p class="mb-0 fs-4"><b>{{ $cv->created_at->isoFormat('LLL') }}</b></p>
                 </div>
             </div>
         </div>

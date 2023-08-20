@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Преподаватели CTSchool | CTS Records Admin Panel
+    @lang('school.ctschool_teachers') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="releases-actions sticky-top my-3">
             <button data-url="{{ route('school.teachers.create') }}" class="btn btn-primary add-service">
-                <i class="fa-solid fa-plus me-2"></i>Новый преподаватель
+                <i class="fa-solid fa-plus me-2"></i>@lang('school.new_teacher')
             </button>
         </div>
         @foreach($teachers_lang as $teachers)
@@ -23,9 +23,9 @@
                         <table class="table table-dark table-hover">
                             <thead>
                             <tr>
-                                <th>Картинка</th>
-                                <th>Имя</th>
-                                <th>Описание</th>
+                                <th>@lang('school.teacher_image')</th>
+                                <th>@lang('school.teacher_name')</th>
+                                <th>@lang('school.teacher_main_desc')</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -56,10 +56,6 @@
         <div class="modal fade" id="editServiceModal">
             <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Редактирование преподавателя</h5>
-                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-times"></i></button>
-                    </div>
                 </div>
             </div>
         </div>

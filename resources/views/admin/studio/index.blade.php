@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Услуги CTStudio | CTS Records Admin Panel
+    @lang('studio.ctstudio_services') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="releases-actions sticky-top my-3">
             <button data-url="{{ route('studio.create') }}" class="btn btn-primary add-service">
-                <i class="fa-solid fa-plus me-2"></i>Новая услуга
+                <i class="fa-solid fa-plus me-2"></i>@lang('studio.new_service')
             </button>
         </div>
         @foreach($service_list as $services)
@@ -30,10 +30,6 @@
         <div class="modal fade" id="editServiceModal">
             <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Редактирование услуги</h5>
-                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-times"></i></button>
-                    </div>
                 </div>
             </div>
         </div>

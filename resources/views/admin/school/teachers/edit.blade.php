@@ -1,3 +1,7 @@
+<div class="modal-header">
+    <h5 class="modal-title">{{ $teacher->id ? trans('school.edit_teacher') : trans('school.new_teacher') }}</h5>
+    <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-times"></i></button>
+</div>
 <div class="modal-body">
     <form action="{{ $teacher->id ? route('school.teachers.update', $teacher->id) : route('school.teachers.store') }}" id="edit_form"
           enctype="multipart/form-data" method="post">
@@ -11,8 +15,8 @@
                 <input type="file" name="image" id="uploader" class="form-control form-dark" accept="image/jpeg, image/png">
             </div>
             <div class="col-md-7">
-                <x-checkbox class="mb-3" name="visible" :checked="$teacher->visible">Опубликовано</x-checkbox>
-                <label class="form-label mb-0">Язык</label><br>
+                <x-checkbox class="mb-3" name="visible" :checked="$teacher->visible">@lang('school.visible')</x-checkbox>
+                <label class="form-label mb-0">@lang('school.lang')</label><br>
                 <div class="form-check form-check-inline mb-3">
                     <input type="radio" name="lang" id="lang-en" class="form-check-input" value="en"
                            required @checked($teacher->lang === 'en')>
@@ -33,15 +37,15 @@
                     <input type="text" class="form-control form-dark" name="name" id="name" value="{{ $teacher->name }}" required>
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label" for="teacher_binfo">Основное описание</label>
+                    <label class="form-label" for="teacher_binfo">@lang('school.teacher_main_desc')</label>
                     <textarea name="teacher_binfo" id="teacher_binfo" rows="3" class="form-control form-dark">{{ $teacher->teacher_binfo }}</textarea>
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label" for="teacher_hinfo">Скрытое описание</label>
+                    <label class="form-label" for="teacher_hinfo">@lang('school.teacher_hidden_desc')</label>
                     <textarea name="teacher_hinfo" id="teacher_hinfo" rows="3" class="form-control form-dark">{{ $teacher->teacher_hinfo }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" for="service_alt">Ключевые слова</label>
+                    <label class="form-label" for="service_alt">@lang('school.keywords')</label>
                     <textarea name="course_alt" id="service_alt" rows="3" class="form-control form-dark">{{ $teacher->course_alt }}</textarea>
                 </div>
             </div>
@@ -53,12 +57,12 @@
         <form action="{{ route('school.teachers.destroy', $teacher->id) }}" method="post">
             @csrf
             @method('DELETE')
-            <button class="btn btn-outline-danger" onclick="return confirm('Удалить преподавателя?')">
-                <i class="fa-solid fa-trash me-2"></i>Удалить
+            <button class="btn btn-outline-danger" onclick="return confirm('@lang('school.delete_teacher')?')">
+                <i class="fa-solid fa-trash me-2"></i>@lang('shared.admin.delete')
             </button>
         </form>
     @endif
     <button class="btn btn-primary" form="edit_form" type="submit">
-        <i class="fa-solid fa-check me-2"></i>Сохранить
+        <i class="fa-solid fa-check me-2"></i>@lang('shared.admin.save')
     </button>
 </div>

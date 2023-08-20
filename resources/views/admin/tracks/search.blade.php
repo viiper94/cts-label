@@ -2,12 +2,12 @@
     <thead>
     <tr>
         <th></th>
-        <th>Артист</th>
-        <th>Название</th>
-        <th>Микс</th>
-        <th>Длина</th>
-        <th>ISRC</th>
-        <th>Релиз</th>
+        <th>@lang('tracks.artists')</th>
+        <th>@lang('tracks.title')</th>
+        <th>@lang('tracks.mix_name')</th>
+        <th>@lang('tracks.length')</th>
+        <th>@lang('tracks.isrc')</th>
+        <th>@lang('tracks.release')</th>
     </tr>
     </thead>
     <tbody class="text-nowrap" style="font-size: 14px">

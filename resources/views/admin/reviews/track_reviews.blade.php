@@ -3,7 +3,7 @@
         <table class="table table-hover table-borderless table-dark">
             <thead>
             <tr>
-                <th colspan="4">Ревью:</th>
+                <th colspan="4">@lang('reviews.review'):</th>
                 <th class="py-1 text-end">
                     <button class="btn btn-sm btn-outline-primary edit-review" data-url="{{ route('reviews.create') }}" data-track-id="{{ $track->id }}">
                         <i class="fa-solid fa-plus"></i>
@@ -31,7 +31,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="4">Еще нет ревью</td></tr>
+                <tr><td colspan="4">@lang('reviews.no_reviews')</td></tr>
             @endforelse
             </tbody>
         </table>
@@ -42,7 +42,7 @@
         <table class="table table-hover table-borderless table-dark">
             <thead>
             <tr>
-                <th colspan="2">Also Supported:</th>
+                <th colspan="2">@lang('reviews.also_supported'):</th>
                 <th class="py-1 text-end">
                     <button class="btn btn-sm btn-outline-primary edit-review" data-url="{{ route('reviews.create') }}" data-track-id="{{ $track->id }}">
                         <i class="fa-solid fa-plus"></i>
@@ -64,7 +64,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="3">Еще нет ревью</td></tr>
+                <tr><td colspan="3">@lang('reviews.no_reviews')</td></tr>
             @endforelse
             </tbody>
         </table>

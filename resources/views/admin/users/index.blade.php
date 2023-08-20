@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Пользователи | CTS Records Admin Panel
+    @lang('user.users') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -13,10 +13,10 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Имя</th>
-                    <th>E-Mail</th>
-                    <th>Статус</th>
-                    <th>Зарегестрирован</th>
+                    <th>@lang('user.name')</th>
+                    <th>@lang('user.email')</th>
+                    <th>@lang('user.status')</th>
+                    <th>@lang('user.registered_at')</th>
                 </tr>
                 </thead>
                 <tbody class="text-nowrap">

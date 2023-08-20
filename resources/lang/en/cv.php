@@ -1,6 +1,6 @@
 <?php
 return [
-    'title' => 'CTSchool application form',
+    'title' => 'CTSchool Application Form',
 
     'name' => 'Name',
     'birth_date' => 'Date of birth',
@@ -38,4 +38,11 @@ return [
     'dj' => 'DJ',
     'sound_producer' => 'Sound Producer',
 
+    'cv_page' => 'CTSchool Application Form Page',
+    'cv_from' => 'CV from',
+    'download_cv' => 'Download CV',
+    'generate_doc' => 'Generate DOC',
+
+    'status' => 'Status',
+    'full_cv' => 'Full CV',
 ];

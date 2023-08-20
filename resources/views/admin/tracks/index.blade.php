@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    Треки | CTS Records Admin Panel
+    @lang('tracks.tracks') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -14,24 +14,24 @@
             <table class="table table-hover table-dark">
                 <thead>
                 @php $headers = [
-                        'artists' => 'Артисты',
-                        'name' => 'Название',
-                        'mix_name' => 'Микс',
-                        'isrc' => 'ISRC',
-                        'genre' => 'Жанр',
-                        'length' => 'Длина'
+                        'artists',
+                        'name',
+                        'mix_name',
+                        'isrc',
+                        'genre',
+                        'length'
                     ];
                 @endphp
                 <tr>
-                    <th>Релиз</th>
-                    @foreach($headers as $key => $item)
+                    <th>@lang('tracks.release')</th>
+                    @foreach($headers as $key)
                         <th>
                             <a href="{{ route('tracks.index', [
                                     'sort' => $key,
                                     'dir' => (Request::input('dir') === 'up' ? 'down' : 'up'),
                                     'q' => Request::input('q'),
                                 ]) }}" class="text-light text-nowrap">
-                                {{ $item }}
+                                @lang('tracks.'.$key)
                             </a>
                             @if(Request::input('sort') === $key)
                                 <i @class([
@@ -80,7 +80,7 @@
                             @if($track->beatport_sample)
                                 <a href="{{ $track->beatport_sample }}" target="_blank" class="btn btn-sm btn-outline"><i class="fa-solid fa-play"></i></a>
                             @endif
-                            <button class="btn btn-sm btn-outline show-reviews" title="Ревью" data-url="{{ route('reviews.show', $track->id) }}">
+                            <button class="btn btn-sm btn-outline show-reviews" title="@lang('reviews.review')" data-url="{{ route('reviews.show', $track->id) }}">
                                 <i @class([
                                         'bi',
                                         'bi-star-fill text-primary' => $track->reviews_count > 0 || $track->also_supported_count > 0,
@@ -95,7 +95,7 @@
                                 <form action="{{ route('tracks.destroy', $track->id) }}" method="post" class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Удалить этот трек?')">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('@lang('tracks.delete_track')?')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
@@ -114,7 +114,7 @@
             <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Ревью</h5>
+                        <h5 class="modal-title">@lang('reviews.review')</h5>
                         <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-times"></i></button>
                     </div>
                     <div class="modal-body">
@@ -129,7 +129,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="btn btn-outline" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-arrow-left"></i></button>
-                        <h5 class="modal-title flex-grow-1 ms-2">Редактирование ревью</h5>
+                        <h5 class="modal-title flex-grow-1 ms-2">@lang('reviews.edit_review')</h5>
                     </div>
 
                 </div>

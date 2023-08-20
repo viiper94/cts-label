@@ -1,9 +1,13 @@
 <?php
 return [
 
+    'users' => 'Users',
+
     'name' => 'Name',
     'email' => 'E-Mail',
     'password' => 'Password',
+    'status' => 'Status',
+    'registered_at' => 'Registered At',
 
     'login' => 'Login',
     'logout' => 'Logout',

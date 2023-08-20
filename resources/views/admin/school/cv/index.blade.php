@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    CTSchool - Анкеты | CTS Records Admin Panel
+    @lang('school.ctschool_courses') | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')
@@ -9,18 +9,18 @@
     <div class="container-fluid">
         <div class="releases-actions my-3">
             <a href="{{ route('school.cv') }}" target="_blank" class="btn btn-outline">
-                <i class="fa-solid fa-list me-2"></i>Анкета
+                <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>@lang('cv.cv_page')
             </a>
         </div>
         <div class="table-responsive">
             <table class="table table-hover table-dark">
                 <tbody class="text-nowrap">
                     <tr>
-                        <th>Имя</th>
-                        <th>E-Mail</th>
-                        <th>Статус</th>
-                        <th>Создано</th>
-                        <th>Действия</th>
+                        <th>@lang('cv.name')</th>
+                        <th>@lang('user.email')</th>
+                        <th>@lang('cv.status')</th>
+                        <th>@lang('cv.created_at')</th>
+                        <th></th>
                     </tr>
                     @foreach($cv_list as $cv)
                         <tr>
@@ -33,10 +33,10 @@
                                     @method('DELETE')
                                     @csrf
                                     <a class="btn btn-sm btn-primary" href="{{ route('school.cv.show', $cv->id) }}">
-                                        <i class="fa-solid fa-chevron-right me-2"></i>Смотреть анкету
+                                        <i class="fa-solid fa-chevron-right me-2"></i>@lang('cv.full_cv')
                                     </a>
                                     <button class="btn btn-sm btn-outline-danger" type="submit" onclick='return confirm("Удалить анкету?")'>
-                                        <i class="fa-solid fa-trash me-2"></i>Удалить
+                                        <i class="fa-solid fa-trash me-2"></i>@lang('shared.admin.delete')
                                     </button>
                                 </form>
                             </td>

@@ -35,7 +35,7 @@ $(document).ready(function(){
             success: function(response){
                 $('#editServiceModal .modal-body').remove();
                 $('#editServiceModal .modal-footer').remove();
-                $('#editServiceModal .modal-header').after(response.html);
+                $('#editServiceModal .modal-content').html(response.html);
                 $('#editServiceModal').modal('show');
             }
         });

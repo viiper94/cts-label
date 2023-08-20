@@ -377,7 +377,11 @@
         const picker = new Litepicker({
             element: document.getElementById('release_date'),
             inlineMode: true,
-            lang: 'ru-RU',
+            lang: @switch(app()->getLocale())
+                @case('ua') 'uk-UK' @break
+                @case('ru') 'ru-RU' @break
+                @default 'en-US'
+            @endswitch,
             dropdowns: {
                 "minYear": 2000,
                 "maxYear": null,

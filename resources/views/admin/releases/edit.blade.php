@@ -205,7 +205,7 @@
                         <div class="d-flex justify-content-between">
                             <label class="en">@lang('releases.description_ru')</label>
                             <a class="btn btn-sm btn-outline translate_description" data-to-lang="ru">
-                                <i class="fa-solid fa-language me-2"></i>@lang('releases.translate_to_ru')
+                                <i class="bi bi-translate me-2"></i>@lang('releases.translate_to_ru')
                             </a>
                         </div>
                         <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $release->description_ru !!}</textarea>
@@ -214,7 +214,7 @@
                         <div class="d-flex justify-content-between">
                             <label class="en">@lang('releases.description_ua')</label>
                             <a class="btn btn-sm btn-outline translate_description" data-to-lang="uk">
-                                <i class="fa-solid fa-language me-2"></i>@lang('releases.translate_to_ua')
+                                <i class="bi bi-translate me-2"></i>@lang('releases.translate_to_ua')
                             </a>
                         </div>
                         <textarea name="description_ua" id="description_uk">{!! old('description_ua') ?? $release->description_ua !!}</textarea>

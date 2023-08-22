@@ -31,4 +31,5 @@ return [
     'beatport_sample_start' => 'Beatport Sample Starts At',
     'beatport_sample_end' => 'Beatport Sample Ends At',
     'no_tracks' => 'There are no tracks so far',
+    'added' => 'Added',
 ];

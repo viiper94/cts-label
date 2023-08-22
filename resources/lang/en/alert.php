@@ -2,6 +2,6 @@
 return [
 
     'success' => 'Success!',
-    'error' => 'Error =('
+    'error' => 'Error =(',
 
 ];

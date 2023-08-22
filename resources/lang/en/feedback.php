@@ -27,6 +27,8 @@ return [
     'tracks' => 'Tracks',
     'upload_size_limit_100' => 'Upload tracks total size limit - 100 Mb',
     'upload_count_limit_20' => 'Upload tracks count limit - 20',
+    'upload_size_exceeded' => 'Upload size limit has been exceeded. Consider upload rest of the files on next time.',
+    'upload_count_exceeded' => 'Upload tracks count limit has been exceeded. Consider upload rest of the files on next time.',
     'add_track' => 'Add track',
 
     'track_title' => 'Track title',

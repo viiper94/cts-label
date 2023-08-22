@@ -12,7 +12,10 @@ return [
     'generate' => 'Generate',
     'translate_to_ru' => 'Translate to RU',
     'translate_to_ua' => 'Translate to UA',
+    'translated_successfully' => 'Translation completed successfully',
+    'translated_with_error' => 'Request ended with an error. Check console for more info.',
     'search_track' => 'Search Track',
+    'no_results' => 'No Results',
 
     'beatport_release_date' => 'Beatport Release Date',
     'exclusive_period' => 'Exclusive Period',

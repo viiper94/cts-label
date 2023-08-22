@@ -31,6 +31,8 @@ return [
             'emailing_contacts' => 'Contacts',
             'emailing_queue' => 'Queue',
             'to_website' => 'To Main Website',
-        ]
+        ],
+        'required' => 'This field is required',
+        'sorted' => 'Resorted',
     ],
 ];

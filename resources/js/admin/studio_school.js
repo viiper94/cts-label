@@ -15,13 +15,13 @@ $(document).ready(function(){
                     'data': data
                 },
                 beforeSend: function(){
-                    $box.parents('.service-lang').find('.msg').removeClass('text-danger').removeClass('text-success').html('Сортировка...');
+                    $box.parents('.service-lang').find('.msg').removeClass('text-success').html(utils.spinner({class: 'spinner-border-sm'}));
                 },
-                success: function(){
-                    $box.parents('.service-lang').find('.msg').addClass('text-success').html('Пересортировано');
+                success: function(response){
+                    $box.parents('.service-lang').find('.msg').addClass('text-success').html(response.status);
                 },
-                error: function(){
-                    $box.parents('.service-lang').find('.msg').addClass('text-danger').html('Ошибка');
+                complete: function(){
+                    $box.parents('.service-lang').find('.msg .spinner-border').remove();
                 }
             });
         }

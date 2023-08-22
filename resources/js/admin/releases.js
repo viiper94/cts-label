@@ -19,10 +19,13 @@ $(document).ready(function(){
                             case 'uk':
                                 uaEditor.setData(response.data); break;
                         }
-                        $(button).before('<span class="text-success">Успех</span>');
                     }else{
-                        $(button).before('<span class="text-danger">Ошибка</span>');
+                        console.log(response.status);
                     }
+                    $('main').append(utils.getAlertToast(null, response.messages.body, 'text-bg-'+(response.status === 'ok' ? 'success' : 'danger'), 'translate-toast'));
+                },
+                complete: function(){
+                    $('.translate-toast').toast('show').on('hidden.bs.toast', fn => ($('.translate-toast').remove()));
                 }
             });
         }
@@ -66,7 +69,6 @@ $(document).ready(function(){
                     if($('.item-list .related').length > 0){
                         $.each($('.item-list .related'), function(j, checkbox){
                             if($(checkbox).find('input')[0].checked){
-                                console.log($(checkbox).find('input')[0].checked);
                                 // check if already saved
                                 let exist = false;
                                 $.each($('.checked-releases .related label'), function(i, related){
@@ -98,7 +100,7 @@ $(document).ready(function(){
                             }
                         });
                     } else {
-                        $('.item-list').append('No result');
+                        $('.item-list').append(response.status);
                     }
                 }
             });

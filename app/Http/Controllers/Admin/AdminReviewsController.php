@@ -50,10 +50,12 @@ class AdminReviewsController extends Controller{
             ]);
         return $review->save() ?
             response()->json([
-                'message' => 'Ревью успешно добавлено!',
+                'message' => trans('reviews.added_successfully'),
                 'url' => route('reviews.show', $review->track_id)
             ]) :
-            response()->json(status:500);
+            response()->json([
+                'message' => trans('alert.error'),
+            ], status:500);
     }
 
     public function edit(Request $request, Review $review){
@@ -78,10 +80,12 @@ class AdminReviewsController extends Controller{
             ]);
         return $review->save() ?
             response()->json([
-                'message' => 'Ревью успешно добавлено!',
+                'message' => trans('reviews.edited_successfully'),
                 'url' => route('reviews.show', $review->track_id)
             ]) :
-            response()->json(status:500);
+            response()->json([
+                'message' => trans('alert.error'),
+            ], status:500);
     }
 
     public function destroy(Request $request, Review $review){
@@ -109,7 +113,9 @@ class AdminReviewsController extends Controller{
             $review->sort_id = $key;
             $review->save();
         }
-        return response()->json();
+        return response()->json([
+            'message' => trans('shared.admin.sorted')
+        ]);
     }
 
 }

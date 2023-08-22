@@ -52,12 +52,12 @@ $(document).ready(function(){
                 source: $('#editReviewModal input[name=source]').val().trim(),
             },
             success: function(response){
-                $('main').append(getAlertToast('Успех', response.message, 'text-bg-success', 'save-review-toast'));
+                $('main').append(utils.getAlertToast(null, response.message, 'text-bg-success', 'save-review-toast'));
                 loadTrackReviewsToModal(response.url);
                 $('#editReviewModal').modal('hide');
             },
             error: function(xhr){
-                $('main').append(getAlertToast('Ошибка', 'Возникла ошибка =(', 'text-bg-danger', 'save-review-toast'));
+                $('main').append(utils.getAlertToast(null, xhr.responseJSON.message, 'text-bg-danger', 'save-review-toast'));
             },
             complete: function(){
                 $('.save-review-toast').toast('show').on('hidden.bs.toast', fn => ($('.save-review-toast').remove()));
@@ -140,10 +140,7 @@ function getSortableParams(){
                     'data': data
                 },
                 success: function(response){
-                    $('main').append(getAlertToast('Успех', 'Ревью пересортированы', 'text-bg-success', 'sort-toast'));
-                },
-                error: function(){
-                    $('main').append(getAlertToast('Ошибка', 'Возникла ошибка =(', 'text-bg-danger', 'sort-toast'));
+                    $('main').append(utils.getAlertToast(null, response.message, 'text-bg-success', 'sort-toast'));
                 },
                 complete: function(){
                     $('.sort-toast').toast('show').on('hidden.bs.toast', fn => ($('.sort-toast').remove()));

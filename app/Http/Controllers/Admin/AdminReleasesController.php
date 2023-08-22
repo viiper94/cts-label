@@ -139,7 +139,7 @@ class AdminReleasesController extends Controller{
             }
             return response()->json([
                 'data' => $response,
-                'status' => 'ok',
+                'status' => empty($response) ? trans('releases.no_results') : 'ok',
             ]);
         }else{
             abort(404);
@@ -159,8 +159,10 @@ class AdminReleasesController extends Controller{
                 try{
                     $response['data'] = $tr->translate($query);
                     $response['status'] = 'ok';
+                    $response['messages']['body'] = trans('releases.translated_successfully');
                 }catch(\ErrorException $e){
                     $response['status'] = $e;
+                    $response['messages']['body'] = trans('releases.translated_with_error');
                 }
             }else{
                 $response['status'] = 'nothing to translate';

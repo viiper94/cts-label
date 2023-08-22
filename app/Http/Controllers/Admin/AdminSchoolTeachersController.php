@@ -82,7 +82,9 @@ class AdminSchoolTeachersController extends Controller{
         foreach($request->post('data') as $sort => $id){
             SchoolTeacher::find($id)->update(['sort_id' => $sort]);
         }
-        return response()->json();
+        return response()->json([
+            'status' => trans('shared.admin.sorted')
+        ]);
     }
 
 }

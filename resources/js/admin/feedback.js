@@ -56,8 +56,13 @@ $(document).ready(function(){
                 count++;
             }
         });
-        if(count > 10){
-            alert('Достигнут лимит по количеству файлов! Загрузите остаток файлов второй ходкой.');
+        if(count > 20){
+            alert($('.progress').data('alert-count'));
+            $(this).val('');
+            return false;
+        }
+        if(size > 100000000){
+            alert($('.progress').data('alert-size'));
             $(this).val('');
             return false;
         }

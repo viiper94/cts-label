@@ -20,7 +20,7 @@
                 data-url="{{ route('tracks.edit', $track->id) }}" data-id="{{ $track->id }}">
             <i class="fa-solid fa-pen"></i>
         </button>
-        <button type="button" class="btn btn-sm btn-outline-danger remove-track">
+        <button type="button" class="btn btn-sm btn-outline-danger remove-track" data-alert="@lang('tracks.delete_track')?">
             <i class="fa-solid fa-minus"></i>
         </button>
     </td>

@@ -10,6 +10,7 @@
                 <a class="add-promt text-muted">{{ session('artists') }}</a>
             @endif
             <input type="text" class="form-control form-dark" id="artists" name="artists" value="{{ $track->artists }}" required>
+            <small class="text-danger" style="display: none">@lang('shared.admin.required')</small>
         </div>
         <div class="form-group mb-3">
             <label for="name" class="form-label">@lang('tracks.title')*</label>
@@ -17,6 +18,7 @@
                 <a class="add-promt text-muted">{{ session('name') }}</a>
             @endif
             <input type="text" class="form-control form-dark" id="name" name="name" value="{{ $track->name }}" required>
+            <small class="text-danger" style="display: none">@lang('shared.admin.required')</small>
         </div>
         <div class="form-group mb-3">
             <label for="mix_name" class="form-label">@lang('tracks.mix_name')</label>
@@ -50,6 +52,7 @@
                     </button>
                 @endif
             </div>
+            <small class="text-danger" style="display: none">@lang('shared.admin.required')</small>
         </div>
         <div class="form-group mb-3">
             <label for="genre" class="form-label">@lang('tracks.genre')</label>

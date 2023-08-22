@@ -175,7 +175,8 @@ $(document).ready(function(){
         let id = $(this).data('track-id');
         let url = $(this).data('url');
         addTrackToReleaseTracklist(id, url);
-        $(this).addClass('btn-outline-success').removeClass('btn-outline').html('<i class="fa-solid fa-check me-2"></i>Добавлен!');
+        $(this).hide();
+        $('.added-text').show();
     });
 
     $('.tracks table tbody.sortable').sortable({
@@ -183,7 +184,7 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.remove-track', function(){
-        if(confirm('Удалить трек из релиза?')) $(this).parents('tr').remove();
+        if(confirm($(this).data('alert'))) $(this).parents('tr').remove();
         else return false;
     });
 
@@ -193,11 +194,11 @@ $(document).ready(function(){
         let method = $btn.data('method');
         let data = {};
         let hasEmptyRequiredField = false;
-        $('#trackModal label + small.text-danger').remove();
+        $('#trackModal small.text-danger').hide();
         $('#trackModal').find('input, select').each(function(){
             let $el = $(this)[0];
             if($el.required && $el.value === ''){
-                $('label[for='+$el.id+']').after('<small class="text-danger d-block">Обязательное поле</small>');
+                $('label[for='+$el.id+'] ~ small').show();
                 hasEmptyRequiredField = true;
             }
             data[$el.name] = $el.value ?? null;

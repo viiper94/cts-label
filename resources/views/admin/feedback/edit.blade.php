@@ -119,7 +119,7 @@
             <div class="row g-0">
                 <small class="mb-0 text-muted">@lang('feedback.upload_size_limit_100')</small>
                 <small class="mb-0 text-muted">@lang('feedback.upload_count_limit_20')</small>
-                <div class="progress bg-dark mb-3">
+                <div class="progress bg-dark mb-3" data-alert-size="@lang('feedback.upload_size_exceeded')" data-alert-count="@lang('feedback.upload_count_exceeded')">
                     <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span><span class="current">0</span>Mb / 100Mb</span></div>
                 </div>
             </div>

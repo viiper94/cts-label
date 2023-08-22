@@ -96,22 +96,6 @@ $(document).ready(function(){
 
 });
 
-function getAlertToast(
-    headingMessage = null,
-    bodyMessage = null,
-    headingClass = null,
-    toastClass = null){
-    return '<div class="toast alert-toast align-items-center position-fixed border-0 m-3 top-0 end-0 '+toastClass+'" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">\n' +
-        '        <div class="toast-header '+headingClass+'">\n' +
-        '            <strong class="me-auto">'+headingMessage+'</strong>\n' +
-        '            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>\n' +
-        '        </div>\n' +
-        '        <div class="toast-body">\n' +
-        bodyMessage +
-        '        </div>\n' +
-        '    </div>';
-}
-
 function loadTrackReviewsToModal(url){
     $.ajax({
         url: url,

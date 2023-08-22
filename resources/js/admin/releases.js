@@ -120,7 +120,9 @@ $(document).ready(function(){
                 url: url,
                 type: 'GET',
                 beforeSend: function(){
-                    $btn.html(btnSpinner());
+                    $btn.html(utils.spinner({
+                        class: 'spinner-border-sm'
+                    }));
                 },
                 success: function(response){
                     $('#trackModal').find('.modal-content').html(response.modal);
@@ -144,7 +146,11 @@ $(document).ready(function(){
                     query: query
                 },
                 beforeSend: function(){
-                    $('#trackSearchModal').find('.search-items').before(spinner());
+                    $('#trackSearchModal')
+                        .find('.search-items')
+                        .before(utils.spinner({
+                            wrapper: true
+                        }));
                 },
                 success: function(response){
                     $('#trackSearchModal').find('.search-items .table-responsive').html(response.modal);
@@ -201,7 +207,9 @@ $(document).ready(function(){
             data: data,
             beforeSend: function(){
                 $btn.prop('disabled', true).find('i').hide();
-                $btn.prepend(btnSpinner());
+                $btn.prepend(utils.spinner({
+                    class: 'spinner-border-sm'
+                }));
             },
             success: function(response){
                 addTrackToReleaseTracklist(response.id, response.url);
@@ -308,16 +316,3 @@ $(document).ready(function(){
     });
 
 });
-
-function spinner(){
-    return '<div class="spinner d-flex justify-content-center">\n' +
-        '  <div class="spinner-border" role="status">\n' +
-        '    <span class="visually-hidden">Загрузка...</span>\n' +
-        '  </div>\n' +
-        '</div>';
-}
-
-function btnSpinner(){
-    return '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' +
-        '  <span class="visually-hidden">Загрузка...</span>';
-}

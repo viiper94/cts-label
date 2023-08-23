@@ -1,0 +1,73 @@
+<?php
+return [
+    'releases' => 'Релизы',
+    'search_release' => 'Search Release',
+    'tracklist' => 'Треклист:',
+    'related_releases' => 'Related Releases:',
+
+    'new_release' => 'Новый Релиз',
+    'release_on_site' => 'Релиз на сайте',
+    'next_release' => 'Следующий Релиз',
+    'prev_release' => 'Предыдущий Релиз',
+    'generate' => 'Генерировать',
+    'translate_to_ru' => 'Перевести на RU',
+    'translate_to_ua' => 'Перевести на UA',
+    'translated_successfully' => 'Перевод успешно завершен',
+    'translated_with_error' => 'Ошибка при запросе. Проверьте консоль для получения дополнительной информации.',
+    'search_track' => 'Поиск Трека',
+    'no_results' => 'Нет результатов',
+
+    'beatport_release_date' => 'Дата Релиза на Beatport',
+    'catalogue_number' => 'Номер Каталога',
+    'exclusive_period' => 'Эксклюзивный период',
+    'without_exclusive_period' => 'Без Эксклюзивного периода',
+    '2_weeks' => '2 Недели',
+    '4_weeks' => '4 Недели',
+
+    'track' => [
+        'number' => '#',
+        'artists' => 'Артисты',
+        'title' => 'Название',
+        'mix_name' => 'Микс',
+        'length' => 'Длина',
+        'isrc' => 'ISRC',
+        'no_tracks' => 'Пока нет треков',
+    ],
+
+    'tracklist_displaying_params' => 'Параметры Отображения Треклиста',
+    'display_artists' => 'Отображать Исполнителя',
+    'display_title' => 'Отображать Название',
+    'display_mix_name' => 'Отображать Микс',
+    'display_custom_text' => 'Отображать Пользовательский Текст',
+    'tracklist_custom_text' => 'Пользовательский Текст Треклиста',
+
+    'visible' => 'Видимый',
+    'title' => 'Заголовок',
+    'genre' => 'Жанр',
+    'release_number' => 'Номер Релиза',
+    'release_date' => 'Дата Релиза',
+    'link_to_store' => 'Ссылка на Магазин (Beatport, Spotify, iTunes и др.)',
+    'link_to_youtube' => 'Ссылка на YouTube',
+    'description_en' => 'Описание (EN)',
+    'description_ua' => 'Описание (UA)',
+    'description_ru' => 'Описание (RU)',
+
+    'search_releases' => 'Поиск Релизов',
+    'by_title' => 'По Заголовку',
+    'by_tracklist' => 'По Треклисту',
+
+    'uploads' => 'Выгрузки',
+    'uploaded_on_beatport' => 'Выгружено на Beatport',
+    'uploaded_on_google_drive' => 'Выгружено на Google Drive',
+    'label_copy_uploaded' => 'Выгружено на Housesession (Label Copy)',
+    'uploaded_on' => 'Выгружено на',
+    'promo_upload' => 'Выгружать на Промо',
+    'is_emailing_done' => 'Рассылка завершена',
+    'there_are_uncompleted_uploads' => 'Есть незавершенные Выгрузки',
+
+    'export_label_copy' => 'Экспорт Label Copy',
+    'save_label_copy' => 'Сохранить Label Copy',
+
+    'feedback' => 'Фидбеки',
+    'add_feedback' => 'Добавить Фидбек',
+];

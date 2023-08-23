@@ -1,0 +1,74 @@
+<?php
+return [
+    'releases' => 'Релізи',
+    'search_release' => 'Search Release',
+    'tracklist' => 'Трекліст:',
+    'related_releases' => 'Related Releases:',
+
+    'new_release' => 'Новий Реліз',
+    'release_on_site' => 'Реліз на Сайті',
+    'next_release' => 'Наступний Реліз',
+    'prev_release' => 'Попередній Реліз',
+    'generate' => 'Згенерувати',
+    'translate_to_ru' => 'Перекласти на RU',
+    'translate_to_ua' => 'Перекласти на UA',
+    'translated_successfully' => 'Переклад успішно завершено',
+    'translated_with_error' => 'Запит завершився помилкою. Перевірте консоль для додаткової інформації.',
+    'search_track' => 'Пошук Треку',
+    'no_results' => 'Немає Результатів',
+
+    'beatport_release_date' => 'Дата Релізу на Beatport',
+    'catalogue_number' => 'Номер релізу',
+    'exclusive_period' => 'Ексклюзивний Період',
+    'without_exclusive_period' => 'Без Ексклюзивного Періоду',
+    '2_weeks' => '2 Тижні',
+    '4_weeks' => '4 Тижні',
+
+    'track' => [
+        'number' => '#',
+        'artists' => 'Виконавці',
+        'title' => 'Назва',
+        'mix_name' => 'Мікс',
+        'length' => 'Тривалість',
+        'isrc' => 'ISRC',
+        'no_tracks' => 'Наразі немає жодних треків',
+    ],
+
+    'tracklist_displaying_params' => 'Параметри Відображення Трекліста',
+    'display_artists' => 'Відображати Виконавців',
+    'display_title' => 'Відображати Назву',
+    'display_mix_name' => 'Відображати Мікс',
+    'display_custom_text' => 'Відображати Спеціальний Текст',
+    'tracklist_custom_text' => 'Спеціальний Текст Трекліста',
+
+    'visible' => 'Видимий',
+    'title' => 'Назва',
+    'genre' => 'Жанр',
+    'release_number' => 'REL.Number',
+    'release_date' => 'REL.Date',
+    'link_to_store' => 'Посилання на Магазин (Beatport, Spotify, iTunes, інше)',
+    'link_to_youtube' => 'Посилання на YouTube',
+    'description_en' => 'Опис (EN)',
+    'description_ua' => 'Опис (UA)',
+    'description_ru' => 'Опис (RU)',
+
+    'search_releases' => 'Пошук Релізів',
+    'by_title' => 'За Назвою',
+    'by_tracklist' => 'За Треклістом',
+
+    'uploads' => 'Вивантаження',
+    'uploaded_on_beatport' => 'Вивантажено на Beatport',
+    'uploaded_on_google_drive' => 'Вивантажено на Google Drive',
+    'label_copy_uploaded' => 'Вивантажено на Housesession (Label Copy)',
+    'uploaded_on' => 'Вивантажено на',
+    'promo_upload' => 'Вивантажувати на Промо',
+    'is_emailing_done' => 'Email-розсилка завершена',
+    'there_are_uncompleted_uploads' => 'Є незавершені вивантаження',
+
+    'export_label_copy' => 'Експорт Label Copy',
+    'save_label_copy' => 'Зберегти Label Copy',
+
+    'feedback' => 'Фідбек',
+    'add_feedback' => 'Додати Фідбек',
+
+];

@@ -65,4 +65,22 @@ return [
                                 після чого ми в індивідуальному порядку запросимо вас пройти співбесіду.',
     'contact_text_2' => 'ЗАПИСАТИСЯ НА СПІВБЕСІДУ ТАКОЖ МОЖНА ПО ТЕЛЕФОНУ:',
     'contact_info' => '<p>+38 098 685 40 33</p><p>E-MAIL: <a href="mailto:info@cts-label.com">info@cts-label.com</a></p>',
+
+    'visible' => 'Видимий',
+    'lang' => 'Мова',
+    'course_name' => 'Назва курсу',
+    'keywords' => 'Ключові слова',
+    'delete_course' => 'Видалити цей курс',
+    'delete_teacher' => 'Видалити цього викладача',
+    'ctschool_courses' => 'Курси CTSchool',
+    'ctschool_teachers' => 'Викладачі CTSchool',
+    'new_course' => 'Новий курс',
+    'new_teacher' => 'Новий викладач',
+    'edit_course' => 'Редагування курсу',
+    'edit_teacher' => 'Редагування викладача',
+    'teacher_main_desc' => 'Видимий опис',
+    'teacher_hidden_desc' => 'Прихований опис',
+    'teacher_image' => 'Зображення',
+    'teacher_name' => 'Ім\'я викладача',
+
 ];

@@ -130,6 +130,15 @@ return [
         'your_email' => 'Ваш E-Mail',
         'service' => 'Назва послуги',
         'submit' => 'Відправити',
-    ]
+    ],
+
+    'visible' => 'Видима',
+    'service_name' => 'Назва послуги',
+    'lang' => 'Мова',
+    'keywords' => 'Ключові слова',
+    'delete_service' => 'Видалити цю послугу',
+    'ctstudio_services' => 'Послуги CTStudio',
+    'new_service' => 'Нова послуга',
+    'edit_service' => 'Редагування послуги',
 
 ];

@@ -69,4 +69,22 @@ return [
                                 после чего мы в индивидуальном порядке пригласим вас пройти собеседование.',
     'contact_text_2' => 'ЗАПИСАТЬСЯ НА СОБЕСЕДОВАНИЕ ТАКЖЕ МОЖНО ПО ТЕЛЕФОНУ:',
     'contact_info' => '<p>+38 098 685 40 33</p><p>E-MAIL: <a href="mailto:info@cts-label.com">info@cts-label.com</a></p>',
+
+    'visible' => 'Видимый',
+    'lang' => 'Язык',
+    'course_name' => 'Название курса',
+    'keywords' => 'Ключевые слова',
+    'delete_course' => 'Удалить данный курс',
+    'delete_teacher' => 'Удалить данного преподавателя',
+    'ctschool_courses' => 'Курсы CTSchool',
+    'ctschool_teachers' => 'Преподаватели CTSchool',
+    'new_course' => 'Новый курс',
+    'new_teacher' => 'Новый преподаватель',
+    'edit_course' => 'Редактирование курса',
+    'edit_teacher' => 'Редактирование преподавателя',
+    'teacher_main_desc' => 'Основное описание',
+    'teacher_hidden_desc' => 'Скрытое описание',
+    'teacher_image' => 'Изображение',
+    'teacher_name' => 'Имя преподавателя',
+
 ];

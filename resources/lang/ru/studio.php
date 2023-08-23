@@ -135,6 +135,15 @@ return [
         'your_email' => 'Ваш E-Mail',
         'service' => 'Название услуги',
         'submit' => 'Отправить',
-    ]
+    ],
+
+    'visible' => 'Видимая',
+    'service_name' => 'Название услуги',
+    'lang' => 'Язык',
+    'keywords' => 'Ключевые слова',
+    'delete_service' => 'Удалить эту услугу',
+    'ctstudio_services' => 'Услуги CTStudio',
+    'new_service' => 'Новая услуга',
+    'edit_service' => 'Редактирование услуги',
 
 ];

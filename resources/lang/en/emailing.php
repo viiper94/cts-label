@@ -45,6 +45,7 @@ return [
         'position' => 'Position',
         'website' => 'Website',
         'phone' => 'Phone',
+        'country' => 'Country',
         'additional' => 'Additional',
         'created_at' => 'Created',
         'channels' => 'Channel(s)',
@@ -63,4 +64,5 @@ return [
         'error' => 'Error',
         'remove_from_queue' => 'Remove from queue',
     ]
+
 ];

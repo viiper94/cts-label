@@ -35,4 +35,14 @@ return [
     'dj' => 'DJ',
     'sound_producer' => 'Саунд продюссер',
 
+    'cv_page' => 'Анкета CTSchool',
+    'cv_from' => 'Анкета от',
+    'download_cv' => 'Скачать CV',
+    'generate_doc' => 'Сгенерировать DOC',
+
+    'status' => 'Статус',
+    'full_cv' => 'Полная анкета',
+
+    'cv_deleted' => 'Анкета успешно удалена!',
+    'cv_generated' => 'Файл успешно сгенерирован',
 ];

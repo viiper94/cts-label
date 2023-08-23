@@ -70,4 +70,10 @@ return [
 
     'feedback' => 'Feedback',
     'add_feedback' => 'Add Feedback',
+
+    'release_added' => 'Release has been added successfully!',
+    'release_edited' => 'Release has been edited successfully!',
+    'release_deleted' => 'Release has been deleted successfully!',
+    'label_copy_generated' => 'Label Copy files have been generated successfully!',
+    'releases_sorted' => 'Releases have been resorted successfully!',
 ];

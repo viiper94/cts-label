@@ -62,9 +62,9 @@ class AdminEmailingContactsController extends Controller{
         $contact->fill($request->post());
         if($contact->save()){
             $contact->channels()->sync($request->input('channels'));
-            return redirect()->route('emailing.contacts.index')->with(['success' => 'Готово!']);
+            return redirect()->route('emailing.contacts.index')->with(['success' => trans('emailing.contacts.contact_added')]);
         }else{
-            return redirect()->back()->withErrors(['Возникла ошибка =(']);
+            return redirect()->back()->withErrors([trans('alert.error')]);
         }
     }
 
@@ -92,16 +92,16 @@ class AdminEmailingContactsController extends Controller{
         $contact->fill($request->post());
         if($contact->save()){
             $contact->channels()->sync($request->input('channels'));
-            return redirect()->route('emailing.contacts.index')->with(['success' => 'Готово!']);
+            return redirect()->route('emailing.contacts.index')->with(['success' => trans('emailing.contacts.contact_edited')]);
         }else{
-            return redirect()->back()->withErrors(['Возникла ошибка =(']);
+            return redirect()->back()->withErrors([trans('alert.error')]);
         }
     }
 
     public function destroy(EmailingContact $contact){
         return $contact->delete() ?
-            redirect()->route('emailing.contacts.index')->with(['success' => 'Удалено!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('emailing.contacts.index')->with(['success' => trans('emailing.contacts.contact_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
 //    public function import(){

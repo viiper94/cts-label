@@ -53,5 +53,9 @@ return [
         'emailing_sent_already' => 'The emailing for this Feedback have been already done!',
         'pick_channels_to_email' => 'Pick channels for emailing',
         'start_emailing' => 'Start Emailing',
-    ]
+    ],
+    'feedback_added' => 'Feedback has been created successfully!',
+    'feedback_edited' => 'Feedback has been edited successfully!',
+    'feedback_deleted' => 'Feedback has been deleted successfully!',
+    'feedback_result_deleted' => 'Reply has been deleted successfully!',
 ];

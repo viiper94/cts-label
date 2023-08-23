@@ -39,8 +39,8 @@ class AdminStudioController extends Controller{
             $service->saveImage($request->file('image'));
         }
         return $service->save() ?
-            redirect()->route('studio.index')->with(['success' => 'Услуга успешно добавлена!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('studio.index')->with(['success' => trans('studio.service_added')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function edit(Request $request, StudioService $studio){
@@ -64,15 +64,15 @@ class AdminStudioController extends Controller{
             $studio->saveImage($request->file('image'));
         }
         return $studio->save() ?
-            redirect()->route('studio.index')->with(['success' => 'Услуга успешно отредактирована!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('studio.index')->with(['success' => trans('studio.service_edited')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function destroy(StudioService $studio){
         $studio->deleteImages();
         return $studio->delete() ?
-            redirect()->back()->with(['success' => 'Услуга успешно удалена!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->back()->with(['success' => trans('studio.service_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function resort(Request $request){

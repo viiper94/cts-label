@@ -40,8 +40,8 @@ class AdminEmailingChannelsController extends Controller{
                 $contacts = EmailingContact::pluck('id')->toArray();
                 $channel->subscribers()->attach($contacts);
             }
-            return redirect()->route('emailing.channels.index')->with(['success' => 'Готово!']);
-        }else return redirect()->back()->withErrors(['Возникла ошибка =(']);
+            return redirect()->route('emailing.channels.index')->with(['success' => trans('emailing.channels.channel_added')]);
+        }else return redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function edit(EmailingChannel $channel){
@@ -61,22 +61,22 @@ class AdminEmailingChannelsController extends Controller{
         ]);
         $channel->fill($request->post());
         return $channel->save()
-            ? redirect()->route('emailing.channels.index')->with(['success' => 'Готово!'])
-            : redirect()->back()->withErrors(['Возникла ошибка =(']);
+            ? redirect()->route('emailing.channels.index')->with(['success' => trans('emailing.channels.channel_edited')])
+            : redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function destroy($id){
         return EmailingChannel::findOrFail($id)->delete()
-            ? redirect()->route('emailing.channels.index')->with(['success' => 'Удалено!'])
-            : redirect()->back()->withErrors(['Возникла ошибка =(']);
+            ? redirect()->route('emailing.channels.index')->with(['success' => trans('emailing.channels.channel_deleted')])
+            : redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function stop(Request $request){
         if($request->post()){
             $this->validate($request, ['id' => 'required|numeric']);
             return EmailingQueue::whereSent('0')->where('channel_id', $request->post('id'))->delete() ?
-                redirect()->route('emailing.channels.index')->with(['success' => 'Рассылка остановлена!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
+                redirect()->route('emailing.channels.index')->with(['success' => trans('emailing.channels.emailing_stopped')]) :
+                redirect()->back()->withErrors([trans('alert.error')]);
         }
         abort(403);
     }
@@ -96,7 +96,7 @@ class AdminEmailingChannelsController extends Controller{
                     'to' => $contact->email,
                 ]);
             }
-            return redirect()->back()->with(['success' => 'Рассылка запущена!']);
+            return redirect()->back()->with(['success' => trans('emailing.channels.emailing_started')]);
         }
         abort(403);
     }
@@ -115,7 +115,7 @@ class AdminEmailingChannelsController extends Controller{
                 'to' => $email,
             ]);
         }
-        return redirect()->back()->with(['success' => 'Тестовая рассылка запущена!']);
+        return redirect()->back()->with(['success' => trans('emailing.channels.test_emailing_started')]);
     }
 
 }

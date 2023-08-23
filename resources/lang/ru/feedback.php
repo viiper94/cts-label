@@ -53,5 +53,9 @@ return [
         'emailing_sent_already' => 'Рассылка для этого фидбека уже выполнена!',
         'pick_channels_to_email' => 'Выберите каналы для рассылки',
         'start_emailing' => 'Начать рассылку',
-    ]
+    ],
+    'feedback_added' => 'Фидбек успешно добавлен!',
+    'feedback_edited' => 'Фидбек успешно отредактирован!',
+    'feedback_deleted' => 'Фидбек успешно удален!',
+    'feedback_result_deleted' => 'Ответ успешно удален!',
 ];

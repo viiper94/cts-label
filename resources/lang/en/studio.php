@@ -155,4 +155,8 @@ return [
     'ctstudio_services' => 'CTStudio Services',
     'new_service' => 'New Service',
     'edit_service' => 'Service Editing',
+
+    'service_added' => 'Service has been added successfully!',
+    'service_edited' => 'Service has been edited successfully!',
+    'service_deleted' => 'Service has been deleted successfully!',
 ];

@@ -27,4 +27,6 @@ return [
     'password_request_header' => 'Введите адрес своей электронной почты',
     'password_reset_header' => 'Введите ваш новый пароль',
 
+    'user_deleted' => 'Пользователь успешно удален!',
+
 ];

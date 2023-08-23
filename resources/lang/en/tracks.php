@@ -32,4 +32,8 @@ return [
     'beatport_sample_end' => 'Beatport Sample Ends At',
     'no_tracks' => 'There are no tracks so far',
     'added' => 'Added',
+
+    'track_added' => 'Track has been added successfully!',
+    'track_edited' => 'Track has been edited successfully!',
+    'track_deleted' => 'Track has been deleted successfully!',
 ];

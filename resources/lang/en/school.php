@@ -84,4 +84,11 @@ return [
     'teacher_hidden_desc' => 'Hidden Description',
     'teacher_image' => 'Image',
     'teacher_name' => 'Teacher Name',
+
+    'course_added' => 'Course has been added successfully!',
+    'course_edited' => 'Course has been edited successfully!',
+    'course_deleted' => 'Course has been deleted successfully!',
+    'teacher_added' => 'Teacher has been added successfully!',
+    'teacher_edited' => 'Teacher has been edited successfully!',
+    'teacher_deleted' => 'Teacher has been deleted successfully!',
 ];

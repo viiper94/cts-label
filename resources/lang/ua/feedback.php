@@ -53,6 +53,10 @@ return [
         'emailing_sent_already' => 'Email-розсилка для цього Фідбеку вже виконана!',
         'pick_channels_to_email' => 'Виберіть канали для Email-розсилки',
         'start_emailing' => 'Почати Email-розсилку',
-    ]
+    ],
+    'feedback_added' => 'Фідбек успішно даданий!',
+    'feedback_edited' => 'Фідбек успішно відредагований!',
+    'feedback_deleted' => 'Фідбек успішно видалений!',
+    'feedback_result_deleted' => 'Відповідь успішно видалений!',
 
 ];

@@ -26,8 +26,8 @@ class AdminUsersController extends Controller{
             }
         }
         return $user->delete() ?
-            redirect()->route('users.index')->with(['success' => 'Пользователь успешно удалён!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('users.index')->with(['success' => trans('user.user_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
 }

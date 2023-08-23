@@ -64,10 +64,10 @@ class AdminFeedbackController extends Controller{
             $feedback->archive_name = $feedback->archiveTracks();
             $feedback->related()->sync($request->post('related'));
             return $feedback->save() ?
-                redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно добавлен!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
+                redirect()->route('feedback.index')->with(['success' => trans('feedback.feedback_added')]) :
+                redirect()->back()->withErrors([trans('alert.error')]);
         }
-        return redirect()->back()->withErrors(['Возникла ошибка =(']);
+        return redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function edit(Feedback $feedback){
@@ -103,8 +103,8 @@ class AdminFeedbackController extends Controller{
             $image->move(public_path('images/feedback'), $feedback->image);
         }
         return $feedback->save() ?
-            redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно отредактирован!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('feedback.index')->with(['success' => trans('feedback.feedback_edited')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function destroy(Feedback $feedback){
@@ -120,8 +120,8 @@ class AdminFeedbackController extends Controller{
             unlink(public_path('images/feedback/'.$feedback->image));
         }
         return $feedback->delete() ?
-            redirect()->route('feedback.index')->with(['success' => 'Фидбэк успешно удалён!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('feedback.index')->with(['success' => trans('feedback.feedback_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function destroyTrack(Request $request, FeedbackTrack $track){
@@ -133,8 +133,8 @@ class AdminFeedbackController extends Controller{
 
     public function destroyResult(FeedbackResult $result){
         return $result->delete() ?
-            redirect()->back()->with(['success' => 'Успешно удалёно!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->back()->with(['success' => trans('feedback.feedback_result_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function getTemplate(Request $request){
@@ -171,7 +171,7 @@ class AdminFeedbackController extends Controller{
                 ]);
 //                    Mail::to($contact->email)->send(new Emailing($mail)); // for test only
             }
-            return redirect()->back()->with(['success' => 'Рассылка запущена!']);
+            return redirect()->back()->with(['success' => trans('emailing.channels.emailing_started')]);
         }
         abort(403);
     }

@@ -45,4 +45,7 @@ return [
 
     'status' => 'Status',
     'full_cv' => 'Full CV',
+
+    'cv_deleted' => 'CV has been deleted successfully!',
+    'cv_generated' => 'CV file has been generated successfully',
 ];

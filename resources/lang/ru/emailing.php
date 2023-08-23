@@ -31,6 +31,12 @@ return [
         'add_unsubscribe' => 'Добавить кнопку "Отписаться"',
         'add_all_contacts' => 'Добавить ВСЕ контакты в подписчики',
         'delete_channel' => 'Удалить канал рассылки',
+        'channel_added' => 'Канал Email-рассылки успешно добавлен!',
+        'channel_edited' => 'Канал Email-рассылки успешно отредактирован!',
+        'channel_deleted' => 'Канал Email-рассылки успешно удален!',
+        'emailing_stopped' => 'Email-рассылка остановлена',
+        'emailing_started' => 'Email-рассылка начата',
+        'test_emailing_started' => 'Тестовая Email-рассылка начата',
     ],
     'contacts' => [
         'emailing_contacts' => 'Контакты для рассылки',
@@ -50,6 +56,9 @@ return [
         'created_at' => 'Дата создания',
         'channels' => 'Канал(ы)',
         'delete_contact' => 'Удалить контакт для рассылки',
+        'contact_added' => 'Контакт Email-рассылки успешно добавлен!',
+        'contact_edited' => 'Контакт Email-рассылки успешно отредактирован!',
+        'contact_deleted' => 'Контакт Email-рассылки успешно удален!',
     ],
     'queue' => [
         'emailing_queue' => 'Очередь рассылки',
@@ -63,6 +72,8 @@ return [
         'sent_at' => 'Отправлено',
         'error' => 'Ошибка',
         'remove_from_queue' => 'Удалить из очереди',
+        'recipient_deleted' => 'Адресат успешно удален!',
+        'queue_cleared' => 'Очередь успешно очищена!',
     ]
 
 ];

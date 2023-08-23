@@ -31,6 +31,12 @@ return [
         'add_unsubscribe' => 'Add Unsubscribe button',
         'add_all_contacts' => 'Add ALL contacts as subscribers',
         'delete_channel' => 'Delete emailing channel',
+        'channel_added' => 'Emailing channel added successfully!',
+        'channel_edited' => 'Emailing channel edited successfully!',
+        'channel_deleted' => 'Emailing channel deleted successfully!',
+        'emailing_stopped' => 'Emailing stopped',
+        'emailing_started' => 'Emailing started',
+        'test_emailing_started' => 'Test Emailing started',
     ],
     'contacts' => [
         'emailing_contacts' => 'Emailing Contacts',
@@ -50,6 +56,9 @@ return [
         'created_at' => 'Created',
         'channels' => 'Channel(s)',
         'delete_contact' => 'Delete emailing contact',
+        'contact_added' => 'Emailing contact added successfully!',
+        'contact_edited' => 'Emailing contact edited successfully!',
+        'contact_deleted' => 'Emailing contact deleted successfully!',
     ],
     'queue' => [
         'emailing_queue' => 'Emailing Queue',
@@ -63,6 +72,8 @@ return [
         'sent_at' => 'Sent',
         'error' => 'Error',
         'remove_from_queue' => 'Remove from queue',
+        'recipient_deleted' => 'Recipient has been deleted successfully!',
+        'queue_cleared' => 'Queue has been cleared successfully!',
     ]
 
 ];

@@ -22,15 +22,15 @@ class AdminSchoolCvController extends Controller{
 
     public function destroy(Cv $cv){
         return $cv->delete() ?
-            redirect()->route('school.cv.index')->with(['success' => 'Анкета удалена!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('school.cv.index')->with(['success' => trans('cv.cv_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function document(Cv $cv){
         $cv->document = $cv->createDocument();
         return $cv->save() ?
-            redirect()->back()->with(['success' => 'Файл сгенерирован!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->back()->with(['success' => trans('cv.cv_generated')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
 }

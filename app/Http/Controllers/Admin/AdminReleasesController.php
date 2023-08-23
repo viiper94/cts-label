@@ -52,9 +52,9 @@ class AdminReleasesController extends Controller{
         if($release->save()){
             $release->tracks()->attach($request->post('tracks'));
             $release->related()->attach($request->post('related'));
-            return redirect()->route('releases.index')->with(['success' => 'Релиз успешно добавлен!']);
+            return redirect()->route('releases.index')->with(['success' => trans('releases.release_added')]);
         }else{
-            return redirect()->back()->withErrors(['Возникла ошибка =(']);
+            return redirect()->back()->withErrors([trans('alert.error')]);
         }
     }
 
@@ -89,8 +89,8 @@ class AdminReleasesController extends Controller{
             $release->saveImage($request->file('image'));
         }
         return $release->save() ?
-            redirect()->route('releases.index')->with(['success' => 'Релиз успешно отредактирован!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('releases.index')->with(['success' => trans('releases.release_edited')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function destroy(Release $release){
@@ -99,8 +99,8 @@ class AdminReleasesController extends Controller{
             $release->deleteImages();
         }
         return $release->delete() ?
-            redirect()->route('releases.index')->with(['success' => 'Релиз успешно удалён!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('releases.index')->with(['success' => trans('releases.release_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function resort(Request $request){
@@ -109,7 +109,7 @@ class AdminReleasesController extends Controller{
             $release->sort_id = $sort;
             $release->save();
         }
-        return redirect()->back()->with(['success' => 'Релизы успешно отсортированы!']);
+        return redirect()->back()->with(['success' => trans('releases.releases_sorted')]);
     }
 
     public function sort(Release $release, $direction){
@@ -117,8 +117,8 @@ class AdminReleasesController extends Controller{
         else $next_release = Release::where('sort_id', '<', $release->sort_id)->orderBy('sort_id', 'desc')->first();
         if(!$next_release) return redirect()->back();
         return $release->swapSort($release, $next_release) ?
-            redirect()->back()->with(['success' => 'Релиз успешно отредактирован!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->back()->with(['success' => trans('releases.release_edited')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function searchRelated(Request $request){
@@ -192,8 +192,8 @@ class AdminReleasesController extends Controller{
     public function labelCopy(Release $release){
         $release->label_copy_zip = $release->createLabelCopy();
         return $release->save() ?
-            redirect()->back()->with(['success' => 'Label Copy создано!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->back()->with(['success' => trans('releases.label_copy_generated')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
 }

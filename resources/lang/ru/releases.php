@@ -70,4 +70,10 @@ return [
 
     'feedback' => 'Фидбеки',
     'add_feedback' => 'Добавить Фидбек',
+
+    'release_added' => 'Релиз успешно добавлен!',
+    'release_edited' => 'Релиз успешно отредактирова!',
+    'release_deleted' => 'Релиз успешно удален!',
+    'label_copy_generated' => 'Файлы Label Copy успешно сгенерированы!',
+    'releases_sorted' => 'Релизы успешно пересортированы!',
 ];

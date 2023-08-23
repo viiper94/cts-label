@@ -40,8 +40,8 @@ class AdminSchoolTeachersController extends Controller{
             $teacher->saveImage($request->file('image'));
         }
         return $teacher->save() ?
-            redirect()->route('school.teachers.index')->with(['success' => 'Учитель успешно отредактирован!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('school.teachers.index')->with(['success' => trans('school.teacher_added')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function edit(Request $request, SchoolTeacher $teacher){
@@ -66,15 +66,15 @@ class AdminSchoolTeachersController extends Controller{
             $teacher->saveImage($request->file('image'));
         }
         return $teacher->save() ?
-            redirect()->route('school.teachers.index')->with(['success' => 'Учитель успешно отредактирован!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('school.teachers.index')->with(['success' => trans('school.teacher_edited')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function destroy(SchoolTeacher $teacher){
         $teacher->deleteImages();
         return $teacher->delete() ?
-            redirect()->back()->with(['success' => 'Успешно удалено!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->back()->with(['success' => trans('school.teacher_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function resort(Request $request){

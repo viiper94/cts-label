@@ -63,8 +63,12 @@ class AdminTracksController extends Controller{
         $track->mix_name = $request->post('mix_name') ?? 'Original Mix';
         $track->remixers = explode(',' , $request->post('remixers'));
         return response()->json($track->save()
-            ? ['id' => $track->id, 'url' => route('releases.add_track')]
-            : ['error' => 'Возникла ошибка =(']);
+            ? [
+                'id' => $track->id,
+                'url' => route('releases.add_track'),
+                'message' => trans('tracks.track_added')
+            ]
+            : ['error' => trans('alert.error')]);
     }
 
     public function edit(Request $request, Track $track){
@@ -101,15 +105,19 @@ class AdminTracksController extends Controller{
         $track->fill($request->post());
         $track->remixers = explode(',' , $request->post('remixers'));
         return response()->json($track->save()
-            ? ['id' => $track->id, 'url' => route('releases.add_track')]
-            : ['error' => 'Возникла ошибка =(']);
+            ? [
+                'id' => $track->id,
+                'url' => route('releases.add_track'),
+                'message' => trans('tracks.track_edited')
+            ]
+            : ['error' => trans('alert.error')]);
     }
 
 
     public function destroy(Track $track){
         return $track->delete() ?
-            redirect()->route('tracks.index')->with(['success' => 'Трек успешно удалён!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('tracks.index')->with(['success' => trans('tracks.track_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function search(Request $request){

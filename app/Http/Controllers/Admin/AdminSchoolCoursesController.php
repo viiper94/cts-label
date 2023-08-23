@@ -38,8 +38,8 @@ class AdminSchoolCoursesController extends Controller{
             $course->saveImage($request->file('image'));
         }
         return $course->save() ?
-            redirect()->route('school.courses.index')->with(['success' => 'Услуга успешно отредактирована!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('school.courses.index')->with(['success' => trans('school.course_added')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function edit(Request $request, SchoolCourse $course){
@@ -62,15 +62,15 @@ class AdminSchoolCoursesController extends Controller{
             $course->saveImage($request->file('image'));
         }
         return $course->save() ?
-            redirect()->route('school.courses.index')->with(['success' => 'Услуга успешно отредактирована!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('school.courses.index')->with(['success' => trans('school.course_edited')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function destroy(SchoolCourse $course){
         $course->deleteImages();
         return $course->delete() ?
-            redirect()->back()->with(['success' => 'Успешно удалено!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->back()->with(['success' => trans('school.course_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function resort(Request $request){

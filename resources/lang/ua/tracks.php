@@ -32,5 +32,9 @@ return [
     'beatport_sample_end' => 'Кінець семплу на Beatport',
     'no_tracks' => 'Наразі немає жодних треків',
     'added' => 'Додано',
+
+    'track_added' => 'Трек успішно доданий!',
+    'track_edited' => 'Трек успішно відредагований!',
+    'track_deleted' => 'Трек успішно видалений!',
 ];
 

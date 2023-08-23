@@ -37,8 +37,8 @@ class AdminArtistsController extends Controller{
                 $artist->saveImage($request->file('image'));
             }
             return $artist->save() ?
-                redirect()->route('artists.index')->with(['success' => 'Артист успешно добавлен!']) :
-                redirect()->back()->withErrors(['Возникла ошибка =(']);
+                redirect()->route('artists.index')->with(['success' => trans('artists.artist_added')]) :
+                redirect()->back()->withErrors([trans('alert.error')]);
         }
         return view('admin.artists.edit', [
             'artist' => $artist
@@ -64,15 +64,15 @@ class AdminArtistsController extends Controller{
             $artist->saveImage($request->file('image'));
         }
         return $artist->save() ?
-            redirect()->route('artists.index')->with(['success' => 'Артист успешно отредактирован!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('artists.index')->with(['success' => trans('artists.artist_edited')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function destroy(Artist $artist){
         $artist->deleteImages();
         return $artist->delete() ?
-            redirect()->route('artists.index')->with(['success' => 'Артист успешно удалён!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->route('artists.index')->with(['success' => trans('artists.artist_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     public function resort(Request $request){
@@ -81,7 +81,7 @@ class AdminArtistsController extends Controller{
             $artist->sort_id = $sort;
             $artist->save();
         }
-        return redirect()->back()->with(['success' => 'Артисты успешно отсортированы!']);
+        return redirect()->back()->with(['success' => trans('artists.artists_sorted')]);
     }
 
     public function sort(Artist $artist, $dir){
@@ -89,8 +89,8 @@ class AdminArtistsController extends Controller{
         else $next_artist = Artist::where('sort_id', '<', $artist->sort_id)->orderBy('sort_id', 'desc')->first();
         if(!$next_artist) return redirect()->back();
         return $artist->swapSort($artist, $next_artist)  ?
-            redirect()->back()->with(['success' => 'Артист успешно отредактирован!']) :
-            redirect()->back()->withErrors(['Возникла ошибка =(']);
+            redirect()->back()->with(['success' => trans('artists.artist_edited')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
 }

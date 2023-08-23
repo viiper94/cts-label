@@ -38,7 +38,7 @@
                         @endif
                         @if(count($track->also_supported) > 0)
                             <div class="also-supported">
-                                <p class="mb-0">@lang('reviews.also_supported')</p>
+                                <p class="mb-0">@lang('reviews.also_supported_and_reviewed')</p>
                                 @foreach($track->also_supported as $review)
                                     @if($review->author)
                                         <span class="fw-bold text-nowrap"><i class="fa-solid fa-angles-right me-1"></i>{{ $review->author }}</span>

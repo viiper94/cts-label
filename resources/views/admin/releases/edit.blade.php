@@ -70,7 +70,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">@lang('releases.release_number')</label><br>
+                        <label class="form-label">@lang('releases.catalogue_number')</label><br>
                         <div class="input-group">
                             <input type="text" class="form-control form-dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
                             @if(!$release->id)

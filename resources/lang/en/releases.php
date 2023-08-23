@@ -18,6 +18,7 @@ return [
     'no_results' => 'No Results',
 
     'beatport_release_date' => 'Beatport Release Date',
+    'catalogue_number' => 'Catalogue Number',
     'exclusive_period' => 'Exclusive Period',
     'without_exclusive_period' => 'No Exclusive Period',
     '2_weeks' => '2 Weeks',

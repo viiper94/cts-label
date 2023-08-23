@@ -1,7 +1,7 @@
 <?php
 return [
     'reviews' => 'REVIEWS',
-    'also_supported' => 'Also supported and reviewed by',
+    'also_supported_and_reviewed' => 'Also supported and reviewed by',
 
     'author' => 'Author',
     'location' => 'Location',
@@ -11,5 +11,6 @@ return [
     'edit_review' => 'Editing Review',
     'added_successfully' => 'Review has been successfully added!',
     'edited_successfully' => 'Review has been successfully edited!',
+    'also_supported' => 'Also supported',
 
 ];

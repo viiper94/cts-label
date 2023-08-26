@@ -1,5 +1,5 @@
 <div class="preview-player d-flex justify-content-between" style="display: none" data-track="{{ $track->id }}">
-    <div class="track-info justify-content-center">
+    <div class="track-info justify-content-center flex-grow-1">
         <img src="/images/releases/{{ $release->image_270 }}" alt="{{ $release->title }}" class="me-2">
         <div class="track-artists text-primary">
             {{ $track->artists }}

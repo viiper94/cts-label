@@ -9,6 +9,8 @@ export class ReleasePlayer{
         this.length = data.length;
         this.url = data.url;
         this.el = data.el;
+        this.volume = data.volume;
+        this.muted = data.muted;
 
         this.player = WaveSurfer.create({
             container: '#waveform',
@@ -35,7 +37,6 @@ export class ReleasePlayer{
 
         this.player.on('ready', function(){
 
-            parent.player.setVolume(0.7);
             $('.preview-player .volume-bar-value').css({
                 width: (parent.player.getVolume()*100) + '%'
             });
@@ -55,7 +56,7 @@ export class ReleasePlayer{
             });
 
             $('.preview-player .mute').click(function(){
-                parent.mutePlayer();
+                parent.toggleMute();
             });
 
             $('.preview-player').show();
@@ -95,7 +96,7 @@ export class ReleasePlayer{
         return true;
     }
 
-    mutePlayer(){
+    toggleMute(){
         if(this.player.getMuted()){
             this.player.setMuted(false);
             $($('.preview-player .mute')).find('i').removeClass('fa-volume-xmark').addClass('fa-volume-high');

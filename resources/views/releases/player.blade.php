@@ -43,7 +43,7 @@
                 <i class="fa-solid fa-volume-high mx-2"></i>
             </button>
             <div class="volume-bar d-none d-md-block">
-                <div class="volume-bar-value" style="width: 70%;"></div>
+                <div class="volume-bar-value" style="width: 0;"></div>
             </div>
         </div>
         <button type="button" class="close p-2">

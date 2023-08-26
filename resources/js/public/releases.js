@@ -33,8 +33,11 @@ $(document).ready(function(){
     $('button[data-track-id]').click(function(){
         let button = $(this);
         if(button.data('track-id') !== $('.preview-player').data('track')){
-            console.log(window.player);
-            if(window.player !== undefined) window.player.player.pause();
+            if(window.player !== undefined){
+                var muted = window.player.player.getMuted();
+                var volume = window.player.player.getVolume();
+                window.player.player.pause();
+            }
             let id = button.data('track-id');
             let r_id = button.data('release-id');
             $.ajax({
@@ -50,6 +53,8 @@ $(document).ready(function(){
                         el: button,
                         id: id
                     });
+                    if(muted) window.player.toggleMute();
+                    window.player.player.setVolume(volume ?? 0.7);
                 },
                 error: function(xhr){
                     console.log('error');

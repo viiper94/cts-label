@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Release;
+use App\Track;
 use Illuminate\Http\Request;
 
 class ReleasesController extends Controller{
@@ -32,6 +33,29 @@ class ReleasesController extends Controller{
         return response()
             ->view('releases.rss', compact('releases'))
             ->header('Content-Type', 'application/xml');
+    }
+
+    public function track(Request $request, Track $track, Release $release = null){
+        if(!$request->ajax()) abort(404);
+        $length = stripos($track->length, ':') ? Track::minutesToMilliseconds($track->length) : (int) $track->length;
+        $start = stripos($track->beatport_sample_start, ':') ? Track::minutesToMilliseconds($track->beatport_sample_start) : (int) $track->beatport_sample_start;
+        $end = stripos($track->beatport_sample_end, ':') ? Track::minutesToMilliseconds($track->beatport_sample_end) : (int) $track->beatport_sample_end;
+        return response()->json([
+            'wave' => $track->beatport_wave,
+            'sampleStart' => $start,
+            'length' => $length,
+            'url' => $track->beatport_sample,
+            'html' => view('releases.player', [
+                'track' => $track,
+                'release' => $release ?? $track->release,
+                'wave' => $track->beatport_wave,
+                'ml' => $start/$length * 100,
+                'left' => $end/$length * 100,
+                'right' => 100 - $start/$length * 100,
+                'width' => $end/$length * 100 - $start/$length * 100,
+                'bp' => 432.16 * $start/$length
+            ])->render()
+        ]);
     }
 
 }

@@ -37,6 +37,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/feed', 'ReleasesController@rss')->name('rss');
     Route::get('/search', 'ReleasesController@index')->name('search');
     Route::get('/releases/{id}', 'ReleasesController@show')->name('release');
+    Route::get('/releases/track/{track}/{release?}', 'ReleasesController@track');
     Route::get('/artists', 'ArtistsController@index')->name('artists');
     Route::get('/reviews', 'ReviewsController@index')->name('reviews');
     Route::get('/about.html', 'AppController@about')->name('about');

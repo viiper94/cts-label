@@ -1,5 +1,7 @@
 // Releases
 
+import {ReleasePlayer} from "../player";
+
 $(document).ready(function(){
 
     $('.release-content-wrapper').readmore({
@@ -25,8 +27,37 @@ $(document).ready(function(){
                 url = 'mailto:?Subject='+title+'&body='+window.location.href;
                 break;
         }
-        console.log(url);
         window.open(url,'share-dialog',"resizable=0,width=626,height=436,scrollbars=yes");
+    });
+
+    $('button[data-track-id]').click(function(){
+        let button = $(this);
+        if(button.data('track-id') !== $('.preview-player').data('track')){
+            console.log(window.player);
+            if(window.player !== undefined) window.player.player.pause();
+            let id = button.data('track-id');
+            let r_id = button.data('release-id');
+            $.ajax({
+                url: '/releases/track/'+id+'/'+r_id,
+                success: function(response){
+                    if(window.player !== undefined) window.player.stopPlayer();
+                    $('main').append(response.html);
+                    window.player = new ReleasePlayer({
+                        waveform: response.wave,
+                        url: response.url,
+                        sampleStart: response.sampleStart,
+                        length: response.length,
+                        el: button,
+                        id: id
+                    });
+                },
+                error: function(xhr){
+                    console.log('error');
+                }
+            });
+        }else{
+            window.player.playPause()
+        }
     });
 
 });

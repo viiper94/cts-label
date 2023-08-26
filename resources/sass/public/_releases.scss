@@ -118,4 +118,164 @@
     .release-related{
         color: $primary-text-darker;
     }
+
+}
+
+// Release Player
+.preview-player{
+    z-index: 10;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-color: black;
+    box-shadow: inset 0 0 0 1px $secondary;
+    @media (max-width: $md) {
+        flex-wrap: wrap;
+        height: 140px;
+    }
+    i{
+        font-size: 30px;
+        vertical-align: middle;
+    }
+    button{
+        background-color: transparent;
+    }
+    .track-info{
+        width: calc(20%);
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        overflow: hidden;
+        align-content: flex-start;
+        white-space: nowrap;
+        @media (max-width: $md) {
+            height: 60px;
+            width: auto;
+        }
+        img{
+            height: 78px;
+            width: 78px;
+            margin-left: 1px;
+            @media (max-width: $md) {
+                height: 60px;
+                width: 60px;
+                margin-top: 1px;
+            }
+        }
+        .track-title{
+            @media (max-width: $md) {
+                font-size: 14px;
+            }
+        }
+    }
+    .track-artists, .track-mix, .track-metadata{
+        font-size: 13px;
+        @media (max-width: $md) {
+            font-size: 12px;
+        }
+    }
+    .player-main-area{
+        //box-shadow: inset 0 0 0 1px $secondary;
+        width: 60%;
+        @media (max-width: $md) {
+            width: 100%;
+        }
+    }
+    .track-controls{
+        .play-pause{
+            text-align: center;
+            width: 80px;
+            height: 80px;
+            color: $secondary;
+            border: 1px solid $secondary;
+            border-radius: 50%;
+            .fa-play{
+                margin-left: 6px;
+            }
+            @media (max-width: $md) {
+                .fa-play{
+                    margin-left: 4px;
+                }
+            }
+        }
+    }
+    .bar{
+        position: relative;
+        height: 80px;
+        flex: 1;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 44px;
+        @media (max-width: $md) {
+            margin: 0 1px 0 3px;
+        }
+        .bar-before, .bar-after, img.wave, .player-progress{
+            position: absolute;
+            top: 1px;
+            bottom: 1px;
+        }
+        .bar-before{
+            left: 0;
+            background-color: black;
+            opacity: .8;
+        }
+        .bar-after{
+            right: 0;
+            background-color: black;
+            opacity: .8;
+        }
+        .player-progress{
+            background-color: black;
+            opacity: .5;
+        }
+        img.wave{
+            filter: sepia(1) hue-rotate(315deg) saturate(15);
+            width: 100%;
+            height: 80%;
+            left: 0;
+            top: 9px;
+        }
+        #waveform{
+            margin-top: 6px;
+        }
+    }
+    .track-extra{
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (max-width: $md) {
+            width: auto;
+        }
+        .close i, .mute i{
+            color: $primary-text;
+            width: 46px;
+        }
+        .volume{
+            max-width: 100%;
+            width: 150px;
+            @media (max-width: $md) {
+                width: auto;
+            }
+            i{
+                font-size: 20px;
+            }
+            .volume-bar{
+                cursor: pointer;
+                border: 1px solid $primary;
+                width: 100%;
+                height: 10px;
+                position: relative;
+                .volume-bar-value{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    background-color: $primary;
+                }
+            }
+        }
+    }
 }

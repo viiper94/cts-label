@@ -82,7 +82,7 @@ class Track extends Model implements Auditable{
         return Carbon::parse('00:'.$minutes.':'.$seconds)->format('i:s');
     }
 
-    private static function minutesToMilliseconds($value): string{
+    public static function minutesToMilliseconds($value): string{
         if(!$value) return '';
         $exploded = explode(':', $value);
         $minutes = (int) $exploded[0];

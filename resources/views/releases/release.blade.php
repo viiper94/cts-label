@@ -1,6 +1,9 @@
 @extends('layout.layout')
 
 @section('title', $release->title)
+@section('scripts')
+    <script type="text/javascript" src="{{ mix('js/player.js') }}"></script>
+@endsection
 
 @section('description', htmlspecialchars_decode(str_replace('&nbsp;', ' ', strip_tags($release['description_'.$release->detectActiveDescriptionLang()]))))
 
@@ -98,6 +101,9 @@
                                 @else
                                     @foreach($release->tracks as $track)
                                         <p class="mb-0">
+                                            @if($track->beatport_sample)
+                                                <button type="button" class="btn btn-sm btn-flat text-muted" data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}"><i class="fa-solid fa-play"></i></button>
+                                            @endif
                                             {{ $release->getTracklistRow($track) }}
                                             @if($track->youtube)
                                                 <a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
@@ -105,7 +111,6 @@
                                         </p>
                                     @endforeach
                                 @endif
-
                             @endif
                         </div>
                     </div>

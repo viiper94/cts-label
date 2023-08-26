@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/admin.js', 'public/js/admin.js')
+    .js('resources/js/player.js', 'public/js/player.js')
     .js([
         'resources/js/global.js',
         'resources/js/app.js'

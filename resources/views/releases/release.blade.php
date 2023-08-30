@@ -99,17 +99,26 @@
                                 @if($release->tracklist_show_custom)
                                     {!! $release->tracklist !!}
                                 @else
-                                    @foreach($release->tracks as $track)
-                                        <p class="mb-0">
-                                            @if($track->beatport_sample && $track->beatport_wave && $track->beatport_sample_start && $track->beatport_sample_end && $track->length)
-                                                <button type="button" class="btn btn-sm btn-flat text-muted" data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}"><i class="fa-solid fa-play"></i></button>
-                                            @endif
-                                            {{ $release->getTracklistRow($track) }}
-                                            @if($track->youtube)
-                                                <a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
-                                            @endif
-                                        </p>
-                                    @endforeach
+                                    <table>
+                                        <tbody>
+                                        @foreach($release->tracks as $track)
+                                            <tr>
+                                                <td class="pb-1">
+                                                    @if($track->beatport_sample && $track->beatport_wave && $track->beatport_sample_start && $track->beatport_sample_end && $track->length)
+                                                        <button type="button" class="btn btn-sm btn-flat text-muted" data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}"><i class="fa-solid fa-play"></i></button>
+                                                    @endif
+                                                </td>
+                                                <td class="pb-1">
+                                                    {{ $release->getTracklistRow($track) }}
+                                                    @if($track->youtube)
+                                                        <a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+
                                 @endif
                             @endif
                         </div>

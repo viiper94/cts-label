@@ -32,9 +32,11 @@
                     <span class="length">{{ $track->length }}</span>
                 @endif
             </div>
-            <div class="bpm text-muted text-center">
-                {{ $track->bpm ?? '' }} BPM
-            </div>
+            @if($track->bpm)
+                <div class="bpm text-muted text-center">
+                    {{ $track->bpm }} BPM
+                </div>
+            @endif
         </div>
     </div>
     <div class="track-extra order-0 order-md-1">

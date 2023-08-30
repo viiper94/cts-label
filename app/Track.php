@@ -106,11 +106,16 @@ class Track extends Model implements Auditable{
         return $title;
     }
 
-    public function lengthToIso8601(){
+    public function lengthToIso8601() :string{
         $length_arr = explode(':', $this->length);
         $m = (int)$length_arr[0];
         $s = (int)$length_arr[1];
         return 'PT'.$m.'M'.$s.'S';
+    }
+
+    public function getBeatportLink() :string|bool{
+        if(!$this->beatport_id || !$this->beatport_slug) return false;
+        return 'https://www.beatport.com/track/'.$this->beatport_slug.'/'.$this->beatport_id;
     }
 
 }

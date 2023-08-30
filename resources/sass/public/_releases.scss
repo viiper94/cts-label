@@ -135,10 +135,6 @@
         flex-wrap: wrap;
         height: 140px;
     }
-    i{
-        font-size: 30px;
-        vertical-align: middle;
-    }
     button{
         background-color: transparent;
     }
@@ -191,12 +187,14 @@
             color: $secondary;
             border: 1px solid $secondary;
             border-radius: 50%;
-            .fa-play{
-                margin-left: 6px;
-            }
-            @media (max-width: $md) {
-                .fa-play{
-                    margin-left: 4px;
+            i{
+                font-size: 30px;
+                vertical-align: middle;
+                &.fa-play{
+                    margin-left: 6px;
+                    @media (max-width: $md) {
+                        margin-left: 4px;
+                    }
                 }
             }
         }
@@ -255,6 +253,10 @@
         .close i, .mute i{
             color: $primary-text;
             width: 46px;
+            vertical-align: middle;
+        }
+        .close i{
+            font-size: 30px;
         }
         .volume{
             max-width: 100%;

@@ -37,8 +37,8 @@
             </div>
         </div>
     </div>
-    <div class="track-extra ps-3 order-0 order-md-1">
-        <div class="volume d-flex align-items-center">
+    <div class="track-extra order-0 order-md-1">
+        <div class="volume d-flex align-items-center me-lg-3">
             <button class="mute" type="button">
                 <i class="fa-solid fa-volume-high mx-2"></i>
             </button>
@@ -46,7 +46,12 @@
                 <div class="volume-bar-value" style="width: 0;"></div>
             </div>
         </div>
-        <button type="button" class="close p-2">
+        @if($link = $track->getBeatportLink())
+            <a href="{{ $link }}" target="_blank" rel="noreferrer" class="text-secondary px-3">
+                <i class="fa-solid fa-cart-shopping fa-lg"></i>
+            </a>
+        @endif
+        <button type="button" class="close p-2 ms-auto">
             <i class="fa-solid fa-times"></i>
         </button>
     </div>

@@ -24,7 +24,7 @@
                         </div>
                     @endforeach
                 </div>
-                {{ $releases->links('layout.pagination') }}
+                {{ $releases->appends(Request::input())->links('layout.pagination') }}
             </section>
             @include('layout.aside')
         </div>

@@ -9,9 +9,14 @@ use Illuminate\Http\Request;
 class ReleasesController extends Controller{
 
     public function index(Request $request){
-        $query = Release::whereVisible(1);
+        $query = Release::whereVisible(1)->with('tracks');
         if($request->input('q')){
-            $query->where('title', 'like', '%'.$request->input('q').'%');
+            $query->where('title', 'like', '%'.$request->input('q').'%')
+                ->orWhereHas('tracks', function($q) use ($request){
+                    $q->where('tracks.artists', 'like', '%'.$request->input('q').'%')
+                        ->orWhere('tracks.name', 'like', '%'.$request->input('q').'%')
+                        ->orWhere('tracks.mix_name', 'like', '%'.$request->input('q').'%');
+                });
         }
         return view('releases.index', [
             'releases' => $query->orderBy('sort_id', 'desc')->paginate(15)->onEachSide(1)

@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-xs-12 col-md-6 my-3 px-3">
                     <p class="text-muted mb-0"><i>3. @lang('cv.birth_date')</i></p>
-                    <p class="mb-0 fs-4"><b>{{ date('j F Y', $cv->birth_date->getTimestamp()) }}</b></p>
+                    <p class="mb-0 fs-4"><b>{{ $cv->birth_date->isoFormat('LL') }}</b></p>
                 </div>
                 <div class="col-xs-12 col-md-6 my-3 px-3">
                     <p class="text-muted mb-0"><i>4. @lang('cv.phone_number')</i></p>

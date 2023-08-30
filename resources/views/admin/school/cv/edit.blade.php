@@ -36,11 +36,24 @@
                     <p class="text-muted mb-0"><i>4. @lang('cv.phone_number')</i></p>
                     <p class="mb-0 fs-4"><b>{{ $cv->phone_number }}</b></p>
                 </div>
-                <div class="col-xs-12 my-3 px-3">
+                <div class="col-xs-12 col-md-6 my-3 px-3">
                     <p class="text-muted mb-0"><i>5. @lang('cv.address')</i></p>
                     <p class="mb-0 fs-4"><b>{{ $cv->address }}</b></p>
                 </div>
-
+                <div class="col-xs-12 col-md-6 my-3 px-3">
+                    <p class="text-muted mb-0"><i>6. @lang('cv.social')</i></p>
+                    @foreach(['instagram', 'facebook', 'soundcloud', 'other_social'] as $social)
+                        @if(isset($cv->$social))
+                            <a href="{{ $cv->$social }}" target="_blank" rel="noreferrer" class="btn btn-sm btn-outline me-3">
+                                @if($social === 'other_social')
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                @else
+                                    <i class="fa-brands fa-{{ $social }}"></i>
+                                @endif
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
                 <div class="col-xs-12 col-md-6 my-3 px-3">
                     <p class="text-muted mb-0"><i>7. @lang('cv.education')</i></p>
                     <p class="mb-0 fs-4"><b>{{ $cv->education }}</b></p>

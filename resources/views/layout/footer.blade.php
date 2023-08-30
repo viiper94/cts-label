@@ -19,7 +19,7 @@
             <div class="col-xs-12 col-md-6">
                 <p class="text-md-end">@lang('footer.follow_us')</p>
                 <div class="d-flex justify-content-md-end flex-wrap">
-                    <a href="https://beatport.com/label/cts-creative-technologies-studio/4470" class="socials socials-beatport"
+                    <a href="https://www.beatport.com/label/cts-records/4470" class="socials socials-beatport"
                        target="_blank" rel="noreferrer" title="Beatport">
                         <i class="icon-beatport"></i>
                     </a>

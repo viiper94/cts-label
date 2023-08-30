@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\CvStatus;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
@@ -12,7 +13,8 @@ class Cv extends Model implements Auditable{
 
     protected $table = 'cv';
     protected $casts = [
-        'birth_date' => 'date'
+        'birth_date' => 'date',
+        'status' => CvStatus::class,
     ];
     protected $fillable = [
         'name',
@@ -39,27 +41,9 @@ class Cv extends Model implements Auditable{
         'purpose_of_learning',
         'status'
     ];
-    public $statusCodes = [
-        0 => [
-            'name' => 'Новая',
-            'labelClass' => 'label-danger'
-        ],
-        1 => [
-            'name' => 'На рассмотрении',
-            'labelClass' => 'label-warning'
-        ],
-        2 => [
-            'name' => 'Рассмотрена',
-            'labelClass' => 'label-success'
-        ],
-    ];
 
     public function user(){
         return $this->belongsTo('App\User');
-    }
-
-    public function getStatus(){
-        return key_exists($this->status, $this->statusCodes) ? $this->statusCodes[$this->status] : $this->statusCodes[0];
     }
 
     public function createDocument() :string{

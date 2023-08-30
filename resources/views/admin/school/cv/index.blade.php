@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ $cv->name }}</td>
                             <td>{{ $cv->email }}</td>
-                            <td><span class="label {{ $cv->getStatus()['labelClass'] }}">{{ $cv->getStatus()['name'] }}</span></td>
+                            <td><span class="badge {{ $cv->status->badgeClass() }}">{{ $cv->status->name() }}</span></td>
                             <td>{{ $cv->created_at->isoFormat('LLL') }}</td>
                             <td>
                                 <form action="{{ route('school.cv.destroy', $cv->id) }}" method="POST">

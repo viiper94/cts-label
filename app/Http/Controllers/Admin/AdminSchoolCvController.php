@@ -9,7 +9,7 @@ class AdminSchoolCvController extends Controller{
 
     public function index(){
         return view('admin.school.cv.index', [
-            'cv_list' => Cv::with('user')->get()
+            'cv_list' => Cv::with('user')->orderBy('status')->get()
         ]);
     }
 

@@ -48,4 +48,8 @@ return [
 
     'cv_deleted' => 'CV has been deleted successfully!',
     'cv_generated' => 'CV file has been generated successfully',
+
+    'new' => 'New',
+    'pending' => 'Pending Approval',
+    'done' => 'Done',
 ];

@@ -51,7 +51,7 @@
                     </a>
                     <a href="https://twitter.com/CTS_RECORDS" class="socials socials-twitter" target="_blank"
                        rel="noreferrer" title="Twitter">
-                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
                     </a>
                     <a href="https://www.instagram.com/cts_records" class="socials socials-instagram" target="_blank"
                        rel="noreferrer" title="Instagram">

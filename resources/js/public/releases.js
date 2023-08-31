@@ -29,38 +29,49 @@ $(document).ready(function(){
         window.open(url,'share-dialog',"resizable=0,width=626,height=436,scrollbars=yes");
     });
 
-    $('button[data-track-id]').click(function(){
-        let button = $(this);
-        if(button.data('track-id') !== $('.preview-player').data('track')){
-            if(window.player !== undefined){
+    $('button[data-track-id]').click(function () {
+        const button = $(this);
+        const trackId = button.data('track-id');
+        const releaseId = button.data('release-id');
+        const isDifferentTrack = trackId !== $('.preview-player').data('track');
+
+        if (isDifferentTrack) {
+            if (window.player !== undefined) {
                 var muted = window.player.player.getMuted();
                 var volume = window.player.player.getVolume();
                 window.player.player.pause();
             }
-            let id = button.data('track-id');
-            let r_id = button.data('release-id');
+
             $.ajax({
-                url: '/releases/track/'+id+'/'+r_id,
-                success: function(response){
-                    if(window.player !== undefined) window.player.stopPlayer();
+                url: `/releases/track/${trackId}/${releaseId}`,
+                success: function (response) {
+                    if (window.player !== undefined) {
+                        window.player.stopPlayer();
+                    }
+
                     $('main').append(response.html);
+
                     window.player = new ReleasePlayer({
                         waveform: response.wave,
                         url: response.url,
                         sampleStart: response.sampleStart,
                         length: response.length,
                         el: button,
-                        id: id
+                        id: trackId
                     });
-                    if(muted) window.player.toggleMute();
+
+                    if (muted) {
+                        window.player.toggleMute();
+                    }
+
                     window.player.player.setVolume(volume ?? 0.7);
                 },
-                error: function(xhr){
+                error: function (xhr) {
                     console.log('error');
                 }
             });
-        }else{
-            window.player.playPause()
+        } else {
+            window.player.playPause();
         }
     });
 

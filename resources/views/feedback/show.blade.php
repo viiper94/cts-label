@@ -3,7 +3,7 @@
 @section('title', 'Feedback to '. $feedback->feedback_title)
 
 @section('scripts')
-    <script src="/js/wavesurfer.min.js"></script>
+    <script src="{{ mix('js/feedback_player.js') }}" type="text/javascript"></script>
 @endsection
 
 @section('meta')
@@ -12,7 +12,7 @@
 
 @section('content')
 
-    <div class="container pt-5 pb-3 feedback">
+    <div class="container pt-5 pb-3 feedback" data-feedback-slug="{{ $feedback->slug }}">
         <div class="row">
             <div class="col-12 col-sm-auto cover text-center">
                 @if($feedback->release)
@@ -120,30 +120,5 @@
             </div>
         </form>
     </div>
-
-    <script>
-        $(document).ready(function(){
-
-            window.players = [];
-
-            @foreach($feedback->ftracks as $key => $track)
-
-            window.players.push(new FeedbackPlayer({
-                url: '/audio/feedback/{{ $feedback->slug }}/96/{!! $track->file_96 !!}',
-                trackIndex: {{ $key }},
-                feedbackId: {{ $feedback->id }},
-                trackId: {{ $track->id }},
-                @if(isset($track->peaks) && !empty(json_decode($track->peaks)))
-                peaks: {{ \App\Feedback::getPeaks($track) }},
-                @else
-                savePeaksRoute: '{{ route('feedback.peaks') }}'
-                @endif
-            }));
-
-            @endforeach
-
-        });
-    </script>
-    <script src="/js/feedback_player.js"></script>
 
 @endsection

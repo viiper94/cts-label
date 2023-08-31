@@ -1,4 +1,6 @@
 // Feedback
+import {FeedbackPlayer} from "../feedback_player";
+
 $(document).ready(function(){
 
     let starRatingConfig = {
@@ -13,5 +15,18 @@ $(document).ready(function(){
         showClear: false,
     }
     $('.star-rating').rating(starRatingConfig);
+
+    $.ajax({
+        url: '/feedback/'+$('.feedback').data('feedback-slug')+'/tracks',
+        success: function(response){
+            window.players = [];
+            $(response.tracks).each(function(key, params){
+                window.players.push(new FeedbackPlayer(params))
+            });
+        },
+        error: function(){
+            console.log('error');
+        }
+    });
 
 });

@@ -41,4 +41,24 @@ class FeedbackController extends Controller{
         ]);
     }
 
+    public function getTracks(Request $request, $slug){
+        if(!$request->ajax()) abort(404);
+        $feedback = Feedback::with('ftracks')->where('slug', $slug)->firstOrFail();
+        $tracks = array();
+        foreach($feedback->ftracks as $key => $track){
+            $tracks[$key] = [
+                'trackIndex' => $key,
+                'url' => $track->filePath(true),
+                'trackId' => $track->id,
+                'feedbackId' => $feedback->id,
+            ];
+            $tracks[$key] += isset($track->peaks) && !empty(json_decode($track->peaks))
+                ? ['peaks' => json_decode(Feedback::getPeaks($track))]
+                : ['savePeaksRoute' => route('feedback.peaks')];
+        }
+        return response()->json([
+            'tracks' => $tracks
+        ]);
+    }
+
 }

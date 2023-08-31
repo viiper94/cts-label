@@ -48,6 +48,7 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::any('/anketa', 'CvController@index')->name('school.cv');
     Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
+    Route::get('/feedback/{slug}/tracks', 'FeedbackController@getTracks');
     Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
 
     Route::get('/event/marketing-and-management', [WebinarContactController::class, 'index'])->name('event');

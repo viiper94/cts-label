@@ -12,7 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/admin.js', 'public/js/admin.js')
-    .js('resources/js/player.js', 'public/js/player.js')
+    .js('resources/js/release_player.js', 'public/js/release_player.js')
+    .js('resources/js/feedback_player.js', 'public/js/feedback_player.js')
     .js([
         'resources/js/global.js',
         'resources/js/app.js'

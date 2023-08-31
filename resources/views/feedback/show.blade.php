@@ -82,13 +82,16 @@
                                 <span class="time-break">/</span>
                                 <span class="duration">00:00</span>
                             </div>
-                            <div class="volume-bar ms-3">
-                                <div class="volume-bar-value"></div>
+                            <button class="mute me-3 ms-4" type="button">
+                                <i class="fa-solid fa-volume-high fa-lg"></i>
+                            </button>
+                            <div class="volume-bar">
+                                <div class="volume-bar-value" style="width: 70%;"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="bar d-flex align-items-center">
-                        <button type="button" class="play-pause me-3"><i class="fa-solid fa-play"></i></button>
+                    <div class="bar d-flex align-items-center py-2">
+                        <button type="button" class="play-pause me-1"><i class="fa-solid fa-play fa-md"></i></button>
                         <div id="waveform_{{ $key }}" class="waveform flex-grow-1"></div>
                     </div>
                     <div class="rate_stars py-3">

@@ -36,12 +36,17 @@
             .time{
                 width: 100px;
             }
+            .mute{
+                background-color: transparent;
+                color: $primary-text-darker;
+                width: 25px;
+            }
             .volume-bar{
                 position: relative;
                 overflow: hidden;
-                background-color: $background-lighten-3;
+                border: 1px solid $primary;
                 width: 150px;
-                height: 5px;
+                height: 10px;
                 cursor: pointer;
                 .volume-bar-value{
                     background-color: $primary;
@@ -56,9 +61,16 @@
             .play-pause{
                 background-color: transparent;
                 font-size: 25px;
-                color: $primary;
-                i{
-                    width: 25px;
+                color: $secondary;
+                width: 70px;
+                height: 70px;
+                border: 1px solid;
+                border-radius: 50%;
+                i.fa-play{
+                    margin-left: 6px;
+                }
+                i.fa-pause{
+                    margin-left: 1px;
                 }
             }
         }

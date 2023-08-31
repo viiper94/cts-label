@@ -8,6 +8,9 @@ aside{
         @media (min-width: $md) and (max-width: $lg) {
             width: 245px;
         }
+        &.spotify-widget iframe{
+            background-color: #272727;
+        }
         h3{
             background: $background-lighten-2;
             color: $primary;

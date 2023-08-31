@@ -2,7 +2,7 @@
 
 @section('title', $release->title)
 @section('scripts')
-    <script type="text/javascript" src="{{ mix('js/player.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/release_player.js') }}"></script>
 @endsection
 
 @section('description', htmlspecialchars_decode(str_replace('&nbsp;', ' ', strip_tags($release['description_'.$release->detectActiveDescriptionLang()]))))

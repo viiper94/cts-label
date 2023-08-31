@@ -1,6 +1,5 @@
 // Releases
-
-import {ReleasePlayer} from "../player";
+import {ReleasePlayer} from "../release_player";
 
 $(document).ready(function(){
 

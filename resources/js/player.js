@@ -1,8 +1,7 @@
-import WaveSurfer from 'wavesurfer.js'
+import WaveSurfer from 'wavesurfer.js';
 
-export class ReleasePlayer{
-
-    constructor(data){
+export class ReleasePlayer {
+    constructor(data) {
         this.id = data.id;
         this.waveform = data.waveform;
         this.sampleStart = data.sampleStart;
@@ -17,119 +16,119 @@ export class ReleasePlayer{
             height: 70,
             waveColor: 'rgba(255,206,0,0)',
             progressColor: '#2abea8',
-            peaks: [0,0],
+            peaks: [0, 0],
             cursorWidth: 1,
             url: this.url
         });
 
-        let parent = this;
-
-        this.player.on('timeupdate', function(){
-            $('.preview-player .current').text(parent.convertDuration(parent.player.getCurrentTime(), parent.sampleStart));
-            $('.preview-player .player-progress').css('right', parent.getProgressBarRight()+'%');
+        this.player.on('timeupdate', () => {
+            this.updateTime();
         });
 
-        this.player.on('finish', function(){
-            parent.player.stop();
-            $(parent.el).find('i').removeClass('fa-pause').addClass('fa-play');
-            $($('.preview-player .play-pause')).find('i').removeClass('fa-pause').addClass('fa-play');
+        this.player.on('finish', () => {
+            this.stopPlayer();
         });
 
-        this.player.on('ready', function(){
-
-            $('.preview-player .volume-bar-value').css({
-                width: (parent.player.getVolume()*100) + '%'
-            });
-
-            $('.preview-player .current').text(parent.convertDuration(parent.getStartTime()));
-
-            $('.preview-player .volume-bar').click(function(e){
-                parent.setVolume(e, this);
-            });
-
-            $('.preview-player .play-pause').click(function(){
-                parent.playPause();
-            });
-
-            $('.preview-player .close').click(function(){
-                parent.stopPlayer();
-            });
-
-            $('.preview-player .mute').click(function(){
-                parent.toggleMute();
-            });
-
-            $('.preview-player').show();
-
-            parent.playPause();
-
+        this.player.on('ready', () => {
+            this.initializeUI();
+            this.playPause();
         });
-
     }
 
-    playPause(){
-        if(!this.player.isPlaying()){
-            // this.stopPlayers();
+    updateTime() {
+        const currentTime = this.player.getCurrentTime();
+        $('.preview-player .current').text(this.convertDuration(currentTime, this.sampleStart));
+        $('.preview-player .player-progress').css('right', this.getProgressBarRight() + '%');
+    }
+
+    initializeUI() {
+        const volumeBar = $('.preview-player .volume-bar');
+        const playPauseButton = $('.preview-player .play-pause');
+        const closeButton = $('.preview-player .close');
+        const muteButton = $('.preview-player .mute');
+
+        $('.preview-player .volume-bar-value').css({
+            width: (this.player.getVolume() * 100) + '%'
+        });
+
+        $('.preview-player .current').text(this.convertDuration(this.getStartTime()));
+
+        volumeBar.click((e) => {
+            this.setVolume(e, volumeBar);
+        });
+
+        playPauseButton.click(() => {
+            this.playPause();
+        });
+
+        closeButton.click(() => {
+            this.stopPlayer();
+        });
+
+        muteButton.click(() => {
+            this.toggleMute();
+        });
+
+        $('.preview-player').show();
+    }
+
+    playPause() {
+        if (!this.player.isPlaying()) {
             this.player.play();
-            $(this.el).find('i').removeClass('fa-play').addClass('fa-pause');
-            $('.preview-player .play-pause').find('i').removeClass('fa-play').addClass('fa-pause');
-        }else{
+        } else {
             this.player.pause();
-            $(this.el).find('i').removeClass('fa-pause').addClass('fa-play');
-            $($('.preview-player .play-pause')).find('i').removeClass('fa-pause').addClass('fa-play');
         }
+        this.togglePlayPauseIcons();
     }
 
-    stopPlayer(){
+    togglePlayPauseIcons() {
+        const mainPlayPauseIcon = $(`.preview-player .play-pause i`);
+        mainPlayPauseIcon.toggleClass('fa-play fa-pause');
+        this.el.find('i').toggleClass('fa-play fa-pause');
+    }
+
+    stopPlayer() {
         this.player.pause();
         this.player.destroy();
-        $(this.el).find('i').removeClass('fa-pause').addClass('fa-play');
+        this.togglePlayPauseIcons();
         $('.preview-player').remove();
     }
 
-    setVolume(e, el){
-        let clickedPositionPercent = this.getBarClickPercent(e, el);
+    setVolume(e, el) {
+        const clickedPositionPercent = this.getBarClickPercent(e, el);
         $('.preview-player .volume-bar-value').css({
             width: clickedPositionPercent + '%'
         });
-        this.player.setVolume(clickedPositionPercent/100);
-        return true;
+        this.player.setVolume(clickedPositionPercent / 100);
     }
 
-    toggleMute(){
-        if(this.player.getMuted()){
-            this.player.setMuted(false);
-            $($('.preview-player .mute')).find('i').removeClass('fa-volume-xmark').addClass('fa-volume-high');
-        }else{
-            this.player.setMuted(true);
-            $($('.preview-player .mute')).find('i').removeClass('fa-volume-high').addClass('fa-volume-xmark');
-        }
+    toggleMute() {
+        const isMuted = this.player.getMuted();
+        this.player.setMuted(!isMuted);
+        const muteIcon = $('.preview-player .mute i');
+        muteIcon.toggleClass('fa-volume-high fa-volume-xmark');
     }
 
-    getBarClickPercent(e, el){
+    getBarClickPercent(e, el) {
         return (e.pageX - $(el).offset().left) / $(el).width() * 100;
     }
 
-    convertDuration(duration, offset = 0){
+    convertDuration(duration, offset = 0) {
         duration += offset / 1000;
-        let minutes = Math.floor(duration / 60);
-        let seconds = Math.round(duration - minutes * 60);
-        minutes = (minutes < 10) ? `0${minutes}` : minutes;
-        seconds = (seconds < 10) ? `0${seconds}` : seconds;
-        return `${minutes}:${seconds}`;
+        const minutes = Math.floor(duration / 60);
+        const seconds = Math.floor(duration - minutes * 60);
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
 
-    getStartTime(){
-        return this.convertDuration(this.sampleStart)
+    getStartTime() {
+        return this.convertDuration(this.sampleStart);
     }
 
-    getProgressBarRight(){
-        return 100 - ((parseInt(this.sampleStart) + this.player.getCurrentTime()*1000) / this.length) * 100;
+    getProgressBarRight() {
+        return 100 - ((parseInt(this.sampleStart) + this.player.getCurrentTime() * 1000) / this.length) * 100;
     }
 
-    destroy(){
-        this.player.destroy()
-        return true;
+    destroy() {
+        this.player.destroy();
     }
-
 }

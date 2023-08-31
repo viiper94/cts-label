@@ -3,6 +3,7 @@
 $(document).ready(function(){
 
     $('.alert-toast').toast('show');
+    $('[data-bs-toggle="tooltip"]').tooltip();
 
     $('.switch-btn').click(function(){
         setCookie('lang', $(this).data('lang'), {

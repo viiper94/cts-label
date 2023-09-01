@@ -38,4 +38,8 @@ class Artist extends SharedModel implements Auditable{
         }
     }
 
+    public function getLink() :string{
+        return $this->link ?? route('home', ['q' => $this->name]);
+    }
+
 }

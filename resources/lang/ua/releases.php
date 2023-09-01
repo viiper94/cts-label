@@ -4,6 +4,11 @@ return [
     'search_release' => 'Search Release',
     'tracklist' => 'Трекліст:',
     'related_releases' => 'Related Releases:',
+    'share_facebook' => 'Поділитися на Facebook',
+    'share_x' => 'Поділитися на X',
+    'share_email' => 'Поділитися через E-Mail',
+    'buy' => 'Купити реліз',
+    'watch' => 'Дивитись на YouTube',
 
     'new_release' => 'Новий Реліз',
     'release_on_site' => 'Реліз на Сайті',

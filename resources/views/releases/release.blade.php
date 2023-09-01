@@ -71,12 +71,12 @@
                         </figure>
                         <div class="release-buttons d-flex justify-content-between py-md-5 py-3">
                             <a @if($release->youtube) href="{{ $release->youtube }}" @endif target="_blank" rel="noreferrer"
-                               data-bs-toggle="tooltip" data-bs-title="Watch on YouTube"
+                               data-bs-toggle="tooltip" data-bs-title="@lang('releases.watch')"
                                @class(['share', 'btn-disabled' => !$release->youtube])>
                                 <i class="fa-brands fa-youtube"></i>
                             </a>
                             <a @if($release->beatport) href="{{ $release->beatport }}" @endif target="_blank" rel="noreferrer"
-                               data-bs-toggle="tooltip" data-bs-title="Buy this release"
+                               data-bs-toggle="tooltip" data-bs-title="@lang('releases.buy')"
                                 @class(['share', 'btn-disabled' => !$release->beatport])>
                                 <i @class([
                                         'icon-beatport' => $release->getStore() === 'beatport' || $release->getStore() === null,
@@ -86,15 +86,15 @@
                                     ])></i>
                             </a>
                             <button type="button" class="share sharer share-facebook" data-social="fb"
-                                    data-bs-toggle="tooltip" data-bs-title="Share on Facebook">
+                                    data-bs-toggle="tooltip" data-bs-title="@lang('releases.share_facebook')">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </button>
                             <button type="button" class="share sharer share-twitter" data-social="tw"
-                                    data-bs-toggle="tooltip" data-bs-title="Share on X">
+                                    data-bs-toggle="tooltip" data-bs-title="@lang('releases.share_x')">
                                 <i class="fa-brands fa-x-twitter"></i>
                             </button>
                             <button type="button" class="share sharer share-mail" data-social="mail"
-                                    data-bs-toggle="tooltip" data-bs-title="Share via E-Mail">
+                                    data-bs-toggle="tooltip" data-bs-title="@lang('releases.share_email')">
                                 <i class="fa-solid fa-envelope"></i>
                             </button>
                         </div>

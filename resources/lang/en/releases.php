@@ -4,6 +4,11 @@ return [
     'search_release' => 'Search Release',
     'tracklist' => 'Tracklist:',
     'related_releases' => 'Related Releases:',
+    'share_facebook' => 'Share on Facebook',
+    'share_x' => 'Share on X',
+    'share_email' => 'Share via E-Mail',
+    'buy' => 'Buy this release',
+    'watch' => 'Watch on YouTube',
 
     'new_release' => 'New Release',
     'release_on_site' => 'Release on Main Website',

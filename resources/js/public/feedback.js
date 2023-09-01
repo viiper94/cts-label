@@ -16,17 +16,19 @@ $(document).ready(function(){
     }
     $('.star-rating').rating(starRatingConfig);
 
-    $.ajax({
-        url: '/feedback/'+$('.feedback').data('feedback-slug')+'/tracks',
-        success: function(response){
-            window.players = [];
-            $(response.tracks).each(function(key, params){
-                window.players.push(new FeedbackPlayer(params))
-            });
-        },
-        error: function(){
-            console.log('error');
-        }
-    });
+    if($('.feedback').data('feedback-slug') !== undefined){
+        $.ajax({
+            url: '/feedback/'+$('.feedback').data('feedback-slug')+'/tracks',
+            success: function(response){
+                window.players = [];
+                $(response.tracks).each(function(key, params){
+                    window.players.push(new FeedbackPlayer(params))
+                });
+            },
+            error: function(){
+                console.log('error');
+            }
+        });
+    }
 
 });

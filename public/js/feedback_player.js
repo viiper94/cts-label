@@ -1,1 +1,1474 @@
-(()=>{"use strict";var t={303:(t,e,n)=>{n.d(e,{Z:()=>i});const i=class{constructor(){this.listeners={}}on(t,e){return this.listeners[t]||(this.listeners[t]=new Set),this.listeners[t].add(e),()=>this.un(t,e)}once(t,e){const n=this.on(t,e),i=this.on(t,(()=>{n(),i()}));return n}un(t,e){this.listeners[t]&&(e?this.listeners[t].delete(e):delete this.listeners[t])}unAll(){this.listeners={}}emit(t,...e){this.listeners[t]&&this.listeners[t].forEach((t=>t(...e)))}}},26:(t,e,n)=>{var i=n(303);class r extends i.Z{constructor(t,e){let n;if(super(),this.timeouts=[],this.isScrolling=!1,this.audioData=null,this.resizeObserver=null,this.isDragging=!1,this.options=t,"string"==typeof t.container?n=document.querySelector(t.container):t.container instanceof HTMLElement&&(n=t.container),!n)throw new Error("Container not found");this.parent=n;const[i,r]=this.initHtml();n.appendChild(i),this.container=i,this.scrollContainer=r.querySelector(".scroll"),this.wrapper=r.querySelector(".wrapper"),this.canvasWrapper=r.querySelector(".canvases"),this.progressWrapper=r.querySelector(".progress"),this.cursor=r.querySelector(".cursor"),e&&r.appendChild(e),this.initEvents()}initEvents(){this.wrapper.addEventListener("click",(t=>{const e=this.wrapper.getBoundingClientRect(),n=(t.clientX-e.left)/e.width;this.emit("click",n)})),this.options.dragToSeek&&this.initDrag(),this.scrollContainer.addEventListener("scroll",(()=>{const{scrollLeft:t,scrollWidth:e,clientWidth:n}=this.scrollContainer,i=t/e,r=(t+n)/e;this.emit("scroll",i,r)}));const t=this.createDelay(100);this.resizeObserver=new ResizeObserver((()=>{t((()=>this.reRender()))})),this.resizeObserver.observe(this.scrollContainer)}initDrag(){!function(t,e,n,i,r=5){let s=()=>{};if(!t)return s;const o=o=>{if(2===o.button)return;o.preventDefault(),o.stopPropagation();let l=o.clientX,a=o.clientY,h=!1;const c=i=>{i.preventDefault(),i.stopPropagation();const s=i.clientX,o=i.clientY;if(h||Math.abs(s-l)>=r||Math.abs(o-a)>=r){const{left:i,top:r}=t.getBoundingClientRect();h||(h=!0,null==n||n(l-i,a-r)),e(s-l,o-a,s-i,o-r),l=s,a=o}},d=t=>{h&&(t.preventDefault(),t.stopPropagation())},p=()=>{h&&(null==i||i()),s()};document.addEventListener("pointermove",c),document.addEventListener("pointerup",p),document.addEventListener("pointerleave",p),document.addEventListener("click",d,!0),s=()=>{document.removeEventListener("pointermove",c),document.removeEventListener("pointerup",p),document.removeEventListener("pointerleave",p),setTimeout((()=>{document.removeEventListener("click",d,!0)}),10)}};t.addEventListener("pointerdown",o)}(this.wrapper,((t,e,n)=>{this.emit("drag",Math.max(0,Math.min(1,n/this.wrapper.clientWidth)))}),(()=>this.isDragging=!0),(()=>this.isDragging=!1))}getHeight(){return null==this.options.height?128:isNaN(Number(this.options.height))?"auto"===this.options.height&&this.parent.clientHeight||128:Number(this.options.height)}initHtml(){const t=document.createElement("div"),e=t.attachShadow({mode:"open"});return e.innerHTML=`\n      <style>\n        :host {\n          user-select: none;\n        }\n        :host audio {\n          display: block;\n          width: 100%;\n        }\n        :host .scroll {\n          overflow-x: auto;\n          overflow-y: hidden;\n          width: 100%;\n          position: relative;\n          touch-action: none;\n        }\n        :host .noScrollbar {\n          scrollbar-color: transparent;\n          scrollbar-width: none;\n        }\n        :host .noScrollbar::-webkit-scrollbar {\n          display: none;\n          -webkit-appearance: none;\n        }\n        :host .wrapper {\n          position: relative;\n          overflow: visible;\n          z-index: 2;\n        }\n        :host .canvases {\n          min-height: ${this.getHeight()}px;\n        }\n        :host .canvases > div {\n          position: relative;\n        }\n        :host canvas {\n          display: block;\n          position: absolute;\n          top: 0;\n          image-rendering: pixelated;\n        }\n        :host .progress {\n          pointer-events: none;\n          position: absolute;\n          z-index: 2;\n          top: 0;\n          left: 0;\n          width: 0;\n          height: 100%;\n          overflow: hidden;\n        }\n        :host .progress > div {\n          position: relative;\n        }\n        :host .cursor {\n          pointer-events: none;\n          position: absolute;\n          z-index: 5;\n          top: 0;\n          left: 0;\n          height: 100%;\n          border-radius: 2px;\n        }\n      </style>\n\n      <div class="scroll" part="scroll">\n        <div class="wrapper">\n          <div class="canvases"></div>\n          <div class="progress" part="progress"></div>\n          <div class="cursor" part="cursor"></div>\n        </div>\n      </div>\n    `,[t,e]}setOptions(t){this.options=t,this.reRender()}getWrapper(){return this.wrapper}getScroll(){return this.scrollContainer.scrollLeft}destroy(){var t;this.container.remove(),null===(t=this.resizeObserver)||void 0===t||t.disconnect()}createDelay(t=10){const e={};return this.timeouts.push(e),n=>{e.timeout&&clearTimeout(e.timeout),e.timeout=setTimeout(n,t)}}convertColorValues(t){if(!Array.isArray(t))return t||"";if(t.length<2)return t[0]||"";const e=document.createElement("canvas"),n=e.getContext("2d").createLinearGradient(0,0,0,e.height),i=1/(t.length-1);return t.forEach(((t,e)=>{const r=e*i;n.addColorStop(r,t)})),n}renderBarWaveform(t,e,n,i){const r=t[0],s=t[1]||t[0],o=r.length,{width:l,height:a}=n.canvas,h=a/2,c=window.devicePixelRatio||1,d=e.barWidth?e.barWidth*c:1,p=e.barGap?e.barGap*c:e.barWidth?d/2:0,u=e.barRadius||0,g=l/(d+p)/o,v=u&&"roundRect"in n?"roundRect":"rect";n.beginPath();let m=0,f=0,b=0;for(let t=0;t<=o;t++){const o=Math.round(t*g);if(o>m){const t=Math.round(f*h*i),r=t+Math.round(b*h*i)||1;let s=h-t;"top"===e.barAlign?s=0:"bottom"===e.barAlign&&(s=a-r),n[v](m*(d+p),s,d,r,u),m=o,f=0,b=0}const l=Math.abs(r[t]||0),c=Math.abs(s[t]||0);l>f&&(f=l),c>b&&(b=c)}n.fill(),n.closePath()}renderLineWaveform(t,e,n,i){const r=e=>{const r=t[e]||t[0],s=r.length,{height:o}=n.canvas,l=o/2,a=n.canvas.width/s;n.moveTo(0,l);let h=0,c=0;for(let t=0;t<=s;t++){const s=Math.round(t*a);if(s>h){const t=l+(Math.round(c*l*i)||1)*(0===e?-1:1);n.lineTo(h,t),h=s,c=0}const o=Math.abs(r[t]||0);o>c&&(c=o)}n.lineTo(h,l)};n.beginPath(),r(0),r(1),n.fill(),n.closePath()}renderWaveform(t,e,n){if(n.fillStyle=this.convertColorValues(e.waveColor),e.renderFunction)return void e.renderFunction(t,n);let i=e.barHeight||1;if(e.normalize){const e=Array.from(t[0]).reduce(((t,e)=>Math.max(t,Math.abs(e))),0);i=e?1/e:1}e.barWidth||e.barGap||e.barAlign?this.renderBarWaveform(t,e,n,i):this.renderLineWaveform(t,e,n,i)}renderSingleCanvas(t,e,n,i,r,s,o,l){const a=window.devicePixelRatio||1,h=document.createElement("canvas"),c=t[0].length;h.width=Math.round(n*(s-r)/c),h.height=i*a,h.style.width=`${Math.floor(h.width/a)}px`,h.style.height=`${i}px`,h.style.left=`${Math.floor(r*n/a/c)}px`,o.appendChild(h);const d=h.getContext("2d");this.renderWaveform(t.map((t=>t.slice(r,s))),e,d);const p=h.cloneNode();l.appendChild(p);const u=p.getContext("2d");h.width>0&&h.height>0&&u.drawImage(h,0,0),u.globalCompositeOperation="source-in",u.fillStyle=this.convertColorValues(e.progressColor),u.fillRect(0,0,h.width,h.height)}renderChannel(t,e,n){const i=document.createElement("div"),s=this.getHeight();i.style.height=`${s}px`,this.canvasWrapper.style.minHeight=`${s}px`,this.canvasWrapper.appendChild(i);const o=i.cloneNode();this.progressWrapper.appendChild(o);const{scrollLeft:l,scrollWidth:a,clientWidth:h}=this.scrollContainer,c=t[0].length,d=c/a;let p=Math.min(r.MAX_CANVAS_WIDTH,h);if(e.barWidth||e.barGap){const t=e.barWidth||.5,n=t+(e.barGap||t/2);p%n!=0&&(p=Math.floor(p/n)*n)}const u=Math.floor(Math.abs(l)*d),g=Math.floor(u+p*d),v=g-u,m=(r,l)=>{this.renderSingleCanvas(t,e,n,s,Math.max(0,r),Math.min(l,c),i,o)},f=this.createDelay(),b=this.createDelay(),C=(t,e)=>{m(t,e),t>0&&f((()=>{C(t-v,e-v)}))},w=(t,e)=>{m(t,e),e<c&&b((()=>{w(t+v,e+v)}))};C(u,g),g<c&&w(g,g+v)}render(t){this.timeouts.forEach((t=>t.timeout&&clearTimeout(t.timeout))),this.timeouts=[],this.canvasWrapper.innerHTML="",this.progressWrapper.innerHTML="",this.wrapper.style.width="";const e=window.devicePixelRatio||1,n=this.scrollContainer.clientWidth,i=Math.ceil(t.duration*(this.options.minPxPerSec||0));this.isScrolling=i>n;const r=this.options.fillParent&&!this.isScrolling,s=(r?n:i)*e;if(this.wrapper.style.width=r?"100%":`${i}px`,this.scrollContainer.style.overflowX=this.isScrolling?"auto":"hidden",this.scrollContainer.classList.toggle("noScrollbar",!!this.options.hideScrollbar),this.cursor.style.backgroundColor=`${this.options.cursorColor||this.options.progressColor}`,this.cursor.style.width=`${this.options.cursorWidth}px`,this.options.splitChannels)for(let e=0;e<t.numberOfChannels;e++){const n=Object.assign(Object.assign({},this.options),this.options.splitChannels[e]);this.renderChannel([t.getChannelData(e)],n,s)}else{const e=[t.getChannelData(0)];t.numberOfChannels>1&&e.push(t.getChannelData(1)),this.renderChannel(e,this.options,s)}this.audioData=t,this.emit("render")}reRender(){if(!this.audioData)return;const t=this.progressWrapper.clientWidth;this.render(this.audioData);const e=this.progressWrapper.clientWidth;this.scrollContainer.scrollLeft+=e-t}zoom(t){this.options.minPxPerSec=t,this.reRender()}scrollIntoView(t,e=!1){const{clientWidth:n,scrollLeft:i,scrollWidth:r}=this.scrollContainer,s=r*t,o=n/2;if(s>i+(e&&this.options.autoCenter&&!this.isDragging?o:n)||s<i)if(this.options.autoCenter&&!this.isDragging){const t=o/20;s-(i+o)>=t&&s<i+n?this.scrollContainer.scrollLeft+=t:this.scrollContainer.scrollLeft=s-o}else if(this.isDragging){const t=10;this.scrollContainer.scrollLeft=s<i?s-t:s-n+t}else this.scrollContainer.scrollLeft=s;{const{scrollLeft:t}=this.scrollContainer,e=t/r,i=(t+n)/r;this.emit("scroll",e,i)}}renderProgress(t,e){isNaN(t)||(this.progressWrapper.style.width=100*t+"%",this.cursor.style.left=100*t+"%",this.cursor.style.marginLeft=100===Math.round(100*t)?`-${this.options.cursorWidth}px`:"",this.isScrolling&&this.options.autoScroll&&this.scrollIntoView(t,e))}}r.MAX_CANVAS_WIDTH=4e3}},e={};function n(i){var r=e[i];if(void 0!==r)return r.exports;var s=e[i]={exports:{}};return t[i](s,s.exports,n),s.exports}n.d=(t,e)=>{for(var i in e)n.o(e,i)&&!n.o(t,i)&&Object.defineProperty(t,i,{enumerable:!0,get:e[i]})},n.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e),n(26)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/wavesurfer.js/dist/decoder.js":
+/*!****************************************************!*\
+  !*** ./node_modules/wavesurfer.js/dist/decoder.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+/** Decode an array buffer into an audio buffer */
+function decode(audioData, sampleRate) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const audioCtx = new AudioContext({ sampleRate });
+        const decode = audioCtx.decodeAudioData(audioData);
+        return decode.finally(() => audioCtx.close());
+    });
+}
+/** Normalize peaks to -1..1 */
+function normalize(channelData) {
+    const firstChannel = channelData[0];
+    if (firstChannel.some((n) => n > 1 || n < -1)) {
+        const length = firstChannel.length;
+        let max = 0;
+        for (let i = 0; i < length; i++) {
+            const absN = Math.abs(firstChannel[i]);
+            if (absN > max)
+                max = absN;
+        }
+        for (const channel of channelData) {
+            for (let i = 0; i < length; i++) {
+                channel[i] /= max;
+            }
+        }
+    }
+    return channelData;
+}
+/** Create an audio buffer from pre-decoded audio data */
+function createBuffer(channelData, duration) {
+    // If a single array of numbers is passed, make it an array of arrays
+    if (typeof channelData[0] === 'number')
+        channelData = [channelData];
+    // Normalize to -1..1
+    normalize(channelData);
+    return {
+        duration,
+        length: channelData[0].length,
+        sampleRate: channelData[0].length / duration,
+        numberOfChannels: channelData.length,
+        getChannelData: (i) => channelData === null || channelData === void 0 ? void 0 : channelData[i],
+        copyFromChannel: AudioBuffer.prototype.copyFromChannel,
+        copyToChannel: AudioBuffer.prototype.copyToChannel,
+    };
+}
+const Decoder = {
+    decode,
+    createBuffer,
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Decoder);
+
+
+/***/ }),
+
+/***/ "./node_modules/wavesurfer.js/dist/draggable.js":
+/*!******************************************************!*\
+  !*** ./node_modules/wavesurfer.js/dist/draggable.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   makeDraggable: () => (/* binding */ makeDraggable)
+/* harmony export */ });
+function makeDraggable(element, onDrag, onStart, onEnd, threshold = 5) {
+    let unsub = () => {
+        return;
+    };
+    if (!element)
+        return unsub;
+    const down = (e) => {
+        // Ignore the right mouse button
+        if (e.button === 2)
+            return;
+        e.preventDefault();
+        e.stopPropagation();
+        let startX = e.clientX;
+        let startY = e.clientY;
+        let isDragging = false;
+        const move = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const x = e.clientX;
+            const y = e.clientY;
+            if (isDragging || Math.abs(x - startX) >= threshold || Math.abs(y - startY) >= threshold) {
+                const { left, top } = element.getBoundingClientRect();
+                if (!isDragging) {
+                    isDragging = true;
+                    onStart === null || onStart === void 0 ? void 0 : onStart(startX - left, startY - top);
+                }
+                onDrag(x - startX, y - startY, x - left, y - top);
+                startX = x;
+                startY = y;
+            }
+        };
+        const click = (e) => {
+            if (isDragging) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        };
+        const up = () => {
+            if (isDragging) {
+                onEnd === null || onEnd === void 0 ? void 0 : onEnd();
+            }
+            unsub();
+        };
+        document.addEventListener('pointermove', move);
+        document.addEventListener('pointerup', up);
+        document.addEventListener('pointerleave', up);
+        document.addEventListener('click', click, true);
+        unsub = () => {
+            document.removeEventListener('pointermove', move);
+            document.removeEventListener('pointerup', up);
+            document.removeEventListener('pointerleave', up);
+            setTimeout(() => {
+                document.removeEventListener('click', click, true);
+            }, 10);
+        };
+    };
+    element.addEventListener('pointerdown', down);
+    return () => {
+        unsub();
+        element.removeEventListener('pointerdown', down);
+    };
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/wavesurfer.js/dist/event-emitter.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/wavesurfer.js/dist/event-emitter.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/** A simple event emitter that can be used to listen to and emit events. */
+class EventEmitter {
+    constructor() {
+        this.listeners = {};
+    }
+    /** Subscribe to an event. Returns an unsubscribe function. */
+    on(eventName, listener) {
+        if (!this.listeners[eventName]) {
+            this.listeners[eventName] = new Set();
+        }
+        this.listeners[eventName].add(listener);
+        return () => this.un(eventName, listener);
+    }
+    /** Subscribe to an event only once */
+    once(eventName, listener) {
+        // The actual subscription
+        const unsubscribe = this.on(eventName, listener);
+        // Another subscription that will unsubscribe the actual subscription and itself after the first event
+        const unsubscribeOnce = this.on(eventName, () => {
+            unsubscribe();
+            unsubscribeOnce();
+        });
+        return unsubscribe;
+    }
+    /** Unsubscribe from an event */
+    un(eventName, listener) {
+        if (this.listeners[eventName]) {
+            if (listener) {
+                this.listeners[eventName].delete(listener);
+            }
+            else {
+                delete this.listeners[eventName];
+            }
+        }
+    }
+    /** Clear all events */
+    unAll() {
+        this.listeners = {};
+    }
+    /** Emit an event */
+    emit(eventName, ...args) {
+        if (this.listeners[eventName]) {
+            this.listeners[eventName].forEach((listener) => listener(...args));
+        }
+    }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EventEmitter);
+
+
+/***/ }),
+
+/***/ "./node_modules/wavesurfer.js/dist/fetcher.js":
+/*!****************************************************!*\
+  !*** ./node_modules/wavesurfer.js/dist/fetcher.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+function fetchBlob(url, progressCallback, requestInit) {
+    var _a, _b;
+    return __awaiter(this, void 0, void 0, function* () {
+        // Fetch the resource
+        const response = yield fetch(url, requestInit);
+        // Read the data to track progress
+        {
+            const reader = (_a = response.clone().body) === null || _a === void 0 ? void 0 : _a.getReader();
+            const contentLength = Number((_b = response.headers) === null || _b === void 0 ? void 0 : _b.get('Content-Length'));
+            let receivedLength = 0;
+            // Process the data
+            const processChunk = (done, value) => __awaiter(this, void 0, void 0, function* () {
+                if (done)
+                    return;
+                // Add to the received length
+                receivedLength += (value === null || value === void 0 ? void 0 : value.length) || 0;
+                const percentage = Math.round((receivedLength / contentLength) * 100);
+                progressCallback(percentage);
+                // Continue reading data
+                return reader === null || reader === void 0 ? void 0 : reader.read().then(({ done, value }) => processChunk(done, value));
+            });
+            reader === null || reader === void 0 ? void 0 : reader.read().then(({ done, value }) => processChunk(done, value));
+        }
+        return response.blob();
+    });
+}
+const Fetcher = {
+    fetchBlob,
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Fetcher);
+
+
+/***/ }),
+
+/***/ "./node_modules/wavesurfer.js/dist/player.js":
+/*!***************************************************!*\
+  !*** ./node_modules/wavesurfer.js/dist/player.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _event_emitter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./event-emitter.js */ "./node_modules/wavesurfer.js/dist/event-emitter.js");
+
+class Player extends _event_emitter_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    constructor(options) {
+        super();
+        if (options.media) {
+            this.media = options.media;
+        }
+        else {
+            this.media = document.createElement('audio');
+        }
+        // Controls
+        if (options.mediaControls) {
+            this.media.controls = true;
+        }
+        // Autoplay
+        if (options.autoplay) {
+            this.media.autoplay = true;
+        }
+        // Speed
+        if (options.playbackRate != null) {
+            this.onceMediaEvent('canplay', () => {
+                if (options.playbackRate != null) {
+                    this.media.playbackRate = options.playbackRate;
+                }
+            });
+        }
+    }
+    onMediaEvent(event, callback, options) {
+        this.media.addEventListener(event, callback, options);
+        return () => this.media.removeEventListener(event, callback);
+    }
+    onceMediaEvent(event, callback) {
+        return this.onMediaEvent(event, callback, { once: true });
+    }
+    getSrc() {
+        return this.media.currentSrc || this.media.src || '';
+    }
+    revokeSrc() {
+        const src = this.getSrc();
+        if (src.startsWith('blob:')) {
+            URL.revokeObjectURL(src);
+        }
+    }
+    setSrc(url, blob) {
+        const src = this.getSrc();
+        if (src === url)
+            return;
+        this.revokeSrc();
+        const newSrc = blob instanceof Blob ? URL.createObjectURL(blob) : url;
+        this.media.src = newSrc;
+        this.media.load();
+    }
+    destroy() {
+        this.media.pause();
+        this.revokeSrc();
+        this.media.src = '';
+        // Load resets the media element to its initial state
+        this.media.load();
+    }
+    /** Start playing the audio */
+    play() {
+        return this.media.play();
+    }
+    /** Pause the audio */
+    pause() {
+        this.media.pause();
+    }
+    /** Check if the audio is playing */
+    isPlaying() {
+        return this.media.currentTime > 0 && !this.media.paused && !this.media.ended;
+    }
+    /** Jumpt to a specific time in the audio (in seconds) */
+    setTime(time) {
+        this.media.currentTime = time;
+    }
+    /** Get the duration of the audio in seconds */
+    getDuration() {
+        return this.media.duration;
+    }
+    /** Get the current audio position in seconds */
+    getCurrentTime() {
+        return this.media.currentTime;
+    }
+    /** Get the audio volume */
+    getVolume() {
+        return this.media.volume;
+    }
+    /** Set the audio volume */
+    setVolume(volume) {
+        this.media.volume = volume;
+    }
+    /** Get the audio muted state */
+    getMuted() {
+        return this.media.muted;
+    }
+    /** Mute or unmute the audio */
+    setMuted(muted) {
+        this.media.muted = muted;
+    }
+    /** Get the playback speed */
+    getPlaybackRate() {
+        return this.media.playbackRate;
+    }
+    /** Set the playback speed, pass an optional false to NOT preserve the pitch */
+    setPlaybackRate(rate, preservePitch) {
+        // preservePitch is true by default in most browsers
+        if (preservePitch != null) {
+            this.media.preservesPitch = preservePitch;
+        }
+        this.media.playbackRate = rate;
+    }
+    /** Get the HTML media element */
+    getMediaElement() {
+        return this.media;
+    }
+    /** Set a sink id to change the audio output device */
+    setSinkId(sinkId) {
+        // See https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/setSinkId
+        const media = this.media;
+        return media.setSinkId(sinkId);
+    }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Player);
+
+
+/***/ }),
+
+/***/ "./node_modules/wavesurfer.js/dist/renderer.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/wavesurfer.js/dist/renderer.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _draggable_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./draggable.js */ "./node_modules/wavesurfer.js/dist/draggable.js");
+/* harmony import */ var _event_emitter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./event-emitter.js */ "./node_modules/wavesurfer.js/dist/event-emitter.js");
+
+
+class Renderer extends _event_emitter_js__WEBPACK_IMPORTED_MODULE_1__["default"] {
+    constructor(options, audioElement) {
+        super();
+        this.timeouts = [];
+        this.isScrolling = false;
+        this.audioData = null;
+        this.resizeObserver = null;
+        this.isDragging = false;
+        this.options = options;
+        let parent;
+        if (typeof options.container === 'string') {
+            parent = document.querySelector(options.container);
+        }
+        else if (options.container instanceof HTMLElement) {
+            parent = options.container;
+        }
+        if (!parent) {
+            throw new Error('Container not found');
+        }
+        this.parent = parent;
+        const [div, shadow] = this.initHtml();
+        parent.appendChild(div);
+        this.container = div;
+        this.scrollContainer = shadow.querySelector('.scroll');
+        this.wrapper = shadow.querySelector('.wrapper');
+        this.canvasWrapper = shadow.querySelector('.canvases');
+        this.progressWrapper = shadow.querySelector('.progress');
+        this.cursor = shadow.querySelector('.cursor');
+        if (audioElement) {
+            shadow.appendChild(audioElement);
+        }
+        this.initEvents();
+    }
+    initEvents() {
+        // Add a click listener
+        this.wrapper.addEventListener('click', (e) => {
+            const rect = this.wrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const relativeX = x / rect.width;
+            this.emit('click', relativeX);
+        });
+        // Drag
+        if (this.options.dragToSeek) {
+            this.initDrag();
+        }
+        // Add a scroll listener
+        this.scrollContainer.addEventListener('scroll', () => {
+            const { scrollLeft, scrollWidth, clientWidth } = this.scrollContainer;
+            const startX = scrollLeft / scrollWidth;
+            const endX = (scrollLeft + clientWidth) / scrollWidth;
+            this.emit('scroll', startX, endX);
+        });
+        // Re-render the waveform on container resize
+        const delay = this.createDelay(100);
+        this.resizeObserver = new ResizeObserver(() => {
+            delay(() => this.reRender());
+        });
+        this.resizeObserver.observe(this.scrollContainer);
+    }
+    initDrag() {
+        (0,_draggable_js__WEBPACK_IMPORTED_MODULE_0__.makeDraggable)(this.wrapper, 
+        // On drag
+        (_, __, x) => {
+            this.emit('drag', Math.max(0, Math.min(1, x / this.wrapper.clientWidth)));
+        }, 
+        // On start drag
+        () => (this.isDragging = true), 
+        // On end drag
+        () => (this.isDragging = false));
+    }
+    getHeight() {
+        const defaultHeight = 128;
+        if (this.options.height == null)
+            return defaultHeight;
+        if (!isNaN(Number(this.options.height)))
+            return Number(this.options.height);
+        if (this.options.height === 'auto')
+            return this.parent.clientHeight || defaultHeight;
+        return defaultHeight;
+    }
+    initHtml() {
+        const div = document.createElement('div');
+        const shadow = div.attachShadow({ mode: 'open' });
+        shadow.innerHTML = `
+      <style>
+        :host {
+          user-select: none;
+        }
+        :host audio {
+          display: block;
+          width: 100%;
+        }
+        :host .scroll {
+          overflow-x: auto;
+          overflow-y: hidden;
+          width: 100%;
+          position: relative;
+          touch-action: none;
+        }
+        :host .noScrollbar {
+          scrollbar-color: transparent;
+          scrollbar-width: none;
+        }
+        :host .noScrollbar::-webkit-scrollbar {
+          display: none;
+          -webkit-appearance: none;
+        }
+        :host .wrapper {
+          position: relative;
+          overflow: visible;
+          z-index: 2;
+        }
+        :host .canvases {
+          min-height: ${this.getHeight()}px;
+        }
+        :host .canvases > div {
+          position: relative;
+        }
+        :host canvas {
+          display: block;
+          position: absolute;
+          top: 0;
+          image-rendering: pixelated;
+        }
+        :host .progress {
+          pointer-events: none;
+          position: absolute;
+          z-index: 2;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 100%;
+          overflow: hidden;
+        }
+        :host .progress > div {
+          position: relative;
+        }
+        :host .cursor {
+          pointer-events: none;
+          position: absolute;
+          z-index: 5;
+          top: 0;
+          left: 0;
+          height: 100%;
+          border-radius: 2px;
+        }
+      </style>
+
+      <div class="scroll" part="scroll">
+        <div class="wrapper">
+          <div class="canvases"></div>
+          <div class="progress" part="progress"></div>
+          <div class="cursor" part="cursor"></div>
+        </div>
+      </div>
+    `;
+        return [div, shadow];
+    }
+    setOptions(options) {
+        this.options = options;
+        // Re-render the waveform
+        this.reRender();
+    }
+    getWrapper() {
+        return this.wrapper;
+    }
+    getScroll() {
+        return this.scrollContainer.scrollLeft;
+    }
+    destroy() {
+        var _a;
+        this.container.remove();
+        (_a = this.resizeObserver) === null || _a === void 0 ? void 0 : _a.disconnect();
+    }
+    createDelay(delayMs = 10) {
+        const context = {};
+        this.timeouts.push(context);
+        return (callback) => {
+            context.timeout && clearTimeout(context.timeout);
+            context.timeout = setTimeout(callback, delayMs);
+        };
+    }
+    // Convert array of color values to linear gradient
+    convertColorValues(color) {
+        if (!Array.isArray(color))
+            return color || '';
+        if (color.length < 2)
+            return color[0] || '';
+        const canvasElement = document.createElement('canvas');
+        const ctx = canvasElement.getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvasElement.height);
+        const colorStopPercentage = 1 / (color.length - 1);
+        color.forEach((color, index) => {
+            const offset = index * colorStopPercentage;
+            gradient.addColorStop(offset, color);
+        });
+        return gradient;
+    }
+    renderBarWaveform(channelData, options, ctx, vScale) {
+        const topChannel = channelData[0];
+        const bottomChannel = channelData[1] || channelData[0];
+        const length = topChannel.length;
+        const { width, height } = ctx.canvas;
+        const halfHeight = height / 2;
+        const pixelRatio = window.devicePixelRatio || 1;
+        const barWidth = options.barWidth ? options.barWidth * pixelRatio : 1;
+        const barGap = options.barGap ? options.barGap * pixelRatio : options.barWidth ? barWidth / 2 : 0;
+        const barRadius = options.barRadius || 0;
+        const barIndexScale = width / (barWidth + barGap) / length;
+        const rectFn = barRadius && 'roundRect' in ctx ? 'roundRect' : 'rect';
+        ctx.beginPath();
+        let prevX = 0;
+        let maxTop = 0;
+        let maxBottom = 0;
+        for (let i = 0; i <= length; i++) {
+            const x = Math.round(i * barIndexScale);
+            if (x > prevX) {
+                const topBarHeight = Math.round(maxTop * halfHeight * vScale);
+                const bottomBarHeight = Math.round(maxBottom * halfHeight * vScale);
+                const barHeight = topBarHeight + bottomBarHeight || 1;
+                // Vertical alignment
+                let y = halfHeight - topBarHeight;
+                if (options.barAlign === 'top') {
+                    y = 0;
+                }
+                else if (options.barAlign === 'bottom') {
+                    y = height - barHeight;
+                }
+                ctx[rectFn](prevX * (barWidth + barGap), y, barWidth, barHeight, barRadius);
+                prevX = x;
+                maxTop = 0;
+                maxBottom = 0;
+            }
+            const magnitudeTop = Math.abs(topChannel[i] || 0);
+            const magnitudeBottom = Math.abs(bottomChannel[i] || 0);
+            if (magnitudeTop > maxTop)
+                maxTop = magnitudeTop;
+            if (magnitudeBottom > maxBottom)
+                maxBottom = magnitudeBottom;
+        }
+        ctx.fill();
+        ctx.closePath();
+    }
+    renderLineWaveform(channelData, _options, ctx, vScale) {
+        const drawChannel = (index) => {
+            const channel = channelData[index] || channelData[0];
+            const length = channel.length;
+            const { height } = ctx.canvas;
+            const halfHeight = height / 2;
+            const hScale = ctx.canvas.width / length;
+            ctx.moveTo(0, halfHeight);
+            let prevX = 0;
+            let max = 0;
+            for (let i = 0; i <= length; i++) {
+                const x = Math.round(i * hScale);
+                if (x > prevX) {
+                    const h = Math.round(max * halfHeight * vScale) || 1;
+                    const y = halfHeight + h * (index === 0 ? -1 : 1);
+                    ctx.lineTo(prevX, y);
+                    prevX = x;
+                    max = 0;
+                }
+                const value = Math.abs(channel[i] || 0);
+                if (value > max)
+                    max = value;
+            }
+            ctx.lineTo(prevX, halfHeight);
+        };
+        ctx.beginPath();
+        drawChannel(0);
+        drawChannel(1);
+        ctx.fill();
+        ctx.closePath();
+    }
+    renderWaveform(channelData, options, ctx) {
+        ctx.fillStyle = this.convertColorValues(options.waveColor);
+        // Custom rendering function
+        if (options.renderFunction) {
+            options.renderFunction(channelData, ctx);
+            return;
+        }
+        // Vertical scaling
+        let vScale = options.barHeight || 1;
+        if (options.normalize) {
+            const max = Array.from(channelData[0]).reduce((max, value) => Math.max(max, Math.abs(value)), 0);
+            vScale = max ? 1 / max : 1;
+        }
+        // Render waveform as bars
+        if (options.barWidth || options.barGap || options.barAlign) {
+            this.renderBarWaveform(channelData, options, ctx, vScale);
+            return;
+        }
+        // Render waveform as a polyline
+        this.renderLineWaveform(channelData, options, ctx, vScale);
+    }
+    renderSingleCanvas(channelData, options, width, height, start, end, canvasContainer, progressContainer) {
+        const pixelRatio = window.devicePixelRatio || 1;
+        const canvas = document.createElement('canvas');
+        const length = channelData[0].length;
+        canvas.width = Math.round((width * (end - start)) / length);
+        canvas.height = height * pixelRatio;
+        canvas.style.width = `${Math.floor(canvas.width / pixelRatio)}px`;
+        canvas.style.height = `${height}px`;
+        canvas.style.left = `${Math.floor((start * width) / pixelRatio / length)}px`;
+        canvasContainer.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        this.renderWaveform(channelData.map((channel) => channel.slice(start, end)), options, ctx);
+        // Draw a progress canvas
+        const progressCanvas = canvas.cloneNode();
+        progressContainer.appendChild(progressCanvas);
+        const progressCtx = progressCanvas.getContext('2d');
+        if (canvas.width > 0 && canvas.height > 0) {
+            progressCtx.drawImage(canvas, 0, 0);
+        }
+        // Set the composition method to draw only where the waveform is drawn
+        progressCtx.globalCompositeOperation = 'source-in';
+        progressCtx.fillStyle = this.convertColorValues(options.progressColor);
+        // This rectangle acts as a mask thanks to the composition method
+        progressCtx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    renderChannel(channelData, options, width) {
+        // A container for canvases
+        const canvasContainer = document.createElement('div');
+        const height = this.getHeight();
+        canvasContainer.style.height = `${height}px`;
+        this.canvasWrapper.style.minHeight = `${height}px`;
+        this.canvasWrapper.appendChild(canvasContainer);
+        // A container for progress canvases
+        const progressContainer = canvasContainer.cloneNode();
+        this.progressWrapper.appendChild(progressContainer);
+        // Determine the currently visible part of the waveform
+        const { scrollLeft, scrollWidth, clientWidth } = this.scrollContainer;
+        const len = channelData[0].length;
+        const scale = len / scrollWidth;
+        let viewportWidth = Math.min(Renderer.MAX_CANVAS_WIDTH, clientWidth);
+        // Adjust width to avoid gaps between canvases when using bars
+        if (options.barWidth || options.barGap) {
+            const barWidth = options.barWidth || 0.5;
+            const barGap = options.barGap || barWidth / 2;
+            const totalBarWidth = barWidth + barGap;
+            if (viewportWidth % totalBarWidth !== 0) {
+                viewportWidth = Math.floor(viewportWidth / totalBarWidth) * totalBarWidth;
+            }
+        }
+        const start = Math.floor(Math.abs(scrollLeft) * scale);
+        const end = Math.floor(start + viewportWidth * scale);
+        const viewportLen = end - start;
+        // Draw a portion of the waveform from start peak to end peak
+        const draw = (start, end) => {
+            this.renderSingleCanvas(channelData, options, width, height, Math.max(0, start), Math.min(end, len), canvasContainer, progressContainer);
+        };
+        // Draw the waveform in viewport chunks, each with a delay
+        const headDelay = this.createDelay();
+        const tailDelay = this.createDelay();
+        const renderHead = (fromIndex, toIndex) => {
+            draw(fromIndex, toIndex);
+            if (fromIndex > 0) {
+                headDelay(() => {
+                    renderHead(fromIndex - viewportLen, toIndex - viewportLen);
+                });
+            }
+        };
+        const renderTail = (fromIndex, toIndex) => {
+            draw(fromIndex, toIndex);
+            if (toIndex < len) {
+                tailDelay(() => {
+                    renderTail(fromIndex + viewportLen, toIndex + viewportLen);
+                });
+            }
+        };
+        renderHead(start, end);
+        if (end < len) {
+            renderTail(end, end + viewportLen);
+        }
+    }
+    render(audioData) {
+        // Clear previous timeouts
+        this.timeouts.forEach((context) => context.timeout && clearTimeout(context.timeout));
+        this.timeouts = [];
+        // Clear the canvases
+        this.canvasWrapper.innerHTML = '';
+        this.progressWrapper.innerHTML = '';
+        this.wrapper.style.width = '';
+        // Determine the width of the waveform
+        const pixelRatio = window.devicePixelRatio || 1;
+        const parentWidth = this.scrollContainer.clientWidth;
+        const scrollWidth = Math.ceil(audioData.duration * (this.options.minPxPerSec || 0));
+        // Whether the container should scroll
+        this.isScrolling = scrollWidth > parentWidth;
+        const useParentWidth = this.options.fillParent && !this.isScrolling;
+        // Width of the waveform in pixels
+        const width = (useParentWidth ? parentWidth : scrollWidth) * pixelRatio;
+        // Set the width of the wrapper
+        this.wrapper.style.width = useParentWidth ? '100%' : `${scrollWidth}px`;
+        // Set additional styles
+        this.scrollContainer.style.overflowX = this.isScrolling ? 'auto' : 'hidden';
+        this.scrollContainer.classList.toggle('noScrollbar', !!this.options.hideScrollbar);
+        this.cursor.style.backgroundColor = `${this.options.cursorColor || this.options.progressColor}`;
+        this.cursor.style.width = `${this.options.cursorWidth}px`;
+        // Render the waveform
+        if (this.options.splitChannels) {
+            // Render a waveform for each channel
+            for (let i = 0; i < audioData.numberOfChannels; i++) {
+                const options = Object.assign(Object.assign({}, this.options), this.options.splitChannels[i]);
+                this.renderChannel([audioData.getChannelData(i)], options, width);
+            }
+        }
+        else {
+            // Render a single waveform for the first two channels (left and right)
+            const channels = [audioData.getChannelData(0)];
+            if (audioData.numberOfChannels > 1)
+                channels.push(audioData.getChannelData(1));
+            this.renderChannel(channels, this.options, width);
+        }
+        this.audioData = audioData;
+        this.emit('render');
+    }
+    reRender() {
+        // Return if the waveform has not been rendered yet
+        if (!this.audioData)
+            return;
+        // Remember the current cursor position
+        const oldCursorPosition = this.progressWrapper.clientWidth;
+        // Set the new zoom level and re-render the waveform
+        this.render(this.audioData);
+        // Adjust the scroll position so that the cursor stays in the same place
+        const newCursortPosition = this.progressWrapper.clientWidth;
+        this.scrollContainer.scrollLeft += newCursortPosition - oldCursorPosition;
+    }
+    zoom(minPxPerSec) {
+        this.options.minPxPerSec = minPxPerSec;
+        this.reRender();
+    }
+    scrollIntoView(progress, isPlaying = false) {
+        const { clientWidth, scrollLeft, scrollWidth } = this.scrollContainer;
+        const progressWidth = scrollWidth * progress;
+        const center = clientWidth / 2;
+        const minScroll = isPlaying && this.options.autoCenter && !this.isDragging ? center : clientWidth;
+        if (progressWidth > scrollLeft + minScroll || progressWidth < scrollLeft) {
+            // Scroll to the center
+            if (this.options.autoCenter && !this.isDragging) {
+                // If the cursor is in viewport but not centered, scroll to the center slowly
+                const minDiff = center / 20;
+                if (progressWidth - (scrollLeft + center) >= minDiff && progressWidth < scrollLeft + clientWidth) {
+                    this.scrollContainer.scrollLeft += minDiff;
+                }
+                else {
+                    // Otherwise, scroll to the center immediately
+                    this.scrollContainer.scrollLeft = progressWidth - center;
+                }
+            }
+            else if (this.isDragging) {
+                // Scroll just a little bit to allow for some space between the cursor and the edge
+                const gap = 10;
+                this.scrollContainer.scrollLeft =
+                    progressWidth < scrollLeft ? progressWidth - gap : progressWidth - clientWidth + gap;
+            }
+            else {
+                // Scroll to the beginning
+                this.scrollContainer.scrollLeft = progressWidth;
+            }
+        }
+        // Emit the scroll event
+        {
+            const { scrollLeft } = this.scrollContainer;
+            const startX = scrollLeft / scrollWidth;
+            const endX = (scrollLeft + clientWidth) / scrollWidth;
+            this.emit('scroll', startX, endX);
+        }
+    }
+    renderProgress(progress, isPlaying) {
+        if (isNaN(progress))
+            return;
+        this.progressWrapper.style.width = `${progress * 100}%`;
+        this.cursor.style.left = `${progress * 100}%`;
+        this.cursor.style.marginLeft = Math.round(progress * 100) === 100 ? `-${this.options.cursorWidth}px` : '';
+        if (this.isScrolling && this.options.autoScroll) {
+            this.scrollIntoView(progress, isPlaying);
+        }
+    }
+}
+Renderer.MAX_CANVAS_WIDTH = 4000;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Renderer);
+
+
+/***/ }),
+
+/***/ "./node_modules/wavesurfer.js/dist/timer.js":
+/*!**************************************************!*\
+  !*** ./node_modules/wavesurfer.js/dist/timer.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _event_emitter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./event-emitter.js */ "./node_modules/wavesurfer.js/dist/event-emitter.js");
+
+class Timer extends _event_emitter_js__WEBPACK_IMPORTED_MODULE_0__["default"] {
+    constructor() {
+        super(...arguments);
+        this.unsubscribe = () => undefined;
+    }
+    start() {
+        this.unsubscribe = this.on('tick', () => {
+            requestAnimationFrame(() => {
+                this.emit('tick');
+            });
+        });
+        this.emit('tick');
+    }
+    stop() {
+        this.unsubscribe();
+    }
+    destroy() {
+        this.unsubscribe();
+    }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Timer);
+
+
+/***/ }),
+
+/***/ "./node_modules/wavesurfer.js/dist/wavesurfer.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/wavesurfer.js/dist/wavesurfer.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _decoder_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./decoder.js */ "./node_modules/wavesurfer.js/dist/decoder.js");
+/* harmony import */ var _fetcher_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fetcher.js */ "./node_modules/wavesurfer.js/dist/fetcher.js");
+/* harmony import */ var _player_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player.js */ "./node_modules/wavesurfer.js/dist/player.js");
+/* harmony import */ var _renderer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./renderer.js */ "./node_modules/wavesurfer.js/dist/renderer.js");
+/* harmony import */ var _timer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./timer.js */ "./node_modules/wavesurfer.js/dist/timer.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+
+
+
+
+
+const defaultOptions = {
+    waveColor: '#999',
+    progressColor: '#555',
+    cursorWidth: 1,
+    minPxPerSec: 0,
+    fillParent: true,
+    interact: true,
+    dragToSeek: false,
+    autoScroll: true,
+    autoCenter: true,
+    sampleRate: 8000,
+};
+class WaveSurfer extends _player_js__WEBPACK_IMPORTED_MODULE_2__["default"] {
+    /** Create a new WaveSurfer instance */
+    static create(options) {
+        return new WaveSurfer(options);
+    }
+    /** Create a new WaveSurfer instance */
+    constructor(options) {
+        var _a, _b;
+        super({
+            media: options.media,
+            mediaControls: options.mediaControls,
+            autoplay: options.autoplay,
+            playbackRate: options.audioRate,
+        });
+        this.plugins = [];
+        this.decodedData = null;
+        this.subscriptions = [];
+        this.options = Object.assign({}, defaultOptions, options);
+        this.timer = new _timer_js__WEBPACK_IMPORTED_MODULE_4__["default"]();
+        const audioElement = !options.media ? this.getMediaElement() : undefined;
+        this.renderer = new _renderer_js__WEBPACK_IMPORTED_MODULE_3__["default"](this.options, audioElement);
+        this.initPlayerEvents();
+        this.initRendererEvents();
+        this.initTimerEvents();
+        this.initPlugins();
+        // Load audio if URL is passed or an external media with an src
+        const url = this.options.url || ((_a = this.options.media) === null || _a === void 0 ? void 0 : _a.currentSrc) || ((_b = this.options.media) === null || _b === void 0 ? void 0 : _b.src);
+        if (url) {
+            this.load(url, this.options.peaks, this.options.duration);
+        }
+    }
+    initTimerEvents() {
+        // The timer fires every 16ms for a smooth progress animation
+        this.subscriptions.push(this.timer.on('tick', () => {
+            const currentTime = this.getCurrentTime();
+            this.renderer.renderProgress(currentTime / this.getDuration(), true);
+            this.emit('timeupdate', currentTime);
+            this.emit('audioprocess', currentTime);
+        }));
+    }
+    initPlayerEvents() {
+        this.subscriptions.push(this.onMediaEvent('timeupdate', () => {
+            const currentTime = this.getCurrentTime();
+            this.renderer.renderProgress(currentTime / this.getDuration(), this.isPlaying());
+            this.emit('timeupdate', currentTime);
+        }), this.onMediaEvent('play', () => {
+            this.emit('play');
+            this.timer.start();
+        }), this.onMediaEvent('pause', () => {
+            this.emit('pause');
+            this.timer.stop();
+        }), this.onMediaEvent('emptied', () => {
+            this.timer.stop();
+        }), this.onMediaEvent('ended', () => {
+            this.emit('finish');
+        }), this.onMediaEvent('seeking', () => {
+            this.emit('seeking', this.getCurrentTime());
+        }));
+    }
+    initRendererEvents() {
+        this.subscriptions.push(
+        // Seek on click
+        this.renderer.on('click', (relativeX) => {
+            if (this.options.interact) {
+                this.seekTo(relativeX);
+                this.emit('interaction', relativeX * this.getDuration());
+                this.emit('click', relativeX);
+            }
+        }), 
+        // Scroll
+        this.renderer.on('scroll', (startX, endX) => {
+            const duration = this.getDuration();
+            this.emit('scroll', startX * duration, endX * duration);
+        }), 
+        // Redraw
+        this.renderer.on('render', () => {
+            this.emit('redraw');
+        }));
+        // Drag
+        {
+            let debounce;
+            this.subscriptions.push(this.renderer.on('drag', (relativeX) => {
+                if (!this.options.interact)
+                    return;
+                // Update the visual position
+                this.renderer.renderProgress(relativeX);
+                // Set the audio position with a debounce
+                clearTimeout(debounce);
+                debounce = setTimeout(() => {
+                    this.seekTo(relativeX);
+                }, this.isPlaying() ? 0 : 200);
+                this.emit('interaction', relativeX * this.getDuration());
+                this.emit('drag', relativeX);
+            }));
+        }
+    }
+    initPlugins() {
+        var _a;
+        if (!((_a = this.options.plugins) === null || _a === void 0 ? void 0 : _a.length))
+            return;
+        this.options.plugins.forEach((plugin) => {
+            this.registerPlugin(plugin);
+        });
+    }
+    /** Set new wavesurfer options and re-render it */
+    setOptions(options) {
+        this.options = Object.assign({}, this.options, options);
+        this.renderer.setOptions(this.options);
+        if (options.audioRate) {
+            this.setPlaybackRate(options.audioRate);
+        }
+        if (options.mediaControls != null) {
+            this.getMediaElement().controls = options.mediaControls;
+        }
+    }
+    /** Register a wavesurfer.js plugin */
+    registerPlugin(plugin) {
+        plugin.init(this);
+        this.plugins.push(plugin);
+        // Unregister plugin on destroy
+        this.subscriptions.push(plugin.once('destroy', () => {
+            this.plugins = this.plugins.filter((p) => p !== plugin);
+        }));
+        return plugin;
+    }
+    /** For plugins only: get the waveform wrapper div */
+    getWrapper() {
+        return this.renderer.getWrapper();
+    }
+    /** Get the current scroll position in pixels */
+    getScroll() {
+        return this.renderer.getScroll();
+    }
+    /** Get all registered plugins */
+    getActivePlugins() {
+        return this.plugins;
+    }
+    loadAudio(url, blob, channelData, duration) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.emit('load', url);
+            if (this.isPlaying())
+                this.pause();
+            this.decodedData = null;
+            // Fetch the entire audio as a blob if pre-decoded data is not provided
+            if (!blob && !channelData) {
+                const onProgress = (percentage) => this.emit('loading', percentage);
+                blob = yield _fetcher_js__WEBPACK_IMPORTED_MODULE_1__["default"].fetchBlob(url, onProgress, this.options.fetchParams);
+            }
+            // Set the mediaelement source
+            this.setSrc(url, blob);
+            // Decode the audio data or use user-provided peaks
+            if (channelData) {
+                // Wait for the audio duration
+                // It should be a promise to allow event listeners to subscribe to the ready and decode events
+                duration =
+                    (yield Promise.resolve(duration || this.getDuration())) ||
+                        (yield new Promise((resolve) => {
+                            this.onceMediaEvent('loadedmetadata', () => resolve(this.getDuration()));
+                        })) ||
+                        (yield Promise.resolve(0));
+                this.decodedData = _decoder_js__WEBPACK_IMPORTED_MODULE_0__["default"].createBuffer(channelData, duration);
+            }
+            else if (blob) {
+                const arrayBuffer = yield blob.arrayBuffer();
+                this.decodedData = yield _decoder_js__WEBPACK_IMPORTED_MODULE_0__["default"].decode(arrayBuffer, this.options.sampleRate);
+            }
+            this.emit('decode', this.getDuration());
+            // Render the waveform
+            if (this.decodedData) {
+                this.renderer.render(this.decodedData);
+            }
+            this.emit('ready', this.getDuration());
+        });
+    }
+    /** Load an audio file by URL, with optional pre-decoded audio data */
+    load(url, channelData, duration) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.loadAudio(url, undefined, channelData, duration);
+        });
+    }
+    /** Load an audio blob */
+    loadBlob(blob, channelData, duration) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.loadAudio('blob', blob, channelData, duration);
+        });
+    }
+    /** Zoom the waveform by a given pixels-per-second factor */
+    zoom(minPxPerSec) {
+        if (!this.decodedData) {
+            throw new Error('No audio loaded');
+        }
+        this.renderer.zoom(minPxPerSec);
+        this.emit('zoom', minPxPerSec);
+    }
+    /** Get the decoded audio data */
+    getDecodedData() {
+        return this.decodedData;
+    }
+    /** Get decoded peaks */
+    exportPeaks({ channels = 1, maxLength = 8000, precision = 10000 } = {}) {
+        if (!this.decodedData) {
+            throw new Error('The audio has not been decoded yet');
+        }
+        const channelsLen = Math.min(channels, this.decodedData.numberOfChannels);
+        const peaks = [];
+        for (let i = 0; i < channelsLen; i++) {
+            const data = this.decodedData.getChannelData(i);
+            const length = Math.min(data.length, maxLength);
+            const scale = data.length / length;
+            const sampledData = [];
+            for (let j = 0; j < length; j++) {
+                const n = Math.round(j * scale);
+                const val = data[n];
+                sampledData.push(Math.round(val * precision) / precision);
+            }
+            peaks.push(sampledData);
+        }
+        return peaks;
+    }
+    /** Get the duration of the audio in seconds */
+    getDuration() {
+        let duration = super.getDuration() || 0;
+        // Fall back to the decoded data duration if the media duration is incorrect
+        if ((duration === 0 || duration === Infinity) && this.decodedData) {
+            duration = this.decodedData.duration;
+        }
+        return duration;
+    }
+    /** Toggle if the waveform should react to clicks */
+    toggleInteraction(isInteractive) {
+        this.options.interact = isInteractive;
+    }
+    /** Seek to a percentage of audio as [0..1] (0 = beginning, 1 = end) */
+    seekTo(progress) {
+        const time = this.getDuration() * progress;
+        this.setTime(time);
+    }
+    /** Play or pause the audio */
+    playPause() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.isPlaying() ? this.pause() : this.play();
+        });
+    }
+    /** Stop the audio and go to the beginning */
+    stop() {
+        this.pause();
+        this.setTime(0);
+    }
+    /** Skip N or -N seconds from the current position */
+    skip(seconds) {
+        this.setTime(this.getCurrentTime() + seconds);
+    }
+    /** Empty the waveform by loading a tiny silent audio */
+    empty() {
+        this.load('', [[0]], 0.001);
+    }
+    /** Unmount wavesurfer */
+    destroy() {
+        this.emit('destroy');
+        this.plugins.forEach((plugin) => plugin.destroy());
+        this.subscriptions.forEach((unsubscribe) => unsubscribe());
+        this.timer.destroy();
+        this.renderer.destroy();
+        super.destroy();
+    }
+}
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WaveSurfer);
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!*****************************************!*\
+  !*** ./resources/js/feedback_player.js ***!
+  \*****************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FeedbackPlayer: () => (/* binding */ FeedbackPlayer)
+/* harmony export */ });
+/* harmony import */ var wavesurfer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! wavesurfer.js */ "./node_modules/wavesurfer.js/dist/wavesurfer.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+var FeedbackPlayer = /*#__PURE__*/function () {
+  function FeedbackPlayer(init) {
+    var _this = this;
+    _classCallCheck(this, FeedbackPlayer);
+    this.url = init.url;
+    this.peaks = init.peaks;
+    this.trackIndex = init.trackIndex;
+    this.feedbackId = init.feedbackId;
+    this.trackId = init.trackId;
+    this.savePeaksRoute = init.savePeaksRoute;
+    this.player = wavesurfer_js__WEBPACK_IMPORTED_MODULE_0__["default"].create({
+      container: "#waveform_".concat(this.trackIndex),
+      barHeight: 1.3,
+      height: 70,
+      waveColor: '#e9a222',
+      progressColor: '#5b450d',
+      cursorWidth: 1,
+      normalize: true
+    });
+    this.player.load(this.url, this.peaks);
+    this.player.on('audioprocess', function () {
+      _this.updateCurrentTime();
+    });
+    this.player.on('ready', function () {
+      _this.afterInit();
+      _this.attachEventHandlers();
+      if (!_this.peaks) {
+        _this.sendPeaks();
+      }
+    });
+  }
+  _createClass(FeedbackPlayer, [{
+    key: "updateCurrentTime",
+    value: function updateCurrentTime() {
+      $(".track[data-id=".concat(this.trackIndex, "] .current-time")).text(this.convertDuration(this.player.getCurrentTime()));
+    }
+  }, {
+    key: "afterInit",
+    value: function afterInit() {
+      this.player.setVolume(0.7);
+      $(".track[data-id=".concat(this.trackIndex, "] .bar")).css({
+        'background-image': 'none'
+      });
+      $(".track[data-id=".concat(this.trackIndex, "] .volume-bar-value")).css({
+        width: "".concat(this.player.getVolume() * 100, "%")
+      });
+      $(".track[data-id=".concat(this.trackIndex, "] .duration")).text(this.convertDuration(this.player.getDuration()));
+    }
+  }, {
+    key: "attachEventHandlers",
+    value: function attachEventHandlers() {
+      var _this2 = this;
+      $(".track[data-id=".concat(this.trackIndex, "] .play-pause")).click(function () {
+        _this2.playPause();
+      });
+      $(".track[data-id=".concat(this.trackIndex, "] .volume-bar")).click(function (e) {
+        _this2.setVolume(e);
+      });
+      $(".track[data-id=".concat(this.trackIndex, "] .mute")).click(function () {
+        _this2.toggleMute();
+      });
+    }
+  }, {
+    key: "playPause",
+    value: function playPause() {
+      if (!this.player.isPlaying()) {
+        this.stopPlayers();
+        this.player.play();
+        $(".track[data-id=".concat(this.trackIndex, "] .play-pause i")).removeClass('fa-play').addClass('fa-pause');
+      } else {
+        this.player.pause();
+        $(".track[data-id=".concat(this.trackIndex, "] .play-pause i")).removeClass('fa-pause').addClass('fa-play');
+      }
+    }
+  }, {
+    key: "stopPlayers",
+    value: function stopPlayers() {
+      // Assuming you have an array of players in the window object
+      window.players.forEach(function (item) {
+        item.player.pause();
+        $(".play-pause i").removeClass('fa-pause').addClass('fa-play');
+      });
+    }
+  }, {
+    key: "setVolume",
+    value: function setVolume(e) {
+      var clickedPositionPercent = this.getBarClickPercent(e);
+      $(".track .volume-bar-value").css({
+        width: "".concat(clickedPositionPercent, "%")
+      });
+      window.players.forEach(function (item) {
+        item.player.setVolume(clickedPositionPercent / 100);
+      });
+    }
+  }, {
+    key: "toggleMute",
+    value: function toggleMute() {
+      var isMuted = this.player.getMuted();
+      window.players.forEach(function (item) {
+        item.player.setMuted(!isMuted);
+      });
+      var muteIcon = $(".track .mute i");
+      muteIcon.toggleClass('fa-volume-high fa-volume-xmark');
+    }
+  }, {
+    key: "sendPeaks",
+    value: function sendPeaks() {
+      var exported = this.player.exportPeaks();
+      var peaks = JSON.stringify(exported[0]);
+      var csrfToken = $('meta[name="csrf-token"]').attr('content');
+      var savePeaksRoute = this.savePeaksRoute;
+      var trackId = this.trackId;
+      $.ajax({
+        url: savePeaksRoute,
+        type: 'POST',
+        cache: false,
+        dataType: 'json',
+        headers: {
+          'X-CSRF-TOKEN': csrfToken
+        },
+        data: {
+          track: trackId,
+          peaks: peaks
+        }
+      });
+    }
+  }, {
+    key: "getBarClickPercent",
+    value: function getBarClickPercent(e) {
+      var $el = $(".track[data-id=".concat(this.trackIndex, "] .volume-bar"));
+      return (e.pageX - $el.offset().left) / $el.width() * 100;
+    }
+  }, {
+    key: "convertDuration",
+    value: function convertDuration(duration) {
+      var minutes = Math.floor(duration / 60);
+      var seconds = Math.floor(duration - minutes * 60);
+      return "".concat(String(minutes).padStart(2, '0'), ":").concat(String(seconds).padStart(2, '0'));
+    }
+  }]);
+  return FeedbackPlayer;
+}();
+})();
+
+/******/ })()
+;

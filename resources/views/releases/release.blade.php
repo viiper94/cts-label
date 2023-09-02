@@ -36,7 +36,7 @@
 @section('content')
 
     <div class="container release pt-3">
-        <div class="row">
+        <div class="row flex-md-nowrap">
             <section class="col pe-md-5">
                 <div class="row">
                     <div class="col-xs-12 col-sm-7">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row release-info-wrapper">
                     <div class="col-xs-12 col-sm-7">
                         <figure>
                             <x-picture :src="['/images/releases/'.($release->image ?? $release->image_270)]" alt="{{ $release->title }}" class="release-image img-fluid w-100"/>

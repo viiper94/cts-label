@@ -3,6 +3,14 @@ import {ReleasePlayer} from "../release_player";
 
 $(document).ready(function(){
 
+    if($('.release').length !== 0){
+        calculateTracklistWidth();
+    }
+
+    $(window).on("resize", function(){
+        if($('.release').length !== 0) calculateTracklistWidth();
+    });
+
     $('.release-content-wrapper').readmore({
         collapsedHeight: 932,
         moreLink: '<button class="btn btn-sm btn-outline mt-1 border-0">...</button>',
@@ -76,3 +84,26 @@ $(document).ready(function(){
     });
 
 });
+
+function calculateTracklistWidth(){
+
+    let $wrapper = $('.release-info-wrapper');
+    let $tracklist = $('.release-tracklist');
+    let tracklistTop = $tracklist.offset().top;
+    let $content = $('.release-content-wrapper');
+    let contentBottom = $content.offset().top + $content.outerHeight(true);
+
+    if(contentBottom < (tracklistTop + 10)){
+        $tracklist.css('width', '');
+
+        let wrapperWidth = $wrapper.width();
+        let wrapperLeft = $wrapper.offset().left;
+        let tracklistLeft = $tracklist.offset().left;
+        let padding = tracklistLeft - wrapperLeft;
+
+        $tracklist.css('width', wrapperWidth - padding*2);
+    }else{
+        $tracklist.css('width', '');
+    }
+
+}

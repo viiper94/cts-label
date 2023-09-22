@@ -49,7 +49,7 @@
             </div>
         </div>
         @if($link = $track->getBeatportLink())
-            <a href="{{ $link }}" target="_blank" rel="noreferrer" class="text-secondary px-3">
+            <a href="{{ $link }}" target="_blank" rel="noreferrer" class="buy px-3">
                 <i class="fa-solid fa-cart-shopping fa-lg"></i>
             </a>
         @endif

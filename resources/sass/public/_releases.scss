@@ -184,8 +184,10 @@
             text-align: center;
             width: 80px;
             height: 80px;
-            color: $secondary;
-            border: 1px solid $secondary;
+            color: $primary-text;
+            //color: $secondary;
+            //border: 1px solid $secondary;
+            border: 1px solid $primary-text;
             border-radius: 50%;
             i{
                 font-size: 30px;
@@ -257,6 +259,9 @@
         }
         .close i{
             font-size: 30px;
+        }
+        .buy{
+            color: $primary-text;
         }
         .volume{
             max-width: 100%;

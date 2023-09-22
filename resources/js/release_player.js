@@ -15,7 +15,7 @@ export class ReleasePlayer {
             container: '#waveform',
             height: 70,
             waveColor: 'rgba(255,206,0,0)',
-            progressColor: '#2abea8',
+            progressColor: '#eee',
             peaks: [0, 0],
             cursorWidth: 1,
             url: this.url

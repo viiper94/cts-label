@@ -1,0 +1,8 @@
+// Links
+a{
+    text-decoration: none;
+    color: $primary;
+    &:hover{
+        color: $secondary;
+    }
+}

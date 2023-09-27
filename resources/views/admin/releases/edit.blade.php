@@ -92,23 +92,18 @@
                                 <p class="help-block text-danger">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="col-12 col-xxl">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label" for="exclusive_period">@lang('releases.exclusive_period')</label><br>
-                                        <select class="form-select form-dark form-select mb-3" name="exclusive_period" id="exclusive_period">
-                                            <option @selected(!$release->exclusive_period)>@lang('releases.without_exclusive_period')</option>
-                                            <option value="2" @selected($release->exclusive_period === '2')>@lang('releases.2_weeks')</option>
-                                            <option value="4" @selected($release->exclusive_period === '4')>@lang('releases.4_weeks')</option>
-                                        </select>
-                                        @error('exclusive_period')
-                                        <p class="help-block text-danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
+                        <div class="col-auto">
+                            <div class="form-group mb-3">
+                                <label class="form-label" for="exclusive_period">@lang('releases.exclusive_period')</label><br>
+                                <select class="form-select form-dark form-select mb-3" name="exclusive_period" id="exclusive_period">
+                                    <option @selected(!$release->exclusive_period)>@lang('releases.without_exclusive_period')</option>
+                                    <option value="2" @selected($release->exclusive_period === '2')>@lang('releases.2_weeks')</option>
+                                    <option value="4" @selected($release->exclusive_period === '4')>@lang('releases.4_weeks')</option>
+                                </select>
+                                @error('exclusive_period')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
-
                         </div>
                     </div>
                     <div class="form-group mb-3">

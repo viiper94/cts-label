@@ -15,7 +15,7 @@ export class FeedbackPlayer {
             height: 70,
             waveColor: '#e9a222',
             progressColor: '#5b450d',
-            cursorColor: '#2abea8',
+            cursorColor: '#eee',
             cursorWidth: 1,
             normalize: true
         });

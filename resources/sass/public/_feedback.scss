@@ -61,13 +61,14 @@
             .play-pause{
                 background-color: transparent;
                 font-size: 25px;
-                color: $secondary;
+                color: $primary-text;
                 width: 70px;
                 height: 70px;
                 border: 1px solid;
                 border-radius: 50%;
+                line-height: 70px;
                 i.fa-play{
-                    margin-left: 6px;
+                    margin-left: 5px;
                 }
                 i.fa-pause{
                     margin-left: 1px;

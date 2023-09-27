@@ -271,57 +271,57 @@
                     <div class="card-body row">
                         <div class="col-12 col-lg-6">
                             @php $check = $release->hasUnfinishedUploads(); @endphp
-                            <x-checkbox class="mt-2" name="uploaded_on_beatport" :checked="$release->uploaded_on_beatport">
+                            <x-checkbox class="mt-2 mb-0" name="uploaded_on_beatport" :checked="$release->uploaded_on_beatport">
                                 @lang('releases.uploaded_on_beatport')
                             </x-checkbox>
-                            <x-checkbox class="mt-2" name="uploaded_on_believe" :checked="$release->uploaded_on_believe">
+                            <x-checkbox class="mt-2 mb-0" name="uploaded_on_believe" :checked="$release->uploaded_on_believe">
                                 @lang('releases.uploaded_on') <a href='https://www.believebackstage.com/' target='_blank'>Believe Digital</a>
                             </x-checkbox>
                             @isset($check['uploaded_on_believe'])
-                                <small class="text-danger">{{ $check['uploaded_on_believe'] }}</small>
+                                <small class="text-{{ $check['uploaded_on_believe']['class'] }}">{{ $check['uploaded_on_believe']['msg'] }}</small>
                             @endisset
-                            <x-checkbox class="mt-2" name="uploaded_on_juno" :checked="$release->uploaded_on_juno">
+                            <x-checkbox class="mt-2 mb-0" name="uploaded_on_juno" :checked="$release->uploaded_on_juno">
                                 @lang('releases.uploaded_on') <a href='https://lms.junodownload.com/lms/release/' target='_blank'>Juno</a>
                             </x-checkbox>
                             @isset($check['uploaded_on_juno'])
-                                <small class="text-danger">{{ $check['uploaded_on_juno'] }}</small>
+                                <small class="text-{{ $check['uploaded_on_juno']['class'] }}">{{ $check['uploaded_on_juno']['msg'] }}</small>
                             @endisset
-                            <x-checkbox class="mt-2" name="uploaded_on_google_drive" :checked="$release->uploaded_on_google_drive">
+                            <x-checkbox class="mt-2 mb-0" name="uploaded_on_google_drive" :checked="$release->uploaded_on_google_drive">
                                 @lang('releases.uploaded_on_google_drive')
                             </x-checkbox>
                             @isset($check['uploaded_on_google_drive'])
-                                <small class="text-danger">{{ $check['uploaded_on_google_drive'] }}</small>
+                                <small class="text-{{ $check['uploaded_on_google_drive']['class'] }}">{{ $check['uploaded_on_google_drive']['msg'] }}</small>
                             @endisset
-                            <x-checkbox class="mt-2" name="label_copy_uploaded" :checked="$release->label_copy_uploaded">
+                            <x-checkbox class="mt-2 mb-0" name="label_copy_uploaded" :checked="$release->label_copy_uploaded">
                                 @lang('releases.label_copy_uploaded')
                             </x-checkbox>
                             @isset($check['label_copy_uploaded'])
-                                <small class="text-danger">{{ $check['label_copy_uploaded'] }}</small>
+                                <small class="text-{{ $check['label_copy_uploaded']['class'] }}">{{ $check['label_copy_uploaded']['msg'] }}</small>
                             @endisset
                         </div>
                         <div class="col-12 col-lg-6">
                             <x-checkbox class="mt-2 mb-4" name="promo_upload" :checked="$release->promo_upload">
                                 @lang('releases.promo_upload')
                             </x-checkbox>
-                            <x-checkbox class="mt-2" name="uploaded_on_zip_dj" :checked="$release->uploaded_on_zip_dj">
+                            <x-checkbox class="mt-2 mb-0" name="uploaded_on_zip_dj" :checked="$release->uploaded_on_zip_dj">
                                 @lang('releases.uploaded_on') <a href='https://www.zipdj.com/' target='_blank'>Zip DJ</a>
                             </x-checkbox>
                             @isset($check['uploaded_on_zip_dj'])
-                                <small class="text-danger">{{ $check['uploaded_on_zip_dj'] }}</small>
+                                <small class="text-{{ $check['uploaded_on_zip_dj']['class'] }}">{{ $check['uploaded_on_zip_dj']['msg'] }}</small>
                             @endisset
-                            <x-checkbox class="mt-2" name="uploaded_on_music_worx" :checked="$release->uploaded_on_music_worx">
+                            <x-checkbox class="mt-2 mb-0" name="uploaded_on_music_worx" :checked="$release->uploaded_on_music_worx">
                                 @lang('releases.uploaded_on') <a href='https://pro.music-worx.com/en/user/addrelease' target='_blank'>Music Worx</a>
                             </x-checkbox>
                             @isset($check['uploaded_on_music_worx'])
-                                <small class="text-danger">{{ $check['uploaded_on_music_worx'] }}</small>
+                                <small class="text-{{ $check['uploaded_on_music_worx']['class'] }}">{{ $check['uploaded_on_music_worx']['msg'] }}</small>
                             @endisset
-                            <x-checkbox class="mt-2" name="uploaded_on_release_promo" :checked="$release->uploaded_on_release_promo">
+                            <x-checkbox class="mt-2 mb-0" name="uploaded_on_release_promo" :checked="$release->uploaded_on_release_promo">
                                 @lang('releases.uploaded_on') <a href='http://releasepromo.com/' target='_blank'>Release Promo</a>
                             </x-checkbox>
                             @isset($check['uploaded_on_release_promo'])
-                                <small class="text-danger">{{ $check['uploaded_on_release_promo'] }}</small>
+                                <small class="text-{{ $check['uploaded_on_release_promo']['class'] }}">{{ $check['uploaded_on_release_promo']['msg'] }}</small>
                             @endisset
-                            <x-checkbox class="mt-2" name="is_emailing_done" :checked="$release->is_emailing_done">
+                            <x-checkbox class="mt-2 mb-0" name="is_emailing_done" :checked="$release->is_emailing_done">
                                 @lang('releases.is_emailing_done')
                             </x-checkbox>
                         </div>

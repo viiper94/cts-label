@@ -205,32 +205,63 @@ class Release extends SharedModel implements Auditable{
         $result = array();
 
         if($this->uploaded_on_beatport){
-            if(!$this->uploaded_on_believe && $today >= $this->release_date){
-                $result['uploaded_on_believe'] = trans('releases.needs_uploaded_before') . ' ' . $this->release_date->isoFormat('LL');
+            if(!$this->uploaded_on_believe){
+                $result['uploaded_on_believe'] = [
+                    'class' => $today->lte($this->release_date) ? 'warning' : 'danger',
+                    'msg' => trans('releases.needs_uploaded_before') . ' ' . $this->release_date->isoFormat('LL')
+                ];
             }
-            if(!$this->uploaded_on_juno && $today >= $this->release_date->addDays(12)){
-                $result['uploaded_on_juno'] = trans('releases.needs_uploaded_before') . ' ' . $this->release_date->addDays(12)->isoFormat('LL');
+            if(!$this->uploaded_on_juno){
+                $result['uploaded_on_juno'] = [
+                    'class' => $today->lte($this->release_date->addDays(7)) ? 'warning' : 'danger',
+                    'msg' => trans('releases.needs_uploaded_before') . ' ' . $this->release_date->addDays(7)->isoFormat('LL')
+                ];
             }
-            if(!$this->uploaded_on_google_drive && $today >= $this->release_date->addDays(14)){
-                $result['uploaded_on_google_drive'] = trans('releases.needs_uploaded_on') . ' ' . $this->release_date->addDays(14)->isoFormat('LL');
+            if(!$this->uploaded_on_google_drive && $today->gte($this->release_date->addDays(14))){
+                $result['uploaded_on_google_drive'] = [
+                    'class' => $today->eq($this->release_date->addDays(14)) ? 'warning' : 'danger',
+                    'msg' => trans('releases.needs_uploaded_on') . ' ' . $this->release_date->addDays(14)->isoFormat('LL')
+                ];
             }
-            if(!$this->label_copy_uploaded && $today >= $this->release_date->addDays(14)){
-                $result['label_copy_uploaded'] = trans('releases.needs_uploaded_on') . ' ' . $this->release_date->addDays(14)->isoFormat('LL');
+            if(!$this->label_copy_uploaded && $today->gte($this->release_date->addDays(14))){
+                $result['label_copy_uploaded'] = [
+                    'class' => $today->eq($this->release_date->addDays(14)) ? 'warning' : 'danger',
+                    'msg' => trans('releases.needs_uploaded_on') . ' ' . $this->release_date->addDays(14)->isoFormat('LL')
+                ];
             }
         }
         if($this->promo_upload){
-            if(!$this->uploaded_on_zip_dj && $today >= $this->release_date->subDays(1)){
-                $result['uploaded_on_zip_dj'] = trans('releases.needs_uploaded_before') . ' ' . $this->release_date->subDays(1)->isoFormat('LL');
+            if(!$this->uploaded_on_zip_dj && $today->gte($this->release_date->subDay())){
+                $result['uploaded_on_zip_dj'] = [
+                    'class' => $today->eq($this->release_date->subDay()) ? 'warning' : 'danger',
+                    'msg' => trans('releases.needs_uploaded_on') . ' ' . $this->release_date->subDay()->isoFormat('LL')
+                ];
             }
-            if(!$this->uploaded_on_music_worx && $today >= $this->release_date->subDays(1)){
-                $result['uploaded_on_music_worx'] = trans('releases.needs_uploaded_before') . ' ' . $this->release_date->subDays(1)->isoFormat('LL');
+            if(!$this->uploaded_on_music_worx){
+                $result['uploaded_on_music_worx'] = [
+                    'class' => $today->lte($this->release_date->subDay()) ? 'warning' : 'danger',
+                    'msg' => trans('releases.needs_uploaded_before') . ' ' . $this->release_date->subDay()->isoFormat('LL')
+                ];
             }
-            if(!$this->uploaded_on_release_promo && $today >= $this->release_date->subDays(1)){
-                $result['uploaded_on_release_promo'] = trans('releases.needs_uploaded_before') . ' ' . $this->release_date->subDays(1)->isoFormat('LL');
+            if(!$this->uploaded_on_release_promo){
+                $result['uploaded_on_release_promo'] = [
+                    'class' => $today->lte($this->release_date->subDay()) ? 'warning' : 'danger',
+                    'msg' => trans('releases.needs_uploaded_before') . ' ' . $this->release_date->subDay()->isoFormat('LL')
+                ];
             }
         }
 
-        return $count ? count($result) > 0 : $result;
+        if($count){
+            $collection = collect($result);
+
+            $dangerElements = $collection->filter(function ($item) {
+                return $item['class'] === 'danger';
+            });
+
+            return count($dangerElements) > 0;
+        }
+
+        return $result;
     }
 
 }

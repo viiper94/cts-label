@@ -82,4 +82,7 @@ return [
     'label_copy_generated' => 'Файли Label Copy успішно згенеровані!',
     'releases_sorted' => 'Релізи успішно пересортовані!',
 
+    'needs_uploaded_before' => 'Потрібно вивантажити до',
+    'needs_uploaded_on' => 'Потрібно вивантажити',
+
 ];

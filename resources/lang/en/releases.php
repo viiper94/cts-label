@@ -81,4 +81,7 @@ return [
     'release_deleted' => 'Release has been deleted successfully!',
     'label_copy_generated' => 'Label Copy files have been generated successfully!',
     'releases_sorted' => 'Releases have been resorted successfully!',
+
+    'needs_uploaded_before' => 'Needs to be uploaded before',
+    'needs_uploaded_on' => 'Needs to be uploaded on',
 ];

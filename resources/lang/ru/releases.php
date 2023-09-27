@@ -81,4 +81,7 @@ return [
     'release_deleted' => 'Релиз успешно удален!',
     'label_copy_generated' => 'Файлы Label Copy успешно сгенерированы!',
     'releases_sorted' => 'Релизы успешно пересортированы!',
+
+    'needs_uploaded_before' => 'Необходимо выгрузить до',
+    'needs_uploaded_on' => 'Необходимо выгрузить',
 ];

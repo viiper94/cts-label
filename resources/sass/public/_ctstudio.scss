@@ -30,7 +30,9 @@
                 }
                 &:hover a{
                     color: $primary;
-                    border-bottom-color: $primary;
+                    span{
+                        border-bottom-color: $primary;
+                    }
                 }
             }
         }
@@ -111,15 +113,6 @@
             a.price-list{
                 font-size: 15px;
                 color: $primary-text;
-                &:hover{
-                    color: $primary;
-                }
-            }
-        }
-        .contacts{
-            a{
-                color: $primary-text;
-                text-decoration: none;
                 &:hover{
                     color: $primary;
                 }

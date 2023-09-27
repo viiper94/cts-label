@@ -7,7 +7,7 @@ return [
     'share_facebook' => 'Поділитися на Facebook',
     'share_x' => 'Поділитися на X',
     'share_email' => 'Поділитися через E-Mail',
-    'buy' => 'Купити реліз',
+    'buy' => 'Придбати реліз',
     'watch' => 'Дивитись на YouTube',
 
     'new_release' => 'Новий Реліз',

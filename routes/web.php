@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\GuestlistController;
 use App\Http\Controllers\Admin\AdminArtistsController;
 use App\Http\Controllers\Admin\AdminSchoolCvController;
 use App\Http\Controllers\Admin\AdminEmailingChannelsController;
@@ -50,6 +51,8 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
     Route::get('/feedback/{slug}/tracks', 'FeedbackController@getTracks');
     Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
+    Route::get('/ade2023/guestlist', [GuestlistController::class, 'index'])->name('guestlist');
+    Route::post('/ade2023/guestlist', [GuestlistController::class, 'store'])->name('guestlist.add');
 
     Route::get('/event/marketing-and-management', [WebinarContactController::class, 'index'])->name('event');
     Route::post('/event/marketing-and-management', [WebinarContactController::class, 'store']);

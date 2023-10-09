@@ -89,7 +89,7 @@ class AdminEmailingChannelsController extends Controller{
                 EmailingQueue::create([
                     'channel_id' => $channel->id,
                     'unsubscribe' => $channel->unsubscribe,
-                    'template' => $channel->template ?? 'custom',
+                    'template' => $channel->template ?? 'custom_ade',
                     'subject' => $channel->subject,
                     'from' => $channel->from ?? env('EMAIL_FROM'),
                     'name' => $contact->name,
@@ -108,7 +108,7 @@ class AdminEmailingChannelsController extends Controller{
             EmailingQueue::create([
                 'channel_id' => $channel->id,
                 'unsubscribe' => $channel->unsubscribe,
-                'template' => $channel->template ?? 'custom',
+                'template' => $channel->template ?? 'custom_ade',
                 'subject' => $channel->subject,
                 'from' => $channel->from ?? env('EMAIL_FROM'),
                 'name' => $name,

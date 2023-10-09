@@ -48,6 +48,7 @@
                     ];
                     @endphp
                     @foreach($headers as $item)
+                        <th></th>
                         <th class="text-nowrap">
                             @if($sort === $item)
                                 <i @class([
@@ -67,12 +68,16 @@
                         </th>
                     @endforeach
                     <th class="text-center">@lang('emailing.contacts.channels')</th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody class="text-nowrap">
                 @foreach($contacts as $contact)
                     <tr>
+                        <td>
+                            <a class="btn btn-sm btn-outline-primary" href="{{ route('emailing.contacts.edit', $contact->id) }}">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                        </td>
                         <td><b @if($contact->full_name) title="{{ $contact->full_name }}" @endif>{{ $contact->name }}</b></td>
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->company }}</td>
@@ -89,11 +94,6 @@
                         <td>{{ $contact->additional }}</td>
                         <td>{{ $contact->created_at->format('d/m/y H:i') }}</td>
                         <td class="text-center">{{ implode(', ', \Illuminate\Support\Arr::pluck($contact->channels->toArray(), 'title')) }}</td>
-                        <td>
-                            <a class="btn btn-sm btn-outline-primary" href="{{ route('emailing.contacts.edit', $contact->id) }}">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                        </td>
                     </tr>
                 @endforeach
                 </tbody>

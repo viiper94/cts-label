@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\EmailingContact;
 use App\GuestlistContact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -16,15 +15,15 @@ class GuestlistController extends Controller{
     public function store(Request $request){
         $this->validate($request, [
             'name' => 'string|required|max:190',
-            'email' => 'email|max:190|unique:webinar_contacts,email',
-            'additional' => 'string|nullable|max:500',
+            'email' => 'email|max:190|unique:guestlist,email',
+            'company' => 'string|nullable|max:190',
         ]);
         $contact = new GuestlistContact();
         $contact->fill($request->post());
         if($contact->save()){
-            $emailing_contact = EmailingContact::whereEmail($contact->email)->first();
+            $emailing_contact = GuestlistContact::whereEmail($contact->email)->first();
             if(!$emailing_contact){
-                $emailing_contact = EmailingContact::create([
+                $emailing_contact = GuestlistContact::create([
                     'email' => $contact->email,
                     'name' => $contact->name
                 ]);

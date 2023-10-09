@@ -8,4 +8,8 @@ class GuestlistContact extends Model{
 
     protected $table = 'guestlist';
 
+    protected $fillable = [
+        'name', 'email', 'company'
+    ];
+
 }

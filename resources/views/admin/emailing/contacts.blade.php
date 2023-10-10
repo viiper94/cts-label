@@ -47,8 +47,8 @@
                         'created_at',
                     ];
                     @endphp
+                    <th></th>
                     @foreach($headers as $item)
-                        <th></th>
                         <th class="text-nowrap">
                             @if($sort === $item)
                                 <i @class([

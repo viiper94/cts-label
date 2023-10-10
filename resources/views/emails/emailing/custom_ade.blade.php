@@ -14,8 +14,12 @@
 
 <p>Looking forward to hearing from you.</p>
 
-<p>You can also catch Lilia and me at <a href="https://www.amsterdam-dance-event.nl/en/program/2023/xcm-records-25-years/2164965">our event</a>
-    which will be held in <a href="https://www.google.com/maps/place/NDSM+Theater+%2F+NDSM+Cafe/@52.4007778,4.8975371,17.13z/data=!4m6!3m5!1s0x47c60839b1afa55b:0xe04b32eddd29c405!8m2!3d52.4005949!4d4.8969948!16s%2Fg%2F11fzb0cb1f?authuser=0&entry=ttu"><b>NDSM Theater</b></a> on <b>Thursday 19th</b> with <b>Hanna Hais, Tito Torres, Bas Kunnen pres. NRG</b> and more. <br>
+<p>You can also catch Lilia and me at <a href="https://www.amsterdam-dance-event.nl/en/program/2023/xcm-records-25-years/2164965"><b>our event</b></a>
+    arranged in cooperation with XCM Records, <br> which will be held in
+    <a href="https://www.google.com/maps/place/NDSM+Theater+%2F+NDSM+Cafe/@52.4007778,4.8975371,17.13z/data=!4m6!3m5!1s0x47c60839b1afa55b:0xe04b32eddd29c405!8m2!3d52.4005949!4d4.8969948!16s%2Fg%2F11fzb0cb1f?authuser=0&entry=ttu">
+        <b>NDSM Theater</b>
+    </a> on <b>Thursday 19th</b>
+    with <b>Hanna Hais, Tito Torres, Bas Kunnen pres. NRG</b> and more. <br>
     We start at <b>20.00</b> so this could be a good point to start your night, and we would love to have you with us! <br>
     Enter is free, but it is always better to <a href="{{ route('guestlist') }}"><b>add your names to the guest list</b></a> because you know that full is full.
 </p>

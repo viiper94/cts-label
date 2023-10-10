@@ -11,7 +11,7 @@ class EmailingChannel extends Model implements Auditable{
     use \OwenIt\Auditing\Auditable;
 
     protected $table = 'email_channels';
-    public $from = 'info@cts-studio.com';
+//    public $from = 'info@cts-studio.com';
 
     protected $fillable = [
         'title',

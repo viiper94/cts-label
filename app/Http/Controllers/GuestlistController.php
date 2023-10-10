@@ -13,6 +13,7 @@ class GuestlistController extends Controller{
     }
 
     public function store(Request $request){
+        app()->setLocale('en');
         $this->validate($request, [
             'name' => 'string|required|max:190',
             'email' => 'email|max:190|unique:guestlist,email',
@@ -20,22 +21,9 @@ class GuestlistController extends Controller{
         ]);
         $contact = new GuestlistContact();
         $contact->fill($request->post());
-        if($contact->save()){
-            $emailing_contact = GuestlistContact::whereEmail($contact->email)->first();
-            if(!$emailing_contact){
-                $emailing_contact = GuestlistContact::create([
-                    'email' => $contact->email,
-                    'name' => $contact->name
-                ]);
-            }
-            $emailing_contact->channels()->attach(12);
-
-//            Mail::to($contact->email)->send(new WebinarMail($contact));
-
-            return redirect()->route('event')->with(['success' => 'Ви успішно зареєструвались на вебінар!']);
-        }else{
-            return redirect()->back()->withErrors(['Виникла помилка, спробуйте трохи пізніше =(']);
-        }
+        return $contact->save() ?
+            redirect()->route('home')->with(['success' => 'You have been successfully to event guest list!']) :
+            redirect()->back()->withErrors(['An error occurred, please try later =(']);
     }
 
 }

@@ -63,7 +63,8 @@ return [
     'queue' => [
         'emailing_queue' => 'Emailing Queue',
         'remove_finished' => 'Removed Finished',
-        'letters_remain' => 'Letters Remains',
+        'letters_remain' => 'Remaining letters',
+        'time_remain' => 'ETA',
         'channel' => 'Channel',
         'from' => 'From',
         'recipient_email' => 'Recipient',

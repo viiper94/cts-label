@@ -63,7 +63,8 @@ return [
     'queue' => [
         'emailing_queue' => 'Черга для Email-розсилки',
         'remove_finished' => 'Видалити Завершені',
-        'letters_remain' => 'Залишилося Повідомлень',
+        'letters_remain' => 'Залишилося повідомлень',
+        'time_remain' => 'Залишилося часу',
         'channel' => 'Канал',
         'from' => 'Від',
         'recipient_email' => 'Адресат',

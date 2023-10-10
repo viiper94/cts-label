@@ -64,6 +64,7 @@ return [
         'emailing_queue' => 'Очередь рассылки',
         'remove_finished' => 'Удалить завершенные',
         'letters_remain' => 'Осталось писем',
+        'time_remain' => 'Осталось времени',
         'channel' => 'Канал',
         'from' => 'От',
         'recipient_email' => 'E-Mail получателя',

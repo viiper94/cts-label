@@ -16,7 +16,7 @@ class GuestlistController extends Controller{
         app()->setLocale('en');
         $this->validate($request, [
             'name' => 'string|required|max:190',
-            'email' => 'email|max:190|unique:guestlist,email',
+            'email' => 'email|max:190|nullable|unique:guestlist,email',
             'company' => 'string|nullable|max:190',
         ]);
         $contact = new GuestlistContact();

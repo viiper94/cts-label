@@ -105,27 +105,32 @@ class AdminEmailingContactsController extends Controller{
     }
 
 //    public function import(){
-//        $file_name = 'CTSchool-full_info-2023.csv';
-////        $file_name = 'BTU-all-2010-15-update-2023.csv';
+//        $file_name = 'ADE_PROHOR.csv';
 //        $content = @fopen(resource_path($file_name), "r");
 //        while(($row = fgetcsv($content, 1000, ";", )) !== FALSE){
 ////            dd($row);
-////            $site = trim($row[6]);
-////            if(strlen($site) > 0 && stristr($site, 'http') === false) $site = 'http://'.$site;
-//            $contact = \App\EmailingContact::create([
-////                'company' => $row[0],
-//                'email' => $row[0],
-//                'name' => $row[1],
-////                'full_name' => $row[3],
-////                'position' => $row[4],
-////                'company_foa' => $row[5],
-////                'website' => $site,
-////                'country' => $row[7],
-//                'phone' => $row[2],
-//            ]);
-//            $contact->channels()->attach(13);
+//            $contact = EmailingContact::whereEmail($row[1])->first();
+//            if(!$contact){
+//                $contact = \App\EmailingContact::create([
+//                    'company' => $row[0],
+//                    'email' => $row[1],
+//                    'name' => $row[2],
+//                    'full_name' => $row[3],
+//                    'position' => $row[4],
+//                    'company_foa' => $row[5],
+//                ]);
+//                $contact->save();
+//            }
+//            if(stripos($row[1], 'gmail.com')){
+//                $contact->channels()->attach(18);
+//            }else{
+//                $contact->channels()->attach(19);
+//            }
+//
 //        }
 //        fclose($content);
+//
+//        return redirect()->back();
 //    }
 
 }

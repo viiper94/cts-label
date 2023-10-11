@@ -19,7 +19,7 @@ class Emailing extends Mailable{
 
     public function envelope(){
         return new Envelope(
-            from: new Address($this->mail->from, 'CTS Records'),
+            from: new Address($this->mail->from, 'Prohor'),
             subject: $this->getSubject()
         );
     }

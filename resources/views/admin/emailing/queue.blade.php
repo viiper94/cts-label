@@ -16,6 +16,11 @@
                         <i class="fa-solid fa-eraser me-2"></i>@lang('emailing.queue.remove_finished')
                     </button>
                 @endif
+                @if($view === 'all')
+                    <a href="{{ route('emailing.queue.problem') }}" class="btn btn-outline text-warning"><i class="fa-solid fa-triangle-exclamation"></i></a>
+                @else
+                    <a href="{{ route('emailing.queue.index') }}" class="btn btn-outline"><i class="fa-solid fa-envelope"></i></a>
+                @endif
             </form>
             {{ $queue->appends(Request::input())->links('admin.layout.pagination') }}
         </div>

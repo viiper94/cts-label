@@ -17,8 +17,22 @@ class AdminEmailingQueueController extends Controller{
                 ->orWhere('to', 'like', '%'.$request->input('q').'%');
         }
         return view('admin.emailing.queue', [
+            'view' => 'all',
             'channels' => EmailingChannel::all(),
             'queue' => $queue->orderBy('sent')->orderBy('sort')->paginate(100),
+        ]);
+    }
+
+    public function problem(Request $request){
+        $queue = EmailingQueue::with('channel');
+        if($request->input('q')){
+            $queue = $queue->where('name', 'like', '%'.$request->input('q').'%')
+                ->orWhere('to', 'like', '%'.$request->input('q').'%');
+        }
+        return view('admin.emailing.queue', [
+            'view' => 'problem',
+            'channels' => EmailingChannel::all(),
+            'queue' => $queue->whereNotNull('error_code')->orderBy('sent')->orderBy('sort')->paginate(100),
         ]);
     }
 

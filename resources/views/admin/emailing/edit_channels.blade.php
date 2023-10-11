@@ -31,7 +31,7 @@
                     <input type="text" class="form-control form-dark" id="title" name="title"
                            value="{{ old('title') ?? $channel->title }}" required>
                     @error('title')
-                        <p class="help-block">{{ $message }}</p>
+                        <small class="text-warning">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="form-group mb-3 col-sm-3">
@@ -42,7 +42,7 @@
                         <option value="ru" @selected($channel->lang === 'ru')>RU</option>
                     </select>
                     @error('lang')
-                        <p class="help-block">{{ $message }}</p>
+                        <small class="text-warning">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
@@ -51,16 +51,30 @@
                 <input type="text" class="form-control form-dark" id="subject" name="subject"
                        value="{{ old('subject') ?? $channel->subject }}" required>
                 @error('subject')
-                    <p class="help-block">{{ $message }}</p>
+                    <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
-            <div class="form-group mb-3">
-                <label for="from" class="form-label">@lang('emailing.channels.channel_sender')</label><br>
-                <input type="email" class="form-control form-dark" id="from" name="from"
-                       value="{{ old('from') ?? $channel->from }}" placeholder="info@cts-studio.com" required>
-                @error('email')
-                    <p class="help-block">{{ $message }}</p>
-                @enderror
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group mb-3">
+                        <label for="from" class="form-label">@lang('emailing.channels.channel_sender')</label><br>
+                        <input type="email" class="form-control form-dark" id="from" name="from"
+                               value="{{ old('from') ?? $channel->from }}" placeholder="info@cts-studio.com" required>
+                        @error('from')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group mb-3">
+                        <label for="from_name" class="form-label">@lang('emailing.channels.channel_sender_name')</label><br>
+                        <input type="text" class="form-control form-dark" id="from_name" name="from_name"
+                               value="{{ old('from_name') ?? $channel->from_name }}" placeholder="CTS Records" required>
+                        @error('from_name')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
             </div>
             <x-checkbox class="mb-3" name="unsubscribe" :checked="!$channel->id || $channel->unsubscribe">
                 @lang('emailing.channels.add_unsubscribe')
@@ -69,12 +83,85 @@
                 <label for="description" class="form-label">@lang('emailing.channels.channel_description')</label><br>
                 <textarea name="description" id="description" rows="3" class="form-control form-dark">{{ old('description') ?? $channel->description }}</textarea>
                 @error('description')
-                    <p class="help-block">{{ $message }}</p>
+                    <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             @if(!$channel->id)
                 <x-checkbox class="mb-3" name="add_all">@lang('emailing.channels.add_all_contacts')</x-checkbox>
             @endif
+
+            <div class="card text-bg-dark mb-5">
+                <button class="card-header p-3 accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFlow" aria-expanded="false" aria-controls="collapseFlow">
+                    <i class="fa-solid fa-chevron-down me-2"></i>@lang('emailing.channels.advanced_settings')
+                </button>
+                <div class="collapse" id="collapseFlow">
+                    <div class="card-body row">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group mb-3">
+                                    <label for="smtp_host" class="form-label">@lang('emailing.channels.channel_smtp_host')</label><br>
+                                    <input type="text" class="form-control form-dark" id="smtp_host" name="smtp_host"
+                                           value="{{ old('smtp_host') ?? $channel->smtp_host }}">
+                                    @error('smtp_host')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group mb-3">
+                                    <label for="smtp_port" class="form-label">@lang('emailing.channels.channel_smtp_port')</label><br>
+                                    <input type="text" class="form-control form-dark" id="smtp_port" name="smtp_port"
+                                           value="{{ old('smtp_port') ?? $channel->smtp_port }}">
+                                    @error('smtp_port')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group mb-3">
+                                    <label for="smtp_encryption" class="form-label">@lang('emailing.channels.channel_smtp_encryption')</label><br>
+                                    <input type="text" class="form-control form-dark" id="smtp_encryption" name="smtp_encryption"
+                                           value="{{ old('smtp_encryption') ?? $channel->smtp_encryption }}">
+                                    @error('smtp_encryption')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <div class="form-group mb-3">
+                                    <label for="smtp_username" class="form-label">@lang('emailing.channels.channel_smtp_username')</label><br>
+                                    <input type="text" class="form-control form-dark" id="smtp_username" name="smtp_username"
+                                           value="{{ old('smtp_username') ?? $channel->smtp_username }}">
+                                    @error('smtp_username')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group mb-3">
+                                    <label for="smtp_password" class="form-label">@lang('emailing.channels.channel_smtp_password')</label><br>
+                                    <input type="text" class="form-control form-dark" id="smtp_password" name="smtp_password"
+                                           value="{{ old('smtp_password') ?? $channel->smtp_password }}">
+                                    @error('smtp_password')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="template" class="form-label">@lang('emailing.channels.channel_template')</label><br>
+                            <input type="text" class="form-control form-dark" id="template" name="template" placeholder="custom"
+                                   value="{{ old('template') ?? $channel->template }}">
+                            @error('template')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </form>
     </div>
 

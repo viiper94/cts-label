@@ -28,10 +28,16 @@ class AdminEmailingChannelsController extends Controller{
         $this->validate($request, [
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'from' => 'required|string',
+            'from' => 'required|email',
+            'from_name' => 'required|string',
             'subject' => 'required|string',
             'template' => 'nullable|string',
             'lang' => 'required|string',
+            'smtp_host' => 'nullable|string',
+            'smtp_port' => 'numeric|required_if:smtp_host',
+            'smtp_username' => 'string|required_if:smtp_host',
+            'smtp_password' => 'string|required_if:smtp_host',
+            'smtp_encryption' => 'string|required_if:smtp_host',
         ]);
         $channel = new EmailingChannel();
         $channel->fill($request->post());
@@ -54,10 +60,16 @@ class AdminEmailingChannelsController extends Controller{
         $this->validate($request, [
             'title' => 'required|string',
             'description' => 'nullable|string',
-            'from' => 'required|string',
+            'from' => 'required|email',
+            'from_name' => 'required|string',
             'subject' => 'required|string',
             'template' => 'nullable|string',
             'lang' => 'required|string',
+            'smtp_host' => 'nullable|string',
+            'smtp_port' => 'required_with:smtp_host|nullable|numeric',
+            'smtp_username' => 'required_with:smtp_host|nullable|string',
+            'smtp_password' => 'required_with:smtp_host|nullable|string',
+            'smtp_encryption' => 'required_with:smtp_host|nullable|string',
         ]);
         $channel->fill($request->post());
         return $channel->save()
@@ -89,12 +101,17 @@ class AdminEmailingChannelsController extends Controller{
                 EmailingQueue::create([
                     'channel_id' => $channel->id,
                     'unsubscribe' => $channel->unsubscribe,
-                    'template' => $channel->template ?? 'custom_ade_prohor',
+                    'template' => $channel->template ?? 'custom_ade',
                     'subject' => $channel->subject,
-//                    'from' => $channel->from ?? env('EMAIL_FROM'),
-                    'from' => 'prohor.music.ua@gmail.com',
+                    'from' => $channel->from,
+                    'from_name' => $channel->from_name,
                     'name' => $contact->name,
                     'to' => $contact->email,
+                    'smtp_host' => $channel->smtp_host,
+                    'smtp_port' => $channel->smtp_port,
+                    'smtp_username' => $channel->smtp_username,
+                    'smtp_password' => $channel->smtp_password,
+                    'smtp_encryption' => $channel->smtp_encryption,
                 ]);
             }
             return redirect()->back()->with(['success' => trans('emailing.channels.emailing_started')]);

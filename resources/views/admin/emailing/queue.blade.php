@@ -36,17 +36,17 @@
                     </div>
                 </div>
             @endif
-            <table class="table table-hover table-dark text-nowrap">
+            <table class="table table-hover table-dark text-nowrap" style="font-size: 14px">
                 <thead>
                 <tr>
                     <th></th>
                     <th>@lang('emailing.queue.channel')</th>
                     <th>@lang('emailing.queue.from')</th>
                     <th>@lang('emailing.queue.recipient_email')</th>
-                    <th>@lang('emailing.queue.recipient_name')</th>
                     <th>@lang('emailing.queue.created_at')</th>
                     <th>@lang('emailing.queue.sent_at')</th>
                     <th>@lang('emailing.queue.error')</th>
+                    <th></th>
                     <th></th>
                 </tr>
                 </thead>
@@ -67,12 +67,12 @@
                                 ]) aria-hidden='true'></i>
                         </td>
                         <td>{{ $item->channel?->title }}</td>
-                        <td>{{ $item->from }}</td>
-                        <td><b>{{ $item->to }}</b></td>
-                        <td><b>{{ $item->name }}</b></td>
+                        <td>{{ $item->from_name }} <small class="text-muted">{{ $item->from }}</small></td>
+                        <td>{{ $item->name }} <small class="text-muted">{{ $item->to }}</small></td>
                         <td>{{ $item->created_at->isoFormat('LLL') }}</td>
                         <td>{{ $item->sent ? $item->updated_at->isoFormat('LLL') : '–' }}</td>
                         <td title="{{ $item->error_message ?? false }}">{{ $item->error_code ??  '–' }}</td>
+                        <td>@if($item->smtp_host)<i class="bi bi-database-fill-gear" title="{{ $item->smtp_host }}"></i>@endif</td>
                         <td>
                             <form action="{{ route('emailing.queue.destroy', $item->id) }}" method="post">
                                 @csrf

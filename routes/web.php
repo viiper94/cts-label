@@ -129,6 +129,7 @@ Route::group(['middleware' => 'i18n'], function(){
 
             Route::delete('/queue/clear', [AdminEmailingQueueController::class, 'clear'])->name('queue.clear');
             Route::delete('/queue/delete/{queue}', [AdminEmailingQueueController::class, 'destroy'])->name('queue.destroy');
+            Route::get('/queue/problem', [AdminEmailingQueueController::class, 'problem'])->name('queue.problem');
             Route::get('/queue', [AdminEmailingQueueController::class, 'index'])->name('queue.index');
 
         });

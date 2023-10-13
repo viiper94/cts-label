@@ -83,6 +83,8 @@ return [
         'remove_from_queue' => 'Remove from queue',
         'recipient_deleted' => 'Recipient has been deleted successfully!',
         'queue_cleared' => 'Queue has been cleared successfully!',
+        'h' => 'h',
+        'm' => 'm',
     ]
 
 ];

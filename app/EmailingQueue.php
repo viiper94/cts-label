@@ -79,9 +79,9 @@ class EmailingQueue extends Model implements Auditable{
         $minutes = $minutes % 60; // calculate number of remaining minutes
         $eta = '';
         if ($hours > 0) {
-            $eta .= $hours . ' ч ';
+            $eta .= $hours . ' '.trans('emailing.queue.h').' ';
         }
-        $eta .= $minutes . ' мин'; // format ETA string
+        $eta .= $minutes . ' '.trans('emailing.queue.m'); // format ETA string
         return $eta;
     }
 

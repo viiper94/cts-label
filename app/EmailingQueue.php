@@ -19,6 +19,7 @@ class EmailingQueue extends Model implements Auditable{
     protected $fillable = [
         'channel_id',
         'from',
+        'from_name',
         'to',
         'subject',
         'name',
@@ -26,6 +27,12 @@ class EmailingQueue extends Model implements Auditable{
         'feedback_id',
         'unsubscribe',
         'template',
+        'smtp_host',
+        'smtp_port',
+        'smtp_username',
+        'smtp_password',
+        'smtp_encryption',
+        'smtp_send_rate',
     ];
 
     protected $casts = [

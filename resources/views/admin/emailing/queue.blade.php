@@ -43,7 +43,7 @@
                     </div>
                 </div>
             @endif
-            <table class="table table-hover table-dark text-nowrap" style="font-size: 14px">
+            <table class="table table-hover table-dark text-nowrap table-sm">
                 <thead>
                 <tr>
                     <th></th>

@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="table-responsive mb-3" data-fl-scrolls>
-            <table class="table table-dark table-hover">
+            <table class="table table-dark table-hover table-sm">
                 <thead>
                 <tr>
                     <th>@lang('emailing.channels.channel_title')</th>

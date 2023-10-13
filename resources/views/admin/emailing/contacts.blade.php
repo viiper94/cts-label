@@ -32,7 +32,7 @@
             {{ $contacts->appends(Request::input())->links('admin.layout.pagination') }}
         </div>
         <div class="table-responsive" data-fl-scrolls>
-            <table class="table table-hover table-dark">
+            <table class="table table-hover table-dark table-sm">
                 <thead>
                 <tr>
                     @php $headers = [

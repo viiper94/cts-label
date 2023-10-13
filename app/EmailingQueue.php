@@ -47,8 +47,9 @@ class EmailingQueue extends Model implements Auditable{
     }
 
     public static function send(){
+        $rate = env('MAIL_SEND_RATE', '4');
         $in_queue = EmailingQueue::with('channel', 'recipient', 'feedback', 'feedback.release', 'feedback.related')
-            ->whereSent('0')->orderBy('sort', 'asc')->take(4)->get();
+            ->whereSent('0')->orderBy('sort', 'asc')->take($rate)->get();
         foreach($in_queue as $mail){
             App::setLocale($mail->channel->lang);
             if(!$mail->template) continue;
@@ -72,7 +73,7 @@ class EmailingQueue extends Model implements Auditable{
     }
 
     public static function getEta($numEmailsInQueue) :string{
-        $rate = 4; // assumed sending rate of 4 emails per minute
+        $rate = env('MAIL_SEND_RATE', '4'); // assumed sending rate of 4 emails per minute
         $minutes = ceil($numEmailsInQueue / $rate); // calculate number of minutes needed to send all emails
         $hours = floor($minutes / 60); // calculate number of hours needed to send all emails
         $minutes = $minutes % 60; // calculate number of remaining minutes

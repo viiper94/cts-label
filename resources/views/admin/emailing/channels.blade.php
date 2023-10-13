@@ -31,7 +31,11 @@
                 @foreach($channels as $channel)
                     @if($channel->id === 1) @continue @endif
                     <tr>
-                        <td><b>{{ $channel->title }}</b></td>
+                        <td>
+                            <b>{{ $channel->title }}</b>
+                            @if($channel->smtp_host) <small class="text-muted"><i class="bi bi-database-fill-gear" title="{{ $channel->smtp_host }}"></i></small>@endif
+                            @if($channel->template) <small class="text-muted"><i class="fa-solid fa-file-lines" title="{{ $channel->template }}"></i></small>@endif
+                        </td>
                         <td title="{{ $channel->subject }}" style="max-width: 300px; text-overflow: ellipsis; overflow: hidden">{{ $channel->subject }}</td>
                         <td>{{ $channel->from ?? env('EMAIL_FROM') }}</td>
                         <td>{{ strtoupper($channel->lang) }}</td>

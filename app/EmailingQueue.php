@@ -6,6 +6,7 @@ use App\Mail\Emailing;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use OwenIt\Auditing\Contracts\Auditable;
 use Symfony\Component\Mailer\Exception\TransportException;
@@ -58,6 +59,13 @@ class EmailingQueue extends Model implements Auditable{
         $in_queue = EmailingQueue::with('channel', 'recipient', 'feedback', 'feedback.release', 'feedback.related')
             ->whereSent('0')->orderBy('sort', 'asc')->take($rate)->get();
         foreach($in_queue as $mail){
+            if($mail->smtp_host){
+                Config::set('mail.host', $mail->smtp_host);
+                Config::set('mail.port', $mail->smtp_port);
+                Config::set('mail.username', $mail->smtp_username);
+                Config::set('mail.password', $mail->smtp_password);
+                Config::set('mail.encryption', $mail->smtp_encryption);
+            }
             App::setLocale($mail->channel->lang);
             if(!$mail->template) continue;
             try{

@@ -101,10 +101,10 @@ class AdminEmailingChannelsController extends Controller{
                 EmailingQueue::create([
                     'channel_id' => $channel->id,
                     'unsubscribe' => $channel->unsubscribe,
-                    'template' => $channel->template ?? 'custom_ade',
+                    'template' => $channel->template ?? 'custom',
                     'subject' => $channel->subject,
-                    'from' => $channel->from,
-                    'from_name' => $channel->from_name,
+                    'from' => $channel->from ?? env('EMAIL_FROM'),
+                    'from_name' => $channel->from_name ?? env('APP_NAME'),
                     'name' => $contact->name,
                     'to' => $contact->email,
                     'smtp_host' => $channel->smtp_host,
@@ -126,11 +126,17 @@ class AdminEmailingChannelsController extends Controller{
             EmailingQueue::create([
                 'channel_id' => $channel->id,
                 'unsubscribe' => $channel->unsubscribe,
-                'template' => $channel->template ?? 'custom_ade_prohor',
+                'template' => $channel->template ?? 'custom',
                 'subject' => $channel->subject,
+                'from_name' => $channel->from_name ?? env('APP_NAME'),
                 'from' => $channel->from ?? env('EMAIL_FROM'),
                 'name' => $name,
                 'to' => $email,
+                'smtp_host' => $channel->smtp_host,
+                'smtp_port' => $channel->smtp_port,
+                'smtp_username' => $channel->smtp_username,
+                'smtp_password' => $channel->smtp_password,
+                'smtp_encryption' => $channel->smtp_encryption,
             ]);
         }
         return redirect()->back()->with(['success' => trans('emailing.channels.test_emailing_started')]);

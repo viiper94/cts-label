@@ -26,6 +26,7 @@ class EmailingChannel extends Model implements Auditable{
         'smtp_username',
         'smtp_password',
         'smtp_encryption',
+        'smtp_send_rate',
     ];
 
     protected $casts = [

@@ -26,6 +26,7 @@ return [
         'channel_smtp_username' => 'SMTP Username',
         'channel_smtp_password' => 'SMTP Password',
         'channel_smtp_encryption' => 'SMTP Encryption',
+        'channel_smtp_send_rate' => 'Mails per Minute',
         'channel_template' => 'Blade Template',
         'channel_created_at' => 'Created',
         'channel_actions' => 'Actions',

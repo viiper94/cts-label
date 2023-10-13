@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('smtp_username')->nullable();
             $table->string('smtp_password')->nullable();
             $table->string('smtp_encryption')->nullable();
+            $table->string('smtp_send_rate')->nullable();
         });
     }
 
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->dropColumn('smtp_username');
             $table->dropColumn('smtp_password');
             $table->dropColumn('smtp_encryption');
+            $table->dropColumn('smtp_send_rate');
         });
     }
 };

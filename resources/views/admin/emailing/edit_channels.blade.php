@@ -129,7 +129,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group mb-3">
                                     <label for="smtp_username" class="form-label">@lang('emailing.channels.channel_smtp_username')</label><br>
                                     <input type="text" class="form-control form-dark" id="smtp_username" name="smtp_username"
@@ -139,12 +139,22 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group mb-3">
                                     <label for="smtp_password" class="form-label">@lang('emailing.channels.channel_smtp_password')</label><br>
                                     <input type="text" class="form-control form-dark" id="smtp_password" name="smtp_password"
                                            value="{{ old('smtp_password') ?? $channel->smtp_password }}">
                                     @error('smtp_password')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group mb-3">
+                                    <label for="smtp_send_rate" class="form-label">@lang('emailing.channels.channel_smtp_send_rate')</label><br>
+                                    <input type="number" class="form-control form-dark" id="smtp_send_rate" name="smtp_send_rate"
+                                           value="{{ old('smtp_send_rate') ?? $channel->smtp_send_rate }}">
+                                    @error('smtp_send_rate')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>

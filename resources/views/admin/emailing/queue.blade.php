@@ -17,7 +17,9 @@
                     </button>
                 @endif
                 @if($view === 'all')
-                    <a href="{{ route('emailing.queue.problem') }}" class="btn btn-outline text-warning"><i class="fa-solid fa-triangle-exclamation"></i></a>
+                    @if($problem_count > 0)
+                        <a href="{{ route('emailing.queue.problem') }}" class="btn btn-outline text-warning"><i class="fa-solid fa-triangle-exclamation"></i></a>
+                    @endif
                 @else
                     <a href="{{ route('emailing.queue.index') }}" class="btn btn-outline"><i class="fa-solid fa-envelope"></i></a>
                 @endif

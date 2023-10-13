@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\EmailingChannel;
-use App\EmailingContact;
 use App\EmailingQueue;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,6 +19,7 @@ class AdminEmailingQueueController extends Controller{
             'view' => 'all',
             'channels' => EmailingChannel::all(),
             'queue' => $queue->orderBy('sent')->orderBy('sort')->paginate(100),
+            'problem_count' => $queue->whereNotNull('error_code')->count()
         ]);
     }
 

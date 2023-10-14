@@ -122,6 +122,7 @@ Route::group(['middleware' => 'i18n'], function(){
             Route::post('/channels/start/test', [AdminEmailingChannelsController::class, 'startTest'])->name('channels.start.test');
             Route::post('/channels/start', [AdminEmailingChannelsController::class, 'start'])->name('channels.start');
             Route::post('/channels/stop', [AdminEmailingChannelsController::class, 'stop'])->name('channels.stop');
+            Route::get('/channels/export/{channel}', [AdminEmailingChannelsController::class, 'export'])->name('channels.export');
             Route::resource('/channels', AdminEmailingChannelsController::class)->except(['show']);
 
             Route::get('/contacts/import', [AdminEmailingContactsController::class, 'import'])->name('contacts.import');

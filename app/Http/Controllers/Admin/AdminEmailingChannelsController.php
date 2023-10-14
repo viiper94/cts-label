@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\EmailingChannelExport;
 use App\Http\Controllers\Controller;
 use App\EmailingChannel;
 use App\EmailingContact;
 use App\EmailingQueue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Excel;
 
 class AdminEmailingChannelsController extends Controller{
 
@@ -140,6 +143,21 @@ class AdminEmailingChannelsController extends Controller{
             ]);
         }
         return redirect()->back()->with(['success' => trans('emailing.channels.test_emailing_started')]);
+    }
+
+    public function export(EmailingChannel $channel){
+        try{
+            $channel->load('subscribers');
+            $file_name = Str::slug($channel->title).'.xlsx';
+            return (new EmailingChannelExport($channel->subscribers))->download(
+                $file_name,
+                Excel::XLSX,
+                ['Content-Type' => 'text/xlsx']
+            );
+
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors([trans('alert.error') => $e->getMessage()]);
+        }
     }
 
 }

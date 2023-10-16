@@ -18,6 +18,7 @@
             <table class="table table-dark table-hover table-sm">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>@lang('emailing.channels.channel_title')</th>
                     <th>@lang('emailing.channels.channel_subject')</th>
                     <th>@lang('emailing.channels.channel_sender')</th>
@@ -32,12 +33,15 @@
                     @if($channel->id === 1) @continue @endif
                     <tr>
                         <td>
-                            <b>{{ $channel->title }}</b>
-                            @if($channel->smtp_host) <small class="text-muted"><i class="bi bi-database-fill-gear" title="{{ $channel->smtp_host }}"></i></small>@endif
-                            @if($channel->template) <small class="text-muted"><i class="fa-solid fa-file-lines" title="{{ $channel->template }}"></i></small>@endif
+                            @if($channel->smtp_host) <small class="text-muted"><i class="bi bi-database-fill-gear p-1" title="{{ $channel->smtp_host }}"></i></small>@endif
+                            @if($channel->template) <small class="text-muted"><i class="fa-solid fa-file-lines p-1" title="{{ $channel->template }}"></i></small>@endif
                         </td>
+                        <td><b>{{ $channel->title }}</b></td>
                         <td title="{{ $channel->subject }}" style="max-width: 300px; text-overflow: ellipsis; overflow: hidden">{{ $channel->subject }}</td>
-                        <td>{{ $channel->from ?? env('EMAIL_FROM') }}</td>
+                        <td>
+                            {{ $channel->from_name }}
+                            <small class="text-muted">{{ $channel->from }}</small>
+                        </td>
                         <td>{{ strtoupper($channel->lang) }}</td>
                         <td>
                             <a href="{{ route('emailing.contacts.index', ['channel' => $channel->id]) }}" class="text-decoration-none">

@@ -93,7 +93,13 @@
                         <td>{{ $contact->phone }}</td>
                         <td>{{ $contact->additional }}</td>
                         <td>{{ $contact->created_at->format('d/m/y H:i') }}</td>
-                        <td class="text-center">{{ implode(', ', \Illuminate\Support\Arr::pluck($contact->channels->toArray(), 'title')) }}</td>
+                        <td class="text-center">
+                            @if(count($contact->channels) > 0)
+                                <span class="badge bg-secondary rounded-pill" title="{{ implode(', ', \Illuminate\Support\Arr::pluck($contact->channels->toArray(), 'title')) }}">
+                                    {{ count($contact->channels) }}
+                                </span>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

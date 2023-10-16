@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('email_queue', function (Blueprint $table) {
-            $table->string('from_name');
+            $table->string('from_name')->default('CTS Records');
             $table->string('smtp_host')->nullable();
             $table->string('smtp_port')->nullable();
             $table->string('smtp_username')->nullable();

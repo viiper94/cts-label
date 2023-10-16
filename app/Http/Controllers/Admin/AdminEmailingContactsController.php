@@ -22,7 +22,8 @@ class AdminEmailingContactsController extends Controller{
                 ->orWhere('full_name', 'like', '%'.$request->input('q').'%')
                 ->orWhere('email', 'like', '%'.$request->input('q').'%')
                 ->orWhere('position', 'like', '%'.$request->input('q').'%')
-                ->orWhere('company', 'like', '%'.$request->input('q').'%');
+                ->orWhere('company', 'like', '%'.$request->input('q').'%')
+                ->orWhere('company_foa', 'like', '%'.$request->input('q').'%');
         }
         if($request->input('sort')){
             $contacts = $contacts->orderBy($request->input('sort'), ($request->input('dir') === 'down') ? 'desc' : 'asc');

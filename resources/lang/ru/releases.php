@@ -14,7 +14,7 @@ return [
     'release_on_site' => 'Релиз на сайте',
     'next_release' => 'Следующий Релиз',
     'prev_release' => 'Предыдущий Релиз',
-    'generate' => 'Генерировать',
+    'generate' => 'Генерировать для CTS',
     'translate_to_ru' => 'Перевести на RU',
     'translate_to_ua' => 'Перевести на UA',
     'translated_successfully' => 'Перевод успешно завершен',

@@ -14,7 +14,7 @@ return [
     'release_on_site' => 'Release on Main Website',
     'next_release' => 'Next Release',
     'prev_release' => 'Previous Release',
-    'generate' => 'Generate',
+    'generate' => 'Generate for CTS',
     'translate_to_ru' => 'Translate to RU',
     'translate_to_ua' => 'Translate to UA',
     'translated_successfully' => 'Translation completed successfully',

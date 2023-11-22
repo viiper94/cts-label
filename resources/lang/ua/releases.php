@@ -14,7 +14,7 @@ return [
     'release_on_site' => 'Реліз на Сайті',
     'next_release' => 'Наступний Реліз',
     'prev_release' => 'Попередній Реліз',
-    'generate' => 'Згенерувати',
+    'generate' => 'Згенерувати для CTS',
     'translate_to_ru' => 'Перекласти на RU',
     'translate_to_ua' => 'Перекласти на UA',
     'translated_successfully' => 'Переклад успішно завершено',

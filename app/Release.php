@@ -108,7 +108,7 @@ class Release extends SharedModel implements Auditable{
     }
 
     public static function generateReleaseNumber(): string{
-        $last = Release::select('release_number')->latest()->first();
+        $last = Release::select('release_number')->where('release_number', 'like', 'CTS%')->latest()->first();
         preg_match('/CTS([0-9]{1,3})([0-9]{2})3/', $last->release_number, $matches);
         return 'CTS'.((int)$matches[1]+1).date('y').'3';
     }

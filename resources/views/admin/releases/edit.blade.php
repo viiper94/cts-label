@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('title')
-    {{ $release->title ?? trans('release.new_release') }} | @lang('shared.admin.cts_admin_panel')
+    {{ $release->title ?? trans('releases.new_release') }} | @lang('shared.admin.cts_admin_panel')
 @endsection
 
 @section('admin-content')

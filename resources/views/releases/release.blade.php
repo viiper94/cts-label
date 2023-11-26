@@ -17,7 +17,9 @@
     <meta property="og:image" content="{{ url('/') }}/images/releases/{{ $release->image }}">
     <meta property="og:url" content="{{ route('release', $release->id) }}">
     <meta property="og:site_name" content="CTS Records">
-    <meta property="music:release_date" content="{{ $release->release_date->format('Y-m-d') }}">
+    @if($release->release_date)
+        <meta property="music:release_date" content="{{ $release->release_date->format('Y-m-d') }}">
+    @endif
     <!-- Twitter Meta tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $release->title }}">
@@ -25,8 +27,10 @@
     <meta name="twitter:image" content="{{ url('/') }}/images/releases/{{ $release->image }}">
     <meta name="twitter:image:alt" content="{{ $release->title }}">
     <meta name="twitter:site" content="@CTS_RECORDS">
-    <meta name="twitter:label1" content="Release Date">
-    <meta name="twitter:data1" content="{{ $release->release_date->isoFormat('LL') }}">
+    @if($release->release_date)
+        <meta name="twitter:label1" content="Release Date">
+        <meta name="twitter:data1" content="{{ $release->release_date->isoFormat('LL') }}">
+    @endif
     @if($release->genre)
         <meta name="twitter:label2" content="Genre">
         <meta name="twitter:data2" content="{{ $release->genre }}">
@@ -42,7 +46,9 @@
                     <div class="col-xs-12 col-sm-7">
                         <h1 class="release-title">{{ $release->title }}</h1>
                         <h2 class="release-number"><strong>@lang('releases.release_number') </strong>{{ $release->release_number }}</h2>
-                        <h2 class="release-date"><strong>@lang('releases.release_date') </strong>{{ $release->release_date->format('j F Y') }}</h2>
+                        @if($release->release_date)
+                            <h2 class="release-date"><strong>@lang('releases.release_date') </strong>{{ $release->release_date->format('j F Y') }}</h2>
+                        @endif
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <div class="text-center">

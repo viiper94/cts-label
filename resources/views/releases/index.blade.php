@@ -73,7 +73,8 @@
         "image": "{{ url('/') }}/images/releases/{{ $release->image }}",
         @if($release->genre) "genre": "{{ $release->genre }}",
         @endif
-        "releaseDate": "{{ $release->release_date->format('Y-m-d') }}",
+        @if($release->release_date) "releaseDate": "{{ $release->release_date->format('Y-m-d') }}",
+        @endif
         "recordLabel": "CTS Records"
       }@if(!$loop->last), @endif
 

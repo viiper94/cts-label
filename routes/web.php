@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Admin\AdminArtistsCvController;
 use App\Http\Controllers\GuestlistController;
 use App\Http\Controllers\Admin\AdminArtistsController;
 use App\Http\Controllers\Admin\AdminSchoolCvController;
@@ -69,9 +70,17 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/users', [AdminUsersController::class, 'index'])->name('users.index');
         Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('users.destroy');
 
-        Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
-        Route::get('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
-        Route::resource('/artists', AdminArtistsController::class)->except(['show']);
+        Route::name('artists.')->prefix('artists')->group(function(){
+
+            Route::post('/resort', [AdminArtistsController::class, 'resort'])->name('resort');
+            Route::get('/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('sort');
+            Route::resource('/', AdminArtistsController::class)->except(['show']);
+
+            Route::get('/cv', [AdminArtistsCvController::class, 'index'])->name('cv.index');
+            Route::post('/cv/save', [AdminArtistsCvController::class, 'store'])->name('cv.save');
+            Route::delete('/cv/delete/{cv}', [AdminArtistsCvController::class, 'destroy'])->name('cv.destroy');
+
+        });
 
         Route::post('/releases/labelCopy/{release}', [AdminReleasesController::class, 'labelCopy'])->name('releases.labelCopy');
         Route::post('/releases/getCat', [AdminReleasesController::class, 'generateReleaseNumber'])->name('releases.getCat');

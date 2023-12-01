@@ -22,6 +22,16 @@
             </li>
             <li class="nav-item">
                 <a href="{{ route('artists.index') }}" @class(['nav-link', 'active' => \Route::is('artists.*')])><i class="fa-solid fa-users me-2"></i>@lang('shared.admin.sidebar.artists')</a>
+                <ul>
+                    <li>
+                        <a href="{{ route('artists.cv.index') }}" @class(['nav-link', 'active' => \Route::is('artists.cv.*')])>
+                            <i class="fa-solid fa-file-lines me-2"></i>@lang('shared.admin.sidebar.ctschool_cv')
+                            @if($cv_count > 0)
+                                <span class="badge bg-danger">{{ $cv_count }}</span>
+                            @endif
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a href="{{ route('studio.index') }}" @class(['nav-link', 'active' => \Route::is('studio.*')])><i class="fa-solid fa-microphone me-2"></i>@lang('shared.admin.sidebar.ctstudio')</a>

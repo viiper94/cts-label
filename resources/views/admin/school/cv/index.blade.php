@@ -43,7 +43,7 @@
                                     <a class="btn btn-sm btn-primary" href="{{ route('school.cv.show', $cv->id) }}">
                                         <i class="fa-solid fa-chevron-right me-2"></i>@lang('cv.full_cv')
                                     </a>
-                                    <button class="btn btn-sm btn-outline-danger" type="submit" onclick='return confirm("Удалить анкету?")'>
+                                    <button class="btn btn-sm btn-outline-danger" type="submit" onclick='return confirm("{{ trans('cv.delete_cv') }}?")'>
                                         <i class="fa-solid fa-trash me-2"></i>@lang('shared.admin.delete')
                                     </button>
                                 </form>

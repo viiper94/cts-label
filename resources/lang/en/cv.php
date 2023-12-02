@@ -40,6 +40,7 @@ return [
 
     'cv_page' => 'CTSchool Application Form Page',
     'cv_from' => 'CV from',
+    'delete_cv' => 'Delete CV',
     'download_cv' => 'Download CV',
     'generate_doc' => 'Generate DOC',
     'doc' => 'DOC',

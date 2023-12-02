@@ -20,6 +20,7 @@
                         <th>@lang('user.email')</th>
                         <th>@lang('cv.status')</th>
                         <th>@lang('cv.created_at')</th>
+                        <th>@lang('cv.doc')</th>
                         <th></th>
                     </tr>
                     @foreach($cv_list as $cv)
@@ -28,6 +29,13 @@
                             <td>{{ $cv->email }}</td>
                             <td><span class="badge {{ $cv->status->badgeClass() }}">{{ $cv->status->name() }}</span></td>
                             <td>{{ $cv->created_at->isoFormat('LLL') }}</td>
+                            <td>
+                                @if($cv->document && is_file(public_path('/cv/'.$cv->document)))
+                                    <a class="btn btn-sm btn-outline" href="{{ url('/cv/'.$cv->document) }}" target="_blank">
+                                        <i class="fa-solid fa-file-pdf"></i>
+                                    </a>
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ route('school.cv.destroy', $cv->id) }}" method="POST">
                                     @method('DELETE')

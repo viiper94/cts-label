@@ -42,6 +42,7 @@ return [
     'cv_from' => 'CV from',
     'download_cv' => 'Download CV',
     'generate_doc' => 'Generate DOC',
+    'doc' => 'DOC',
 
     'status' => 'Status',
     'full_cv' => 'Full CV',

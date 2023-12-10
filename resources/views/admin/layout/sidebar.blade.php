@@ -24,10 +24,10 @@
                 <a href="{{ route('artists.index') }}" @class(['nav-link', 'active' => \Route::is('artists.*')])><i class="fa-solid fa-users me-2"></i>@lang('shared.admin.sidebar.artists')</a>
                 <ul>
                     <li>
-                        <a href="{{ route('artists.cv.index') }}" @class(['nav-link', 'active' => \Route::is('artists.cv.*')])>
-                            <i class="fa-solid fa-file-lines me-2"></i>@lang('shared.admin.sidebar.ctschool_cv')
-                            @if($cv_count > 0)
-                                <span class="badge bg-danger">{{ $cv_count }}</span>
+                        <a href="{{ route('artists_cv.index') }}" @class(['nav-link', 'active' => \Route::is('artists_cv.*')])>
+                            <i class="fa-solid fa-file-lines me-2"></i>@lang('shared.admin.sidebar.artists_cv')
+                            @if($artists_cv_count > 0)
+                                <span class="badge bg-danger">{{ $artists_cv_count }}</span>
                             @endif
                         </a>
                     </li>
@@ -48,8 +48,8 @@
                         </a>
                         <a href="{{ route('school.cv.index') }}" @class(['nav-link', 'active' => \Route::is('school.cv.*')])>
                             <i class="fa-solid fa-file-lines me-2"></i>@lang('shared.admin.sidebar.ctschool_cv')
-                            @if($cv_count > 0)
-                                <span class="badge bg-danger">{{ $cv_count }}</span>
+                            @if($school_cv_count > 0)
+                                <span class="badge bg-danger">{{ $school_cv_count }}</span>
                             @endif
                         </a>
                     </li>

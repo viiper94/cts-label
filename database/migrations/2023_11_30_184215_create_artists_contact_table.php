@@ -11,26 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artist_contact', function (Blueprint $table) {
+        Schema::create('artist_contacts', function (Blueprint $table) {
             $table->id();
-            $table->integer('artist_cv_id');
+            $table->integer('artist_cv_id')->nullable();
             $table->string('surname');
             $table->string('first_name');
-            $table->string('artist_name');
-            $table->string('publisher');
-            $table->string('date_of_birth');
-            $table->string('address');
-            $table->string('city');
-            $table->string('state');
-            $table->string('zip');
-            $table->string('country');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('bank');
-            $table->string('place_of_bank');
-            $table->string('account_holder');
-            $table->string('account_number');
-            $table->string('passport_number');
+            $table->string('artist_name')->nullable();
+            $table->string('publisher')->nullable();
+            $table->string('pro')->nullable();
+            $table->string('date_of_birth')->nullable();
+            $table->text('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('country')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('bank')->nullable();
+            $table->text('place_of_bank')->nullable();
+            $table->string('account_holder')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('passport_number')->nullable();
             $table->timestamps();
         });
     }
@@ -40,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artist_contact');
+        Schema::dropIfExists('artist_contacts');
     }
 };

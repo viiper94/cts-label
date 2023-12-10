@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('artist_cvs', function (Blueprint $table) {
             $table->id();
-            $table->string('main_contact_name');
-            $table->string('main_contact_phone');
-            $table->string('main_contact_email');
-            $table->string('doc');
+            $table->string('main_contact_name')->nullable();
+            $table->string('main_contact_phone')->nullable();
+            $table->string('main_contact_email')->nullable();
+            $table->text('tracks_to_sign')->nullable();
+            $table->string('doc')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

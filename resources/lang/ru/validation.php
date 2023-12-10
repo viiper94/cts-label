@@ -145,6 +145,29 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // Artist CV
+        'info' => 'Информация об артисте',
+        'main_contact_email' => 'E-Mail',
+        'main_contact_phone' => 'Номер телефона',
+        'main_contact_name' => 'Контактное лицо',
+        'phone' => 'Номер телефона',
+        'artist_name' => 'Имя артиста',
+        'first_name' => 'Имя',
+        'surname' => 'Фамилия',
+        'country' => 'Страна',
+        'publisher' => 'Издатель',
+        'date_of_birth' => 'Дата рождения',
+        'address' => 'Адрес',
+        'city' => 'Город/Поселок',
+        'state' => 'Штат',
+        'zip' => 'Почтовый индекс',
+        'bank' => 'Название банка',
+        'place_of_bank' => 'Адрес банка',
+        'account_holder' => 'Владелец счета',
+        'account_number' => 'Номер счета',
+        'passport_number' => 'Номер паспорта',
+
+    ],
 
 ];

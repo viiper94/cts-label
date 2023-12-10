@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\ArtistCv;
 use App\Cv;
 use App\EmailingQueue;
 use Closure;
@@ -22,7 +23,8 @@ class Admin
         if(Auth::guest()) return redirect('login');
         if(Gate::denies('admin')) abort(403);
 
-        View::share('cv_count', Cv::where('status', 0)->count());
+        View::share('artists_cv_count', ArtistCv::where('status', 0)->count());
+        View::share('school_cv_count', Cv::where('status', 0)->count());
         View::share('queue_count', EmailingQueue::count());
         View::share('queue_sent', EmailingQueue::whereSent('1')->count());
 

@@ -11,9 +11,16 @@ class ArtistContact extends Model{
     protected $guarded = [
         'id', 'created_at', 'updated_at', 'artist_cv_id'
     ];
+    protected $casts = [
+        'date_of_birth' => 'date',
+    ];
 
     public function cv(){
         return $this->belongsTo(ArtistCv::class);
+    }
+
+    public static function getFromOld(array $old){
+        return ArtistContact::find($old);
     }
 
 }

@@ -1,0 +1,26 @@
+// Accordion
+.accordion{
+    .accordion-button.text-bg-dark{
+        &::after{
+            font-family: "Font Awesome 6 Free";
+            content: '\f077';
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            display: var(--fa-display, inline-block);
+            font-style: normal;
+            font-variant: normal;
+            line-height: 1;
+            text-rendering: auto;
+            background-image: none;
+        }
+        &:not(.collapsed)::after{
+            background-image: none;
+        }
+        &:focus{
+           box-shadow: none;
+        }
+    }
+
+
+
+}

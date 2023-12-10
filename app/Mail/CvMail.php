@@ -18,7 +18,7 @@ class CvMail extends Mailable{
     public function envelope(){
         return new Envelope(
             from: new Address($this->cv->email, $this->cv->name),
-            subject: 'Анкета на обучение в CTSchool',
+            subject: trans('cv.title'),
         );
     }
 

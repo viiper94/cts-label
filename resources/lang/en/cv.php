@@ -54,4 +54,6 @@ return [
     'new' => 'New',
     'pending' => 'Pending Approval',
     'done' => 'Done',
+
+    'full_cv_access_by_link' => 'You can see full CV by the link'
 ];

@@ -1,5 +1,5 @@
 @component('mail::message')
-# Анкета на обучение в CTSchool
+# @lang('cv.title')
 
 **@lang('cv.name')**<br>
 *{{ $cv->name }}*
@@ -16,12 +16,12 @@
 **@lang('cv.course')**<br>
 *{{ $cv->course }}*
 
-**Дата заполнения**<br>
+**@lang('cv.created_at')**<br>
 *{{ $cv->created_at->format('d/m/Y H:i') }}*
 
 ...
 
-Полная анкета доступна по ссылке:<br>
+@lang('cv.full_cv_access_by_link'):<br>
 [{{ route('school.cv.index', $cv->id) }}]({{ route('school.cv.index', $cv->id) }})
 
 @endcomponent

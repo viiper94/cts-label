@@ -10,7 +10,7 @@
         <div class="d-flex my-3">
             @if(is_file(public_path('cv/'.$cv->document)))
                 <a href="{{ url('/'). '/cv/'.$cv->document }}" class="btn btn-primary">
-                    <i class="fa-solid fa-file-word me-2"></i>@lang('cv.download_cv')
+                    <i class="fa-solid fa-file-pdf me-2"></i>@lang('cv.download_cv')
                 </a>
             @else
                 <a href="{{ route('school.cv.document', $cv->id) }}" class="btn btn-primary">

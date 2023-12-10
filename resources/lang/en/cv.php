@@ -42,7 +42,7 @@ return [
     'cv_from' => 'CV from',
     'delete_cv' => 'Delete CV',
     'download_cv' => 'Download CV',
-    'generate_doc' => 'Generate DOC',
+    'generate_doc' => 'Generate PDF',
     'doc' => 'DOC',
 
     'status' => 'Status',

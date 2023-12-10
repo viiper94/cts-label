@@ -37,8 +37,8 @@ return [
 
     'cv_page' => 'Анкета CTSchool',
     'cv_from' => 'Анкета от',
-    'download_cv' => 'Скачать CV',
-    'generate_doc' => 'Сгенерировать DOC',
+    'download_cv' => 'Скачать анкету',
+    'generate_doc' => 'Сгенерировать PDF',
 
     'status' => 'Статус',
     'full_cv' => 'Полная анкета',

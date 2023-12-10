@@ -20,6 +20,7 @@ return [
             'releases' => 'Releases',
             'tracks' => 'Tracks',
             'artists' => 'Artists',
+            'artists_cv' => 'Artist CVs',
             'ctstudio' => 'CTStudio',
             'ctschool' => 'CTSchool',
             'ctschool_courses' => 'Courses',

@@ -1,11 +1,5 @@
-import "bootstrap/dist/js/bootstrap.min";
 import "scrolltofixed/jquery-scrolltofixed";
-import Litepicker from "litepicker"
-window.Sortable = require('sortablejs').Sortable;
-import "bootstrap-star-rating"
 import "readmore-js"
-import "./admin/helpers"
-
 
 require('./public/common.js');
 require('./public/navbar.js');

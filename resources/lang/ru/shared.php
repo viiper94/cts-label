@@ -20,6 +20,7 @@ return [
             'releases' => 'Релизы',
             'tracks' => 'Треки',
             'artists' => 'Артисты',
+            'artists_cv' => 'Анкеты артистов',
             'ctstudio' => 'CTStudio',
             'ctschool' => 'CTSchool',
             'ctschool_courses' => 'Курсы',

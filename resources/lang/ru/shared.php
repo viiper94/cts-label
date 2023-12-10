@@ -25,7 +25,7 @@ return [
             'ctschool' => 'CTSchool',
             'ctschool_courses' => 'Курсы',
             'ctschool_teachers' => 'Преподаватели',
-            'ctschool_cv' => 'Анкеты',
+            'ctschool_cv' => 'Анкеты студентов',
             'feedbacks' => 'Фидбеки',
             'emailing' => 'Рассылка',
             'emailing_channels' => 'Каналы',

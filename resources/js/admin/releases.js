@@ -179,9 +179,12 @@ $(document).ready(function(){
         $('.added-text').show();
     });
 
-    $('.tracks table tbody.sortable').sortable({
-        handle: '.sort-handle',
-    });
+    if($('.tracks table tbody.sortable').length > 0){
+        var releaseSortable = Sortable.create(document.querySelector('.tracks table tbody.sortable'), {
+            handle: ".sort-handle",
+            animation: 150
+        });
+    }
 
     $(document).on('click', '.remove-track', function(){
         if(confirm($(this).data('alert'))) $(this).parents('tr').remove();

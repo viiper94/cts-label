@@ -104,32 +104,33 @@ function loadTrackReviewsToModal(url){
             $('#trackReviewsModal .modal-title').html('Ревью для <b>'+ response.name +'</b>');
             $('#trackReviewsModal .modal-body').html(response.html);
             $('#trackReviewsModal').modal('show');
-            $('#trackReviewsModal table tbody.sortable').sortable(getSortableParams());
+            var reviewsSortable = [];
+            $('#trackReviewsModal table tbody.sortable').each(function(index, el){
+                reviewsSortable[index] = Sortable.create(el, {
+                    handle: ".sort-handle",
+                    animation: 150,
+                    onUpdate: function(event, ui){
+                        let $table = $(event.from);
+                        let url = $table.data('url');
+                        let data = {};
+                        $.map($table.find('tr'), function(el, i){
+                            data[i] = $(el).data('review-id');
+                        });
+                        $.ajax({
+                            url: url,
+                            data: {
+                                'data': data
+                            },
+                            success: function(response){
+                                $('main').append(utils.getAlertToast(null, response.message, 'text-bg-success', 'sort-toast'));
+                            },
+                            complete: function(){
+                                $('.sort-toast').toast('show').on('hidden.bs.toast', fn => ($('.sort-toast').remove()));
+                            },
+                        });
+                    }
+                });
+            });
         }
     });
-}
-
-function getSortableParams(){
-    return {
-        handle: '.sort-handle',
-        update: function(event, ui){
-            let url = $(this).data('url');
-            let data = {};
-            $.map($(this).find('tr'), function(el, i){
-                data[i] = $(el).data('review-id');
-            });
-            $.ajax({
-                url: url,
-                data: {
-                    'data': data
-                },
-                success: function(response){
-                    $('main').append(utils.getAlertToast(null, response.message, 'text-bg-success', 'sort-toast'));
-                },
-                complete: function(){
-                    $('.sort-toast').toast('show').on('hidden.bs.toast', fn => ($('.sort-toast').remove()));
-                },
-            });
-        }
-    }
 }

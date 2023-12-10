@@ -25,7 +25,7 @@ class CvMail extends Mailable{
     public function content()
     {
         return new Content(
-            markdown: 'emails.cv.admin',
+            markdown: 'emails.cv.school',
         );
     }
 

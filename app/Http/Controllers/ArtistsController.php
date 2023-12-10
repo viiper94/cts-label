@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ArtistsController extends Controller{
 
     public function index(Request $request){
-        return view('artists', [
+        return view('artists.index', [
             'artists' => Artist::where('visible', 1)->orderBy('name', 'asc')->paginate(28)->onEachSide(1)
         ]);
     }

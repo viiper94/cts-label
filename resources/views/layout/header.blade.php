@@ -27,7 +27,7 @@
                         <a @class(['nav-link', 'active' => \Route::is('about')]) href="{{ route('about') }}" id="about-menu">@lang('navbar.about')</a>
                     </li>
                     <li class="nav-item">
-                        <a @class(['nav-link', 'active' => \Route::is('artists')]) href="{{ route('artists') }}">@lang('navbar.artists')</a>
+                        <a @class(['nav-link', 'active' => \Route::is('artists.public.artists')]) href="{{ route('artists.public.artists') }}">@lang('navbar.artists')</a>
                     </li>
                     <li class="nav-item">
                         <a @class(['nav-link', 'active' => \Route::is('studio')]) href="{{ route('studio') }}">@lang('navbar.studio')</a>

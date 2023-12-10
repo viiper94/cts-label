@@ -8,6 +8,7 @@
     },
     "devDependencies": {
         "cross-env": "^7.0.3",
+        "jquery-sortablejs": "^1.0.1",
         "laravel-mix": "^6.0",
         "lodash": "^4.17.13",
         "resolve-url-loader": "^5.0",
@@ -27,6 +28,7 @@
         "litepicker": "^2.0.12",
         "readmore-js": "^2.2.1",
         "scrolltofixed": "^1.0.6",
+        "sortablejs": "^1.15.1",
         "wavesurfer.js": "^7.1.5"
     }
 }

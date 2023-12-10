@@ -12,6 +12,9 @@
 */
 
 use App\Http\Controllers\Admin\AdminArtistsCvController;
+use App\Http\Controllers\ArtistsContactInfoController;
+use App\Http\Controllers\ArtistsController;
+use App\Http\Controllers\ArtistsCvController;
 use App\Http\Controllers\GuestlistController;
 use App\Http\Controllers\Admin\AdminArtistsController;
 use App\Http\Controllers\Admin\AdminSchoolCvController;
@@ -38,20 +41,37 @@ Route::group(['middleware' => 'i18n'], function(){
     Route::get('/', 'ReleasesController@index')->name('home');
     Route::get('/feed', 'ReleasesController@rss')->name('rss');
     Route::get('/search', 'ReleasesController@index')->name('search');
+
     Route::get('/releases/{id}', 'ReleasesController@show')->name('release');
     Route::get('/releases/track/{track}/{release?}', 'ReleasesController@track');
-    Route::get('/artists', 'ArtistsController@index')->name('artists');
+
+    Route::name('artists.public.')->group(function(){
+
+        Route::get('/artists', [ArtistsController::class, 'index'])->name('artists');
+        Route::post('/artistform/track', [ArtistsCvController::class, 'getTrackItem'])->name('info.track');
+        Route::get('/artistform', [ArtistsCvController::class, 'create'])->name('info.create');
+        Route::post('/artistform', [ArtistsCvController::class, 'store'])->name('info.store');
+        Route::resource('/contact', ArtistsContactInfoController::class)->except(['index', 'show', 'destroy']);
+
+    });
+
     Route::get('/reviews', 'ReviewsController@index')->name('reviews');
+
     Route::get('/about.html', 'AppController@about')->name('about');
+
     Route::get('/studio.html', 'AppController@studio')->name('studio');
     Route::post('/studio.html', 'AppController@sendCallback');
+
     Route::get('/ctschool.html', 'AppController@ctschool')->name('school');
     Route::post('/ctschool.html', 'AppController@sendCallback');
     Route::any('/anketa', 'CvController@index')->name('school.cv');
+
     Route::any('/feedback/{slug}', 'FeedbackController@show')->name('feedback');
     Route::get('/feedback/{slug}/end', 'FeedbackController@end')->name('feedback.end');
     Route::get('/feedback/{slug}/tracks', 'FeedbackController@getTracks');
+
     Route::any('/unsubscribe/{hash}', 'Controller@unsubscribe')->name('unsubscribe');
+
     Route::get('/ade2023/guestlist', [GuestlistController::class, 'index'])->name('guestlist');
     Route::post('/ade2023/guestlist', [GuestlistController::class, 'store'])->name('guestlist.add');
 
@@ -70,17 +90,14 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/users', [AdminUsersController::class, 'index'])->name('users.index');
         Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('users.destroy');
 
-        Route::name('artists.')->prefix('artists')->group(function(){
+        Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
+        Route::get('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
+        Route::resource('/artists', AdminArtistsController::class)->except(['show']);
 
-            Route::post('/resort', [AdminArtistsController::class, 'resort'])->name('resort');
-            Route::get('/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('sort');
-            Route::resource('/', AdminArtistsController::class)->except(['show']);
-
-            Route::get('/cv', [AdminArtistsCvController::class, 'index'])->name('cv.index');
-            Route::post('/cv/save', [AdminArtistsCvController::class, 'store'])->name('cv.save');
-            Route::delete('/cv/delete/{cv}', [AdminArtistsCvController::class, 'destroy'])->name('cv.destroy');
-
-        });
+        Route::get('/artists/cv', [AdminArtistsCvController::class, 'index'])->name('artists_cv.index');
+        Route::get('/artists/cv/{cv}', [AdminArtistsCvController::class, 'show'])->name('artists_cv.show');
+        Route::get('/artists/cv/{cv}/document', [AdminArtistsCvController::class, 'document'])->name('artists_cv.document');
+        Route::delete('/artists/cv/{cv}/destroy', [AdminArtistsCvController::class, 'destroy'])->name('artists_cv.destroy');
 
         Route::post('/releases/labelCopy/{release}', [AdminReleasesController::class, 'labelCopy'])->name('releases.labelCopy');
         Route::post('/releases/getCat', [AdminReleasesController::class, 'generateReleaseNumber'])->name('releases.getCat');

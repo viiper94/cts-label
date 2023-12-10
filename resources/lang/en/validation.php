@@ -145,6 +145,31 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // Artist CV
+        'info' => 'Artist info',
+        'main_contact_name' => 'Contact Name',
+        'main_contact_email' => 'E-Mail',
+        'main_contact_phone' => 'Phone number',
+        'artist_name' => 'Artist Name',
+        'first_name' => 'First Name',
+        'surname' => 'Surname',
+        'publisher' => 'Publisher',
+        'pro' => 'PRO',
+        'date_of_birth' => 'Date of Birth',
+        'address' => 'Address',
+        'city' => 'City/Town',
+        'state' => 'State',
+        'zip' => 'Postal/Zip Code',
+        'country' => 'Country',
+        'phone' => 'Phone number',
+        'email' => 'E-Mail',
+        'bank' => 'Bank name',
+        'place_of_bank' => 'Place of the Bank',
+        'account_holder' => 'Account holder',
+        'account_number' => 'Account number',
+        'passport_number' => 'Passport number',
+
+    ],
 
 ];

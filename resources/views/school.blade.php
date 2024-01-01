@@ -331,7 +331,7 @@
           "sameAs": [
             "https://www.facebook.com/groups/161704380617200"
           ],
-          "telephone": "+38-098-685-40-33",
+          "telephone": "+38-067-466-75-13",
           "email": "info@cts-label.com"
         }
     </script>

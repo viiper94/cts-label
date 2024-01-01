@@ -68,7 +68,7 @@ return [
                                 <a href="https://www.facebook.com/groups/161704380617200" target="_blank" rel="noreferrer" class="yellow-link">на странице CTSchool</a>,
                                 после чего мы в индивидуальном порядке пригласим вас пройти собеседование.',
     'contact_text_2' => 'ЗАПИСАТЬСЯ НА СОБЕСЕДОВАНИЕ ТАКЖЕ МОЖНО ПО ТЕЛЕФОНУ:',
-    'contact_info' => '<p>+38 098 685 40 33</p><p>E-MAIL: <a href="mailto:info@cts-label.com">info@cts-label.com</a></p>',
+    'contact_info' => '<p>+38 067 466 75 13</p><p>E-MAIL: <a href="mailto:info@cts-label.com">info@cts-label.com</a></p>',
 
     'visible' => 'Видимый',
     'lang' => 'Язык',

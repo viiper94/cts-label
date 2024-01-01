@@ -57,12 +57,12 @@
                     <div class="pt-3 pb-5 cts-school">
                         <h6>@lang('about.contact_cts_school_requests')</h6>
                         <p>@lang('about.contact_email') <a href="mailto:info@cts-studio.com">info@cts-label.com</a></p>
-                        <p>@lang('about.contact_t') <a href="tel:+380986854033">+380 98 685 40 33</a></p>
+                        <p>@lang('about.contact_t') <a href="tel:+380986854033">+38 067 466 75 13</a></p>
                     </div>
                     <div class="pt-3 pb-5 cts-studio">
                         <h6>CTS Studio requests:</h6>
                         <p>@lang('about.contact_email') <a href="mailto:info@cts-studio.com">info@cts-studio.com</a></p>
-                        <p>@lang('about.contact_t') <a href="tel:+380986854033">+380 98 685 40 33</a></p>
+                        <p>@lang('about.contact_t') <a href="tel:+380986854033">+30 067 466 75 13</a></p>
                     </div>
                 </div>
             </section>
@@ -91,7 +91,7 @@
             "https://twitter.com/CTS_RECORDS",
             "https://www.youtube.com/channel/UCudx-EMGd8zRddRAFWl7YHA"
           ],
-          "telephone": "+38-098-685-40-33",
+          "telephone": "+38-067-466-75-13",
           "email": "info@cts-label.com"
         }
     </script>

@@ -134,7 +134,7 @@ return [
 
     'contacts_text' => '<p>Ukraine, Kiev</p>
 
-                            <p>+38 098 685 40 33<br /></p>
+                            <p>+38 067 466 75 13<br /></p>
 
                             <p>E-MAIL: ',
 

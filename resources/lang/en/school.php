@@ -66,7 +66,7 @@ return [
                                 <a href="https://www.facebook.com/groups/161704380617200" target="_blank" rel="noreferrer" class="yellow-link">CTSchool Facebook page</a>,
                                 right after we will invite you to the interview individually.',
     'contact_text_2' => 'APPLICATION FOR AN INTERVIEW IS ALSO POSSIBLE BY PHONE:',
-    'contact_info' => '<p>+38 098 685 40 33</p><p>E-MAIL: <a href="mailto:info@cts-label.com">info@cts-label.com</a></p>',
+    'contact_info' => '<p>+38 067 466 75 13</p><p>E-MAIL: <a href="mailto:info@cts-label.com">info@cts-label.com</a></p>',
 
     'visible' => 'Visible',
     'lang' => 'Language',

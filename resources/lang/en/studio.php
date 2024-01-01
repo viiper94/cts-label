@@ -123,7 +123,7 @@ return [
                             Polish Cultural Centre, the National Film Archive Centre of Alexander Dovzhenko.</p>
                         <p>In the studio were recorded theater soundtracks and soundtracks for Ukrainian Fashion Week
                             show
-                            participants. All the musical material finalization of the The Best Track in Ukraine
+                            participants. All the musical material finalization of The Best Track in Ukraine
                             contest,
                             more than 300 releases of the CTS Records label mastering also been carried out by CTS
                             studio
@@ -132,7 +132,7 @@ return [
                             their work. Quality, relevance and freshness of the sound, are the main CTS Studio sound
                             criteria.</p>',
 
-    'contacts_text' => '<p>Ukraine, Kiev</p>
+    'contacts_text' => '<p>Ukraine, Kyiv</p>
 
                             <p>+38 067 466 75 13<br /></p>
 

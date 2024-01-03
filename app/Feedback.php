@@ -110,8 +110,10 @@ class Feedback extends SharedModel implements Auditable{
 
         $zip->addEmptyDir(htmlentities(trim($this->feedback_title)));
         foreach($this->ftracks as $track){
-            $zip->addFile(public_path('audio/feedback/'.$this->slug.'/'.$this->HQDir()).'/'.$track->file_320,
-                htmlentities(trim($this->feedback_title)).'/'.$track->file_320);
+            if(is_file(public_path('audio/feedback/'.$this->slug.'/'.$this->HQDir()).'/'.$track->file_320)){
+                $zip->addFile(public_path('audio/feedback/'.$this->slug.'/'.$this->HQDir()).'/'.$track->file_320,
+                    htmlentities(trim($this->feedback_title)).'/'.$track->file_320);
+            }
         }
         $zip->close();
         return $filename;

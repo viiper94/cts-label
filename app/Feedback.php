@@ -56,7 +56,7 @@ class Feedback extends SharedModel implements Auditable{
             foreach($request->file('tracks') as $key => $file){
                 foreach($file as $bitrate => $item){
                     if ($item->isValid()){
-                        $filename = Str::slug(explode('.', $item->getClientOriginalName())[0]);
+                        $filename = Str::slug(explode($item->getClientOriginalExtension(), $item->getClientOriginalName())[0]);
                         $filename .= $bitrate == 96 ? '.LOFI.' : '.';
                         $filename .= $item->getClientOriginalExtension();
 

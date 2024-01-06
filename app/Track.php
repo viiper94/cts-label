@@ -118,4 +118,15 @@ class Track extends Model implements Auditable{
         return 'https://www.beatport.com/track/'.$this->beatport_slug.'/'.$this->beatport_id;
     }
 
+    public static function getReleasesPlainText($track) :string{
+        if($track->releases){
+            $titles = array();
+            foreach($track->releases as $release){
+                $titles[] = $release->title;
+            }
+            return implode(', ', $titles);
+        }
+        return '';
+    }
+
 }

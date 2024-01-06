@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\TracksExport;
 use App\Http\Controllers\Controller;
 use App\Track;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Excel;
 use function Termwind\render;
 
 class AdminTracksController extends Controller{
@@ -160,6 +162,22 @@ class AdminTracksController extends Controller{
                 'track' => Track::with('releases')->findOrFail($request->post('id'))
             ])->render()
         ]);
+    }
+
+    public function export(){
+        try{
+            $tracks = Track::with('releases')->orderBy('isrc')->get();
+            $file_name = 'CTS Catalogue.xlsx';
+
+            return (new TracksExport($tracks))->download(
+                $file_name,
+                Excel::XLSX,
+                ['Content-Type' => 'text/xlsx']
+            );
+
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors([trans('alert.error') => $e->getMessage()]);
+        }
     }
 
 }

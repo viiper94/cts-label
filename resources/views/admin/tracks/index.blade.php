@@ -7,7 +7,12 @@
 @section('admin-content')
 
     <div class="container-fluid admin-tracks">
-        <div class="justify-content-end align-items-center d-flex flex-column-reverse flex-lg-row my-3">
+        <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
+            <div class="releases-actions text-center">
+                <a href="{{ route('tracks.export') }}" class="btn btn-primary m-xl-0 m-1">
+                    <i class="fa-solid fa-file-export me-2"></i>@lang('shared.admin.export_xlsx')
+                </a>
+            </div>
             {{ $tracks->appends(Request::input())->links('admin.layout.pagination') }}
         </div>
         <div class="table-responsive" data-fl-scrolls>

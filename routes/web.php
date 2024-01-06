@@ -108,6 +108,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/releases/sort/{release}/{dir}', [AdminReleasesController::class, 'sort'])->name('releases.sort');
         Route::resource('/releases', AdminReleasesController::class)->except(['show']);
 
+        Route::get('/tracks/export', [AdminTracksController::class, 'export'])->name('tracks.export');
         Route::post('/tracks/isrc/get', [AdminTracksController::class, 'generateISRCCode'])->name('tracks.isrc.get');
         Route::post('/tracks/isrc/check', [AdminTracksController::class, 'checkISRCCode'])->name('tracks.isrc.check');
         Route::post('/tracks/search', [AdminTracksController::class, 'search'])->name('tracks.search');

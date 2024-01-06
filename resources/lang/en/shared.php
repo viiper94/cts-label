@@ -35,5 +35,6 @@ return [
         ],
         'required' => 'This field is required',
         'sorted' => 'Resorted',
+        'export_xlsx' => 'Export to XLSX',
     ],
 ];

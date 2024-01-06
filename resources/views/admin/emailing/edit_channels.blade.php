@@ -20,7 +20,7 @@
             </form>
         @endif
         <a class="btn btn-outline" href="{{ route('emailing.channels.export', $channel->id) }}">
-            <i class="fa-solid fa-file-export me-2"></i>@lang('emailing.channels.export')
+            <i class="fa-solid fa-file-export me-2"></i>@lang('shared.admin.export_xlsx')
         </a>
         <form action="{{ $channel->id ? route('emailing.channels.update', $channel->id) : route('emailing.channels.store') }}"
               method="post" id="edit-channel-form">

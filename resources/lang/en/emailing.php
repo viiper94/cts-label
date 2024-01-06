@@ -46,7 +46,6 @@ return [
         'emailing_started' => 'Emailing started',
         'test_emailing_started' => 'Test Emailing started',
         'advanced_settings' => 'Advanced settings',
-        'export' => 'Export to XLSX',
     ],
     'contacts' => [
         'emailing_contacts' => 'Emailing Contacts',

@@ -46,7 +46,7 @@ class AdminFeedbackController extends Controller{
     public function store(Request $request, Release $release = null){
         $feedback = new Feedback();
         $this->validate($request, [
-            'feedback_title' => 'string|required',
+            'feedback_title' => 'string|required|max:191',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png|nullable',
             'tracks' => 'array|required'
         ]);
@@ -83,7 +83,7 @@ class AdminFeedbackController extends Controller{
 
     public function update(Request $request, Feedback $feedback){
         $this->validate($request, [
-            'feedback_title' => 'string|required',
+            'feedback_title' => 'string|required|max:191',
             'tracks' => 'array|required'
         ]);
         $feedback->fill($request->post());

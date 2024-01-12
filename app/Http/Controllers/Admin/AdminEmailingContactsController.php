@@ -48,15 +48,15 @@ class AdminEmailingContactsController extends Controller{
     public function store(Request $request){
         $contact = new EmailingContact();
         $this->validate($request, [
-            'email' => 'required|email|unique:App\EmailingContact',
-            'name' => 'required|string',
-            'full_name' => 'nullable|string',
+            'email' => 'required|email|unique:App\EmailingContact|max:191',
+            'name' => 'required|string|max:191',
+            'full_name' => 'nullable|string|max:191',
             'company' => 'nullable|string',
-            'company_foa' => 'nullable|string',
+            'company_foa' => 'nullable|string|max:191',
             'position' => 'nullable|string',
-            'website' => 'nullable|url',
-            'country' => 'nullable|string',
-            'phone' => 'nullable|string',
+            'website' => 'nullable|url|max:191',
+            'country' => 'nullable|string|max:191',
+            'phone' => 'nullable|string|max:191',
             'additional' => 'nullable|string',
             'channels' => 'nullable|array'
         ]);
@@ -82,11 +82,11 @@ class AdminEmailingContactsController extends Controller{
             'name' => 'required|string',
             'full_name' => 'nullable|string',
             'company' => 'nullable|string',
-            'company_foa' => 'nullable|string',
+            'company_foa' => 'nullable|string|max:191',
             'position' => 'nullable|string',
-            'website' => 'nullable|url',
-            'country' => 'nullable|string',
-            'phone' => 'nullable|string',
+            'website' => 'nullable|url|max:191',
+            'country' => 'nullable|string|max:191',
+            'phone' => 'nullable|string|max:191',
             'additional' => 'nullable|string',
             'channels' => 'nullable|array'
         ]);

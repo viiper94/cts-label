@@ -27,9 +27,9 @@ class AdminArtistsController extends Controller{
         $artist = new Artist();
         if($request->post()){
             $this->validate($request, [
-                'name' => 'required|string',
+                'name' => 'required|string|max:191',
                 'image' => 'nullable|image|mimes:jpeg,png',
-                'link' => 'url|nullable'
+                'link' => 'url|nullable|max:191'
             ]);
             $artist->fill($request->post());
             $artist->sort_id = intval($artist->getLatestSortId(Artist::class)) + 1;
@@ -54,9 +54,9 @@ class AdminArtistsController extends Controller{
 
     public function update(Artist $artist, Request $request){
         $this->validate($request, [
-            'name' => 'required|string',
+            'name' => 'required|string|max:191',
             'image' => 'nullable|image|mimes:jpeg,png',
-            'link' => 'url|nullable'
+            'link' => 'url|nullable|max:191'
         ]);
         $artist->fill($request->post());
         if($request->hasFile('image')){

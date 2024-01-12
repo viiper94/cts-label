@@ -36,10 +36,12 @@ class AdminReleasesController extends Controller{
             'title' => 'required|string',
             'release_number' => 'string|nullable|unique:releases,release_number',
             'genre' => 'string|nullable',
+            'title' => 'required|string|max:191',
+            'genre' => 'string|nullable|max:191',
             'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
-            'beatport' => 'url|nullable',
-            'youtube' => 'url|nullable',
+            'beatport' => 'url|nullable|max:191',
+            'youtube' => 'url|nullable|max:191',
             'related' => 'array',
         ]);
         $release = new Release();
@@ -70,13 +72,13 @@ class AdminReleasesController extends Controller{
 
     public function update(Release $release, Request $request){
         $this->validate($request, [
-            'title' => 'required|string',
-            'release_number' => ['string', 'nullable', Rule::unique('releases', 'release_number')->ignore($release->id)],
-            'genre' => 'string|nullable',
+            'title' => 'required|string|max:191',
+            'release_number' => ['string', 'nullable', Rule::unique('releases')->ignore($release), ['max', 191]],
+            'genre' => 'string|nullable|max:191',
             'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
-            'beatport' => 'url|nullable',
-            'youtube' => 'url|nullable',
+            'beatport' => 'url|nullable|max:191',
+            'youtube' => 'url|nullable|max:191',
             'related' => 'array',
         ]);
         $release->fill($request->post());

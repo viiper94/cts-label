@@ -29,18 +29,18 @@ class AdminEmailingChannelsController extends Controller{
 
     public function store(Request $request){
         $this->validate($request, [
-            'title' => 'required|string',
-            'description' => 'nullable|string',
-            'from' => 'required|email',
-            'from_name' => 'required|string',
-            'subject' => 'required|string',
-            'template' => 'nullable|string',
-            'lang' => 'required|string',
-            'smtp_host' => 'nullable|string',
-            'smtp_port' => 'numeric|required_if:smtp_host',
-            'smtp_username' => 'string|required_if:smtp_host',
-            'smtp_password' => 'string|required_if:smtp_host',
-            'smtp_encryption' => 'string|required_if:smtp_host',
+            'title' => 'required|string|max:191',
+            'description' => 'nullable|string|max:191',
+            'from' => 'required|email|max:191',
+            'from_name' => 'required|string|max:191',
+            'subject' => 'required|string|max:191',
+            'template' => 'nullable|string|max:191',
+            'lang' => 'required|string|max:191',
+            'smtp_host' => 'nullable|string|max:191',
+            'smtp_port' => 'numeric|required_if:smtp_host|max:191',
+            'smtp_username' => 'string|required_if:smtp_host|max:191',
+            'smtp_password' => 'string|required_if:smtp_host|max:191',
+            'smtp_encryption' => 'string|required_if:smtp_host|max:191',
         ]);
         $channel = new EmailingChannel();
         $channel->fill($request->post());
@@ -61,18 +61,18 @@ class AdminEmailingChannelsController extends Controller{
 
     public function update(Request $request, EmailingChannel $channel){
         $this->validate($request, [
-            'title' => 'required|string',
-            'description' => 'nullable|string',
-            'from' => 'required|email',
-            'from_name' => 'required|string',
-            'subject' => 'required|string',
-            'template' => 'nullable|string',
-            'lang' => 'required|string',
-            'smtp_host' => 'nullable|string',
-            'smtp_port' => 'required_with:smtp_host|nullable|numeric',
-            'smtp_username' => 'required_with:smtp_host|nullable|string',
-            'smtp_password' => 'required_with:smtp_host|nullable|string',
-            'smtp_encryption' => 'required_with:smtp_host|nullable|string',
+            'title' => 'required|string|max:191',
+            'description' => 'nullable|string|max:191',
+            'from' => 'required|email|max:191',
+            'from_name' => 'required|string|max:191',
+            'subject' => 'required|string|max:191',
+            'template' => 'nullable|string|max:191',
+            'lang' => 'required|string|max:191',
+            'smtp_host' => 'nullable|string|max:191',
+            'smtp_port' => 'numeric|required_if:smtp_host|max:191',
+            'smtp_username' => 'string|required_if:smtp_host|max:191',
+            'smtp_password' => 'string|required_if:smtp_host|max:191',
+            'smtp_encryption' => 'string|required_if:smtp_host|max:191',
         ]);
         $channel->fill($request->post());
         return $channel->save()

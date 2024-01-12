@@ -28,7 +28,7 @@ class AdminStudioController extends Controller{
         $service = new StudioService();
         $this->validate($request, [
             'lang' => 'string|required',
-            'name' => 'string|required',
+            'name' => 'string|required|max:191',
             'service_alt' => 'string|nullable',
             'image' => 'image|mimes:jpeg,png|nullable'
         ]);
@@ -53,7 +53,7 @@ class AdminStudioController extends Controller{
     public function update(StudioService $studio, Request $request){
         $this->validate($request, [
             'lang' => 'string|required',
-            'name' => 'string|required',
+            'name' => 'string|required|max:191',
             'service_alt' => 'string|nullable',
             'image' => 'image|mimes:jpeg,png|nullable'
         ]);

@@ -38,9 +38,9 @@ class AdminReviewsController extends Controller{
         if(!$request->ajax()) abort(403);
         $this->validate($request, [
             'track_id' => 'required|string',
-            'author' => 'nullable|string',
-            'location' => 'nullable|string',
-            'source' => 'nullable|string',
+            'author' => 'nullable|string|max:191',
+            'location' => 'nullable|string|max:191',
+            'source' => 'nullable|string|max:191',
             'review' => 'nullable|required_with:score|string',
             'score' => 'nullable|required_with:review|numeric',
         ]);
@@ -69,9 +69,9 @@ class AdminReviewsController extends Controller{
         if(!$request->ajax()) abort(403);
         $this->validate($request, [
             'track_id' => 'required|string',
-            'author' => 'nullable|string',
-            'location' => 'nullable|string',
-            'source' => 'nullable|string',
+            'author' => 'nullable|string|max:191',
+            'location' => 'nullable|string|max:191',
+            'source' => 'nullable|string|max:191',
             'review' => 'nullable|required_with:score|string',
             'score' => 'nullable|required_with:review|numeric',
         ]);

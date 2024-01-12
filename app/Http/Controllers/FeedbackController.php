@@ -16,8 +16,8 @@ class FeedbackController extends Controller{
         $feedback = Feedback::with('related', 'release', 'ftracks')->where('slug', $slug)->firstOrFail();
         if($request->post() && $slug){
             $this->validate($request, [
-                'name' => 'required|string',
-                'email' => 'required|email',
+                'name' => 'required|max:191|string',
+                'email' => 'required|email|max:191',
                 'comment' => 'required|string',
                 'rates' => 'required|array'
             ]);

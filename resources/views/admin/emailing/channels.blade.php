@@ -53,6 +53,9 @@
                             <a class="btn btn-sm btn-outline-warning" href="{{ route('emailing.channels.edit', $channel->id) }}">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
+                            <a class="btn btn-sm btn-outline" href="{{ route('emailing.channels.export', $channel->id) }}">
+                                <i class="fa-solid fa-download"></i>
+                            </a>
                             @if($channel->queue_count > 0)
                                 <form action="{{ route('emailing.channels.stop') }}" method="post" class="d-inline">
                                     @csrf

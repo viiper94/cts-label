@@ -21,8 +21,8 @@ class ArtistsContactInfoController extends Controller
     public function store(Request $request){
         if(!$request->ajax()) abort(404);
         $this->validate($request, [
-            'artist_name' => 'required||max:190|string',
-            'first_name' => 'required||max:190|string',
+            'artist_name' => 'required|max:190|string',
+            'first_name' => 'required|max:190|string',
             'surname' => 'required|max:190|string',
             'publisher' => 'nullable|max:190|string',
             'pro' => 'nullable|max:190|string',

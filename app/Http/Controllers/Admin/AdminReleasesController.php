@@ -33,10 +33,8 @@ class AdminReleasesController extends Controller{
 
     public function store(Request $request){
         $this->validate($request, [
-            'title' => 'required|string',
-            'release_number' => 'string|nullable|unique:releases,release_number',
-            'genre' => 'string|nullable',
             'title' => 'required|string|max:191',
+            'release_number' => 'string|nullable|unique:App\Release|max:191',
             'genre' => 'string|nullable|max:191',
             'release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',

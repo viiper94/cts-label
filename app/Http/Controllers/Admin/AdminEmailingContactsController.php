@@ -7,6 +7,7 @@ use App\EmailingContact;
 use App\EmailingQueue;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminEmailingContactsController extends Controller{
 
@@ -78,9 +79,9 @@ class AdminEmailingContactsController extends Controller{
 
     public function update(Request $request, EmailingContact $contact){
         $this->validate($request, [
-            'email' => 'required|email',
-            'name' => 'required|string',
-            'full_name' => 'nullable|string',
+            'email' => ['required', 'email', Rule::unique('email_contacts')->ignore($contact), ['max', 191]],
+            'name' => 'required|string|max:191',
+            'full_name' => 'nullable|string|max:191',
             'company' => 'nullable|string',
             'company_foa' => 'nullable|string|max:191',
             'position' => 'nullable|string',

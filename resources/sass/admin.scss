@@ -1,4 +1,5 @@
 @import "variables";
+@import "fonts";
 
 // Reset
 *{
@@ -6,7 +7,9 @@
     padding: 0;
     outline: 0;
     border: 0;
-    font-family: 'Open Sans', 'Arial', 'sans-serif';
+    font-family: 'OpenSans', 'Arial', 'sans-serif';
+    font-stretch: normal;
+    font-weight: normal;
 }
 
 // Bootstrap

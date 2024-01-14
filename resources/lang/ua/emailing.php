@@ -25,6 +25,7 @@ return [
         'start_emailing' => 'Почати Email-розсилку',
         'stop_emailing' => 'Зупинити Email-розсилку',
         'pick_addresses_for_test' => 'Виберіть адреси для тестової розсилки',
+        'debug' => 'Тестувати розсилку',
         'check_all' => 'Вибрати всіх',
         'uncheck_all' => 'Прибрати всіх',
         'send_test' => 'Надіслати тестове повідомлення',

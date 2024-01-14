@@ -33,6 +33,7 @@ return [
         'start_emailing' => 'Start Emailing',
         'stop_emailing' => 'Stop Emailing',
         'pick_addresses_for_test' => 'Pick addressed for test emailing',
+        'debug' => 'Debug Emailing',
         'check_all' => 'Check All',
         'uncheck_all' => 'Uncheck All',
         'send_test' => 'Send',

@@ -50,29 +50,29 @@
                         </td>
                         <td>{{ $channel->created_at->isoFormat('LLL') }}</td>
                         <td class="text-end">
-                            <a class="btn btn-sm btn-outline-warning" href="{{ route('emailing.channels.edit', $channel->id) }}">
+                            <a class="btn btn-sm btn-outline-warning" href="{{ route('emailing.channels.edit', $channel->id) }}" title="@lang('shared.admin.edit')">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
-                            <a class="btn btn-sm btn-outline" href="{{ route('emailing.channels.export', $channel->id) }}">
+                            <a class="btn btn-sm btn-outline" href="{{ route('emailing.channels.export', $channel->id) }}" title="@lang('shared.admin.export_xlsx')">
                                 <i class="fa-solid fa-download"></i>
                             </a>
                             @if($channel->queue_count > 0)
                                 <form action="{{ route('emailing.channels.stop') }}" method="post" class="d-inline">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $channel->id }}">
-                                    <button class="btn btn-sm btn-danger" onclick="return confirm('@lang('emailing.channels.stop_emailing')?')">
+                                    <button class="btn btn-sm btn-danger" onclick="return confirm('@lang('emailing.channels.stop_emailing')?')" title="@lang('emailing.channels.stop_emailing')">
                                         <i class="fa-solid fa-stop"></i>
                                     </button>
                                 </form>
                             @else
                                 <button class="debug-email-btn btn btn-sm btn-outline" data-bs-toggle="modal" data-bs-target="#testContactsModal"
-                                        data-channel="{{ $channel->id }}">
+                                        data-channel="{{ $channel->id }}" title="@lang('emailing.channels.debug')">
                                     <i class="fa-solid fa-bug"></i>
                                 </button>
                                 <form action="{{ route('emailing.channels.start') }}" method="post" class="d-inline">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $channel->id }}">
-                                    <button class='btn btn-sm btn-success' onclick='return confirm("@lang('emailing.channels.start_emailing')?")'>
+                                    <button class='btn btn-sm btn-success' onclick='return confirm("@lang('emailing.channels.start_emailing')?")' title="@lang('emailing.channels.start_emailing')">
                                         <i class="fa-solid fa-play"></i>
                                     </button>
                                 </form>

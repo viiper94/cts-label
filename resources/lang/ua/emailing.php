@@ -59,6 +59,7 @@ return [
         'contact_added' => 'Контакт Email-розсилки успішно доданий!',
         'contact_edited' => 'Контакт Email-розсилки успішно відредагований!',
         'contact_deleted' => 'Контакт Email-розсилки успішно видалений!',
+        'error_log' => 'Лог помилок',
     ],
     'queue' => [
         'emailing_queue' => 'Черга для Email-розсилки',

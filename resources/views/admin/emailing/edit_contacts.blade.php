@@ -112,9 +112,9 @@
                     <p class="help-block">{{ $message }}</p>
                 @enderror
             </div>
-            <div class="card text-bg-dark" style="width: 18rem;">
+            <div class="card text-bg-dark mb-3" style="width: 22rem;">
                 <div class="card-header">
-                    <h4 class="card-title">@lang('emailing.channels.emailing_channels')</h4>
+                    <h4 class="card-title mb-0">@lang('emailing.channels.emailing_channels')</h4>
                 </div>
                 <div class="card-body">
                     @foreach($channels as $key => $channel)
@@ -128,6 +128,30 @@
                     @endforeach
                 </div>
             </div>
+            @if($contact->error_log)
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0">@lang('emailing.contacts.error_log')</h5>
+                </div>
+                <div class="accordion mb-3" id="accordion">
+                    @foreach($contact->error_log as $key => $log)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading_{{ $key }}">
+                                <button class="accordion-button text-bg-dark" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_{{ $key }}" aria-expanded="true" aria-controls="collapse_{{ $key }}">
+                                    <i class="fa-solid fa-exclamation-triangle text-danger me-2"></i>
+                                    <b class="text-danger me-2">{{ $log['code'] }}</b>
+                                    <span class="text-muted">{{ $log['date'] }}</span>
+                                </button>
+                            </h2>
+                            <div id="collapse_{{ $key }}" class="accordion-collapse collapse" aria-labelledby="heading_{{ $key }}" data-bs-parent="#accordion">
+                                <div class="accordion-body text-bg-dark">
+                                    <p>{{ $log['message'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </form>
     </div>
 

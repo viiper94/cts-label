@@ -74,12 +74,13 @@ class EmailingQueue extends Model implements Auditable{
                 $mail->sent = true;
                 $mail->save();
             }catch(Exception $e){
-                if($mail->sort === '1'){
+                if($mail->sort == '1'){
                     $mail->sent = true;
                 }
                 $mail->sort = 1;
                 $mail->error_code = $e->getCode();
                 $mail->error_message = $e->getMessage();
+                $mail->addToErrorLog($mail->error_code, $mail->error_message);
                 $mail->save();
             }
         }
@@ -97,6 +98,19 @@ class EmailingQueue extends Model implements Auditable{
         }
         $eta .= $minutes . ' '.trans('emailing.queue.m'); // format ETA string
         return $eta;
+    }
+
+    private function addToErrorLog($code, $message){
+        $log = $this->recipient->error_log;
+        $new_item = [
+            'code' => $code,
+            'message' => $message,
+            'date' => now()->format('Y-m-d H:i:s')
+        ];
+        if($log) array_unshift($log, $new_item);
+        else $log[] = $new_item;
+        $this->recipient->error_log = $log;
+        $this->recipient->save();
     }
 
 }

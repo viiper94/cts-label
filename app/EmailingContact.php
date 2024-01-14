@@ -15,6 +15,10 @@ class EmailingContact extends Model implements Auditable{
 
     protected $table = 'email_contacts';
 
+    protected $casts = [
+        'error_log' => 'array'
+    ];
+
     protected $fillable = ['name', 'full_name', 'email', 'company', 'position', 'additional', 'phone', 'website', 'country', 'company_foa'];
 
     public function channels(){

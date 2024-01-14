@@ -68,6 +68,7 @@ return [
         'contact_added' => 'Emailing contact added successfully!',
         'contact_edited' => 'Emailing contact edited successfully!',
         'contact_deleted' => 'Emailing contact deleted successfully!',
+        'error_log' => 'Error logs',
     ],
     'queue' => [
         'emailing_queue' => 'Emailing Queue',

@@ -2,12 +2,12 @@
 $(document).ready(function(){
 
     $('.show-reviews').click(function(){
-        $btn = $(this);
+        let $btn = $(this);
         loadTrackReviewsToModal($btn.data('url'));
     });
 
     $(document).on('click', '.edit-review', function(){
-        $btn = $(this);
+        let $btn = $(this);
         $.ajax({
             url: $btn.data('url'),
             type: 'get',
@@ -34,12 +34,31 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on('change', '[name=show_reviews]', function(){
+        let $checkbox = $(this);
+        $.ajax({
+            url: $checkbox.parent().data('url'),
+            data: {
+                show_reviews: $checkbox[0].checked
+            },
+            success: function(response){
+                $('main').append(utils.getAlertToast(null, response.message, 'text-bg-success', 'status-toast'));
+            },
+            error: function(response){
+                $('main').append(utils.getAlertToast(null, xhr.responseJSON.message, 'text-bg-danger', 'status-toast'));
+            },
+            complete: function(){
+                $('.status-toast').toast('show').on('hidden.bs.toast', fn => ($('.save-review-toast').remove()));
+            }
+        });
+    });
+
     $('#editReviewModal').on('hide.bs.modal', function(){
         $('#trackReviewsModal').modal('show');
     });
 
     $(document).on('click','.save-review', function(){
-        $btn = $(this);
+        let $btn = $(this);
         $.ajax({
             url: $btn.data('url'),
             type: $btn.data('method'),
@@ -104,7 +123,7 @@ function loadTrackReviewsToModal(url){
             $('#trackReviewsModal .modal-title').html('Ревью для <b>'+ response.name +'</b>');
             $('#trackReviewsModal .modal-body').html(response.html);
             $('#trackReviewsModal').modal('show');
-            var reviewsSortable = [];
+            let reviewsSortable = [];
             $('#trackReviewsModal table tbody.sortable').each(function(index, el){
                 reviewsSortable[index] = Sortable.create(el, {
                     handle: ".sort-handle",

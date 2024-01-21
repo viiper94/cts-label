@@ -70,3 +70,8 @@
         </table>
     </div>
 </div>
+<div class="mt-3">
+    <x-checkbox class="mt-2 mb-0" name="show_reviews" :checked="$track->show_reviews" data-url="{{ route('tracks.updateShowReviews', $track->id) }}">
+        @lang('tracks.show_reviews')
+    </x-checkbox>
+</div>

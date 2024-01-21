@@ -180,4 +180,16 @@ class AdminTracksController extends Controller{
         }
     }
 
+    public function updateShowReviews(Request $request, Track $track){
+        if(!$request->ajax()) abort(404);
+        $track->show_reviews = $request->post('show_reviews') === 'true';
+        return $track->save() ?
+            response()->json([
+                'message' => trans('alert.success'),
+            ]) :
+            response()->json([
+                'error' => trans('alert.error'),
+            ], 500);
+    }
+
 }

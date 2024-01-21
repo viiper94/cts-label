@@ -88,7 +88,8 @@
                             <button class="btn btn-sm btn-outline show-reviews" title="@lang('reviews.review')" data-url="{{ route('reviews.show', $track->id) }}">
                                 <i @class([
                                         'bi',
-                                        'bi-star-fill text-primary' => $track->reviews_count > 0 || $track->also_supported_count > 0,
+                                        'bi-star-fill text-primary' => $track->show_reviews && ($track->reviews_count > 0 || $track->also_supported_count > 0),
+                                        'bi-star-fill' => !$track->show_reviews && ($track->reviews_count > 0 || $track->also_supported_count > 0),
                                         'bi-star' => $track->reviews_count == 0 && $track->also_supported_count == 0
                                         ])></i>
                             </button>

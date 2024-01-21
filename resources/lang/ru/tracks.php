@@ -30,6 +30,7 @@ return [
     'beatport_sample' => 'Ссылка на сэмпл на Beatport',
     'beatport_sample_start' => 'Начало сэмпла на Beatport',
     'beatport_sample_end' => 'Окончание сэмпла на Beatport',
+    'show_reviews' => 'Показывать ревью',
     'no_tracks' => 'Пока нет треков',
     'added' => 'Добавлено',
 

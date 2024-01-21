@@ -33,6 +33,7 @@ class Track extends Model implements Auditable{
 
     public $casts = [
         'remixers' => 'array',
+        'show_reviews' => 'boolean',
     ];
 
     public function releases(){

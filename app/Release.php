@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use OwenIt\Auditing\Contracts\Auditable;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\UploadedFile;
@@ -14,6 +15,7 @@ use ZipArchive;
 class Release extends SharedModel implements Auditable{
 
     use \OwenIt\Auditing\Auditable;
+    use HasFactory;
 
     protected $casts = [
         'visible' => 'boolean',

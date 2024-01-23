@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reviews', function(Blueprint $table){
-            $table->dropColumn('track');
-            $table->dropColumn('data');
+            $table->dropColumn(['track', 'data']);
             $table->integer('track_id');
             $table->string('author')->nullable();
             $table->string('location')->nullable();
@@ -31,12 +30,7 @@ return new class extends Migration
         Schema::table('reviews', function(Blueprint $table){
             $table->string('track');
             $table->longText('data');
-            $table->dropColumn('track_id');
-            $table->dropColumn('author');
-            $table->dropColumn('location');
-            $table->dropColumn('review');
-            $table->dropColumn('score');
-            $table->dropColumn('source');
+            $table->dropColumn(['track_id', 'author', 'location', 'review', 'score', 'source']);
         });
     }
 };

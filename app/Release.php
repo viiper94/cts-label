@@ -64,8 +64,8 @@ class Release extends SharedModel implements Auditable{
         'is_emailing_done',
     ];
 
-    public function __construct(){
-        parent::__construct();
+    public function __construct(array $attributes = []){
+        parent::__construct($attributes);
         $this->tracklist_show_artist = true;
         $this->tracklist_show_title = true;
         $this->tracklist_show_mix = true;

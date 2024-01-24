@@ -111,8 +111,13 @@ class Release extends SharedModel implements Auditable{
 
     public static function generateReleaseNumber(): string{
         $last = Release::select('release_number')->where('release_number', 'like', 'CTS%')->latest()->first();
-        preg_match('/CTS([0-9]{1,3})([0-9]{2})3/', $last->release_number, $matches);
-        return 'CTS'.((int)$matches[1]+1).date('y').'3';
+        if($last){
+            preg_match('/CTS([0-9]{1,3})([0-9]{2})3/', $last->release_number, $matches);
+            $new = (int)$matches[1]+1;
+        }else{
+            $new = 1;
+        }
+        return 'CTS'.str_pad($new, 3, '0', STR_PAD_LEFT).date('y').'3';
     }
 
     public function getStore(): ?string{

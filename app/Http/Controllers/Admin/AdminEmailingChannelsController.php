@@ -37,10 +37,10 @@ class AdminEmailingChannelsController extends Controller{
             'template' => 'nullable|string|max:191',
             'lang' => 'required|string|max:191',
             'smtp_host' => 'nullable|string|max:191',
-            'smtp_port' => 'numeric|required_if:smtp_host|max:191',
-            'smtp_username' => 'string|required_if:smtp_host|max:191',
-            'smtp_password' => 'string|required_if:smtp_host|max:191',
-            'smtp_encryption' => 'string|required_if:smtp_host|max:191',
+            'smtp_port' => 'nullable|required_unless:smtp_host,null|numeric',
+            'smtp_username' => 'nullable|string|required_unless:smtp_host,null|max:191',
+            'smtp_password' => 'nullable|string|required_unless:smtp_host,null|max:191',
+            'smtp_encryption' => 'nullable|string|required_unless:smtp_host,null|max:191',
         ]);
         $channel = new EmailingChannel();
         $channel->fill($request->post());
@@ -69,10 +69,10 @@ class AdminEmailingChannelsController extends Controller{
             'template' => 'nullable|string|max:191',
             'lang' => 'required|string|max:191',
             'smtp_host' => 'nullable|string|max:191',
-            'smtp_port' => 'numeric|required_if:smtp_host|max:191',
-            'smtp_username' => 'string|required_if:smtp_host|max:191',
-            'smtp_password' => 'string|required_if:smtp_host|max:191',
-            'smtp_encryption' => 'string|required_if:smtp_host|max:191',
+            'smtp_port' => 'nullable|required_unless:smtp_host,null|numeric',
+            'smtp_username' => 'nullable|string|required_unless:smtp_host,null|max:191',
+            'smtp_password' => 'nullable|string|required_unless:smtp_host,null|max:191',
+            'smtp_encryption' => 'nullable|string|required_unless:smtp_host,null|max:191',
         ]);
         $channel->fill($request->post());
         return $channel->save()

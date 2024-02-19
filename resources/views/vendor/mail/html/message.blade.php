@@ -24,7 +24,7 @@
 <x-slot:footer>
 <x-mail::footer>
 @if($hash)
-<a href="{{ route('unsubscribe', $hash) }}" target="_blank">@lang('emailing.unsubscribe.unsubscribe_from_letters')</a>
+<a href="{{ route('unsubscribe', $hash) }}">@lang('emailing.unsubscribe.unsubscribe_from_letters')</a>
 @endif
 
 © {{ date('Y') }} {{ config('app.name') }}. @lang('footer.copyright')

@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Headers;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Crypt;
 
@@ -27,6 +28,17 @@ class Emailing extends Mailable{
         return new Envelope(
             from: new Address($this->mail->from, $this->mail->from_name ?? 'CTS Records'),
             subject: $this->getSubject()
+        );
+    }
+
+    public function headers() :Headers{
+        $header = array();
+        if($this->mail->unsubscribe) $header = [
+            'List-Unsubscribe-Post' => 'List-Unsubscribe=One-Click',
+            'List-Unsubscribe' => '<mailto:'.$this->mail->from.'?subject=unsubscribe>, <'.route('unsubscribe', $this->hash).'>',
+        ];
+        return new Headers(
+            text: $header,
         );
     }
 

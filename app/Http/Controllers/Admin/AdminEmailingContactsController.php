@@ -79,7 +79,7 @@ class AdminEmailingContactsController extends Controller{
 
     public function update(Request $request, EmailingContact $contact){
         $this->validate($request, [
-            'email' => ['required', 'email', Rule::unique('email_contacts')->ignore($contact), ['max', 191]],
+            'email' => ['required', 'email', Rule::unique('email_contacts', 'email')->ignore($contact->id), ['max', 191]],
             'name' => 'required|string|max:191',
             'full_name' => 'nullable|string|max:191',
             'company' => 'nullable|string',

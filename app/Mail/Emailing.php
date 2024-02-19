@@ -15,7 +15,13 @@ class Emailing extends Mailable{
 
     use Queueable, SerializesModels;
 
-    public function __construct(public $mail){}
+    public string|bool $hash = false;
+
+    public function __construct(public $mail){
+        if($this->mail->unsubscribe){
+            $this->hash = $this->getHash();
+        }
+    }
 
     public function envelope(){
         return new Envelope(
@@ -29,7 +35,7 @@ class Emailing extends Mailable{
             markdown: $this->getView(),
             with: [
                 'name' => $this->mail->name,
-                'hash' => $this->getHash()
+                'hash' => $this->hash
             ]
         );
     }

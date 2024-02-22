@@ -88,40 +88,42 @@
     </div>
 
 
-    <div class="modal fade" id="testContactsModal" tabindex="-1" aria-labelledby="testContactsModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <form action="{{ route('emailing.channels.start.test') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="channel" value="">
-                    <div class="modal-header">
-                        <h5 class="mb-0">@lang('emailing.channels.pick_addresses_for_test')</h5>
-                        <button type="button" class="btn btn-outline ms-3" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        @foreach($channels->firstWhere('id', 1)->subscribers as $key => $item)
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" name="test_emails[{{ $item->name }}]" value="{{ $item->email }}" id="test_email_{{ $key }}">
-                                <label for="test_email_{{ $key }}" class="form-check-label">{{ $item->email }}</label>
+    @if($channels->firstWhere('id', 1))
+        <div class="modal fade" id="testContactsModal" tabindex="-1" aria-labelledby="testContactsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <form action="{{ route('emailing.channels.start.test') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="channel" value="">
+                        <div class="modal-header">
+                            <h5 class="mb-0">@lang('emailing.channels.pick_addresses_for_test')</h5>
+                            <button type="button" class="btn btn-outline ms-3" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            @foreach($channels->firstWhere('id', 1)->subscribers as $key => $item)
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name="test_emails[{{ $item->name }}]" value="{{ $item->email }}" id="test_email_{{ $key }}">
+                                    <label for="test_email_{{ $key }}" class="form-check-label">{{ $item->email }}</label>
+                                </div>
+                            @endforeach
+                            <div class="btn-group mt-3">
+                                <button type="button" id="select-all-emails" class="btn btn-sm btn-outline">
+                                    <i class="bi bi-check-square me-2"></i>@lang('emailing.channels.check_all')
+                                </button>
+                                <button type="button" id="deselect-all-emails" class="btn btn-sm btn-outline">
+                                    <i class="bi bi-square me-2"></i>@lang('emailing.channels.uncheck_all')
+                                </button>
                             </div>
-                        @endforeach
-                        <div class="btn-group mt-3">
-                            <button type="button" id="select-all-emails" class="btn btn-sm btn-outline">
-                                <i class="bi bi-check-square me-2"></i>@lang('emailing.channels.check_all')
-                            </button>
-                            <button type="button" id="deselect-all-emails" class="btn btn-sm btn-outline">
-                                <i class="bi bi-square me-2"></i>@lang('emailing.channels.uncheck_all')
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-primary">
+                                <i class="fa-solid fa-check me-2"></i>@lang('emailing.channels.send_test')
                             </button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-primary">
-                            <i class="fa-solid fa-check me-2"></i>@lang('emailing.channels.send_test')
-                        </button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
 @endsection

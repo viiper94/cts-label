@@ -57,7 +57,9 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-7">
                         <h1 class="release-title">{{ $release->title }}</h1>
-                        <h2 class="release-number"><strong>@lang('releases.release_number') </strong>{{ $release->release_number }}</h2>
+                        @if($release->release_number)
+                            <h2 class="release-number"><strong>@lang('releases.release_number') </strong>{{ $release->release_number }}</h2>
+                        @endif
                         @if($release->release_date)
                             <h2 class="release-date"><strong>@lang('releases.release_date') </strong>{{ $release->release_date->format('j F Y') }}</h2>
                         @endif

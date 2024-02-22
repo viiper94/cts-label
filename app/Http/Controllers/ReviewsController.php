@@ -16,6 +16,7 @@ class ReviewsController extends Controller{
                     $q->orderBy('sort_id');
                 }])
                 ->has('reviews')
+                ->where('show_reviews', 1)
                 ->orderBy('isrc', 'desc')
                 ->paginate(2)
                 ->onEachSide(1)

@@ -5,8 +5,6 @@
     <script type="text/javascript" src="{{ mix('js/release_player.js') }}"></script>
 @endsection
 
-@section('description', htmlspecialchars_decode(str_replace('&nbsp;', ' ', strip_tags($release['description_'.$release->detectActiveDescriptionLang()]))))
-
 @section('meta')
     <link rel="canonical" href="https://cts-label.com/releases/{{ $release->id }}">
     <!-- OG Meta tags -->

@@ -65,10 +65,12 @@
                                     </button>
                                 </form>
                             @else
-                                <button class="debug-email-btn btn btn-sm btn-outline" data-bs-toggle="modal" data-bs-target="#testContactsModal"
-                                        data-channel="{{ $channel->id }}" title="@lang('emailing.channels.debug')">
-                                    <i class="fa-solid fa-bug"></i>
-                                </button>
+                                @if($channels->firstWhere('id', 1))
+                                    <button class="debug-email-btn btn btn-sm btn-outline" data-bs-toggle="modal" data-bs-target="#testContactsModal"
+                                            data-channel="{{ $channel->id }}" title="@lang('emailing.channels.debug')">
+                                        <i class="fa-solid fa-bug"></i>
+                                    </button>
+                                @endif
                                 <form action="{{ route('emailing.channels.start') }}" method="post" class="d-inline">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $channel->id }}">

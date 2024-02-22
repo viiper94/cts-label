@@ -29,6 +29,7 @@
 @endsection
 
 @section('meta')
+    <meta name="description" content="CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.">
     <link rel="canonical" @if(Request::input('page'))href="https://cts-label.com/?page={{ Request::input('page') }}" @else href="https://cts-label.com" @endif>
     <!-- OG Meta tags -->
     <meta property="og:title" content="CTS Records">

@@ -68,7 +68,8 @@
         {
         "@type": "MusicAlbum",
         "name": "{{ $release->title }}",
-        "image": "{{ url('/') }}/images/releases/{{ $release->image }}",
+        @if($release->image) "image": "{{ url('/') }}/images/releases/{{ $release->image }}",
+        @endif
         @if($release->genre) "genre": "{{ $release->genre }}",
         @endif
         @if($release->release_date) "releaseDate": "{{ $release->release_date->format('Y-m-d') }}",

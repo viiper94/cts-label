@@ -311,6 +311,7 @@ $(document).ready(function(){
                 }else{
                     $(response.html).appendTo($('.tracks table tbody')[0]);
                 }
+                $('.no-tracks-row').remove();
             }
         });
     }

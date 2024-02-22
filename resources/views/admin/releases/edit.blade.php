@@ -168,7 +168,7 @@
                                 @forelse($release->tracks as $track)
                                     @include('admin.tracks.release_tracklist_item', compact('track'))
                                 @empty
-                                    <tr>
+                                    <tr class="no-tracks-row">
                                         <td></td>
                                         <td colspan="8" class="text-center">
                                             @lang('releases.track.no_tracks')

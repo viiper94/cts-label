@@ -9,9 +9,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 
 class EmailingContact extends Model implements Auditable{
 
-    use \OwenIt\Auditing\Auditable;
-
-    use SoftDeletes;
+    use \OwenIt\Auditing\Auditable, SoftDeletes, HasFactory;
 
     protected $table = 'email_contacts';
 

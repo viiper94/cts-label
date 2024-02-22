@@ -8,7 +8,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 
 class EmailingChannel extends Model implements Auditable{
 
-    use \OwenIt\Auditing\Auditable;
+    use \OwenIt\Auditing\Auditable, HasFactory;
 
     protected $table = 'email_channels';
 
@@ -32,7 +32,8 @@ class EmailingChannel extends Model implements Auditable{
         'unsubscribe' => 'boolean'
     ];
 
-    public function __construct(){
+    public function __construct(array $attributes = []){
+        parent::__construct($attributes);
         $this->from = 'info@cts-studio.com';
         $this->from_name = 'CTS Records';
     }

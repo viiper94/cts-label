@@ -45,7 +45,7 @@ class AdminEmailingChannelsController extends Controller{
         $channel = new EmailingChannel();
         $channel->fill($request->post());
         if($channel->save()){
-            if($request->post('add_all') === 'on'){
+            if($request->post('add_all')){
                 $contacts = EmailingContact::pluck('id')->toArray();
                 $channel->subscribers()->attach($contacts);
             }

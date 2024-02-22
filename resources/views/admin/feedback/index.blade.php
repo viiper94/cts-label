@@ -60,7 +60,7 @@
             @endforeach
         </div>
         <div class="justify-content-center d-flex my-3">
-            {{ $feedback_list->appends(['q' => Request::input('q')])->links() }}
+            {{ $feedback_list->appends(['q' => Request::input('q')])->links('admin.layout.pagination') }}
         </div>
 
     </div>

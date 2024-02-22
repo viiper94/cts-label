@@ -117,7 +117,8 @@ class AdminEmailingChannelsController extends Controller{
                     'smtp_encryption' => $channel->smtp_encryption,
                 ]);
             }
-            return redirect()->back()->with(['success' => trans('emailing.channels.emailing_started')]);
+            return redirect()->route('emailing.channels.index')
+                ->with(['success' => trans('emailing.channels.emailing_started')]);
         }
         abort(403);
     }
@@ -142,7 +143,8 @@ class AdminEmailingChannelsController extends Controller{
                 'smtp_encryption' => $channel->smtp_encryption,
             ]);
         }
-        return redirect()->back()->with(['success' => trans('emailing.channels.test_emailing_started')]);
+        return redirect()->route('emailing.channels.index')
+            ->with(['success' => trans('emailing.channels.test_emailing_started')]);
     }
 
     public function export(EmailingChannel $channel){

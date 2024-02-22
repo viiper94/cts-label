@@ -119,7 +119,7 @@
                             </button>
                         </div>
                         <div class="release-tracklist mb-md-0 mb-3">
-                            @if($release->tracks)
+                            @if(count($release->tracks) > 0)
                                 <h2 class="fw-bold">@lang('releases.tracklist')</h2>
                                 @if($release->tracklist_show_custom)
                                     {!! $release->tracklist !!}

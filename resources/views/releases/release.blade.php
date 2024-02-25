@@ -157,7 +157,7 @@
                 @if(count($release->related) > 0)
                     <div class="row py-5">
                         <div class="col-12 release-related">
-                            <h2 class="mb-3">@lang('releases.related_releases')</h2>
+                            <h2 class="fw-bold">@lang('releases.related_releases')</h2>
                             <div class="row g-0">
                                 @foreach($release->related as $item)
                                     <div class="col-4 g-2">

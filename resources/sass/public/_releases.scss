@@ -104,6 +104,7 @@
     .release-tracklist{
         color: $primary-text-darker;
         min-height: 378px;
+        white-space: nowrap;
         @media (max-width: $md) {
             min-height: auto;
         }

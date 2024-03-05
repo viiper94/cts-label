@@ -35,20 +35,34 @@
                         <p class="help-block text-danger">{{ $message }}</p>
                     @enderror
                     <div class="row d-none d-md-flex pt-5">
-                        <div class="col-6 text-end">
+                        <div class="col-6">
                             @if($next)
-                                <p class="mb-0">@lang('releases.next_release')</p>
-                                <a href="{{ route('releases.edit', $next->id) }}">
-                                    <img src="/images/releases/{{ $next->image }}" title="{{ $next->title }}" class="img-fluid" style="width: 100px;">
-                                </a>
+                                <div class="card text-bg-dark">
+                                    <div class="card-header text-end">
+                                        @lang('releases.next_release')
+                                    </div>
+                                    <div class="card-body p-0 d-flex justify-content-end">
+                                        <a href="{{ route('releases.edit', $next->id) }}" class="d-flex align-items-center">
+                                            <i class="fa-solid fa-angles-left me-3" style="font-size: 50px"></i>
+                                            <img src="/images/releases/{{ $next->image ?? 'default.png' }}" title="{{ $next->title }}" class="img-fluid" style="width: 93px;">
+                                        </a>
+                                    </div>
+                                </div>
                             @endif
                         </div>
                         <div class="col-6">
                             @if($prev)
-                                <p class="mb-0">@lang('releases.prev_release')</p>
-                                <a href="{{ route('releases.edit', $prev->id) }}">
-                                    <img src="/images/releases/{{ $prev->image }}" title="{{ $prev->title }}" class="img-fluid" style="width: 100px;">
-                                </a>
+                                <div class="card text-bg-dark">
+                                    <div class="card-header">
+                                        @lang('releases.prev_release')
+                                    </div>
+                                    <div class="card-body p-0 d-flex">
+                                        <a href="{{ route('releases.edit', $prev->id) }}" class="d-flex align-items-center">
+                                            <img src="/images/releases/{{ $prev->image ?? 'default.png' }}" title="{{ $prev->title }}" class="img-fluid" style="width: 93px;">
+                                            <i class="fa-solid fa-angles-right ms-3" style="font-size: 50px"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             @endif
                         </div>
                     </div>

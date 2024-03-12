@@ -4,9 +4,10 @@ namespace Tests\Feature;
 
 use App\EmailingChannel;
 use App\EmailingContact;
+use App\EmailingQueue;
+use App\Mail\Emailing;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Psy\Util\Str;
 use Tests\TestCase;
 
 class AdminEmailingChannelsTest extends TestCase{
@@ -91,6 +92,26 @@ class AdminEmailingChannelsTest extends TestCase{
 
         $channel = EmailingChannel::withCount('subscribers')->find($channel_id_to_test);
         $this->assertDatabaseCount('email_queue', $channel->subscribers_count);
+
+        $this->assertDatabaseHas('email_queue', [
+            'channel_id' => $channel_id_to_test,
+            'subject' => $channel->subject,
+            'from' => $channel->from,
+            'from_name' => $channel->from_name,
+            'template' => $channel->template ?? 'custom',
+            'unsubscribe' => $channel->unsubscribe ? 1 : 0,
+            'smtp_host' => $channel->smtp_host,
+            'smtp_port' => $channel->smtp_port,
+            'smtp_username' => $channel->smtp_username,
+            'smtp_password' => $channel->smtp_password,
+            'smtp_encryption' => $channel->smtp_encryption,
+        ]);
+
+        $queueItem = EmailingQueue::first();
+        $mailable = new Emailing($queueItem);
+        $mailable->assertFrom($channel->from, $channel->from_name);
+        $mailable->assertHasSubject($channel->subject);
+
     }
 
     public function test_create_channel_page(){
@@ -134,7 +155,7 @@ class AdminEmailingChannelsTest extends TestCase{
     }
 
     public function test_creating_simple_channel_request(){
-        EmailingChannel::factory()->create();
+        EmailingChannel::factory()->create(['id' => 1]);
 
         $response = $this
             ->actingAs($this->user)
@@ -157,7 +178,7 @@ class AdminEmailingChannelsTest extends TestCase{
     }
 
     public function test_creating_simple_channel_with_all_contacts_request(){
-        EmailingChannel::factory()->create();
+        EmailingChannel::factory(['id' => 1])->create();
         EmailingContact::factory(100)->create();
 
         $response = $this
@@ -189,7 +210,7 @@ class AdminEmailingChannelsTest extends TestCase{
     }
 
     public function test_updating_channel_page(){
-        EmailingChannel::factory()->create();
+        EmailingChannel::factory()->create(['id' => 1]);
         $channel_to_test = EmailingChannel::factory()->simple()->create();
 
         $response = $this
@@ -209,7 +230,7 @@ class AdminEmailingChannelsTest extends TestCase{
     }
 
     public function test_updating_channel_request(){
-        EmailingChannel::factory()->create();
+        EmailingChannel::factory()->create(['id' => 1]);
         $channel_to_test = EmailingChannel::factory()->simple()->create();
 
         $channel_data = [
@@ -245,7 +266,7 @@ class AdminEmailingChannelsTest extends TestCase{
     }
 
     public function test_deleting_channel(){
-        EmailingChannel::factory()->create();
+        EmailingChannel::factory()->create(['id' => 1]);
         $channel_to_test = EmailingChannel::factory()->simple()->create();
 
         $response = $this

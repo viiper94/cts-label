@@ -25,4 +25,7 @@ class FeedbackResult extends Model implements Auditable{
         'status' => FeedbackResultStatus::class
     ];
 
+    public function feedback(){
+        return $this->belongsTo(Feedback::class);
+    }
 }

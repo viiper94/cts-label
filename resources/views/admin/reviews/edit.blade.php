@@ -5,13 +5,7 @@
     </div>
     <div class="form-group mb-3 location-form-group">
         <label class="form-label">@lang('reviews.location'):</label>
-        <div class="input-group">
-            <input type="text" class="form-control form-dark" name="location" value="{{ $review->location }}">
-            <button type="button" class="btn btn-outline save-author-location border-0" style="display: none"
-                    data-url="">
-                <i class="fa-solid fa-arrows-rotate"></i>
-            </button>
-        </div>
+        <input type="text" class="form-control form-dark" name="location" value="{{ $review->location }}">
     </div>
     <div class="form-group mb-3">
         <label class="form-label">@lang('reviews.review'):</label>

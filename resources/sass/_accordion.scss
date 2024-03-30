@@ -1,5 +1,8 @@
 // Accordion
 .accordion{
+    .accordion-button:not(.collapsed){
+        box-shadow: none;
+    }
     .accordion-button.text-bg-dark{
         &::after{
             font-family: "Font Awesome 6 Free";

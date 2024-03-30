@@ -76,4 +76,50 @@ $(document).ready(function(){
         $('#'+$(this).data('target')).show();
     });
 
+    $('.process-review-btn').click(function(){
+        let $button = $(this);
+        $.ajax({
+            type: 'GET',
+            url: $button.data('url'),
+            success: function(response){
+                $('#editReviewModal .modal-content').html(response.html);
+                let starRatingConfig = {
+                    min: 0,
+                    max: 5,
+                    step: 1,
+                    showCaption: false,
+                    size: 'sm',
+                    emptyStar: '<i class="fa-regular fa-star"></i>',
+                    filledStar: '<i class="fa-solid fa-star"></i>',
+                    animate: false,
+                    showClear: false,
+                }
+                $('.star-rating').rating(starRatingConfig);
+                $('#editReviewModal').modal('show');
+            }
+        });
+    });
+
+    $(document).on('click', '.mark-accepted-btn, .decline-btn', function(){
+        let action = $(this).data('action');
+        let url = $(this).data('url');
+        $.ajax({
+            data: {
+                action: action
+            },
+            type: 'post',
+            url: url,
+            success: function(response){
+                $('main').append(utils.getAlertToast(null, response.message, 'text-bg-success', 'save-review-toast'));
+            },
+            error: function(xhr){
+                $('main').append(utils.getAlertToast(null, xhr.responseJSON.message, 'text-bg-danger', 'save-review-toast'));
+            },
+            complete: function(){
+                $('#editReviewModal').modal('hide');
+                $('.save-review-toast').toast('show').on('hidden.bs.toast', fn => ($('.save-review-toast').remove()));
+            }
+        });
+    });
+
 });

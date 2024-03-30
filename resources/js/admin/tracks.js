@@ -63,7 +63,8 @@ $(document).ready(function(){
             url: $btn.data('url'),
             type: $btn.data('method'),
             data: {
-                track_id: $('#editReviewModal input[name=track_id]').val(),
+                result_accept: $('#editReviewModal [name=result_accept]').val(),
+                track_id: $('#editReviewModal [name=track_id]').val(),
                 author: $('#editReviewModal input[name=author]').val().trim(),
                 location: $('#editReviewModal input[name=location]').val().trim(),
                 score: $('#editReviewModal input[name=score]').val(),
@@ -93,11 +94,9 @@ $(document).ready(function(){
                 data: {
                     query: input.val()
                 },
-                beforeSend: function(){
-                },
                 success: function(response){
                     $('.location-form-group .author-locations').remove();
-                    $('.location-form-group .input-group').after(response.html);
+                    $('.location-form-group input').after(response.html);
                 }
             });
         }else if(input.val().length === 0){

@@ -109,7 +109,7 @@ class AdminReviewsController extends Controller{
 
     public function search(Request $request){
         if(!$request->ajax() && $request->post('query')) abort(403);
-        $reviews = Review::select('author', 'location')->where('author', 'like', '%'.$request->post('query').'%')->distinct()->get();
+        $reviews = Review::searchAuthorLocation($request->post('query'));
         return response()->json([
             'html' => view('admin.reviews.author_locations', compact('reviews'))->render(),
         ]);

@@ -27,4 +27,8 @@ class Review extends SharedModel implements Auditable{
         return json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 
+    public static function searchAuthorLocation($query){
+        return Review::select('author', 'location')->where('author', 'like', '%'.$query.'%')->distinct()->get();
+    }
+
 }

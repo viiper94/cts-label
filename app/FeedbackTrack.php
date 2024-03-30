@@ -2,11 +2,12 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use OwenIt\Auditing\Contracts\Auditable;
 
 class FeedbackTrack extends SharedModel implements Auditable{
 
-    use \OwenIt\Auditing\Auditable;
+    use \OwenIt\Auditing\Auditable, HasFactory;
 
     public $fillable = [
         'name',

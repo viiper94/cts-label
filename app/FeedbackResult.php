@@ -8,7 +8,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 
 class FeedbackResult extends Model implements Auditable{
 
-    use \OwenIt\Auditing\Auditable;
+    use \OwenIt\Auditing\Auditable, HasFactory;
 
     protected $fillable = [
         'name',

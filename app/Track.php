@@ -4,12 +4,13 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 
 class Track extends Model implements Auditable{
 
-    use \OwenIt\Auditing\Auditable;
+    use \OwenIt\Auditing\Auditable, HasFactory;
 
     public $fillable = [
         'artists',

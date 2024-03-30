@@ -28,4 +28,9 @@ class FeedbackResult extends Model implements Auditable{
     public function feedback(){
         return $this->belongsTo(Feedback::class);
     }
+
+    public function getBestTrackScore() :int{
+        return $this->rates[$this->best_track];
+    }
+
 }

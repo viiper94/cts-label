@@ -21,3 +21,19 @@
     height: 298px;
     overflow-y: scroll;
 }
+#editReviewModal{
+    .author-locations{
+        small{
+            display: block;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 450px;
+            a{
+                cursor: pointer;
+                color: $text-muted;
+            }
+        }
+    }
+}

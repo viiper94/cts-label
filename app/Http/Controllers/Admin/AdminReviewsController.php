@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\FeedbackResultStatus;
+use App\FeedbackResult;
 use App\Http\Controllers\Controller;
 use App\Review;
 use App\Track;
@@ -43,17 +45,24 @@ class AdminReviewsController extends Controller{
             'source' => 'nullable|string|max:191',
             'review' => 'nullable|required_with:score|string',
             'score' => 'nullable|required_with:review|numeric',
+            'result_accept' => 'nullable|numeric',
         ]);
         $review = new Review();
         $review->fill($request->post()+[
             'sort_id' => 0
             ]);
-        return $review->save() ?
-            response()->json([
+        if($review->save()){
+            if($request->post('result_accept')){
+                $result = FeedbackResult::find($request->post('result_accept'));
+                $result->status = FeedbackResultStatus::ACCEPTED;
+                $result->save();
+            }
+            return response()->json([
                 'message' => trans('reviews.added_successfully'),
                 'url' => route('reviews.show', $review->track_id)
-            ]) :
-            response()->json([
+            ]);
+        }
+        return response()->json([
                 'message' => trans('alert.error'),
             ], status:500);
     }

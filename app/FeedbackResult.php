@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Enums\FeedbackResultStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Mail;
 use OwenIt\Auditing\Contracts\Auditable;

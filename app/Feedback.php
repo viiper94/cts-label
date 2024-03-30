@@ -10,7 +10,7 @@ use ZipArchive;
 
 class Feedback extends SharedModel implements Auditable{
 
-    use \OwenIt\Auditing\Auditable;
+    use \OwenIt\Auditing\Auditable, HasFactory;
 
     protected $table = 'feedback';
     protected $casts = [

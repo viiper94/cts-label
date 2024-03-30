@@ -152,6 +152,7 @@
                         <h2 class="accordion-header" id="heading_{{ $key }}">
                             <button class="accordion-button text-bg-dark" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapse_{{ $key }}" aria-expanded="true" aria-controls="collapse_{{ $key }}">
+                                <i class="{{ $result->status->getStarClass() }} me-2"></i>
                                 <b>{{ $result->name }}</b>&nbsp;<i>({{ $result->created_at }})</i>
                             </button>
                         </h2>
@@ -173,6 +174,9 @@
                                 <form action="{{ route('feedback.result.destroy', $result->id) }}" method="post" class="mt-3">
                                     @csrf
                                     @method('DELETE')
+                                    <button type="button" class="btn btn-sm btn-outline-success process-review-btn" data-url="{{ route('feedback.result.add', $result->id) }}">
+                                        <i class="fa-solid fa-star me-2"></i>@lang('feedback.replies.process_review')
+                                    </button>
                                     <button type="submit" class="delete-feedback-result-btn btn btn-outline-danger btn-sm"
                                        onclick="return confirm('@lang('shared.admin.are_you_sure_to_delete')?')">
                                         <i class="fa-solid fa-trash me-2"></i>@lang('shared.admin.delete')
@@ -214,6 +218,14 @@
                         <button type="submit" class="btn btn-primary"><i class="fa-solid fa-play me-2"></i>@lang('feedback.emailing.start_emailing')</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editReviewModal" tabindex="-1" aria-labelledby="editReviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
             </div>
         </div>
     </div>

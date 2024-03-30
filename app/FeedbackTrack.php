@@ -19,7 +19,7 @@ class FeedbackTrack extends SharedModel implements Auditable{
     private $audioDir = 'audio/feedback';
 
     public function track(){
-        return $this->hasOne(Track::class);
+        return $this->belongsTo(Track::class);
     }
 
     public function feedback(){

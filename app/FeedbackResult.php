@@ -16,9 +16,11 @@ class FeedbackResult extends Model implements Auditable{
         'comment',
         'rates',
         'best_track',
+        'status'
     ];
     protected $casts = [
         'rates' => 'array',
+        'status' => FeedbackResultStatus::class
     ];
 
 }

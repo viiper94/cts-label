@@ -46,6 +46,16 @@ return [
     'replies' => [
         'replies' => 'Replies',
         'scores' => 'Scores',
+        'process_review' => 'Process review',
+        'select_track' => 'Select track',
+        'mark_accepted' => 'Mark as Accepted',
+        'decline' => 'Decline',
+    ],
+
+    'status' => [
+        'new' => 'New',
+        'accepted' => 'Accepted',
+        'rejected' => 'Rejected',
     ],
 
     'emailing' => [

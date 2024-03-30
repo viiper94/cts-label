@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\AdminEmailingChannelsController;
 use App\Http\Controllers\Admin\AdminEmailingContactsController;
 use App\Http\Controllers\Admin\AdminEmailingQueueController;
 use App\Http\Controllers\Admin\AdminFeedbackController;
+use App\Http\Controllers\Admin\AdminFeedbackResultController;
 use App\Http\Controllers\Admin\AdminReleasesController;
 use App\Http\Controllers\Admin\AdminReviewsController;
 use App\Http\Controllers\Admin\AdminSchoolCoursesController;
@@ -123,12 +124,15 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/studio/resort', [AdminStudioController::class, 'resort'])->name('studio.resort');
         Route::resource('/studio', AdminStudioController::class)->except(['show']);
 
+        Route::get('/feedback/result/add/{result}', [AdminFeedbackResultController::class, 'add'])->name('feedback.result.add');
+        Route::post('/feedback/result/modify/{result}', [AdminFeedbackResultController::class, 'modify'])->name('feedback.result.modify');
+        Route::delete('/feedback/result/destroy/{result}', [AdminFeedbackResultController::class, 'destroy'])->name('feedback.result.destroy');
+
         Route::post('/feedback/peaks', [AdminFeedbackController::class, 'peaks'])->name('feedback.peaks');
         Route::post('/feedback/template', [AdminFeedbackController::class, 'getTemplate'])->name('feedback.template');
         Route::post('/feedback/emailing', [AdminFeedbackController::class, 'emailing'])->name('feedback.emailing');
         Route::get('/feedback/create/{release?}', [AdminFeedbackController::class, 'create'])->name('feedback.create');
         Route::post('/feedback/store/{release?}', [AdminFeedbackController::class, 'store'])->name('feedback.store');
-        Route::delete('/feedback/result/destroy/{result}', [AdminFeedbackController::class, 'destroyResult'])->name('feedback.result.destroy');
         Route::delete('/feedback/track/destroy/{track}', [AdminFeedbackController::class, 'destroyTrack'])->name('feedback.track.destroy');
         Route::resource('/feedback', AdminFeedbackController::class)->except(['show', 'create', 'store']);
 

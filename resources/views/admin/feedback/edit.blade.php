@@ -174,9 +174,11 @@
                                 <form action="{{ route('feedback.result.destroy', $result->id) }}" method="post" class="mt-3">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-sm btn-outline-success process-review-btn" data-url="{{ route('feedback.result.add', $result->id) }}">
-                                        <i class="fa-solid fa-star me-2"></i>@lang('feedback.replies.process_review')
-                                    </button>
+                                    @if($result->status === \App\Enums\FeedbackResultStatus::NEW)
+                                        <button type="button" class="btn btn-sm btn-outline-success process-review-btn" data-url="{{ route('feedback.result.add', $result->id) }}">
+                                            <i class="fa-solid fa-star me-2"></i>@lang('feedback.replies.process_review')
+                                        </button>
+                                    @endif
                                     <button type="submit" class="delete-feedback-result-btn btn btn-outline-danger btn-sm"
                                        onclick="return confirm('@lang('shared.admin.are_you_sure_to_delete')?')">
                                         <i class="fa-solid fa-trash me-2"></i>@lang('shared.admin.delete')

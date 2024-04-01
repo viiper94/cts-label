@@ -18,7 +18,6 @@ class AdminFeedbackResultController extends Controller{
         $track = $this->getTrack($result);
         $release = $this->getRelease($result);
         return response()->json([
-            'df' => Review::searchAuthorLocation(trim($result->name)),
             'html' => view('admin.feedback.add_review', [
                 'result' => $result,
                 'track' => $track,

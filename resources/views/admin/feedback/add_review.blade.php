@@ -1,6 +1,6 @@
 <div class="modal-header">
     <div class="form-group">
-        <select class="form-select text-bg-dark" aria-label="Default select example" name="track_id">
+        <select class="form-select text-bg-dark" name="track_id">
             <option selected disabled>@lang('feedback.replies.select_track')</option>
             @foreach($release?->tracks ?? [$track] as $item)
                 <option value="{{ $item->id }}" @if($track->id === $item->id) selected @endif>

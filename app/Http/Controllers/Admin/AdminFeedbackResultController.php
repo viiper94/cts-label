@@ -62,15 +62,17 @@ class AdminFeedbackResultController extends Controller{
                 ->where('feedback_id', $result->feedback_id)->first();
         }
 
-        if($ftrack->track){
-            return $ftrack->track;
-        }else{
-            $pattern = '/^(?<artist>[^-]*)(?: - )(?<title>.+?)(?: \((?<mix>.+?)\))?$/';
-            if(preg_match($pattern, $ftrack->name, $matches)){
-                $query = Track::where('artists', 'like', '%' . $matches['artist'] . '%')
-                    ->where('name', 'like', '%' . $matches['title'] . '%');
-                if(isset($matches['mix'])) $query = $query->where('mix_name', 'like', '%' . $matches['mix'] . '%');
-                return $query->first();
+        if($ftrack){
+            if($ftrack->track){
+                return $ftrack->track;
+            }else{
+                $pattern = '/^(?<artist>[^-]*)(?: - )(?<title>.+?)(?: \((?<mix>.+?)\))?$/';
+                if(preg_match($pattern, $ftrack->name, $matches)){
+                    $query = Track::where('artists', 'like', '%' . $matches['artist'] . '%')
+                        ->where('name', 'like', '%' . $matches['title'] . '%');
+                    if(isset($matches['mix'])) $query = $query->where('mix_name', 'like', '%' . $matches['mix'] . '%');
+                    return $query->first();
+                }
             }
         }
         return false;

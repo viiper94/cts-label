@@ -44,8 +44,20 @@ return [
     'description_ru' => 'Опис (RU)',
 
     'replies' => [
+        'feedback_result_deleted' => 'Відповідь успішно видалена!',
         'replies' => 'Відповіді',
         'scores' => 'Бали',
+        'process_review' => 'Дії з ревью',
+        'select_track' => 'Оберіть трек',
+        'mark_accepted' => 'Помітити прийнятим',
+        'decline' => 'Відхилити',
+        'are_you_sure' => 'Ревью не буде додано. Ви впевнені?'
+    ],
+
+    'status' => [
+        'new' => 'Нова',
+        'accepted' => 'Прийнято',
+        'rejected' => 'Відхилено',
     ],
 
     'emailing' => [
@@ -57,6 +69,5 @@ return [
     'feedback_added' => 'Фідбек успішно даданий!',
     'feedback_edited' => 'Фідбек успішно відредагований!',
     'feedback_deleted' => 'Фідбек успішно видалений!',
-    'feedback_result_deleted' => 'Відповідь успішно видалений!',
 
 ];

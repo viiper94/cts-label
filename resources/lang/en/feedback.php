@@ -44,12 +44,14 @@ return [
     'description_ru' => 'Description (RU)',
 
     'replies' => [
+        'feedback_result_deleted' => 'Reply has been deleted successfully!',
         'replies' => 'Replies',
         'scores' => 'Scores',
         'process_review' => 'Process review',
         'select_track' => 'Select track',
         'mark_accepted' => 'Mark as Accepted',
         'decline' => 'Decline',
+        'are_you_sure' => 'The review will not be added. Are you sure?'
     ],
 
     'status' => [
@@ -67,5 +69,5 @@ return [
     'feedback_added' => 'Feedback has been created successfully!',
     'feedback_edited' => 'Feedback has been edited successfully!',
     'feedback_deleted' => 'Feedback has been deleted successfully!',
-    'feedback_result_deleted' => 'Reply has been deleted successfully!',
+
 ];

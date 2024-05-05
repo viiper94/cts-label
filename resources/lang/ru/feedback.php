@@ -44,8 +44,20 @@ return [
     'description_ru' => 'Описание (RU)',
 
     'replies' => [
+        'feedback_result_deleted' => 'Ответ успешно удален!',
         'replies' => 'Ответы',
         'scores' => 'Оценки',
+        'process_review' => 'Действия',
+        'select_track' => 'Выберите трек',
+        'mark_accepted' => 'Пометить принятым',
+        'decline' => 'Отклонить',
+        'are_you_sure' => 'Ревью не будет добавлено. Уверены?'
+    ],
+
+    'status' => [
+        'new' => 'Новый',
+        'accepted' => 'Принят',
+        'rejected' => 'Отклонен',
     ],
 
     'emailing' => [
@@ -57,5 +69,4 @@ return [
     'feedback_added' => 'Фидбек успешно добавлен!',
     'feedback_edited' => 'Фидбек успешно отредактирован!',
     'feedback_deleted' => 'Фидбек успешно удален!',
-    'feedback_result_deleted' => 'Ответ успешно удален!',
 ];

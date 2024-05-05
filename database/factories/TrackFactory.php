@@ -10,7 +10,7 @@ class TrackFactory extends Factory{
     public function definition(): array{
         return [
             'artists' => fake()->name,
-            'name' => fake()->title,
+            'name' => fake()->sentence(3),
             'mix_name' => 'Original Mix',
             'remixers' => null,
             'composer' => fake()->name,
@@ -30,11 +30,13 @@ class TrackFactory extends Factory{
         ];
     }
 
-    public function simple(): array{
-        return [
-            'artists' => fake()->name,
-            'name' => fake()->title,
-        ];
+    public function simple() :Factory{
+        return $this->state(function (array $attributes) {
+            return [
+                'artists' => fake()->name,
+                'name' => fake()->title,
+            ];
+        });
     }
 
 }

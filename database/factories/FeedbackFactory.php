@@ -11,13 +11,13 @@ class FeedbackFactory extends Factory{
             'sort_id' => null,
             'release_id' => null,
             'feedback_title' => fake()->title,
-            'archive_name' => fake()->file(),
+            'archive_name' => fake()->filePath(),
             'description_en' => fake()->text,
             'description_ua' => fake()->text,
             'description_ru' => fake()->text,
             'visible' => fake()->boolean,
             'slug' => fake()->slug,
-            'image' => fake()->file,
+            'image' => fake()->imageUrl,
             'emailing_sent' => false,
         ];
     }

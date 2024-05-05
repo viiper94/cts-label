@@ -14,7 +14,7 @@ class FeedbackResultFactory extends Factory{
             'comment' => fake()->sentence,
             'rates' => array(),
             'best_track' => fake()->title,
-            'status' => fake()->numberBetween(0, 3),
+            'status' => fake()->numberBetween(0, 2),
         ];
     }
 

@@ -57,4 +57,28 @@ class AdminFeedbackResultTest extends TestCase{
         ]);
     }
 
+    public function test_saving_reply_as_review(){
+        $track = Track::factory()->simple()->create();
+        $result = FeedbackResult::factory()->create([
+            'feedback_id' => 0,
+            'rates' => ['1' => 1]
+        ]);
+
+        $response = $this->actingAs($this->user)
+            ->ajaxPost(route('reviews.store'), [
+                'result_accept' => $result->id,
+                'track_id' => (string) $track->id,
+                'author' => fake()->name,
+                'location' => fake()->country,
+                'score' => fake()->numberBetween(1, 10),
+                'review' => fake()->sentence(),
+                'source' => 'Feedback',
+            ]);
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(2);
+        $response->assertJsonStructure(['message', 'url']);
+        $response->assertJsonFragment(['message' => trans('reviews.added_successfully')]);
+    }
+
 }

@@ -1,5 +1,8 @@
 // Modals
 .modal{
+    .modal-header{
+        justify-content: space-between;
+    }
     .modal-content{
         background-color: $background-lighten-2;
         color: $primary-text-darker;

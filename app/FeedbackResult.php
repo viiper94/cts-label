@@ -30,7 +30,11 @@ class FeedbackResult extends Model implements Auditable{
     }
 
     public function getBestTrackScore() :int{
-        return $this->rates[$this->best_track];
+        if($this->best_track){
+            return $this->rates[$this->best_track];
+        }else{
+            return array_values($this->rates)[0];
+        }
     }
 
 }

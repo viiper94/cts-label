@@ -27,15 +27,20 @@ class AdminFeedbackResultTest extends TestCase{
     public function test_process_review_button_action(): void{
         $tracks = Track::factory(10)->create();
         $feedback = Feedback::factory()->create();
+        $rates = array();
         foreach($tracks as $track){
+            $name = $track->getFullTitle();
             FeedbackTrack::factory()->create([
                 'track_id' => $track->id,
-                'feedback_id' => $feedback->id
+                'feedback_id' => $feedback->id,
+                'name' => $name
             ]);
+            $rates[$name] = fake()->numberBetween(1, 10);
         }
         $result = FeedbackResult::factory()->create([
             'feedback_id' => $feedback->id,
-            'best_track' => $tracks[fake()->randomDigit()]->getFullTitle()
+            'best_track' => $tracks[0]->getFullTitle(),
+            'rates' => $rates
         ]);
 
         $response = $this->actingAs($this->user)
@@ -43,7 +48,7 @@ class AdminFeedbackResultTest extends TestCase{
 
         $response->assertStatus(200);
         $response->assertJsonCount(1);
-        $response->assertJsonSeeInOrder([
+        $response->assertJsonSeeInOrder($response->getContent(), 'html', [
             'name="track_id"',
             'name="author"',
             'name="review"',

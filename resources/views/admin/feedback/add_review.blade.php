@@ -41,10 +41,12 @@
 </div>
 <div class="modal-footer">
     <input type="hidden" name="result_accept" value="{{ $result->id }}">
-    <button type="button" class="btn btn-outline-success mark-accepted-btn" data-action="1" data-url="{{ route('feedback.result.modify', $result->id) }}">
+    <button type="button" class="btn btn-outline-success mark-accepted-btn" data-confirm="@lang('feedback.replies.are_you_sure')"
+            data-action="1" data-url="{{ route('feedback.result.modify', $result->id) }}">
         <i class="fa-solid fa-circle-check me-2"></i>@lang('feedback.replies.mark_accepted')
     </button>
-    <button type="button" class="btn btn-outline-danger decline-btn" data-action="2" data-url="{{ route('feedback.result.modify', $result->id) }}">
+    <button type="button" class="btn btn-outline-danger decline-btn" data-confirm="@lang('feedback.replies.are_you_sure')"
+            data-action="2" data-url="{{ route('feedback.result.modify', $result->id) }}">
         <i class="fa-regular fa-circle-xmark me-2"></i>@lang('feedback.replies.decline')
     </button>
     <button type="button" class="btn btn-primary save-review" data-url="{{ route('reviews.store') }}" data-method="post">

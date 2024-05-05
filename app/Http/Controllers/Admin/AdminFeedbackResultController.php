@@ -46,8 +46,10 @@ class AdminFeedbackResultController extends Controller{
         ], 500);
     }
 
-    public function destroy(Request $request, FeedbackResult $result){
-
+    public function destroy(FeedbackResult $result){
+        return $result->delete() ?
+            redirect()->back()->with(['success' => trans('feedback.replies.feedback_result_deleted')]) :
+            redirect()->back()->withErrors([trans('alert.error')]);
     }
 
     private function getTrack(FeedbackResult $result) :Track|bool{

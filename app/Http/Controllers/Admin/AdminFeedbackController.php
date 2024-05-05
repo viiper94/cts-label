@@ -131,12 +131,6 @@ class AdminFeedbackController extends Controller{
         ]);
     }
 
-    public function destroyResult(FeedbackResult $result){
-        return $result->delete() ?
-            redirect()->back()->with(['success' => trans('feedback.feedback_result_deleted')]) :
-            redirect()->back()->withErrors([trans('alert.error')]);
-    }
-
     public function getTemplate(Request $request){
         if(!$request->ajax()) abort(404);
         return response()->json([

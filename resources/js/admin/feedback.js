@@ -101,6 +101,7 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.mark-accepted-btn, .decline-btn', function(){
+        if(!confirm($(this).data('confirm'))) return false;
         let action = $(this).data('action');
         let url = $(this).data('url');
         $.ajax({

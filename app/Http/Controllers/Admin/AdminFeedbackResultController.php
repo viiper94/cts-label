@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\FeedbackResultStatus;
 use App\FeedbackResult;
 use App\FeedbackTrack;
 use App\Http\Controllers\Controller;
@@ -12,6 +11,24 @@ use App\Track;
 use Illuminate\Http\Request;
 
 class AdminFeedbackResultController extends Controller{
+
+    public function index(Request $request){
+        $results = FeedbackResult::with('feedback', 'feedback.release', 'feedback.ftracks');
+        if($request->input('q')){
+            $results = $results->where('name', 'like', '%'.$request->input('q').'%')
+                ->orWhere('name', 'like', '%'.$request->input('q').'%')
+                ->orWhere('best_track', 'like', '%'.$request->input('q').'%')
+                ->orWhere('comment', 'like', '%'.$request->input('q').'%');
+        }
+        if($request->input('sort')){
+            $results = $results->orderBy($request->input('sort'), ($request->input('dir') === 'down') ? 'desc' : 'asc');
+        }else{
+            $results = $results->latest();
+        }
+        return view('admin.feedback.results', [
+            'results' => $results->paginate(20)
+        ]);
+    }
 
     public function add(Request $request, FeedbackResult $result){
         if(!$request->ajax()) abort(404);

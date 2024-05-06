@@ -13,6 +13,9 @@
                 <button type="button" class="btn btn-primary m-xl-0 m-1" data-bs-toggle="modal" data-bs-target="#newFeedbackModal">
                     <i class="fa-solid fa-plus me-2"></i>@lang('feedback.new_feedback')
                 </button>
+                <a href="{{ route('feedback.results.index') }}" class="btn btn-outline m-xl-0 m-1">
+                    <i class="fa-solid fa-list me-2"></i>@lang('feedback.replies.replies')
+                </a>
             </div>
             {{ $feedback_list->appends(Request::input())->links('admin.layout.pagination') }}
         </div>

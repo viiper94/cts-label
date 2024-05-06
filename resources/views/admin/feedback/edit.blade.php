@@ -171,11 +171,11 @@
                                 @endif
                                 <p class="mb-0"><i class="fa-solid fa-comment me-2"></i>@lang('feedback.comment'):</p>
                                 <p><b>{!! nl2br(e($result->comment)) !!}</b></p>
-                                <form action="{{ route('feedback.result.destroy', $result->id) }}" method="post" class="mt-3">
+                                <form action="{{ route('feedback.results.destroy', $result->id) }}" method="post" class="mt-3">
                                     @csrf
                                     @method('DELETE')
                                     @if($result->status === \App\Enums\FeedbackResultStatus::NEW)
-                                        <button type="button" class="btn btn-sm btn-outline-success process-review-btn" data-url="{{ route('feedback.result.add', $result->id) }}">
+                                        <button type="button" class="btn btn-sm btn-outline-success process-review-btn" data-url="{{ route('feedback.results.add', $result->id) }}">
                                             <i class="fa-solid fa-star me-2"></i>@lang('feedback.replies.process_review')
                                         </button>
                                     @endif

@@ -124,9 +124,10 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::post('/studio/resort', [AdminStudioController::class, 'resort'])->name('studio.resort');
         Route::resource('/studio', AdminStudioController::class)->except(['show']);
 
-        Route::get('/feedback/result/add/{result}', [AdminFeedbackResultController::class, 'add'])->name('feedback.result.add');
-        Route::post('/feedback/result/modify/{result}', [AdminFeedbackResultController::class, 'modify'])->name('feedback.result.modify');
-        Route::delete('/feedback/result/destroy/{result}', [AdminFeedbackResultController::class, 'destroy'])->name('feedback.result.destroy');
+        Route::get('/feedback/results/add/{result}', [AdminFeedbackResultController::class, 'add'])->name('feedback.results.add');
+        Route::post('/feedback/results/modify/{result}', [AdminFeedbackResultController::class, 'modify'])->name('feedback.results.modify');
+        Route::delete('/feedback/results/destroy/{result}', [AdminFeedbackResultController::class, 'destroy'])->name('feedback.results.destroy');
+        Route::get('/feedback/results', [AdminFeedbackResultController::class, 'index'])->name('feedback.results.index');
 
         Route::post('/feedback/peaks', [AdminFeedbackController::class, 'peaks'])->name('feedback.peaks');
         Route::post('/feedback/template', [AdminFeedbackController::class, 'getTemplate'])->name('feedback.template');

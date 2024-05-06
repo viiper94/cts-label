@@ -18,35 +18,10 @@
         <div class="table-responsive" data-fl-scrolls>
             <table class="table table-hover table-dark">
                 <thead>
-                @php $headers = [
-                        'artists',
-                        'name',
-                        'mix_name',
-                        'isrc',
-                        'genre',
-                        'length'
-                    ];
-                @endphp
                 <tr>
-                    <th>@lang('tracks.release')</th>
-                    @foreach($headers as $key)
-                        <th>
-                            <a href="{{ route('tracks.index', [
-                                    'sort' => $key,
-                                    'dir' => (Request::input('dir') === 'up' ? 'down' : 'up'),
-                                    'q' => Request::input('q'),
-                                ]) }}" class="text-light text-nowrap">
-                                @lang('tracks.'.$key)
-                            </a>
-                            @if(Request::input('sort') === $key)
-                                <i @class([
-                                    'fa-solid text-warning',
-                                    'fa-arrow-down-a-z' => (Request::input('dir') === 'up'),
-                                    'fa-arrow-down-z-a' => (Request::input('dir') === 'down'),
-                                ])></i>
-                            @endif
-                        </th>
-                    @endforeach
+                    <th class="fw-bold">@lang('tracks.release')</th>
+                    <x-table-sorting-header :headers="['artists', 'name', 'mix_name', 'isrc', 'genre', 'length']"
+                                            :route_name="'tracks.index'" trans="tracks"></x-table-sorting-header>
                     <th></th>
                 </tr>
                 </thead>

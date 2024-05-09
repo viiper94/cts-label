@@ -59,7 +59,8 @@ class AdminFeedbackResultController extends Controller{
         $result->status = $request->post('action');
         if($result->save()){
             return response()->json([
-                'message' => trans('alert.success')
+                'message' => trans('alert.success'),
+                'route' => route('feedback.results.getItem', $result->id)
             ]);
         }
         return response()->json([
@@ -101,6 +102,27 @@ class AdminFeedbackResultController extends Controller{
         $result->load('feedback.release.tracks');
         if($result->feedback->release) return $result->feedback->release;
         return false;
+    }
+
+    public function getFeedbackResultItem(Request $request, FeedbackResult $result){
+        if(!$request->ajax()) abort(404);
+        if($request->post('target') === 'feedback'){
+            return response()->json([
+                'id' => $result->id,
+                'html' => view('admin.feedback.result_item_feedback', [
+                    'result' => $result,
+                    'key' => $request->post('key')
+                ])->render()
+            ]);
+        }else{
+            $result->load('feedback', 'feedback.release', 'feedback.ftracks');
+            return response()->json([
+                'id' => $result->id,
+                'html' => view('admin.feedback.result_item_list', [
+                    'result' => $result
+                ])->render()
+            ]);
+        }
     }
 
 }

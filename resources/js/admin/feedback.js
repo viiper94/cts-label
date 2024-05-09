@@ -107,6 +107,8 @@ $(document).ready(function(){
         if(!confirm($(this).data('confirm'))) return false;
         let action = $(this).data('action');
         let url = $(this).data('url');
+        let target = $('#editReviewModal').data('target');
+        let key = $(this).data('key')
         $.ajax({
             data: {
                 action: action
@@ -115,6 +117,7 @@ $(document).ready(function(){
             url: url,
             success: function(response){
                 $('main').append(utils.getAlertToast(null, response.message, 'text-bg-success', 'save-review-toast'));
+                getResultItem(response.route, target, key);
             },
             error: function(xhr){
                 $('main').append(utils.getAlertToast(null, xhr.responseJSON.message, 'text-bg-danger', 'save-review-toast'));
@@ -125,5 +128,19 @@ $(document).ready(function(){
             }
         });
     });
+
+    function getResultItem(route, target, key = null){
+        $.ajax({
+            data: {
+                target: target,
+                key: key
+            },
+            type: 'post',
+            url: route,
+            success: function(response){
+                $('[data-result-id='+response.id+']').replaceWith(response.html);
+            }
+        });
+    }
 
 });

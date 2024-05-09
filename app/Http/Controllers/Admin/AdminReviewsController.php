@@ -46,11 +46,13 @@ class AdminReviewsController extends Controller{
             'review' => 'nullable|required_with:score|string',
             'score' => 'nullable|required_with:review|numeric',
             'result_accept' => 'nullable|numeric',
+            'target' => 'required|string',
+            'key' => 'nullable|numeric',
         ]);
         $review = new Review();
         $review->fill($request->post()+[
             'sort_id' => 0
-            ]);
+        ]);
         if($review->save()){
             if($request->post('result_accept')){
                 $result = FeedbackResult::find($request->post('result_accept'));
@@ -59,7 +61,11 @@ class AdminReviewsController extends Controller{
             }
             return response()->json([
                 'message' => trans('reviews.added_successfully'),
-                'url' => route('reviews.show', $review->track_id)
+                'url' => $request->post('target') === 'tracks' ?
+                    route('reviews.show', $review->track_id) :
+                    route('feedback.results.getItem', $request->post('result_accept')),
+                'target' => $request->post('target'),
+                'key' => $request->post('key')
             ]);
         }
         return response()->json([

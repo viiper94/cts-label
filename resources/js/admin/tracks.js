@@ -70,10 +70,14 @@ $(document).ready(function(){
                 score: $('#editReviewModal input[name=score]').val(),
                 review: $('#editReviewModal textarea[name=review]').val().trim(),
                 source: $('#editReviewModal input[name=source]').val().trim(),
+                target: $('#editReviewModal').data('target'),
+                key: $btn.data('key'),
             },
             success: function(response){
                 $('main').append(utils.getAlertToast(null, response.message, 'text-bg-success', 'save-review-toast'));
-                loadTrackReviewsToModal(response.url);
+                response.target === 'tracks' ?
+                    loadTrackReviewsToModal(response.url) :
+                    getResultItem(response.url, response.target, response.key);
                 $('#editReviewModal').modal('hide');
             },
             error: function(xhr){
@@ -149,6 +153,21 @@ function loadTrackReviewsToModal(url){
                     }
                 });
             });
+        }
+    });
+
+}
+
+function getResultItem(route, target, key = null){
+    $.ajax({
+        data: {
+            target: target,
+            key: key
+        },
+        type: 'post',
+        url: route,
+        success: function(response){
+            $('[data-result-id='+response.id+']').replaceWith(response.html);
         }
     });
 }

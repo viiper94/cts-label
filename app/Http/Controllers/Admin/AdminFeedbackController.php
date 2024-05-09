@@ -71,7 +71,7 @@ class AdminFeedbackController extends Controller{
     }
 
     public function edit(Feedback $feedback){
-        $feedback->load(['related', 'ftracks' => function($query){
+        $feedback->load(['release', 'results', 'related', 'ftracks' => function($query){
             $query->with('feedback');
         }]);
         return view('admin.feedback.edit', [

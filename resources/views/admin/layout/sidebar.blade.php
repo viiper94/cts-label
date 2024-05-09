@@ -56,7 +56,12 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="{{ route('feedback.index') }}" @class(['nav-link', 'active' => \Route::is('feedback.*')])><i class="fa-solid fa-comments me-2"></i>@lang('shared.admin.sidebar.feedbacks')</a>
+                <a href="{{ route('feedback.index') }}" @class(['nav-link', 'active' => \Route::is('feedback.*')])>
+                    <i class="fa-solid fa-comments me-2"></i>@lang('shared.admin.sidebar.feedbacks')
+                    @if($feedback_results_count > 0)
+                        <span class="badge bg-danger">{{ $feedback_results_count }}</span>
+                    @endif
+                </a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('emailing.channels.index') }}" class="nav-link"><i class="fa-solid fa-envelope me-2"></i>@lang('shared.admin.sidebar.emailing')</a>

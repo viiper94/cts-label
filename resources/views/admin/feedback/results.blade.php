@@ -23,7 +23,24 @@
                     <th class="fw-bold">@lang('feedback.feedbacks')</th>
                     <x-table-sorting-header :headers="['name', 'best_track', 'comment']"
                                             :route_name="'feedback.results.index'" trans="feedback"></x-table-sorting-header>
-                    <th></th>
+                    <th class="text-nowrap">
+                        @if($feedback_results_count > 0)
+                            <a href="{{ route('feedback.results.index', [
+                                'sort' => 'status',
+                                'dir' => (Request::input('dir') === 'up' ? 'down' : 'up'),
+                                'q' => Request::input('q'),
+                            ]) }}">
+                                <span class="badge badge-sm bg-danger">{{ $feedback_results_count }}</span>
+                            </a>
+                            @if(Request::input('sort') === 'status')
+                                <i @class([
+                                    'fa-solid text-warning',
+                                    'fa-arrow-down-a-z' => (Request::input('dir') === 'up'),
+                                    'fa-arrow-down-z-a' => (Request::input('dir') === 'down'),
+                                ])></i>
+                            @endif
+                        @endif
+                    </th>
                 </tr>
                 </thead>
                 <tbody>

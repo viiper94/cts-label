@@ -32,10 +32,14 @@ class AdminFeedbackResultController extends Controller{
 
     public function add(Request $request, FeedbackResult $result){
         if(!$request->ajax()) abort(404);
+        $this->validate($request, [
+            'key' => 'nullable|numeric'
+        ]);
         $track = $this->getTrack($result);
         $release = $this->getRelease($result);
         return response()->json([
             'html' => view('admin.feedback.add_review', [
+                'key' => $request->post('key'),
                 'result' => $result,
                 'track' => $track,
                 'release' => $release,
@@ -70,7 +74,6 @@ class AdminFeedbackResultController extends Controller{
     }
 
     private function getTrack(FeedbackResult $result) :Track|bool{
-
         if($result->best_track){
             $ftrack = FeedbackTrack::with('track.releases')
                 ->where('name', $result->best_track)->first();
@@ -78,7 +81,6 @@ class AdminFeedbackResultController extends Controller{
             $ftrack = FeedbackTrack::with('track.releases')
                 ->where('feedback_id', $result->feedback_id)->first();
         }
-
         if($ftrack){
             if($ftrack->track){
                 return $ftrack->track;

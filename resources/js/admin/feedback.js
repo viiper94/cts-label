@@ -79,7 +79,10 @@ $(document).ready(function(){
     $('.process-review-btn').click(function(){
         let $button = $(this);
         $.ajax({
-            type: 'GET',
+            type: 'POST',
+            data: {
+                key: $button.data('key')
+            },
             url: $button.data('url'),
             success: function(response){
                 $('#editReviewModal .modal-content').html(response.html);

@@ -6,7 +6,7 @@
 
 @section('admin-content')
 
-    <div class="container-fluid admin-tracks">
+    <div class="container-fluid admin-tracks admin-results">
         <div class="justify-content-between align-items-center d-flex flex-column-reverse flex-lg-row my-3">
             <div class="releases-actions text-center">
                 <a href="{{ route('feedback.index') }}" class="btn btn-outline m-xl-0 m-1">
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editReviewModal" tabindex="-1" aria-labelledby="editReviewModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editReviewModal" tabindex="-1" aria-labelledby="editReviewModalLabel" aria-hidden="true" data-target="list">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 

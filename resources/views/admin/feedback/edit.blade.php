@@ -186,7 +186,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editReviewModal" tabindex="-1" aria-labelledby="editReviewModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editReviewModal" tabindex="-1" aria-labelledby="editReviewModalLabel" aria-hidden="true" data-target="feedback">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 

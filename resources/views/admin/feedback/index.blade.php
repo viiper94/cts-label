@@ -15,6 +15,9 @@
                 </button>
                 <a href="{{ route('feedback.results.index') }}" class="btn btn-outline m-xl-0 m-1">
                     <i class="fa-solid fa-list me-2"></i>@lang('feedback.replies.replies')
+                    @if($feedback_results_count > 0)
+                        <span class="badge bg-danger">{{ $feedback_results_count }}</span>
+                    @endif
                 </a>
             </div>
             {{ $feedback_list->appends(Request::input())->links('admin.layout.pagination') }}

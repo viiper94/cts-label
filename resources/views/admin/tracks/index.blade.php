@@ -105,7 +105,7 @@
             </div>
         </div>
 
-        <div class="modal fade" tabindex="-1" id="editReviewModal">
+        <div class="modal fade" tabindex="-1" id="editReviewModal" data-target="tracks">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">

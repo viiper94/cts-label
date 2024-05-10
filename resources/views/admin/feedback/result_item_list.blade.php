@@ -1,4 +1,4 @@
-<tr data-result-id="{{ $result->id }}">
+<tr  data-result-id="{{ $result->id }}">
     <td>
         <a href="{{ route('feedback.edit', $result->feedback->id) }}" target="_blank" title="{{ $result->feedback->feedback_title }}">
             @if($result->feedback->release)
@@ -10,7 +10,12 @@
     </td>
     <td title="{{ $result->email }}">{{ $result->name }}</td>
     <td>{{ $result->best_track ?? $result->feedback->ftracks[0]->name }}</td>
-    <td><i>{{ $result->comment }}</i></td>
+    <td @class([
+        'text-success' => $result->status === \App\Enums\FeedbackResultStatus::ACCEPTED,
+        'text-danger' => $result->status === \App\Enums\FeedbackResultStatus::REJECTED
+    ])>
+        <i>{{ $result->comment }}</i>
+    </td>
     <td>
         <button type="button" style="width: 34px;"
                 @class(['btn', 'btn-sm', 'process-review-btn',

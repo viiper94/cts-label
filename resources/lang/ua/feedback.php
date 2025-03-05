@@ -8,6 +8,8 @@ return [
     'feedback_form' => 'Фідбек форма',
     'your_name' => 'Ваше ім\'я',
     'your_email' => 'Ваш E-Mail',
+    'email' => 'E-Mail',
+    'name' => 'Ім\'я',
     'best_track' => 'Найкращий трек/ремікс',
     'comment' => 'Коментар',
 

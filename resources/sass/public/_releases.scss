@@ -108,6 +108,9 @@
         @media (max-width: $md) {
             min-height: auto;
         }
+        .track-name{
+            white-space: normal;
+        }
     }
     .release-content{
         color: $primary-text-darker;

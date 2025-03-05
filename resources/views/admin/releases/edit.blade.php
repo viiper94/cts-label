@@ -230,14 +230,19 @@
                     </div>
                 </div>
             </div>
+            
             <div class="card text-bg-dark mb-5">
-                <button class="card-header p-3 accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRelated" aria-expanded="false" aria-controls="collapseRelated">
+                <button class="card-header p-3 accordion-button collapsed justify-content-between" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseRelated" aria-expanded="false" aria-controls="collapseRelated">
                     <span class="badge text-bg-primary me-2">{{ count($release->related) }}</span>@lang('releases.related_releases')
                 </button>
                 <div id="collapseRelated" class="collapse">
                     <div class="card-body row g-0 flex-column-reverse flex-md-row">
                         <div class="col-md-6 col-xs-12 related-all-releases">
-                            <button class="btn btn-sm btn-outline-danger deselect-btn"><i class="fa-solid fa-square-xmark me-2"></i>@lang('shared.admin.deselect_all')</button>
+                            <button class="btn btn-sm btn-outline-danger deselect-btn">
+                                <i class="fa-solid fa-square-xmark me-2"></i>
+                                @lang('shared.admin.deselect_all')
+                            </button>
                             @foreach($release_list as $item)
                                 <div class="related d-flex mb-1 form-check-inline">
                                     <a class="me-4" href="{{ route('release', $item->id) }}" target="_blank">@lang('releases.release_on_site')</a>
@@ -251,7 +256,8 @@
                         </div>
                         <div class="col-md-6 col-xs-12 related-release-search mb-3">
                             <div class="row">
-                                <input type="text" class="search-form form-control form-dark col" id='search-related' placeholder="@lang('releases.search_releases')" data-release-id="{{ $release->id }}">
+                                <input type="text" class="search-form form-control form-dark col" id='search-related'
+                                       placeholder="@lang('releases.search_releases')" data-release-id="{{ $release->id }}">
                                 <div class="radios col-auto">
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="search-by" value="title" id="search-by-title" checked>
@@ -269,6 +275,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="card text-bg-dark mb-5">
                 <button class="card-header p-3 accordion-button collapsed justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFlow" aria-expanded="false" aria-controls="collapseFlow">
                     <span @class(['badge text-bg-success me-2', 'text-bg-danger' => $release->hasUnfinishedUploads(true)])>

@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="row release-info-wrapper">
-                    <div class="col-xs-12 col-sm-7">
+                    <div class="col-xs-12 col-sm-7" style="z-index: 9;">
                         <figure>
                             <x-picture :src="['/images/releases/'.($release->image ?? $release->image_270)]" alt="{{ $release->title }}" class="release-image img-fluid w-100"/>
                         </figure>
@@ -119,32 +119,29 @@
                             </button>
                         </div>
                         <div class="release-tracklist mb-md-0 mb-3">
-                            @if(count($release->tracks) > 0)
+							@if($release->tracklist_show_custom)
+								{!! $release->tracklist !!}
+							@elseif(count($release->tracks) > 0)
                                 <h2 class="fw-bold">@lang('releases.tracklist')</h2>
-                                @if($release->tracklist_show_custom)
-                                    {!! $release->tracklist !!}
-                                @else
-                                    <table>
-                                        <tbody>
-                                        @foreach($release->tracks as $track)
-                                            <tr>
-                                                <td class="pb-1">
-                                                    @if($track->beatport_sample && $track->beatport_wave && $track->beatport_sample_start && $track->beatport_sample_end && $track->length)
-                                                        <button type="button" class="btn btn-sm btn-flat text-muted" data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}"><i class="fa-solid fa-play"></i></button>
-                                                    @endif
-                                                </td>
-                                                <td class="pb-1">
-                                                    {{ $release->getTracklistRow($track) }}
-                                                    @if($track->youtube)
-                                                        <a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-
-                                @endif
+								<table>
+									<tbody>
+									@foreach($release->tracks as $track)
+										<tr>
+											<td class="pb-1">
+												@if($track->beatport_sample && $track->beatport_wave && $track->beatport_sample_start && $track->beatport_sample_end && $track->length)
+													<button type="button" class="btn btn-sm btn-flat text-muted" data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}"><i class="fa-solid fa-play"></i></button>
+												@endif
+											</td>
+											<td class="pb-1">
+												<span class="track-name">{{ $release->getTracklistRow($track) }}</span>
+												@if($track->youtube)
+													<a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
+												@endif
+											</td>
+										</tr>
+									@endforeach
+									</tbody>
+								</table>
                             @endif
                         </div>
                     </div>

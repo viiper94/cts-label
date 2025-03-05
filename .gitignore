@@ -30,3 +30,4 @@ yarn-error.log
 /public/cv/*
 /public/labelCopy/*
 /resources/*.csv
+.vscode/sftp.json

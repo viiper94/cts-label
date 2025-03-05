@@ -38,15 +38,11 @@ return [
                             equipment in the store Muztorg, Real Music and ART-R. Tracks of the best graduates will be
                             released on CTS Records. Successful students will receive recommendations for further
                             employment in the field of sound engineering.',
-    'about_text_3' => 'CTSchool works directly with manufacturers and suppliers of SOFT & HARDWARE.
-                            All software in the above list is LICENSED.',
-    'about_text_4' => 'Only in CTSchool you have the opportunity to take a training course in working with electronic
-                            dance music in PRO TOOLS HD 3 Accel System on MAC OS. CTSchool works closely with A&T Trade
-                            and MUZTORG, holds joint events, seminars, and master classes.',
-    'about_text_5' => 'CTSchool recruits groups of up to 5 students, this allows to improve the education quality.',
-    'about_text_6' => 'Prices are for groups of 5 people. The cost of classes in mini-groups (2-3 people) depends on
-                            the number of people in the group. The development of an individual course is possible.
-                            One lesson - 2 academic hours.',
+    'about_text_3' => 'CTSchool works directly with manufacturers and suppliers of SOFT & HARDWARE. All software in the above list is licensed.',
+    'about_text_4' => 'At CTSchool, you have the opportunity to take a course on working with electronic dance music using PROTOOLS HD 3 Accel System on MAC OS. 
+                        CTSchool closely collaborates with A&T Trade and MUZTORG, organizing joint promotions, seminars, and master classes.',
+    'about_text_5' => 'The course cost depends on the number of lessons. Courses are designed individually based on the student tasks and experience. One lesson lasts 2 academic hours.',
+    'about_text_6' => 'The first introductory lesson-interview is free.',
 
     'lessons_held' => 'Classes are held:',
     'lessons_held_text' => 'at the CTS studio,<br>at the CINEMA club,<br>in the studio of the National Academy of

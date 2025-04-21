@@ -29,7 +29,7 @@
 
     <p>Olga <br>
         Prohor Management <br>
-        ADE mob./WhatsApp +380936299990</p>
+        IMS mob./WhatsApp +380936299990</p>
 
     <p><a href="mailto:prohor.music.ua@gmail.com">prohor.music.ua@gmail.com</a> <br>
         <a href="https://www.instagram.com/prohor.music" target="_blank">https://www.instagram.com/prohor.music</a> <br>
@@ -40,7 +40,8 @@
 
     <p>shows: <br>
         <a href="https://drive.google.com/file/d/1is1iALvo28VnCyVtklfaSiSA0aC3RMa8/view" target="_blank">Prohor @ ADE 2023</a>  <br>
-        <a href="https://drive.google.com/file/d/1ITToTbafu6GNNaPkU1Ps65h11vgaB0SN/view" target="_blank">Prohor @ Antalya Turkey 2024</a>
+        <a href="https://drive.google.com/file/d/1ITToTbafu6GNNaPkU1Ps65h11vgaB0SN/view" target="_blank">Prohor @ Antalya Turkey 2024</a>  <br>
+        <a href="https://drive.google.com/file/d/1ysnSHZDeDkSuEwhs98gRwRcWkAXg33xM/view" target="_blank">Selected DJ gigs 2023 - 2025</a>
     </p>
 
     <hr>

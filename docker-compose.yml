@@ -23,7 +23,7 @@ services:
     container_name: db
     restart: unless-stopped
     environment:
-        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: label_new
     ports:
       - "3306:3306"

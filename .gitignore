@@ -1,33 +1,48 @@
-/node_modules
-/storage/*.key
-/.idea/*
-/vendor
+# Laravel & PHP
+/vendor/
 .env
-.env.backup
+.env.*
 .phpunit.result.cache
 .phpunit.cache
-Homestead.json
-Homestead.yaml
+Homestead.*
+storage/
+storage/logs/*
+storage/framework/*
+!storage/framework/.gitignore
+!storage/logs/.gitignore
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+
+# Node.js / Frontend Build
+/node_modules/
 npm-debug.log
 yarn-error.log
 
-/public/audio/CTS100/*
-/public/audio/feedback/*
-/public/images/artists/*
-!/public/images/artists/default.png
-/public/images/releases/*
-!/public/images/releases/default.png
-/public/images/feedback/*
-!/public/images/feedback/default.png
-/public/images/users/*
-!/public/images/users/default.png
-/public/images/studio/services/*
-!/public/images/studio/services/default.png
-/public/images/school/courses/*
-!/public/images/school/courses/default.png
-/public/images/school/teachers/*
-!/public/images/school/teachers/default.png
-/public/cv/*
-/public/labelCopy/*
+# IDEs / Editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs & Locks
+*.log
+*.lock
+
+# Test & Coverage
+/coverage/
+
+# Public assets - media, user content
+# (Keep default images, ignore everything else)
+/public/audio/CTS100/
+/public/audio/feedback/
+/public/images/**/*
+!/public/images/**/default.png
+/public/cv/
+/public/labelCopy/
+
+# CSV / Data
 /resources/*.csv
-.vscode/sftp.json

@@ -1,0 +1,10 @@
+# Common
+.git
+.idea
+.vscode
+node_modules
+vendor
+*.log
+*.lock
+.DS_Store
+.phpunit.cache

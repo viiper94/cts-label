@@ -45,7 +45,3 @@ COPY --chown=www-data:www-data . /var/www/html
 
 # Change ownership of the storage directory
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-
-RUN npm install 
-
-RUN composer install

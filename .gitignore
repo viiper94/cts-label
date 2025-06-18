@@ -17,6 +17,7 @@ bootstrap/cache/*
 /node_modules/
 npm-debug.log
 yarn-error.log
+*.lock
 
 # IDEs / Editors
 .vscode/
@@ -47,3 +48,4 @@ package-lock.json
 
 # CSV / Data
 /resources/*.csv
+.vscode/sftp.json

@@ -5,7 +5,8 @@
         "dev": "mix",
         "watch": "mix watch",
         "hot": "mix watch --hot",
-        "production": "mix --production"
+        "production": "mix --production",
+        "prod": "mix --production"
     },
     "devDependencies": {
         "cross-env": "^7.0.3",

@@ -127,10 +127,18 @@
             <label for="beatport_sample_start" class="form-label">@lang('tracks.beatport_sample_start')</label>
             <input type="text" class="form-control form-dark" id="beatport_sample_start" name="beatport_sample_start" value="{{ $track->beatport_sample_start }}" placeholder="xx:xx">
         </div>
-        <div class="form-group">
+        <div class="form-group mb-3">
             <label for="beatport_sample_end" class="form-label">@lang('tracks.beatport_sample_end')</label>
             <input type="text" class="form-control form-dark" id="beatport_sample_end" name="beatport_sample_end" value="{{ $track->beatport_sample_end }}" placeholder="xx:xx">
         </div>
+
+        @if($track->id)
+            <div class="form-group">
+                <label for="json_raw" class="form-label">@lang('tracks.json_raw')</label>
+                <textarea id="json_raw" class="form-control form-dark" size=6></textarea>
+            </div>
+        @endif
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-primary save-track" data-method="{{ $track->id ? 'PUT' : 'POST' }}"

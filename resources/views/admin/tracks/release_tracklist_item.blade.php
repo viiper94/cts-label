@@ -2,11 +2,11 @@
     <td>
         <input type="hidden" name="tracks[]" value="{{ $track->id }}">
     </td>
-    <td>{{ $track->artists }}</td>
-    <td>{{ $track->name }}</td>
-    <td><small>{{ $track->mix_name }}</small></td>
-    <td><small>{{ $track->length }}</small></td>
-    <td><small>{{ $track->isrc }}</small></td>
+    <td><span class="to-clipboard">{{ $track->artists }}</span></td>
+    <td><span class="to-clipboard">{{ $track->name }}</span></td>
+    <td><small class="to-clipboard">{{ $track->mix_name }}</small></td>
+    <td><small class="to-clipboard">{{ $track->length }}</small></td>
+    <td><small class="to-clipboard">{{ $track->isrc }}</small></td>
     <td>
         @if($track->youtube)
             <a href="{{ $track->youtube }}" target="_blank" class="btn btn-sm btn-outline"><i class="fa-brands fa-youtube"></i></a>

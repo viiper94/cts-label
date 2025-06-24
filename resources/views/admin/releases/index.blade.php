@@ -35,7 +35,8 @@
                             </div>
                             <div class="col-12 d-flex g-0">
                                 <div class="card-img col-auto">
-                                    <img src="/images/releases/{{ $release->image ?? 'default.png' }}" class="img-fluid" alt="{{ $release->title }}">
+                                    <x-picture :src="['/images/releases/'.($release->image_270 ?? $release->image)]"
+                                               alt="{{ $release->title }}" class="img-fluid" loading="lazy"/>
                                 </div>
                                 <div class="card-info d-flex flex-column col">
                                     <div class="d-flex flex-grow-1">

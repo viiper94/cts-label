@@ -116,6 +116,41 @@ $(document).ready(function(){
         $('#editReviewModal input[name=author]').val($(this).html());
     });
 
+    $(document).on('keyup', '#json_raw', function () {
+        let raw = $(this).val();
+        let isrc = $('#isrc').val().trim();
+
+        let json;
+        try {
+            json = JSON.parse(raw);
+        } catch (e) {
+            console.log('Invalid JSON');
+            return; // Not valid JSON yet
+        }
+
+        if (!isrc) return;
+
+        let match = (json.results || []).find(track => {
+            return track.isrc === isrc.replace(/-/g, '');
+        });
+
+        if (!match) return;
+
+        $('#bpm').val(match.bpm);
+        $('#genre').val(match.genre.name);
+        $('#mix_name').val(match.mix_name);
+        $('#length').val(match.length);
+        $('#beatport_id').val(match.id);
+        $('#beatport_slug').val(match.slug);
+        $('#beatport_release_id').val(match.release.id);
+        $('#beatport_wave').val(match.image.uri);
+        $('#beatport_sample').val(match.sample_url);
+        $('#beatport_sample_start').val(match.sample_start_ms);
+        $('#beatport_sample_end').val(match.sample_end_ms);
+
+    });
+
+
 });
 
 function loadTrackReviewsToModal(url){

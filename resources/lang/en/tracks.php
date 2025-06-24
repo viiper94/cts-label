@@ -30,6 +30,7 @@ return [
     'beatport_sample' => 'Beatport Sample Link',
     'beatport_sample_start' => 'Beatport Sample Starts At',
     'beatport_sample_end' => 'Beatport Sample Ends At',
+    'json_raw' => 'Beatport API JSON',
     'show_reviews' => 'Show reviews',
     'no_tracks' => 'There are no tracks so far',
     'added' => 'Added',

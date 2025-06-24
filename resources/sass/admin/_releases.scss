@@ -18,6 +18,11 @@
                 counter-increment: row;
                 content: counter(row);
             }
+            td{
+                span, small{
+                    cursor: pointer;
+                }
+            }
         }
     }
 }

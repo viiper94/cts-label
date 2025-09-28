@@ -57,9 +57,9 @@ class AppController extends Controller{
                 ]
             ));
         }catch(\Exception $e){
-            return redirect()->back()->withErrors('Возникла ошибка =(');
+            return redirect()->back()->withErrors(trans('alert.error'));
         }
-        return redirect()->back()->with(['success' => 'Запрос успешно отправлен!']);
+        return redirect()->back()->with(['success' => trans('school.request_sent')]);
     }
 
 }

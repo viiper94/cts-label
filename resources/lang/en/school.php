@@ -87,4 +87,6 @@ return [
     'teacher_added' => 'Teacher has been added successfully!',
     'teacher_edited' => 'Teacher has been edited successfully!',
     'teacher_deleted' => 'Teacher has been deleted successfully!',
+
+    'request_sent' => 'Request has been sent successfully!'
 ];

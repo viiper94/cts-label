@@ -1,9 +1,9 @@
 @component('mail::message')
 
-*Имя* <br>
+*ім'я* <br>
 **{{ $data['name'] }}**
 
-*Желаемый курс/услуга* <br>
+*Бажаний курс/послуга* <br>
 **{{$data['service']}}**
 
 @if(isset($data['tel']))

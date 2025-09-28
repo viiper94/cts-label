@@ -73,7 +73,7 @@
                         <div class="lang-switch pb-3">
                             @if($release->detectActiveDescriptionLang(count: true) > 1)
                                 <div class="btn-group">
-                                    @foreach(['en', 'ua', 'ru'] as $item)
+                                    @foreach(['en', 'ua'] as $item)
                                         @if($release->getUsefulText($release['description_'.$item]))
                                             <a @class(['btn switch-btn', 'active' => $release->detectActiveDescriptionLang() === $item])
                                                data-lang="{{ $item }}" href="{{ route('release', $release->id) }}">@lang('shared.'.$item)</a>

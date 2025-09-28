@@ -90,10 +90,6 @@
                    data-lang="en" href="{{ url()->current() }}">
                     @lang('shared.en')
                 </a>
-                <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru'])
-                   data-lang="ru" href="{{ url()->current() }}">
-                    @lang('shared.ru')
-                </a>
                 <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua' || !isset($_COOKIE['lang'])])
                    data-lang="ua" href="{{ url()->current() }}">
                     @lang('shared.ua')

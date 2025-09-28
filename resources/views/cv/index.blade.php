@@ -13,10 +13,6 @@
                        data-lang="en" href="{{ route('school.cv') }}">
                         @lang('shared.en')
                     </a>
-                    <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru'])
-                       data-lang="ru" href="{{ route('school.cv') }}">
-                        @lang('shared.ru')
-                    </a>
                     <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua' || !isset($_COOKIE['lang'])])
                        data-lang="ua" href="{{ route('school.cv') }}">
                         @lang('shared.ua')

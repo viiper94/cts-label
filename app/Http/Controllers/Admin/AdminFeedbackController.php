@@ -47,7 +47,7 @@ class AdminFeedbackController extends Controller{
         $feedback = new Feedback();
         $this->validate($request, [
             'feedback_title' => 'string|required|max:191',
-            'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpeg,png|nullable',
+            'image' => 'file|image|mimes:jpeg,png|nullable',
             'tracks' => 'array|required'
         ]);
         $feedback->release_id = $release?->id;

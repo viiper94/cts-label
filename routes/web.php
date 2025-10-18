@@ -16,6 +16,7 @@ use App\Http\Controllers\ArtistsContactInfoController;
 use App\Http\Controllers\ArtistsController;
 use App\Http\Controllers\ArtistsCvController;
 use App\Http\Controllers\GuestlistController;
+use App\Http\Controllers\AppController;
 use App\Http\Controllers\Admin\AdminArtistsController;
 use App\Http\Controllers\Admin\AdminSchoolCvController;
 use App\Http\Controllers\Admin\AdminEmailingChannelsController;
@@ -78,6 +79,8 @@ Route::group(['middleware' => 'i18n'], function(){
 
     Route::get('/event/marketing-and-management', [WebinarContactController::class, 'index'])->name('event');
     Route::post('/event/marketing-and-management', [WebinarContactController::class, 'store']);
+
+    Route::get('/literatura', [AppController::class, 'literatura'])->name('literatura');
 
     Route::group(['middleware' => 'admin', 'namespace' => 'Admin', 'prefix' => '/cts-admin'], function(){
 

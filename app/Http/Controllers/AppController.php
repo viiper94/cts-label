@@ -62,4 +62,8 @@ class AppController extends Controller{
         return redirect()->back()->with(['success' => trans('school.request_sent')]);
     }
 
+    public function literatura(){
+        return view('literatura');
+    }
+
 }

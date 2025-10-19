@@ -91,12 +91,13 @@ class Release extends SharedModel implements Auditable{
         $available_descriptions = array();
         $this->description_en ? $available_descriptions[] = 'en' : false;
         $this->description_ua ? $available_descriptions[] = 'ua' : false;
-        $this->description_ru ? $available_descriptions[] = 'ru' : false;
+        // $this->description_ru ? $available_descriptions[] = 'ru' : false;
         if($count){
             return count($available_descriptions);
         }
 
         $cookie_lang = $_COOKIE['lang'] ?? null;
+        if($cookie_lang === 'ru') $cookie_lang = 'en';
         $default_lang = 'en';
 
         if($cookie_lang && $this['description_'.$cookie_lang]){

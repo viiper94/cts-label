@@ -210,7 +210,7 @@
                         <label class="en">@lang('releases.description_en')</label>
                         <textarea name="description_en" id="description_en">{!! old('description_en') ?? $release->description_en !!}</textarea>
                     </div>
-                    <div class="description form-group mb-3">
+                    {{-- <div class="description form-group mb-3">
                         <div class="d-flex justify-content-between">
                             <label class="en">@lang('releases.description_ru')</label>
                             <a class="btn btn-sm btn-outline translate_description" data-to-lang="ru">
@@ -218,7 +218,7 @@
                             </a>
                         </div>
                         <textarea name="description_ru" id="description_ru">{!! old('description_ru') ?? $release->description_ru !!}</textarea>
-                    </div>
+                    </div> --}}
                     <div class="description form-group mb-3">
                         <div class="d-flex justify-content-between">
                             <label class="en">@lang('releases.description_ua')</label>

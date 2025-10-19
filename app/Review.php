@@ -23,8 +23,8 @@ class Review extends SharedModel implements Auditable{
         return $this->belongsTo(Track::class);
     }
 
-    protected function asJson($value){
-        return json_encode($value, JSON_UNESCAPED_UNICODE);
+    protected function asJson($value, $flags = 0){
+        return json_encode($value, JSON_UNESCAPED_UNICODE | $flags);
     }
 
     public static function searchAuthorLocation($query){

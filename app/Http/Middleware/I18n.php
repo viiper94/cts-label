@@ -12,6 +12,7 @@ class I18n{
 
     public function handle($request, Closure $next){
         App::setLocale($_COOKIE['lang'] ?? $this->defaultLang);
+        if(App::getLocale() === 'ru') App::setLocale($defaultLang);
         Carbon::setLocale(str_replace('ua', 'uk', app()->getLocale()));
         return $next($request);
     }

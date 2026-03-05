@@ -130,9 +130,9 @@
                         <li>@lang('studio.service_2');</li>
                         <li>@lang('studio.service_3').</li>
                     </ul>
-                    <div class="d-flex justify-content-center">
+                    <!-- <div class="d-flex justify-content-center">
                         <a class="text-center text-uppercase price-list" href="/CTS_studio_price_list.PDF" target="_blank">@lang('studio.dl_price')</a>
-                    </div>
+                    </div> -->
                 </section>
                 <section class="projects py-5">
                     <h2 class="text-center text-uppercase fw-bold mb-5" id="projects">@lang('studio.projects')</h2>

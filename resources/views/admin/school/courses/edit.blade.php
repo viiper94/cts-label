@@ -27,11 +27,6 @@
                            required @checked($course->lang === 'ua')>
                     <label for="lang-ua" class="form-check-label">Українська</label>
                 </div>
-                <div class="form-check form-check-inline mb-3">
-                    <input type="radio" name="lang" id="lang-ru" class="form-check-input" value="ru"
-                           required @checked($course->lang === 'ru')>
-                    <label for="lang-ru" class="form-check-label">Русский</label>
-                </div>
                 <div class="form-group mb-3">
                     <label class="form-label form-dark" for="name">@lang('school.course_name')</label>
                     <input type="text" class="form-control form-dark" name="name" id="name" value="{{ $course->name }}" required>

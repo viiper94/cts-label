@@ -11,6 +11,7 @@ class AdminSchoolCoursesController extends Controller{
     public function index(){
         return view('admin.school.courses.index', [
             'courses_lang' => SchoolCourse::where('category', 'courses')
+                ->whereNot('lang', 'ru')
                 ->orderBy('lang')
                 ->orderBy('sort_id')
                 ->get()

@@ -11,6 +11,7 @@ class AdminSchoolTeachersController extends Controller{
     public function index(){
         return view('admin.school.teachers.index', [
             'teachers_lang' => SchoolTeacher::where('category', 'teachers')
+                ->whereNot('lang', 'ru')
                 ->orderBy('lang')
                 ->orderBy('sort_id')
                 ->get()

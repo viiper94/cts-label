@@ -11,6 +11,7 @@ class AdminStudioController extends Controller{
     public function index(){
         return view('admin.studio.index', [
             'service_list' => StudioService::orderBy('lang')
+                ->whereNot('lang', 'ru')
                 ->orderBy('sort_id')
                 ->get()
                 ->groupBy('lang')

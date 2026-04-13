@@ -26,7 +26,8 @@ class TracksExport implements
             'Artist(s)',
             'Title',
             'Mix',
-            'ISRC'
+            'ISRC',
+            'Catalogue Number(s)',
         ];
     }
 
@@ -37,7 +38,8 @@ class TracksExport implements
             'B' => 40,
             'C' => 30,
             'D' => 35,
-            'E' => 20
+            'E' => 20,
+            'F' => 50,
         ];
     }
 
@@ -48,7 +50,8 @@ class TracksExport implements
             $collection->artists,
             $collection->name,
             $collection->mix_name,
-            $collection->isrc
+            $collection->isrc,
+            Track::getCatalogueNumbersPlainText($collection),
         ];
     }
 

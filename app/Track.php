@@ -131,4 +131,15 @@ class Track extends Model implements Auditable{
         return '';
     }
 
+    public static function getCatalogueNumbersPlainText($track) :string{
+        if($track->releases){
+            $catalogueNumbers = array();
+            foreach($track->releases as $release){
+                $catalogueNumbers[] = $release->release_number;
+            }
+            return implode(', ', $catalogueNumbers);
+        }
+        return '';
+    }
+
 }

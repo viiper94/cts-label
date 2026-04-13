@@ -15,12 +15,12 @@ class School extends SharedModel{
 
     public function saveImage(UploadedFile $image){
         $name = md5($image->getClientOriginalName().time());
-        $format = $this->category === 'teachers' ? Manipulations::FORMAT_PNG : Manipulations::FORMAT_JPG;
+        $format = $this->category === 'teachers' ? 'png' : 'jpg';
         $this->image = $name.'.'.$format;
         $this->image_webp = $name.'.webp';
         $file = Image::load($image->getPathname())->quality(75)->width($this->category === 'teachers' ? 84 : 185);
-        $file->format(Manipulations::FORMAT_WEBP)->save(public_path('images/school/'.$this->category.'/').$this->image_webp);
-        $file->format($format)->save(public_path('images/school/'.$this->category.'/').$this->image);
+        $file->save(public_path('images/school/'.$this->category.'/').$this->image_webp);
+        $file->save(public_path('images/school/'.$this->category.'/').$this->image);
     }
 
     public function deleteImages(){

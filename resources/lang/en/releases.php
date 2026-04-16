@@ -22,8 +22,10 @@ return [
     'search_track' => 'Search Track',
     'no_results' => 'No Results',
 
-    'beatport_release_date' => 'Beatport Release Date',
     'catalogue_number' => 'Catalogue Number',
+    'upc' => 'UPC (assigned by distributor)',
+    'beatport_release_date' => 'Beatport Release Date',
+    'non_exclusive_release_date' => 'DD Release Date',
     'exclusive_period' => 'Exclusive Period',
     'without_exclusive_period' => 'No Exclusive Period',
     '2_weeks' => '2 Weeks',
@@ -48,6 +50,7 @@ return [
 
     'visible' => 'Visible',
     'title' => 'Title',
+    'main_artist' => 'Main Artists (Separated by comma)',
     'genre' => 'Genre',
     'release_number' => 'REL.Number',
     'release_date' => 'REL.Date',

@@ -23,7 +23,9 @@ return [
     'no_results' => 'Немає Результатів',
 
     'beatport_release_date' => 'Дата Релізу на Beatport',
+    'non_exclusive_release_date' => 'Дата Релізу на DD',
     'catalogue_number' => 'Номер релізу',
+    'upc' => 'UPC (присвоюється дистрибьютором)',
     'exclusive_period' => 'Ексклюзивний Період',
     'without_exclusive_period' => 'Без Ексклюзивного Періоду',
     '2_weeks' => '2 Тижні',
@@ -48,6 +50,7 @@ return [
 
     'visible' => 'Видимий',
     'title' => 'Назва',
+    'main_artist' => 'Виконавці (розділіть комою)',
     'genre' => 'Жанр',
     'release_number' => 'REL.Number',
     'release_date' => 'REL.Date',

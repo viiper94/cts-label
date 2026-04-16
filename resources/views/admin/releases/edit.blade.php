@@ -76,27 +76,50 @@
                             <p class="help-block text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">@lang('releases.genre')</label><br>
-                        <input type="text" class="form-control form-dark" name="genre" value="{{ old('genre') ?? $release->genre }}">
-                        @error('genre')
-                            <p class="help-block text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label">@lang('releases.catalogue_number')</label><br>
-                        <div class="input-group">
-                            <input type="text" class="form-control form-dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
-                            @if(!$release->id)
-                                <button class="btn btn-outline" type="button" id="cat-generate" data-url="{{ route('releases.getCat') }}">
-                                    @lang('releases.generate')
-                                </button>
-                            @endif
+
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12 form-group mb-3">
+                            <label class="form-label">@lang('releases.genre')</label><br>
+                            <input type="text" class="form-control form-dark" name="genre" value="{{ old('genre') ?? $release->genre }}">
+                            @error('genre')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
-                        @error('release_number')
-                            <p class="help-block text-danger">{{ $message }}</p>
-                        @enderror
+                        <div class="col-md-6 col-xs-12 form-group mb-3">
+                            <label class="form-label">@lang('releases.main_artists')</label><br>
+                            <input type="text" class="form-control form-dark" name="main_artists" value="{{ old('main_artists') ?? $release->main_artists }}">
+                            @error('main_artists')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12 form-group mb-3">
+                            <label class="form-label">@lang('releases.catalogue_number')</label><br>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-dark" name="release_number" value="{{ old('release_number') ?? $release->release_number }}">
+                                @if(!$release->id)
+                                    <button class="btn btn-outline" type="button" id="cat-generate" data-url="{{ route('releases.getCat') }}">
+                                        @lang('releases.generate')
+                                    </button>
+                                @endif
+                            </div>
+                            @error('release_number')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 col-xs-12 form-group mb-3">
+                            <label class="form-label">@lang('releases.upc')</label><br>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-dark" name="upc" value="{{ old('upc') ?? $release->upc }}">
+                            </div>
+                            @error('upc')
+                                <p class="help-block text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="form-group mb-3 col-auto">
                             <label class="form-label">@lang('releases.beatport_release_date')</label><br>
@@ -106,18 +129,13 @@
                                 <p class="help-block text-danger">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="col-auto">
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="exclusive_period">@lang('releases.exclusive_period')</label><br>
-                                <select class="form-select form-dark form-select mb-3" name="exclusive_period" id="exclusive_period">
-                                    <option @selected(!$release->exclusive_period)>@lang('releases.without_exclusive_period')</option>
-                                    <option value="2" @selected($release->exclusive_period === '2')>@lang('releases.2_weeks')</option>
-                                    <option value="4" @selected($release->exclusive_period === '4')>@lang('releases.4_weeks')</option>
-                                </select>
-                                @error('exclusive_period')
+                        <div class="form-group mb-3 col-auto">
+                            <label class="form-label">@lang('releases.non_exclusive_release_date')</label><br>
+                            <input type="hidden" name="non_exclusive_release_date" id="non_exclusive_release_date"
+                                   value="{{ old('non_exclusive_release_date') ?? $release->non_exclusive_release_date?->format('d F Y') }}">
+                            @error('non_exclusive_release_date')
                                 <p class="help-block text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group mb-3">
@@ -390,12 +408,27 @@
     </div>
 
     <script>
-        const picker = new Litepicker({
+        const picker1 = new Litepicker({
             element: document.getElementById('release_date'),
             inlineMode: true,
             lang: @switch(app()->getLocale())
                 @case('ua') 'uk-UK' @break
-                @case('ru') 'ru-RU' @break
+                // @case('ru') 'ru-RU' @break
+                @default 'en-US'
+            @endswitch,
+            dropdowns: {
+                "minYear": 2000,
+                "maxYear": null,
+                "months": true,
+                "years": true
+            }
+        });
+        const picker2 = new Litepicker({
+            element: document.getElementById('non_exclusive_release_date'),
+            inlineMode: true,
+            lang: @switch(app()->getLocale())
+                @case('ua') 'uk-UK' @break
+                // @case('ru') 'ru-RU' @break
                 @default 'en-US'
             @endswitch,
             dropdowns: {

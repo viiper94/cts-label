@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('releases', function (Blueprint $table) {
-            $table->string('upc')->nullable();
-            $table->string('main_artists')->nullable();
-            $table->date('non_exclusive_release_date')->nullable();
+            $table->string('upc')->nullable()->after('id');
+            $table->string('main_artists')->nullable()->after('title');
+            $table->date('non_exclusive_release_date')->nullable()->after('release_date');
         });
     }
 

@@ -24,6 +24,7 @@ class Release extends SharedModel implements Auditable{
         'tracklist_show_mix' => 'boolean',
         'tracklist_show_custom' => 'boolean',
         'release_date' => 'datetime',
+        'non_exclusive_release_date' => 'datetime',
         'uploaded_on_beatport' => 'boolean',
         'uploaded_on_believe' => 'boolean',
         'uploaded_on_juno' => 'boolean',
@@ -62,6 +63,9 @@ class Release extends SharedModel implements Auditable{
         'uploaded_on_release_promo',
         'label_copy_uploaded',
         'is_emailing_done',
+        'upc',                         
+        'main_artists',              
+        'non_exclusive_release_date',
     ];
 
     public function __construct(array $attributes = []){

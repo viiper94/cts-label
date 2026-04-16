@@ -37,6 +37,7 @@ class AdminReleasesController extends Controller{
             'release_number' => 'string|nullable|unique:App\Release|max:191',
             'genre' => 'string|nullable|max:191',
             'release_date' => 'date_format:Y-m-d|nullable',
+            'non_exclusive_release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
             'beatport' => 'url|nullable|max:191',
             'youtube' => 'url|nullable|max:191',
@@ -74,6 +75,7 @@ class AdminReleasesController extends Controller{
             'release_number' => ['string', 'nullable', Rule::unique('releases')->ignore($release), ['max', 191]],
             'genre' => 'string|nullable|max:191',
             'release_date' => 'date_format:Y-m-d|nullable',
+            'non_exclusive_release_date' => 'date_format:Y-m-d|nullable',
             'image' => 'file|image|dimensions:max_width=2000,max_height=2000|max:5500|mimes:jpg,jpeg,png',
             'beatport' => 'url|nullable|max:191',
             'youtube' => 'url|nullable|max:191',
@@ -194,6 +196,22 @@ class AdminReleasesController extends Controller{
         return $release->save() ?
             redirect()->back()->with(['success' => trans('releases.label_copy_generated')]) :
             redirect()->back()->withErrors([trans('alert.error')]);
+    }
+
+    public function export(){
+        try{
+            $releases = Releases::with('tracks')->get();
+            $file_name = 'CTS Releases.xlsx';
+
+            return (new ReleasesExport($releases))->download(
+                $file_name,
+                Excel::XLSX,
+                ['Content-Type' => 'text/xlsx']
+            );
+
+        }catch(\Exception $e){
+            return redirect()->back()->withErrors([trans('alert.error') => $e->getMessage()]);
+        }
     }
 
 }

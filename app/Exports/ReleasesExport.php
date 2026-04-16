@@ -1,0 +1,249 @@
+<?php
+
+namespace App\Exports;
+
+use Carbon\Carbon;
+use Illuminate\Support\Arr;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\FromCollection;
+
+class ReleasesExport implements 
+    FromCollection,
+    WithMapping,
+    WithHeadings,
+    WithColumnWidths{
+
+    use Exportable;
+
+    public $metadata;
+
+    public function __construct(public $collection){}
+
+    public function collection(){
+
+        $metadata = array();
+        foreach($this->collection as $release){
+            $i = 1;
+            foreach($release->tracks as $track){
+                $array = $track->toArray();
+                $array['order'] = $i;
+                $array['release'] = $release->toArray();
+                $array['first_release'] = $track->releases[0]->release_date;
+
+                $metadata[] = $array;
+                $i++;
+            }
+        }
+        // dd(collect($metadata));
+        return $this->metadata = collect($metadata);
+    }
+
+    public function headings(): array
+    {
+        return [
+            'Album title',
+            'Album version',
+            'UPC',
+            'Catalog number',
+            'Primary artists',
+            'Featuring Artists',
+            'Release date',
+            'Main genre',
+            'Main subgenre',
+            'Label',
+            'CLine (Copyright) year',
+            'CLine (Copyright) name',
+            'PLine (Copyright) year',
+            'Pline (Copyright) name',
+            'Parental advisory',
+            'Album format',
+            'Number of volumes',
+            'Territories',
+            'Excluded territories',
+            'Language(Metadata)',
+            'Catalog Tier',
+
+            'Track title',
+            'Track version',
+            'ISRC',
+            'Track Primary artists',
+            'Track Featuring Artists',
+            'Volume number',
+            'Track Main genre',
+            'Track Main subgenre',
+            'Track Language (Metadata)',
+            'Audio Language',
+            'Available separately',
+            'Track Parental advisory',
+            'Preview Start Time',
+            'Preview Length',
+            'Composer',
+            'Producer',
+            'Publisher',
+            'Track Sequence',
+            'Track Catalog Tier',
+            'Original file name',
+            'Original release date'
+        ];
+    }
+
+    public function map($metadata): array{
+        return [
+            $this->getAlbumTitle($metadata['release']['title']),
+            '',
+            $metadata['release']['upc'],
+            $metadata['release']['release_number'],
+            $this->getPrimaryArtists($metadata['release']['title']), 
+            $this->getFeaturingArtists($metadata['release']['title']),
+            $metadata['release']['non_exclusive_release_date'] ? Carbon::parse($metadata['release']['non_exclusive_release_date'])->format('Y-m-d') : '',
+            'Dance',
+            $this->getSubGenre($metadata['release']['genre']),
+            'CTS Records',
+            $metadata['release']['release_date'] ? Carbon::parse($metadata['release']['release_date'])->format('Y') : '',
+            'CTS Records',
+            $metadata['release']['release_date'] ? Carbon::parse($metadata['release']['release_date'])->format('Y') : '',
+            'CTS Records',
+            'No',
+            $this->getAlbumFormat($metadata['release']),
+            '1',
+            'World',
+            'RU|SK',
+            'EN',
+            'Front',
+
+            $metadata['name'],
+            $metadata['mix_name'],
+            $metadata['isrc'],
+            $this->getPrimaryArtists($metadata['artists']),
+            $this->getFeaturingArtists($metadata['artists']),
+            '1',
+            'Dance',
+            $this->getSubGenre($metadata['genre']),
+            'EN',
+            'EN',
+            'Y',
+            'N',
+            $metadata['beatport_sample_start'],
+            '60',
+            $metadata['composer'],
+            $metadata['composer'],
+            'Atal Music',
+            $metadata['order'],
+            'Front',
+            '',
+            $metadata['first_release'] ? Carbon::parse($metadata['first_release'])->format('Y-m-d') : ''
+        ];
+    }
+
+    public function columnWidths(): array
+    {
+        return [
+            'A' => 30,
+            'B' => 20,
+            'C' => 20,
+            'D' => 20,
+            'E' => 20,
+            'F' => 20,
+            'G' => 20,
+            'H' => 20,
+            'I' => 20,
+            'J' => 30,
+            'K' => 20,
+            'L' => 30,
+            'M' => 20,
+            'N' => 30,
+            'O' => 20,
+            'P' => 20,
+            'Q' => 20,
+            'R' => 30,
+            'S' => 30,
+            'T' => 30,
+
+            'U' => 50,
+            'V' => 20,
+            'W' => 20,
+            'X' => 30,
+            'Y' => 30,
+            'Z' => 20,
+            'AA' => 20,
+            'AB' => 20,
+            'AC' => 30,
+            'AD' => 30,
+            'AE' => 30,
+        ];
+    }
+
+    private function getAlbumTitle($title){
+        // if title contains " - " and the part before it is not empty, return the part after it, otherwise return the whole title
+        if(str_contains($title, ' - ')){
+            $parts = explode(' - ', $title);
+            if(!empty($parts[0])){
+                return $parts[1];
+            }
+        }
+        return $title;
+    }
+
+    private function getPrimaryArtists($title){
+        // if main artists contains comma separated values, replace comma with | and return the result, otherwise return the whole main artists
+        $title = explode(' feat. ', $title)[0];
+        $title = str_replace(' & ', ' | ', $title);
+        $title = str_replace(', ', ' | ', $title);
+        return $title;
+    }
+
+    private function getFeaturingArtists($string){
+        // if title contains "feat." and the part after it is not empty, return the part after "feat." and before " - ", otherwise return empty string  
+        if(str_contains($string, 'feat.')){
+            $parts = explode('feat.', $string);
+            if(!empty($parts[1])){
+                $featuring = explode(' - ', $parts[1])[0];
+                return trim($featuring);
+            }
+        }
+        return '';
+    }
+
+    private function getSubGenre($genre){
+        // trim values in "()" and trim text after " / " if it exists, otherwise return the whole genre
+        //  	Techno (Peak Time / Driving) => Techno
+        if(str_contains($genre, ' (')){
+            $parts = explode(' (', $genre);
+            return trim($parts[0]);
+        }
+        if(str_contains($genre, ' / ')){
+            $parts = explode(' / ', $genre);
+            return trim($parts[0]);
+        }
+        return $genre;
+    }
+
+    private function getAlbumFormat($release){
+        // if release has more than 5 track, return "Album", 3-4 tracks - EP, otherwise return "Single"
+        $tracks_count = count($release['tracks']);
+        if($tracks_count > 5){
+            return 'Album';
+        }elseif($tracks_count >= 3){
+            return 'EP';
+        }else{
+            return 'Single';
+        }
+    }
+
+    private function getYearFromDate($string){
+        // parse plain string date and return year, if it fails, return empty string
+        try{
+            $date = \DateTime::createFromFormat('Y-m-d', $string);
+            if($date){
+                return $date->format('Y');
+            }
+        }catch(\Exception $e){
+            return '';
+        }
+        return '';
+    }
+
+}

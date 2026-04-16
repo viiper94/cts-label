@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 use Stichoza\GoogleTranslate\GoogleTranslate;
+use App\Exports\ReleasesExport;
+use Maatwebsite\Excel\Excel;
 
 class AdminReleasesController extends Controller{
 
@@ -199,8 +201,9 @@ class AdminReleasesController extends Controller{
     }
 
     public function export(){
-        try{
-            $releases = Releases::with('tracks')->get();
+        // try{
+            $releases = Release::with('tracks', 'tracks.releases')->where('id', '1479')->get();
+            // dd($releases);
             $file_name = 'CTS Releases.xlsx';
 
             return (new ReleasesExport($releases))->download(
@@ -209,9 +212,9 @@ class AdminReleasesController extends Controller{
                 ['Content-Type' => 'text/xlsx']
             );
 
-        }catch(\Exception $e){
-            return redirect()->back()->withErrors([trans('alert.error') => $e->getMessage()]);
-        }
+        // }catch(\Exception $e){
+        //     return redirect()->back()->withErrors([trans('alert.error') => $e->getMessage()]);
+        // }
     }
 
 }

@@ -21,6 +21,7 @@ return [
     'translated_with_error' => 'Запит завершився помилкою. Перевірте консоль для додаткової інформації.',
     'search_track' => 'Пошук Треку',
     'no_results' => 'Немає Результатів',
+    'export' => 'Експорт',
 
     'beatport_release_date' => 'Дата Релізу на Beatport',
     'non_exclusive_release_date' => 'Дата Релізу на DD',

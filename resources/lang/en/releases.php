@@ -21,6 +21,7 @@ return [
     'translated_with_error' => 'Request ended with an error. Check console for more info.',
     'search_track' => 'Search Track',
     'no_results' => 'No Results',
+    'export' => 'Export',
 
     'catalogue_number' => 'Catalogue Number',
     'upc' => 'UPC (assigned by distributor)',

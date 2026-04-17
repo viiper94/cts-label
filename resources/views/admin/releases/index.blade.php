@@ -19,6 +19,9 @@
                 <button type="submit" class="btn btn-outline m-xl-0 m-1" form="sort_form" onclick="return confirm('@lang('shared.admin.are_you_sure_to_sort')?')">
                     <i class="fa-solid fa-sort me-2"></i>@lang('shared.admin.sort')
                 </button>
+                <a href="{{ route('releases.export') }}" class="btn btn-outline m-xl-0 m-1">
+                    <i class="fa-solid fa-file-export me-2"></i>@lang('releases.export')
+                </a>
             </div>
             {{ $releases->appends(Request::input())->links('admin.layout.pagination') }}
         </div>

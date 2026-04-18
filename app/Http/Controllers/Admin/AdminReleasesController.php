@@ -202,7 +202,11 @@ class AdminReleasesController extends Controller{
 
     public function export(){
         // try{
-            $releases = Release::with('tracks', 'tracks.releases')->where('id', '1479')->get();
+            $releases = Release::with('tracks', 'tracks.releases', 'tracks.releases.tracks')
+            // ->where('id', 432)
+            ->whereNotNull('upc')
+            ->orderBy('release_date')
+            ->get();
             // dd($releases);
             $file_name = 'CTS Releases.xlsx';
 

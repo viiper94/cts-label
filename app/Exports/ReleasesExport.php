@@ -3,18 +3,25 @@
 namespace App\Exports;
 
 use Carbon\Carbon;
+use App\Track;
 use Illuminate\Support\Arr;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+// use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class ReleasesExport implements 
     FromCollection,
     WithMapping,
-    WithHeadings,
-    WithColumnWidths{
+    WithColumnWidths,
+    WithColumnFormatting,
+    // ShouldAutoSize,
+    WithHeadings
+    {
 
     use Exportable;
 
@@ -39,6 +46,12 @@ class ReleasesExport implements
         }
         // dd(collect($metadata));
         return $this->metadata = collect($metadata);
+    }
+
+    public function columnFormats(): array{
+        return [
+            'C' => NumberFormat::FORMAT_NUMBER,
+        ];
     }
 
     public function headings(): array
@@ -81,12 +94,18 @@ class ReleasesExport implements
             'Preview Start Time',
             'Preview Length',
             'Composer',
-            'Producer',
+            'Remixer',
             'Publisher',
             'Track Sequence',
             'Track Catalog Tier',
             'Original file name',
             'Original release date'
+        ];
+    }
+
+    public function columnWidths(): array{
+        return [
+            'C' => 20
         ];
     }
 
@@ -96,7 +115,7 @@ class ReleasesExport implements
             '',
             $metadata['release']['upc'],
             $metadata['release']['release_number'],
-            $this->getPrimaryArtists($metadata['release']['title']), 
+            $this->getPrimaryArtists($metadata['release']['main_artists']), 
             $this->getFeaturingArtists($metadata['release']['title']),
             $metadata['release']['non_exclusive_release_date'] ? Carbon::parse($metadata['release']['non_exclusive_release_date'])->format('Y-m-d') : '',
             'Dance',
@@ -116,7 +135,7 @@ class ReleasesExport implements
 
             $metadata['name'],
             $metadata['mix_name'],
-            $metadata['isrc'],
+            $this->getISRCWithNoDashes($metadata['isrc']),
             $this->getPrimaryArtists($metadata['artists']),
             $this->getFeaturingArtists($metadata['artists']),
             '1',
@@ -129,50 +148,12 @@ class ReleasesExport implements
             $metadata['beatport_sample_start'],
             '60',
             $metadata['composer'],
-            $metadata['composer'],
+            $metadata['remixers'],
             'Atal Music',
             $metadata['order'],
             'Front',
             '',
             $metadata['first_release'] ? Carbon::parse($metadata['first_release'])->format('Y-m-d') : ''
-        ];
-    }
-
-    public function columnWidths(): array
-    {
-        return [
-            'A' => 30,
-            'B' => 20,
-            'C' => 20,
-            'D' => 20,
-            'E' => 20,
-            'F' => 20,
-            'G' => 20,
-            'H' => 20,
-            'I' => 20,
-            'J' => 30,
-            'K' => 20,
-            'L' => 30,
-            'M' => 20,
-            'N' => 30,
-            'O' => 20,
-            'P' => 20,
-            'Q' => 20,
-            'R' => 30,
-            'S' => 30,
-            'T' => 30,
-
-            'U' => 50,
-            'V' => 20,
-            'W' => 20,
-            'X' => 30,
-            'Y' => 30,
-            'Z' => 20,
-            'AA' => 20,
-            'AB' => 20,
-            'AC' => 30,
-            'AD' => 30,
-            'AE' => 30,
         ];
     }
 
@@ -222,28 +203,66 @@ class ReleasesExport implements
     }
 
     private function getAlbumFormat($release){
-        // if release has more than 5 track, return "Album", 3-4 tracks - EP, otherwise return "Single"
-        $tracks_count = count($release['tracks']);
-        if($tracks_count > 5){
+        // // if title contains "EP" return "EP"
+        // if(str_contains($release['title'], ' EP')){
+        //     return 'EP';
+        // }
+        // // if release has more than 5 track, return "Album", 3-4 tracks - EP, otherwise return "Single"
+        // $tracks_count = count($release['tracks']);
+        // if($tracks_count > 5){
+        //     return 'Album';
+        // }elseif($tracks_count >= 3){
+        //     return 'EP';
+        // }else{
+        //     return 'Single';
+        // }
+
+
+        $tracks = $release['tracks'] ?? [];
+
+        $trackCount = count($tracks);
+
+        // convert all durations once
+        $durations = array_map(function ($track) {
+            return (int) Track::minutesToMilliseconds($track['length']);
+        }, $tracks);
+
+        $totalDurationMs = array_sum($durations);
+
+        // thresholds
+        $tenMinutesMs = 10 * 60 * 1000;
+        $thirtyMinutesMs = 30 * 60 * 1000;
+
+        $hasLongTrack = collect($durations)->contains(fn($d) => $d >= $tenMinutesMs);
+
+        // Album
+        if ($trackCount >= 7 || $totalDurationMs > $thirtyMinutesMs) {
             return 'Album';
-        }elseif($tracks_count >= 3){
+        }
+
+        // EP
+        if (
+            ($trackCount >= 4 && $trackCount <= 6 && $totalDurationMs < $thirtyMinutesMs) ||
+            ($trackCount >= 1 && $trackCount <= 3 && $hasLongTrack)
+        ) {
             return 'EP';
-        }else{
+        }
+
+        // Single
+        if ($trackCount >= 1 && $trackCount <= 3 && !$hasLongTrack) {
             return 'Single';
         }
+
+        return '';
     }
 
     private function getYearFromDate($string){
         // parse plain string date and return year, if it fails, return empty string
-        try{
-            $date = \DateTime::createFromFormat('Y-m-d', $string);
-            if($date){
-                return $date->format('Y');
-            }
-        }catch(\Exception $e){
-            return '';
-        }
-        return '';
+        return Carbon::parse($string)->format('Y');
+    }
+
+    private function getISRCWithNoDashes($isrc) : string {
+        return str_replace('-', '', $isrc);
     }
 
 }

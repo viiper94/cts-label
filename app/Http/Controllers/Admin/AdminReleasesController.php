@@ -210,6 +210,7 @@ class AdminReleasesController extends Controller{
             // dd($releases);
             $file_name = 'CTS Releases.xlsx';
 
+            set_time_limit(160); 
             return (new ReleasesExport($releases))->download(
                 $file_name,
                 Excel::XLSX,

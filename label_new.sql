@@ -26225,4 +26225,4 @@ INSERT INTO `webinar_contacts` (`id`, `name`, `email`, `tel`, `type`, `other`, `
 (42,	'Богдан Федоров',	'fedorovprivate@gmail.com',	'0955584747',	'студент/випускник CTSchool',	NULL,	NULL,	'2023-02-21 16:28:02',	'2023-02-21 16:28:02'),
 (43,	'Proxima',	'proximaoofficial1@gmail.com',	'0731672654',	'артист/музикант',	NULL,	NULL,	'2023-02-21 16:43:21',	'2023-02-21 16:43:21');
 
--- 2026-04-21 16:14:47 UTC
+-- 2026-04-21 18:46:51 UTC

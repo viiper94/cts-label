@@ -199,6 +199,10 @@ class ReleasesExport implements
             $parts = explode(' / ', $genre);
             return trim($parts[0]);
         }
+        if(str_contains($genre, ',')){
+            $parts = explode(',', $genre);
+            return trim($parts[0]);
+        }
         return $genre;
     }
 

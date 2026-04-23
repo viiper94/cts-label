@@ -50,7 +50,7 @@ class ReleasesExport implements
 
     public function columnFormats(): array{
         return [
-            'C' => NumberFormat::FORMAT_NUMBER,
+            'D' => NumberFormat::FORMAT_NUMBER,
         ];
     }
 
@@ -59,11 +59,13 @@ class ReleasesExport implements
         return [
             'Album title',
             'Album version',
+            'Album display artist',
             'UPC',
             'Catalog number',
             'Primary artists',
             'Featuring Artists',
             'Release date',
+            'Original release date',
             'Main genre',
             'Main subgenre',
             'Label',
@@ -84,6 +86,7 @@ class ReleasesExport implements
             'ISRC',
             'Track Primary artists',
             'Track Featuring Artists',
+            'Track display artist',
             'Volume number',
             'Track Main genre',
             'Track Main subgenre',
@@ -99,7 +102,6 @@ class ReleasesExport implements
             'Track Sequence',
             'Track Catalog Tier',
             'Original file name',
-            'Original release date'
         ];
     }
 
@@ -113,10 +115,12 @@ class ReleasesExport implements
         return [
             $this->getAlbumTitle($metadata['release']['title']),
             '',
+            $this->getPrimaryArtists($metadata['release']['main_artists']),
             $metadata['release']['upc'],
             $metadata['release']['release_number'],
             $this->getPrimaryArtists($metadata['release']['main_artists']), 
             $this->getFeaturingArtists($metadata['release']['title']),
+            $metadata['release']['non_exclusive_release_date'] ? Carbon::parse($metadata['release']['non_exclusive_release_date'])->format('Y-m-d') : '',
             $metadata['release']['non_exclusive_release_date'] ? Carbon::parse($metadata['release']['non_exclusive_release_date'])->format('Y-m-d') : '',
             'Dance',
             $this->getSubGenre($metadata['release']['genre']),
@@ -138,6 +142,7 @@ class ReleasesExport implements
             $this->getISRCWithNoDashes($metadata['isrc']),
             $this->getPrimaryArtists($metadata['artists']),
             $this->getFeaturingArtists($metadata['artists']),
+            str_replace(' ,', ' | ', $metadata['artists']),
             '1',
             'Dance',
             $this->getSubGenre($metadata['genre']),
@@ -153,7 +158,6 @@ class ReleasesExport implements
             $metadata['order'],
             'Front',
             '',
-            $metadata['first_release'] ? Carbon::parse($metadata['first_release'])->format('Y-m-d') : ''
         ];
     }
 

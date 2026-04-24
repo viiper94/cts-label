@@ -151,15 +151,17 @@ class ReleasesExport implements
                 Carbon::parse($metadata['release']['release_date'])->format('Y') : '',                      // Pline year
             'CTS Records',                                                                                  // Pline name
             'No',                                                                                           // Parental advisory
+            '',                                                                                             // Recording year
+            '',                                                                                             // Recording location
             $this->getAlbumFormat($metadata['release']),                                                    // Album format
             '1',                                                                                            // Number of volumes                     
             'World',                                                                                        // Territories
-            'RU',                                                                                           // Excluded territories
+            'RU|KR',                                                                                        // Excluded territories
             'EN',                                                                                           // Language(Metadata)
             'Front',                                                                                        // Catalog Tier
 
             $metadata['name'],                                                                              // Track title
-        $metadata['mix_name'],                                                                              // Track version(OR Version title)
+            $metadata['mix_name'],                                                                          // Track version(OR Version title)
             $this->getISRCWithNoDashes($metadata['isrc']),                                                  // ISRC
             $this->getPrimaryArtists($metadata['artists']),                                                 // Track primary artists
             $this->getFeaturingArtists($metadata['artists']),                                               // Track featuring Artists
@@ -178,14 +180,14 @@ class ReleasesExport implements
             '',                                                                                             // Preview length
             '',                                                                                             // Track recording year
             '',                                                                                             // Track recording location
-            str_replace(' ,', ' | ', $metadata['composer']),                                                // Composer
+            str_replace(', ', ' | ', $metadata['composer']),                                                // Composer
             '',                                                                                             // Lyricist
             '',                                                                                             // Mastering Engineer
             '',                                                                                             // Producer
             '',                                                                                             // Programmer
             implode(' | ', (array) $metadata['remixers']),                                                  // Remixer
             '',                                                                                             // Vocals
-            str_replace(' ,', ' | ', $metadata['composer']),                                                // Writer
+            str_replace(', ', ' | ', $metadata['composer']),                                                // Writer
             'Atal Music',                                                                                   // Publisher
             $metadata['order'],                                                                             // Track Sequence
             'Front',                                                                                        // Track Catalog Tier

@@ -94,6 +94,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/users', [AdminUsersController::class, 'index'])->name('users.index');
         Route::delete('/users/{user}', [AdminUsersController::class, 'destroy'])->name('users.destroy');
 
+        Route::get('/artists/import', [AdminArtistsController::class, 'import']);
         Route::post('/artists/resort', [AdminArtistsController::class, 'resort'])->name('artists.resort');
         Route::get('/artists/sort/{artist}/{dir}', [AdminArtistsController::class, 'sort'])->name('artists.sort');
         Route::resource('/artists', AdminArtistsController::class)->except(['show']);

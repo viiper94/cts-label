@@ -93,4 +93,43 @@ class AdminArtistsController extends Controller{
             redirect()->back()->withErrors([trans('alert.error')]);
     }
 
+    public function import(){
+        // read artists.json
+        // iterate through "data"
+        // where stores->platform_id = 0, read "third_id" it is apple music id
+        // where stores->platform_id = 204, read "third_id" it is spotify id
+        // artist name is "name" match with Artist::where('name', $name)->first()
+        // if found, update spotify_id and apple_music_id
+        // if not found, create new artist with name, spotify_id and apple_music_id, but not visible, download image, save it in public-images-artists and save the artist
+        $file_name = 'artists.json';
+        if(!file_exists($file_name)) return redirect()->back()->withErrors([trans('artists.file_not_found')]);
+        $json = file_get_contents($file_name);
+        $data = json_decode($json, true);        
+        foreach($data['data'] as $item){
+            $artist = Artist::where('name', $item['name'])->first();
+            if(!$artist) $artist = new Artist();
+            foreach($item['stores'] as $store){
+                if($store['platform_id'] == 0) $artist->apple_music_id = $store['third_id'];
+                elseif($store['platform_id'] == 204) $artist->spotify_id = $store['third_id'];
+            }
+            if(!$artist->id){
+                $artist->name = $item['name'];
+                $artist->sort_id = intval($artist->getLatestSortId(Artist::class)) + 1;
+                $artist->visible = false;
+            } 
+            if(!$artist->id && $item['image']) {
+                try {
+                    $image_content = file_get_contents($item['image']);
+                    $image_name = basename($item['image']);
+                    file_put_contents(public_path('images/artists/' . $image_name), $image_content);
+                    $artist->image = 'images/artists/' . $image_name;
+                } catch (\Exception $e) {
+                    // Handle image download error (e.g., log the error)
+                }
+            }
+            $artist->save();
+        }
+        return redirect()->back()->with(['success' => trans('artists.artists_imported')]);
+    }
+
 }

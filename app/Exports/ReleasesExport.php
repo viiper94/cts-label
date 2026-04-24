@@ -68,12 +68,16 @@ class ReleasesExport implements
             'Original release date',
             'Main genre',
             'Main subgenre',
+            'Alternate genre',
+            'Alternate subgenre',
             'Label',
-            'CLine (Copyright) year',
-            'CLine (Copyright) name',
-            'PLine (Copyright) year',
-            'Pline (Copyright) name',
+            'CLine year',
+            'CLine name',
+            'PLine year',
+            'Pline name',
             'Parental advisory',
+            'Recording year',
+            'Recording location',
             'Album format',
             'Number of volumes',
             'Territories',
@@ -82,22 +86,32 @@ class ReleasesExport implements
             'Catalog Tier',
 
             'Track title',
-            'Track version',
+            'Track version(OR Version title)',
             'ISRC',
-            'Track Primary artists',
-            'Track Featuring Artists',
+            'Track primary artists',
+            'Track featuring Artists',
             'Track display artist',
             'Volume number',
             'Track Main genre',
             'Track Main subgenre',
+            'Track alternate genre',
+            'Track alternate subgenre',
             'Track Language (Metadata)',
             'Audio Language',
+            'Lyrics',
             'Available separately',
             'Track Parental advisory',
-            'Preview Start Time',
-            'Preview Length',
+            'Preview start',
+            'Preview length',
+            'Track recording year',
+            'Track recording location',
             'Composer',
+            'Lyricist',
+            'Mastering Engineer',
+            'Producer',
+            'Programmer',
             'Remixer',
+            'Vocals', 
             'Writer',
             'Publisher',
             'Track Sequence',
@@ -114,52 +128,68 @@ class ReleasesExport implements
 
     public function map($metadata): array{
         return [
-            $this->getAlbumTitle($metadata['release']['title']),
-            '',
-            $this->getPrimaryArtists($metadata['release']['main_artists']),
-            $metadata['release']['upc'],
-            $metadata['release']['release_number'],
-            $this->getPrimaryArtists($metadata['release']['main_artists']), 
-            $this->getFeaturingArtists($metadata['release']['title']),
-            $metadata['release']['non_exclusive_release_date'] ? Carbon::parse($metadata['release']['non_exclusive_release_date'])->format('Y-m-d') : '',
-            $metadata['release']['non_exclusive_release_date'] ? Carbon::parse($metadata['release']['non_exclusive_release_date'])->format('Y-m-d') : '',
-            'Dance',
-            $this->getSubGenre($metadata['release']['genre']),
-            'CTS Records',
-            $metadata['release']['release_date'] ? Carbon::parse($metadata['release']['release_date'])->format('Y') : '',
-            'CTS Records',
-            $metadata['release']['release_date'] ? Carbon::parse($metadata['release']['release_date'])->format('Y') : '',
-            'CTS Records',
-            'No',
-            $this->getAlbumFormat($metadata['release']),
-            '1',
-            'World',
-            'RU|KR',
-            'EN',
-            'Front',
+            $this->getAlbumTitle($metadata['release']['title']),                                            // Album title
+            '',                                                                                             // Album version
+            $metadata['release']['main_artists'],                                                           // Album display artist
+            $metadata['release']['upc'],                                                                    // UPC
+            $metadata['release']['release_number'],                                                         // Catalog number
+            $this->getPrimaryArtists($metadata['release']['main_artists']),                                 // Primary artists
+            $this->getFeaturingArtists($metadata['release']['title']),                                      // Featuring Artists
+            $metadata['release']['non_exclusive_release_date'] ? 
+                Carbon::parse($metadata['release']['non_exclusive_release_date'])->format('Y-m-d') : '',    // Release date
+            $metadata['release']['non_exclusive_release_date'] ? 
+                Carbon::parse($metadata['release']['non_exclusive_release_date'])->format('Y-m-d') : '',    // Original release date                                                                                
+            'Dance',                                                                                        // Main genre                  
+            $this->getSubGenre($metadata['release']['genre']),                                              // Main subgenre
+            '',                                                                                             // Alternate genre
+            '',                                                                                             // Alternate subgenre
+            'CTS Records',                                                                                  // Label
+            $metadata['release']['release_date'] ? 
+                Carbon::parse($metadata['release']['release_date'])->format('Y') : '',                      // CLine year
+            'CTS Records',                                                                                  // CLine name
+            $metadata['release']['release_date'] ?                                                          
+                Carbon::parse($metadata['release']['release_date'])->format('Y') : '',                      // Pline year
+            'CTS Records',                                                                                  // Pline name
+            'No',                                                                                           // Parental advisory
+            $this->getAlbumFormat($metadata['release']),                                                    // Album format
+            '1',                                                                                            // Number of volumes                     
+            'World',                                                                                        // Territories
+            'RU',                                                                                           // Excluded territories
+            'EN',                                                                                           // Language(Metadata)
+            'Front',                                                                                        // Catalog Tier
 
-            $metadata['name'],
-            $metadata['mix_name'],
-            $this->getISRCWithNoDashes($metadata['isrc']),
-            $this->getPrimaryArtists($metadata['artists']),
-            $this->getFeaturingArtists($metadata['artists']),
-            str_replace(' ,', ' | ', $metadata['artists']),
-            '1',
-            'Dance',
-            $this->getSubGenre($metadata['genre']),
-            'EN',
-            'ZXX',
-            'Y',
-            'N',
-            '',
-            '',
-            str_replace(' ,', ' | ', $metadata['composer']),
-            implode(' | ', (array) $metadata['remixers']),
-            str_replace(' ,', ' | ', $metadata['composer']),
-            'Atal Music',
-            $metadata['order'],
-            'Front',
-            '',
+            $metadata['name'],                                                                              // Track title
+        $metadata['mix_name'],                                                                              // Track version(OR Version title)
+            $this->getISRCWithNoDashes($metadata['isrc']),                                                  // ISRC
+            $this->getPrimaryArtists($metadata['artists']),                                                 // Track primary artists
+            $this->getFeaturingArtists($metadata['artists']),                                               // Track featuring Artists
+            $metadata['artists'],                                                                           // Track display artist
+            '1',                                                                                            // Volume number
+            'Dance',                                                                                        // Track Main genre
+            $this->getSubGenre($metadata['genre']),                                                         // Track Main subgenre
+            '',                                                                                             // Track alternate genre
+            '',                                                                                             // Track alternate subgenre
+            'EN',                                                                                           // Track Language (Metadata)
+            'ZXX',                                                                                          // Audio Language
+            '',                                                                                             // Lyrics
+            'Y',                                                                                            // Available separately
+            'N',                                                                                            // Track Parental advisory
+            '',                                                                                             // Preview start
+            '',                                                                                             // Preview length
+            '',                                                                                             // Track recording year
+            '',                                                                                             // Track recording location
+            str_replace(' ,', ' | ', $metadata['composer']),                                                // Composer
+            '',                                                                                             // Lyricist
+            '',                                                                                             // Mastering Engineer
+            '',                                                                                             // Producer
+            '',                                                                                             // Programmer
+            implode(' | ', (array) $metadata['remixers']),                                                  // Remixer
+            '',                                                                                             // Vocals
+            str_replace(' ,', ' | ', $metadata['composer']),                                                // Writer
+            'Atal Music',                                                                                   // Publisher
+            $metadata['order'],                                                                             // Track Sequence
+            'Front',                                                                                        // Track Catalog Tier
+            '',                                                                                             // Original file name
         ];
     }
 

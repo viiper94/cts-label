@@ -201,25 +201,19 @@ class AdminReleasesController extends Controller{
     }
 
     public function export(){
-        // try{
-            $releases = Release::with('tracks', 'tracks.releases', 'tracks.releases.tracks')
-            // ->where('id', 432)
-            ->whereNotNull('upc')
-            ->orderBy('release_date')
-            ->get();
-            // dd($releases);
-            $file_name = 'CTS Releases.xlsx';
+        $releases = Release::with('tracks', 'tracks.releases', 'tracks.releases.tracks')
+        ->whereNotNull('upc')
+        ->orderBy('release_date')
+        ->get();
+        $file_name = 'CTS Releases.xlsx';
 
-            set_time_limit(160); 
-            return (new ReleasesExport($releases))->download(
-                $file_name,
-                Excel::XLSX,
-                ['Content-Type' => 'text/xlsx']
-            );
+        set_time_limit(160); 
+        return (new ReleasesExport($releases))->download(
+            $file_name,
+            Excel::XLSX,
+            ['Content-Type' => 'text/xlsx']
+        );
 
-        // }catch(\Exception $e){
-        //     return redirect()->back()->withErrors([trans('alert.error') => $e->getMessage()]);
-        // }
     }
 
 }

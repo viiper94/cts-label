@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Http\UploadedFile;
 use Spatie\Image\Image;
-use Spatie\Image\Manipulations;
 
 class School extends SharedModel{
 

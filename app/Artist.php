@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Http\UploadedFile;
 use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Image\Image;
-use Spatie\Image\Manipulations;
 
 class Artist extends SharedModel implements Auditable{
 
@@ -25,8 +24,8 @@ class Artist extends SharedModel implements Auditable{
         $this->image = $name.'.jpg';
         $this->image_webp = $name.'.webp';
         $file = Image::load($image->getPathname())->width(276)->quality(75);
-        $file->format(Manipulations::FORMAT_WEBP)->save(public_path('images/artists/').$this->image_webp);
-        $file->format(Manipulations::FORMAT_JPG)->save(public_path('images/artists/').$this->image);
+        $file->save(public_path('images/artists/').$this->image_webp);
+        $file->save(public_path('images/artists/').$this->image);
     }
 
     public function deleteImages(){

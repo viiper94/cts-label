@@ -9,7 +9,6 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Spatie\Image\Image;
-use Spatie\Image\Manipulations;
 use ZipArchive;
 
 class Release extends SharedModel implements Auditable{
@@ -199,8 +198,8 @@ class Release extends SharedModel implements Auditable{
         $this->image = $name.'_500.jpg';
         $this->image_270 = $name.'_270.jpg';
         $file = Image::load($image->getPathname())->quality(75);
-        $file->format(Manipulations::FORMAT_JPG)->width(270)->save(public_path('images/releases/').$this->image_270);
-        $file->format(Manipulations::FORMAT_JPG)->width(500)->save(public_path('images/releases/').$this->image);
+        $file->width(270)->save(public_path('images/releases/').$this->image_270);
+        $file->width(500)->save(public_path('images/releases/').$this->image);
     }
 
     public function deleteImages(){

@@ -22,6 +22,7 @@ return [
     'search_track' => 'Пошук Треку',
     'no_results' => 'Немає Результатів',
     'export' => 'Експорт',
+    'main_artists' => 'Основний Виконавець',
 
     'beatport_release_date' => 'Дата Релізу на Beatport',
     'non_exclusive_release_date' => 'Дата Релізу на DD',

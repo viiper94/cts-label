@@ -22,6 +22,7 @@ return [
     'search_track' => 'Search Track',
     'no_results' => 'No Results',
     'export' => 'Export',
+    'main_artists' => 'Main Artist(s)',
 
     'catalogue_number' => 'Catalogue Number',
     'upc' => 'UPC (assigned by distributor)',

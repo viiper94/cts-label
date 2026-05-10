@@ -132,13 +132,13 @@
                                             </button>
                                         </div>
                                         <div class="release-tracklist-item-properties">
-                                            <div class="release-tracklist-item-properties-top">
-                                                <span class="track-name">{{ $track->name }}</span>
+                                            <div class="release-tracklist-item-properties-top text-truncate text-muted overflow-hidden">
+                                                <span class="track-name text-white text-opacity-50">{{ $track->name }}</span>
                                                 @if($track->mix_name)
-                                                    <small class="track-mix text-muted">{{ $track->mix_name }}</small>
+                                                    <small class="track-mix text-muted text-truncate" title="{{ $track->mix_name }}">{{ $track->mix_name }}</small>
                                                 @endif
                                             </div>
-                                            <small class="track-artists text-muted">{{ $track->artists }}</small>
+                                            <small class="track-artists text-dark-emphasis">{{ $track->artists }}</small>
                                         </div>
                                     </div>
                                 @endforeach
@@ -178,7 +178,7 @@
     </div>
 @endsection
 
-@section('json-ld')
+{{-- @section('json-ld')
 
     <script type="application/ld+json">
         {
@@ -217,4 +217,4 @@
         }
     </script>
 
-@endsection
+@endsection --}}

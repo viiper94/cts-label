@@ -13,6 +13,8 @@ class Artist extends SharedModel implements Auditable{
     protected $fillable = [
         'name',
         'link',
+        'spotify_id' ,
+        'apple_music_id',
         'description_en',
         'description_ru',
         'description_ua',
@@ -39,6 +41,14 @@ class Artist extends SharedModel implements Auditable{
 
     public function getLink() :string{
         return $this->link ?? route('home', ['q' => $this->name]);
+    }
+
+    public function getSpotifyLink() :?string{
+        return $this->spotify_id ? 'https://open.spotify.com/artist/'.$this->spotify_id : null;
+    }
+
+    public function getAppleMusicLink() :?string{
+        return $this->apple_music_id ? 'https://music.apple.com/artist/'.$this->apple_music_id : null;
     }
 
 }

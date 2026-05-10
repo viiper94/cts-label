@@ -29,6 +29,30 @@
                         @endif
                     </div>
                 </div>
+                <div class="form-group mb-3">
+                    <label class="form-label" for="spotify_id">@lang('artists.spotify_id')</label><br>
+                    <div class="input-group">
+                        <input type="url" class="form-control form-dark" name="spotify_id" id="spotify_id"
+                               value="{{ $artist->spotify_id }}">
+                        @if($artist->spotify_id)
+                            <a class="btn btn-outline border-0" href="{{ $artist->getSpotifyLink() }}" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label" for="apple_music_id">@lang('artists.apple_music_id')</label><br>
+                    <div class="input-group">
+                        <input type="url" class="form-control form-dark" name="apple_music_id" id="apple_music_id"
+                               value="{{ $artist->apple_music_id }}">
+                        @if($artist->apple_music_id)
+                            <a class="btn btn-outline border-0" href="{{ $artist->getAppleMusicLink() }}" target="_blank">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     </form>

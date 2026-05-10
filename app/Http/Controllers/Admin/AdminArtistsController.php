@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AdminArtistsController extends Controller{
 
     public function index(Request $request){
-        $artists = Artist::select('id', 'name', 'image');
+        $artists = Artist::select('*');
         if($request->input('q')) $artists->where('name', 'like', '%'.$request->input('q').'%');
         return view('admin.artists.index', [
             'artists' => $artists->latest()->paginate(30)
@@ -29,6 +29,8 @@ class AdminArtistsController extends Controller{
             $this->validate($request, [
                 'name' => 'required|string|max:191',
                 'image' => 'nullable|image|mimes:jpeg,png',
+                'spotify_id' => 'nullable|string|max:191',
+                'apple_music_id' => 'nullable|string|max:191',
                 'link' => 'url|nullable|max:191'
             ]);
             $artist->fill($request->post());
@@ -56,6 +58,8 @@ class AdminArtistsController extends Controller{
         $this->validate($request, [
             'name' => 'required|string|max:191',
             'image' => 'nullable|image|mimes:jpeg,png',
+                'spotify_id' => 'nullable|string|max:191',
+                'apple_music_id' => 'nullable|string|max:191',
             'link' => 'url|nullable|max:191'
         ]);
         $artist->fill($request->post());

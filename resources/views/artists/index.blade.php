@@ -15,13 +15,32 @@
                 <div class="row g-0 mb-3">
                     @foreach($artists as $artist)
                         <div class="artist-brief col-6 col-sm-4 col-md-4 col-lg-3 g-0">
-                            <a href="{{ $artist->getLink() }}" target="_blank">
-                                <x-picture :src="[
-                                    '/images/artists/'.$artist->image_webp,
-                                    '/images/artists/'.$artist->image
-                                ]" alt="{{ $artist->name }}" loading="lazy"/>
-                                <div class="artist-title">{{ $artist->name }}</div>
-                            </a>
+                            <x-picture :src="[
+                                '/images/artists/'.$artist->image_webp,
+                                '/images/artists/'.$artist->image
+                            ]" alt="{{ $artist->name }}" loading="lazy"/>
+                            <div class="artist-overlay">
+                                <div class="artist-title d-flex flex-column">
+                                    <span class="d-block text-truncate pb-2" title="{{ $artist->name }}">{{ $artist->name }}</span>
+                                    <div class="artist-links d-inline-flex">
+                                        @if ($artist->link)
+                                            <a href="{{ $artist->getLink() }}" target="_blank" class="pe-1">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            </a>
+                                        @endif
+                                        @if ($artist->spotify_id)
+                                            <a href="{{ $artist->getSpotifyLink() }}" target="_blank" class="px-1">
+                                                <i class="fa-brands fa-spotify"></i>
+                                            </a>
+                                        @endif
+                                        @if ($artist->apple_music_id)
+                                            <a href="{{ $artist->getAppleMusicLink() }}" target="_blank" class="px-1">
+                                                <i class="fa-brands fa-itunes-note"></i>
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @endforeach
                 </div>

@@ -10,7 +10,8 @@ return [
     'artist_added' => 'Артист успішно доданий!',
     'artist_edited' => 'Артист успішно відредагований!',
     'artist_deleted' => 'Артист успішно видалений!',
-    'artists_sorted' => 'Артисти успішно пересортовані!',
+    'spotify_id' => 'Spotify ID',
+    'apple_music_id' => 'Apple Music ID',
 
     'visible' => 'Видимий',
     'name' => 'Ім\'я',

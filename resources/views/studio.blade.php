@@ -189,6 +189,7 @@
 
 @section('json-ld')
     <script type="application/ld+json">
+        @verbatim
         {
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -208,5 +209,6 @@
           "telephone": "+38-098-685-40-33",
           "email": "info@cts-label.com"
         }
+        @endverbatim
     </script>
 @endsection

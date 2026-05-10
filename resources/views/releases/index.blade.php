@@ -49,6 +49,7 @@
 
 @section('json-ld')
 <script type="application/ld+json">
+    @verbatim
 {
   "@context": "https://schema.org",
   "@type": "MusicGroup",
@@ -64,6 +65,7 @@
   "musicGenre": "House, Techno, Tech House, Indie Dance",
   "description": "CTS - Creative Technologies Studio - one of the first independent record labels based in Ukraine working in electronic dance music sphere.",
   "album": [
+    @endverbatim
 @foreach($releases->take(3) as $release)
         {
         "@type": "MusicAlbum",

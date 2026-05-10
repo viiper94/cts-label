@@ -181,6 +181,7 @@
 @section('json-ld')
 
     <script type="application/ld+json">
+        @verbatim
         {
             "@context": "https://schema.org",
             "@type": "MusicAlbum",
@@ -188,6 +189,7 @@
             @if($release->image) "image": "{{ url('/') }}/images/releases/{{ $release->image }}", @endif
             "url": "{{ route('release', $release->id) }}",
             "albumProductionType": "https://schema.org/StudioAlbum",
+        @endverbatim
             @if(count($release->tracks) > 0)
                 "track": {
                     "@type": "ItemList",

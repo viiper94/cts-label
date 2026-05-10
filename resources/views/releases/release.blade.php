@@ -178,7 +178,7 @@
     </div>
 @endsection
 
-{{-- @section('json-ld')
+@section('json-ld')
 
     <script type="application/ld+json">
         {
@@ -217,4 +217,4 @@
         }
     </script>
 
-@endsection --}}
+@endsection

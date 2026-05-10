@@ -123,25 +123,25 @@
 								{!! $release->tracklist !!}
 							@elseif(count($release->tracks) > 0)
                                 <h2 class="fw-bold">@lang('releases.tracklist')</h2>
-								<table>
-									<tbody>
-									@foreach($release->tracks as $track)
-										<tr>
-											<td class="pb-1">
-												@if($track->beatport_sample && $track->beatport_wave && $track->beatport_sample_start && $track->beatport_sample_end && $track->length)
-													<button type="button" class="btn btn-sm btn-flat text-muted" data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}"><i class="fa-solid fa-play"></i></button>
-												@endif
-											</td>
-											<td class="pb-1">
-												<span class="track-name">{{ $release->getTracklistRow($track) }}</span>
-												@if($track->youtube)
-													<a href="{{ $track->youtube }}" target="_blank" rel="noreferrer" class="text-muted"><i class="fa-brands fa-youtube"></i></a>
-												@endif
-											</td>
-										</tr>
-									@endforeach
-									</tbody>
-								</table>
+                                @foreach($release->tracks as $track)
+                                    <div class="release-tracklist-item d-flex mb-2">
+                                        <div class="release-tracklist-item-play-btn pe-2 flex-1">
+                                            <button type="button" class="btn btn-sm btn-flat text-muted p-0 align-baseline" 
+                                                data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}">
+                                                <i class="fa-solid fa-play"></i>
+                                            </button>
+                                        </div>
+                                        <div class="release-tracklist-item-properties">
+                                            <div class="release-tracklist-item-properties-top">
+                                                <span class="track-name">{{ $track->name }}</span>
+                                                @if($track->mix_name)
+                                                    <small class="track-mix text-muted">{{ $track->mix_name }}</small>
+                                                @endif
+                                            </div>
+                                            <small class="track-artists text-muted">{{ $track->artists }}</small>
+                                        </div>
+                                    </div>
+                                @endforeach
                             @endif
                         </div>
                     </div>
@@ -181,40 +181,40 @@
 @section('json-ld')
 
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MusicAlbum",
-        "name": "{{ $release->title }}",
-        @if($release->image)"image": "{{ url('/') }}/images/releases/{{ $release->image }}", @endif
-        "url": "{{ route('release', $release->id) }}",
-        "albumProductionType": "https://schema.org/StudioAlbum",
-        @if(count($release->tracks) > 0)
-            "track": {
-                "@type": "ItemList",
-                "numberOfItems": {{ count($release->tracks) }},
-                "itemListElement": [
-                    @foreach($release->tracks as $track)
-                        {
-                            "@type": "ListItem",
-                            "position": {{ $loop->iteration }},
-                            "item": {
-                                "@type": "MusicRecording",
-                                "isrcCode": "{{ $track->isrc }}",
-                                "byArtist": {
-                                    "@type": "MusicGroup",
-                                    "name": "{{ $track->artists }}"
-                                },
-                                @if($track->length)
-                                    "duration": "{{ $track->lengthToIso8601() }}",
-                                @endif
-                            "name": "{{ $track->name }}@if($track->mix_name) ({{ $track->mix_name }})@endif"
-                        }
-                    }@if(!$loop->last),@endif
-                @endforeach
-                ]
-            }
-        @endif
-    }
-</script>
+        {
+            "@context": "https://schema.org",
+            "@type": "MusicAlbum",
+            "name": "{{ $release->title }}",
+            @if($release->image) "image": "{{ url('/') }}/images/releases/{{ $release->image }}", @endif
+            "url": "{{ route('release', $release->id) }}",
+            "albumProductionType": "https://schema.org/StudioAlbum",
+            @if(count($release->tracks) > 0)
+                "track": {
+                    "@type": "ItemList",
+                    "numberOfItems": {{ count($release->tracks) }},
+                    "itemListElement": [
+                        @foreach($release->tracks as $track)
+                            {
+                                "@type": "ListItem",
+                                "position": {{ $loop->iteration }},
+                                "item": {
+                                    "@type": "MusicRecording",
+                                    "isrcCode": "{{ $track->isrc }}",
+                                    "byArtist": {
+                                        "@type": "MusicGroup",
+                                        "name": "{{ $track->artists }}"
+                                    },
+                                    @if($track->length)
+                                        "duration": "{{ $track->lengthToIso8601() }}",
+                                    @endif
+                                "name": "{{ $track->name }}@if($track->mix_name) ({{ $track->mix_name }})@endif"
+                            }
+                        }@if(!$loop->last),@endif
+                    @endforeach
+                    ]
+                }
+            @endif
+        }
+    </script>
 
 @endsection

@@ -138,7 +138,9 @@
                                                     <small class="track-mix text-muted text-truncate" title="{{ $track->mix_name }}">{{ $track->mix_name }}</small>
                                                 @endif
                                             </div>
-                                            <small class="track-artists text-dark-emphasis">{{ $track->artists }}</small>
+                                            <small class="track-artists">
+                                                <a href="{{ route('search', ['q' => $track->artists]) }}" class="text-dark-emphasis">{{ $track->artists }}</a>
+                                            </small>
                                         </div>
                                     </div>
                                 @endforeach

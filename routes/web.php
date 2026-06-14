@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\Admin\AdminArtistsCvController;
+use App\Http\Controllers\Admin\AdminArtistsDocsController;
 use App\Http\Controllers\ArtistsContactInfoController;
 use App\Http\Controllers\ArtistsController;
 use App\Http\Controllers\ArtistsCvController;
@@ -100,6 +101,8 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/artists/cv/{cv}', [AdminArtistsCvController::class, 'show'])->name('artists_cv.show');
         Route::get('/artists/cv/{cv}/document', [AdminArtistsCvController::class, 'document'])->name('artists_cv.document');
         Route::delete('/artists/cv/{cv}/destroy', [AdminArtistsCvController::class, 'destroy'])->name('artists_cv.destroy');
+
+        Route::resource('/artists/docs', AdminArtistsDocsController::class)->names('artists.docs');
 
         Route::get('/releases/export', [AdminReleasesController::class, 'export'])->name('releases.export');
         Route::post('/releases/labelCopy/{release}', [AdminReleasesController::class, 'labelCopy'])->name('releases.labelCopy');

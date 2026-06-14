@@ -21,6 +21,7 @@ return [
             'tracks' => 'Tracks',
             'artists' => 'Artists',
             'artists_cv' => 'Artist CVs',
+            'artists_docs' => 'Artist Documents',
             'ctstudio' => 'CTStudio',
             'ctschool' => 'CTSchool',
             'ctschool_courses' => 'Courses',

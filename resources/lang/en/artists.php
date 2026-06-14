@@ -56,6 +56,13 @@ return [
         'submit' => 'Submit this form',
 
         'info_required' => 'At least 1 artist info is required',
-    ]
+    ],
+
+    'docs' => [
+        'title' => 'Artists Docs',
+        'create' => 'Create Artist Doc',
+        'track' => 'Track',
+        'artist' => 'Artist',
+    ],
 
 ];

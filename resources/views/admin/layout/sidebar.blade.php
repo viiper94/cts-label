@@ -25,10 +25,15 @@
                 <ul>
                     <li>
                         <a href="{{ route('artists_cv.index') }}" @class(['nav-link', 'active' => \Route::is('artists_cv.*')])>
-                            <i class="fa-solid fa-file-lines me-2"></i>@lang('shared.admin.sidebar.artists_cv')
+                            <i class="fa-solid fa-rectangle-list me-2"></i>@lang('shared.admin.sidebar.artists_cv')
                             @if($artists_cv_count > 0)
                                 <span class="badge bg-danger">{{ $artists_cv_count }}</span>
                             @endif
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('artists.docs.index') }}" @class(['nav-link', 'active' => \Route::is('artists_docs.*')])>
+                            <i class="fa-solid fa-file-word me-2"></i>@lang('shared.admin.sidebar.artists_docs')
                         </a>
                     </li>
                 </ul>

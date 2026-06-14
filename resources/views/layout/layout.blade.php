@@ -9,7 +9,7 @@
     @yield('meta')
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <title>@yield('title', "CTS Records")</title>
-    <link type="text/css" rel="stylesheet" href="{{  mix('css/app.css') }}" media="screen,projection"/>
+    @vite(['resources/sass/app.scss'])
     @yield('assets')
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

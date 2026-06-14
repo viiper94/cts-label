@@ -1,3 +1,2 @@
-<script type="text/javascript" src="{{ mix('js/admin.js') }}"></script>
+@vite(['resources/js/admin.js'])
 @yield('scripts')
-{{--<script src="/assets/js/admin.js?1110"></script>--}}

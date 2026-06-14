@@ -13,20 +13,20 @@
 }
 
 // Bootstrap
-@import "~bootstrap/scss/bootstrap.scss";
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "bootstrap/scss/bootstrap.scss";
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Fonts
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "@fortawesome/fontawesome-free/css/fontawesome.css";
+@import "@fortawesome/fontawesome-free/css/solid.css";
+@import "@fortawesome/fontawesome-free/css/brands.css";
 
 @import "fontello";
 
 // Plugins
-@import "~floating-scroll/dist/jquery.floatingscroll.css";
+@import "floating-scroll/dist/jquery.floatingscroll.css";
 @import "litepicker";
-@import "~bootstrap-star-rating/css/star-rating.min.css";
+@import "bootstrap-star-rating/css/star-rating.min.css";
 
 // Common
 @import "aliases";

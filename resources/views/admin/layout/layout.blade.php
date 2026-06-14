@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <title>@yield('title', "CTS Records Admin Panel")</title>
-    <link type="text/css" rel="stylesheet" href="{{  mix('css/admin.css') }}" media="screen,projection"/>
+    @vite(['resources/sass/admin.scss'])
     @yield('assets')
     @include('admin.layout.scripts')
 </head>

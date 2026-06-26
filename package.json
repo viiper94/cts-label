@@ -32,5 +32,8 @@
         "scrolltofixed": "^1.0.6",
         "sortablejs": "^1.15.6",
         "wavesurfer.js": "^7.9.4"
+    },
+    "overrides": {
+        "webpackbar": "^7.0.0"
     }
 }

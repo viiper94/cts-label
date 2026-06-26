@@ -1,0 +1,1 @@
+import{t as e}from"./star-rating.min-CP4sGVcg.js";export default e();

@@ -2,7 +2,7 @@
 
 @section('title', $release->title)
 @section('scripts')
-    @vite(['resources/js/release_player.js'])
+    <script type="text/javascript" src="{{ mix('js/release_player.js') }}"></script>
 @endsection
 
 @section('meta')

@@ -3,7 +3,7 @@
 @section('title', 'Feedback to '. $feedback->feedback_title)
 
 @section('scripts')
-    @vite(['resources/js/feedback_player.js'])
+    <script src="{{ mix('js/feedback_player.js') }}" type="text/javascript"></script>
 @endsection
 
 @section('meta')

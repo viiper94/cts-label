@@ -1,2 +1,2 @@
-@vite(['resources/js/app.js'])
+<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 @yield('scripts')

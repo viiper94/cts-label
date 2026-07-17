@@ -14,10 +14,6 @@
                        data-lang="en" href="{{ route('artists.public.info.create') }}">
                         @lang('shared.en')
                     </a>
-                    <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ru'])
-                       data-lang="ru" href="{{ route('artists.public.info.create') }}">
-                        @lang('shared.ru')
-                    </a>
                     <a @class(['btn switch-btn', 'active' => isset($_COOKIE['lang']) && $_COOKIE['lang'] === 'ua'])
                        data-lang="ua" href="{{ route('artists.public.info.create') }}">
                         @lang('shared.ua')

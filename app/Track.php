@@ -49,6 +49,10 @@ class Track extends Model implements Auditable{
         return $this->hasMany(Review::class)->whereNull('review');
     }
 
+    public function docs(){
+        return $this->belongsToMany(ArtistDoc::class, 'tracks_docs', 'track_id', 'doc_id');
+    }
+
     public function length(): Attribute{
         return Attribute::make(
             get: function($value){
@@ -140,6 +144,22 @@ class Track extends Model implements Auditable{
             return implode(', ', $catalogueNumbers);
         }
         return '';
+    }
+
+    public static function getDocsZip(Track $track) :string{
+        $zip = new \ZipArchive();
+        $zipFileName = public_path('docs/track_'.$track->id.'_docs.zip');
+        if(file_exists($zipFileName)) unlink($zipFileName);
+        if($zip->open($zipFileName, \ZipArchive::CREATE) === TRUE){
+            foreach($track->docs as $doc){
+                $filePath = public_path('docs/'.$doc->filename);
+                if(file_exists($filePath)){
+                    $zip->addFile($filePath, $doc->filename);
+                }
+            }
+            $zip->close();
+        }
+        return $zipFileName;
     }
 
 }

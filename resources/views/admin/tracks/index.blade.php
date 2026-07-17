@@ -54,8 +54,11 @@
                             {{ $track->length }}
                         </td>
                         <td class="text-end">
+                            @if($track->docs_count > 0)
+                                <a href="{{ route('tracks.docs_zip', $track->id) }}" target="_blank" class="btn btn-sm btn-outline"><i class="fa-solid fa-file-zipper text-success"></i></a>
+                            @endif
                             @if($track->youtube)
-                                <a href="{{ $track->youtube }}" target="_blank" class="btn btn-sm btn-outline"><i class="fa-brands fa-youtube"></i></a>
+                                <a href="{{ $track->youtube }}" target="_blank" class="btn btn-sm btn-outline"><i class="fa-brands fa-youtube text-danger"></i></a>
                             @endif
                             @if($track->beatport_sample)
                                 <a href="{{ $track->beatport_sample }}" target="_blank" class="btn btn-sm btn-outline"><i class="fa-solid fa-play"></i></a>

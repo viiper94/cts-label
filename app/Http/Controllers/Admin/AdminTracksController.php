@@ -13,7 +13,7 @@ use function Termwind\render;
 class AdminTracksController extends Controller{
 
     public function index(Request $request){
-        $tracks = Track::with('releases')->withCount('reviews', 'also_supported');
+        $tracks = Track::with('releases')->withCount('reviews', 'also_supported', 'docs');
         if($request->input('q')){
             $tracks = $tracks->where('name', 'like', '%'.$request->input('q').'%')
                 ->orWhere('artists', 'like', '%'.$request->input('q').'%')
@@ -190,6 +190,11 @@ class AdminTracksController extends Controller{
             response()->json([
                 'error' => trans('alert.error'),
             ], 500);
+    }
+
+    public function getZipLink(Request $request, Track $track){
+        $zip = Track::getDocsZip($track);
+        return response()->download($zip);
     }
 
 }

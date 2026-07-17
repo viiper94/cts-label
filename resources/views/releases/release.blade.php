@@ -125,12 +125,14 @@
                                 <h2 class="fw-bold">@lang('releases.tracklist')</h2>
                                 @foreach($release->tracks as $track)
                                     <div class="release-tracklist-item d-flex mb-2">
-                                        <div class="release-tracklist-item-play-btn pe-2 flex-1">
-                                            <button type="button" class="btn btn-sm btn-flat text-muted p-0 align-baseline" 
-                                                data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}">
-                                                <i class="fa-solid fa-play"></i>
-                                            </button>
-                                        </div>
+                                        @if($track->beaport_sample_url)
+                                            <div class="release-tracklist-item-play-btn pe-2 flex-1">
+                                                <button type="button" class="btn btn-sm btn-flat text-muted p-0 align-baseline" 
+                                                    data-track-id="{{ $track->id }}" data-release-id="{{ $release->id }}">
+                                                    <i class="fa-solid fa-play"></i>
+                                                </button>            
+                                            </div>
+                                        @endif                            
                                         <div class="release-tracklist-item-properties">
                                             <div class="release-tracklist-item-properties-top text-truncate text-muted overflow-hidden">
                                                 <span class="track-name text-white text-opacity-50">{{ $track->name }}</span>

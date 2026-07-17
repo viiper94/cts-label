@@ -41,7 +41,7 @@ class ReleasesController extends Controller{
     }
 
     public function track(Request $request, Track $track, Release $release = null){
-        if(!$request->ajax()) abort(404);
+        if(!$request->ajax() || !$track->beatport_sample) abort(404);
         $length = stripos($track->length, ':') ? Track::minutesToMilliseconds($track->length) : (int) $track->length;
         $start = stripos($track->beatport_sample_start, ':') ? Track::minutesToMilliseconds($track->beatport_sample_start) : (int) $track->beatport_sample_start;
         $end = stripos($track->beatport_sample_end, ':') ? Track::minutesToMilliseconds($track->beatport_sample_end) : (int) $track->beatport_sample_end;

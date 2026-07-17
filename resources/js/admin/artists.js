@@ -14,7 +14,6 @@ $(document).ready(function(){
         });
     });
 
-
     $('.artists-docs .edit-doc').click(function(){
         $btn = $(this);
         $.ajax({
@@ -29,5 +28,36 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on('click', '.artists-docs .add-to-docs', function(){
+        $btn = $(this);
+        $row = $btn.parent().parent().clone();
+
+        $row.find('.add-to-docs').hide();
+        $row.find('.remove-from-docs').show();
+        
+        $row.appendTo('.artists-docs .assigned-tracks tbody');
+
+        $btn.hide();
+        $btn.parent().find('.btn-outline-success').show();
+
+        if($('.assigned-tracks .no-tracks').length > 0){
+            $('.assigned-tracks .no-tracks').hide();
+        }
+    });
+
+    $(document).on('click', '.artists-docs .assigned-tracks .remove-from-docs', function(){
+        $btn = $(this);
+        id = $btn.parent().find('input').val();
+        $row = $btn.parent().parent().remove();
+
+        if($('.search-items input[value='+id+']').length > 0){
+            $('.search-items input[value='+id+']').parent().find('.btn-outline-success').hide();
+            $('.search-items input[value='+id+']').parent().find('.add-to-docs').show();
+        }
+
+        if($('.assigned-tracks .no-tracks').length == 0){
+            $('.assigned-tracks .no-tracks').show();
+        }
+    });
 
 });

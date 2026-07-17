@@ -138,7 +138,7 @@ $(document).ready(function(){
         $('#trackModal').modal('show');
     });
 
-    $('#trackSearchModal input[name=search]').keyup(function(){
+    $(document).on('keyup', '#trackSearchModal input[name=search]', function(){
         let url = $(this).data('url');
         let query = $(this).val();
         if(query.length > 3){
@@ -148,6 +148,8 @@ $(document).ready(function(){
                     query: query
                 },
                 beforeSend: function(){
+                    $('#trackSearchModal').find('.spinner').remove();
+                    $('#trackSearchModal').find('.search-items .table-responsive').html('');
                     $('#trackSearchModal')
                         .find('.search-items')
                         .before(utils.spinner({

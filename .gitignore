@@ -44,6 +44,7 @@ package-lock.json
 /public/images/**/*
 !/public/images/**/default.png
 /public/cv/
+/public/docs/
 /public/labelCopy/
 
 # CSV / Data

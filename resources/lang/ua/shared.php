@@ -21,6 +21,7 @@ return [
             'tracks' => 'Треки',
             'artists' => 'Артисти',
             'artists_cv' => 'Анкети артистів',
+            'artists_docs' => 'Документи артистів',
             'ctstudio' => 'CTStudio',
             'ctschool' => 'CTSchool',
             'ctschool_courses' => 'Курси',

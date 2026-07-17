@@ -101,8 +101,9 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/artists/cv/{cv}', [AdminArtistsCvController::class, 'show'])->name('artists_cv.show');
         Route::get('/artists/cv/{cv}/document', [AdminArtistsCvController::class, 'document'])->name('artists_cv.document');
         Route::delete('/artists/cv/{cv}/destroy', [AdminArtistsCvController::class, 'destroy'])->name('artists_cv.destroy');
-
-        Route::resource('/artists/docs', AdminArtistsDocsController::class)->names('artists.docs');
+        
+        Route::post('/artists/searchTrack', [AdminArtistsDocsController::class, 'searchTracks'])->name('artists.docs.tracks_search');
+        Route::resource('/artists/docs', AdminArtistsDocsController::class)->names('artists.docs')->except(['show', 'edit', 'update']);
 
         Route::get('/releases/export', [AdminReleasesController::class, 'export'])->name('releases.export');
         Route::post('/releases/labelCopy/{release}', [AdminReleasesController::class, 'labelCopy'])->name('releases.labelCopy');
@@ -114,6 +115,7 @@ Route::group(['middleware' => 'i18n'], function(){
         Route::get('/releases/sort/{release}/{dir}', [AdminReleasesController::class, 'sort'])->name('releases.sort');
         Route::resource('/releases', AdminReleasesController::class)->except(['show']);
 
+        Route::get('/tracks/docs_zip/{track}', [AdminTracksController::class, 'getZipLink'])->name('tracks.docs_zip');
         Route::post('/tracks/updateShowReviews/{track}', [AdminTracksController::class, 'updateShowReviews'])->name('tracks.updateShowReviews');
         Route::get('/tracks/export', [AdminTracksController::class, 'export'])->name('tracks.export');
         Route::post('/tracks/isrc/get', [AdminTracksController::class, 'generateISRCCode'])->name('tracks.isrc.get');

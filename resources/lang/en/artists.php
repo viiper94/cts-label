@@ -59,10 +59,15 @@ return [
     ],
 
     'docs' => [
-        'title' => 'Artists Docs',
-        'create' => 'Create Artist Doc',
-        'track' => 'Track',
-        'artist' => 'Artist',
+        'title' => 'Documents',
+        'create' => 'Upload Docs',
+        'track' => 'Tracks',
+        'artist_docs_added' => 'Documents have been added successfully!',
+        'artist_docs_deleted' => 'Documents has been deleted successfully!',
+        'filename' => 'Filename',
+        'date_added' => 'Date Added',
+        'files' => 'Upload files and assing them to tracks',
+        'no_assigned_tracks' => 'No assigned tracks',
     ],
 
 ];

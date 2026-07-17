@@ -10,7 +10,13 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+mix.webpackConfig({
+  watchOptions: {
+    poll: 1000,        // check for changes every 1000ms
+    aggregateTimeout: 300,
+    ignored: /node_modules/,
+  },
+});
 mix.js('resources/js/release_player.js', 'public/js/release_player.js')
     .js('resources/js/feedback_player.js', 'public/js/feedback_player.js')
     .js([

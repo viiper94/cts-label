@@ -21,7 +21,7 @@
                 <a href="{{ route('tracks.index') }}" @class(['nav-link', 'active' => \Route::is('tracks.*')])><i class="fa-solid fa-music me-2"></i>@lang('shared.admin.sidebar.tracks')</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('artists.index') }}" @class(['nav-link', 'active' => \Route::is('artists.*')])><i class="fa-solid fa-users me-2"></i>@lang('shared.admin.sidebar.artists')</a>
+                <a href="{{ route('artists.index') }}" @class(['nav-link', 'active' => (\Route::is('artists.*') && !\Route::is('artists.docs.*'))])><i class="fa-solid fa-users me-2"></i>@lang('shared.admin.sidebar.artists')</a>
                 <ul>
                     <li>
                         <a href="{{ route('artists_cv.index') }}" @class(['nav-link', 'active' => \Route::is('artists_cv.*')])>
@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('artists.docs.index') }}" @class(['nav-link', 'active' => \Route::is('artists_docs.*')])>
+                        <a href="{{ route('artists.docs.index') }}" @class(['nav-link', 'active' => \Route::is('artists.docs.*')])>
                             <i class="fa-solid fa-file-word me-2"></i>@lang('shared.admin.sidebar.artists_docs')
                         </a>
                     </li>

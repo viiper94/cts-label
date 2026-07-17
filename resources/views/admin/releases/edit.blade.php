@@ -309,7 +309,7 @@
                                 @lang('releases.uploaded_on_beatport')
                             </x-checkbox>
                             <x-checkbox class="mt-2 mb-0" name="uploaded_on_believe" :checked="$release->uploaded_on_believe">
-                                @lang('releases.uploaded_on') <a href='https://www.believebackstage.com/' target='_blank'>Believe Digital</a>
+                                @lang('releases.uploaded_on') <a href='https://ids.independentdigital.com/' target='_blank'>IDS</a>
                             </x-checkbox>
                             @isset($check['uploaded_on_believe'])
                                 <small class="text-{{ $check['uploaded_on_believe']['class'] }}">{{ $check['uploaded_on_believe']['msg'] }}</small>

@@ -7,9 +7,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./:/var/www/html
-      - /var/www/html/vendor         # don't sync vendor
-      - /var/www/html/node_modules  # don't sync node_modules
-      - /var/www/html/storage       # optional, speeds up file writes
       - ./docker/apache/vhost.conf:/etc/apache2/sites-available/000-default.conf
       - ./docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
     ports:
@@ -24,8 +21,8 @@ services:
     container_name: db
     restart: unless-stopped
     environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: label_new
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: label_new
     ports:
       - "3306:3306"
     volumes:
@@ -33,7 +30,6 @@ services:
     networks:
       - laravel_network
 
-      
 networks:
   laravel_network:
     driver: bridge

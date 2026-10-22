@@ -1,4 +1,4 @@
-FROM php:8.4-apache
+FROM php:8.4.27-apache
 
 # --------------------------------------------------
 # System + build dependencies
@@ -35,7 +35,7 @@ RUN docker-php-ext-install -j$(nproc) \
     zip
 
 # --------------------------------------------------
-# Imagick (explicit version for PHP 8.4)
+# Imagick
 # --------------------------------------------------
 RUN pecl install imagick \
     && docker-php-ext-enable imagick
@@ -53,12 +53,10 @@ RUN apt-get purge -y \
     && rm -rf /var/lib/apt/lists/*
 
 # --------------------------------------------------
-# Node.js + npm (Debian way — stable)
+# Node.js + npm (NodeSource, includes npm)
 # --------------------------------------------------
-RUN apt-get update && apt-get install -y \
-    nodejs \
-    npm \
-    && npm install -g npm \
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 # --------------------------------------------------
@@ -72,13 +70,16 @@ RUN a2enmod rewrite headers
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # --------------------------------------------------
-# App
+# Match www-data to your WSL user (uid/gid 1000)
+# so files created in the container are owned by you
+# --------------------------------------------------
+RUN usermod -u 1000 www-data \
+    && groupmod -g 1000 www-data \
+    && chown -R www-data:www-data /var/www
+
+# --------------------------------------------------
+# App (mounted from the host via docker-compose)
 # --------------------------------------------------
 WORKDIR /var/www/html
-COPY --chown=www-data:www-data . /var/www/html
-
-RUN chown -R www-data:www-data \
-    /var/www/html/storage \
-    /var/www/html/bootstrap/cache
 
 CMD ["apachectl", "-D", "FOREGROUND"]
